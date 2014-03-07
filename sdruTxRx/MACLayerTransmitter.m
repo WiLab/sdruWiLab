@@ -22,37 +22,37 @@ DebugFlag = 0;
 maxRetries = 6;
 msgStatus = false;
 
-% % Sense spectrum and wait until it is unoccupied
-% for tries = 1:4 % try only so many times
-%     [occupied,meanEnergy] = SpectrumSenseEnergy( ObjAGC, ObjSDRuReceiver, tx );
-%     fprintf('MAC| Energy Measured: %f\n',meanEnergy);
-%     if occupied
-%         %fprintf('MAC| Spectrum occupied, listening...\n');
-%         %Recover signal and/or wait
-%         lookingForACK = false;
-%         [~, previousMessage] = MACLayerReceiver(...
-%             ObjAGC,...           %Objects
-%             ObjSDRuReceiver,...
-%             ObjSDRuTransmitter,...
-%             ObjDetect,...
-%             ObjPreambleDemod,...
-%             ObjDataDemod,...
-%             estimate,...         %Structs
-%             tx,...
-%             timeoutDuration,...  %Values/Vectors
-%             messageBits,...
-%             lookingForACK,...
-%             previousMessage...
-%             );
-%         
-%     else% Yay we can transmit now
-%         break;
-%     end
-%     if tries >=4
-%         fprintf('MAC| Spectrum Busy, try again later\n');
-%         return;
-%     end
-% end
+% Sense spectrum and wait until it is unoccupied
+for tries = 1:4 % try only so many times
+    [occupied,meanEnergy] = SpectrumSenseEnergy( ObjAGC, ObjSDRuReceiver, tx );
+    if DebugFlag;fprintf('MAC| Energy Measured: %f\n',meanEnergy);end;
+    if occupied
+        %fprintf('MAC| Spectrum occupied, listening...\n');
+        %Recover signal and/or wait
+        lookingForACK = false;
+        [~, previousMessage] = MACLayerReceiver(...
+            ObjAGC,...           %Objects
+            ObjSDRuReceiver,...
+            ObjSDRuTransmitter,...
+            ObjDetect,...
+            ObjPreambleDemod,...
+            ObjDataDemod,...
+            estimate,...         %Structs
+            tx,...
+            timeoutDuration,...  %Values/Vectors
+            messageBits,...
+            lookingForACK,...
+            previousMessage...
+            );
+        
+    else% Yay we can transmit now
+        break;
+    end
+    if tries >=4
+        if DebugFlag;fprintf('MAC| Spectrum Busy, try again later\n');end;
+        return;
+    end
+end
 
 
 % Adjust offset for node

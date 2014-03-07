@@ -15,5 +15,5 @@ pause(4);
 %Start TX
 system('ssh root@monadnock.ece.wpi.edu "tb -dest k9 -act runTest -f runTX -u traviscollins">NUL 2>NUL');
 
-% Some info
+% Some info 
 disp('Test started, attached to screens');

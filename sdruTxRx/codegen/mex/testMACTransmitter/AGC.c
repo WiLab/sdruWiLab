@@ -3,7 +3,7 @@
  *
  * Code generation for function 'AGC'
  *
- * C source code generated on: Thu Mar  6 19:04:23 2014
+ * C source code generated on: Thu Mar  6 22:22:39 2014
  *
  */
 
@@ -23,9 +23,9 @@ static void rectifierOutput(real_T *z, real_T g);
 /* Function Definitions */
 static real_T rectifier(const creal_T x[5120])
 {
-  real_T dv7[5120];
-  b_abs(x, dv7);
-  return mean(dv7);
+  real_T dv6[5120];
+  b_abs(x, dv6);
+  return mean(dv6);
 }
 
 static void rectifierOutput(real_T *z, real_T g)
@@ -51,8 +51,8 @@ void AGC_stepImpl(testMACTransmitterStackData *SD, comm_AGC *obj, const creal_T
   real_T z;
   int32_T i;
   g = obj->Gain;
-  memcpy(&SD->u1.f5.dcv5[0], &x[0], 5120U * sizeof(creal_T));
-  z = rectifier(SD->u1.f5.dcv5);
+  memcpy(&SD->u1.f1.dcv4[0], &x[0], 5120U * sizeof(creal_T));
+  z = rectifier(SD->u1.f1.dcv4);
   for (i = 0; i < 5120; i++) {
     y[i].re = g * x[i].re;
     y[i].im = g * x[i].im;

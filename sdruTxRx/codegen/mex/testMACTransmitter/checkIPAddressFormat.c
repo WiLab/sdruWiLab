@@ -3,7 +3,7 @@
  *
  * Code generation for function 'checkIPAddressFormat'
  *
- * C source code generated on: Thu Mar  6 19:04:23 2014
+ * C source code generated on: Thu Mar  6 22:22:39 2014
  *
  */
 
@@ -22,28 +22,28 @@ static emlrtRSInfo sc_emlrtRSI = { 12, "any",
 static emlrtRSInfo ad_emlrtRSI = { 232, "find",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/elmat/find.m" };
 
-static emlrtRSInfo wj_emlrtRSI = { 32, "checkIPAddressFormat",
+static emlrtRSInfo dk_emlrtRSI = { 32, "checkIPAddressFormat",
   "/Users/travis/Documents/sdru/checkIPAddressFormat.m" };
 
-static emlrtRSInfo xj_emlrtRSI = { 34, "checkIPAddressFormat",
+static emlrtRSInfo ek_emlrtRSI = { 34, "checkIPAddressFormat",
   "/Users/travis/Documents/sdru/checkIPAddressFormat.m" };
 
-static emlrtRSInfo yj_emlrtRSI = { 43, "checkIPAddressFormat",
+static emlrtRSInfo fk_emlrtRSI = { 43, "checkIPAddressFormat",
   "/Users/travis/Documents/sdru/checkIPAddressFormat.m" };
 
-static emlrtRSInfo ak_emlrtRSI = { 44, "checkIPAddressFormat",
+static emlrtRSInfo gk_emlrtRSI = { 44, "checkIPAddressFormat",
   "/Users/travis/Documents/sdru/checkIPAddressFormat.m" };
 
-static emlrtRSInfo bk_emlrtRSI = { 45, "checkIPAddressFormat",
+static emlrtRSInfo hk_emlrtRSI = { 45, "checkIPAddressFormat",
   "/Users/travis/Documents/sdru/checkIPAddressFormat.m" };
 
-static emlrtRSInfo ck_emlrtRSI = { 46, "checkIPAddressFormat",
+static emlrtRSInfo ik_emlrtRSI = { 46, "checkIPAddressFormat",
   "/Users/travis/Documents/sdru/checkIPAddressFormat.m" };
 
-static emlrtRSInfo dk_emlrtRSI = { 53, "checkIPAddressFormat",
+static emlrtRSInfo jk_emlrtRSI = { 53, "checkIPAddressFormat",
   "/Users/travis/Documents/sdru/checkIPAddressFormat.m" };
 
-static emlrtRSInfo ek_emlrtRSI = { 52, "checkIPAddressFormat",
+static emlrtRSInfo kk_emlrtRSI = { 52, "checkIPAddressFormat",
   "/Users/travis/Documents/sdru/checkIPAddressFormat.m" };
 
 static emlrtECInfo d_emlrtECI = { 2, 53, 23, "checkIPAddressFormat",
@@ -188,7 +188,7 @@ void checkIPAddressFormat(const emlrtStack *sp)
   /*    checkIPAddressFormat('192.168.10.a', 'IPAddress') */
   /*    Copyright 2012 The MathWorks, Inc. */
   /*  Look for three dots */
-  st.site = &wj_emlrtRSI;
+  st.site = &dk_emlrtRSI;
   b_st.site = &yc_emlrtRSI;
   idx = 0;
   ii = 1;
@@ -233,8 +233,8 @@ void checkIPAddressFormat(const emlrtStack *sp)
 
   /*  Used instead of findstr since */
   /*  findstr does not generate code */
-  st.site = &xj_emlrtRSI;
-  st.site = &xj_emlrtRSI;
+  st.site = &ek_emlrtRSI;
+  st.site = &ek_emlrtRSI;
   if (!(loop_ub != 3)) {
   } else {
     y = NULL;
@@ -253,7 +253,7 @@ void checkIPAddressFormat(const emlrtStack *sp)
 
     emlrtInitCharArrayR2013a(&st, 9, m10, cv73);
     emlrtAssign(&b_y, m10);
-    b_st.site = &bw_emlrtRSI;
+    b_st.site = &lbb_emlrtRSI;
     c_error(&b_st, message(&b_st, y, b_y, &g_emlrtMCI), &g_emlrtMCI);
   }
 
@@ -300,7 +300,7 @@ void checkIPAddressFormat(const emlrtStack *sp)
     i11 = 11;
   }
 
-  st.site = &yj_emlrtRSI;
+  st.site = &fk_emlrtRSI;
   for (idx = 0; idx < ii; idx++) {
     x_data[idx] = cv75[idx];
   }
@@ -323,7 +323,7 @@ void checkIPAddressFormat(const emlrtStack *sp)
     }
 
     emlrtSizeEqCheck2DFastR2012b(x, iv61, &d_emlrtECI, &st);
-    b_st.site = &dk_emlrtRSI;
+    b_st.site = &jk_emlrtRSI;
     for (idx = 0; idx < ii; idx++) {
       b_x_data[idx] = !b_x_data[idx];
     }
@@ -352,7 +352,7 @@ void checkIPAddressFormat(const emlrtStack *sp)
     c_y = TRUE;
   }
 
-  b_st.site = &ek_emlrtRSI;
+  b_st.site = &kk_emlrtRSI;
   if (!c_y) {
   } else {
     d_y = NULL;
@@ -371,11 +371,11 @@ void checkIPAddressFormat(const emlrtStack *sp)
 
     emlrtInitCharArrayR2013a(&b_st, 9, m10, cv73);
     emlrtAssign(&e_y, m10);
-    c_st.site = &bw_emlrtRSI;
+    c_st.site = &lbb_emlrtRSI;
     c_error(&c_st, message(&c_st, d_y, e_y, &g_emlrtMCI), &g_emlrtMCI);
   }
 
-  st.site = &ak_emlrtRSI;
+  st.site = &gk_emlrtRSI;
   ii = i7 - i6;
   loop_ub = i7 - i6;
   for (i7 = 0; i7 < loop_ub; i7++) {
@@ -400,7 +400,7 @@ void checkIPAddressFormat(const emlrtStack *sp)
     }
 
     emlrtSizeEqCheck2DFastR2012b(x, iv61, &d_emlrtECI, &st);
-    b_st.site = &dk_emlrtRSI;
+    b_st.site = &jk_emlrtRSI;
     for (i6 = 0; i6 < ii; i6++) {
       b_x_data[i6] = !b_x_data[i6];
     }
@@ -429,7 +429,7 @@ void checkIPAddressFormat(const emlrtStack *sp)
     c_y = TRUE;
   }
 
-  b_st.site = &ek_emlrtRSI;
+  b_st.site = &kk_emlrtRSI;
   if (!c_y) {
   } else {
     f_y = NULL;
@@ -448,11 +448,11 @@ void checkIPAddressFormat(const emlrtStack *sp)
 
     emlrtInitCharArrayR2013a(&b_st, 9, m10, cv73);
     emlrtAssign(&g_y, m10);
-    c_st.site = &bw_emlrtRSI;
+    c_st.site = &lbb_emlrtRSI;
     c_error(&c_st, message(&c_st, f_y, g_y, &g_emlrtMCI), &g_emlrtMCI);
   }
 
-  st.site = &bk_emlrtRSI;
+  st.site = &hk_emlrtRSI;
   ii = i9 - i8;
   loop_ub = i9 - i8;
   for (i6 = 0; i6 < loop_ub; i6++) {
@@ -477,7 +477,7 @@ void checkIPAddressFormat(const emlrtStack *sp)
     }
 
     emlrtSizeEqCheck2DFastR2012b(x, iv61, &d_emlrtECI, &st);
-    b_st.site = &dk_emlrtRSI;
+    b_st.site = &jk_emlrtRSI;
     for (i6 = 0; i6 < ii; i6++) {
       b_x_data[i6] = !b_x_data[i6];
     }
@@ -506,7 +506,7 @@ void checkIPAddressFormat(const emlrtStack *sp)
     c_y = TRUE;
   }
 
-  b_st.site = &ek_emlrtRSI;
+  b_st.site = &kk_emlrtRSI;
   if (!c_y) {
   } else {
     h_y = NULL;
@@ -525,11 +525,11 @@ void checkIPAddressFormat(const emlrtStack *sp)
 
     emlrtInitCharArrayR2013a(&b_st, 9, m10, cv73);
     emlrtAssign(&i_y, m10);
-    c_st.site = &bw_emlrtRSI;
+    c_st.site = &lbb_emlrtRSI;
     c_error(&c_st, message(&c_st, h_y, i_y, &g_emlrtMCI), &g_emlrtMCI);
   }
 
-  st.site = &ck_emlrtRSI;
+  st.site = &ik_emlrtRSI;
   ii = (i11 - i10) + 1;
   loop_ub = i11 - i10;
   for (i6 = 0; i6 <= loop_ub; i6++) {
@@ -554,7 +554,7 @@ void checkIPAddressFormat(const emlrtStack *sp)
     }
 
     emlrtSizeEqCheck2DFastR2012b(x, iv61, &d_emlrtECI, &st);
-    b_st.site = &dk_emlrtRSI;
+    b_st.site = &jk_emlrtRSI;
     for (i6 = 0; i6 < ii; i6++) {
       b_x_data[i6] = !b_x_data[i6];
     }
@@ -583,7 +583,7 @@ void checkIPAddressFormat(const emlrtStack *sp)
     c_y = TRUE;
   }
 
-  b_st.site = &ek_emlrtRSI;
+  b_st.site = &kk_emlrtRSI;
   if (!c_y) {
   } else {
     j_y = NULL;
@@ -602,7 +602,7 @@ void checkIPAddressFormat(const emlrtStack *sp)
 
     emlrtInitCharArrayR2013a(&b_st, 9, m10, cv73);
     emlrtAssign(&k_y, m10);
-    c_st.site = &bw_emlrtRSI;
+    c_st.site = &lbb_emlrtRSI;
     c_error(&c_st, message(&c_st, j_y, k_y, &g_emlrtMCI), &g_emlrtMCI);
   }
 }

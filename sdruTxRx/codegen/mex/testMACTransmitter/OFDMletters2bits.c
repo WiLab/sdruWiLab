@@ -3,7 +3,7 @@
  *
  * Code generation for function 'OFDMletters2bits'
  *
- * C source code generated on: Thu Mar  6 19:04:23 2014
+ * C source code generated on: Thu Mar  6 22:22:39 2014
  *
  */
 
@@ -26,7 +26,7 @@ static emlrtBCInfo c_emlrtBCI = { -1, -1, 11, 27, "letter", "OFDMletters2bits",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/OFDMletters2bits.m", 0
 };
 
-static emlrtRSInfo jw_emlrtRSI = { 11, "OFDMletters2bits",
+static emlrtRSInfo xbb_emlrtRSI = { 11, "OFDMletters2bits",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/OFDMletters2bits.m" };
 
 /* Function Declarations */
@@ -63,9 +63,9 @@ static const mxArray *str2double(const emlrtStack *sp, const mxArray *b,
   emlrtMCInfo *location)
 {
   const mxArray *pArray;
-  const mxArray *m51;
+  const mxArray *m56;
   pArray = b;
-  return emlrtCallMATLABR2012b(sp, 1, &m51, 1, &pArray, "str2double", TRUE,
+  return emlrtCallMATLABR2012b(sp, 1, &m56, 1, &pArray, "str2double", TRUE,
     location);
 }
 
@@ -152,7 +152,7 @@ void OFDMletters2bits(const emlrtStack *sp, const char_T str[80], real_T f[560])
       y = NULL;
       m4 = emlrtCreateString1(bits_data[firstcol + 80 * i]);
       emlrtAssign(&y, m4);
-      st.site = &jw_emlrtRSI;
+      st.site = &xbb_emlrtRSI;
       f[firstcol + 80 * i] = emlrt_marshallIn(&st, str2double(&st, y,
         &b_emlrtMCI), "str2double");
       emlrtBreakCheckFastR2012b(emlrtBreakCheckR2012bFlagVar, sp);
@@ -254,7 +254,7 @@ void b_OFDMletters2bits(const emlrtStack *sp, real_T f[560])
       y = NULL;
       m12 = emlrtCreateString1(bits_data[firstcol + 80 * i]);
       emlrtAssign(&y, m12);
-      st.site = &jw_emlrtRSI;
+      st.site = &xbb_emlrtRSI;
       f[firstcol + 80 * i] = emlrt_marshallIn(&st, str2double(&st, y,
         &b_emlrtMCI), "str2double");
       emlrtBreakCheckFastR2012b(emlrtBreakCheckR2012bFlagVar, sp);

@@ -3,7 +3,7 @@
  *
  * Code generation for function 'testMACTransmitter'
  *
- * C source code generated on: Thu Mar  6 19:04:22 2014
+ * C source code generated on: Thu Mar  6 22:22:38 2014
  *
  */
 
@@ -581,6 +581,18 @@ struct emxArray_creal_T
 #define typedef_emxArray_creal_T
 typedef struct emxArray_creal_T emxArray_creal_T;
 #endif /*typedef_emxArray_creal_T*/
+#ifndef struct_emxArray_creal_T_1
+#define struct_emxArray_creal_T_1
+struct emxArray_creal_T_1
+{
+    creal_T data[1];
+    int32_T size[1];
+};
+#endif /*struct_emxArray_creal_T_1*/
+#ifndef typedef_emxArray_creal_T_1
+#define typedef_emxArray_creal_T_1
+typedef struct emxArray_creal_T_1 emxArray_creal_T_1;
+#endif /*typedef_emxArray_creal_T_1*/
 #ifndef struct_emxArray_creal_T_1224
 #define struct_emxArray_creal_T_1224
 struct emxArray_creal_T_1224
@@ -764,6 +776,18 @@ struct emxArray_real_T_1231
 #define typedef_emxArray_real_T_1231
 typedef struct emxArray_real_T_1231 emxArray_real_T_1231;
 #endif /*typedef_emxArray_real_T_1231*/
+#ifndef struct_emxArray_real_T_195
+#define struct_emxArray_real_T_195
+struct emxArray_real_T_195
+{
+    real_T data[195];
+    int32_T size[1];
+};
+#endif /*struct_emxArray_real_T_195*/
+#ifndef typedef_emxArray_real_T_195
+#define typedef_emxArray_real_T_195
+typedef struct emxArray_real_T_195 emxArray_real_T_195;
+#endif /*typedef_emxArray_real_T_195*/
 #ifndef struct_emxArray_real_T_1x1280
 #define struct_emxArray_real_T_1x1280
 struct emxArray_real_T_1x1280
@@ -788,6 +812,18 @@ struct emxArray_real_T_1x563
 #define typedef_emxArray_real_T_1x563
 typedef struct emxArray_real_T_1x563 emxArray_real_T_1x563;
 #endif /*typedef_emxArray_real_T_1x563*/
+#ifndef struct_emxArray_real_T_1x64
+#define struct_emxArray_real_T_1x64
+struct emxArray_real_T_1x64
+{
+    real_T data[64];
+    int32_T size[2];
+};
+#endif /*struct_emxArray_real_T_1x64*/
+#ifndef typedef_emxArray_real_T_1x64
+#define typedef_emxArray_real_T_1x64
+typedef struct emxArray_real_T_1x64 emxArray_real_T_1x64;
+#endif /*typedef_emxArray_real_T_1x64*/
 #ifndef struct_emxArray_real_T_2461
 #define struct_emxArray_real_T_2461
 struct emxArray_real_T_2461
@@ -1007,27 +1043,27 @@ typedef struct
         } f0;
         struct
         {
-            creal_T data[38400];
+            creal_T dcv4[5120];
         } f1;
         struct
         {
-            creal_T r[1280];
+            cint16_T yTemp[46336];
         } f2;
         struct
         {
-            creal_T y[3456];
+            creal_T data[38400];
         } f3;
         struct
         {
-            creal_T inputIn3D[960];
+            creal_T r[1280];
         } f4;
         struct
         {
-            creal_T dcv5[5120];
+            creal_T y[3456];
         } f5;
         struct
         {
-            cint16_T yTemp[46336];
+            creal_T inputIn3D[960];
         } f6;
         struct
         {
@@ -1046,18 +1082,24 @@ typedef struct
     {
         struct
         {
-            creal_T dataToTx[38400];
-            d_struct_T unusedU2;
+            creal_T tmp[5120];
+            creal_T b_tmp[5120];
+            creal_T unusedExpr[5120];
         } f10;
         struct
         {
-            creal_T y[3336];
+            creal_T dataToTx[38400];
+            d_struct_T unusedU2;
         } f11;
+        struct
+        {
+            creal_T y[3336];
+        } f12;
         struct
         {
             creal_T dataToTx[38400];
             d_struct_T unusedU2;
-        } f12;
+        } f13;
     } u2;
     struct
     {
@@ -1071,11 +1113,11 @@ typedef struct
         creal_T b_Phat_data[1224];
         c_struct_T estimate;
         real_T tmp_data[1231];
-    } f13;
+    } f14;
     struct
     {
         c_struct_T estimate;
-    } f14;
+    } f15;
     struct
     {
         creal_T unusedU2[38400];
@@ -1084,7 +1126,7 @@ typedef struct
         d_struct_T tx;
         d_struct_T rx;
         c_struct_T estimate;
-    } f15;
+    } f16;
 } testMACTransmitterStackData;
 #endif /*typedef_testMACTransmitterStackData*/
 

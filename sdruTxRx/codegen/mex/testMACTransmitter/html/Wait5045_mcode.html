@@ -1,0 +1,15 @@
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="206,1" id="srcline1"> 1</a></span><span class="line"><span class="comment">% Do nothing aka waste time</span></span></span>
+<span class="srcline"><span class="lineno"><a href="206,2" id="srcline2"> 2</a></span><span class="line"><span class="keyword">function</span> Wait(<span class="var type1" id="S2T2386U5">ObjSDRuReceiver</span>,<span class="var type1" id="S3T1U6">desiredSamplingFrequency</span>,<span class="mxinfo" id="T1:U3"><span class="var type2" id="S4T1V37U7">time</span></span>)</span></span>
+<span class="srcline"><span class="lineno"><a href="206,3" id="srcline3"> 3</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="206,4" id="srcline4"> 4</a></span><span class="line"><span class="comment">% Calculate how many buffer needed to step through to wait</span></span></span>
+<span class="srcline"><span class="lineno"><a href="206,5" id="srcline5"> 5</a></span><span class="line"><span class="comment">% desired time</span></span></span>
+<span class="srcline"><span class="lineno"><a href="206,6" id="srcline6"> 6</a></span><span class="line"><span class="mxinfo" id="T1:U5"><span class="var type1" id="S5T1U10">timeToFillBuffer</span> = <span class="mxinfo" id="T1:U7"><span class="mxinfo" id="T1:U8"><span class="var type1" id="S2T2386U13">ObjSDRuReceiver</span>.FrameLength</span> / <span class="var type1" id="S3T1U15">desiredSamplingFrequency</span></span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="206,7" id="srcline7"> 7</a></span><span class="line"><span class="mxinfo" id="T1:U11"><span class="var type1" id="S6T1U18">buffersToProcess</span> = <span class="mxinfo" id="T1:U13">ceil(<span class="mxinfo" id="T1:U14"><span class="mxinfo" id="T1:U15"><span class="var type1" id="S4T1U22">time</span></span>/<span class="var type1" id="S5T1U23">timeToFillBuffer</span></span>)</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="206,8" id="srcline8"> 8</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="206,9" id="srcline9"> 9</a></span><span class="line"><span class="keyword">for</span> <span class="var type1" id="S8T1U26">buffer</span> = <span class="mxinfo" id="T1:U19">1</span>:<span class="var type1" id="S6T1U29">buffersToProcess</span></span></span>
+<span class="srcline"><span class="lineno"><a href="206,10" id="srcline10">10</a></span><span class="line">    step(<span class="var type1" id="S2T2386U33">ObjSDRuReceiver</span>);</span></span>
+<span class="srcline"><span class="lineno"><a href="206,11" id="srcline11">11</a></span><span class="line"><span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="206,12" id="srcline12">12</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="206,13" id="srcline13">13</a></span><span class="line"><span class="keyword">end</span></span></span>
+</pre>

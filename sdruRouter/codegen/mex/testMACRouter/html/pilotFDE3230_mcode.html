@@ -1,0 +1,20 @@
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="173,67" id="srcline67">67</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="173,68" id="srcline68">68</a></span><span class="line"><span class="comment">% Calculate Equalizer Taps with pilot symbols</span></span></span>
+<span class="srcline"><span class="lineno"><a href="173,69" id="srcline69">69</a></span><span class="line"><span class="keyword">function</span> <span class="var type1" id="S38T536U250">PilotGainsFull</span> = pilotFDE(<span class="var type1" id="S39T1571U253">rxPilots</span>, <span class="var type1" id="S40T539U254">txPilots</span>, <span class="mxinfo" id="T1:U4"><span class="var type2" id="S41T1V9U255">upSampleFactor</span></span>)</span></span>
+<span class="srcline"><span class="lineno"><a href="173,70" id="srcline70">70</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="173,71" id="srcline71">71</a></span><span class="line"><span class="comment">% Calculate non-normalized channel gains</span></span></span>
+<span class="srcline"><span class="lineno"><a href="173,72" id="srcline72">72</a></span><span class="line"><span class="mxinfo" id="T1571:U6"><span class="var type1" id="S42T1571U258">PilotNormal</span> = <span class="mxinfo" id="T1571:U8"><span class="var type1" id="S39T1571U260">rxPilots</span>./<span class="var type1" id="S40T539U261">txPilots</span></span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="173,73" id="srcline73">73</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="173,74" id="srcline74">74</a></span><span class="line"><span class="comment">% Scale channel gains</span></span></span>
+<span class="srcline"><span class="lineno"><a href="173,75" id="srcline75">75</a></span><span class="line"><span class="mxinfo" id="T539:U11"><span class="var type1" id="S43T539U264">PilotEnergy</span> = <span class="mxinfo" id="T539:U13"><span class="mxinfo" id="T539:U14">abs(<span class="var type1" id="S42T1571U268">PilotNormal</span>)</span>.^2</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="173,76" id="srcline76">76</a></span><span class="line"><span class="mxinfo" id="T1571:U16"><span class="var type1" id="S45T1571U272">PilotConj</span> = <span class="mxinfo" id="T1571:U18">conj(<span class="var type1" id="S42T1571U275">PilotNormal</span>)</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="173,77" id="srcline77">77</a></span><span class="line"><span class="mxinfo" id="T1571:U20"><span class="var type1" id="S47T1571U278">PilotGains</span> = <span class="mxinfo" id="T1571:U22"><span class="var type1" id="S45T1571U280">PilotConj</span>./ <span class="var type1" id="S43T539U281">PilotEnergy</span></span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="173,78" id="srcline78">78</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="173,79" id="srcline79">79</a></span><span class="line"><span class="comment">% Interpolate to data carrier size</span></span></span>
+<span class="srcline"><span class="lineno"><a href="173,80" id="srcline80">80</a></span><span class="line"><span class="mxinfo" id="T536:U25"><span class="var type1" id="S38T536U284">PilotGainsFull</span> = <span class="mxinfo" id="T536:U27">resample(<span class="var type1" id="S47T1571U287">PilotGains</span>, <span class="var type1" id="S41T1U288">upSampleFactor</span>, 1)</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="173,81" id="srcline81">81</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="173,82" id="srcline82">82</a></span><span class="line"><span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="173,83" id="srcline83">83</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="173,84" id="srcline84">84</a></span><span class="line"></span></span>
+</pre>

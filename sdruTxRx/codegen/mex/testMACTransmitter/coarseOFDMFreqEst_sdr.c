@@ -3,7 +3,7 @@
  *
  * Code generation for function 'coarseOFDMFreqEst_sdr'
  *
- * C source code generated on: Thu Mar  6 19:04:24 2014
+ * C source code generated on: Thu Mar  6 22:22:41 2014
  *
  */
 
@@ -18,19 +18,19 @@
 #include <stdio.h>
 
 /* Variable Definitions */
-static emlrtRSInfo ms_emlrtRSI = { 32, "coarseOFDMFreqEst_sdr",
+static emlrtRSInfo nx_emlrtRSI = { 32, "coarseOFDMFreqEst_sdr",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/coarseOFDMFreqEst_sdr.m"
 };
 
-static emlrtRSInfo ns_emlrtRSI = { 31, "coarseOFDMFreqEst_sdr",
+static emlrtRSInfo ox_emlrtRSI = { 31, "coarseOFDMFreqEst_sdr",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/coarseOFDMFreqEst_sdr.m"
 };
 
-static emlrtRSInfo os_emlrtRSI = { 28, "coarseOFDMFreqEst_sdr",
+static emlrtRSInfo px_emlrtRSI = { 28, "coarseOFDMFreqEst_sdr",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/coarseOFDMFreqEst_sdr.m"
 };
 
-static emlrtECInfo u_emlrtECI = { -1, 32, 20, "coarseOFDMFreqEst_sdr",
+static emlrtECInfo eb_emlrtECI = { -1, 32, 20, "coarseOFDMFreqEst_sdr",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/coarseOFDMFreqEst_sdr.m"
 };
 
@@ -64,14 +64,14 @@ void freqCorrectOFDM(const emlrtStack *sp, c_struct_T *estimate, const creal_T
   /*  Enable moving averages for estimates */
   /*  Buffer not full */
   estimate_data[0] = estimate->frequency[0];
-  st.site = &os_emlrtRSI;
+  st.site = &px_emlrtRSI;
   estimate->frequencyMA = b_mean(estimate_data);
 
   /*  Apply frequency correction */
-  st.site = &ns_emlrtRSI;
-  b_st.site = &op_emlrtRSI;
+  st.site = &ox_emlrtRSI;
+  b_st.site = &fp_emlrtRSI;
   b_float_colon_length(&n, &anew, &kd, &n_too_large);
-  c_st.site = &dq_emlrtRSI;
+  c_st.site = &hp_emlrtRSI;
   assert_pmaxsize(&c_st, !n_too_large);
   if (n > 0) {
     t_data[0] = anew;
@@ -95,19 +95,19 @@ void freqCorrectOFDM(const emlrtStack *sp, c_struct_T *estimate, const creal_T
     }
   }
 
-  st.site = &ms_emlrtRSI;
+  st.site = &nx_emlrtRSI;
   kd = estimate->frequencyMA * 0.0;
   anew = estimate->frequencyMA;
-  st.site = &ms_emlrtRSI;
+  st.site = &nx_emlrtRSI;
   tmp_size[0] = n;
   for (k = 0; k < n; k++) {
     tmp_data[k].re = t_data[k] * kd;
     tmp_data[k].im = t_data[k] * anew;
   }
 
-  st.site = &ms_emlrtRSI;
+  st.site = &nx_emlrtRSI;
   b_exp(tmp_data, tmp_size);
-  emlrtSizeEqCheck1DFastR2012b(tmp_size[0], 1280, &u_emlrtECI, sp);
+  emlrtSizeEqCheck1DFastR2012b(tmp_size[0], 1280, &eb_emlrtECI, sp);
   rFreqShifted_size[0] = tmp_size[0];
   nm1d2 = tmp_size[0];
   for (k = 0; k < nm1d2; k++) {

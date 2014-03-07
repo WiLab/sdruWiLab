@@ -3,7 +3,7 @@
  *
  * Code generation for function 'rdivide'
  *
- * C source code generated on: Thu Mar  6 19:04:22 2014
+ * C source code generated on: Thu Mar  6 22:22:38 2014
  *
  */
 
@@ -16,17 +16,17 @@
 /* Function Definitions */
 void b_rdivide(const creal_T x[106], const real_T y[106], creal_T z[106])
 {
-  int32_T i24;
-  for (i24 = 0; i24 < 106; i24++) {
-    if (x[i24].im == 0.0) {
-      z[i24].re = x[i24].re / y[i24];
-      z[i24].im = 0.0;
-    } else if (x[i24].re == 0.0) {
-      z[i24].re = 0.0;
-      z[i24].im = x[i24].im / y[i24];
+  int32_T i27;
+  for (i27 = 0; i27 < 106; i27++) {
+    if (x[i27].im == 0.0) {
+      z[i27].re = x[i27].re / y[i27];
+      z[i27].im = 0.0;
+    } else if (x[i27].re == 0.0) {
+      z[i27].re = 0.0;
+      z[i27].im = x[i27].im / y[i27];
     } else {
-      z[i24].re = x[i24].re / y[i24];
-      z[i24].im = x[i24].im / y[i24];
+      z[i27].re = x[i27].re / y[i27];
+      z[i27].im = x[i27].im / y[i27];
     }
   }
 }

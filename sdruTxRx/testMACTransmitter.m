@@ -29,7 +29,7 @@ for run = 1 : 1e4
     message = ['Random Message'];%Dont create different messages each times
     
     % Who should get the message?
-    recipient = 1;
+    recipient = 2;
     
     [previousMessage, msgStatus] = MACLayerTransmitter(...
         ObjAGC,...           %Objects
@@ -52,7 +52,7 @@ for run = 1 : 1e4
     fprintf('TOP| DONE Iteration: Waiting some time between actions\n');
     if msgStatus
         correct = correct + 1;
-        fprintf('Successful Transmissions: %d\n',int32(correct));
+        fprintf('Successful Transmissions: %d of %d\n',int32(correct),int16(run));
     end
     Wait(ObjSDRuReceiver,tx.samplingFreq,waitTime);
     

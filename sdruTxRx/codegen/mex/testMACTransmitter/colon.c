@@ -3,7 +3,7 @@
  *
  * Code generation for function 'colon'
  *
- * C source code generated on: Thu Mar  6 19:04:23 2014
+ * C source code generated on: Thu Mar  6 22:22:39 2014
  *
  */
 
@@ -13,31 +13,19 @@
 #include "colon.h"
 #include "OFDMDemodulator.h"
 #include "testMACTransmitter_mexutil.h"
+#include "testMACTransmitter_data.h"
 #include <stdio.h>
-
-/* Variable Definitions */
-static emlrtMCInfo t_emlrtMCI = { 405, 5, "colon",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/colon.m" };
-
-static emlrtMCInfo u_emlrtMCI = { 404, 15, "colon",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/colon.m" };
-
-static emlrtRSInfo aw_emlrtRSI = { 404, "colon",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/colon.m" };
-
-static emlrtRSInfo hw_emlrtRSI = { 405, "colon",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/colon.m" };
 
 /* Function Definitions */
 void assert_pmaxsize(const emlrtStack *sp, boolean_T p)
 {
   const mxArray *y;
-  static const int32_T iv190[2] = { 1, 21 };
+  static const int32_T iv127[2] = { 1, 21 };
 
-  const mxArray *m31;
-  char_T cv217[21];
+  const mxArray *m22;
+  char_T cv147[21];
   int32_T i;
-  static const char_T cv218[21] = { 'C', 'o', 'd', 'e', 'r', ':', 'M', 'A', 'T',
+  static const char_T cv148[21] = { 'C', 'o', 'd', 'e', 'r', ':', 'M', 'A', 'T',
     'L', 'A', 'B', ':', 'p', 'm', 'a', 'x', 's', 'i', 'z', 'e' };
 
   emlrtStack st;
@@ -49,16 +37,16 @@ void assert_pmaxsize(const emlrtStack *sp, boolean_T p)
   if (p) {
   } else {
     y = NULL;
-    m31 = mxCreateCharArray(2, iv190);
+    m22 = mxCreateCharArray(2, iv127);
     for (i = 0; i < 21; i++) {
-      cv217[i] = cv218[i];
+      cv147[i] = cv148[i];
     }
 
-    emlrtInitCharArrayR2013a(sp, 21, m31, cv217);
-    emlrtAssign(&y, m31);
-    st.site = &aw_emlrtRSI;
-    b_st.site = &hw_emlrtRSI;
-    c_error(&st, b_message(&b_st, y, &t_emlrtMCI), &u_emlrtMCI);
+    emlrtInitCharArrayR2013a(sp, 21, m22, cv147);
+    emlrtAssign(&y, m22);
+    st.site = &nbb_emlrtRSI;
+    b_st.site = &tbb_emlrtRSI;
+    c_error(&st, b_message(&b_st, y, &s_emlrtMCI), &t_emlrtMCI);
   }
 }
 

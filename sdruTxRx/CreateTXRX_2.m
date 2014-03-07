@@ -2,7 +2,7 @@ function [ObjAGC,ObjSDRuReceiver, ObjSDRuTransmitter, ObjDetect, ObjPreambleDemo
           estimate, tx, timeoutDuration, messageBits, desiredSamplingFrequency] = CreateTXRX_2
 
 % System parameters to adjust because of hardware limitation
-numFrames = 1; % Frames to capture
+numFrames = 3; % Frames to capture
 desiredSamplingFrequency =  5e6;
 USRPADCSamplingRate = 100e6;
 InterpolationFactor = USRPADCSamplingRate/desiredSamplingFrequency;
@@ -11,6 +11,7 @@ CenterFrequency = 2.24e9;
 [ ~, ~, ~, tx ] = generateOFDMSignal_TX2( 'UnimportantMessage', desiredSamplingFrequency, 1, 1);
 tx.samplingFreq = desiredSamplingFrequency;% Set desired frequeny
 tx.CenterFrequency = CenterFrequency;
+tx.receiveBufferLength = 5120;
 tx.freqBin = tx.samplingFreq/tx.FFTLength;% Set frequency bin width
 
 

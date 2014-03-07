@@ -40,21 +40,26 @@ SRC_FILES =  \
 	SDRuReceiver.c \
 	CRCDetector.c \
 	MACLayerTransmitter.c \
-	fprintf.c \
-	PHYTransmit.c \
+	SpectrumSenseP25.c \
 	mapiPrivate.c \
 	closeDataConnection.c \
-	sendComplexDoubleData.c \
-	error.c \
 	receiveData.c \
-	PHYReceive.c \
+	error.c \
 	mean.c \
+	commP25sscaGen.c \
+	fft.c \
+	fftshift.c \
+	exp.c \
+	eml_sort.c \
+	fprintf.c \
+	PHYTransmit.c \
+	sendComplexDoubleData.c \
+	PHYReceive.c \
 	locateOFDMFrame_sdr.c \
 	xcorr.c \
 	eml_setop.c \
 	coarseOFDMFreqEst_sdr.c \
 	angle.c \
-	exp.c \
 	equalizeOFDM.c \
 	resample.c \
 	upfirdn.c \

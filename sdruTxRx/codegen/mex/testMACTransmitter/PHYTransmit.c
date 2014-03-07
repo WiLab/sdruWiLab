@@ -3,7 +3,7 @@
  *
  * Code generation for function 'PHYTransmit'
  *
- * C source code generated on: Thu Mar  6 19:04:24 2014
+ * C source code generated on: Thu Mar  6 22:22:40 2014
  *
  */
 
@@ -17,13 +17,13 @@
 #include <stdio.h>
 
 /* Variable Definitions */
-static emlrtRSInfo fm_emlrtRSI = { 29, "PHYTransmit",
+static emlrtRSInfo gt_emlrtRSI = { 29, "PHYTransmit",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/PHYTransmit.m" };
 
-static emlrtRSInfo gm_emlrtRSI = { 32, "PHYTransmit",
+static emlrtRSInfo ht_emlrtRSI = { 32, "PHYTransmit",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/PHYTransmit.m" };
 
-static emlrtRSInfo hm_emlrtRSI = { 16, "PHYTransmit",
+static emlrtRSInfo it_emlrtRSI = { 16, "PHYTransmit",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/PHYTransmit.m" };
 
 /* Function Definitions */
@@ -44,9 +44,9 @@ void PHYTransmit(testMACTransmitterStackData *SD, const emlrtStack *sp,
   /* % Create message bits */
   /*  The output needs to be duplicated to long vectors to help prevent */
   /*  Underflow for the USRP */
-  st.site = &hm_emlrtRSI;
+  st.site = &it_emlrtRSI;
   b_generateOFDMSignal_TX2(SD, &st, originNodeID, &b_unusedU1, &b_unusedU0,
-    &unusedU0, &unusedU1, SD->u2.f12.dataToTx, &SD->u2.f12.unusedU2);
+    &unusedU0, &unusedU1, SD->u2.f13.dataToTx, &SD->u2.f13.unusedU2);
 
   /*  30 Dupe frames created (NOTE! author shouldcreate shorter simpler function) */
   /* % Run transmitter */
@@ -54,12 +54,12 @@ void PHYTransmit(testMACTransmitterStackData *SD, const emlrtStack *sp,
   /*  This should be longer to help transmit over periods when the RX is */
   /*  cleaning its buffer */
   for (framesTransmitted = 0; framesTransmitted < 10; framesTransmitted++) {
-    st.site = &fm_emlrtRSI;
-    h_SystemCore_step(SD, &st, ObjSDRuTransmitter, SD->u2.f12.dataToTx);
+    st.site = &gt_emlrtRSI;
+    i_SystemCore_step(SD, &st, ObjSDRuTransmitter, SD->u2.f13.dataToTx);
 
     /* if mod(framesTransmitted,60) == 0 */
-    st.site = &gm_emlrtRSI;
-    i_SystemCore_step(SD, &st, ObjSDRuReceiver);
+    st.site = &ht_emlrtRSI;
+    j_SystemCore_step(SD, &st, ObjSDRuReceiver);
 
     /*  Call used to prevent Overflow.  Essentially will clean up receive buffer, will be filled with crosstalk frames */
     /* end */
@@ -86,9 +86,9 @@ void b_PHYTransmit(testMACTransmitterStackData *SD, const emlrtStack *sp,
   /* % Create message bits */
   /*  The output needs to be duplicated to long vectors to help prevent */
   /*  Underflow for the USRP */
-  st.site = &hm_emlrtRSI;
+  st.site = &it_emlrtRSI;
   c_generateOFDMSignal_TX2(SD, &st, originNodeID, destNodeID, &b_unusedU1,
-    &b_unusedU0, &unusedU0, &unusedU1, SD->u2.f10.dataToTx, &SD->u2.f10.unusedU2);
+    &b_unusedU0, &unusedU0, &unusedU1, SD->u2.f11.dataToTx, &SD->u2.f11.unusedU2);
 
   /*  30 Dupe frames created (NOTE! author shouldcreate shorter simpler function) */
   /* % Run transmitter */
@@ -96,12 +96,12 @@ void b_PHYTransmit(testMACTransmitterStackData *SD, const emlrtStack *sp,
   /*  This should be longer to help transmit over periods when the RX is */
   /*  cleaning its buffer */
   for (framesTransmitted = 0; framesTransmitted < 10; framesTransmitted++) {
-    st.site = &fm_emlrtRSI;
-    h_SystemCore_step(SD, &st, ObjSDRuTransmitter, SD->u2.f10.dataToTx);
+    st.site = &gt_emlrtRSI;
+    i_SystemCore_step(SD, &st, ObjSDRuTransmitter, SD->u2.f11.dataToTx);
 
     /* if mod(framesTransmitted,60) == 0 */
-    st.site = &gm_emlrtRSI;
-    i_SystemCore_step(SD, &st, ObjSDRuReceiver);
+    st.site = &ht_emlrtRSI;
+    j_SystemCore_step(SD, &st, ObjSDRuReceiver);
 
     /*  Call used to prevent Overflow.  Essentially will clean up receive buffer, will be filled with crosstalk frames */
     /* end */

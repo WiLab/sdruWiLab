@@ -3,7 +3,7 @@
  *
  * Code generation for function 'SystemCore'
  *
- * C source code generated on: Thu Mar  6 19:04:23 2014
+ * C source code generated on: Thu Mar  6 22:22:39 2014
  *
  */
 
@@ -31,10 +31,11 @@ extern void c_SystemCore_step(const emlrtStack *sp, commcodegen_CRCGenerator *ob
 extern void d_SystemCore_step(const emlrtStack *sp, OFDMModulator_1 *obj, const creal_T varargin_1[576], const real_T varargin_2[48], creal_T varargout_1[960]);
 extern void e_SystemCore_step(const emlrtStack *sp, commcodegen_CRCGenerator_6 *obj, const real_T varargin_1[560], real_T varargout_1[563]);
 extern void f_SystemCore_step(const emlrtStack *sp, commcodegen_BPSKModulator_1 *obj, const real_T varargin_1[563], creal_T varargout_1[563]);
-extern void g_SystemCore_step(const emlrtStack *sp, commcodegen_CRCGenerator_12 *obj, const real_T varargin_1[560], real_T varargout_1[563]);
-extern void h_SystemCore_step(testMACTransmitterStackData *SD, const emlrtStack *sp, comm_SDRuTransmitter *obj, const creal_T varargin_1[38400]);
-extern void i_SystemCore_step(testMACTransmitterStackData *SD, const emlrtStack *sp, comm_SDRuReceiver *obj);
-extern void j_SystemCore_step(const emlrtStack *sp, dspcodegen_FIRRateConverter *obj, const creal_T varargin_1[288], creal_T varargout_1[3456]);
-extern void k_SystemCore_step(const emlrtStack *sp, commcodegen_CRCGenerator_18 *obj, const real_T varargin_1[560], real_T varargout_1[563]);
+extern void g_SystemCore_step(testMACTransmitterStackData *SD, const emlrtStack *sp, comm_SDRuReceiver *obj, creal_T varargout_1[5120]);
+extern void h_SystemCore_step(const emlrtStack *sp, commcodegen_CRCGenerator_12 *obj, const real_T varargin_1[560], real_T varargout_1[563]);
+extern void i_SystemCore_step(testMACTransmitterStackData *SD, const emlrtStack *sp, comm_SDRuTransmitter *obj, const creal_T varargin_1[38400]);
+extern void j_SystemCore_step(testMACTransmitterStackData *SD, const emlrtStack *sp, comm_SDRuReceiver *obj);
+extern void k_SystemCore_step(const emlrtStack *sp, dspcodegen_FIRRateConverter *obj, const creal_T varargin_1[288], creal_T varargout_1[3456]);
+extern void l_SystemCore_step(const emlrtStack *sp, commcodegen_CRCGenerator_18 *obj, const real_T varargin_1[560], real_T varargout_1[563]);
 #endif
 /* End of code generation (SystemCore.h) */

@@ -3,7 +3,7 @@
  *
  * Code generation for function 'testMACTransmitter_emxutil'
  *
- * C source code generated on: Thu Mar  6 19:04:25 2014
+ * C source code generated on: Thu Mar  6 22:22:41 2014
  *
  */
 
@@ -24,6 +24,8 @@
 
 /* Function Declarations */
 extern void b_emxInit_creal_T(const emlrtStack *sp, emxArray_creal_T **pEmxArray, int32_T numDimensions, const emlrtRTEInfo *srcLocation, boolean_T doPush);
+extern void b_emxInit_real_T(const emlrtStack *sp, emxArray_real_T **pEmxArray, int32_T numDimensions, const emlrtRTEInfo *srcLocation, boolean_T doPush);
+extern void c_emxInit_creal_T(const emlrtStack *sp, emxArray_creal_T **pEmxArray, int32_T numDimensions, const emlrtRTEInfo *srcLocation, boolean_T doPush);
 extern void emxEnsureCapacity(const emlrtStack *sp, emxArray__common *emxArray, int32_T oldNumel, int32_T elementSize, const emlrtRTEInfo *srcLocation);
 extern void emxFreeStruct_OFDMDemodulator_1(OFDMDemodulator_1 *pStruct);
 extern void emxFreeStruct_OFDMModulator(OFDMModulator *pStruct);

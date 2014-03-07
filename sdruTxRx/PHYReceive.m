@@ -19,7 +19,7 @@ estimate.numProcessed = 0; % # correct frames found
 lastFound = -2; %Flag for found frame, used for dup check
 numBuffersProcessed = 0; %Track received data, needed for separate indexing of processed and unprocessed data (processed==preamble found)
 
-numFrames = 1;% Frames to capture
+numFrames = 3;% Frames to capture
 
 % Message string holder
 coder.varsize('recoveredMessage', [1, 80], [0 1]);
@@ -103,6 +103,7 @@ for recMessage = 1:estimate.numProcessed
         end
     else
         if DebugFlag ;fprintf('PHY| CRC Message Failure\n');end;
+        %View corrupted messages
         %recoveredMessage = char(OFDMbits2letters(msg > 0).');%messageBits(recMessage,1:end-3)
         %fprintf('Corrupted Message: %s\n',recoveredMessage);
         recoveredMessage = 'CRC Error';

@@ -3,7 +3,7 @@
  *
  * Code generation for function 'SDRuTransmitter'
  *
- * C source code generated on: Thu Mar  6 19:04:23 2014
+ * C source code generated on: Thu Mar  6 22:22:39 2014
  *
  */
 
@@ -19,7 +19,7 @@
 #include <stdio.h>
 
 /* Variable Definitions */
-static emlrtRSInfo uj_emlrtRSI = { 1, "SDRuTransmitter",
+static emlrtRSInfo bk_emlrtRSI = { 1, "SDRuTransmitter",
   "/Users/travis/Documents/sdru/+comm/SDRuTransmitter.p" };
 
 /* Function Definitions */
@@ -33,7 +33,7 @@ comm_SDRuTransmitter *SDRuTransmitter_SDRuTransmitter(const emlrtStack *sp,
   int32_T i5;
   static const char_T cv70[5] = { 'S', 'D', 'R', 'u', '_' };
 
-  real_T d0;
+  real_T d1;
   boolean_T flag;
   emlrtStack st;
   emlrtStack b_st;
@@ -60,11 +60,11 @@ comm_SDRuTransmitter *SDRuTransmitter_SDRuTransmitter(const emlrtStack *sp,
   h_st.prev = &g_st;
   h_st.tls = g_st.tls;
   b_obj = obj;
-  st.site = &uj_emlrtRSI;
+  st.site = &bk_emlrtRSI;
   c_obj = b_obj;
   c_obj->LocalOscillatorOffset = 0.0;
   c_obj->pSubDevice = TxId;
-  b_st.site = &vj_emlrtRSI;
+  b_st.site = &ck_emlrtRSI;
   c_st.site = &eb_emlrtRSI;
   c_st.site = &eb_emlrtRSI;
   c_obj->isInitialized = FALSE;
@@ -78,10 +78,10 @@ comm_SDRuTransmitter *SDRuTransmitter_SDRuTransmitter(const emlrtStack *sp,
   f_st.site = &gb_emlrtRSI;
   d_st.site = &fb_emlrtRSI;
   e_st.site = &gb_emlrtRSI;
-  b_st.site = &vj_emlrtRSI;
-  b_st.site = &vj_emlrtRSI;
+  b_st.site = &ck_emlrtRSI;
+  b_st.site = &ck_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
-  b_st.site = &vj_emlrtRSI;
+  b_st.site = &ck_emlrtRSI;
   c_st.site = &x_emlrtRSI;
   emlrtRandu(varargin_1, 10);
   for (k = 0; k < 10; k++) {
@@ -91,47 +91,47 @@ comm_SDRuTransmitter *SDRuTransmitter_SDRuTransmitter(const emlrtStack *sp,
     varargin_1[k] = 48.0 + muDoubleScalarFloor(varargin_1[k] * 10.0);
   }
 
-  b_st.site = &vj_emlrtRSI;
+  b_st.site = &ck_emlrtRSI;
   for (k = 0; k < 10; k++) {
     i5 = (int32_T)varargin_1[k];
     emlrtDynamicBoundsCheckFastR2012b(i5, 0, 255, &emlrtBCI, &b_st);
   }
 
-  b_st.site = &vj_emlrtRSI;
+  b_st.site = &ck_emlrtRSI;
   for (k = 0; k < 5; k++) {
     c_obj->ObjectID[k] = cv70[k];
   }
 
   for (k = 0; k < 10; k++) {
-    d0 = muDoubleScalarFloor(varargin_1[k]);
-    if (muDoubleScalarIsNaN(d0) || muDoubleScalarIsInf(d0)) {
-      d0 = 0.0;
+    d1 = muDoubleScalarFloor(varargin_1[k]);
+    if (muDoubleScalarIsNaN(d1) || muDoubleScalarIsInf(d1)) {
+      d1 = 0.0;
     } else {
-      d0 = muDoubleScalarRem(d0, 256.0);
+      d1 = muDoubleScalarRem(d1, 256.0);
     }
 
-    if (d0 < 0.0) {
-      c_obj->ObjectID[k + 5] = (int8_T)-(int8_T)(uint8_T)-d0;
+    if (d1 < 0.0) {
+      c_obj->ObjectID[k + 5] = (int8_T)-(int8_T)(uint8_T)-d1;
     } else {
-      c_obj->ObjectID[k + 5] = (int8_T)(uint8_T)d0;
+      c_obj->ObjectID[k + 5] = (int8_T)(uint8_T)d1;
     }
   }
 
   c_st.site = &gb_emlrtRSI;
-  b_st.site = &vj_emlrtRSI;
+  b_st.site = &ck_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
   d_st.site = &gb_emlrtRSI;
   e_st.site = &gb_emlrtRSI;
   f_st.site = &hg_emlrtRSI;
   g_st.site = &gb_emlrtRSI;
-  h_st.site = &vj_emlrtRSI;
+  h_st.site = &ck_emlrtRSI;
   checkIPAddressFormat(&h_st);
   g_st.site = &gb_emlrtRSI;
   d_st.site = &gb_emlrtRSI;
   e_st.site = &rb_emlrtRSI;
   f_st.site = &gb_emlrtRSI;
   c_obj->CenterFrequency = 2.24E+9;
-  g_st.site = &vj_emlrtRSI;
+  g_st.site = &ck_emlrtRSI;
   f_st.site = &gb_emlrtRSI;
   if (c_obj->isInitialized && (!c_obj->isReleased)) {
     flag = TRUE;
@@ -147,7 +147,7 @@ comm_SDRuTransmitter *SDRuTransmitter_SDRuTransmitter(const emlrtStack *sp,
   e_st.site = &rb_emlrtRSI;
   f_st.site = &gb_emlrtRSI;
   c_obj->InterpolationFactor = 20.0;
-  g_st.site = &uj_emlrtRSI;
+  g_st.site = &bk_emlrtRSI;
   f_st.site = &gb_emlrtRSI;
   if (c_obj->isInitialized && (!c_obj->isReleased)) {
     flag = TRUE;
@@ -163,7 +163,7 @@ comm_SDRuTransmitter *SDRuTransmitter_SDRuTransmitter(const emlrtStack *sp,
   e_st.site = &rb_emlrtRSI;
   f_st.site = &gb_emlrtRSI;
   c_obj->Gain = 25.0;
-  g_st.site = &vj_emlrtRSI;
+  g_st.site = &ck_emlrtRSI;
   f_st.site = &gb_emlrtRSI;
   if (c_obj->isInitialized && (!c_obj->isReleased)) {
     flag = TRUE;
@@ -187,11 +187,11 @@ void SDRuTransmitter_setupImplLocal(const emlrtStack *sp, comm_SDRuTransmitter
   uint8_T requester[15];
   int32_T i;
   const mxArray *y;
-  static const int32_T iv134[2] = { 1, 6 };
+  static const int32_T iv172[2] = { 1, 6 };
 
-  const mxArray *m19;
-  char_T cv146[6];
-  static const char_T cv147[6] = { 's', 'i', 'l', 'e', 'n', 't' };
+  const mxArray *m29;
+  char_T cv199[6];
+  static const char_T cv200[6] = { 's', 'i', 'l', 'e', 'n', 't' };
 
   static const uint8_T addr_null[13] = { 49U, 57U, 50U, 46U, 49U, 54U, 56U, 46U,
     49U, 48U, 46U, 50U, 0U };
@@ -213,17 +213,17 @@ void SDRuTransmitter_setupImplLocal(const emlrtStack *sp, comm_SDRuTransmitter
   b_st.tls = st.tls;
   c_st.prev = &b_st;
   c_st.tls = b_st.tls;
-  st.site = &uj_emlrtRSI;
-  b_st.site = &uj_emlrtRSI;
+  st.site = &bk_emlrtRSI;
+  b_st.site = &bk_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
-  st.site = &uj_emlrtRSI;
+  st.site = &bk_emlrtRSI;
   boardId = obj->pSubDevice;
   for (i = 0; i < 15; i++) {
     requester[i] = (uint8_T)obj->ObjectID[i];
   }
 
   /*    Copyright 2011-2012 The MathWorks, Inc. */
-  b_st.site = &lm_emlrtRSI;
+  b_st.site = &tm_emlrtRSI;
 
   /*  */
   /*  This function unifies handling of interp vs. codegen call as well as */
@@ -232,15 +232,15 @@ void SDRuTransmitter_setupImplLocal(const emlrtStack *sp, comm_SDRuTransmitter
   /*    Copyright 2011-2013 The MathWorks, Inc. */
   if (!isSetupsdruCalled) {
     y = NULL;
-    m19 = mxCreateCharArray(2, iv134);
+    m29 = mxCreateCharArray(2, iv172);
     for (i = 0; i < 6; i++) {
-      cv146[i] = cv147[i];
+      cv199[i] = cv200[i];
     }
 
-    emlrtInitCharArrayR2013a(&b_st, 6, m19, cv146);
-    emlrtAssign(&y, m19);
-    c_st.site = &kw_emlrtRSI;
-    setupsdru(&c_st, sdruroot(&c_st, &p_emlrtMCI), y, &q_emlrtMCI);
+    emlrtInitCharArrayR2013a(&b_st, 6, m29, cv199);
+    emlrtAssign(&y, m29);
+    c_st.site = &ybb_emlrtRSI;
+    setupsdru(&c_st, sdruroot(&c_st, &o_emlrtMCI), y, &p_emlrtMCI);
     isSetupsdruCalled = TRUE;
   }
 
@@ -277,16 +277,16 @@ void SDRuTransmitter_setupImplLocal(const emlrtStack *sp, comm_SDRuTransmitter
   if (i <= 1024) {
   } else {
     b_y = NULL;
-    m19 = mxCreateString("Assertion failed.");
-    emlrtAssign(&b_y, m19);
-    c_st.site = &cw_emlrtRSI;
-    c_error(&c_st, b_y, &o_emlrtMCI);
+    m29 = mxCreateString("Assertion failed.");
+    emlrtAssign(&b_y, m29);
+    c_st.site = &mbb_emlrtRSI;
+    c_error(&c_st, b_y, &n_emlrtMCI);
   }
 
   if (1 > i) {
     loop_ub = 0;
   } else {
-    loop_ub = emlrtDynamicBoundsCheckFastR2012b(i, 1, 1024, &o_emlrtBCI, &b_st);
+    loop_ub = emlrtDynamicBoundsCheckFastR2012b(i, 1, 1024, &p_emlrtBCI, &b_st);
   }
 
   for (i = 0; i < loop_ub; i++) {
@@ -299,7 +299,7 @@ void SDRuTransmitter_setupImplLocal(const emlrtStack *sp, comm_SDRuTransmitter
     errMsg_data[i] = b_errMsg_data[i];
   }
 
-  st.site = &uj_emlrtRSI;
+  st.site = &bk_emlrtRSI;
   b_obj = obj;
   b_obj->pDriverHandle = driverApiH;
   b_st.site = &gb_emlrtRSI;
@@ -323,12 +323,12 @@ void SDRuTransmitter_stepImpl(testMACTransmitterStackData *SD, const emlrtStack 
   loOffset = obj->LocalOscillatorOffset;
   gain = obj->Gain;
   interp = obj->InterpolationFactor;
-  st.site = &uj_emlrtRSI;
+  st.site = &bk_emlrtRSI;
   sendComplexDoubleData(SD, &st, obj->pDriverHandle, x, fc, loOffset, gain,
                         interp, &underrun, &errStatus, errMsg_data, errMsg_size);
   if (errStatus != UsrpDriverSuccess) {
-    st.site = &uj_emlrtRSI;
-    error(&st, errMsg_data, errMsg_size);
+    st.site = &bk_emlrtRSI;
+    b_error(&st, errMsg_data, errMsg_size);
   }
 }
 

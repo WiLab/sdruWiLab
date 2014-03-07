@@ -3,7 +3,7 @@
  *
  * Code generation for function 'testMACTransmitter_mexutil'
  *
- * C source code generated on: Thu Mar  6 19:04:22 2014
+ * C source code generated on: Thu Mar  6 22:22:38 2014
  *
  */
 
@@ -19,9 +19,9 @@ const mxArray *b_message(const emlrtStack *sp, const mxArray *b, emlrtMCInfo
   *location)
 {
   const mxArray *pArray;
-  const mxArray *m52;
+  const mxArray *m57;
   pArray = b;
-  return emlrtCallMATLABR2012b(sp, 1, &m52, 1, &pArray, "message", TRUE,
+  return emlrtCallMATLABR2012b(sp, 1, &m57, 1, &pArray, "message", TRUE,
     location);
 }
 
@@ -48,11 +48,11 @@ const mxArray *c_message(const emlrtStack *sp, const mxArray *b, const mxArray
   *c, const mxArray *d, emlrtMCInfo *location)
 {
   const mxArray *pArrays[3];
-  const mxArray *m55;
+  const mxArray *m59;
   pArrays[0] = b;
   pArrays[1] = c;
   pArrays[2] = d;
-  return emlrtCallMATLABR2012b(sp, 1, &m55, 3, pArrays, "message", TRUE,
+  return emlrtCallMATLABR2012b(sp, 1, &m59, 3, pArrays, "message", TRUE,
     location);
 }
 
@@ -79,17 +79,17 @@ const mxArray *message(const emlrtStack *sp, const mxArray *b, const mxArray *c,
   emlrtMCInfo *location)
 {
   const mxArray *pArrays[2];
-  const mxArray *m50;
+  const mxArray *m55;
   pArrays[0] = b;
   pArrays[1] = c;
-  return emlrtCallMATLABR2012b(sp, 1, &m50, 2, pArrays, "message", TRUE,
+  return emlrtCallMATLABR2012b(sp, 1, &m55, 2, pArrays, "message", TRUE,
     location);
 }
 
 const mxArray *sdruroot(const emlrtStack *sp, emlrtMCInfo *location)
 {
-  const mxArray *m54;
-  return emlrtCallMATLABR2012b(sp, 1, &m54, 0, NULL, "sdruroot", TRUE, location);
+  const mxArray *m58;
+  return emlrtCallMATLABR2012b(sp, 1, &m58, 0, NULL, "sdruroot", TRUE, location);
 }
 
 void setupsdru(const emlrtStack *sp, const mxArray *b, const mxArray *c,

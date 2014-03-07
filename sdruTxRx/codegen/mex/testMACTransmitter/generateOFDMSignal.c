@@ -3,7 +3,7 @@
  *
  * Code generation for function 'generateOFDMSignal'
  *
- * C source code generated on: Thu Mar  6 19:04:23 2014
+ * C source code generated on: Thu Mar  6 22:22:39 2014
  *
  */
 
@@ -26,73 +26,73 @@
 #include <stdio.h>
 
 /* Variable Definitions */
-static emlrtRSInfo ok_emlrtRSI = { 33, "generateOFDMSignal",
+static emlrtRSInfo uk_emlrtRSI = { 33, "generateOFDMSignal",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal.m" };
 
-static emlrtRSInfo pk_emlrtRSI = { 40, "generateOFDMSignal",
+static emlrtRSInfo vk_emlrtRSI = { 40, "generateOFDMSignal",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal.m" };
 
-static emlrtRSInfo qk_emlrtRSI = { 52, "generateOFDMSignal",
+static emlrtRSInfo wk_emlrtRSI = { 52, "generateOFDMSignal",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal.m" };
 
-static emlrtRSInfo rk_emlrtRSI = { 63, "generateOFDMSignal",
+static emlrtRSInfo xk_emlrtRSI = { 63, "generateOFDMSignal",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal.m" };
 
-static emlrtRSInfo sk_emlrtRSI = { 64, "generateOFDMSignal",
+static emlrtRSInfo yk_emlrtRSI = { 64, "generateOFDMSignal",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal.m" };
 
-static emlrtRSInfo tk_emlrtRSI = { 67, "generateOFDMSignal",
+static emlrtRSInfo al_emlrtRSI = { 67, "generateOFDMSignal",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal.m" };
 
-static emlrtRSInfo uk_emlrtRSI = { 68, "generateOFDMSignal",
+static emlrtRSInfo bl_emlrtRSI = { 68, "generateOFDMSignal",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal.m" };
 
-static emlrtRSInfo vk_emlrtRSI = { 71, "generateOFDMSignal",
+static emlrtRSInfo cl_emlrtRSI = { 71, "generateOFDMSignal",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal.m" };
 
-static emlrtRSInfo wk_emlrtRSI = { 74, "generateOFDMSignal",
+static emlrtRSInfo dl_emlrtRSI = { 74, "generateOFDMSignal",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal.m" };
 
-static emlrtRSInfo xk_emlrtRSI = { 81, "generateOFDMSignal",
+static emlrtRSInfo el_emlrtRSI = { 81, "generateOFDMSignal",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal.m" };
 
-static emlrtRSInfo yk_emlrtRSI = { 90, "generateOFDMSignal",
+static emlrtRSInfo fl_emlrtRSI = { 90, "generateOFDMSignal",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal.m" };
 
-static emlrtRSInfo al_emlrtRSI = { 93, "generateOFDMSignal",
+static emlrtRSInfo gl_emlrtRSI = { 93, "generateOFDMSignal",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal.m" };
 
-static emlrtRSInfo bl_emlrtRSI = { 98, "generateOFDMSignal",
+static emlrtRSInfo hl_emlrtRSI = { 98, "generateOFDMSignal",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal.m" };
 
-static emlrtRSInfo cl_emlrtRSI = { 99, "generateOFDMSignal",
+static emlrtRSInfo il_emlrtRSI = { 99, "generateOFDMSignal",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal.m" };
 
-static emlrtRSInfo dl_emlrtRSI = { 100, "generateOFDMSignal",
+static emlrtRSInfo jl_emlrtRSI = { 100, "generateOFDMSignal",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal.m" };
 
-static emlrtRSInfo el_emlrtRSI = { 101, "generateOFDMSignal",
+static emlrtRSInfo kl_emlrtRSI = { 101, "generateOFDMSignal",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal.m" };
 
-static emlrtRSInfo fl_emlrtRSI = { 104, "generateOFDMSignal",
+static emlrtRSInfo ll_emlrtRSI = { 104, "generateOFDMSignal",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal.m" };
 
-static emlrtRSInfo gl_emlrtRSI = { 115, "generateOFDMSignal",
+static emlrtRSInfo ml_emlrtRSI = { 115, "generateOFDMSignal",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal.m" };
 
-static emlrtRSInfo hl_emlrtRSI = { 123, "generateOFDMSignal",
+static emlrtRSInfo nl_emlrtRSI = { 123, "generateOFDMSignal",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal.m" };
 
-static emlrtRSInfo il_emlrtRSI = { 128, "generateOFDMSignal",
+static emlrtRSInfo ol_emlrtRSI = { 128, "generateOFDMSignal",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal.m" };
 
-static emlrtRSInfo jl_emlrtRSI = { 129, "generateOFDMSignal",
+static emlrtRSInfo pl_emlrtRSI = { 129, "generateOFDMSignal",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal.m" };
 
-static emlrtRTEInfo s_emlrtRTEI = { 104, 1, "generateOFDMSignal",
+static emlrtRTEInfo u_emlrtRTEI = { 104, 1, "generateOFDMSignal",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal.m" };
 
-static emlrtRTEInfo t_emlrtRTEI = { 33, 1, "generateOFDMSignal",
+static emlrtRTEInfo v_emlrtRTEI = { 33, 1, "generateOFDMSignal",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal.m" };
 
 /* Function Definitions */
@@ -228,8 +228,8 @@ void generateOFDMSignal(testMACTransmitterStackData *SD, const emlrtStack *sp,
   g_st.prev = &f_st;
   g_st.tls = f_st.tls;
   emlrtHeapReferenceStackEnterFcnR2012b(sp);
-  emxInitStruct_OFDMModulator_1(sp, &hDataMod, &s_emlrtRTEI, TRUE);
-  emxInitStruct_OFDMModulator(sp, &hPreambleMod, &t_emlrtRTEI, TRUE);
+  emxInitStruct_OFDMModulator_1(sp, &hDataMod, &u_emlrtRTEI, TRUE);
+  emxInitStruct_OFDMModulator(sp, &hPreambleMod, &v_emlrtRTEI, TRUE);
 
   /*  generateOFDMSignal: Generate OFDM signal based on the 802.11a standard. */
   /*  This function returns the time domain signal and a structure containing */
@@ -255,13 +255,13 @@ void generateOFDMSignal(testMACTransmitterStackData *SD, const emlrtStack *sp,
   /*      'FFTLength' ,           FFTLength,... */
   /*      'NumSymbols',           1);     */
   /*  Create modulator */
-  st.site = &ok_emlrtRSI;
+  st.site = &uk_emlrtRSI;
   OFDMModulator_OFDMModulator(&hPreambleMod);
 
   /*  Modulate and scale */
-  st.site = &pk_emlrtRSI;
+  st.site = &vk_emlrtRSI;
   SystemCore_step(&st, &hPreambleMod, shortPreambleOFDM);
-  st.site = &pk_emlrtRSI;
+  st.site = &vk_emlrtRSI;
   for (i = 0; i < 64; i++) {
     shortPreambleOFDM[i].re *= 1.4719601443879744;
     shortPreambleOFDM[i].im *= 1.4719601443879744;
@@ -277,7 +277,7 @@ void generateOFDMSignal(testMACTransmitterStackData *SD, const emlrtStack *sp,
 
   /* % Create Long Preamble */
   /*  Modulate */
-  st.site = &qk_emlrtRSI;
+  st.site = &wk_emlrtRSI;
   b_SystemCore_step(&st, &hPreambleMod, longPreambleOFDM);
 
   /*  Form 2 Long Preambles */
@@ -290,9 +290,9 @@ void generateOFDMSignal(testMACTransmitterStackData *SD, const emlrtStack *sp,
 
   /* % Generate Data */
   /*  Use string as message */
-  st.site = &rk_emlrtRSI;
+  st.site = &xk_emlrtRSI;
   b_OFDMletters2bits(&st, originalData);
-  st.site = &sk_emlrtRSI;
+  st.site = &yk_emlrtRSI;
   for (i = 0; i < 80; i++) {
     for (ib = 0; ib < 7; ib++) {
       x[ib + 7 * i] = originalData[i + 80 * ib];
@@ -302,23 +302,23 @@ void generateOFDMSignal(testMACTransmitterStackData *SD, const emlrtStack *sp,
   memcpy(&b_originalData[0], &x[0], 560U * sizeof(real_T));
 
   /*  Generate CRC */
-  st.site = &tk_emlrtRSI;
+  st.site = &al_emlrtRSI;
   b_CRCGenerator_CRCGenerator(&hGen);
-  st.site = &uk_emlrtRSI;
+  st.site = &bl_emlrtRSI;
   e_SystemCore_step(&st, &hGen, b_originalData, dataWithCRC);
 
   /*  Add CRC */
   /*  Construct modulator for each subcarrier */
-  st.site = &vk_emlrtRSI;
+  st.site = &cl_emlrtRSI;
   BPSKModulator_BPSKModulator(&hMod);
 
   /*  BPSK */
   /*  Apply modulator for each subcarrier */
-  st.site = &wk_emlrtRSI;
+  st.site = &dl_emlrtRSI;
   f_SystemCore_step(&st, &hMod, dataWithCRC, modData);
 
   /*  Pad IFFT */
-  st.site = &xk_emlrtRSI;
+  st.site = &el_emlrtRSI;
   b_st.site = &x_emlrtRSI;
   emlrtRandu(varargin_1, 13);
   for (k = 0; k < 13; k++) {
@@ -328,7 +328,7 @@ void generateOFDMSignal(testMACTransmitterStackData *SD, const emlrtStack *sp,
     varargin_1[k] = muDoubleScalarFloor(varargin_1[k] * 2.0);
   }
 
-  st.site = &xk_emlrtRSI;
+  st.site = &el_emlrtRSI;
   obj = &hMod;
   if (!obj->isReleased) {
   } else {
@@ -465,11 +465,11 @@ void generateOFDMSignal(testMACTransmitterStackData *SD, const emlrtStack *sp,
   /*  Save desired message size */
   /*  Save number of transmitted frames */
   /*  Convert data into subcarrier streams */
-  st.site = &yk_emlrtRSI;
+  st.site = &fl_emlrtRSI;
   memcpy(&ofdmData[0], &b_modData[0], 576U * sizeof(creal_T));
 
   /*  Create Pilots */
-  st.site = &al_emlrtRSI;
+  st.site = &gl_emlrtRSI;
   b_obj = &hPN;
 
   /* System object Constructor function: comm.PNSequence */
@@ -484,12 +484,12 @@ void generateOFDMSignal(testMACTransmitterStackData *SD, const emlrtStack *sp,
     b_obj->P2_Mask[i] = (uint8_T)iv76[i];
   }
 
-  st.site = &bl_emlrtRSI;
+  st.site = &hl_emlrtRSI;
   b_obj = &hPN;
   if (!b_obj->S0_isInitialized) {
     b_obj->S0_isInitialized = TRUE;
     if (b_obj->S1_isReleased) {
-      emlrtErrorWithMessageIdR2012b(&st, &cc_emlrtRTEI,
+      emlrtErrorWithMessageIdR2012b(&st, &pc_emlrtRTEI,
         "MATLAB:system:runtimeMethodCalledWhenReleasedCodegen", 0);
     }
 
@@ -529,7 +529,7 @@ void generateOFDMSignal(testMACTransmitterStackData *SD, const emlrtStack *sp,
   }
 
   /*  Create pilot */
-  st.site = &cl_emlrtRSI;
+  st.site = &il_emlrtRSI;
   ib = 0;
   for (i = 0; i < 4; i++) {
     ia = 0;
@@ -543,7 +543,7 @@ void generateOFDMSignal(testMACTransmitterStackData *SD, const emlrtStack *sp,
   }
 
   /*  Expand to all pilot tones */
-  st.site = &dl_emlrtRSI;
+  st.site = &jl_emlrtRSI;
   for (i = 0; i < 12; i++) {
     for (ib = 0; ib < 4; ib++) {
       b_pilots[ib + (i << 2)] = 2.0 * (real_T)(pilots[i + 12 * ib] < 1) - 1.0;
@@ -551,18 +551,18 @@ void generateOFDMSignal(testMACTransmitterStackData *SD, const emlrtStack *sp,
   }
 
   /*  Bipolar to unipolar */
-  st.site = &el_emlrtRSI;
+  st.site = &kl_emlrtRSI;
   for (i = 0; i < 12; i++) {
     b_pilots[3 + (i << 2)] = -b_pilots[3 + (i << 2)];
   }
 
   /*  Invert last pilot */
   /*  Construct Modulator */
-  st.site = &fl_emlrtRSI;
+  st.site = &ll_emlrtRSI;
   b_OFDMModulator_OFDMModulator(&st, &hDataMod);
 
   /*  Modulate */
-  st.site = &gl_emlrtRSI;
+  st.site = &ml_emlrtRSI;
   d_SystemCore_step(&st, &hDataMod, ofdmData, b_pilots, b_r);
 
   /*  Add preambles to data */
@@ -572,7 +572,7 @@ void generateOFDMSignal(testMACTransmitterStackData *SD, const emlrtStack *sp,
   memcpy(&SD->u1.f8.r[320], &b_r[0], 960U * sizeof(creal_T));
 
   /*  Repeat frame */
-  st.site = &hl_emlrtRSI;
+  st.site = &nl_emlrtRSI;
   ib = 0;
   for (i = 0; i < 20; i++) {
     ia = 0;
@@ -588,10 +588,10 @@ void generateOFDMSignal(testMACTransmitterStackData *SD, const emlrtStack *sp,
   /*  Save Demodulator object data for receiver */
   /* hDataDemod = get(OFDMDemodulator(hDataMod)); */
   /* hPreambleDemod = get(OFDMDemodulator(hPreambleMod)); */
-  st.site = &il_emlrtRSI;
+  st.site = &ol_emlrtRSI;
   object = iobj_0;
   *hDataDemod = object;
-  b_st.site = &mj_emlrtRSI;
+  b_st.site = &sj_emlrtRSI;
   object = *hDataDemod;
   c_st.site = &cb_emlrtRSI;
   d_st.site = &eb_emlrtRSI;
@@ -604,23 +604,23 @@ void generateOFDMSignal(testMACTransmitterStackData *SD, const emlrtStack *sp,
   f_st.site = &gb_emlrtRSI;
   c_st.site = &cb_emlrtRSI;
   c_st.site = &db_emlrtRSI;
-  b_st.site = &nj_emlrtRSI;
-  c_st.site = &gb_emlrtRSI;
-  c_st.site = &gb_emlrtRSI;
-  b_st.site = &oj_emlrtRSI;
-  c_st.site = &gb_emlrtRSI;
-  c_st.site = &gb_emlrtRSI;
-  b_st.site = &pj_emlrtRSI;
-  c_st.site = &gb_emlrtRSI;
-  c_st.site = &gb_emlrtRSI;
-  b_st.site = &qj_emlrtRSI;
-  c_st.site = &gb_emlrtRSI;
-  b_st.site = &rj_emlrtRSI;
-  c_st.site = &gb_emlrtRSI;
-  c_st.site = &gb_emlrtRSI;
-  b_st.site = &sj_emlrtRSI;
-  c_st.site = &gb_emlrtRSI;
   b_st.site = &tj_emlrtRSI;
+  c_st.site = &gb_emlrtRSI;
+  c_st.site = &gb_emlrtRSI;
+  b_st.site = &uj_emlrtRSI;
+  c_st.site = &gb_emlrtRSI;
+  c_st.site = &gb_emlrtRSI;
+  b_st.site = &vj_emlrtRSI;
+  c_st.site = &gb_emlrtRSI;
+  c_st.site = &gb_emlrtRSI;
+  b_st.site = &wj_emlrtRSI;
+  c_st.site = &gb_emlrtRSI;
+  b_st.site = &xj_emlrtRSI;
+  c_st.site = &gb_emlrtRSI;
+  c_st.site = &gb_emlrtRSI;
+  b_st.site = &yj_emlrtRSI;
+  c_st.site = &gb_emlrtRSI;
+  b_st.site = &ak_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
 
   /* OFDMBase Base object for OFDMModulator and OFDMDemodulator System objects */
@@ -661,29 +661,29 @@ void generateOFDMSignal(testMACTransmitterStackData *SD, const emlrtStack *sp,
   /*          {'real','integer','positive','finite','3d'}, ... */
   /*          [class(obj) '.' propName], propName);   */
   /*  Check the 3rd dimension for numTx */
-  d_st.site = &xh_emlrtRSI;
-  e_st.site = &yh_emlrtRSI;
+  d_st.site = &ei_emlrtRSI;
+  e_st.site = &fi_emlrtRSI;
   for (k = 0; k < 4; k++) {
     b_data[k] = (int8_T)(12 + 14 * k);
   }
 
-  f_st.site = &pi_emlrtRSI;
+  f_st.site = &vi_emlrtRSI;
   i = 0;
-  f_st.site = &ni_emlrtRSI;
-  f_st.site = &mi_emlrtRSI;
-  k = 1;
-  while (k <= 4) {
-    ib = b_data[k - 1];
+  f_st.site = &ti_emlrtRSI;
+  f_st.site = &si_emlrtRSI;
+  k = 0;
+  while (k + 1 <= 4) {
+    ib = b_data[k];
     do {
       exitg1 = 0;
-      f_st.site = &li_emlrtRSI;
+      f_st.site = &ri_emlrtRSI;
       k++;
-      if (k > 4) {
+      if (k + 1 > 4) {
         exitg1 = 1;
       } else {
-        f_st.site = &ki_emlrtRSI;
+        f_st.site = &qi_emlrtRSI;
         frexp((real_T)ib / 2.0, &exponent);
-        if (muDoubleScalarAbs(ib - b_data[k - 1]) < ldexp(1.0, exponent - 53)) {
+        if (muDoubleScalarAbs(ib - b_data[k]) < ldexp(1.0, exponent - 53)) {
           anyInputSizeChanged = TRUE;
         } else {
           anyInputSizeChanged = FALSE;
@@ -695,16 +695,16 @@ void generateOFDMSignal(testMACTransmitterStackData *SD, const emlrtStack *sp,
       }
     } while (exitg1 == 0);
 
-    f_st.site = &ji_emlrtRSI;
+    f_st.site = &pi_emlrtRSI;
     i++;
     b_data[i - 1] = (int8_T)ib;
-    f_st.site = &ii_emlrtRSI;
-    f_st.site = &ii_emlrtRSI;
+    f_st.site = &oi_emlrtRSI;
+    f_st.site = &oi_emlrtRSI;
   }
 
-  f_st.site = &ei_emlrtRSI;
-  f_st.site = &di_emlrtRSI;
-  f_st.site = &ai_emlrtRSI;
+  f_st.site = &ki_emlrtRSI;
+  f_st.site = &ji_emlrtRSI;
+  f_st.site = &gi_emlrtRSI;
   if (1 > i) {
     b2 = FALSE;
   } else {
@@ -716,8 +716,8 @@ void generateOFDMSignal(testMACTransmitterStackData *SD, const emlrtStack *sp,
     check_forloop_overflow_error(&g_st);
   }
 
-  d_st.site = &xh_emlrtRSI;
-  d_st.site = &xh_emlrtRSI;
+  d_st.site = &ei_emlrtRSI;
+  d_st.site = &ei_emlrtRSI;
   if (1 > i) {
     i12 = 0;
   } else {
@@ -734,7 +734,7 @@ void generateOFDMSignal(testMACTransmitterStackData *SD, const emlrtStack *sp,
 
     emlrtInitCharArrayR2013a(&d_st, 13, m11, cv84);
     emlrtAssign(&e_y, m11);
-    e_st.site = &bw_emlrtRSI;
+    e_st.site = &lbb_emlrtRSI;
     c_error(&e_st, b_message(&e_st, e_y, &g_emlrtMCI), &g_emlrtMCI);
   }
 
@@ -742,10 +742,10 @@ void generateOFDMSignal(testMACTransmitterStackData *SD, const emlrtStack *sp,
   /*  If pilot index is 2-D, the indices per symbol must be unique; */
   /*  If pilot index is 3-D, the indices across transmit antennas per symbol must be unique. */
   c_st.site = &gb_emlrtRSI;
-  st.site = &jl_emlrtRSI;
+  st.site = &pl_emlrtRSI;
   object = iobj_1;
   *hPreambleDemod = object;
-  b_st.site = &mj_emlrtRSI;
+  b_st.site = &sj_emlrtRSI;
   object = *hPreambleDemod;
   c_st.site = &cb_emlrtRSI;
   d_st.site = &eb_emlrtRSI;
@@ -758,21 +758,21 @@ void generateOFDMSignal(testMACTransmitterStackData *SD, const emlrtStack *sp,
   f_st.site = &gb_emlrtRSI;
   c_st.site = &cb_emlrtRSI;
   c_st.site = &db_emlrtRSI;
-  b_st.site = &nj_emlrtRSI;
+  b_st.site = &tj_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
-  b_st.site = &oj_emlrtRSI;
+  b_st.site = &uj_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
-  b_st.site = &pj_emlrtRSI;
+  b_st.site = &vj_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
-  b_st.site = &qj_emlrtRSI;
+  b_st.site = &wj_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
-  b_st.site = &rj_emlrtRSI;
+  b_st.site = &xj_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
-  b_st.site = &sj_emlrtRSI;
+  b_st.site = &yj_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
 
   /*  Calcuate OFDM frequency bin size */

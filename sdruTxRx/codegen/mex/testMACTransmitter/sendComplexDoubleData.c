@@ -3,7 +3,7 @@
  *
  * Code generation for function 'sendComplexDoubleData'
  *
- * C source code generated on: Thu Mar  6 19:04:24 2014
+ * C source code generated on: Thu Mar  6 22:22:40 2014
  *
  */
 
@@ -16,7 +16,7 @@
 #include <stdio.h>
 
 /* Variable Definitions */
-static emlrtRSInfo gn_emlrtRSI = { 9, "sendComplexDoubleData",
+static emlrtRSInfo qt_emlrtRSI = { 9, "sendComplexDoubleData",
   "/Users/travis/Documents/sdru/usrp_uhd_mapi/sendComplexDoubleData.m" };
 
 /* Function Definitions */
@@ -26,12 +26,12 @@ void sendComplexDoubleData(testMACTransmitterStackData *SD, const emlrtStack *sp
   char_T errStr_data[1024], int32_T errStr_size[2])
 {
   const mxArray *y;
-  static const int32_T iv136[2] = { 1, 6 };
+  static const int32_T iv173[2] = { 1, 6 };
 
-  const mxArray *m21;
-  char_T cv150[6];
+  const mxArray *m30;
+  char_T cv201[6];
   int32_T i;
-  static const char_T cv151[6] = { 's', 'i', 'l', 'e', 'n', 't' };
+  static const char_T cv202[6] = { 's', 'i', 'l', 'e', 'n', 't' };
 
   const mxArray *b_y;
   int32_T loop_ub;
@@ -46,7 +46,7 @@ void sendComplexDoubleData(testMACTransmitterStackData *SD, const emlrtStack *sp
   /*  bug: must pass as top-level arg */
   /*  dportDtype = DataPortDataTypeCapiEnumT.DPortDTypeCDouble; */
   /*    Copyright 2011-2012 The MathWorks, Inc. */
-  st.site = &gn_emlrtRSI;
+  st.site = &qt_emlrtRSI;
 
   /*  */
   /*  This function unifies handling of interp vs. codegen call as well as */
@@ -55,15 +55,15 @@ void sendComplexDoubleData(testMACTransmitterStackData *SD, const emlrtStack *sp
   /*    Copyright 2011-2013 The MathWorks, Inc. */
   if (!isSetupsdruCalled) {
     y = NULL;
-    m21 = mxCreateCharArray(2, iv136);
+    m30 = mxCreateCharArray(2, iv173);
     for (i = 0; i < 6; i++) {
-      cv150[i] = cv151[i];
+      cv201[i] = cv202[i];
     }
 
-    emlrtInitCharArrayR2013a(&st, 6, m21, cv150);
-    emlrtAssign(&y, m21);
-    b_st.site = &kw_emlrtRSI;
-    setupsdru(&b_st, sdruroot(&b_st, &p_emlrtMCI), y, &q_emlrtMCI);
+    emlrtInitCharArrayR2013a(&st, 6, m30, cv201);
+    emlrtAssign(&y, m30);
+    b_st.site = &ybb_emlrtRSI;
+    setupsdru(&b_st, sdruroot(&b_st, &o_emlrtMCI), y, &p_emlrtMCI);
     isSetupsdruCalled = TRUE;
   }
 
@@ -77,8 +77,8 @@ void sendComplexDoubleData(testMACTransmitterStackData *SD, const emlrtStack *sp
     errStr_data[i] = '\x00';
   }
 
-  memcpy(&SD->u1.f1.data[0], &data[0], 38400U * sizeof(creal_T));
-  sendData_c(driverApiH, SD->u1.f1.data, freq, loOffset, gain, interp, underflow,
+  memcpy(&SD->u1.f3.data[0], &data[0], 38400U * sizeof(creal_T));
+  sendData_c(driverApiH, SD->u1.f3.data, freq, loOffset, gain, interp, underflow,
              errStat, &errStr_data[0]);
 
   /* errStat = UsrpErrorCapiEnumT(errStat_i); */
@@ -86,16 +86,16 @@ void sendComplexDoubleData(testMACTransmitterStackData *SD, const emlrtStack *sp
   if (i <= 1024) {
   } else {
     b_y = NULL;
-    m21 = mxCreateString("Assertion failed.");
-    emlrtAssign(&b_y, m21);
-    b_st.site = &cw_emlrtRSI;
-    c_error(&b_st, b_y, &o_emlrtMCI);
+    m30 = mxCreateString("Assertion failed.");
+    emlrtAssign(&b_y, m30);
+    b_st.site = &mbb_emlrtRSI;
+    c_error(&b_st, b_y, &n_emlrtMCI);
   }
 
   if (1 > i) {
     loop_ub = 0;
   } else {
-    loop_ub = emlrtDynamicBoundsCheckFastR2012b(i, 1, 1024, &o_emlrtBCI, &st);
+    loop_ub = emlrtDynamicBoundsCheckFastR2012b(i, 1, 1024, &p_emlrtBCI, &st);
   }
 
   for (i = 0; i < loop_ub; i++) {

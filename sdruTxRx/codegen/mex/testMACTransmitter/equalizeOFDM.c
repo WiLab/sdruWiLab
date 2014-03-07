@@ -3,7 +3,7 @@
  *
  * Code generation for function 'equalizeOFDM'
  *
- * C source code generated on: Thu Mar  6 19:04:24 2014
+ * C source code generated on: Thu Mar  6 22:22:41 2014
  *
  */
 
@@ -35,83 +35,83 @@ static emlrtRSInfo r_emlrtRSI = { 58, "power",
 static emlrtRSInfo tc_emlrtRSI = { 19, "abs",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/elfun/abs.m" };
 
-static emlrtRSInfo ap_emlrtRSI = { 20, "eml_scalar_abs",
+static emlrtRSInfo ao_emlrtRSI = { 20, "eml_scalar_abs",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/elfun/eml_scalar_abs.m"
 };
 
-static emlrtRSInfo gq_emlrtRSI = { 51, "power",
+static emlrtRSInfo hv_emlrtRSI = { 51, "power",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/power.m" };
 
-static emlrtRSInfo ws_emlrtRSI = { 16, "equalizeOFDM",
+static emlrtRSInfo sx_emlrtRSI = { 16, "equalizeOFDM",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/equalizeOFDM.m" };
 
-static emlrtRSInfo xs_emlrtRSI = { 17, "equalizeOFDM",
+static emlrtRSInfo tx_emlrtRSI = { 17, "equalizeOFDM",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/equalizeOFDM.m" };
 
-static emlrtRSInfo ys_emlrtRSI = { 21, "equalizeOFDM",
+static emlrtRSInfo ux_emlrtRSI = { 21, "equalizeOFDM",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/equalizeOFDM.m" };
 
-static emlrtRSInfo at_emlrtRSI = { 28, "equalizeOFDM",
+static emlrtRSInfo vx_emlrtRSI = { 28, "equalizeOFDM",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/equalizeOFDM.m" };
 
-static emlrtRSInfo bt_emlrtRSI = { 31, "equalizeOFDM",
+static emlrtRSInfo wx_emlrtRSI = { 31, "equalizeOFDM",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/equalizeOFDM.m" };
 
-static emlrtRSInfo ct_emlrtRSI = { 42, "equalizeOFDM",
+static emlrtRSInfo xx_emlrtRSI = { 42, "equalizeOFDM",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/equalizeOFDM.m" };
 
-static emlrtRSInfo et_emlrtRSI = { 141, "OFDMDemodulator",
+static emlrtRSInfo ay_emlrtRSI = { 141, "OFDMDemodulator",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/OFDMDemodulator.m" };
 
-static emlrtRSInfo au_emlrtRSI = { 59, "equalizeOFDM",
+static emlrtRSInfo qy_emlrtRSI = { 59, "equalizeOFDM",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/equalizeOFDM.m" };
 
-static emlrtRSInfo bu_emlrtRSI = { 62, "equalizeOFDM",
+static emlrtRSInfo ry_emlrtRSI = { 62, "equalizeOFDM",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/equalizeOFDM.m" };
 
-static emlrtRSInfo cu_emlrtRSI = { 63, "equalizeOFDM",
+static emlrtRSInfo sy_emlrtRSI = { 63, "equalizeOFDM",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/equalizeOFDM.m" };
 
-static emlrtRSInfo du_emlrtRSI = { 64, "equalizeOFDM",
+static emlrtRSInfo ty_emlrtRSI = { 64, "equalizeOFDM",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/equalizeOFDM.m" };
 
-static emlrtRSInfo ru_emlrtRSI = { 136, "OFDMDemodulator",
+static emlrtRSInfo dab_emlrtRSI = { 136, "OFDMDemodulator",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/OFDMDemodulator.m" };
 
-static emlrtRSInfo uu_emlrtRSI = { 72, "equalizeOFDM",
+static emlrtRSInfo gab_emlrtRSI = { 72, "equalizeOFDM",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/equalizeOFDM.m" };
 
-static emlrtRSInfo vu_emlrtRSI = { 75, "equalizeOFDM",
+static emlrtRSInfo hab_emlrtRSI = { 75, "equalizeOFDM",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/equalizeOFDM.m" };
 
-static emlrtRSInfo wu_emlrtRSI = { 77, "equalizeOFDM",
+static emlrtRSInfo iab_emlrtRSI = { 77, "equalizeOFDM",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/equalizeOFDM.m" };
 
-static emlrtRSInfo xu_emlrtRSI = { 80, "equalizeOFDM",
+static emlrtRSInfo jab_emlrtRSI = { 80, "equalizeOFDM",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/equalizeOFDM.m" };
 
-static emlrtRTEInfo sb_emlrtRTEI = { 1, 32, "equalizeOFDM",
+static emlrtRTEInfo hc_emlrtRTEI = { 1, 32, "equalizeOFDM",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/equalizeOFDM.m" };
 
-static emlrtRTEInfo ac_emlrtRTEI = { 16, 5, "equalizeOFDM",
+static emlrtRTEInfo nc_emlrtRTEI = { 16, 5, "equalizeOFDM",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/equalizeOFDM.m" };
 
-static emlrtRTEInfo bc_emlrtRTEI = { 17, 5, "equalizeOFDM",
+static emlrtRTEInfo oc_emlrtRTEI = { 17, 5, "equalizeOFDM",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/equalizeOFDM.m" };
 
-static emlrtECInfo v_emlrtECI = { 3, 38, 9, "equalizeOFDM",
+static emlrtECInfo fb_emlrtECI = { 3, 38, 9, "equalizeOFDM",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/equalizeOFDM.m" };
 
-static emlrtECInfo w_emlrtECI = { -1, 25, 16, "equalizeOFDM",
+static emlrtECInfo gb_emlrtECI = { -1, 25, 16, "equalizeOFDM",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/equalizeOFDM.m" };
 
-static emlrtECInfo x_emlrtECI = { 1, 21, 35, "equalizeOFDM",
+static emlrtECInfo hb_emlrtECI = { 1, 21, 35, "equalizeOFDM",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/equalizeOFDM.m" };
 
-static emlrtECInfo y_emlrtECI = { -1, 11, 13, "equalizeOFDM",
+static emlrtECInfo ib_emlrtECI = { -1, 11, 13, "equalizeOFDM",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/equalizeOFDM.m" };
 
-static emlrtBCInfo kb_emlrtBCI = { -1, -1, 58, 7, "R", "equalizeOFDM",
+static emlrtBCInfo ac_emlrtBCI = { -1, -1, 58, 7, "R", "equalizeOFDM",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/equalizeOFDM.m", 0 };
 
 /* Function Declarations */
@@ -134,40 +134,40 @@ static void b_equalizeOFDM(testMACTransmitterStackData *SD, const emlrtStack *sp
 {
   OFDMDemodulator_1 *obj;
   const mxArray *y;
-  static const int32_T iv248[2] = { 1, 45 };
+  static const int32_T iv281[2] = { 1, 45 };
 
-  const mxArray *m58;
-  char_T cv304[45];
+  const mxArray *m63;
+  char_T cv347[45];
   int32_T i;
-  static const char_T cv305[45] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
+  static const char_T cv348[45] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
     's', 't', 'e', 'm', ':', 'm', 'e', 't', 'h', 'o', 'd', 'C', 'a', 'l', 'l',
     'e', 'd', 'W', 'h', 'e', 'n', 'R', 'e', 'l', 'e', 'a', 's', 'e', 'd', 'C',
     'o', 'd', 'e', 'g', 'e', 'n' };
 
   const mxArray *b_y;
-  static const int32_T iv249[2] = { 1, 4 };
+  static const int32_T iv282[2] = { 1, 4 };
 
-  char_T cv306[4];
-  static const char_T cv307[4] = { 's', 't', 'e', 'p' };
+  char_T cv349[4];
+  static const char_T cv350[4] = { 's', 't', 'e', 'p' };
 
   const mxArray *c_y;
-  static const int32_T iv250[2] = { 1, 51 };
+  static const int32_T iv283[2] = { 1, 51 };
 
-  char_T cv308[51];
-  static const char_T cv309[51] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
+  char_T cv351[51];
+  static const char_T cv352[51] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
     's', 't', 'e', 'm', ':', 'm', 'e', 't', 'h', 'o', 'd', 'C', 'a', 'l', 'l',
     'e', 'd', 'W', 'h', 'e', 'n', 'L', 'o', 'c', 'k', 'e', 'd', 'R', 'e', 'l',
     'e', 'a', 's', 'e', 'd', 'C', 'o', 'd', 'e', 'g', 'e', 'n' };
 
   const mxArray *d_y;
-  static const int32_T iv251[2] = { 1, 5 };
+  static const int32_T iv284[2] = { 1, 5 };
 
-  char_T cv310[5];
-  static const char_T cv311[5] = { 's', 'e', 't', 'u', 'p' };
+  char_T cv353[5];
+  static const char_T cv354[5] = { 's', 'e', 't', 'u', 'p' };
 
   int8_T fullGrid[64];
   int32_T k;
-  static const int8_T iv252[11] = { 0, 1, 2, 3, 4, 5, 59, 60, 61, 62, 63 };
+  static const int8_T iv285[11] = { 0, 1, 2, 3, 4, 5, 59, 60, 61, 62, 63 };
 
   int8_T ii_data[64];
   int32_T ii;
@@ -177,16 +177,16 @@ static void b_equalizeOFDM(testMACTransmitterStackData *SD, const emlrtStack *sp
   creal_T recv[64];
   emxArray_creal_T *RLongFirst;
   const mxArray *e_y;
-  static const int32_T iv253[2] = { 1, 45 };
+  static const int32_T iv286[2] = { 1, 45 };
 
   const mxArray *f_y;
-  static const int32_T iv254[2] = { 1, 4 };
+  static const int32_T iv287[2] = { 1, 4 };
 
   const mxArray *g_y;
-  static const int32_T iv255[2] = { 1, 51 };
+  static const int32_T iv288[2] = { 1, 51 };
 
   const mxArray *h_y;
-  static const int32_T iv256[2] = { 1, 5 };
+  static const int32_T iv289[2] = { 1, 5 };
 
   boolean_T exitg1;
   boolean_T guard1 = FALSE;
@@ -196,25 +196,25 @@ static void b_equalizeOFDM(testMACTransmitterStackData *SD, const emlrtStack *sp
   creal_T c_R[106];
   real_T b_tx_longPreamble[106];
   creal_T RNormal[106];
-  real_T dv14[106];
-  real_T dv15[106];
+  real_T dv17[106];
+  real_T dv18[106];
   real_T REnergy[53];
   creal_T RConj[53];
   creal_T b_RConj[53];
   const mxArray *i_y;
-  static const int32_T iv257[2] = { 1, 45 };
+  static const int32_T iv290[2] = { 1, 45 };
 
   const mxArray *j_y;
-  static const int32_T iv258[2] = { 1, 4 };
+  static const int32_T iv291[2] = { 1, 4 };
 
   const mxArray *k_y;
-  static const int32_T iv259[2] = { 1, 51 };
+  static const int32_T iv292[2] = { 1, 51 };
 
   const mxArray *l_y;
-  static const int32_T iv260[2] = { 1, 5 };
+  static const int32_T iv293[2] = { 1, 5 };
 
   int8_T b_fullGrid[768];
-  static const int16_T iv261[48] = { 11, 25, 39, 53, 75, 89, 103, 117, 139, 153,
+  static const int16_T iv294[48] = { 11, 25, 39, 53, 75, 89, 103, 117, 139, 153,
     167, 181, 203, 217, 231, 245, 267, 281, 295, 309, 331, 345, 359, 373, 395,
     409, 423, 437, 459, 473, 487, 501, 523, 537, 551, 565, 587, 601, 615, 629,
     651, 665, 679, 693, 715, 729, 743, 757 };
@@ -227,8 +227,8 @@ static void b_equalizeOFDM(testMACTransmitterStackData *SD, const emlrtStack *sp
   creal_T RXPilots[48];
   creal_T preambleGainsFull[636];
   int32_T ia;
-  int32_T iv262[3];
-  static const int8_T iv263[3] = { 48, 12, 1 };
+  int32_T iv295[3];
+  static const int8_T iv296[3] = { 48, 12, 1 };
 
   int32_T b_Rraw[3];
   creal_T PilotNormal[48];
@@ -264,29 +264,29 @@ static void b_equalizeOFDM(testMACTransmitterStackData *SD, const emlrtStack *sp
   /*  to all data subcarriers. */
   /*     %% Use Long Preamble frame to estimate channel in frequency domain */
   /*  Separate out received preambles */
-  emlrtVectorVectorIndexCheckR2012b(1280, 1, 1, 160, &y_emlrtECI, sp);
+  emlrtVectorVectorIndexCheckR2012b(1280, 1, 1, 160, &ib_emlrtECI, sp);
 
   /*  Demod */
-  st.site = &ws_emlrtRSI;
+  st.site = &sx_emlrtRSI;
   obj = hPreambleDemod;
   if (!obj->isReleased) {
   } else {
     y = NULL;
-    m58 = mxCreateCharArray(2, iv248);
+    m63 = mxCreateCharArray(2, iv281);
     for (i = 0; i < 45; i++) {
-      cv304[i] = cv305[i];
+      cv347[i] = cv348[i];
     }
 
-    emlrtInitCharArrayR2013a(&st, 45, m58, cv304);
-    emlrtAssign(&y, m58);
+    emlrtInitCharArrayR2013a(&st, 45, m63, cv347);
+    emlrtAssign(&y, m63);
     b_y = NULL;
-    m58 = mxCreateCharArray(2, iv249);
+    m63 = mxCreateCharArray(2, iv282);
     for (i = 0; i < 4; i++) {
-      cv306[i] = cv307[i];
+      cv349[i] = cv350[i];
     }
 
-    emlrtInitCharArrayR2013a(&st, 4, m58, cv306);
-    emlrtAssign(&b_y, m58);
+    emlrtInitCharArrayR2013a(&st, 4, m63, cv349);
+    emlrtAssign(&b_y, m63);
     b_st.site = &fb_emlrtRSI;
     c_error(&b_st, message(&b_st, y, b_y, &emlrtMCI), &emlrtMCI);
   }
@@ -296,21 +296,21 @@ static void b_equalizeOFDM(testMACTransmitterStackData *SD, const emlrtStack *sp
     if (!obj->isInitialized) {
     } else {
       c_y = NULL;
-      m58 = mxCreateCharArray(2, iv250);
+      m63 = mxCreateCharArray(2, iv283);
       for (i = 0; i < 51; i++) {
-        cv308[i] = cv309[i];
+        cv351[i] = cv352[i];
       }
 
-      emlrtInitCharArrayR2013a(&b_st, 51, m58, cv308);
-      emlrtAssign(&c_y, m58);
+      emlrtInitCharArrayR2013a(&b_st, 51, m63, cv351);
+      emlrtAssign(&c_y, m63);
       d_y = NULL;
-      m58 = mxCreateCharArray(2, iv251);
+      m63 = mxCreateCharArray(2, iv284);
       for (i = 0; i < 5; i++) {
-        cv310[i] = cv311[i];
+        cv353[i] = cv354[i];
       }
 
-      emlrtInitCharArrayR2013a(&b_st, 5, m58, cv310);
-      emlrtAssign(&d_y, m58);
+      emlrtInitCharArrayR2013a(&b_st, 5, m63, cv353);
+      emlrtAssign(&d_y, m63);
       c_st.site = &fb_emlrtRSI;
       c_error(&c_st, message(&c_st, c_y, d_y, &emlrtMCI), &emlrtMCI);
     }
@@ -341,10 +341,10 @@ static void b_equalizeOFDM(testMACTransmitterStackData *SD, const emlrtStack *sp
     c_st.site = &fb_emlrtRSI;
     memset(&fullGrid[0], 1, sizeof(int8_T) << 6);
     for (k = 0; k < 11; k++) {
-      fullGrid[iv252[k]] = 0;
+      fullGrid[iv285[k]] = 0;
     }
 
-    d_st.site = &et_emlrtRSI;
+    d_st.site = &ay_emlrtRSI;
     i = 0;
     ii = 1;
     exitg2 = FALSE;
@@ -379,11 +379,11 @@ static void b_equalizeOFDM(testMACTransmitterStackData *SD, const emlrtStack *sp
       ii_data[k] = b_ii_data[k];
     }
 
-    d_st.site = &et_emlrtRSI;
+    d_st.site = &ay_emlrtRSI;
     k = obj->pDataLinearIndices->size[0];
     obj->pDataLinearIndices->size[0] = i;
     emxEnsureCapacity(&d_st, (emxArray__common *)obj->pDataLinearIndices, k,
-                      (int32_T)sizeof(real_T), &sb_emlrtRTEI);
+                      (int32_T)sizeof(real_T), &hc_emlrtRTEI);
     for (k = 0; k < i; k++) {
       obj->pDataLinearIndices->data[k] = ii_data[k];
     }
@@ -404,31 +404,31 @@ static void b_equalizeOFDM(testMACTransmitterStackData *SD, const emlrtStack *sp
   b_st.site = &fb_emlrtRSI;
   b_st.site = &fb_emlrtRSI;
   memcpy(&recv[0], &recv_data[192], sizeof(creal_T) << 6);
-  emxInit_creal_T(&st, &RLongFirst, 3, &ac_emlrtRTEI, TRUE);
+  b_emxInit_creal_T(&st, &RLongFirst, 3, &nc_emlrtRTEI, TRUE);
   b_st.site = &fb_emlrtRSI;
   OFDMDemodulator_stepImpl(&b_st, obj, recv, RLongFirst);
 
   /* First half of long preamble */
-  st.site = &xs_emlrtRSI;
+  st.site = &tx_emlrtRSI;
   obj = hPreambleDemod;
   if (!obj->isReleased) {
   } else {
     e_y = NULL;
-    m58 = mxCreateCharArray(2, iv253);
+    m63 = mxCreateCharArray(2, iv286);
     for (i = 0; i < 45; i++) {
-      cv304[i] = cv305[i];
+      cv347[i] = cv348[i];
     }
 
-    emlrtInitCharArrayR2013a(&st, 45, m58, cv304);
-    emlrtAssign(&e_y, m58);
+    emlrtInitCharArrayR2013a(&st, 45, m63, cv347);
+    emlrtAssign(&e_y, m63);
     f_y = NULL;
-    m58 = mxCreateCharArray(2, iv254);
+    m63 = mxCreateCharArray(2, iv287);
     for (i = 0; i < 4; i++) {
-      cv306[i] = cv307[i];
+      cv349[i] = cv350[i];
     }
 
-    emlrtInitCharArrayR2013a(&st, 4, m58, cv306);
-    emlrtAssign(&f_y, m58);
+    emlrtInitCharArrayR2013a(&st, 4, m63, cv349);
+    emlrtAssign(&f_y, m63);
     b_st.site = &fb_emlrtRSI;
     c_error(&b_st, message(&b_st, e_y, f_y, &emlrtMCI), &emlrtMCI);
   }
@@ -438,21 +438,21 @@ static void b_equalizeOFDM(testMACTransmitterStackData *SD, const emlrtStack *sp
     if (!obj->isInitialized) {
     } else {
       g_y = NULL;
-      m58 = mxCreateCharArray(2, iv255);
+      m63 = mxCreateCharArray(2, iv288);
       for (i = 0; i < 51; i++) {
-        cv308[i] = cv309[i];
+        cv351[i] = cv352[i];
       }
 
-      emlrtInitCharArrayR2013a(&b_st, 51, m58, cv308);
-      emlrtAssign(&g_y, m58);
+      emlrtInitCharArrayR2013a(&b_st, 51, m63, cv351);
+      emlrtAssign(&g_y, m63);
       h_y = NULL;
-      m58 = mxCreateCharArray(2, iv256);
+      m63 = mxCreateCharArray(2, iv289);
       for (i = 0; i < 5; i++) {
-        cv310[i] = cv311[i];
+        cv353[i] = cv354[i];
       }
 
-      emlrtInitCharArrayR2013a(&b_st, 5, m58, cv310);
-      emlrtAssign(&h_y, m58);
+      emlrtInitCharArrayR2013a(&b_st, 5, m63, cv353);
+      emlrtAssign(&h_y, m63);
       c_st.site = &fb_emlrtRSI;
       c_error(&c_st, message(&c_st, g_y, h_y, &emlrtMCI), &emlrtMCI);
     }
@@ -483,10 +483,10 @@ static void b_equalizeOFDM(testMACTransmitterStackData *SD, const emlrtStack *sp
     c_st.site = &fb_emlrtRSI;
     memset(&fullGrid[0], 1, sizeof(int8_T) << 6);
     for (k = 0; k < 11; k++) {
-      fullGrid[iv252[k]] = 0;
+      fullGrid[iv285[k]] = 0;
     }
 
-    d_st.site = &et_emlrtRSI;
+    d_st.site = &ay_emlrtRSI;
     i = 0;
     ii = 1;
     exitg1 = FALSE;
@@ -521,11 +521,11 @@ static void b_equalizeOFDM(testMACTransmitterStackData *SD, const emlrtStack *sp
       ii_data[k] = b_ii_data[k];
     }
 
-    d_st.site = &et_emlrtRSI;
+    d_st.site = &ay_emlrtRSI;
     k = obj->pDataLinearIndices->size[0];
     obj->pDataLinearIndices->size[0] = i;
     emxEnsureCapacity(&d_st, (emxArray__common *)obj->pDataLinearIndices, k,
-                      (int32_T)sizeof(real_T), &sb_emlrtRTEI);
+                      (int32_T)sizeof(real_T), &hc_emlrtRTEI);
     for (k = 0; k < i; k++) {
       obj->pDataLinearIndices->data[k] = ii_data[k];
     }
@@ -546,8 +546,8 @@ static void b_equalizeOFDM(testMACTransmitterStackData *SD, const emlrtStack *sp
   b_st.site = &fb_emlrtRSI;
   b_st.site = &fb_emlrtRSI;
   memcpy(&b_recv[0], &recv_data[256], sizeof(creal_T) << 6);
-  emxInit_creal_T(&st, &RLongSecond, 3, &bc_emlrtRTEI, TRUE);
-  emxInit_creal_T(&st, &b_R, 3, &sb_emlrtRTEI, TRUE);
+  b_emxInit_creal_T(&st, &RLongSecond, 3, &oc_emlrtRTEI, TRUE);
+  b_emxInit_creal_T(&st, &b_R, 3, &hc_emlrtRTEI, TRUE);
   b_st.site = &fb_emlrtRSI;
   OFDMDemodulator_stepImpl(&b_st, obj, b_recv, RLongSecond);
 
@@ -556,14 +556,14 @@ static void b_equalizeOFDM(testMACTransmitterStackData *SD, const emlrtStack *sp
   /*  Get Equalizer tap gains */
   k = RLongFirst->size[0];
   ii = RLongSecond->size[0];
-  emlrtDimSizeEqCheckFastR2012b(k, ii, &x_emlrtECI, sp);
-  st.site = &ys_emlrtRSI;
+  emlrtDimSizeEqCheckFastR2012b(k, ii, &hb_emlrtECI, sp);
+  st.site = &ux_emlrtRSI;
   k = b_R->size[0] * b_R->size[1] * b_R->size[2];
   b_R->size[0] = RLongFirst->size[0];
   b_R->size[1] = 2;
   b_R->size[2] = 1;
   emxEnsureCapacity(&st, (emxArray__common *)b_R, k, (int32_T)sizeof(creal_T),
-                    &sb_emlrtRTEI);
+                    &hc_emlrtRTEI);
   i = RLongFirst->size[0];
   for (k = 0; k < i; k++) {
     b_R->data[k] = RLongFirst->data[k];
@@ -582,7 +582,7 @@ static void b_equalizeOFDM(testMACTransmitterStackData *SD, const emlrtStack *sp
   for (k = 0; k < 53; k++) {
     ii = b_R->size[0];
     i = 1 + k;
-    emlrtDynamicBoundsCheckFastR2012b(i, 1, ii, &kb_emlrtBCI, &st);
+    emlrtDynamicBoundsCheckFastR2012b(i, 1, ii, &ac_emlrtBCI, &st);
   }
 
   i = b_R->size[0];
@@ -598,54 +598,54 @@ static void b_equalizeOFDM(testMACTransmitterStackData *SD, const emlrtStack *sp
     b_tx_longPreamble[53 + k] = tx_longPreamble[k];
   }
 
-  b_st.site = &au_emlrtRSI;
+  b_st.site = &qy_emlrtRSI;
   b_rdivide(c_R, b_tx_longPreamble, RNormal);
 
   /*  Known is the original Long Preamble symbols  */
   /*  Scale channel gains */
-  b_st.site = &bu_emlrtRSI;
-  d_abs(RNormal, dv14);
-  memcpy(&dv15[0], &dv14[0], 106U * sizeof(real_T));
-  b_st.site = &bu_emlrtRSI;
-  b_power(dv15, dv14);
-  b_st.site = &bu_emlrtRSI;
-  c_mean(dv14, REnergy);
-  b_st.site = &cu_emlrtRSI;
+  b_st.site = &ry_emlrtRSI;
+  d_abs(RNormal, dv17);
+  memcpy(&dv18[0], &dv17[0], 106U * sizeof(real_T));
+  b_st.site = &ry_emlrtRSI;
+  b_power(dv18, dv17);
+  b_st.site = &ry_emlrtRSI;
+  c_mean(dv17, REnergy);
+  b_st.site = &sy_emlrtRSI;
   d_mean(RNormal, RConj);
   for (k = 0; k < 53; k++) {
     RConj[k].im = -RConj[k].im;
     b_RConj[k] = RConj[k];
   }
 
-  b_st.site = &du_emlrtRSI;
+  b_st.site = &ty_emlrtRSI;
   c_rdivide(b_RConj, REnergy, RConj);
 
   /*  Separate data from preambles */
   /* recvData = recv(length(tx.preambles)+1:length(tx.preambles)+(hDataDemod.NumSymbols)*(tx.FFTLength+hDataDemod.CyclicPrefixLength)); */
-  emlrtVectorVectorIndexCheckR2012b(1280, 1, 1, 960, &w_emlrtECI, sp);
+  emlrtVectorVectorIndexCheckR2012b(1280, 1, 1, 960, &gb_emlrtECI, sp);
 
   /*  CG */
   /*  OFDM Demod */
-  st.site = &at_emlrtRSI;
+  st.site = &vx_emlrtRSI;
   obj = hDataDemod;
   if (!obj->isReleased) {
   } else {
     i_y = NULL;
-    m58 = mxCreateCharArray(2, iv257);
+    m63 = mxCreateCharArray(2, iv290);
     for (i = 0; i < 45; i++) {
-      cv304[i] = cv305[i];
+      cv347[i] = cv348[i];
     }
 
-    emlrtInitCharArrayR2013a(&st, 45, m58, cv304);
-    emlrtAssign(&i_y, m58);
+    emlrtInitCharArrayR2013a(&st, 45, m63, cv347);
+    emlrtAssign(&i_y, m63);
     j_y = NULL;
-    m58 = mxCreateCharArray(2, iv258);
+    m63 = mxCreateCharArray(2, iv291);
     for (i = 0; i < 4; i++) {
-      cv306[i] = cv307[i];
+      cv349[i] = cv350[i];
     }
 
-    emlrtInitCharArrayR2013a(&st, 4, m58, cv306);
-    emlrtAssign(&j_y, m58);
+    emlrtInitCharArrayR2013a(&st, 4, m63, cv349);
+    emlrtAssign(&j_y, m63);
     b_st.site = &fb_emlrtRSI;
     c_error(&b_st, message(&b_st, i_y, j_y, &emlrtMCI), &emlrtMCI);
   }
@@ -655,21 +655,21 @@ static void b_equalizeOFDM(testMACTransmitterStackData *SD, const emlrtStack *sp
     if (!obj->isInitialized) {
     } else {
       k_y = NULL;
-      m58 = mxCreateCharArray(2, iv259);
+      m63 = mxCreateCharArray(2, iv292);
       for (i = 0; i < 51; i++) {
-        cv308[i] = cv309[i];
+        cv351[i] = cv352[i];
       }
 
-      emlrtInitCharArrayR2013a(&b_st, 51, m58, cv308);
-      emlrtAssign(&k_y, m58);
+      emlrtInitCharArrayR2013a(&b_st, 51, m63, cv351);
+      emlrtAssign(&k_y, m63);
       l_y = NULL;
-      m58 = mxCreateCharArray(2, iv260);
+      m63 = mxCreateCharArray(2, iv293);
       for (i = 0; i < 5; i++) {
-        cv310[i] = cv311[i];
+        cv353[i] = cv354[i];
       }
 
-      emlrtInitCharArrayR2013a(&b_st, 5, m58, cv310);
-      emlrtAssign(&l_y, m58);
+      emlrtInitCharArrayR2013a(&b_st, 5, m63, cv353);
+      emlrtAssign(&l_y, m63);
       c_st.site = &fb_emlrtRSI;
       c_error(&c_st, message(&c_st, k_y, l_y, &emlrtMCI), &emlrtMCI);
     }
@@ -693,19 +693,19 @@ static void b_equalizeOFDM(testMACTransmitterStackData *SD, const emlrtStack *sp
     memset(&b_fullGrid[0], 1, 768U * sizeof(int8_T));
     for (k = 0; k < 12; k++) {
       for (ii = 0; ii < 11; ii++) {
-        b_fullGrid[iv252[ii] + (k << 6)] = 0;
+        b_fullGrid[iv285[ii] + (k << 6)] = 0;
       }
 
       b_fullGrid[32 + (k << 6)] = 0;
     }
 
-    d_st.site = &ru_emlrtRSI;
-    d_st.site = &ru_emlrtRSI;
+    d_st.site = &dab_emlrtRSI;
+    d_st.site = &dab_emlrtRSI;
     for (k = 0; k < 48; k++) {
-      b_fullGrid[iv261[k]] = 2;
+      b_fullGrid[iv294[k]] = 2;
     }
 
-    d_st.site = &et_emlrtRSI;
+    d_st.site = &ay_emlrtRSI;
     for (k = 0; k < 768; k++) {
       c_fullGrid[k] = (b_fullGrid[k] == 1);
     }
@@ -717,7 +717,7 @@ static void b_equalizeOFDM(testMACTransmitterStackData *SD, const emlrtStack *sp
       d_ii_data[k] = c_ii_data[k];
     }
 
-    d_st.site = &et_emlrtRSI;
+    d_st.site = &ay_emlrtRSI;
     h_SystemProp_matlabCodegenSetAn(&d_st, obj, d_ii_data, b_ii_size);
     c_st.site = &fb_emlrtRSI;
   }
@@ -739,7 +739,7 @@ static void b_equalizeOFDM(testMACTransmitterStackData *SD, const emlrtStack *sp
     Rraw, RXPilots);
 
   /*  Expand equalizer gains to full frame size */
-  st.site = &bt_emlrtRSI;
+  st.site = &wx_emlrtRSI;
   i = 0;
   for (ii = 0; ii < 12; ii++) {
     ia = 0;
@@ -757,23 +757,23 @@ static void b_equalizeOFDM(testMACTransmitterStackData *SD, const emlrtStack *sp
   /*  Apply preamble equalizer gains to data and pilots */
   /* Correct pilots */
   for (i = 0; i < 3; i++) {
-    iv262[i] = iv263[i];
+    iv295[i] = iv296[i];
   }
 
   for (k = 0; k < 3; k++) {
     b_Rraw[k] = Rraw->size[k];
   }
 
-  emlrtSizeEqCheckNDR2012b(iv262, b_Rraw, &v_emlrtECI, sp);
+  emlrtSizeEqCheckNDR2012b(iv295, b_Rraw, &fb_emlrtECI, sp);
 
   /* Correct data */
   /*     %% Pilot Equalization */
   /*  Get pilot-based equalizer gains */
-  st.site = &ct_emlrtRSI;
+  st.site = &xx_emlrtRSI;
 
   /*  Calculate Equalizer Taps with pilot symbols */
   /*  Calculate non-normalized channel gains */
-  b_st.site = &uu_emlrtRSI;
+  b_st.site = &gab_emlrtRSI;
   c_st.site = &n_emlrtRSI;
   for (k = 0; k < 12; k++) {
     for (ii = 0; ii < 4; ii++) {
@@ -801,22 +801,22 @@ static void b_equalizeOFDM(testMACTransmitterStackData *SD, const emlrtStack *sp
   }
 
   /*  Scale channel gains */
-  b_st.site = &vu_emlrtRSI;
+  b_st.site = &hab_emlrtRSI;
   for (k = 0; k < 48; k++) {
     c_st.site = &tc_emlrtRSI;
-    d_st.site = &ap_emlrtRSI;
+    d_st.site = &ao_emlrtRSI;
     a[k] = muDoubleScalarHypot(PilotNormal[k].re, PilotNormal[k].im);
   }
 
-  b_st.site = &vu_emlrtRSI;
+  b_st.site = &hab_emlrtRSI;
   c_st.site = &q_emlrtRSI;
-  d_st.site = &gq_emlrtRSI;
+  d_st.site = &hv_emlrtRSI;
   for (k = 0; k < 48; k++) {
     d_st.site = &r_emlrtRSI;
     PilotEnergy[k] = a[k] * a[k];
   }
 
-  b_st.site = &wu_emlrtRSI;
+  b_st.site = &iab_emlrtRSI;
   c_st.site = &n_emlrtRSI;
 
   /*  Interpolate to data carrier size */
@@ -833,7 +833,7 @@ static void b_equalizeOFDM(testMACTransmitterStackData *SD, const emlrtStack *sp
     }
   }
 
-  b_st.site = &xu_emlrtRSI;
+  b_st.site = &jab_emlrtRSI;
   resample(SD, &b_st, b_PilotNormal, pilotEqGains);
 
   /*  Apply Equalizer from Pilots */

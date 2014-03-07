@@ -5,7 +5,7 @@ function [ r, tx ] = generateOFDMSignal_Tx( numFrames, enableMA, inputPayloadMes
 % receiver to operate correctly.
 
 %% System Parameters
-tx.samplingFreq = 20e6;    % Sampling frequency (Hz)
+tx.samplingFreq = 5e6;    % Sampling frequency (Hz)
 tx.FFTLength = 64;         % OFDM modulator FFT size
 tx.enableMA = enableMA;    % Enable moving averages for estimates
 

@@ -3,7 +3,7 @@
  *
  * Code generation for function 'generateOFDMSignal_TX2'
  *
- * C source code generated on: Thu Mar  6 19:04:22 2014
+ * C source code generated on: Thu Mar  6 22:22:38 2014
  *
  */
 
@@ -76,59 +76,59 @@ static emlrtRSInfo hc_emlrtRSI = { 99, "generateOFDMSignal_TX2",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal_TX2.m"
 };
 
-static emlrtRSInfo ic_emlrtRSI = { 104, "generateOFDMSignal_TX2",
+static emlrtRSInfo ic_emlrtRSI = { 106, "generateOFDMSignal_TX2",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal_TX2.m"
 };
 
-static emlrtRSInfo jc_emlrtRSI = { 105, "generateOFDMSignal_TX2",
+static emlrtRSInfo jc_emlrtRSI = { 107, "generateOFDMSignal_TX2",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal_TX2.m"
 };
 
-static emlrtRSInfo kc_emlrtRSI = { 106, "generateOFDMSignal_TX2",
+static emlrtRSInfo kc_emlrtRSI = { 108, "generateOFDMSignal_TX2",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal_TX2.m"
 };
 
-static emlrtRSInfo lc_emlrtRSI = { 107, "generateOFDMSignal_TX2",
+static emlrtRSInfo lc_emlrtRSI = { 109, "generateOFDMSignal_TX2",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal_TX2.m"
 };
 
-static emlrtRSInfo mc_emlrtRSI = { 110, "generateOFDMSignal_TX2",
+static emlrtRSInfo mc_emlrtRSI = { 112, "generateOFDMSignal_TX2",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal_TX2.m"
 };
 
-static emlrtRSInfo nc_emlrtRSI = { 121, "generateOFDMSignal_TX2",
+static emlrtRSInfo nc_emlrtRSI = { 123, "generateOFDMSignal_TX2",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal_TX2.m"
 };
 
-static emlrtRSInfo oc_emlrtRSI = { 129, "generateOFDMSignal_TX2",
+static emlrtRSInfo oc_emlrtRSI = { 131, "generateOFDMSignal_TX2",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal_TX2.m"
 };
 
-static emlrtRSInfo pc_emlrtRSI = { 134, "generateOFDMSignal_TX2",
+static emlrtRSInfo pc_emlrtRSI = { 136, "generateOFDMSignal_TX2",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal_TX2.m"
 };
 
-static emlrtRSInfo qc_emlrtRSI = { 135, "generateOFDMSignal_TX2",
+static emlrtRSInfo qc_emlrtRSI = { 137, "generateOFDMSignal_TX2",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal_TX2.m"
 };
 
-static emlrtRSInfo im_emlrtRSI = { 18, "generateOFDMSignal_TX2",
+static emlrtRSInfo jt_emlrtRSI = { 18, "generateOFDMSignal_TX2",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal_TX2.m"
 };
 
-static emlrtRSInfo jm_emlrtRSI = { 138, "generateOFDMSignal_TX2",
+static emlrtRSInfo kt_emlrtRSI = { 140, "generateOFDMSignal_TX2",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal_TX2.m"
 };
 
-static emlrtRSInfo rv_emlrtRSI = { 17, "generateOFDMSignal_TX2",
+static emlrtRSInfo dbb_emlrtRSI = { 17, "generateOFDMSignal_TX2",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal_TX2.m"
 };
 
-static emlrtRTEInfo e_emlrtRTEI = { 110, 1, "generateOFDMSignal_TX2",
+static emlrtRTEInfo g_emlrtRTEI = { 112, 1, "generateOFDMSignal_TX2",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal_TX2.m"
 };
 
-static emlrtRTEInfo f_emlrtRTEI = { 39, 1, "generateOFDMSignal_TX2",
+static emlrtRTEInfo h_emlrtRTEI = { 39, 1, "generateOFDMSignal_TX2",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal_TX2.m"
 };
 
@@ -151,8 +151,8 @@ void b_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
   static const char_T b_inputPayloadMessage[14] = { 'R', 'a', 'n', 'd', 'o', 'm',
     ' ', 'M', 'e', 's', 's', 'a', 'g', 'e' };
 
-  real_T d2;
-  static const char_T cv108[3] = { 'E', 'O', 'F' };
+  real_T d3;
+  static const char_T cv161[3] = { 'E', 'O', 'F' };
 
   real_T originalData[560];
   real_T x[560];
@@ -163,72 +163,72 @@ void b_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
   commcodegen_BPSKModulator_2 hMod;
   commcodegen_BPSKModulator_2 *obj;
   comm_BPSKModulator_8 *b_obj;
-  static const real_T dv6[4] = { 1.0, 0.0, -1.0, 1.2246467991473532E-16 };
+  static const real_T dv10[4] = { 1.0, 0.0, -1.0, 1.2246467991473532E-16 };
 
   const mxArray *y;
-  static const int32_T iv96[2] = { 1, 45 };
+  static const int32_T iv134[2] = { 1, 45 };
 
-  const mxArray *m16;
-  char_T cv109[45];
-  static const char_T cv110[45] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
+  const mxArray *m26;
+  char_T cv162[45];
+  static const char_T cv163[45] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
     's', 't', 'e', 'm', ':', 'm', 'e', 't', 'h', 'o', 'd', 'C', 'a', 'l', 'l',
     'e', 'd', 'W', 'h', 'e', 'n', 'R', 'e', 'l', 'e', 'a', 's', 'e', 'd', 'C',
     'o', 'd', 'e', 'g', 'e', 'n' };
 
   const mxArray *b_y;
-  static const int32_T iv97[2] = { 1, 4 };
+  static const int32_T iv135[2] = { 1, 4 };
 
-  char_T cv111[4];
-  static const char_T cv112[4] = { 's', 't', 'e', 'p' };
+  char_T cv164[4];
+  static const char_T cv165[4] = { 's', 't', 'e', 'p' };
 
   const mxArray *c_y;
-  static const int32_T iv98[2] = { 1, 51 };
+  static const int32_T iv136[2] = { 1, 51 };
 
-  char_T cv113[51];
-  static const char_T cv114[51] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
+  char_T cv166[51];
+  static const char_T cv167[51] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
     's', 't', 'e', 'm', ':', 'm', 'e', 't', 'h', 'o', 'd', 'C', 'a', 'l', 'l',
     'e', 'd', 'W', 'h', 'e', 'n', 'L', 'o', 'c', 'k', 'e', 'd', 'R', 'e', 'l',
     'e', 'a', 's', 'e', 'd', 'C', 'o', 'd', 'e', 'g', 'e', 'n' };
 
   const mxArray *d_y;
-  static const int32_T iv99[2] = { 1, 5 };
+  static const int32_T iv137[2] = { 1, 5 };
 
-  char_T cv115[5];
-  static const char_T cv116[5] = { 's', 'e', 't', 'u', 'p' };
+  char_T cv168[5];
+  static const char_T cv169[5] = { 's', 'e', 't', 'u', 'p' };
 
   static const int16_T value[8] = { 563, 1, 1, 1, 1, 1, 1, 1 };
 
   boolean_T anyInputSizeChanged;
   boolean_T exitg2;
-  static const int16_T iv100[8] = { 563, 1, 1, 1, 1, 1, 1, 1 };
+  static const int16_T iv138[8] = { 563, 1, 1, 1, 1, 1, 1, 1 };
 
   creal_T modData[563];
   real_T varargin_1[13];
   const mxArray *e_y;
-  static const int32_T iv101[2] = { 1, 45 };
+  static const int32_T iv139[2] = { 1, 45 };
 
   const mxArray *f_y;
-  static const int32_T iv102[2] = { 1, 4 };
+  static const int32_T iv140[2] = { 1, 4 };
 
   const mxArray *g_y;
-  static const int32_T iv103[2] = { 1, 51 };
+  static const int32_T iv141[2] = { 1, 51 };
 
   const mxArray *h_y;
-  static const int32_T iv104[2] = { 1, 5 };
+  static const int32_T iv142[2] = { 1, 5 };
 
   static const int8_T b_value[8] = { 13, 1, 1, 1, 1, 1, 1, 1 };
 
   boolean_T exitg1;
-  static const int8_T iv105[8] = { 13, 1, 1, 1, 1, 1, 1, 1 };
+  static const int8_T iv143[8] = { 13, 1, 1, 1, 1, 1, 1, 1 };
 
   creal_T varargout_1[13];
   creal_T b_modData[576];
   creal_T ofdmData[576];
   comm_PNSequence_9 hPN;
   comm_PNSequence_9 *c_obj;
-  static const int8_T iv106[8] = { 1, 0, 0, 0, 1, 0, 0, 1 };
+  static const int8_T iv144[8] = { 1, 0, 0, 0, 1, 0, 0, 1 };
 
-  static const int8_T iv107[7] = { 0, 0, 0, 0, 0, 0, 1 };
+  static const int8_T iv145[7] = { 0, 0, 0, 0, 0, 0, 1 };
 
   int8_T pilot[12];
   uint8_T tmp;
@@ -240,7 +240,7 @@ void b_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
   creal_T b_r[960];
   creal_T preambles[320];
   OFDMDemodulator_3 *b_object;
-  static const creal_T dcv4[53] = { { 0.0, 0.0 }, { 0.0, 0.0 }, { 1.0, 1.0 }, {
+  static const creal_T dcv6[53] = { { 0.0, 0.0 }, { 0.0, 0.0 }, { 1.0, 1.0 }, {
       0.0, 0.0 }, { 0.0, 0.0 }, { 0.0, 0.0 }, { -1.0, -1.0 }, { 0.0, 0.0 }, {
       0.0, 0.0 }, { 0.0, 0.0 }, { 1.0, 1.0 }, { 0.0, 0.0 }, { 0.0, 0.0 }, { 0.0,
       0.0 }, { -1.0, -1.0 }, { 0.0, 0.0 }, { 0.0, 0.0 }, { 0.0, 0.0 }, { -1.0,
@@ -252,11 +252,11 @@ void b_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
     }, { 0.0, 0.0 }, { 1.0, 1.0 }, { 0.0, 0.0 }, { 0.0, 0.0 }, { 0.0, 0.0 }, {
       1.0, 1.0 }, { 0.0, 0.0 }, { 0.0, 0.0 } };
 
-  static const int8_T iv108[53] = { 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, 1, 1, 1,
+  static const int8_T iv146[53] = { 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, 1, 1, 1,
     1, -1, -1, 1, 1, -1, 1, -1, 1, 1, 1, 1, 0, 1, -1, -1, 1, 1, -1, 1, -1, 1, -1,
     -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, 1, 1, 1, 1 };
 
-  static const int8_T iv109[48] = { 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14,
+  static const int8_T iv147[48] = { 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14,
     15, 16, 17, 18, 19, 21, 22, 23, 24, 25, 26, 28, 29, 30, 31, 32, 33, 35, 36,
     37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 49, 50, 51, 52, 53 };
 
@@ -270,8 +270,8 @@ void b_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
   c_st.prev = &b_st;
   c_st.tls = b_st.tls;
   emlrtHeapReferenceStackEnterFcnR2012b(sp);
-  emxInitStruct_OFDMModulator_1(sp, &hDataMod, &e_emlrtRTEI, TRUE);
-  emxInitStruct_OFDMModulator(sp, &hPreambleMod, &f_emlrtRTEI, TRUE);
+  emxInitStruct_OFDMModulator_1(sp, &hDataMod, &g_emlrtRTEI, TRUE);
+  emxInitStruct_OFDMModulator(sp, &hPreambleMod, &h_emlrtRTEI, TRUE);
 
   /*  generateOFDMSignal: Generate OFDM signal based on the 802.11a standard. */
   /*  This function returns the time domain signal and a structure containing */
@@ -295,7 +295,7 @@ void b_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
   emlrtDynamicBoundsCheckFastR2012b(i, 0, 255, &emlrtBCI, &st);
 
   /* Add additional character to differentiate messages */
-  st.site = &im_emlrtRSI;
+  st.site = &jt_emlrtRSI;
   i = (int32_T)(48.0 + originNode);
   emlrtDynamicBoundsCheckFastR2012b(i, 0, 255, &emlrtBCI, &st);
 
@@ -358,35 +358,35 @@ void b_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
     inputPayloadMessage[i] = b_inputPayloadMessage[i];
   }
 
-  d2 = muDoubleScalarFloor(48.0 + originNode);
-  if (muDoubleScalarIsNaN(d2) || muDoubleScalarIsInf(d2)) {
-    d2 = 0.0;
+  d3 = muDoubleScalarFloor(48.0 + originNode);
+  if (muDoubleScalarIsNaN(d3) || muDoubleScalarIsInf(d3)) {
+    d3 = 0.0;
   } else {
-    d2 = muDoubleScalarRem(d2, 256.0);
+    d3 = muDoubleScalarRem(d3, 256.0);
   }
 
-  if (d2 < 0.0) {
-    inputPayloadMessage[14] = (int8_T)-(int8_T)(uint8_T)-d2;
+  if (d3 < 0.0) {
+    inputPayloadMessage[14] = (int8_T)-(int8_T)(uint8_T)-d3;
   } else {
-    inputPayloadMessage[14] = (int8_T)(uint8_T)d2;
+    inputPayloadMessage[14] = (int8_T)(uint8_T)d3;
   }
 
   inputPayloadMessage[15] = '1';
-  d2 = muDoubleScalarFloor(a * 128.0);
-  if (muDoubleScalarIsNaN(d2) || muDoubleScalarIsInf(d2)) {
-    d2 = 0.0;
+  d3 = muDoubleScalarFloor(a * 128.0);
+  if (muDoubleScalarIsNaN(d3) || muDoubleScalarIsInf(d3)) {
+    d3 = 0.0;
   } else {
-    d2 = muDoubleScalarRem(d2, 256.0);
+    d3 = muDoubleScalarRem(d3, 256.0);
   }
 
-  if (d2 < 0.0) {
-    inputPayloadMessage[16] = (int8_T)-(int8_T)(uint8_T)-d2;
+  if (d3 < 0.0) {
+    inputPayloadMessage[16] = (int8_T)-(int8_T)(uint8_T)-d3;
   } else {
-    inputPayloadMessage[16] = (int8_T)(uint8_T)d2;
+    inputPayloadMessage[16] = (int8_T)(uint8_T)d3;
   }
 
   for (i = 0; i < 3; i++) {
-    inputPayloadMessage[i + 17] = cv108[i];
+    inputPayloadMessage[i + 17] = cv161[i];
   }
 
   for (i = 0; i < 60; i++) {
@@ -408,7 +408,7 @@ void b_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
   st.site = &bc_emlrtRSI;
   c_CRCGenerator_CRCGenerator(&hGen);
   st.site = &cc_emlrtRSI;
-  g_SystemCore_step(&st, &hGen, b_originalData, dataWithCRC);
+  h_SystemCore_step(&st, &hGen, b_originalData, dataWithCRC);
 
   /*  Add CRC */
   /*  Construct modulator for each subcarrier */
@@ -430,7 +430,7 @@ void b_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
   b_obj->S0_isInitialized = FALSE;
   b_obj->S1_isReleased = FALSE;
   for (i = 0; i < 4; i++) {
-    b_obj->P0_modmap[i] = dv6[i];
+    b_obj->P0_modmap[i] = dv10[i];
   }
 
   b_st.site = &jg_emlrtRSI;
@@ -450,21 +450,21 @@ void b_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
   if (!obj->isReleased) {
   } else {
     y = NULL;
-    m16 = mxCreateCharArray(2, iv96);
+    m26 = mxCreateCharArray(2, iv134);
     for (i = 0; i < 45; i++) {
-      cv109[i] = cv110[i];
+      cv162[i] = cv163[i];
     }
 
-    emlrtInitCharArrayR2013a(&st, 45, m16, cv109);
-    emlrtAssign(&y, m16);
+    emlrtInitCharArrayR2013a(&st, 45, m26, cv162);
+    emlrtAssign(&y, m26);
     b_y = NULL;
-    m16 = mxCreateCharArray(2, iv97);
+    m26 = mxCreateCharArray(2, iv135);
     for (i = 0; i < 4; i++) {
-      cv111[i] = cv112[i];
+      cv164[i] = cv165[i];
     }
 
-    emlrtInitCharArrayR2013a(&st, 4, m16, cv111);
-    emlrtAssign(&b_y, m16);
+    emlrtInitCharArrayR2013a(&st, 4, m26, cv164);
+    emlrtAssign(&b_y, m26);
     b_st.site = &fb_emlrtRSI;
     c_error(&b_st, message(&b_st, y, b_y, &emlrtMCI), &emlrtMCI);
   }
@@ -474,21 +474,21 @@ void b_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
     if (!obj->isInitialized) {
     } else {
       c_y = NULL;
-      m16 = mxCreateCharArray(2, iv98);
+      m26 = mxCreateCharArray(2, iv136);
       for (i = 0; i < 51; i++) {
-        cv113[i] = cv114[i];
+        cv166[i] = cv167[i];
       }
 
-      emlrtInitCharArrayR2013a(&b_st, 51, m16, cv113);
-      emlrtAssign(&c_y, m16);
+      emlrtInitCharArrayR2013a(&b_st, 51, m26, cv166);
+      emlrtAssign(&c_y, m26);
       d_y = NULL;
-      m16 = mxCreateCharArray(2, iv99);
+      m26 = mxCreateCharArray(2, iv137);
       for (i = 0; i < 5; i++) {
-        cv115[i] = cv116[i];
+        cv168[i] = cv169[i];
       }
 
-      emlrtInitCharArrayR2013a(&b_st, 5, m16, cv115);
-      emlrtAssign(&d_y, m16);
+      emlrtInitCharArrayR2013a(&b_st, 5, m26, cv168);
+      emlrtAssign(&d_y, m26);
       c_st.site = &fb_emlrtRSI;
       c_error(&c_st, message(&c_st, c_y, d_y, &emlrtMCI), &emlrtMCI);
     }
@@ -523,7 +523,7 @@ void b_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
   k = 0;
   exitg2 = FALSE;
   while ((exitg2 == FALSE) && (k < 8)) {
-    if (obj->inputVarSize1[k] != (uint32_T)iv100[k]) {
+    if (obj->inputVarSize1[k] != (uint32_T)iv138[k]) {
       anyInputSizeChanged = TRUE;
       c_st.site = &fb_emlrtRSI;
       for (i = 0; i < 8; i++) {
@@ -565,21 +565,21 @@ void b_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
   if (!obj->isReleased) {
   } else {
     e_y = NULL;
-    m16 = mxCreateCharArray(2, iv101);
+    m26 = mxCreateCharArray(2, iv139);
     for (i = 0; i < 45; i++) {
-      cv109[i] = cv110[i];
+      cv162[i] = cv163[i];
     }
 
-    emlrtInitCharArrayR2013a(&st, 45, m16, cv109);
-    emlrtAssign(&e_y, m16);
+    emlrtInitCharArrayR2013a(&st, 45, m26, cv162);
+    emlrtAssign(&e_y, m26);
     f_y = NULL;
-    m16 = mxCreateCharArray(2, iv102);
+    m26 = mxCreateCharArray(2, iv140);
     for (i = 0; i < 4; i++) {
-      cv111[i] = cv112[i];
+      cv164[i] = cv165[i];
     }
 
-    emlrtInitCharArrayR2013a(&st, 4, m16, cv111);
-    emlrtAssign(&f_y, m16);
+    emlrtInitCharArrayR2013a(&st, 4, m26, cv164);
+    emlrtAssign(&f_y, m26);
     b_st.site = &fb_emlrtRSI;
     c_error(&b_st, message(&b_st, e_y, f_y, &emlrtMCI), &emlrtMCI);
   }
@@ -589,21 +589,21 @@ void b_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
     if (!obj->isInitialized) {
     } else {
       g_y = NULL;
-      m16 = mxCreateCharArray(2, iv103);
+      m26 = mxCreateCharArray(2, iv141);
       for (i = 0; i < 51; i++) {
-        cv113[i] = cv114[i];
+        cv166[i] = cv167[i];
       }
 
-      emlrtInitCharArrayR2013a(&b_st, 51, m16, cv113);
-      emlrtAssign(&g_y, m16);
+      emlrtInitCharArrayR2013a(&b_st, 51, m26, cv166);
+      emlrtAssign(&g_y, m26);
       h_y = NULL;
-      m16 = mxCreateCharArray(2, iv104);
+      m26 = mxCreateCharArray(2, iv142);
       for (i = 0; i < 5; i++) {
-        cv115[i] = cv116[i];
+        cv168[i] = cv169[i];
       }
 
-      emlrtInitCharArrayR2013a(&b_st, 5, m16, cv115);
-      emlrtAssign(&h_y, m16);
+      emlrtInitCharArrayR2013a(&b_st, 5, m26, cv168);
+      emlrtAssign(&h_y, m26);
       c_st.site = &fb_emlrtRSI;
       c_error(&c_st, message(&c_st, g_y, h_y, &emlrtMCI), &emlrtMCI);
     }
@@ -638,7 +638,7 @@ void b_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
   k = 0;
   exitg1 = FALSE;
   while ((exitg1 == FALSE) && (k < 8)) {
-    if (obj->inputVarSize1[k] != (uint32_T)iv105[k]) {
+    if (obj->inputVarSize1[k] != (uint32_T)iv143[k]) {
       anyInputSizeChanged = TRUE;
       c_st.site = &fb_emlrtRSI;
       for (i = 0; i < 8; i++) {
@@ -681,20 +681,21 @@ void b_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
   c_obj->S0_isInitialized = FALSE;
   c_obj->S1_isReleased = FALSE;
   for (i = 0; i < 8; i++) {
-    c_obj->P0_Polynomial[i] = (uint8_T)iv106[i];
+    c_obj->P0_Polynomial[i] = (uint8_T)iv144[i];
   }
 
   for (i = 0; i < 7; i++) {
     c_obj->P1_IniState[i] = 1;
-    c_obj->P2_Mask[i] = (uint8_T)iv107[i];
+    c_obj->P2_Mask[i] = (uint8_T)iv145[i];
   }
 
+  /* pilot=[1 0  0  1  0  0  1  0  0  0  0  0]'; */
   st.site = &ic_emlrtRSI;
   c_obj = &hPN;
   if (!c_obj->S0_isInitialized) {
     c_obj->S0_isInitialized = TRUE;
     if (c_obj->S1_isReleased) {
-      emlrtErrorWithMessageIdR2012b(&st, &cc_emlrtRTEI,
+      emlrtErrorWithMessageIdR2012b(&st, &pc_emlrtRTEI,
         "MATLAB:system:runtimeMethodCalledWhenReleasedCodegen", 0);
     }
 
@@ -798,32 +799,32 @@ void b_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
   st.site = &qc_emlrtRSI;
   b_object = iobj_1;
   *hPreambleDemod = b_object;
-  b_st.site = &mj_emlrtRSI;
+  b_st.site = &sj_emlrtRSI;
   b_object = *hPreambleDemod;
   c_st.site = &cb_emlrtRSI;
   b_object->isInitialized = FALSE;
   b_object->isReleased = FALSE;
   c_st.site = &cb_emlrtRSI;
   c_st.site = &db_emlrtRSI;
-  b_st.site = &nj_emlrtRSI;
+  b_st.site = &tj_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
-  b_st.site = &oj_emlrtRSI;
+  b_st.site = &uj_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
-  b_st.site = &pj_emlrtRSI;
+  b_st.site = &vj_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
-  b_st.site = &qj_emlrtRSI;
+  b_st.site = &wj_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
-  b_st.site = &rj_emlrtRSI;
+  b_st.site = &xj_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
-  b_st.site = &sj_emlrtRSI;
+  b_st.site = &yj_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
 
   /*  Calcuate OFDM frequency bin size */
-  st.site = &jm_emlrtRSI;
+  st.site = &kt_emlrtRSI;
   b_st.site = &m_emlrtRSI;
   c_st.site = &n_emlrtRSI;
 
@@ -847,11 +848,11 @@ void b_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
   }
 
   for (i = 0; i < 53; i++) {
-    tx->shortPreamble[i] = dcv4[i];
+    tx->shortPreamble[i] = dcv6[i];
   }
 
   for (i = 0; i < 53; i++) {
-    tx->longPreamble[i] = iv108[i];
+    tx->longPreamble[i] = iv146[i];
   }
 
   for (i = 0; i < 64; i++) {
@@ -877,7 +878,7 @@ void b_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
   tx->dataSubcarrierIndexies.size[0] = 1;
   tx->dataSubcarrierIndexies.size[1] = 48;
   for (i = 0; i < 48; i++) {
-    tx->dataSubcarrierIndexies.data[i] = iv109[i];
+    tx->dataSubcarrierIndexies.data[i] = iv147[i];
   }
 
   tx->samplingFreq = 5.0E+6;
@@ -916,8 +917,8 @@ void c_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
   char_T inputPayloadMessage[80];
   static const char_T b_inputPayloadMessage[3] = { 'A', 'C', 'K' };
 
-  real_T d5;
-  static const char_T cv259[3] = { 'E', 'O', 'F' };
+  real_T d6;
+  static const char_T cv302[3] = { 'E', 'O', 'F' };
 
   real_T originalData[560];
   real_T x[560];
@@ -928,72 +929,72 @@ void c_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
   commcodegen_BPSKModulator_3 hMod;
   commcodegen_BPSKModulator_3 *obj;
   comm_BPSKModulator_12 *b_obj;
-  static const real_T dv13[4] = { 1.0, 0.0, -1.0, 1.2246467991473532E-16 };
+  static const real_T dv16[4] = { 1.0, 0.0, -1.0, 1.2246467991473532E-16 };
 
   const mxArray *y;
-  static const int32_T iv213[2] = { 1, 45 };
+  static const int32_T iv246[2] = { 1, 45 };
 
-  const mxArray *m42;
-  char_T cv260[45];
-  static const char_T cv261[45] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
+  const mxArray *m47;
+  char_T cv303[45];
+  static const char_T cv304[45] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
     's', 't', 'e', 'm', ':', 'm', 'e', 't', 'h', 'o', 'd', 'C', 'a', 'l', 'l',
     'e', 'd', 'W', 'h', 'e', 'n', 'R', 'e', 'l', 'e', 'a', 's', 'e', 'd', 'C',
     'o', 'd', 'e', 'g', 'e', 'n' };
 
   const mxArray *b_y;
-  static const int32_T iv214[2] = { 1, 4 };
+  static const int32_T iv247[2] = { 1, 4 };
 
-  char_T cv262[4];
-  static const char_T cv263[4] = { 's', 't', 'e', 'p' };
+  char_T cv305[4];
+  static const char_T cv306[4] = { 's', 't', 'e', 'p' };
 
   const mxArray *c_y;
-  static const int32_T iv215[2] = { 1, 51 };
+  static const int32_T iv248[2] = { 1, 51 };
 
-  char_T cv264[51];
-  static const char_T cv265[51] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
+  char_T cv307[51];
+  static const char_T cv308[51] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
     's', 't', 'e', 'm', ':', 'm', 'e', 't', 'h', 'o', 'd', 'C', 'a', 'l', 'l',
     'e', 'd', 'W', 'h', 'e', 'n', 'L', 'o', 'c', 'k', 'e', 'd', 'R', 'e', 'l',
     'e', 'a', 's', 'e', 'd', 'C', 'o', 'd', 'e', 'g', 'e', 'n' };
 
   const mxArray *d_y;
-  static const int32_T iv216[2] = { 1, 5 };
+  static const int32_T iv249[2] = { 1, 5 };
 
-  char_T cv266[5];
-  static const char_T cv267[5] = { 's', 'e', 't', 'u', 'p' };
+  char_T cv309[5];
+  static const char_T cv310[5] = { 's', 'e', 't', 'u', 'p' };
 
   static const int16_T value[8] = { 563, 1, 1, 1, 1, 1, 1, 1 };
 
   boolean_T anyInputSizeChanged;
   boolean_T exitg2;
-  static const int16_T iv217[8] = { 563, 1, 1, 1, 1, 1, 1, 1 };
+  static const int16_T iv250[8] = { 563, 1, 1, 1, 1, 1, 1, 1 };
 
   creal_T modData[563];
   real_T varargin_1[13];
   const mxArray *e_y;
-  static const int32_T iv218[2] = { 1, 45 };
+  static const int32_T iv251[2] = { 1, 45 };
 
   const mxArray *f_y;
-  static const int32_T iv219[2] = { 1, 4 };
+  static const int32_T iv252[2] = { 1, 4 };
 
   const mxArray *g_y;
-  static const int32_T iv220[2] = { 1, 51 };
+  static const int32_T iv253[2] = { 1, 51 };
 
   const mxArray *h_y;
-  static const int32_T iv221[2] = { 1, 5 };
+  static const int32_T iv254[2] = { 1, 5 };
 
   static const int8_T b_value[8] = { 13, 1, 1, 1, 1, 1, 1, 1 };
 
   boolean_T exitg1;
-  static const int8_T iv222[8] = { 13, 1, 1, 1, 1, 1, 1, 1 };
+  static const int8_T iv255[8] = { 13, 1, 1, 1, 1, 1, 1, 1 };
 
   creal_T varargout_1[13];
   creal_T b_modData[576];
   creal_T ofdmData[576];
   comm_PNSequence_13 hPN;
   comm_PNSequence_13 *c_obj;
-  static const int8_T iv223[8] = { 1, 0, 0, 0, 1, 0, 0, 1 };
+  static const int8_T iv256[8] = { 1, 0, 0, 0, 1, 0, 0, 1 };
 
-  static const int8_T iv224[7] = { 0, 0, 0, 0, 0, 0, 1 };
+  static const int8_T iv257[7] = { 0, 0, 0, 0, 0, 0, 1 };
 
   int8_T pilot[12];
   uint8_T tmp;
@@ -1005,7 +1006,7 @@ void c_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
   creal_T b_r[960];
   creal_T preambles[320];
   OFDMDemodulator_3 *b_object;
-  static const creal_T dcv6[53] = { { 0.0, 0.0 }, { 0.0, 0.0 }, { 1.0, 1.0 }, {
+  static const creal_T dcv7[53] = { { 0.0, 0.0 }, { 0.0, 0.0 }, { 1.0, 1.0 }, {
       0.0, 0.0 }, { 0.0, 0.0 }, { 0.0, 0.0 }, { -1.0, -1.0 }, { 0.0, 0.0 }, {
       0.0, 0.0 }, { 0.0, 0.0 }, { 1.0, 1.0 }, { 0.0, 0.0 }, { 0.0, 0.0 }, { 0.0,
       0.0 }, { -1.0, -1.0 }, { 0.0, 0.0 }, { 0.0, 0.0 }, { 0.0, 0.0 }, { -1.0,
@@ -1017,11 +1018,11 @@ void c_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
     }, { 0.0, 0.0 }, { 1.0, 1.0 }, { 0.0, 0.0 }, { 0.0, 0.0 }, { 0.0, 0.0 }, {
       1.0, 1.0 }, { 0.0, 0.0 }, { 0.0, 0.0 } };
 
-  static const int8_T iv225[53] = { 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, 1, 1, 1,
+  static const int8_T iv258[53] = { 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, 1, 1, 1,
     1, -1, -1, 1, 1, -1, 1, -1, 1, 1, 1, 1, 0, 1, -1, -1, 1, 1, -1, 1, -1, 1, -1,
     -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, 1, 1, 1, 1 };
 
-  static const int8_T iv226[48] = { 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14,
+  static const int8_T iv259[48] = { 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14,
     15, 16, 17, 18, 19, 21, 22, 23, 24, 25, 26, 28, 29, 30, 31, 32, 33, 35, 36,
     37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 49, 50, 51, 52, 53 };
 
@@ -1035,8 +1036,8 @@ void c_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
   c_st.prev = &b_st;
   c_st.tls = b_st.tls;
   emlrtHeapReferenceStackEnterFcnR2012b(sp);
-  emxInitStruct_OFDMModulator_1(sp, &hDataMod, &e_emlrtRTEI, TRUE);
-  emxInitStruct_OFDMModulator(sp, &hPreambleMod, &f_emlrtRTEI, TRUE);
+  emxInitStruct_OFDMModulator_1(sp, &hDataMod, &g_emlrtRTEI, TRUE);
+  emxInitStruct_OFDMModulator(sp, &hPreambleMod, &h_emlrtRTEI, TRUE);
 
   /*  generateOFDMSignal: Generate OFDM signal based on the 802.11a standard. */
   /*  This function returns the time domain signal and a structure containing */
@@ -1060,10 +1061,10 @@ void c_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
   emlrtDynamicBoundsCheckFastR2012b(i, 0, 255, &emlrtBCI, &st);
 
   /* Add additional character to differentiate messages */
-  st.site = &rv_emlrtRSI;
+  st.site = &dbb_emlrtRSI;
   i = (int32_T)(48.0 + destNode);
   emlrtDynamicBoundsCheckFastR2012b(i, 0, 255, &emlrtBCI, &st);
-  st.site = &im_emlrtRSI;
+  st.site = &jt_emlrtRSI;
   i = (int32_T)(48.0 + originNode);
   emlrtDynamicBoundsCheckFastR2012b(i, 0, 255, &emlrtBCI, &st);
 
@@ -1126,47 +1127,47 @@ void c_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
     inputPayloadMessage[i] = b_inputPayloadMessage[i];
   }
 
-  d5 = muDoubleScalarFloor(48.0 + originNode);
-  if (muDoubleScalarIsNaN(d5) || muDoubleScalarIsInf(d5)) {
-    d5 = 0.0;
+  d6 = muDoubleScalarFloor(48.0 + originNode);
+  if (muDoubleScalarIsNaN(d6) || muDoubleScalarIsInf(d6)) {
+    d6 = 0.0;
   } else {
-    d5 = muDoubleScalarRem(d5, 256.0);
+    d6 = muDoubleScalarRem(d6, 256.0);
   }
 
-  if (d5 < 0.0) {
-    inputPayloadMessage[3] = (int8_T)-(int8_T)(uint8_T)-d5;
+  if (d6 < 0.0) {
+    inputPayloadMessage[3] = (int8_T)-(int8_T)(uint8_T)-d6;
   } else {
-    inputPayloadMessage[3] = (int8_T)(uint8_T)d5;
+    inputPayloadMessage[3] = (int8_T)(uint8_T)d6;
   }
 
-  d5 = muDoubleScalarFloor(48.0 + destNode);
-  if (muDoubleScalarIsNaN(d5) || muDoubleScalarIsInf(d5)) {
-    d5 = 0.0;
+  d6 = muDoubleScalarFloor(48.0 + destNode);
+  if (muDoubleScalarIsNaN(d6) || muDoubleScalarIsInf(d6)) {
+    d6 = 0.0;
   } else {
-    d5 = muDoubleScalarRem(d5, 256.0);
+    d6 = muDoubleScalarRem(d6, 256.0);
   }
 
-  if (d5 < 0.0) {
-    inputPayloadMessage[4] = (int8_T)-(int8_T)(uint8_T)-d5;
+  if (d6 < 0.0) {
+    inputPayloadMessage[4] = (int8_T)-(int8_T)(uint8_T)-d6;
   } else {
-    inputPayloadMessage[4] = (int8_T)(uint8_T)d5;
+    inputPayloadMessage[4] = (int8_T)(uint8_T)d6;
   }
 
-  d5 = muDoubleScalarFloor(a * 128.0);
-  if (muDoubleScalarIsNaN(d5) || muDoubleScalarIsInf(d5)) {
-    d5 = 0.0;
+  d6 = muDoubleScalarFloor(a * 128.0);
+  if (muDoubleScalarIsNaN(d6) || muDoubleScalarIsInf(d6)) {
+    d6 = 0.0;
   } else {
-    d5 = muDoubleScalarRem(d5, 256.0);
+    d6 = muDoubleScalarRem(d6, 256.0);
   }
 
-  if (d5 < 0.0) {
-    inputPayloadMessage[5] = (int8_T)-(int8_T)(uint8_T)-d5;
+  if (d6 < 0.0) {
+    inputPayloadMessage[5] = (int8_T)-(int8_T)(uint8_T)-d6;
   } else {
-    inputPayloadMessage[5] = (int8_T)(uint8_T)d5;
+    inputPayloadMessage[5] = (int8_T)(uint8_T)d6;
   }
 
   for (i = 0; i < 3; i++) {
-    inputPayloadMessage[i + 6] = cv259[i];
+    inputPayloadMessage[i + 6] = cv302[i];
   }
 
   for (i = 0; i < 71; i++) {
@@ -1188,7 +1189,7 @@ void c_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
   st.site = &bc_emlrtRSI;
   d_CRCGenerator_CRCGenerator(&hGen);
   st.site = &cc_emlrtRSI;
-  k_SystemCore_step(&st, &hGen, b_originalData, dataWithCRC);
+  l_SystemCore_step(&st, &hGen, b_originalData, dataWithCRC);
 
   /*  Add CRC */
   /*  Construct modulator for each subcarrier */
@@ -1210,7 +1211,7 @@ void c_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
   b_obj->S0_isInitialized = FALSE;
   b_obj->S1_isReleased = FALSE;
   for (i = 0; i < 4; i++) {
-    b_obj->P0_modmap[i] = dv13[i];
+    b_obj->P0_modmap[i] = dv16[i];
   }
 
   b_st.site = &jg_emlrtRSI;
@@ -1230,21 +1231,21 @@ void c_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
   if (!obj->isReleased) {
   } else {
     y = NULL;
-    m42 = mxCreateCharArray(2, iv213);
+    m47 = mxCreateCharArray(2, iv246);
     for (i = 0; i < 45; i++) {
-      cv260[i] = cv261[i];
+      cv303[i] = cv304[i];
     }
 
-    emlrtInitCharArrayR2013a(&st, 45, m42, cv260);
-    emlrtAssign(&y, m42);
+    emlrtInitCharArrayR2013a(&st, 45, m47, cv303);
+    emlrtAssign(&y, m47);
     b_y = NULL;
-    m42 = mxCreateCharArray(2, iv214);
+    m47 = mxCreateCharArray(2, iv247);
     for (i = 0; i < 4; i++) {
-      cv262[i] = cv263[i];
+      cv305[i] = cv306[i];
     }
 
-    emlrtInitCharArrayR2013a(&st, 4, m42, cv262);
-    emlrtAssign(&b_y, m42);
+    emlrtInitCharArrayR2013a(&st, 4, m47, cv305);
+    emlrtAssign(&b_y, m47);
     b_st.site = &fb_emlrtRSI;
     c_error(&b_st, message(&b_st, y, b_y, &emlrtMCI), &emlrtMCI);
   }
@@ -1254,21 +1255,21 @@ void c_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
     if (!obj->isInitialized) {
     } else {
       c_y = NULL;
-      m42 = mxCreateCharArray(2, iv215);
+      m47 = mxCreateCharArray(2, iv248);
       for (i = 0; i < 51; i++) {
-        cv264[i] = cv265[i];
+        cv307[i] = cv308[i];
       }
 
-      emlrtInitCharArrayR2013a(&b_st, 51, m42, cv264);
-      emlrtAssign(&c_y, m42);
+      emlrtInitCharArrayR2013a(&b_st, 51, m47, cv307);
+      emlrtAssign(&c_y, m47);
       d_y = NULL;
-      m42 = mxCreateCharArray(2, iv216);
+      m47 = mxCreateCharArray(2, iv249);
       for (i = 0; i < 5; i++) {
-        cv266[i] = cv267[i];
+        cv309[i] = cv310[i];
       }
 
-      emlrtInitCharArrayR2013a(&b_st, 5, m42, cv266);
-      emlrtAssign(&d_y, m42);
+      emlrtInitCharArrayR2013a(&b_st, 5, m47, cv309);
+      emlrtAssign(&d_y, m47);
       c_st.site = &fb_emlrtRSI;
       c_error(&c_st, message(&c_st, c_y, d_y, &emlrtMCI), &emlrtMCI);
     }
@@ -1303,7 +1304,7 @@ void c_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
   k = 0;
   exitg2 = FALSE;
   while ((exitg2 == FALSE) && (k < 8)) {
-    if (obj->inputVarSize1[k] != (uint32_T)iv217[k]) {
+    if (obj->inputVarSize1[k] != (uint32_T)iv250[k]) {
       anyInputSizeChanged = TRUE;
       c_st.site = &fb_emlrtRSI;
       for (i = 0; i < 8; i++) {
@@ -1345,21 +1346,21 @@ void c_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
   if (!obj->isReleased) {
   } else {
     e_y = NULL;
-    m42 = mxCreateCharArray(2, iv218);
+    m47 = mxCreateCharArray(2, iv251);
     for (i = 0; i < 45; i++) {
-      cv260[i] = cv261[i];
+      cv303[i] = cv304[i];
     }
 
-    emlrtInitCharArrayR2013a(&st, 45, m42, cv260);
-    emlrtAssign(&e_y, m42);
+    emlrtInitCharArrayR2013a(&st, 45, m47, cv303);
+    emlrtAssign(&e_y, m47);
     f_y = NULL;
-    m42 = mxCreateCharArray(2, iv219);
+    m47 = mxCreateCharArray(2, iv252);
     for (i = 0; i < 4; i++) {
-      cv262[i] = cv263[i];
+      cv305[i] = cv306[i];
     }
 
-    emlrtInitCharArrayR2013a(&st, 4, m42, cv262);
-    emlrtAssign(&f_y, m42);
+    emlrtInitCharArrayR2013a(&st, 4, m47, cv305);
+    emlrtAssign(&f_y, m47);
     b_st.site = &fb_emlrtRSI;
     c_error(&b_st, message(&b_st, e_y, f_y, &emlrtMCI), &emlrtMCI);
   }
@@ -1369,21 +1370,21 @@ void c_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
     if (!obj->isInitialized) {
     } else {
       g_y = NULL;
-      m42 = mxCreateCharArray(2, iv220);
+      m47 = mxCreateCharArray(2, iv253);
       for (i = 0; i < 51; i++) {
-        cv264[i] = cv265[i];
+        cv307[i] = cv308[i];
       }
 
-      emlrtInitCharArrayR2013a(&b_st, 51, m42, cv264);
-      emlrtAssign(&g_y, m42);
+      emlrtInitCharArrayR2013a(&b_st, 51, m47, cv307);
+      emlrtAssign(&g_y, m47);
       h_y = NULL;
-      m42 = mxCreateCharArray(2, iv221);
+      m47 = mxCreateCharArray(2, iv254);
       for (i = 0; i < 5; i++) {
-        cv266[i] = cv267[i];
+        cv309[i] = cv310[i];
       }
 
-      emlrtInitCharArrayR2013a(&b_st, 5, m42, cv266);
-      emlrtAssign(&h_y, m42);
+      emlrtInitCharArrayR2013a(&b_st, 5, m47, cv309);
+      emlrtAssign(&h_y, m47);
       c_st.site = &fb_emlrtRSI;
       c_error(&c_st, message(&c_st, g_y, h_y, &emlrtMCI), &emlrtMCI);
     }
@@ -1418,7 +1419,7 @@ void c_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
   k = 0;
   exitg1 = FALSE;
   while ((exitg1 == FALSE) && (k < 8)) {
-    if (obj->inputVarSize1[k] != (uint32_T)iv222[k]) {
+    if (obj->inputVarSize1[k] != (uint32_T)iv255[k]) {
       anyInputSizeChanged = TRUE;
       c_st.site = &fb_emlrtRSI;
       for (i = 0; i < 8; i++) {
@@ -1461,20 +1462,21 @@ void c_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
   c_obj->S0_isInitialized = FALSE;
   c_obj->S1_isReleased = FALSE;
   for (i = 0; i < 8; i++) {
-    c_obj->P0_Polynomial[i] = (uint8_T)iv223[i];
+    c_obj->P0_Polynomial[i] = (uint8_T)iv256[i];
   }
 
   for (i = 0; i < 7; i++) {
     c_obj->P1_IniState[i] = 1;
-    c_obj->P2_Mask[i] = (uint8_T)iv224[i];
+    c_obj->P2_Mask[i] = (uint8_T)iv257[i];
   }
 
+  /* pilot=[1 0  0  1  0  0  1  0  0  0  0  0]'; */
   st.site = &ic_emlrtRSI;
   c_obj = &hPN;
   if (!c_obj->S0_isInitialized) {
     c_obj->S0_isInitialized = TRUE;
     if (c_obj->S1_isReleased) {
-      emlrtErrorWithMessageIdR2012b(&st, &cc_emlrtRTEI,
+      emlrtErrorWithMessageIdR2012b(&st, &pc_emlrtRTEI,
         "MATLAB:system:runtimeMethodCalledWhenReleasedCodegen", 0);
     }
 
@@ -1553,8 +1555,8 @@ void c_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
   /*  Add preambles to data */
   memcpy(&preambles[0], &completeShortPreambleOFDM[0], 160U * sizeof(creal_T));
   memcpy(&preambles[160], &completeLongPreambleOFDM[0], 160U * sizeof(creal_T));
-  memcpy(&SD->u1.f2.r[0], &preambles[0], 320U * sizeof(creal_T));
-  memcpy(&SD->u1.f2.r[320], &b_r[0], 960U * sizeof(creal_T));
+  memcpy(&SD->u1.f4.r[0], &preambles[0], 320U * sizeof(creal_T));
+  memcpy(&SD->u1.f4.r[320], &b_r[0], 960U * sizeof(creal_T));
 
   /*  Repeat frame (Used in debugging) */
   st.site = &oc_emlrtRSI;
@@ -1562,7 +1564,7 @@ void c_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
   for (i = 0; i < 30; i++) {
     ia = 0;
     for (k = 0; k < 1280; k++) {
-      r[ib] = SD->u1.f2.r[ia];
+      r[ib] = SD->u1.f4.r[ia];
       b_st.site = &qg_emlrtRSI;
       ia++;
       b_st.site = &rg_emlrtRSI;
@@ -1578,32 +1580,32 @@ void c_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
   st.site = &qc_emlrtRSI;
   b_object = iobj_1;
   *hPreambleDemod = b_object;
-  b_st.site = &mj_emlrtRSI;
+  b_st.site = &sj_emlrtRSI;
   b_object = *hPreambleDemod;
   c_st.site = &cb_emlrtRSI;
   b_object->isInitialized = FALSE;
   b_object->isReleased = FALSE;
   c_st.site = &cb_emlrtRSI;
   c_st.site = &db_emlrtRSI;
-  b_st.site = &nj_emlrtRSI;
+  b_st.site = &tj_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
-  b_st.site = &oj_emlrtRSI;
+  b_st.site = &uj_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
-  b_st.site = &pj_emlrtRSI;
+  b_st.site = &vj_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
-  b_st.site = &qj_emlrtRSI;
+  b_st.site = &wj_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
-  b_st.site = &rj_emlrtRSI;
+  b_st.site = &xj_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
-  b_st.site = &sj_emlrtRSI;
+  b_st.site = &yj_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
 
   /*  Calcuate OFDM frequency bin size */
-  st.site = &jm_emlrtRSI;
+  st.site = &kt_emlrtRSI;
   b_st.site = &m_emlrtRSI;
   c_st.site = &n_emlrtRSI;
 
@@ -1627,11 +1629,11 @@ void c_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
   }
 
   for (i = 0; i < 53; i++) {
-    tx->shortPreamble[i] = dcv6[i];
+    tx->shortPreamble[i] = dcv7[i];
   }
 
   for (i = 0; i < 53; i++) {
-    tx->longPreamble[i] = iv225[i];
+    tx->longPreamble[i] = iv258[i];
   }
 
   for (i = 0; i < 64; i++) {
@@ -1657,7 +1659,7 @@ void c_generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack 
   tx->dataSubcarrierIndexies.size[0] = 1;
   tx->dataSubcarrierIndexies.size[1] = 48;
   for (i = 0; i < 48; i++) {
-    tx->dataSubcarrierIndexies.data[i] = iv226[i];
+    tx->dataSubcarrierIndexies.data[i] = iv259[i];
   }
 
   tx->samplingFreq = 5.0E+6;
@@ -1815,8 +1817,8 @@ void generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack
   c_st.prev = &b_st;
   c_st.tls = b_st.tls;
   emlrtHeapReferenceStackEnterFcnR2012b(sp);
-  emxInitStruct_OFDMModulator_1(sp, &hDataMod, &e_emlrtRTEI, TRUE);
-  emxInitStruct_OFDMModulator(sp, &hPreambleMod, &f_emlrtRTEI, TRUE);
+  emxInitStruct_OFDMModulator_1(sp, &hDataMod, &g_emlrtRTEI, TRUE);
+  emxInitStruct_OFDMModulator(sp, &hPreambleMod, &h_emlrtRTEI, TRUE);
 
   /*  generateOFDMSignal: Generate OFDM signal based on the 802.11a standard. */
   /*  This function returns the time domain signal and a structure containing */
@@ -2218,12 +2220,13 @@ void generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack
     c_obj->P2_Mask[i] = (uint8_T)iv27[i];
   }
 
+  /* pilot=[1 0  0  1  0  0  1  0  0  0  0  0]'; */
   st.site = &ic_emlrtRSI;
   c_obj = &hPN;
   if (!c_obj->S0_isInitialized) {
     c_obj->S0_isInitialized = TRUE;
     if (c_obj->S1_isReleased) {
-      emlrtErrorWithMessageIdR2012b(&st, &cc_emlrtRTEI,
+      emlrtErrorWithMessageIdR2012b(&st, &pc_emlrtRTEI,
         "MATLAB:system:runtimeMethodCalledWhenReleasedCodegen", 0);
     }
 
@@ -2327,28 +2330,28 @@ void generateOFDMSignal_TX2(testMACTransmitterStackData *SD, const emlrtStack
   st.site = &qc_emlrtRSI;
   b_object = iobj_1;
   *hPreambleDemod = b_object;
-  b_st.site = &mj_emlrtRSI;
+  b_st.site = &sj_emlrtRSI;
   b_object = *hPreambleDemod;
   c_st.site = &cb_emlrtRSI;
   b_object->isInitialized = FALSE;
   b_object->isReleased = FALSE;
   c_st.site = &cb_emlrtRSI;
   c_st.site = &db_emlrtRSI;
-  b_st.site = &nj_emlrtRSI;
+  b_st.site = &tj_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
-  b_st.site = &oj_emlrtRSI;
+  b_st.site = &uj_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
-  b_st.site = &pj_emlrtRSI;
+  b_st.site = &vj_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
-  b_st.site = &qj_emlrtRSI;
+  b_st.site = &wj_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
-  b_st.site = &rj_emlrtRSI;
+  b_st.site = &xj_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
-  b_st.site = &sj_emlrtRSI;
+  b_st.site = &yj_emlrtRSI;
   c_st.site = &gb_emlrtRSI;
 
   /*  Calcuate OFDM frequency bin size */

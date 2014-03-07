@@ -3,7 +3,7 @@
  *
  * Code generation for function 'eml_setop'
  *
- * C source code generated on: Thu Mar  6 19:04:24 2014
+ * C source code generated on: Thu Mar  6 22:22:41 2014
  *
  */
 
@@ -16,64 +16,64 @@
 #include <stdio.h>
 
 /* Variable Definitions */
-static emlrtRSInfo cr_emlrtRSI = { 156, "eml_setop",
+static emlrtRSInfo dw_emlrtRSI = { 156, "eml_setop",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/eml_setop.m" };
 
-static emlrtRSInfo dr_emlrtRSI = { 221, "eml_setop",
+static emlrtRSInfo ew_emlrtRSI = { 221, "eml_setop",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/eml_setop.m" };
 
-static emlrtRSInfo er_emlrtRSI = { 222, "eml_setop",
+static emlrtRSInfo fw_emlrtRSI = { 222, "eml_setop",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/eml_setop.m" };
 
-static emlrtRSInfo fr_emlrtRSI = { 224, "eml_setop",
+static emlrtRSInfo gw_emlrtRSI = { 224, "eml_setop",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/eml_setop.m" };
 
-static emlrtRSInfo gr_emlrtRSI = { 225, "eml_setop",
+static emlrtRSInfo hw_emlrtRSI = { 225, "eml_setop",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/eml_setop.m" };
 
-static emlrtRSInfo hr_emlrtRSI = { 255, "eml_setop",
+static emlrtRSInfo iw_emlrtRSI = { 255, "eml_setop",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/eml_setop.m" };
 
-static emlrtRSInfo ir_emlrtRSI = { 256, "eml_setop",
+static emlrtRSInfo jw_emlrtRSI = { 256, "eml_setop",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/eml_setop.m" };
 
-static emlrtRSInfo jr_emlrtRSI = { 258, "eml_setop",
+static emlrtRSInfo kw_emlrtRSI = { 258, "eml_setop",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/eml_setop.m" };
 
-static emlrtRSInfo kr_emlrtRSI = { 260, "eml_setop",
+static emlrtRSInfo lw_emlrtRSI = { 260, "eml_setop",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/eml_setop.m" };
 
-static emlrtRSInfo lr_emlrtRSI = { 288, "eml_setop",
+static emlrtRSInfo mw_emlrtRSI = { 288, "eml_setop",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/eml_setop.m" };
 
-static emlrtRSInfo mr_emlrtRSI = { 290, "eml_setop",
+static emlrtRSInfo nw_emlrtRSI = { 290, "eml_setop",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/eml_setop.m" };
 
-static emlrtRSInfo nr_emlrtRSI = { 292, "eml_setop",
+static emlrtRSInfo ow_emlrtRSI = { 292, "eml_setop",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/eml_setop.m" };
 
-static emlrtRSInfo or_emlrtRSI = { 306, "eml_setop",
+static emlrtRSInfo pw_emlrtRSI = { 306, "eml_setop",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/eml_setop.m" };
 
-static emlrtRSInfo pr_emlrtRSI = { 334, "eml_setop",
+static emlrtRSInfo qw_emlrtRSI = { 334, "eml_setop",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/eml_setop.m" };
 
-static emlrtMCInfo ab_emlrtMCI = { 389, 5, "eml_setop",
+static emlrtMCInfo hb_emlrtMCI = { 389, 5, "eml_setop",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/eml_setop.m" };
 
-static emlrtMCInfo bb_emlrtMCI = { 400, 9, "eml_setop",
+static emlrtMCInfo ib_emlrtMCI = { 400, 9, "eml_setop",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/eml_setop.m" };
 
-static emlrtMCInfo cb_emlrtMCI = { 427, 5, "eml_setop",
+static emlrtMCInfo jb_emlrtMCI = { 427, 5, "eml_setop",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/eml_setop.m" };
 
-static emlrtRSInfo wv_emlrtRSI = { 427, "eml_setop",
+static emlrtRSInfo ibb_emlrtRSI = { 427, "eml_setop",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/eml_setop.m" };
 
-static emlrtRSInfo xv_emlrtRSI = { 400, "eml_setop",
+static emlrtRSInfo jbb_emlrtRSI = { 400, "eml_setop",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/eml_setop.m" };
 
-static emlrtRSInfo yv_emlrtRSI = { 389, "eml_setop",
+static emlrtRSInfo kbb_emlrtRSI = { 389, "eml_setop",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/eml_setop.m" };
 
 /* Function Definitions */
@@ -112,7 +112,7 @@ void do_vectors(const emlrtStack *sp, const real_T a_data[1224], const int32_T
   boolean_T guard3 = FALSE;
   boolean_T guard1 = FALSE;
   const mxArray *b_y;
-  const mxArray *m32;
+  const mxArray *m37;
   int32_T b_ia_data[8];
   const mxArray *c_y;
   const mxArray *d_y;
@@ -120,12 +120,12 @@ void do_vectors(const emlrtStack *sp, const real_T a_data[1224], const int32_T
   emlrtStack st;
   st.prev = sp;
   st.tls = sp->tls;
-  st.site = &cr_emlrtRSI;
+  st.site = &dw_emlrtRSI;
   ncmax = muIntScalarMin_sint32(a_size[0], 8);
   c_size[0] = (int8_T)ncmax;
   ia_size[0] = ncmax;
   ib_size[0] = ncmax;
-  st.site = &dr_emlrtRSI;
+  st.site = &ew_emlrtRSI;
   y = TRUE;
   if (a_size[0] == 0) {
   } else {
@@ -155,11 +155,11 @@ void do_vectors(const emlrtStack *sp, const real_T a_data[1224], const int32_T
   }
 
   if (!y) {
-    st.site = &er_emlrtRSI;
+    st.site = &fw_emlrtRSI;
     eml_error(&st);
   }
 
-  st.site = &fr_emlrtRSI;
+  st.site = &gw_emlrtRSI;
   y = TRUE;
   ialast = 1;
   exitg3 = FALSE;
@@ -186,7 +186,7 @@ void do_vectors(const emlrtStack *sp, const real_T a_data[1224], const int32_T
   }
 
   if (!y) {
-    st.site = &gr_emlrtRSI;
+    st.site = &hw_emlrtRSI;
     b_eml_error(&st);
   }
 
@@ -196,7 +196,7 @@ void do_vectors(const emlrtStack *sp, const real_T a_data[1224], const int32_T
   ibfirst = 0;
   iblast = 0;
   while ((ialast + 1 <= a_size[0]) && (iblast + 1 <= 8)) {
-    st.site = &hr_emlrtRSI;
+    st.site = &iw_emlrtRSI;
     b_ialast = ialast + 1;
     ak = a_data[ialast];
     exitg2 = FALSE;
@@ -244,7 +244,7 @@ void do_vectors(const emlrtStack *sp, const real_T a_data[1224], const int32_T
     }
 
     ialast = b_ialast - 1;
-    st.site = &ir_emlrtRSI;
+    st.site = &jw_emlrtRSI;
     b_iblast = iblast + 1;
     bk = b[iblast];
     exitg1 = FALSE;
@@ -292,7 +292,7 @@ void do_vectors(const emlrtStack *sp, const real_T a_data[1224], const int32_T
     }
 
     iblast = b_iblast - 1;
-    st.site = &jr_emlrtRSI;
+    st.site = &kw_emlrtRSI;
     absxk = muDoubleScalarAbs(bk / 2.0);
     if ((!muDoubleScalarIsInf(absxk)) && (!muDoubleScalarIsNaN(absxk))) {
       if (absxk <= 2.2250738585072014E-308) {
@@ -328,19 +328,19 @@ void do_vectors(const emlrtStack *sp, const real_T a_data[1224], const int32_T
     }
 
     if (p) {
-      st.site = &kr_emlrtRSI;
+      st.site = &lw_emlrtRSI;
       nc++;
       c_data[nc - 1] = ak;
       ia_data[nc - 1] = iafirst + 1;
       ib_data[nc - 1] = ibfirst + 1;
-      st.site = &lr_emlrtRSI;
+      st.site = &mw_emlrtRSI;
       ialast = b_ialast;
       iafirst = b_ialast;
-      st.site = &mr_emlrtRSI;
+      st.site = &nw_emlrtRSI;
       iblast = b_iblast;
       ibfirst = b_iblast;
     } else {
-      st.site = &nr_emlrtRSI;
+      st.site = &ow_emlrtRSI;
       guard1 = FALSE;
       if (ak < bk) {
         guard1 = TRUE;
@@ -355,11 +355,11 @@ void do_vectors(const emlrtStack *sp, const real_T a_data[1224], const int32_T
       }
 
       if (p) {
-        st.site = &or_emlrtRSI;
+        st.site = &pw_emlrtRSI;
         ialast = b_ialast;
         iafirst = b_ialast;
       } else {
-        st.site = &pr_emlrtRSI;
+        st.site = &qw_emlrtRSI;
         iblast = b_iblast;
         ibfirst = b_iblast;
       }
@@ -370,10 +370,10 @@ void do_vectors(const emlrtStack *sp, const real_T a_data[1224], const int32_T
     if (nc <= ncmax) {
     } else {
       b_y = NULL;
-      m32 = mxCreateString("Assertion failed.");
-      emlrtAssign(&b_y, m32);
-      st.site = &yv_emlrtRSI;
-      c_error(&st, b_y, &ab_emlrtMCI);
+      m37 = mxCreateString("Assertion failed.");
+      emlrtAssign(&b_y, m37);
+      st.site = &kbb_emlrtRSI;
+      c_error(&st, b_y, &hb_emlrtMCI);
     }
 
     if (1 > nc) {
@@ -396,10 +396,10 @@ void do_vectors(const emlrtStack *sp, const real_T a_data[1224], const int32_T
     if (nc <= ncmax) {
     } else {
       c_y = NULL;
-      m32 = mxCreateString("Assertion failed.");
-      emlrtAssign(&c_y, m32);
-      st.site = &xv_emlrtRSI;
-      c_error(&st, c_y, &bb_emlrtMCI);
+      m37 = mxCreateString("Assertion failed.");
+      emlrtAssign(&c_y, m37);
+      st.site = &jbb_emlrtRSI;
+      c_error(&st, c_y, &ib_emlrtMCI);
     }
 
     if (1 > nc) {
@@ -422,10 +422,10 @@ void do_vectors(const emlrtStack *sp, const real_T a_data[1224], const int32_T
     if (nc <= ncmax) {
     } else {
       d_y = NULL;
-      m32 = mxCreateString("Assertion failed.");
-      emlrtAssign(&d_y, m32);
-      st.site = &wv_emlrtRSI;
-      c_error(&st, d_y, &cb_emlrtMCI);
+      m37 = mxCreateString("Assertion failed.");
+      emlrtAssign(&d_y, m37);
+      st.site = &ibb_emlrtRSI;
+      c_error(&st, d_y, &jb_emlrtMCI);
     }
 
     if (1 > nc) {

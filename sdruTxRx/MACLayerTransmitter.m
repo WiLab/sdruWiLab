@@ -16,29 +16,47 @@ function [previousMessage, msgStatus] = MACLayerTransmitter(...
 
 %% This function is called when the node wants to transmit something
 
+DebugFlag = 0;
+
+% Preinitialize
+maxRetries = 6;
+msgStatus = false;
+
 % % Sense spectrum and wait until it is unoccupied
 % for tries = 1:4 % try only so many times
-%     occupied = PHY.Sense;
+%     [occupied,meanEnergy] = SpectrumSenseEnergy( ObjAGC, ObjSDRuReceiver, tx );
+%     fprintf('MAC| Energy Measured: %f\n',meanEnergy);
 %     if occupied
-%         fprintf('MAC| Spectrum occupied, listening...\n');
+%         %fprintf('MAC| Spectrum occupied, listening...\n');
 %         %Recover signal and/or wait
 %         lookingForACK = false;
-%         MACLayerReceiver(PHY,lookingForACK);
+%         [~, previousMessage] = MACLayerReceiver(...
+%             ObjAGC,...           %Objects
+%             ObjSDRuReceiver,...
+%             ObjSDRuTransmitter,...
+%             ObjDetect,...
+%             ObjPreambleDemod,...
+%             ObjDataDemod,...
+%             estimate,...         %Structs
+%             tx,...
+%             timeoutDuration,...  %Values/Vectors
+%             messageBits,...
+%             lookingForACK,...
+%             previousMessage...
+%             );
+%         
 %     else% Yay we can transmit now
 %         break;
-%     end    
+%     end
 %     if tries >=4
 %         fprintf('MAC| Spectrum Busy, try again later\n');
 %         return;
 %     end
 % end
 
-maxRetries = 4;
-
-msgStatus = false;
 
 % Adjust offset for node
-fprintf('Transmitting to node: %d, with offset: %f\n',int16(recipient),tx.offsetTable(recipient));
+%fprintf('Transmitting to node: %d, with offset: %f\n',int16(recipient),tx.offsetTable(recipient));
 ObjSDRuTransmitter.CenterFrequency = tx.CenterFrequency + tx.offsetTable(recipient);
 
 
@@ -55,7 +73,7 @@ for tries = 1:maxRetries
         );
     % Listen for acknowledgement
     %fprintf('###########################################\n');
-    fprintf('MAC| Transmission finished, waiting for ACK\n');
+    if DebugFlag;fprintf('MAC| Transmission finished, waiting for ACK\n');end;
     % Call Receiver
     lookingForACK = true;
     [Response, previousMessage] = MACLayerReceiver(...
@@ -74,16 +92,18 @@ for tries = 1:maxRetries
         );
 
     if strcmp(Response,'ACK')
-        fprintf('MAC| Got ACK\n');
+        if DebugFlag;fprintf('MAC| Got ACK\n');end
         msgStatus = true;
         break
     else
-        fprintf('MAC| Retransmitting message\n');
+        if DebugFlag;fprintf('MAC| Retransmitting message\n');end;
     end
     if tries >= 4
-        fprintf('###########################################\n');
-        fprintf('MAC| No ACK received :(\n');
-        fprintf('###########################################\n');
+        if DebugFlag
+            fprintf('###########################################\n');
+            fprintf('MAC| No ACK received :(\n');
+            fprintf('###########################################\n');
+        end
         return;
     end 
 end

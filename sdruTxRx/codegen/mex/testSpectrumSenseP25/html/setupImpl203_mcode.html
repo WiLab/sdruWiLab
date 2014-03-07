@@ -1,0 +1,566 @@
+<div class="dead">
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="43,1" id="srcline1">  1</a></span><span class="line"><span class="keyword">classdef</span> OFDMModulator &lt; OFDMBase</span></span>
+<span class="srcline"><span class="lineno"><a href="43,2" id="srcline2">  2</a></span><span class="line"><span class="comment">%OFDMModulator Apply OFDM modulation to the input signal.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,3" id="srcline3">  3</a></span><span class="line"><span class="comment">%   H = OFDMModulator returns a System object, H, that can be used </span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,4" id="srcline4">  4</a></span><span class="line"><span class="comment">%   to do OFDM modulation on an input signal.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,5" id="srcline5">  5</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,6" id="srcline6">  6</a></span><span class="line"><span class="comment">%   H = OFDMModulator('Name', Value, <span class="keyword">...</span><span class="comment">) returns an OFDM Modulator</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,7" id="srcline7">  7</a></span><span class="line"><span class="comment">%   System object, H, with each specified property name set to the</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,8" id="srcline8">  8</a></span><span class="line"><span class="comment">%   specified value. You can specify name-value pair arguments in any order</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,9" id="srcline9">  9</a></span><span class="line"><span class="comment">%   as (Name 1, Value 1, Name 2, Value 2, <span class="keyword">...</span><span class="comment">.).</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,10" id="srcline10"> 10</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,11" id="srcline11"> 11</a></span><span class="line"><span class="comment">%   Step method syntax:</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,12" id="srcline12"> 12</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,13" id="srcline13"> 13</a></span><span class="line"><span class="comment">%   Y = step(H, X) computes the OFDM modulation, Y, of X. The input X is in </span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,14" id="srcline14"> 14</a></span><span class="line"><span class="comment">%   the format of dimension FxTxNt, where</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,15" id="srcline15"> 15</a></span><span class="line"><span class="comment">%   F represents the number of subcarriers mapped to the input signal</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,16" id="srcline16"> 16</a></span><span class="line"><span class="comment">%   T represents the number of OFDM symbols to be generated</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,17" id="srcline17"> 17</a></span><span class="line"><span class="comment">%   Nt represents the number of transmit antennas to be used</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,18" id="srcline18"> 18</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,19" id="srcline19"> 19</a></span><span class="line"><span class="comment">%   Y = step(H, X, pilot) insert pilot to X and computes the OFDM modulation </span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,20" id="srcline20"> 20</a></span><span class="line"><span class="comment">%   of it. The input X is in the format MxNxP</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,21" id="srcline21"> 21</a></span><span class="line"><span class="comment">%   The second inpt, pilot, is in the the format of MpxNxP, where</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,22" id="srcline22"> 22</a></span><span class="line"><span class="comment">%   Mp is the number of pilots in each symbol.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,23" id="srcline23"> 23</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,24" id="srcline24"> 24</a></span><span class="line"><span class="comment">%   Y = step(H, X, preamble, pilot) add peamble symbol(s), insert pilot </span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,25" id="srcline25"> 25</a></span><span class="line"><span class="comment">%   to X and computes the OFDM modulation of it. </span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,26" id="srcline26"> 26</a></span><span class="line"><span class="comment">%   The input X is in the format MxNxP </span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,27" id="srcline27"> 27</a></span><span class="line"><span class="comment">%   The preamble input is in the format of MprxNprxP, where</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,28" id="srcline28"> 28</a></span><span class="line"><span class="comment">%   Mpr is the number of frequency carriers used by the preamble symbol(s)</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,29" id="srcline29"> 29</a></span><span class="line"><span class="comment">%   Npr is the number of preamble symbol(s)</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,30" id="srcline30"> 30</a></span><span class="line"><span class="comment">%   The pilot input is in the the format of MpxNxP, where</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,31" id="srcline31"> 31</a></span><span class="line"><span class="comment">%   Mp is the number of pilot in each symbol</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,32" id="srcline32"> 32</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,33" id="srcline33"> 33</a></span><span class="line"><span class="comment">%   Y is OFDM symbol(s) in the format of dimension LxP, where </span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,34" id="srcline34"> 34</a></span><span class="line"><span class="comment">%   L is the length of concatenating all OFDM symbols for one antenna </span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,35" id="srcline35"> 35</a></span><span class="line"><span class="comment">%   (including preamble symbol(s), if applicable) into one column. </span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,36" id="srcline36"> 36</a></span><span class="line"><span class="comment">%   P is the number of antennas to be used </span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,37" id="srcline37"> 37</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,38" id="srcline38"> 38</a></span><span class="line"><span class="comment">%   OFDMModulator methods:</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,39" id="srcline39"> 39</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,40" id="srcline40"> 40</a></span><span class="line"><span class="comment">%   ShowResourceMapping  - Display the mapping of subcarriers to data, </span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,41" id="srcline41"> 41</a></span><span class="line"><span class="comment">%                          preamble, pilots, nulls, and guardbands</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,42" id="srcline42"> 42</a></span><span class="line"><span class="comment">%   generate3DIndices    - Generate 3-D indices from 2-D matrix</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,43" id="srcline43"> 43</a></span><span class="line"><span class="comment">%   generate3DIndices method syntax:</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,44" id="srcline44"> 44</a></span><span class="line"><span class="comment">%   y = generate3DIndices(H, m1, m2, <span class="keyword">...</span><span class="comment">, mP) </span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,45" id="srcline45"> 45</a></span><span class="line"><span class="comment">%   Assume there are P transmit antennas. The input arguments to it</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,46" id="srcline46"> 46</a></span><span class="line"><span class="comment">%   should be H plus m1, m2, <span class="keyword">...</span><span class="comment">., mP.</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,47" id="srcline47"> 47</a></span><span class="line"><span class="comment">%   The output,y, is in a 3-D format</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,48" id="srcline48"> 48</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,49" id="srcline49"> 49</a></span><span class="line"><span class="comment">%   OFDMModulator properties:</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,50" id="srcline50"> 50</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,51" id="srcline51"> 51</a></span><span class="line"><span class="comment">%   FFTLength                  - IFFT length</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,52" id="srcline52"> 52</a></span><span class="line"><span class="comment">%   GuardBands                 - Guard bands</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,53" id="srcline53"> 53</a></span><span class="line"><span class="comment">%   CyclicPrefixLength         - Cyclic prefix length</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,54" id="srcline54"> 54</a></span><span class="line"><span class="comment">%   InsertNullsType            - Option to insert different kinds of nulls</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,55" id="srcline55"> 55</a></span><span class="line"><span class="comment">%   NullCarrierIndices         - Location of subcarriers mapped to Nulls</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,56" id="srcline56"> 56</a></span><span class="line"><span class="comment">%   PilotInputPorts               - Option to insert pilots</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,57" id="srcline57"> 57</a></span><span class="line"><span class="comment">%   PilotCarrierIndices        - Location of subcarriers mapped to Pilots</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,58" id="srcline58"> 58</a></span><span class="line"><span class="comment">%   EnablePreamble             - Option to enable preamble input</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,59" id="srcline59"> 59</a></span><span class="line"><span class="comment">%   PreambleGuardBands         - Preamble guard bands</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,60" id="srcline60"> 60</a></span><span class="line"><span class="comment">%   PreambleCyclicPrefixLength - Preamble cyclic prefix length</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,61" id="srcline61"> 61</a></span><span class="line"><span class="comment">%   InsertPreambleDCNull       - Option to insert DC Null in preamble</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,62" id="srcline62"> 62</a></span><span class="line"><span class="comment">%   NumOutputSymbols           - Number of output OFDM symbols</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,63" id="srcline63"> 63</a></span><span class="line"><span class="comment">%   NumPreambleSymbols         - Number of preamble symbols</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,64" id="srcline64"> 64</a></span><span class="line"><span class="comment">%   NumTransmitAntennas        - Number of transmit antennas</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,65" id="srcline65"> 65</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,66" id="srcline66"> 66</a></span><span class="line"><span class="comment">%  %Example 1: Use OFDMModulator to form one OFDM symbol for one antenna</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,67" id="srcline67"> 67</a></span><span class="line"><span class="comment">%     %with following specification:</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,68" id="srcline68"> 68</a></span><span class="line"><span class="comment">%     %   -FFTLength is 64</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,69" id="srcline69"> 69</a></span><span class="line"><span class="comment">%     %   -add 6 guards on the left and 5 guards on the right</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,70" id="srcline70"> 70</a></span><span class="line"><span class="comment">%     %   -Cyclic Prefix length is 16</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,71" id="srcline71"> 71</a></span><span class="line"><span class="comment">%     %   -Insert DC null</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,72" id="srcline72"> 72</a></span><span class="line"><span class="comment">%     %   -No pilot insertion</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,73" id="srcline73"> 73</a></span><span class="line"><span class="comment">%     %   -No preamble input</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,74" id="srcline74"> 74</a></span><span class="line"><span class="comment">%     h = OFDMModulator;</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,75" id="srcline75"> 75</a></span><span class="line"><span class="comment">%     h.ShowResourceMapping;</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,76" id="srcline76"> 76</a></span><span class="line"><span class="comment">%     y = step(h, (1:52).');</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,77" id="srcline77"> 77</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,78" id="srcline78"> 78</a></span><span class="line"><span class="comment">%  %Example 2: Insert constant type pilot</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,79" id="srcline79"> 79</a></span><span class="line"><span class="comment">%  % Plots are inserted to the same locations for all three OFDM symbols.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,80" id="srcline80"> 80</a></span><span class="line"><span class="comment">%     h = OFDMModulator('PilotInputPorts', true,<span class="keyword">...</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,81" id="srcline81"> 81</a></span><span class="line"><span class="comment">%                            'PilotCarrierIndices', [-21;-7;7;21],<span class="keyword">...</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,82" id="srcline82"> 82</a></span><span class="line"><span class="comment">%                            'NumOutputSymbols', 3);</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,83" id="srcline83"> 83</a></span><span class="line"><span class="comment">%     h.ShowResourceMapping;</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,84" id="srcline84"> 84</a></span><span class="line"><span class="comment">%     x = [(1:48).' (1:48).' (1:48).'];</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,85" id="srcline85"> 85</a></span><span class="line"><span class="comment">%     pilot = [(1:4).' (1:4).' (1:4).'];</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,86" id="srcline86"> 86</a></span><span class="line"><span class="comment">%     y = step(h, x, pilot);</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,87" id="srcline87"> 87</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,88" id="srcline88"> 88</a></span><span class="line"><span class="comment">%  %Example 3: Insert variable type pilot</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,89" id="srcline89"> 89</a></span><span class="line"><span class="comment">%  % Pilots are inserted to different locations for each symbol</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,90" id="srcline90"> 90</a></span><span class="line"><span class="comment">%     h = OFDMModulator(<span class="keyword">...</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,91" id="srcline91"> 91</a></span><span class="line"><span class="comment">%         'PilotInputPorts', true,<span class="keyword">...</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,92" id="srcline92"> 92</a></span><span class="line"><span class="comment">%         'PilotCarrierIndices', [[-21;  -7;  7;  21]<span class="keyword">...</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,93" id="srcline93"> 93</a></span><span class="line"><span class="comment">%                                 [-24;  -10; 10; 24]<span class="keyword">...</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,94" id="srcline94"> 94</a></span><span class="line"><span class="comment">%                                 [-18;  -4;  4;  18]],<span class="keyword">...</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,95" id="srcline95"> 95</a></span><span class="line"><span class="comment">%         'NumOutputSymbols', 3);</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,96" id="srcline96"> 96</a></span><span class="line"><span class="comment">%     h.ShowResourceMapping;</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,97" id="srcline97"> 97</a></span><span class="line"><span class="comment">%     x     = [(1:48).' (1:48).' (1:48).'];</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,98" id="srcline98"> 98</a></span><span class="line"><span class="comment">%     pilot = [(1:4).' (1:4).' (1:4).'];</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,99" id="srcline99"> 99</a></span><span class="line"><span class="comment">%     y = step(h, x, pilot);</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,100" id="srcline100">100</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,101" id="srcline101">101</a></span><span class="line"><span class="comment">%   %Example 4: Insert variable type pilot and enable preamble input</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,102" id="srcline102">102</a></span><span class="line"><span class="comment">%     h = OFDMModulator(<span class="keyword">...</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,103" id="srcline103">103</a></span><span class="line"><span class="comment">%         'FFTLength', 128,<span class="keyword">...</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,104" id="srcline104">104</a></span><span class="line"><span class="comment">%         'PilotInputPorts', true,<span class="keyword">...</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,105" id="srcline105">105</a></span><span class="line"><span class="comment">%         'PilotCarrierIndices', [[-27;-7;7;27]<span class="keyword">...</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,106" id="srcline106">106</a></span><span class="line"><span class="comment">%                                 [-25;-10;10;25]<span class="keyword">...</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,107" id="srcline107">107</a></span><span class="line"><span class="comment">%                                 [-20;-5;5;20]],<span class="keyword">...</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,108" id="srcline108">108</a></span><span class="line"><span class="comment">%         'NumOutputSymbols', 4,<span class="keyword">...</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,109" id="srcline109">109</a></span><span class="line"><span class="comment">%         'EnablePreamble', true,<span class="keyword">...</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,110" id="srcline110">110</a></span><span class="line"><span class="comment">%         'NumPreambleSymbols',1,<span class="keyword">...</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,111" id="srcline111">111</a></span><span class="line"><span class="comment">%         'PreambleGuardBands', [4;3],<span class="keyword">...</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,112" id="srcline112">112</a></span><span class="line"><span class="comment">%         'PreambleCyclicPrefixLength', 16,<span class="keyword">...</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,113" id="srcline113">113</a></span><span class="line"><span class="comment">%         'InsertPreambleDCNull', true);</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,114" id="srcline114">114</a></span><span class="line"><span class="comment">%     h.ShowResourceMapping;</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,115" id="srcline115">115</a></span><span class="line"><span class="comment">%     x        = [(1:(48+64)).' (1:(48+64)).' (1:(48+64)).'];</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,116" id="srcline116">116</a></span><span class="line"><span class="comment">%     pilot    = [(1:4).' (1:4).' (1:4).'];</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,117" id="srcline117">117</a></span><span class="line"><span class="comment">%     preamble = (1:(56+64)).';</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,118" id="srcline118">118</a></span><span class="line"><span class="comment">%     y = step(h, x, preamble, pilot);</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,119" id="srcline119">119</a></span><span class="line"><span class="comment">%    </span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,120" id="srcline120">120</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,121" id="srcline121">121</a></span><span class="line"><span class="comment">%   %Example 5: Specify different Cyclic Prefix length for each symbol</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,122" id="srcline122">122</a></span><span class="line"><span class="comment">%     h = OFDMModulator('PilotInputPorts', true,<span class="keyword">...</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,123" id="srcline123">123</a></span><span class="line"><span class="comment">%                            'PilotCarrierIndices', [-21;-7;7;21],<span class="keyword">...</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,124" id="srcline124">124</a></span><span class="line"><span class="comment">%                            'NumOutputSymbols', 3,<span class="keyword">...</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,125" id="srcline125">125</a></span><span class="line"><span class="comment">%                            'CyclicPrefixLength', [16 13 16].');</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,126" id="srcline126">126</a></span><span class="line"><span class="comment">%     h.ShowResourceMapping;</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,127" id="srcline127">127</a></span><span class="line"><span class="comment">%     x = [(1:48).' (1:48).' (1:48).'];</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,128" id="srcline128">128</a></span><span class="line"><span class="comment">%     pilot = [(1:4).' (1:4).' (1:4).'];</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,129" id="srcline129">129</a></span><span class="line"><span class="comment">%     y = step(h, x, pilot);</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,130" id="srcline130">130</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="43,131" id="srcline131">131</a></span><span class="line"><span class="comment">%   Copyright 2013 The MathWorks, Inc.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,132" id="srcline132">132</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="43,133" id="srcline133">133</a></span><span class="line"><span class="comment">%#codegen</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,134" id="srcline134">134</a></span><span class="line"><span class="comment">%#ok&lt;*EMCA&gt;</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,135" id="srcline135">135</a></span><span class="line"><span class="comment">%#ok&lt;*EMGRO&gt;</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,136" id="srcline136">136</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="43,137" id="srcline137">137</a></span><span class="line"><span class="keyword">properties</span> (Nontunable)</span></span>
+<span class="srcline"><span class="lineno"><a href="43,138" id="srcline138">138</a></span><span class="line">    <span class="comment">%Window length </span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,139" id="srcline139">139</a></span><span class="line">    WindowLength = 1;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,140" id="srcline140">140</a></span><span class="line">    <span class="comment">%NumTransmitAntennas Number of transmit antennas</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,141" id="srcline141">141</a></span><span class="line">    <span class="comment">% Specify the number of tranmit antennas to be used. This property</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,142" id="srcline142">142</a></span><span class="line">    <span class="comment">% can be set to a positive integer scaler. The default value of this property is 1.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,143" id="srcline143">143</a></span><span class="line">    NumTransmitAntennas = 1; <span class="comment">% can be dependent</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,144" id="srcline144">144</a></span><span class="line"><span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,145" id="srcline145">145</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="43,146" id="srcline146">146</a></span><span class="line"><span class="keyword">properties</span> (Nontunable, Logical)</span></span>
+<span class="srcline"><span class="lineno"><a href="43,147" id="srcline147">147</a></span><span class="line">    <span class="comment">%InsertDCNull Insert DC null</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,148" id="srcline148">148</a></span><span class="line">    <span class="comment">% Specify the nulls type to be inserted: 'None', 'DC-only',</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,149" id="srcline149">149</a></span><span class="line">    <span class="comment">% 'Custom'. The default setting of this property is 'DC-only'</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,150" id="srcline150">150</a></span><span class="line">    InsertDCNull = false;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,151" id="srcline151">151</a></span><span class="line">    <span class="comment">%Windowing Apply rasied cosine windowing between OFDM symbols</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,152" id="srcline152">152</a></span><span class="line">    Windowing = false;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,153" id="srcline153">153</a></span><span class="line">    <span class="comment">%PilotInputPort Pilot input port</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,154" id="srcline154">154</a></span><span class="line">    <span class="comment">% Setting this property to true, the System object will expect a</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,155" id="srcline155">155</a></span><span class="line">    <span class="comment">% separate pilot input. The default value of this property is false.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,156" id="srcline156">156</a></span><span class="line">    PilotInputPort = false;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,157" id="srcline157">157</a></span><span class="line"><span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,158" id="srcline158">158</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="43,159" id="srcline159">159</a></span><span class="line"><span class="keyword">properties</span> (Access = protected)</span></span>
+<span class="srcline"><span class="lineno"><a href="43,160" id="srcline160">160</a></span><span class="line">    pFullGrid;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,161" id="srcline161">161</a></span><span class="line"><span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,162" id="srcline162">162</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="43,163" id="srcline163">163</a></span><span class="line"><span class="keyword">properties</span> (Logical, Access = private, Nontunable)   </span></span>
+<span class="srcline"><span class="lineno"><a href="43,164" id="srcline164">164</a></span><span class="line">    pHasCustomNull;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,165" id="srcline165">165</a></span><span class="line"><span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,166" id="srcline166">166</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="43,167" id="srcline167">167</a></span><span class="line"><span class="keyword">methods</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,168" id="srcline168">168</a></span><span class="line">  <span class="keyword">function</span> object = OFDMModulator(varargin)</span></span>
+<span class="srcline"><span class="lineno"><a href="43,169" id="srcline169">169</a></span><span class="line">    <span class="keyword">if</span> nargin == 1 &amp;&amp; isa(varargin{1}, <span class="string">'OFDMDemodulator'</span>)</span></span>
+<span class="srcline"><span class="lineno"><a href="43,170" id="srcline170">170</a></span><span class="line">        demodObj = varargin{1};        </span></span>
+<span class="srcline"><span class="lineno"><a href="43,171" id="srcline171">171</a></span><span class="line">        object.FFTLength            = demodObj.FFTLength;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,172" id="srcline172">172</a></span><span class="line">        object.NumGuardBandCarriers = demodObj.NumGuardBandCarriers;     </span></span>
+<span class="srcline"><span class="lineno"><a href="43,173" id="srcline173">173</a></span><span class="line">        object.CyclicPrefixLength   = demodObj.CyclicPrefixLength;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,174" id="srcline174">174</a></span><span class="line">        object.InsertDCNull         = demodObj.RemoveDCCarrier;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,175" id="srcline175">175</a></span><span class="line">        object.NumSymbols           = demodObj.NumSymbols;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,176" id="srcline176">176</a></span><span class="line">        object.PilotInputPort       = demodObj.PilotOutputPort;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,177" id="srcline177">177</a></span><span class="line">        <span class="keyword">if</span> demodObj.PilotOutputPort</span></span>
+<span class="srcline"><span class="lineno"><a href="43,178" id="srcline178">178</a></span><span class="line">            object.PilotCarrierIndices = demodObj.PilotCarrierIndices;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,179" id="srcline179">179</a></span><span class="line">            object.NumTransmitAntennas = size(demodObj.PilotCarrierIndices, 3);            </span></span>
+<span class="srcline"><span class="lineno"><a href="43,180" id="srcline180">180</a></span><span class="line">        <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,181" id="srcline181">181</a></span><span class="line">    <span class="keyword">else</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,182" id="srcline182">182</a></span><span class="line">        setProperties(object, nargin, varargin{:});</span></span>
+<span class="srcline"><span class="lineno"><a href="43,183" id="srcline183">183</a></span><span class="line">    <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,184" id="srcline184">184</a></span><span class="line">  <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,185" id="srcline185">185</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="43,186" id="srcline186">186</a></span><span class="line">  <span class="keyword">function</span> set.WindowLength(obj, winLen)</span></span>
+<span class="srcline"><span class="lineno"><a href="43,187" id="srcline187">187</a></span><span class="line">    propName = <span class="string">'WindowLength'</span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,188" id="srcline188">188</a></span><span class="line">    validateattributes(winLen, {<span class="string">'numeric'</span>}, <span class="keyword">...</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,189" id="srcline189">189</a></span><span class="line">        {<span class="string">'real'</span>,<span class="string">'scalar'</span>,<span class="string">'integer'</span>,<span class="string">'positive'</span>,<span class="string">'finite'</span>}, <span class="keyword">...</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,190" id="srcline190">190</a></span><span class="line">        [class(obj) <span class="string">'.'</span> propName], propName);  </span></span>
+<span class="srcline"><span class="lineno"><a href="43,191" id="srcline191">191</a></span><span class="line">      </span></span>
+<span class="srcline"><span class="lineno"><a href="43,192" id="srcline192">192</a></span><span class="line">    obj.WindowLength = winLen;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,193" id="srcline193">193</a></span><span class="line">  <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,194" id="srcline194">194</a></span><span class="line">  </span></span>
+<span class="srcline"><span class="lineno"><a href="43,195" id="srcline195">195</a></span><span class="line">  <span class="keyword">function</span> set.NumTransmitAntennas(obj, Nt)</span></span>
+<span class="srcline"><span class="lineno"><a href="43,196" id="srcline196">196</a></span><span class="line">    propName = <span class="string">'NumTransmitAntennas'</span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,197" id="srcline197">197</a></span><span class="line">    validateattributes(Nt, {<span class="string">'numeric'</span>}, <span class="keyword">...</span><span class="comment"> </span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,198" id="srcline198">198</a></span><span class="line">        {<span class="string">'real'</span>,<span class="string">'scalar'</span>,<span class="string">'integer'</span>,<span class="string">'&gt;='</span>,1,<span class="string">'&lt;='</span>,64}, <span class="keyword">...</span><span class="comment"> </span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,199" id="srcline199">199</a></span><span class="line">        [class(obj) <span class="string">'.'</span> propName], propName); </span></span>
+<span class="srcline"><span class="lineno"><a href="43,200" id="srcline200">200</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="43,201" id="srcline201">201</a></span><span class="line">    obj.NumTransmitAntennas = Nt;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,202" id="srcline202">202</a></span><span class="line">  <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,203" id="srcline203">203</a></span><span class="line">  </span></span>
+<span class="srcline"><span class="lineno"><a href="43,204" id="srcline204">204</a></span><span class="line">  <span class="keyword">function</span> showResourceMapping(obj, varargin)</span></span>
+<span class="srcline"><span class="lineno"><a href="43,205" id="srcline205">205</a></span><span class="line">    narginchk(1, 2)</span></span>
+<span class="srcline"><span class="lineno"><a href="43,206" id="srcline206">206</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="43,207" id="srcline207">207</a></span><span class="line">    FFTLen = obj.FFTLength;    </span></span>
+<span class="srcline"><span class="lineno"><a href="43,208" id="srcline208">208</a></span><span class="line">    numSym = obj.NumSymbols;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,209" id="srcline209">209</a></span><span class="line">    numTx  = obj.NumTransmitAntennas;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,210" id="srcline210">210</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="43,211" id="srcline211">211</a></span><span class="line">    <span class="keyword">if</span> ~isLocked(obj) </span></span>
+<span class="srcline"><span class="lineno"><a href="43,212" id="srcline212">212</a></span><span class="line">        dataInput = ones(getNumDataCarriers(obj, obj.InsertDCNull, obj.PilotInputPort), numSym, numTx);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,213" id="srcline213">213</a></span><span class="line">        <span class="keyword">if</span> ~obj.PilotInputPort</span></span>
+<span class="srcline"><span class="lineno"><a href="43,214" id="srcline214">214</a></span><span class="line">            setup(obj, dataInput);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,215" id="srcline215">215</a></span><span class="line">        <span class="keyword">else</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,216" id="srcline216">216</a></span><span class="line">            pilotInput = ones(size(obj.PilotCarrierIndices,1), numSym, numTx);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,217" id="srcline217">217</a></span><span class="line">            setup(obj, dataInput, pilotInput);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,218" id="srcline218">218</a></span><span class="line">        <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,219" id="srcline219">219</a></span><span class="line">        release(obj);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,220" id="srcline220">220</a></span><span class="line">    <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,221" id="srcline221">221</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="43,222" id="srcline222">222</a></span><span class="line">    dataColor      = [0   0   0.5];  <span class="comment">% dark blue</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,223" id="srcline223">223</a></span><span class="line">    guardBandColor = [0.5 0   0  ];  <span class="comment">% red</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,224" id="srcline224">224</a></span><span class="line">    pilotColor     = [0   1   0  ];  <span class="comment">% green</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,225" id="srcline225">225</a></span><span class="line">    nullColor      = [0.5 0.5 0.5];  <span class="comment">% grey</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,226" id="srcline226">226</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="43,227" id="srcline227">227</a></span><span class="line">    <span class="keyword">if</span> ~obj.pHasCustomNull</span></span>
+<span class="srcline"><span class="lineno"><a href="43,228" id="srcline228">228</a></span><span class="line">        fullGrid = obj.pFullGrid(:,:,1);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,229" id="srcline229">229</a></span><span class="line">        colorFullGrid = zeros(FFTLen, numSym, 3);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,230" id="srcline230">230</a></span><span class="line">    <span class="keyword">else</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,231" id="srcline231">231</a></span><span class="line">        fullGrid = obj.pFullGrid;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,232" id="srcline232">232</a></span><span class="line">        colorFullGrid = zeros(FFTLen, numSym, 3, numTx);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,233" id="srcline233">233</a></span><span class="line">    <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,234" id="srcline234">234</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="43,235" id="srcline235">235</a></span><span class="line">    <span class="comment">% Separate guard bands and nulls with different values</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,236" id="srcline236">236</a></span><span class="line">    fullGrid([1:obj.NumGuardBandCarriers(1), FFTLen-obj.NumGuardBandCarriers(2)+1:FFTLen],:,:) = 3;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,237" id="srcline237">237</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="43,238" id="srcline238">238</a></span><span class="line">    <span class="comment">% Lable Y-axis tick</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,239" id="srcline239">239</a></span><span class="line">    myYTickLabel = {<span class="string">'Data'</span>};</span></span>
+<span class="srcline"><span class="lineno"><a href="43,240" id="srcline240">240</a></span><span class="line">    myColorMap = [0 0 0.5];</span></span>
+<span class="srcline"><span class="lineno"><a href="43,241" id="srcline241">241</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="43,242" id="srcline242">242</a></span><span class="line">    <span class="keyword">if</span> any(obj.NumGuardBandCarriers &gt; 0) </span></span>
+<span class="srcline"><span class="lineno"><a href="43,243" id="srcline243">243</a></span><span class="line">        myYTickLabel(end+1) = {<span class="string">'Guard Band'</span>};</span></span>
+<span class="srcline"><span class="lineno"><a href="43,244" id="srcline244">244</a></span><span class="line">        myColorMap(end+1, :) = guardBandColor;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,245" id="srcline245">245</a></span><span class="line">    <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,246" id="srcline246">246</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="43,247" id="srcline247">247</a></span><span class="line">    <span class="keyword">if</span> obj.InsertDCNull || obj.pHasCustomNull</span></span>
+<span class="srcline"><span class="lineno"><a href="43,248" id="srcline248">248</a></span><span class="line">        myYTickLabel(end+1) = {<span class="string">'Null'</span>};</span></span>
+<span class="srcline"><span class="lineno"><a href="43,249" id="srcline249">249</a></span><span class="line">        myColorMap(end+1, :) = nullColor;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,250" id="srcline250">250</a></span><span class="line">    <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,251" id="srcline251">251</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="43,252" id="srcline252">252</a></span><span class="line">    <span class="keyword">if</span> obj.PilotInputPort</span></span>
+<span class="srcline"><span class="lineno"><a href="43,253" id="srcline253">253</a></span><span class="line">        myYTickLabel(end+1) = {<span class="string">'Pilot'</span>};</span></span>
+<span class="srcline"><span class="lineno"><a href="43,254" id="srcline254">254</a></span><span class="line">        myColorMap(end+1, :) = pilotColor;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,255" id="srcline255">255</a></span><span class="line">    <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,256" id="srcline256">256</a></span><span class="line">           </span></span>
+<span class="srcline"><span class="lineno"><a href="43,257" id="srcline257">257</a></span><span class="line">    numPlot = size(colorFullGrid, 4);    </span></span>
+<span class="srcline"><span class="lineno"><a href="43,258" id="srcline258">258</a></span><span class="line">    <span class="keyword">if</span> nargin == 2</span></span>
+<span class="srcline"><span class="lineno"><a href="43,259" id="srcline259">259</a></span><span class="line">        freqRange = varargin{1};</span></span>
+<span class="srcline"><span class="lineno"><a href="43,260" id="srcline260">260</a></span><span class="line">        validateattributes(freqRange, {<span class="string">'numeric'</span>}, {<span class="string">'integer'</span>,<span class="string">'finite'</span>,<span class="string">'size'</span>,[1 2]}, <span class="keyword">...</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,261" id="srcline261">261</a></span><span class="line">            [class(obj) <span class="string">'.'</span> <span class="string">'Subcarrier index input'</span>], <span class="string">'Subcarrier index input'</span>);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,262" id="srcline262">262</a></span><span class="line">        coder.internal.errorIf(diff(freqRange) ~= (FFTLen -1), <span class="string">'OFDM.xxx'</span>);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,263" id="srcline263">263</a></span><span class="line">    <span class="keyword">else</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,264" id="srcline264">264</a></span><span class="line">        freqRange = [1 FFTLen];</span></span>
+<span class="srcline"><span class="lineno"><a href="43,265" id="srcline265">265</a></span><span class="line">    <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,266" id="srcline266">266</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="43,267" id="srcline267">267</a></span><span class="line">    <span class="keyword">for</span> txIdx = 1:numPlot</span></span>
+<span class="srcline"><span class="lineno"><a href="43,268" id="srcline268">268</a></span><span class="line">        <span class="keyword">if</span> ndims(colorFullGrid) &lt; 4</span></span>
+<span class="srcline"><span class="lineno"><a href="43,269" id="srcline269">269</a></span><span class="line">            titleText = <span class="string">'OFDM Resource Mapping for All Tx Antennas'</span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,270" id="srcline270">270</a></span><span class="line">        <span class="keyword">else</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,271" id="srcline271">271</a></span><span class="line">            titleText = sprintf(<span class="string">'OFDM Resource Mapping for Tx Antenna %d'</span>, txIdx);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,272" id="srcline272">272</a></span><span class="line">        <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,273" id="srcline273">273</a></span><span class="line">        figure(<span class="string">'NumberTitle'</span>,<span class="string">'off'</span>,<span class="string">'Name'</span>,titleText);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,274" id="srcline274">274</a></span><span class="line">        <span class="comment">% subplot(numPlot, 1, txIdx);</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,275" id="srcline275">275</a></span><span class="line">        <span class="keyword">for</span> symIdx = 1:numSym</span></span>
+<span class="srcline"><span class="lineno"><a href="43,276" id="srcline276">276</a></span><span class="line">            <span class="keyword">for</span> carrierIdx = 1:FFTLen</span></span>
+<span class="srcline"><span class="lineno"><a href="43,277" id="srcline277">277</a></span><span class="line">                <span class="keyword">switch</span> fullGrid(carrierIdx, symIdx, txIdx)</span></span>
+<span class="srcline"><span class="lineno"><a href="43,278" id="srcline278">278</a></span><span class="line">                <span class="keyword">case</span> 0 <span class="comment">% null</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,279" id="srcline279">279</a></span><span class="line">                    colorFullGrid(carrierIdx,symIdx,:,txIdx) = nullColor;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,280" id="srcline280">280</a></span><span class="line">                <span class="keyword">case</span> 1 <span class="comment">% data</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,281" id="srcline281">281</a></span><span class="line">                    colorFullGrid(carrierIdx,symIdx,:,txIdx) = dataColor;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,282" id="srcline282">282</a></span><span class="line">                <span class="keyword">case</span> 2 <span class="comment">% pilot</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,283" id="srcline283">283</a></span><span class="line">                    colorFullGrid(carrierIdx,symIdx,:,txIdx) = pilotColor;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,284" id="srcline284">284</a></span><span class="line">                <span class="keyword">case</span> 3 <span class="comment">% guard bands</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,285" id="srcline285">285</a></span><span class="line">                    colorFullGrid(carrierIdx,symIdx,:,txIdx) = guardBandColor;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,286" id="srcline286">286</a></span><span class="line">                <span class="keyword">end</span>                                </span></span>
+<span class="srcline"><span class="lineno"><a href="43,287" id="srcline287">287</a></span><span class="line">            <span class="keyword">end</span>            </span></span>
+<span class="srcline"><span class="lineno"><a href="43,288" id="srcline288">288</a></span><span class="line">        <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,289" id="srcline289">289</a></span><span class="line">                </span></span>
+<span class="srcline"><span class="lineno"><a href="43,290" id="srcline290">290</a></span><span class="line">        image([1 numSym], freqRange, colorFullGrid(:,:,:,txIdx));</span></span>
+<span class="srcline"><span class="lineno"><a href="43,291" id="srcline291">291</a></span><span class="line">        colormap(myColorMap);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,292" id="srcline292">292</a></span><span class="line">        colorbar(<span class="string">'YTick'</span>, 1:length(myYTickLabel), <span class="string">'YTickLabel'</span>,  myYTickLabel);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,293" id="srcline293">293</a></span><span class="line">        set(gca, <span class="string">'TickDIR'</span>, <span class="string">'out'</span>, <span class="keyword">...</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,294" id="srcline294">294</a></span><span class="line">                 <span class="string">'XTick'</span>,   1:numSym, <span class="keyword">...</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,295" id="srcline295">295</a></span><span class="line">                 <span class="string">'YTick'</span>,   [freqRange(1):FFTLen/8:freqRange(2)-1, freqRange(2)]);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,296" id="srcline296">296</a></span><span class="line">        </span></span>
+<span class="srcline"><span class="lineno"><a href="43,297" id="srcline297">297</a></span><span class="line">        xlabel(<span class="string">'OFDM Symbols'</span>);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,298" id="srcline298">298</a></span><span class="line">        ylabel(<span class="string">'Subcarrier Indices'</span>);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,299" id="srcline299">299</a></span><span class="line">        title(titleText);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,300" id="srcline300">300</a></span><span class="line">    <span class="keyword">end</span>        </span></span>
+<span class="srcline"><span class="lineno"><a href="43,301" id="srcline301">301</a></span><span class="line">  <span class="keyword">end</span>  </span></span>
+<span class="srcline"><span class="lineno"><a href="43,302" id="srcline302">302</a></span><span class="line"><span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,303" id="srcline303">303</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="43,304" id="srcline304">304</a></span><span class="line"><span class="keyword">methods</span>(Access = protected)  </span></span>
+<span class="srcline"><span class="lineno"><a href="43,305" id="srcline305">305</a></span><span class="line">  <span class="keyword">function</span> validatePropertiesImpl(obj)          </span></span>
+<span class="srcline"><span class="lineno"><a href="43,306" id="srcline306">306</a></span><span class="line">    <span class="keyword">if</span> obj.Windowing</span></span>
+<span class="srcline"><span class="lineno"><a href="43,307" id="srcline307">307</a></span><span class="line">        coder.internal.errorIf(obj.WindowLength &gt; min(obj.CyclicPrefixLength), <span class="keyword">...</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,308" id="srcline308">308</a></span><span class="line">             <span class="string">'comm:OFDM:xxx'</span>);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,309" id="srcline309">309</a></span><span class="line">    <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,310" id="srcline310">310</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="43,311" id="srcline311">311</a></span><span class="line">    <span class="keyword">if</span> obj.PilotInputPort</span></span>
+<span class="srcline"><span class="lineno"><a href="43,312" id="srcline312">312</a></span><span class="line">       <span class="comment">% Check the 3rd dimension of PilotCarrierIndices</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,313" id="srcline313">313</a></span><span class="line">       coder.internal.errorIf((size(obj.PilotCarrierIndices, 3) ~= 1) &amp;&amp; <span class="keyword">...</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,314" id="srcline314">314</a></span><span class="line">           (size(obj.PilotCarrierIndices, 3) ~= obj.NumTransmitAntennas), <span class="keyword">...</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,315" id="srcline315">315</a></span><span class="line">           <span class="string">'OFDM:xxxx'</span>);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,316" id="srcline316">316</a></span><span class="line">    <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,317" id="srcline317">317</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="43,318" id="srcline318">318</a></span><span class="line">    dependentPropertyValidation(obj, obj.PilotInputPort, obj.InsertDCNull);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,319" id="srcline319">319</a></span><span class="line">  <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,320" id="srcline320">320</a></span><span class="line">  </span></span>
+<span class="srcline"><span class="lineno"><a href="43,321" id="srcline321">321</a></span><span class="line">  <span class="keyword">function</span> validateInputsImpl(obj, x, varargin)</span></span>
+<span class="srcline"><span class="lineno"><a href="43,322" id="srcline322">322</a></span><span class="line"><span class="comment">%     numSym = obj.NumSymbols;</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,323" id="srcline323">323</a></span><span class="line"><span class="comment">%     numTx  = obj.NumTransmitAntennas;</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,324" id="srcline324">324</a></span><span class="line"><span class="comment">%     </span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,325" id="srcline325">325</a></span><span class="line"><span class="comment">%     % Validate data input</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,326" id="srcline326">326</a></span><span class="line"><span class="comment">%     validateattributes(x, {'numeric'}, {'3d','finite','size', <span class="keyword">...</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,327" id="srcline327">327</a></span><span class="line"><span class="comment">%         [getNumDataCarriers(obj, obj.InsertDCNull, obj.PilotInputPort) numSym numTx]}, <span class="keyword">...</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,328" id="srcline328">328</a></span><span class="line"><span class="comment">%         [class(obj) '.' 'Data input'], 'Data input');</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,329" id="srcline329">329</a></span><span class="line"><span class="comment">% </span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,330" id="srcline330">330</a></span><span class="line"><span class="comment">%     % Validate pilot input</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,331" id="srcline331">331</a></span><span class="line"><span class="comment">%     if obj.PilotInputPort</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,332" id="srcline332">332</a></span><span class="line"><span class="comment">%         validateattributes(varargin{1}, {'numeric'}, {'3d','finite','size', <span class="keyword">...</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,333" id="srcline333">333</a></span><span class="line"><span class="comment">%             [size(obj.PilotCarrierIndices, 1)  numSym numTx]}, <span class="keyword">...</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,334" id="srcline334">334</a></span><span class="line"><span class="comment">%             [class(obj) '.' 'Pilot input'], 'Pilot input');        </span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,335" id="srcline335">335</a></span><span class="line"><span class="comment">%     end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,336" id="srcline336">336</a></span><span class="line">  <span class="keyword">end</span>  </span></span>
+</pre>
+</div>
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="43,337" id="srcline337">337</a></span><span class="line">  </span></span>
+<span class="srcline"><span class="lineno"><a href="43,338" id="srcline338">338</a></span><span class="line">  <span class="keyword">function</span> setupImpl(<span class="var type1" id="S91T123U842">obj</span>, <span class="var type1" id="S92T6U843">varargin</span>)</span></span>
+<span class="srcline"><span class="lineno"><a href="43,339" id="srcline339">339</a></span><span class="line">    <span class="mxinfo" id="T1:U3"><span class="var type1" id="S93T1U846">FFTLen</span> = <span class="mxinfo" id="T1:U5"><span class="var type1" id="S91T123U848">obj</span>.FFTLength</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,340" id="srcline340">340</a></span><span class="line">    <span class="mxinfo" id="T1:U7"><span class="var type1" id="S94T1U852">numSym</span> = <span class="mxinfo" id="T1:U9"><span class="var type1" id="S91T123U854">obj</span>.NumSymbols</span></span>;    </span></span>
+<span class="srcline"><span class="lineno"><a href="43,341" id="srcline341">341</a></span><span class="line">    <span class="mxinfo" id="T1:U11"><span class="var type1" id="S95T1U858">numTx</span>  = <span class="mxinfo" id="T1:U13"><span class="var type1" id="S91T123U860">obj</span>.NumTransmitAntennas</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,342" id="srcline342">342</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="43,343" id="srcline343">343</a></span><span class="line">    <span class="comment">% obj.pHasPilot = obj.PilotInputPort;</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,344" id="srcline344">344</a></span><span class="line">    <span class="comment">% obj.pHasDCNull = obj.InsertDCNull;    </span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,345" id="srcline345">345</a></span><span class="line">    <span class="var type1" id="S91T123U865">obj</span>.pHasCustomNull = <span class="mxinfo" id="T2:U16"><span class="var type1" id="S91T123U869">obj</span>.PilotInputPort &amp;&amp; ~ismatrix(<span class="var type0" id="S91T0U875">obj</span>.PilotCarrierIndices)</span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,346" id="srcline346">346</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="43,347" id="srcline347">347</a></span><span class="line">    <span class="keyword">if</span> <span class="var type1" id="S91T123U880">obj</span>.PilotInputPort</span></span>
+<span class="srcline"><span class="lineno"><a href="43,348" id="srcline348">348</a></span><span class="line">        <span class="comment">% Calculate pilot 3D indices at Tx</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,349" id="srcline349">349</a></span><span class="line">        <span class="var type0" id="S97T0U884">pilotIdx</span> = <span class="var type0" id="S91T0U886">obj</span>.PilotCarrierIndices;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,350" id="srcline350">350</a></span><span class="line">        <span class="var type0" id="S98T0U890">numPilotTxPerSym</span> = size(<span class="var type0" id="S97T0U893">pilotIdx</span>, 1);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,351" id="srcline351">351</a></span><span class="line">        <span class="var type0" id="S100T0U897">pilotTx3DIndices</span> = repmat(<span class="var type0" id="S97T0U900">pilotIdx</span>, <span class="keyword">...</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,352" id="srcline352">352</a></span><span class="line">             [1 <span class="var type0" id="S94T0U905">numSym</span>/size(<span class="var type0" id="S97T0U908">pilotIdx</span>,2) <span class="var type0" id="S95T0U911">numTx</span>/size(<span class="var type0" id="S97T0U914">pilotIdx</span>,3)]);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,353" id="srcline353">353</a></span><span class="line">        </span></span>
+<span class="srcline"><span class="lineno"><a href="43,354" id="srcline354">354</a></span><span class="line">        <span class="comment">% Calculate pilot linear indices at Tx</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,355" id="srcline355">355</a></span><span class="line">        <span class="var type0" id="S91T0U919">obj</span>.pPilotLinearIndices = convert3DIndexToLinearIndex(<span class="var type0" id="S91T0U923">obj</span>, <span class="var type0" id="S100T0U924">pilotTx3DIndices</span>);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,356" id="srcline356">356</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="43,357" id="srcline357">357</a></span><span class="line">        <span class="keyword">if</span> <span class="var type0" id="S91T0U928">obj</span>.pHasCustomNull </span></span>
+<span class="srcline"><span class="lineno"><a href="43,358" id="srcline358">358</a></span><span class="line">            <span class="comment">% Calculate custom null 3D indices at Tx</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,359" id="srcline359">359</a></span><span class="line">            <span class="var type0" id="S103T0U932">customNullTx3DIndices</span> = coder.nullcopy(zeros(<span class="keyword">...</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,360" id="srcline360">360</a></span><span class="line">                <span class="var type0" id="S98T0U940">numPilotTxPerSym</span>*(<span class="var type0" id="S95T0U943">numTx</span>-1), <span class="var type0" id="S94T0U945">numSym</span>, <span class="var type0" id="S95T0U946">numTx</span>));    </span></span>
+<span class="srcline"><span class="lineno"><a href="43,361" id="srcline361">361</a></span><span class="line">            <span class="keyword">for</span> <span class="var type0" id="S106T0U949">txIdx</span> = 1 : <span class="var type0" id="S95T0U952">numTx</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,362" id="srcline362">362</a></span><span class="line">                <span class="var type0" id="S103T0U956">customNullTx3DIndices</span>(:,:,<span class="var type0" id="S106T0U959">txIdx</span>) = reshape(permute(<span class="keyword">...</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,363" id="srcline363">363</a></span><span class="line">                    <span class="var type0" id="S100T0U965">pilotTx3DIndices</span>(:,:,[(1:<span class="var type0" id="S106T0U974">txIdx</span>-1),(<span class="var type0" id="S106T0U979">txIdx</span>+1:<span class="var type0" id="S95T0U981">numTx</span>)]), [1 3 2]), <span class="keyword">...</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,364" id="srcline364">364</a></span><span class="line">                    <span class="var type0" id="S98T0U988">numPilotTxPerSym</span>*(<span class="var type0" id="S95T0U991">numTx</span>-1), <span class="var type0" id="S94T0U993">numSym</span>);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,365" id="srcline365">365</a></span><span class="line">            <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,366" id="srcline366">366</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="43,367" id="srcline367">367</a></span><span class="line">            <span class="comment">% Calculate custom null linear indices at Tx</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,368" id="srcline368">368</a></span><span class="line">            <span class="var type0" id="S109T0U996">customNullTxLinearIndices</span> = convert3DIndexToLinearIndex(<span class="var type0" id="S91T0U999">obj</span>, <span class="var type0" id="S103T0U1000">customNullTx3DIndices</span>);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,369" id="srcline369">369</a></span><span class="line">        <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,370" id="srcline370">370</a></span><span class="line">    <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,371" id="srcline371">371</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="43,372" id="srcline372">372</a></span><span class="line">    <span class="comment">% Pre-fill data grid for modulator computation and showResourceMapping </span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,373" id="srcline373">373</a></span><span class="line">    <span class="comment">% method. Guard band and null = 0; data = 1; pilot = 2</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,374" id="srcline374">374</a></span><span class="line">    <span class="var type1" id="S91T123U1004">obj</span>.pFullGrid = <span class="mxinfo" id="T171:U20">ones(<span class="var type1" id="S93T1U1008">FFTLen</span>, <span class="var type1" id="S94T1U1009">numSym</span>, <span class="var type1" id="S95T1U1010">numTx</span>)</span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,375" id="srcline375">375</a></span><span class="line">    <span class="mxinfo" id="T1508:U24"><span class="mxinfo" id="T1508:U25"><span class="var type1" id="S91T123U1015">obj</span>.pFullGrid([1:<span class="var type1" id="S91T123U1023">obj</span>.NumGuardBandCarriers(1), <span class="keyword">...</span></span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,376" id="srcline376">376</a></span><span class="line"><span class="mxinfo" id="T1508:U24"><span class="mxinfo" id="T1508:U25">        <span class="var type1" id="S93T1U1029">FFTLen</span>-<span class="var type1" id="S91T123U1032">obj</span>.NumGuardBandCarriers(2)+1:<span class="var type1" id="S93T1U1036">FFTLen</span>], :,:)</span> = <span class="mxinfo" id="T1:U31">0</span></span>; <span class="comment">% Guard bands</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,377" id="srcline377">377</a></span><span class="line">    <span class="keyword">if</span> <span class="var type1" id="S91T123U1043">obj</span>.InsertDCNull</span></span>
+<span class="srcline"><span class="lineno"><a href="43,378" id="srcline378">378</a></span><span class="line">        <span class="var type0" id="S91T0U1049">obj</span>.pFullGrid(<span class="var type0" id="S93T0U1053">FFTLen</span>/2+1, :,:) = 0; <span class="comment">% DC null</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,379" id="srcline379">379</a></span><span class="line">    <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,380" id="srcline380">380</a></span><span class="line">    <span class="keyword">if</span> <span class="var type1" id="S91T123U1062">obj</span>.pHasCustomNull</span></span>
+<span class="srcline"><span class="lineno"><a href="43,381" id="srcline381">381</a></span><span class="line">        <span class="var type0" id="S91T0U1068">obj</span>.pFullGrid(<span class="var type0" id="S109T0U1070">customNullTxLinearIndices</span>) = 0; <span class="comment">% Custom null</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,382" id="srcline382">382</a></span><span class="line">    <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,383" id="srcline383">383</a></span><span class="line">    <span class="keyword">if</span> <span class="var type1" id="S91T123U1075">obj</span>.PilotInputPort</span></span>
+<span class="srcline"><span class="lineno"><a href="43,384" id="srcline384">384</a></span><span class="line">        <span class="var type0" id="S91T0U1081">obj</span>.pFullGrid(<span class="var type0" id="S91T0U1084">obj</span>.pPilotLinearIndices) = 2; <span class="comment">% Pilot</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,385" id="srcline385">385</a></span><span class="line">    <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,386" id="srcline386">386</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="43,387" id="srcline387">387</a></span><span class="line">    <span class="comment">% Calculate data linear indices at Tx</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,388" id="srcline388">388</a></span><span class="line">    <span class="var type1" id="S91T123U1090">obj</span>.pDataLinearIndices = <span class="mxinfo" id="T1497:U36">find(<span class="mxinfo" id="T174:U37"><span class="mxinfo" id="T171:U38"><span class="var type1" id="S91T123U1096">obj</span>.pFullGrid</span> == <span class="mxinfo" id="T1:U40">1</span></span>)</span>;  <span class="comment">% Linear indices</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,389" id="srcline389">389</a></span><span class="line">  <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,390" id="srcline390">390</a></span><span class="line"></span></span>
+</pre>
+<div class="dead">
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="43,391" id="srcline391">391</a></span><span class="line">  <span class="keyword">function</span> yout = stepImpl(obj, dataIn, varargin)</span></span>
+<span class="srcline"><span class="lineno"><a href="43,392" id="srcline392">392</a></span><span class="line">    FFTLen = obj.FFTLength;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,393" id="srcline393">393</a></span><span class="line">    CPLen  = obj.CyclicPrefixLength;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,394" id="srcline394">394</a></span><span class="line">    numSym = obj.NumSymbols;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,395" id="srcline395">395</a></span><span class="line">    numTx  = obj.NumTransmitAntennas;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,396" id="srcline396">396</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="43,397" id="srcline397">397</a></span><span class="line">    <span class="comment">% Pack data and pilots to full grid</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,398" id="srcline398">398</a></span><span class="line">    <span class="keyword">if</span> isreal(dataIn)</span></span>
+<span class="srcline"><span class="lineno"><a href="43,399" id="srcline399">399</a></span><span class="line">        packedData = complex(obj.pFullGrid);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,400" id="srcline400">400</a></span><span class="line">        packedData(obj.pDataLinearIndices) = complex(dataIn(:),0);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,401" id="srcline401">401</a></span><span class="line">    <span class="keyword">else</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,402" id="srcline402">402</a></span><span class="line">        packedData = complex(obj.pFullGrid);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,403" id="srcline403">403</a></span><span class="line">        packedData(obj.pDataLinearIndices) = dataIn(:);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,404" id="srcline404">404</a></span><span class="line">    <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,405" id="srcline405">405</a></span><span class="line">        </span></span>
+<span class="srcline"><span class="lineno"><a href="43,406" id="srcline406">406</a></span><span class="line">    <span class="keyword">if</span> obj.PilotInputPort</span></span>
+<span class="srcline"><span class="lineno"><a href="43,407" id="srcline407">407</a></span><span class="line">        pilotIn = double(varargin{1});</span></span>
+<span class="srcline"><span class="lineno"><a href="43,408" id="srcline408">408</a></span><span class="line">        packedData(obj.pPilotLinearIndices) = pilotIn(:);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,409" id="srcline409">409</a></span><span class="line">    <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,410" id="srcline410">410</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="43,411" id="srcline411">411</a></span><span class="line">    <span class="comment">% IFFT shift    </span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,412" id="srcline412">412</a></span><span class="line">    <span class="keyword">if</span> isreal(packedData)</span></span>
+<span class="srcline"><span class="lineno"><a href="43,413" id="srcline413">413</a></span><span class="line">        postShift = complex(ifftshift(packedData, 1), 0);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,414" id="srcline414">414</a></span><span class="line">    <span class="keyword">else</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,415" id="srcline415">415</a></span><span class="line">        postShift = ifftshift(packedData, 1);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,416" id="srcline416">416</a></span><span class="line">    <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,417" id="srcline417">417</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="43,418" id="srcline418">418</a></span><span class="line">    <span class="comment">% IFFT: frequency domain to time domain</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,419" id="srcline419">419</a></span><span class="line">    postIFFT = ifft(postShift, [], 1);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,420" id="srcline420">420</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="43,421" id="srcline421">421</a></span><span class="line">    <span class="comment">% Cyclic prefix</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,422" id="srcline422">422</a></span><span class="line">    <span class="keyword">if</span> isscalar(CPLen)        </span></span>
+<span class="srcline"><span class="lineno"><a href="43,423" id="srcline423">423</a></span><span class="line">        postCP = cat(1, postIFFT(end-CPLen+(1:CPLen), :, :), postIFFT);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,424" id="srcline424">424</a></span><span class="line">        yout = reshape(postCP, [(FFTLen + CPLen)*numSym, numTx]);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,425" id="srcline425">425</a></span><span class="line">    <span class="keyword">else</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,426" id="srcline426">426</a></span><span class="line">        yout = coder.nullcopy(complex(zeros(FFTLen*numSym + sum(CPLen), numTx)));</span></span>
+<span class="srcline"><span class="lineno"><a href="43,427" id="srcline427">427</a></span><span class="line">        <span class="keyword">for</span> symIdx = 1:numSym</span></span>
+<span class="srcline"><span class="lineno"><a href="43,428" id="srcline428">428</a></span><span class="line">            yout(FFTLen*(symIdx-1)+sum(CPLen(1:symIdx-1)) + (1:FFTLen+CPLen(symIdx)), :) = <span class="keyword">...</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,429" id="srcline429">429</a></span><span class="line">                [squeeze(postIFFT(end-CPLen(symIdx)+(1:CPLen(symIdx)), symIdx, :)); squeeze(postIFFT(:, symIdx, :))];</span></span>
+<span class="srcline"><span class="lineno"><a href="43,430" id="srcline430">430</a></span><span class="line">        <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,431" id="srcline431">431</a></span><span class="line">    <span class="keyword">end</span>    </span></span>
+<span class="srcline"><span class="lineno"><a href="43,432" id="srcline432">432</a></span><span class="line">  <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,433" id="srcline433">433</a></span><span class="line">  </span></span>
+<span class="srcline"><span class="lineno"><a href="43,434" id="srcline434">434</a></span><span class="line">  <span class="keyword">function</span> flag = isInactivePropertyImpl(obj, prop)</span></span>
+<span class="srcline"><span class="lineno"><a href="43,435" id="srcline435">435</a></span><span class="line">    <span class="keyword">switch</span> prop                    </span></span>
+<span class="srcline"><span class="lineno"><a href="43,436" id="srcline436">436</a></span><span class="line">    <span class="keyword">case</span> <span class="string">'WindowLength'</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,437" id="srcline437">437</a></span><span class="line">        flag = ~(obj.Windowing);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,438" id="srcline438">438</a></span><span class="line">    <span class="keyword">case</span> <span class="string">'PilotCarrierIndices'</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,439" id="srcline439">439</a></span><span class="line">        flag = ~(obj.PilotInputPort);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,440" id="srcline440">440</a></span><span class="line">    <span class="keyword">otherwise</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,441" id="srcline441">441</a></span><span class="line">        flag = false;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,442" id="srcline442">442</a></span><span class="line">    <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,443" id="srcline443">443</a></span><span class="line">  <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,444" id="srcline444">444</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="43,445" id="srcline445">445</a></span><span class="line">  <span class="keyword">function</span> s = saveObjectImpl(obj)</span></span>
+<span class="srcline"><span class="lineno"><a href="43,446" id="srcline446">446</a></span><span class="line">    s = saveObjectImpl@OFDMBase(obj);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,447" id="srcline447">447</a></span><span class="line">    <span class="keyword">if</span> isLocked(obj)</span></span>
+<span class="srcline"><span class="lineno"><a href="43,448" id="srcline448">448</a></span><span class="line">        s.pFullGrid      = obj.pFullGrid;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,449" id="srcline449">449</a></span><span class="line">        s.pHasCustomNull = obj.pHasCustomNull; </span></span>
+<span class="srcline"><span class="lineno"><a href="43,450" id="srcline450">450</a></span><span class="line">    <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,451" id="srcline451">451</a></span><span class="line">  <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,452" id="srcline452">452</a></span><span class="line">  </span></span>
+<span class="srcline"><span class="lineno"><a href="43,453" id="srcline453">453</a></span><span class="line">  <span class="keyword">function</span> loadObjectImpl(obj, s, wasLocked)</span></span>
+<span class="srcline"><span class="lineno"><a href="43,454" id="srcline454">454</a></span><span class="line">    <span class="keyword">if</span> (wasLocked)</span></span>
+<span class="srcline"><span class="lineno"><a href="43,455" id="srcline455">455</a></span><span class="line">        obj.pFullGrid      = s.pFullGrid;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,456" id="srcline456">456</a></span><span class="line">        obj.pHasCustomNull = s.pHasCustomNull; </span></span>
+<span class="srcline"><span class="lineno"><a href="43,457" id="srcline457">457</a></span><span class="line">    <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,458" id="srcline458">458</a></span><span class="line">    loadObjectImpl@OFDMBase(obj, s, wasLocked);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,459" id="srcline459">459</a></span><span class="line">  <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,460" id="srcline460">460</a></span><span class="line">  </span></span>
+<span class="srcline"><span class="lineno"><a href="43,461" id="srcline461">461</a></span><span class="line">  <span class="keyword">function</span> s = infoImpl(obj)          </span></span>
+<span class="srcline"><span class="lineno"><a href="43,462" id="srcline462">462</a></span><span class="line">    <span class="keyword">if</span> ~isLocked(obj)        </span></span>
+<span class="srcline"><span class="lineno"><a href="43,463" id="srcline463">463</a></span><span class="line">        validateProperties(obj);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,464" id="srcline464">464</a></span><span class="line">    <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,465" id="srcline465">465</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="43,466" id="srcline466">466</a></span><span class="line">    numSym = obj.NumSymbols;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,467" id="srcline467">467</a></span><span class="line">    numTx  = obj.NumTransmitAntennas;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,468" id="srcline468">468</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="43,469" id="srcline469">469</a></span><span class="line">    <span class="keyword">if</span> numTx == 1</span></span>
+<span class="srcline"><span class="lineno"><a href="43,470" id="srcline470">470</a></span><span class="line">        s.DataInputSize = [getNumDataCarriers(obj, obj.InsertDCNull, obj.PilotInputPort) numSym];</span></span>
+<span class="srcline"><span class="lineno"><a href="43,471" id="srcline471">471</a></span><span class="line">    <span class="keyword">else</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,472" id="srcline472">472</a></span><span class="line">        s.DataInputSize = [getNumDataCarriers(obj, obj.InsertDCNull, obj.PilotInputPort) numSym numTx];</span></span>
+<span class="srcline"><span class="lineno"><a href="43,473" id="srcline473">473</a></span><span class="line">    <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,474" id="srcline474">474</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="43,475" id="srcline475">475</a></span><span class="line">    <span class="keyword">if</span> obj.PilotInputPort</span></span>
+<span class="srcline"><span class="lineno"><a href="43,476" id="srcline476">476</a></span><span class="line">        <span class="keyword">if</span> numTx == 1</span></span>
+<span class="srcline"><span class="lineno"><a href="43,477" id="srcline477">477</a></span><span class="line">            s.PilotInputSize = [size(obj.PilotCarrierIndices, 1) numSym];</span></span>
+<span class="srcline"><span class="lineno"><a href="43,478" id="srcline478">478</a></span><span class="line">        <span class="keyword">else</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,479" id="srcline479">479</a></span><span class="line">            s.PilotInputSize = [size(obj.PilotCarrierIndices, 1) numSym numTx];</span></span>
+<span class="srcline"><span class="lineno"><a href="43,480" id="srcline480">480</a></span><span class="line">        <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,481" id="srcline481">481</a></span><span class="line">    <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,482" id="srcline482">482</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="43,483" id="srcline483">483</a></span><span class="line">    s.OutputSize = [getTimeDomainFrameLength(obj) numTx];</span></span>
+<span class="srcline"><span class="lineno"><a href="43,484" id="srcline484">484</a></span><span class="line">  <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,485" id="srcline485">485</a></span><span class="line">  </span></span>
+<span class="srcline"><span class="lineno"><a href="43,486" id="srcline486">486</a></span><span class="line">  <span class="keyword">function</span> num = getNumInputsImpl(obj)</span></span>
+<span class="srcline"><span class="lineno"><a href="43,487" id="srcline487">487</a></span><span class="line">    num = 1 + obj.PilotInputPort;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,488" id="srcline488">488</a></span><span class="line">  <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,489" id="srcline489">489</a></span><span class="line">  </span></span>
+<span class="srcline"><span class="lineno"><a href="43,490" id="srcline490">490</a></span><span class="line">  <span class="keyword">function</span> flag = isInputSizeLockedImpl(~,~)</span></span>
+<span class="srcline"><span class="lineno"><a href="43,491" id="srcline491">491</a></span><span class="line">    flag = true;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,492" id="srcline492">492</a></span><span class="line">  <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,493" id="srcline493">493</a></span><span class="line">  </span></span>
+<span class="srcline"><span class="lineno"><a href="43,494" id="srcline494">494</a></span><span class="line">  <span class="keyword">function</span> flag = isInputComplexityLockedImpl(~,~)</span></span>
+<span class="srcline"><span class="lineno"><a href="43,495" id="srcline495">495</a></span><span class="line">    flag = false;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,496" id="srcline496">496</a></span><span class="line">  <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,497" id="srcline497">497</a></span><span class="line">  </span></span>
+<span class="srcline"><span class="lineno"><a href="43,498" id="srcline498">498</a></span><span class="line">  <span class="keyword">function</span> flag = isOutputComplexityLockedImpl(~,~)</span></span>
+<span class="srcline"><span class="lineno"><a href="43,499" id="srcline499">499</a></span><span class="line">    flag = true;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,500" id="srcline500">500</a></span><span class="line">  <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,501" id="srcline501">501</a></span><span class="line">  </span></span>
+<span class="srcline"><span class="lineno"><a href="43,502" id="srcline502">502</a></span><span class="line">  <span class="keyword">function</span> varargout = isOutputFixedSizeImpl(~)</span></span>
+<span class="srcline"><span class="lineno"><a href="43,503" id="srcline503">503</a></span><span class="line">    varargout = {true};</span></span>
+<span class="srcline"><span class="lineno"><a href="43,504" id="srcline504">504</a></span><span class="line">  <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,505" id="srcline505">505</a></span><span class="line">  </span></span>
+<span class="srcline"><span class="lineno"><a href="43,506" id="srcline506">506</a></span><span class="line">  <span class="keyword">function</span> varargout = isOutputComplexImpl(~)</span></span>
+<span class="srcline"><span class="lineno"><a href="43,507" id="srcline507">507</a></span><span class="line">    varargout = {true};</span></span>
+<span class="srcline"><span class="lineno"><a href="43,508" id="srcline508">508</a></span><span class="line">  <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,509" id="srcline509">509</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="43,510" id="srcline510">510</a></span><span class="line">  <span class="keyword">function</span> varargout = getOutputDataTypeImpl(~)</span></span>
+<span class="srcline"><span class="lineno"><a href="43,511" id="srcline511">511</a></span><span class="line">    varargout = {<span class="string">'double'</span>};</span></span>
+<span class="srcline"><span class="lineno"><a href="43,512" id="srcline512">512</a></span><span class="line">  <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,513" id="srcline513">513</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="43,514" id="srcline514">514</a></span><span class="line">  <span class="keyword">function</span> outSize = getOutputSizeImpl(obj)    </span></span>
+<span class="srcline"><span class="lineno"><a href="43,515" id="srcline515">515</a></span><span class="line">    <span class="comment">% xxx may need input (maximum) size checking here </span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,516" id="srcline516">516</a></span><span class="line">    outSize = [getTimeDomainFrameLength(obj), obj.NumTransmitAntennas];</span></span>
+<span class="srcline"><span class="lineno"><a href="43,517" id="srcline517">517</a></span><span class="line">  <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,518" id="srcline518">518</a></span><span class="line">  </span></span>
+<span class="srcline"><span class="lineno"><a href="43,519" id="srcline519">519</a></span><span class="line">  <span class="keyword">function</span> varargout = getInputNamesImpl(obj)      </span></span>
+<span class="srcline"><span class="lineno"><a href="43,520" id="srcline520">520</a></span><span class="line">    varargout = cell(1, getNumInputs(obj));</span></span>
+<span class="srcline"><span class="lineno"><a href="43,521" id="srcline521">521</a></span><span class="line">    varargout{1} = <span class="string">''</span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,522" id="srcline522">522</a></span><span class="line">    <span class="keyword">if</span> obj.PilotInputPort</span></span>
+<span class="srcline"><span class="lineno"><a href="43,523" id="srcline523">523</a></span><span class="line">        varargout{2} = <span class="string">'Pilot'</span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,524" id="srcline524">524</a></span><span class="line">    <span class="keyword">end</span>    </span></span>
+<span class="srcline"><span class="lineno"><a href="43,525" id="srcline525">525</a></span><span class="line">  <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,526" id="srcline526">526</a></span><span class="line">  </span></span>
+<span class="srcline"><span class="lineno"><a href="43,527" id="srcline527">527</a></span><span class="line">  <span class="keyword">function</span> varargout = getOutputNamesImpl(~)      </span></span>
+<span class="srcline"><span class="lineno"><a href="43,528" id="srcline528">528</a></span><span class="line">    varargout = {<span class="string">''</span>};</span></span>
+<span class="srcline"><span class="lineno"><a href="43,529" id="srcline529">529</a></span><span class="line">  <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,530" id="srcline530">530</a></span><span class="line">  </span></span>
+<span class="srcline"><span class="lineno"><a href="43,531" id="srcline531">531</a></span><span class="line">  <span class="keyword">function</span> icon = getIconImpl(~)</span></span>
+<span class="srcline"><span class="lineno"><a href="43,532" id="srcline532">532</a></span><span class="line">    icon = sprintf(<span class="string">'OFDM\nModulator'</span>);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,533" id="srcline533">533</a></span><span class="line">  <span class="keyword">end</span>  </span></span>
+<span class="srcline"><span class="lineno"><a href="43,534" id="srcline534">534</a></span><span class="line"><span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,535" id="srcline535">535</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="43,536" id="srcline536">536</a></span><span class="line"><span class="keyword">methods</span>(Static, Access = protected)</span></span>
+<span class="srcline"><span class="lineno"><a href="43,537" id="srcline537">537</a></span><span class="line">  <span class="keyword">function</span> header = getHeaderImpl    </span></span>
+<span class="srcline"><span class="lineno"><a href="43,538" id="srcline538">538</a></span><span class="line">    header = matlab.system.display.Header(<span class="string">'OFDMModulator'</span>,<span class="keyword">...</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,539" id="srcline539">539</a></span><span class="line">        <span class="string">'Title'</span>, <span class="string">'OFDM Modulator'</span>);</span></span>
+<span class="srcline"><span class="lineno"><a href="43,540" id="srcline540">540</a></span><span class="line">  <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,541" id="srcline541">541</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="43,542" id="srcline542">542</a></span><span class="line">  <span class="keyword">function</span> groups = getPropertyGroupsImpl</span></span>
+<span class="srcline"><span class="lineno"><a href="43,543" id="srcline543">543</a></span><span class="line">    params = matlab.system.display.Section(<span class="keyword">...</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,544" id="srcline544">544</a></span><span class="line">        <span class="string">'Title'</span>, <span class="string">'Parameters'</span>,<span class="keyword">...</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,545" id="srcline545">545</a></span><span class="line">        <span class="string">'PropertyList'</span>, {<span class="string">'FFTLength'</span>,<span class="string">'CyclicPrefixLength'</span>,<span class="string">'NumGuardBandCarriers'</span>,<span class="keyword">...</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,546" id="srcline546">546</a></span><span class="line">                         <span class="string">'InsertDCNull'</span>,<span class="string">'Windowing'</span>,<span class="string">'WindowLength'</span>, <span class="keyword">...</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,547" id="srcline547">547</a></span><span class="line">                         <span class="string">'NumSymbols'</span>,<span class="string">'NumTransmitAntennas'</span>, <span class="keyword">...</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,548" id="srcline548">548</a></span><span class="line">                         <span class="string">'PilotInputPort'</span>,<span class="string">'PilotCarrierIndices'</span>});</span></span>
+<span class="srcline"><span class="lineno"><a href="43,549" id="srcline549">549</a></span><span class="line">    groups = params;</span></span>
+<span class="srcline"><span class="lineno"><a href="43,550" id="srcline550">550</a></span><span class="line">  <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,551" id="srcline551">551</a></span><span class="line"><span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,552" id="srcline552">552</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="43,553" id="srcline553">553</a></span><span class="line"><span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,554" id="srcline554">554</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="43,555" id="srcline555">555</a></span><span class="line"><span class="comment">% [EOF]</span></span></span>
+<span class="srcline"><span class="lineno"><a href="43,556" id="srcline556">556</a></span><span class="line"> </span></span>
+</pre>
+</div>

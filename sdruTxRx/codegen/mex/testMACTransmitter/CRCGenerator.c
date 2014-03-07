@@ -3,7 +3,7 @@
  *
  * Code generation for function 'CRCGenerator'
  *
- * C source code generated on: Thu Mar  6 19:04:23 2014
+ * C source code generated on: Thu Mar  6 22:22:39 2014
  *
  */
 
@@ -93,7 +93,7 @@ commcodegen_CRCGenerator_12 *c_CRCGenerator_CRCGenerator
   commcodegen_CRCGenerator_12 *c_obj;
   comm_CRCGenerator_7 *d_obj;
   int32_T i;
-  static const int8_T iv110[256] = { 0, 1, 2, 3, 4, 5, 6, 7, 0, 0, 0, 0, 0, 0, 0,
+  static const int8_T iv148[256] = { 0, 1, 2, 3, 4, 5, 6, 7, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -116,7 +116,7 @@ commcodegen_CRCGenerator_12 *c_CRCGenerator_CRCGenerator
   d_obj->S0_isInitialized = FALSE;
   d_obj->S1_isReleased = FALSE;
   for (i = 0; i < 256; i++) {
-    d_obj->P0_CRCTable[i] = (uint32_T)iv110[i];
+    d_obj->P0_CRCTable[i] = (uint32_T)iv148[i];
   }
 
   return b_obj;
@@ -129,7 +129,7 @@ commcodegen_CRCGenerator_18 *d_CRCGenerator_CRCGenerator
   commcodegen_CRCGenerator_18 *c_obj;
   comm_CRCGenerator_11 *d_obj;
   int32_T i;
-  static const int8_T iv227[256] = { 0, 1, 2, 3, 4, 5, 6, 7, 0, 0, 0, 0, 0, 0, 0,
+  static const int8_T iv260[256] = { 0, 1, 2, 3, 4, 5, 6, 7, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -152,7 +152,7 @@ commcodegen_CRCGenerator_18 *d_CRCGenerator_CRCGenerator
   d_obj->S0_isInitialized = FALSE;
   d_obj->S1_isReleased = FALSE;
   for (i = 0; i < 256; i++) {
-    d_obj->P0_CRCTable[i] = (uint32_T)iv227[i];
+    d_obj->P0_CRCTable[i] = (uint32_T)iv260[i];
   }
 
   return b_obj;

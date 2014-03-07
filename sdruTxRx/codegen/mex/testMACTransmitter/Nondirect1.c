@@ -3,7 +3,7 @@
  *
  * Code generation for function 'Nondirect1'
  *
- * C source code generated on: Thu Mar  6 19:04:23 2014
+ * C source code generated on: Thu Mar  6 22:22:39 2014
  *
  */
 
@@ -73,10 +73,10 @@ void e_Nondirect_stepImpl(commcodegen_BPSKModulator_2 *obj, const real_T
   commcodegen_BPSKModulator_2 *b_obj;
   int32_T tmp_size[2];
   creal_T tmp_data[563];
-  static int32_T iv116[2] = { 563, 1 };
+  static int32_T iv154[2] = { 563, 1 };
 
   b_obj = obj;
-  c_Outputs(&b_obj->cSFunObject, varargin_1, iv116, tmp_data, tmp_size);
+  c_Outputs(&b_obj->cSFunObject, varargin_1, iv154, tmp_data, tmp_size);
   memcpy(&varargout_1[0], &tmp_data[0], 563U * sizeof(creal_T));
 }
 
@@ -86,10 +86,10 @@ void f_Nondirect_stepImpl(commcodegen_BPSKModulator_2 *obj, const real_T
   commcodegen_BPSKModulator_2 *b_obj;
   int32_T tmp_size[2];
   creal_T tmp_data[563];
-  static int32_T iv117[2] = { 13, 1 };
+  static int32_T iv155[2] = { 13, 1 };
 
   b_obj = obj;
-  c_Outputs(&b_obj->cSFunObject, varargin_1, iv117, tmp_data, tmp_size);
+  c_Outputs(&b_obj->cSFunObject, varargin_1, iv155, tmp_data, tmp_size);
   memcpy(&varargout_1[0], &tmp_data[0], 13U * sizeof(creal_T));
 }
 
@@ -99,10 +99,10 @@ void g_Nondirect_stepImpl(commcodegen_BPSKModulator_3 *obj, const real_T
   commcodegen_BPSKModulator_3 *b_obj;
   int32_T tmp_size[2];
   creal_T tmp_data[563];
-  static int32_T iv233[2] = { 563, 1 };
+  static int32_T iv266[2] = { 563, 1 };
 
   b_obj = obj;
-  d_Outputs(&b_obj->cSFunObject, varargin_1, iv233, tmp_data, tmp_size);
+  d_Outputs(&b_obj->cSFunObject, varargin_1, iv266, tmp_data, tmp_size);
   memcpy(&varargout_1[0], &tmp_data[0], 563U * sizeof(creal_T));
 }
 
@@ -112,10 +112,10 @@ void h_Nondirect_stepImpl(commcodegen_BPSKModulator_3 *obj, const real_T
   commcodegen_BPSKModulator_3 *b_obj;
   int32_T tmp_size[2];
   creal_T tmp_data[563];
-  static int32_T iv234[2] = { 13, 1 };
+  static int32_T iv267[2] = { 13, 1 };
 
   b_obj = obj;
-  d_Outputs(&b_obj->cSFunObject, varargin_1, iv234, tmp_data, tmp_size);
+  d_Outputs(&b_obj->cSFunObject, varargin_1, iv267, tmp_data, tmp_size);
   memcpy(&varargout_1[0], &tmp_data[0], 13U * sizeof(creal_T));
 }
 

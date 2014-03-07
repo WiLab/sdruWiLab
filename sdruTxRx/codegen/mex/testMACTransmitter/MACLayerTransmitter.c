@@ -3,7 +3,7 @@
  *
  * Code generation for function 'MACLayerTransmitter'
  *
- * C source code generated on: Thu Mar  6 19:04:23 2014
+ * C source code generated on: Thu Mar  6 22:22:40 2014
  *
  */
 
@@ -13,128 +13,135 @@
 #include "MACLayerTransmitter.h"
 #include "PHYTransmit.h"
 #include "PHYReceive.h"
+#include "SpectrumSenseP25.h"
 #include "fprintf.h"
 #include "testMACTransmitter_data.h"
 #include <stdio.h>
 
 /* Variable Definitions */
-static emlrtRSInfo tl_emlrtRSI = { 39, "MACLayerTransmitter",
+static emlrtRSInfo xl_emlrtRSI = { 22, "MACLayerTransmitter",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/MACLayerTransmitter.m" };
 
-static emlrtRSInfo ul_emlrtRSI = { 40, "MACLayerTransmitter",
+static emlrtRSInfo yl_emlrtRSI = { 23, "MACLayerTransmitter",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/MACLayerTransmitter.m" };
 
-static emlrtRSInfo vl_emlrtRSI = { 46, "MACLayerTransmitter",
+static emlrtRSInfo am_emlrtRSI = { 44, "MACLayerTransmitter",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/MACLayerTransmitter.m" };
 
-static emlrtRSInfo wl_emlrtRSI = { 56, "MACLayerTransmitter",
+static emlrtRSInfo bm_emlrtRSI = { 45, "MACLayerTransmitter",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/MACLayerTransmitter.m" };
 
-static emlrtRSInfo xl_emlrtRSI = { 59, "MACLayerTransmitter",
+static emlrtRSInfo cm_emlrtRSI = { 51, "MACLayerTransmitter",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/MACLayerTransmitter.m" };
 
-static emlrtRSInfo yl_emlrtRSI = { 74, "MACLayerTransmitter",
+static emlrtRSInfo dm_emlrtRSI = { 61, "MACLayerTransmitter",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/MACLayerTransmitter.m" };
 
-static emlrtRSInfo am_emlrtRSI = { 75, "MACLayerTransmitter",
+static emlrtRSInfo em_emlrtRSI = { 64, "MACLayerTransmitter",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/MACLayerTransmitter.m" };
 
-static emlrtRSInfo bm_emlrtRSI = { 78, "MACLayerTransmitter",
+static emlrtRSInfo fm_emlrtRSI = { 79, "MACLayerTransmitter",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/MACLayerTransmitter.m" };
 
-static emlrtRSInfo cm_emlrtRSI = { 81, "MACLayerTransmitter",
+static emlrtRSInfo gm_emlrtRSI = { 80, "MACLayerTransmitter",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/MACLayerTransmitter.m" };
 
-static emlrtRSInfo dm_emlrtRSI = { 82, "MACLayerTransmitter",
+static emlrtRSInfo hm_emlrtRSI = { 84, "MACLayerTransmitter",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/MACLayerTransmitter.m" };
 
-static emlrtRSInfo em_emlrtRSI = { 83, "MACLayerTransmitter",
+static emlrtRSInfo im_emlrtRSI = { 87, "MACLayerTransmitter",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/MACLayerTransmitter.m" };
 
-static emlrtRSInfo jn_emlrtRSI = { 21, "MACLayerReceiver",
+static emlrtRSInfo jm_emlrtRSI = { 88, "MACLayerTransmitter",
+  "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/MACLayerTransmitter.m" };
+
+static emlrtRSInfo km_emlrtRSI = { 89, "MACLayerTransmitter",
+  "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/MACLayerTransmitter.m" };
+
+static emlrtRSInfo rt_emlrtRSI = { 21, "MACLayerReceiver",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/MACLayerReceiver.m" };
 
-static emlrtRSInfo kn_emlrtRSI = { 39, "MACLayerReceiver",
+static emlrtRSInfo st_emlrtRSI = { 39, "MACLayerReceiver",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/MACLayerReceiver.m" };
 
-static emlrtRSInfo ln_emlrtRSI = { 41, "MACLayerReceiver",
+static emlrtRSInfo tt_emlrtRSI = { 41, "MACLayerReceiver",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/MACLayerReceiver.m" };
 
-static emlrtRSInfo mn_emlrtRSI = { 42, "MACLayerReceiver",
+static emlrtRSInfo ut_emlrtRSI = { 42, "MACLayerReceiver",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/MACLayerReceiver.m" };
 
-static emlrtRSInfo nn_emlrtRSI = { 59, "MACLayerReceiver",
+static emlrtRSInfo vt_emlrtRSI = { 59, "MACLayerReceiver",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/MACLayerReceiver.m" };
 
-static emlrtRSInfo on_emlrtRSI = { 61, "MACLayerReceiver",
+static emlrtRSInfo wt_emlrtRSI = { 61, "MACLayerReceiver",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/MACLayerReceiver.m" };
 
-static emlrtRSInfo pn_emlrtRSI = { 63, "MACLayerReceiver",
+static emlrtRSInfo xt_emlrtRSI = { 63, "MACLayerReceiver",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/MACLayerReceiver.m" };
 
-static emlrtRSInfo qn_emlrtRSI = { 64, "MACLayerReceiver",
+static emlrtRSInfo yt_emlrtRSI = { 64, "MACLayerReceiver",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/MACLayerReceiver.m" };
 
-static emlrtRSInfo rn_emlrtRSI = { 65, "MACLayerReceiver",
+static emlrtRSInfo au_emlrtRSI = { 65, "MACLayerReceiver",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/MACLayerReceiver.m" };
 
-static emlrtRSInfo sn_emlrtRSI = { 95, "DLLayer",
+static emlrtRSInfo bu_emlrtRSI = { 95, "DLLayer",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/DLLayer.m" };
 
-static emlrtRSInfo tn_emlrtRSI = { 97, "DLLayer",
+static emlrtRSInfo cu_emlrtRSI = { 97, "DLLayer",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/DLLayer.m" };
 
-static emlrtRSInfo un_emlrtRSI = { 76, "DLLayer",
+static emlrtRSInfo du_emlrtRSI = { 76, "DLLayer",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/DLLayer.m" };
 
-static emlrtRSInfo vn_emlrtRSI = { 48, "DLLayer",
+static emlrtRSInfo eu_emlrtRSI = { 48, "DLLayer",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/DLLayer.m" };
 
-static emlrtRSInfo wn_emlrtRSI = { 62, "DLLayer",
+static emlrtRSInfo fu_emlrtRSI = { 62, "DLLayer",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/DLLayer.m" };
 
-static emlrtRSInfo xn_emlrtRSI = { 64, "DLLayer",
+static emlrtRSInfo gu_emlrtRSI = { 64, "DLLayer",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/DLLayer.m" };
 
-static emlrtRSInfo yn_emlrtRSI = { 116, "DLLayer",
+static emlrtRSInfo hu_emlrtRSI = { 116, "DLLayer",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/DLLayer.m" };
 
-static emlrtECInfo p_emlrtECI = { 2, 32, 1, "DLLayer",
+static emlrtECInfo y_emlrtECI = { 2, 32, 1, "DLLayer",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/DLLayer.m" };
 
-static emlrtECInfo q_emlrtECI = { 2, 101, 17, "DLLayer",
+static emlrtECInfo ab_emlrtECI = { 2, 101, 17, "DLLayer",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/DLLayer.m" };
 
-static emlrtBCInfo eb_emlrtBCI = { -1, -1, 106, 28, "Response", "DLLayer",
+static emlrtBCInfo tb_emlrtBCI = { -1, -1, 106, 28, "Response", "DLLayer",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/DLLayer.m", 0 };
 
-static emlrtECInfo r_emlrtECI = { 2, 106, 17, "DLLayer",
+static emlrtECInfo bb_emlrtECI = { 2, 106, 17, "DLLayer",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/DLLayer.m" };
 
-static emlrtECInfo s_emlrtECI = { 2, 77, 17, "DLLayer",
+static emlrtECInfo cb_emlrtECI = { 2, 77, 17, "DLLayer",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/DLLayer.m" };
 
-static emlrtECInfo t_emlrtECI = { 2, 43, 17, "DLLayer",
+static emlrtECInfo db_emlrtECI = { 2, 43, 17, "DLLayer",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/DLLayer.m" };
 
-static emlrtBCInfo fb_emlrtBCI = { -1, -1, 104, 39, "Response", "DLLayer",
+static emlrtBCInfo ub_emlrtBCI = { -1, -1, 104, 39, "Response", "DLLayer",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/DLLayer.m", 0 };
 
-static emlrtBCInfo gb_emlrtBCI = { -1, -1, 105, 37, "Response", "DLLayer",
+static emlrtBCInfo vb_emlrtBCI = { -1, -1, 105, 37, "Response", "DLLayer",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/DLLayer.m", 0 };
 
-static emlrtBCInfo hb_emlrtBCI = { -1, -1, 99, 39, "Response", "DLLayer",
+static emlrtBCInfo wb_emlrtBCI = { -1, -1, 99, 39, "Response", "DLLayer",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/DLLayer.m", 0 };
 
-static emlrtBCInfo ib_emlrtBCI = { -1, -1, 100, 37, "Response", "DLLayer",
+static emlrtBCInfo xb_emlrtBCI = { -1, -1, 100, 37, "Response", "DLLayer",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/DLLayer.m", 0 };
 
-static emlrtBCInfo jb_emlrtBCI = { 1, 3, 63, 79, "tx.offsetTable",
+static emlrtBCInfo yb_emlrtBCI = { 1, 3, 63, 79, "tx.offsetTable",
   "MACLayerReceiver",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/MACLayerReceiver.m", 0 };
 
 /* Function Declarations */
-static void b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
+static boolean_T b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
   emlrtStack *sp, comm_AGC *ObjAGC, comm_SDRuReceiver *ObjSDRuReceiver,
   comm_SDRuTransmitter *ObjSDRuTransmitter, commcodegen_CRCDetector *ObjDetect,
   OFDMDemodulator_1 *ObjPreambleDemod, OFDMDemodulator_1 *ObjDataDemod, const
@@ -142,16 +149,21 @@ static void b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
   char_T previousMessage_data[77], int32_T previousMessage_size[2]);
 
 /* Function Definitions */
-static void b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
+static boolean_T b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
   emlrtStack *sp, comm_AGC *ObjAGC, comm_SDRuReceiver *ObjSDRuReceiver,
   comm_SDRuTransmitter *ObjSDRuTransmitter, commcodegen_CRCDetector *ObjDetect,
   OFDMDemodulator_1 *ObjPreambleDemod, OFDMDemodulator_1 *ObjDataDemod, const
   c_struct_T *estimate, const e_struct_T *tx, const real_T messageBits_data[563],
   char_T previousMessage_data[77], int32_T previousMessage_size[2])
 {
+  boolean_T msgStatus;
+  int32_T tries;
+  int32_T state;
+  real_T decisions[10];
+  real_T destNodeID;
+  int16_T i36;
   comm_SDRuTransmitter *obj;
   boolean_T flag;
-  int32_T tries;
   boolean_T exitg1;
   comm_AGC *b_ObjAGC;
   comm_SDRuReceiver *b_ObjSDRuReceiver;
@@ -159,8 +171,6 @@ static void b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
   OFDMDemodulator_1 *b_ObjPreambleDemod;
   OFDMDemodulator_1 *b_ObjDataDemod;
   int32_T originNodeID;
-  real_T destNodeID;
-  int32_T state;
   real_T timeouts;
   int32_T Response_size[2];
   int32_T exitg10;
@@ -173,11 +183,11 @@ static void b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
   int8_T sza[2];
   int32_T exitg16;
   int32_T exitg15;
-  static const char_T cv300[7] = { 'T', 'i', 'm', 'e', 'o', 'u', 't' };
+  static const char_T cv343[7] = { 'T', 'i', 'm', 'e', 'o', 'u', 't' };
 
   int32_T exitg14;
   int32_T exitg13;
-  static const char_T cv301[9] = { 'C', 'R', 'C', ' ', 'E', 'r', 'r', 'o', 'r' };
+  static const char_T cv344[9] = { 'C', 'R', 'C', ' ', 'E', 'r', 'r', 'o', 'r' };
 
   int8_T szb[2];
   int32_T exitg12;
@@ -191,13 +201,13 @@ static void b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
   boolean_T b_guard1 = FALSE;
   int32_T exitg7;
   int32_T exitg6;
-  static const char_T cv302[9] = { 'D', 'u', 'p', 'l', 'i', 'c', 'a', 't', 'e' };
+  static const char_T cv345[9] = { 'D', 'u', 'p', 'l', 'i', 'c', 'a', 't', 'e' };
 
   int32_T exitg5;
   int32_T exitg4;
   int32_T exitg3;
   int32_T exitg2;
-  static const char_T cv303[3] = { 'A', 'C', 'K' };
+  static const char_T cv346[3] = { 'A', 'C', 'K' };
 
   emlrtStack st;
   emlrtStack b_st;
@@ -214,29 +224,54 @@ static void b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
   /*   %Values/Vectors */
   /* % This function is called when the node wants to transmit something */
   /*  % Sense spectrum and wait until it is unoccupied */
-  /*  for tries = 1:4 % try only so many times */
-  /*      occupied = PHY.Sense; */
-  /*      if occupied */
-  /*          fprintf('MAC| Spectrum occupied, listening...\n'); */
-  /*          %Recover signal and/or wait */
-  /*          lookingForACK = false; */
-  /*          MACLayerReceiver(PHY,lookingForACK); */
-  /*      else% Yay we can transmit now */
-  /*          break; */
-  /*      end     */
-  /*      if tries >=4 */
-  /*          fprintf('MAC| Spectrum Busy, try again later\n'); */
-  /*          return; */
-  /*      end */
-  /*  end */
+  for (tries = 0; tries < 4; tries++) {
+    /*  try only so many times */
+    for (state = 0; state < 10; state++) {
+      st.site = &xl_emlrtRSI;
+      SpectrumSenseP25(SD, &st, ObjAGC, ObjSDRuReceiver, decisions);
+      destNodeID = muDoubleScalarRound(decisions[state]);
+      if (destNodeID < 32768.0) {
+        if (destNodeID >= -32768.0) {
+          i36 = (int16_T)destNodeID;
+        } else {
+          i36 = MIN_int16_T;
+        }
+      } else if (destNodeID >= 32768.0) {
+        i36 = MAX_int16_T;
+      } else {
+        i36 = 0;
+      }
+
+      st.site = &yl_emlrtRSI;
+      d_fprintf(&st, (int16_T)(1 + state), i36);
+      emlrtBreakCheckFastR2012b(emlrtBreakCheckR2012bFlagVar, sp);
+    }
+
+    /*      if occupied */
+    /*          fprintf('MAC| Spectrum occupied, listening...\n'); */
+    /*          %Recover signal and/or wait */
+    /*          lookingForACK = false; */
+    /*          %MACLayerReceiver(PHY,lookingForACK); */
+    /*      else% Yay we can transmit now */
+    /*          break; */
+    /*      end     */
+    /*      if tries >=4 */
+    /*          fprintf('MAC| Spectrum Busy, try again later\n'); */
+    /*          return; */
+    /*      end */
+    emlrtBreakCheckFastR2012b(emlrtBreakCheckR2012bFlagVar, sp);
+  }
+
+  msgStatus = FALSE;
+
   /*  Adjust offset for node */
-  st.site = &tl_emlrtRSI;
-  b_fprintf(&st, 1, tx->offsetTable[0]);
-  st.site = &ul_emlrtRSI;
+  st.site = &am_emlrtRSI;
+  f_fprintf(&st, 1, tx->offsetTable[0]);
+  st.site = &bm_emlrtRSI;
   obj = ObjSDRuTransmitter;
   b_st.site = &gb_emlrtRSI;
   obj->CenterFrequency = 2.24E+9 + tx->offsetTable[0];
-  c_st.site = &vj_emlrtRSI;
+  c_st.site = &ck_emlrtRSI;
   b_st.site = &gb_emlrtRSI;
   if (obj->isInitialized && (!obj->isReleased)) {
     flag = TRUE;
@@ -256,19 +291,19 @@ static void b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
     /*  Send message */
     /* %originator */
     /* %destination */
-    st.site = &vl_emlrtRSI;
+    st.site = &cm_emlrtRSI;
     PHYTransmit(SD, &st, ObjSDRuTransmitter, ObjSDRuReceiver, tx->nodeNum);
 
     /*  Listen for acknowledgement */
     /* fprintf('###########################################\n'); */
-    st.site = &wl_emlrtRSI;
-    d_fprintf(&st);
+    st.site = &dm_emlrtRSI;
+    h_fprintf(&st);
 
     /*  Call Receiver */
     /*            %Objects */
     /*          %Structs */
     /*   %Values/Vectors */
-    st.site = &xl_emlrtRSI;
+    st.site = &em_emlrtRSI;
     b_ObjAGC = ObjAGC;
     b_ObjSDRuReceiver = ObjSDRuReceiver;
     obj = ObjSDRuTransmitter;
@@ -286,7 +321,7 @@ static void b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
     /*            %Objects */
     /*          %Structs */
     /*   %Values/Vectors */
-    b_st.site = &jn_emlrtRSI;
+    b_st.site = &rt_emlrtRSI;
 
     /*            %Objects */
     /*          %Structs */
@@ -307,7 +342,7 @@ static void b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
 
     /*  Counter */
     /*  Message string holder */
-    emlrtDimSizeGeqCheckFastR2012b(80, 0, &p_emlrtECI, &b_st);
+    emlrtDimSizeGeqCheckFastR2012b(80, 0, &y_emlrtECI, &b_st);
     Response_size[0] = 1;
     Response_size[1] = 0;
 
@@ -321,7 +356,7 @@ static void b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
        case 0:
         /* Wait for message */
         if (timeouts > 10.0) {
-          emlrtDimSizeGeqCheckFastR2012b(80, 7, &t_emlrtECI, &b_st);
+          emlrtDimSizeGeqCheckFastR2012b(80, 7, &db_emlrtECI, &b_st);
           Response_size[0] = 1;
           Response_size[1] = 7;
           for (state = 0; state < 7; state++) {
@@ -334,14 +369,14 @@ static void b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
           /*            %Objects */
           /*          %Structs */
           /*   %Values/Vectors */
-          SD->f14.estimate = *estimate;
+          SD->f15.estimate = *estimate;
           messageBits_size[0] = 1;
           messageBits_size[1] = 563;
           memcpy(&b_messageBits_data[0], &messageBits_data[0], 563U * sizeof
                  (real_T));
-          c_st.site = &vn_emlrtRSI;
+          c_st.site = &eu_emlrtRSI;
           PHYReceive(SD, &c_st, b_ObjAGC, b_ObjSDRuReceiver, b_ObjDetect,
-                     b_ObjPreambleDemod, b_ObjDataDemod, &SD->f14.estimate,
+                     b_ObjPreambleDemod, b_ObjDataDemod, &SD->f15.estimate,
                      tx->shortPreambleOFDM, tx->longPreamble, tx->pilots,
                      tx->pilotLocationsWithoutGuardbands,
                      tx->dataSubcarrierIndexies.data,
@@ -349,7 +384,7 @@ static void b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
                      messageBits_size, Response_data, Response_size);
 
           /*  Choose next state */
-          c_st.site = &wn_emlrtRSI;
+          c_st.site = &fu_emlrtRSI;
           flag = FALSE;
           for (state = 0; state < 2; state++) {
             sza[state] = (int8_T)Response_size[state];
@@ -375,7 +410,7 @@ static void b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
             do {
               exitg15 = 0;
               if (state <= Response_size[1] - 1) {
-                if (Response_data[state] != cv300[state]) {
+                if (Response_data[state] != cv343[state]) {
                   exitg15 = 1;
                 } else {
                   state++;
@@ -390,7 +425,7 @@ static void b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
           if (flag) {
             state = 1;
           } else {
-            c_st.site = &xn_emlrtRSI;
+            c_st.site = &gu_emlrtRSI;
             flag = FALSE;
             for (state = 0; state < 2; state++) {
               sza[state] = (int8_T)Response_size[state];
@@ -416,7 +451,7 @@ static void b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
               do {
                 exitg13 = 0;
                 if (state <= Response_size[1] - 1) {
-                  if (Response_data[state] != cv301[state]) {
+                  if (Response_data[state] != cv344[state]) {
                     exitg13 = 1;
                   } else {
                     state++;
@@ -445,9 +480,9 @@ static void b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
         timeouts++;
         if (timeouts > 10.0) {
           /* if DebugFlag;fprintf('DL| Max timeouts reached\n');end */
-          c_st.site = &un_emlrtRSI;
-          h_fprintf(&c_st);
-          emlrtDimSizeGeqCheckFastR2012b(80, 7, &s_emlrtECI, &b_st);
+          c_st.site = &du_emlrtRSI;
+          l_fprintf(&c_st);
+          emlrtDimSizeGeqCheckFastR2012b(80, 7, &cb_emlrtECI, &b_st);
           Response_size[0] = 1;
           Response_size[1] = 7;
           for (state = 0; state < 7; state++) {
@@ -478,7 +513,7 @@ static void b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
         /* disp(['DL| MSG: ',Response]) */
         /* disp(['DL| Timeouts: ',num2str(timeouts)]) */
         /*  Final Duplication check */
-        c_st.site = &sn_emlrtRSI;
+        c_st.site = &bu_emlrtRSI;
         flag = FALSE;
         for (state = 0; state < 2; state++) {
           sza[state] = (int8_T)previousMessage_size[state];
@@ -523,8 +558,8 @@ static void b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
         if (flag) {
           /* Dupe */
           /* if DebugFlag;fprintf('DL| Duplicate Message\n');end */
-          c_st.site = &tn_emlrtRSI;
-          f_fprintf(&c_st);
+          c_st.site = &cu_emlrtRSI;
+          j_fprintf(&c_st);
           previousMessage_size[0] = 1;
           previousMessage_size[1] = Response_size[1];
           loop_ub = Response_size[1];
@@ -537,16 +572,16 @@ static void b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
           state = Response_size[1] - 2;
           originNodeID = (uint8_T)
             Response_data[emlrtDynamicBoundsCheckFastR2012b(state, 1,
-            Response_size[1], &hb_emlrtBCI, &b_st) - 1] - 48;
+            Response_size[1], &wb_emlrtBCI, &b_st) - 1] - 48;
 
           /* extract node ID and convert char to number */
           state = Response_size[1] - 1;
           destNodeID = (real_T)(uint8_T)
             Response_data[emlrtDynamicBoundsCheckFastR2012b(state, 1,
-            Response_size[1], &ib_emlrtBCI, &b_st) - 1] - 48.0;
+            Response_size[1], &xb_emlrtBCI, &b_st) - 1] - 48.0;
 
           /* extract node ID and convert char to number */
-          emlrtDimSizeGeqCheckFastR2012b(80, 9, &q_emlrtECI, &b_st);
+          emlrtDimSizeGeqCheckFastR2012b(80, 9, &ab_emlrtECI, &b_st);
           Response_size[0] = 1;
           Response_size[1] = 9;
           for (state = 0; state < 9; state++) {
@@ -568,26 +603,26 @@ static void b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
           state = Response_size[1] - 2;
           originNodeID = (uint8_T)
             Response_data[emlrtDynamicBoundsCheckFastR2012b(state, 1,
-            Response_size[1], &fb_emlrtBCI, &b_st) - 1] - 48;
+            Response_size[1], &ub_emlrtBCI, &b_st) - 1] - 48;
 
           /* extract node ID and convert char to number */
           state = Response_size[1] - 1;
           destNodeID = (real_T)(uint8_T)
             Response_data[emlrtDynamicBoundsCheckFastR2012b(state, 1,
-            Response_size[1], &gb_emlrtBCI, &b_st) - 1] - 48.0;
+            Response_size[1], &vb_emlrtBCI, &b_st) - 1] - 48.0;
 
           /* extract node ID and convert char to number */
           if (1 > Response_size[1] - 3) {
             loop_ub = 0;
           } else {
             emlrtDynamicBoundsCheckFastR2012b(1, 1, Response_size[1],
-              &eb_emlrtBCI, &b_st);
+              &tb_emlrtBCI, &b_st);
             state = Response_size[1] - 3;
             loop_ub = emlrtDynamicBoundsCheckFastR2012b(state, 1, Response_size
-              [1], &eb_emlrtBCI, &b_st);
+              [1], &tb_emlrtBCI, &b_st);
           }
 
-          emlrtDimSizeGeqCheckFastR2012b(80, loop_ub, &r_emlrtECI, &b_st);
+          emlrtDimSizeGeqCheckFastR2012b(80, loop_ub, &bb_emlrtECI, &b_st);
           for (state = 0; state < loop_ub; state++) {
             b_Response_data[state] = Response_data[state];
           }
@@ -615,7 +650,7 @@ static void b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
     } while (exitg10 == 0);
 
     /*  Final check */
-    c_st.site = &yn_emlrtRSI;
+    c_st.site = &hu_emlrtRSI;
     if (muDoubleScalarAbs(destNodeID) > 3.0) {
       destNodeID = tx->nodeNum;
 
@@ -625,7 +660,7 @@ static void b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
     /* % Possible response messages */
     /*  1.) Timeout */
     /*  2.) Some message */
-    b_st.site = &kn_emlrtRSI;
+    b_st.site = &st_emlrtRSI;
     flag = FALSE;
     for (state = 0; state < 2; state++) {
       sza[state] = (int8_T)Response_size[state];
@@ -651,7 +686,7 @@ static void b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
       do {
         exitg8 = 0;
         if (state <= Response_size[1] - 1) {
-          if (Response_data[state] != cv300[state]) {
+          if (Response_data[state] != cv343[state]) {
             exitg8 = 1;
           } else {
             state++;
@@ -665,7 +700,7 @@ static void b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
 
     b_guard1 = FALSE;
     if (!flag) {
-      b_st.site = &kn_emlrtRSI;
+      b_st.site = &st_emlrtRSI;
       flag = FALSE;
       for (state = 0; state < 2; state++) {
         sza[state] = (int8_T)Response_size[state];
@@ -691,7 +726,7 @@ static void b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
         do {
           exitg6 = 0;
           if (state <= Response_size[1] - 1) {
-            if (Response_data[state] != cv302[state]) {
+            if (Response_data[state] != cv345[state]) {
               exitg6 = 1;
             } else {
               state++;
@@ -705,10 +740,10 @@ static void b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
 
       if (!flag) {
         /* fprintf('###########################################\n'); */
-        b_st.site = &ln_emlrtRSI;
-        j_fprintf(&b_st, Response_data, Response_size);
-        b_st.site = &mn_emlrtRSI;
-        l_fprintf(&b_st, (int16_T)originNodeID);
+        b_st.site = &tt_emlrtRSI;
+        n_fprintf(&b_st, Response_data, Response_size);
+        b_st.site = &ut_emlrtRSI;
+        p_fprintf(&b_st, (int16_T)originNodeID);
       } else {
         b_guard1 = TRUE;
       }
@@ -717,7 +752,7 @@ static void b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
     }
 
     if (b_guard1 == TRUE) {
-      b_st.site = &nn_emlrtRSI;
+      b_st.site = &vt_emlrtRSI;
       flag = FALSE;
       for (state = 0; state < 2; state++) {
         sza[state] = (int8_T)Response_size[state];
@@ -743,7 +778,7 @@ static void b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
         do {
           exitg4 = 0;
           if (state <= Response_size[1] - 1) {
-            if (Response_data[state] != cv302[state]) {
+            if (Response_data[state] != cv345[state]) {
               exitg4 = 1;
             } else {
               state++;
@@ -756,15 +791,15 @@ static void b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
       }
 
       if (flag) {
-        b_st.site = &on_emlrtRSI;
-        n_fprintf(&b_st);
+        b_st.site = &wt_emlrtRSI;
+        r_fprintf(&b_st);
 
         /*     %% Send ACK */
-        b_st.site = &pn_emlrtRSI;
-        b_fprintf(&b_st, (int16_T)originNodeID, tx->
+        b_st.site = &xt_emlrtRSI;
+        f_fprintf(&b_st, (int16_T)originNodeID, tx->
                   offsetTable[emlrtDynamicBoundsCheckFastR2012b(originNodeID, 1,
-                   3, &jb_emlrtBCI, &st) - 1]);
-        b_st.site = &qn_emlrtRSI;
+                   3, &yb_emlrtBCI, &st) - 1]);
+        b_st.site = &yt_emlrtRSI;
         c_st.site = &gb_emlrtRSI;
         obj->CenterFrequency = 2.24E+9 + tx->offsetTable[originNodeID - 1];
         c_st.site = &gb_emlrtRSI;
@@ -780,13 +815,13 @@ static void b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
         }
 
         /*  Adjust offset for node */
-        b_st.site = &rn_emlrtRSI;
+        b_st.site = &au_emlrtRSI;
         b_PHYTransmit(SD, &b_st, obj, b_ObjSDRuReceiver, originNodeID,
                       destNodeID);
       }
     }
 
-    st.site = &yl_emlrtRSI;
+    st.site = &fm_emlrtRSI;
     flag = FALSE;
     for (state = 0; state < 2; state++) {
       sza[state] = (int8_T)Response_size[state];
@@ -812,7 +847,7 @@ static void b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
       do {
         exitg2 = 0;
         if (state <= Response_size[1] - 1) {
-          if (Response_data[state] != cv303[state]) {
+          if (Response_data[state] != cv346[state]) {
             exitg2 = 1;
           } else {
             state++;
@@ -825,19 +860,20 @@ static void b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
     }
 
     if (flag) {
-      st.site = &am_emlrtRSI;
-      p_fprintf(&st);
+      st.site = &gm_emlrtRSI;
+      t_fprintf(&st);
+      msgStatus = TRUE;
       exitg1 = TRUE;
     } else {
-      st.site = &bm_emlrtRSI;
-      r_fprintf(&st);
+      st.site = &hm_emlrtRSI;
+      v_fprintf(&st);
       if (tries + 1 >= 4) {
-        st.site = &cm_emlrtRSI;
-        t_fprintf(&st);
-        st.site = &dm_emlrtRSI;
-        v_fprintf(&st);
-        st.site = &em_emlrtRSI;
-        t_fprintf(&st);
+        st.site = &im_emlrtRSI;
+        x_fprintf(&st);
+        st.site = &jm_emlrtRSI;
+        ab_fprintf(&st);
+        st.site = &km_emlrtRSI;
+        x_fprintf(&st);
         exitg1 = TRUE;
       } else {
         tries++;
@@ -845,6 +881,8 @@ static void b_MACLayerTransmitter(testMACTransmitterStackData *SD, const
       }
     }
   }
+
+  return msgStatus;
 }
 
 void MACLayerTransmitter(testMACTransmitterStackData *SD, const emlrtStack *sp,
@@ -853,7 +891,8 @@ void MACLayerTransmitter(testMACTransmitterStackData *SD, const emlrtStack *sp,
   *ObjPreambleDemod, OFDMDemodulator_1 *ObjDataDemod, const c_struct_T *estimate,
   const e_struct_T *tx, const real_T messageBits_data[563], const char_T
   previousMessage_data[77], const int32_T previousMessage_size[2], char_T
-  b_previousMessage_data[77], int32_T b_previousMessage_size[2])
+  b_previousMessage_data[77], int32_T b_previousMessage_size[2], boolean_T
+  *msgStatus)
 {
   int32_T loop_ub;
   int32_T i15;
@@ -864,10 +903,9 @@ void MACLayerTransmitter(testMACTransmitterStackData *SD, const emlrtStack *sp,
     b_previousMessage_data[i15] = previousMessage_data[i15];
   }
 
-  b_MACLayerTransmitter(SD, sp, ObjAGC, ObjSDRuReceiver, ObjSDRuTransmitter,
-                        ObjDetect, ObjPreambleDemod, ObjDataDemod, estimate, tx,
-                        messageBits_data, b_previousMessage_data,
-                        b_previousMessage_size);
+  *msgStatus = b_MACLayerTransmitter(SD, sp, ObjAGC, ObjSDRuReceiver,
+    ObjSDRuTransmitter, ObjDetect, ObjPreambleDemod, ObjDataDemod, estimate, tx,
+    messageBits_data, b_previousMessage_data, b_previousMessage_size);
 }
 
 /* End of code generation (MACLayerTransmitter.c) */

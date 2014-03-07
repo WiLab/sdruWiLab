@@ -2,7 +2,7 @@ function [ObjAGC,ObjSDRuReceiver, ObjSDRuTransmitter, ObjDetect, ObjPreambleDemo
           estimate, tx, timeoutDuration, messageBits, desiredSamplingFrequency] = CreateTXRX
 
 % System parameters to adjust because of hardware limitation
-numFrames = 1; % Frames to capture
+numFrames = 3; % Frames to capture
 desiredSamplingFrequency =  5e6;
 USRPADCSamplingRate = 100e6;
 InterpolationFactor = USRPADCSamplingRate/desiredSamplingFrequency;

@@ -3,7 +3,7 @@
  *
  * Code generation for function 'OFDMModulator'
  *
- * C source code generated on: Thu Mar  6 19:04:22 2014
+ * C source code generated on: Thu Mar  6 22:22:38 2014
  *
  */
 
@@ -19,7 +19,7 @@
 #include <stdio.h>
 
 /* Variable Definitions */
-static emlrtRTEInfo i_emlrtRTEI = { 391, 19, "OFDMModulator",
+static emlrtRTEInfo k_emlrtRTEI = { 391, 19, "OFDMModulator",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/OFDMModulator.m" };
 
 static emlrtBCInfo b_emlrtBCI = { 1, 64, 403, 9, "packedData", "OFDMModulator",
@@ -84,11 +84,11 @@ void OFDMModulator_stepImpl(const emlrtStack *sp, const OFDMModulator *obj,
     packedData[i].im = 0.0;
   }
 
-  emxInit_int32_T(sp, &r0, 1, &i_emlrtRTEI, TRUE);
+  emxInit_int32_T(sp, &r0, 1, &k_emlrtRTEI, TRUE);
   iy = r0->size[0];
   r0->size[0] = obj->pDataLinearIndices->size[0];
   emxEnsureCapacity(sp, (emxArray__common *)r0, iy, (int32_T)sizeof(int32_T),
-                    &i_emlrtRTEI);
+                    &k_emlrtRTEI);
   ia = obj->pDataLinearIndices->size[0];
   for (iy = 0; iy < ia; iy++) {
     temp_re = obj->pDataLinearIndices->data[iy];
@@ -326,29 +326,29 @@ OFDMModulator_1 *b_OFDMModulator_OFDMModulator(const emlrtStack *sp,
   /*          {'real','integer','positive','finite','3d'}, ... */
   /*          [class(obj) '.' propName], propName);   */
   /*  Check the 3rd dimension for numTx */
-  f_st.site = &xh_emlrtRSI;
-  g_st.site = &yh_emlrtRSI;
+  f_st.site = &ei_emlrtRSI;
+  g_st.site = &fi_emlrtRSI;
   for (i = 0; i < 4; i++) {
     b_data[i] = (int8_T)(12 + 14 * i);
   }
 
-  h_st.site = &pi_emlrtRSI;
+  h_st.site = &vi_emlrtRSI;
   nb = 0;
-  h_st.site = &ni_emlrtRSI;
-  h_st.site = &mi_emlrtRSI;
-  i = 1;
-  while (i <= 4) {
-    x = b_data[i - 1];
+  h_st.site = &ti_emlrtRSI;
+  h_st.site = &si_emlrtRSI;
+  i = 0;
+  while (i + 1 <= 4) {
+    x = b_data[i];
     do {
       exitg1 = 0;
-      h_st.site = &li_emlrtRSI;
+      h_st.site = &ri_emlrtRSI;
       i++;
-      if (i > 4) {
+      if (i + 1 > 4) {
         exitg1 = 1;
       } else {
-        h_st.site = &ki_emlrtRSI;
+        h_st.site = &qi_emlrtRSI;
         frexp((real_T)x / 2.0, &exponent);
-        if (muDoubleScalarAbs(x - b_data[i - 1]) < ldexp(1.0, exponent - 53)) {
+        if (muDoubleScalarAbs(x - b_data[i]) < ldexp(1.0, exponent - 53)) {
           p = TRUE;
         } else {
           p = FALSE;
@@ -360,16 +360,16 @@ OFDMModulator_1 *b_OFDMModulator_OFDMModulator(const emlrtStack *sp,
       }
     } while (exitg1 == 0);
 
-    h_st.site = &ji_emlrtRSI;
+    h_st.site = &pi_emlrtRSI;
     nb++;
     b_data[nb - 1] = (int8_T)x;
-    h_st.site = &ii_emlrtRSI;
-    h_st.site = &ii_emlrtRSI;
+    h_st.site = &oi_emlrtRSI;
+    h_st.site = &oi_emlrtRSI;
   }
 
-  h_st.site = &ei_emlrtRSI;
-  h_st.site = &di_emlrtRSI;
-  h_st.site = &ai_emlrtRSI;
+  h_st.site = &ki_emlrtRSI;
+  h_st.site = &ji_emlrtRSI;
+  h_st.site = &gi_emlrtRSI;
   if (1 > nb) {
     b0 = FALSE;
   } else {
@@ -381,8 +381,8 @@ OFDMModulator_1 *b_OFDMModulator_OFDMModulator(const emlrtStack *sp,
     check_forloop_overflow_error(&i_st);
   }
 
-  f_st.site = &xh_emlrtRSI;
-  f_st.site = &xh_emlrtRSI;
+  f_st.site = &ei_emlrtRSI;
+  f_st.site = &ei_emlrtRSI;
   if (1 > nb) {
     i1 = 0;
   } else {
@@ -399,7 +399,7 @@ OFDMModulator_1 *b_OFDMModulator_OFDMModulator(const emlrtStack *sp,
 
     emlrtInitCharArrayR2013a(&f_st, 13, m7, cv58);
     emlrtAssign(&y, m7);
-    g_st.site = &bw_emlrtRSI;
+    g_st.site = &lbb_emlrtRSI;
     c_error(&g_st, b_message(&g_st, y, &g_emlrtMCI), &g_emlrtMCI);
   }
 

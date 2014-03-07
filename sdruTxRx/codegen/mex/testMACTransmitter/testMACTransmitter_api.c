@@ -3,7 +3,7 @@
  *
  * Code generation for function 'testMACTransmitter_api'
  *
- * C source code generated on: Thu Mar  6 19:04:25 2014
+ * C source code generated on: Thu Mar  6 22:22:41 2014
  *
  */
 
@@ -48,13 +48,13 @@ static real_T (*h_emlrt_marshallIn(const emlrtStack *sp, const mxArray *src,
   const emlrtMsgIdentifier *msgId))[3]
 {
   real_T (*ret)[3];
-  int32_T iv247[2];
-  int32_T i32;
-  for (i32 = 0; i32 < 2; i32++) {
-    iv247[i32] = 1 + (i32 << 1);
+  int32_T iv280[2];
+  int32_T i35;
+  for (i35 = 0; i35 < 2; i35++) {
+    iv280[i35] = 1 + (i35 << 1);
   }
 
-  emlrtCheckBuiltInR2012b(sp, msgId, src, "double", FALSE, 2U, iv247);
+  emlrtCheckBuiltInR2012b(sp, msgId, src, "double", FALSE, 2U, iv280);
   ret = (real_T (*)[3])mxGetData(src);
   emlrtDestroyArray(&src);
   return ret;

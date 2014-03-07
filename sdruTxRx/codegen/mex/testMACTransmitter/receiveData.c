@@ -3,7 +3,7 @@
  *
  * Code generation for function 'receiveData'
  *
- * C source code generated on: Thu Mar  6 19:04:24 2014
+ * C source code generated on: Thu Mar  6 22:22:40 2014
  *
  */
 
@@ -17,7 +17,7 @@
 #include <stdio.h>
 
 /* Variable Definitions */
-static emlrtRSInfo hn_emlrtRSI = { 7, "receiveData",
+static emlrtRSInfo jn_emlrtRSI = { 7, "receiveData",
   "/Users/travis/Documents/sdru/usrp_uhd_mapi/receiveData.m" };
 
 /* Function Definitions */
@@ -27,12 +27,12 @@ void receiveData(const emlrtStack *sp, int32_T driverApiH, real_T freq, real_T
                  *errStat, char_T errStr_data[1024], int32_T errStr_size[2])
 {
   const mxArray *y;
-  static const int32_T iv155[2] = { 1, 6 };
+  static const int32_T iv121[2] = { 1, 6 };
 
-  const mxArray *m25;
-  char_T cv177[6];
+  const mxArray *m19;
+  char_T cv139[6];
   int32_T i;
-  static const char_T cv178[6] = { 's', 'i', 'l', 'e', 'n', 't' };
+  static const char_T cv140[6] = { 's', 'i', 'l', 'e', 'n', 't' };
 
   const mxArray *b_y;
   int32_T loop_ub;
@@ -45,7 +45,7 @@ void receiveData(const emlrtStack *sp, int32_T driverApiH, real_T freq, real_T
   b_st.tls = st.tls;
 
   /*    Copyright 2011-2012 The MathWorks, Inc. */
-  st.site = &hn_emlrtRSI;
+  st.site = &jn_emlrtRSI;
 
   /*  */
   /*  This function unifies handling of interp vs. codegen call as well as */
@@ -54,15 +54,15 @@ void receiveData(const emlrtStack *sp, int32_T driverApiH, real_T freq, real_T
   /*    Copyright 2011-2013 The MathWorks, Inc. */
   if (!isSetupsdruCalled) {
     y = NULL;
-    m25 = mxCreateCharArray(2, iv155);
+    m19 = mxCreateCharArray(2, iv121);
     for (i = 0; i < 6; i++) {
-      cv177[i] = cv178[i];
+      cv139[i] = cv140[i];
     }
 
-    emlrtInitCharArrayR2013a(&st, 6, m25, cv177);
-    emlrtAssign(&y, m25);
-    b_st.site = &kw_emlrtRSI;
-    setupsdru(&b_st, sdruroot(&b_st, &p_emlrtMCI), y, &q_emlrtMCI);
+    emlrtInitCharArrayR2013a(&st, 6, m19, cv139);
+    emlrtAssign(&y, m19);
+    b_st.site = &ybb_emlrtRSI;
+    setupsdru(&b_st, sdruroot(&b_st, &o_emlrtMCI), y, &p_emlrtMCI);
     isSetupsdruCalled = TRUE;
   }
 
@@ -87,16 +87,16 @@ void receiveData(const emlrtStack *sp, int32_T driverApiH, real_T freq, real_T
   if (i <= 1024) {
   } else {
     b_y = NULL;
-    m25 = mxCreateString("Assertion failed.");
-    emlrtAssign(&b_y, m25);
-    b_st.site = &cw_emlrtRSI;
-    c_error(&b_st, b_y, &o_emlrtMCI);
+    m19 = mxCreateString("Assertion failed.");
+    emlrtAssign(&b_y, m19);
+    b_st.site = &mbb_emlrtRSI;
+    c_error(&b_st, b_y, &n_emlrtMCI);
   }
 
   if (1 > i) {
     loop_ub = 0;
   } else {
-    loop_ub = emlrtDynamicBoundsCheckFastR2012b(i, 1, 1024, &o_emlrtBCI, &st);
+    loop_ub = emlrtDynamicBoundsCheckFastR2012b(i, 1, 1024, &p_emlrtBCI, &st);
   }
 
   for (i = 0; i < loop_ub; i++) {

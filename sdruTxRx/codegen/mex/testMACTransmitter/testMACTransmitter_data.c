@@ -3,7 +3,7 @@
  *
  * Code generation for function 'testMACTransmitter_data'
  *
- * C source code generated on: Thu Mar  6 19:04:22 2014
+ * C source code generated on: Thu Mar  6 22:22:38 2014
  *
  */
 
@@ -16,6 +16,10 @@
 /* Variable Definitions */
 const volatile char_T *emlrtBreakCheckR2012bFlagVar;
 boolean_T isSetupsdruCalled;
+emlrtRTEInfo b_emlrtRTEI = { 26, 5, "commP25decision_noise",
+  "/Applications/MATLAB_R2013b.app/toolbox/comm/commdemos/commP25decision_noise.m"
+};
+
 emlrtRSInfo m_emlrtRSI = { 1, "mrdivide",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/mrdivide.p" };
 
@@ -131,98 +135,22 @@ emlrtRSInfo fd_emlrtRSI = { 16, "ifftshift",
 emlrtRSInfo gd_emlrtRSI = { 22, "eml_ifftshift",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_ifftshift.m" };
 
-emlrtRSInfo ld_emlrtRSI = { 55, "prodsize",
-  "/Applications/MATLAB_R2013b.app/toolbox/shared/coder/coder/+coder/+internal/prodsize.m"
-};
+emlrtRSInfo hd_emlrtRSI = { 31, "eml_fftshift",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fftshift.m" };
+
+emlrtRSInfo id_emlrtRSI = { 35, "eml_fftshift",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fftshift.m" };
+
+emlrtRSInfo jd_emlrtRSI = { 40, "eml_fftshift",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fftshift.m" };
+
+emlrtRSInfo kd_emlrtRSI = { 41, "eml_fftshift",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fftshift.m" };
 
 emlrtRSInfo md_emlrtRSI = { 25, "ifft",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/datafun/ifft.m" };
 
-emlrtRSInfo od_emlrtRSI = { 101, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-emlrtRSInfo pd_emlrtRSI = { 102, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-emlrtRSInfo qd_emlrtRSI = { 103, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-emlrtRSInfo rd_emlrtRSI = { 104, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-emlrtRSInfo sd_emlrtRSI = { 106, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-emlrtRSInfo td_emlrtRSI = { 114, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-emlrtRSInfo ud_emlrtRSI = { 115, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-emlrtRSInfo vd_emlrtRSI = { 116, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-emlrtRSInfo wd_emlrtRSI = { 129, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-emlrtRSInfo xd_emlrtRSI = { 131, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-emlrtRSInfo yd_emlrtRSI = { 133, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-emlrtRSInfo ae_emlrtRSI = { 132, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-emlrtRSInfo be_emlrtRSI = { 134, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-emlrtRSInfo ce_emlrtRSI = { 135, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-emlrtRSInfo de_emlrtRSI = { 138, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-emlrtRSInfo ee_emlrtRSI = { 139, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-emlrtRSInfo fe_emlrtRSI = { 170, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-emlrtRSInfo ge_emlrtRSI = { 171, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-emlrtRSInfo he_emlrtRSI = { 191, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-emlrtRSInfo ie_emlrtRSI = { 193, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-emlrtRSInfo je_emlrtRSI = { 195, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-emlrtRSInfo ke_emlrtRSI = { 194, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-emlrtRSInfo le_emlrtRSI = { 196, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-emlrtRSInfo me_emlrtRSI = { 197, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-emlrtRSInfo ne_emlrtRSI = { 199, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-emlrtRSInfo oe_emlrtRSI = { 200, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-emlrtRSInfo pe_emlrtRSI = { 202, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-emlrtRSInfo qe_emlrtRSI = { 204, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-emlrtRSInfo re_emlrtRSI = { 205, "eml_fft",
+emlrtRSInfo nd_emlrtRSI = { 49, "eml_fft",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
 
 emlrtRSInfo se_emlrtRSI = { 211, "eml_fft",
@@ -336,10 +264,6 @@ emlrtRSInfo eg_emlrtRSI = { 12, "eml_int_forloop_overflow_check",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_int_forloop_overflow_check.m"
 };
 
-emlrtRSInfo fg_emlrtRSI = { 20, "eml_index_prod",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_index_prod.m"
-};
-
 emlrtRSInfo gg_emlrtRSI = { 1, "CRCGenerator",
   "/Applications/MATLAB_R2013b.app/toolbox/comm/comm/+commcodegen/CRCGenerator.p"
 };
@@ -446,543 +370,646 @@ emlrtRSInfo nh_emlrtRSI = { 20, "eml_sort_le",
 emlrtRSInfo oh_emlrtRSI = { 53, "eml_sort_le",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_sort_le.m" };
 
-emlrtRSInfo ph_emlrtRSI = { 261, "unique",
+emlrtRSInfo ph_emlrtRSI = { 248, "unique",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/unique.m" };
 
-emlrtRSInfo qh_emlrtRSI = { 260, "unique",
+emlrtRSInfo qh_emlrtRSI = { 249, "unique",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/unique.m" };
 
-emlrtRSInfo rh_emlrtRSI = { 256, "unique",
+emlrtRSInfo rh_emlrtRSI = { 251, "unique",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/unique.m" };
 
-emlrtRSInfo sh_emlrtRSI = { 251, "unique",
+emlrtRSInfo sh_emlrtRSI = { 253, "unique",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/unique.m" };
 
-emlrtRSInfo th_emlrtRSI = { 17, "eml_safe_eq",
+emlrtRSInfo th_emlrtRSI = { 254, "unique",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/unique.m" };
+
+emlrtRSInfo uh_emlrtRSI = { 256, "unique",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/unique.m" };
+
+emlrtRSInfo vh_emlrtRSI = { 257, "unique",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/unique.m" };
+
+emlrtRSInfo wh_emlrtRSI = { 258, "unique",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/unique.m" };
+
+emlrtRSInfo xh_emlrtRSI = { 260, "unique",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/unique.m" };
+
+emlrtRSInfo yh_emlrtRSI = { 261, "unique",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/unique.m" };
+
+emlrtRSInfo ai_emlrtRSI = { 17, "eml_safe_eq",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_safe_eq.m" };
 
-emlrtRSInfo uh_emlrtRSI = { 18, "eml_safe_eq",
+emlrtRSInfo bi_emlrtRSI = { 18, "eml_safe_eq",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_safe_eq.m" };
 
-emlrtRSInfo vh_emlrtRSI = { 26, "eps",
+emlrtRSInfo ci_emlrtRSI = { 26, "eps",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/elmat/eps.m" };
 
-emlrtRSInfo wh_emlrtRSI = { 27, "eps",
+emlrtRSInfo di_emlrtRSI = { 27, "eps",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/elmat/eps.m" };
 
-emlrtRSInfo xh_emlrtRSI = { 102, "OFDMBase",
+emlrtRSInfo ei_emlrtRSI = { 102, "OFDMBase",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/OFDMBase.m" };
 
-emlrtRSInfo yh_emlrtRSI = { 42, "unique",
+emlrtRSInfo fi_emlrtRSI = { 42, "unique",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/unique.m" };
 
-emlrtRSInfo ai_emlrtRSI = { 228, "unique",
+emlrtRSInfo gi_emlrtRSI = { 228, "unique",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/unique.m" };
 
-emlrtRSInfo bi_emlrtRSI = { 220, "unique",
+emlrtRSInfo hi_emlrtRSI = { 220, "unique",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/unique.m" };
 
-emlrtRSInfo ci_emlrtRSI = { 219, "unique",
+emlrtRSInfo ii_emlrtRSI = { 219, "unique",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/unique.m" };
 
-emlrtRSInfo di_emlrtRSI = { 218, "unique",
+emlrtRSInfo ji_emlrtRSI = { 218, "unique",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/unique.m" };
 
-emlrtRSInfo ei_emlrtRSI = { 217, "unique",
+emlrtRSInfo ki_emlrtRSI = { 217, "unique",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/unique.m" };
 
-emlrtRSInfo fi_emlrtRSI = { 207, "unique",
+emlrtRSInfo li_emlrtRSI = { 207, "unique",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/unique.m" };
 
-emlrtRSInfo gi_emlrtRSI = { 206, "unique",
+emlrtRSInfo mi_emlrtRSI = { 206, "unique",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/unique.m" };
 
-emlrtRSInfo hi_emlrtRSI = { 205, "unique",
+emlrtRSInfo ni_emlrtRSI = { 205, "unique",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/unique.m" };
 
-emlrtRSInfo ii_emlrtRSI = { 194, "unique",
+emlrtRSInfo oi_emlrtRSI = { 194, "unique",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/unique.m" };
 
-emlrtRSInfo ji_emlrtRSI = { 192, "unique",
+emlrtRSInfo pi_emlrtRSI = { 192, "unique",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/unique.m" };
 
-emlrtRSInfo ki_emlrtRSI = { 187, "unique",
+emlrtRSInfo qi_emlrtRSI = { 187, "unique",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/unique.m" };
 
-emlrtRSInfo li_emlrtRSI = { 186, "unique",
+emlrtRSInfo ri_emlrtRSI = { 186, "unique",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/unique.m" };
 
-emlrtRSInfo mi_emlrtRSI = { 180, "unique",
+emlrtRSInfo si_emlrtRSI = { 180, "unique",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/unique.m" };
 
-emlrtRSInfo ni_emlrtRSI = { 179, "unique",
+emlrtRSInfo ti_emlrtRSI = { 179, "unique",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/unique.m" };
 
-emlrtRSInfo oi_emlrtRSI = { 169, "unique",
+emlrtRSInfo ui_emlrtRSI = { 169, "unique",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/unique.m" };
 
-emlrtRSInfo pi_emlrtRSI = { 163, "unique",
+emlrtRSInfo vi_emlrtRSI = { 163, "unique",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/unique.m" };
 
-emlrtRSInfo qi_emlrtRSI = { 163, "OFDMBase",
+emlrtRSInfo wi_emlrtRSI = { 163, "OFDMBase",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/OFDMBase.m" };
 
-emlrtRSInfo ri_emlrtRSI = { 355, "OFDMModulator",
+emlrtRSInfo xi_emlrtRSI = { 355, "OFDMModulator",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/OFDMModulator.m" };
 
-emlrtRSInfo si_emlrtRSI = { 378, "OFDMModulator",
+emlrtRSInfo yi_emlrtRSI = { 378, "OFDMModulator",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/OFDMModulator.m" };
 
-emlrtRSInfo ti_emlrtRSI = { 384, "OFDMModulator",
+emlrtRSInfo aj_emlrtRSI = { 384, "OFDMModulator",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/OFDMModulator.m" };
 
-emlrtRSInfo ui_emlrtRSI = { 65, "sub2ind",
+emlrtRSInfo bj_emlrtRSI = { 65, "sub2ind",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/elmat/sub2ind.m" };
 
-emlrtRSInfo vi_emlrtRSI = { 233, "indexIntRelop",
+emlrtRSInfo cj_emlrtRSI = { 233, "indexIntRelop",
   "/Applications/MATLAB_R2013b.app/toolbox/shared/coder/coder/+coder/+internal/indexIntRelop.m"
 };
 
-emlrtRSInfo wi_emlrtRSI = { 55, "sub2ind",
+emlrtRSInfo dj_emlrtRSI = { 55, "sub2ind",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/elmat/sub2ind.m" };
 
-emlrtRSInfo xi_emlrtRSI = { 52, "sub2ind",
+emlrtRSInfo ej_emlrtRSI = { 52, "sub2ind",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/elmat/sub2ind.m" };
 
-emlrtRSInfo yi_emlrtRSI = { 51, "sub2ind",
+emlrtRSInfo fj_emlrtRSI = { 51, "sub2ind",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/elmat/sub2ind.m" };
 
-emlrtRSInfo aj_emlrtRSI = { 8, "isequal",
+emlrtRSInfo gj_emlrtRSI = { 8, "isequal",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/elmat/isequal.m" };
 
-emlrtRSInfo bj_emlrtRSI = { 30, "eml_isequal_core",
+emlrtRSInfo hj_emlrtRSI = { 30, "eml_isequal_core",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_isequal_core.m"
 };
 
-emlrtRSInfo cj_emlrtRSI = { 61, "eml_isequal_core",
+emlrtRSInfo ij_emlrtRSI = { 61, "eml_isequal_core",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_isequal_core.m"
 };
 
-emlrtRSInfo dj_emlrtRSI = { 78, "sub2ind",
+emlrtRSInfo jj_emlrtRSI = { 78, "sub2ind",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/elmat/sub2ind.m" };
 
-emlrtRSInfo ej_emlrtRSI = { 97, "eml_scalar_eg",
+emlrtRSInfo kj_emlrtRSI = { 97, "eml_scalar_eg",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_scalar_eg.m" };
 
-emlrtRSInfo hj_emlrtRSI = { 108, "eml_fft",
+emlrtRSInfo lj_emlrtRSI = { 29, "eml_fftshift",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fftshift.m" };
+
+emlrtRSInfo mj_emlrtRSI = { 32, "eml_fftshift",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fftshift.m" };
+
+emlrtRSInfo qj_emlrtRSI = { 122, "eml_fft",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
 
-emlrtRSInfo ij_emlrtRSI = { 111, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-emlrtRSInfo jj_emlrtRSI = { 113, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-emlrtRSInfo kj_emlrtRSI = { 122, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-emlrtRSInfo lj_emlrtRSI = { 66, "cat",
+emlrtRSInfo rj_emlrtRSI = { 66, "cat",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/elmat/cat.m" };
 
-emlrtRSInfo mj_emlrtRSI = { 70, "OFDMDemodulator",
+emlrtRSInfo sj_emlrtRSI = { 70, "OFDMDemodulator",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/OFDMDemodulator.m" };
 
-emlrtRSInfo nj_emlrtRSI = { 73, "OFDMDemodulator",
+emlrtRSInfo tj_emlrtRSI = { 73, "OFDMDemodulator",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/OFDMDemodulator.m" };
 
-emlrtRSInfo oj_emlrtRSI = { 74, "OFDMDemodulator",
+emlrtRSInfo uj_emlrtRSI = { 74, "OFDMDemodulator",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/OFDMDemodulator.m" };
 
-emlrtRSInfo pj_emlrtRSI = { 75, "OFDMDemodulator",
+emlrtRSInfo vj_emlrtRSI = { 75, "OFDMDemodulator",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/OFDMDemodulator.m" };
 
-emlrtRSInfo qj_emlrtRSI = { 76, "OFDMDemodulator",
+emlrtRSInfo wj_emlrtRSI = { 76, "OFDMDemodulator",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/OFDMDemodulator.m" };
 
-emlrtRSInfo rj_emlrtRSI = { 77, "OFDMDemodulator",
+emlrtRSInfo xj_emlrtRSI = { 77, "OFDMDemodulator",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/OFDMDemodulator.m" };
 
-emlrtRSInfo sj_emlrtRSI = { 78, "OFDMDemodulator",
+emlrtRSInfo yj_emlrtRSI = { 78, "OFDMDemodulator",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/OFDMDemodulator.m" };
 
-emlrtRSInfo tj_emlrtRSI = { 80, "OFDMDemodulator",
+emlrtRSInfo ak_emlrtRSI = { 80, "OFDMDemodulator",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/OFDMDemodulator.m" };
 
-emlrtRSInfo vj_emlrtRSI = { 1, "SDRuBase",
+emlrtRSInfo ck_emlrtRSI = { 1, "SDRuBase",
   "/Users/travis/Documents/sdru/+comm/+internal/SDRuBase.p" };
 
-emlrtRSInfo fk_emlrtRSI = { 24, "eml_all_or_any",
+emlrtRSInfo lk_emlrtRSI = { 24, "eml_all_or_any",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_all_or_any.m"
 };
 
-emlrtRSInfo gk_emlrtRSI = { 98, "eml_all_or_any",
+emlrtRSInfo mk_emlrtRSI = { 98, "eml_all_or_any",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_all_or_any.m"
 };
 
-emlrtRSInfo hk_emlrtRSI = { 104, "eml_all_or_any",
+emlrtRSInfo nk_emlrtRSI = { 104, "eml_all_or_any",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_all_or_any.m"
 };
 
-emlrtRSInfo ik_emlrtRSI = { 106, "eml_all_or_any",
+emlrtRSInfo ok_emlrtRSI = { 106, "eml_all_or_any",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_all_or_any.m"
 };
 
-emlrtRSInfo jk_emlrtRSI = { 107, "eml_all_or_any",
+emlrtRSInfo pk_emlrtRSI = { 107, "eml_all_or_any",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_all_or_any.m"
 };
 
-emlrtRSInfo kk_emlrtRSI = { 109, "eml_all_or_any",
+emlrtRSInfo qk_emlrtRSI = { 109, "eml_all_or_any",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_all_or_any.m"
 };
 
-emlrtRSInfo lk_emlrtRSI = { 56, "eml_isequal_core",
+emlrtRSInfo rk_emlrtRSI = { 56, "eml_isequal_core",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_isequal_core.m"
 };
 
-emlrtRSInfo mk_emlrtRSI = { 50, "prodsize",
-  "/Applications/MATLAB_R2013b.app/toolbox/shared/coder/coder/+coder/+internal/prodsize.m"
-};
-
-emlrtRSInfo nk_emlrtRSI = { 9, "warning",
+emlrtRSInfo tk_emlrtRSI = { 9, "warning",
   "/Applications/MATLAB_R2013b.app/toolbox/shared/coder/coder/+coder/+internal/warning.m"
 };
 
-emlrtRSInfo kl_emlrtRSI = { 376, "validateattributes",
+emlrtRSInfo ql_emlrtRSI = { 376, "validateattributes",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/lang/validateattributes.m"
 };
 
-emlrtRSInfo ll_emlrtRSI = { 420, "validateattributes",
+emlrtRSInfo rl_emlrtRSI = { 420, "validateattributes",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/lang/validateattributes.m"
 };
 
-emlrtRSInfo ml_emlrtRSI = { 140, "AGC",
+emlrtRSInfo sl_emlrtRSI = { 140, "AGC",
   "/Applications/MATLAB_R2013b.app/toolbox/comm/comm/+comm/AGC.m" };
 
-emlrtRSInfo nl_emlrtRSI = { 141, "AGC",
+emlrtRSInfo tl_emlrtRSI = { 141, "AGC",
   "/Applications/MATLAB_R2013b.app/toolbox/comm/comm/+comm/AGC.m" };
 
-emlrtRSInfo ol_emlrtRSI = { 432, "validateattributes",
+emlrtRSInfo ul_emlrtRSI = { 432, "validateattributes",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/lang/validateattributes.m"
 };
 
-emlrtRSInfo sl_emlrtRSI = { 175, "fprintf",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/lang/fprintf.m" };
-
-emlrtRSInfo km_emlrtRSI = { 12, "all",
+emlrtRSInfo sm_emlrtRSI = { 12, "all",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/all.m" };
 
-emlrtRSInfo lm_emlrtRSI = { 6, "openDataConnection",
+emlrtRSInfo tm_emlrtRSI = { 6, "openDataConnection",
   "/Users/travis/Documents/sdru/usrp_uhd_mapi/openDataConnection.m" };
 
-emlrtRSInfo nm_emlrtRSI = { 93, "reportSDRuStatus",
+emlrtRSInfo vm_emlrtRSI = { 93, "reportSDRuStatus",
   "/Users/travis/Documents/sdru/reportSDRuStatus.m" };
 
-emlrtRSInfo om_emlrtRSI = { 91, "reportSDRuStatus",
+emlrtRSInfo wm_emlrtRSI = { 91, "reportSDRuStatus",
   "/Users/travis/Documents/sdru/reportSDRuStatus.m" };
 
-emlrtRSInfo pm_emlrtRSI = { 83, "reportSDRuStatus",
+emlrtRSInfo xm_emlrtRSI = { 83, "reportSDRuStatus",
   "/Users/travis/Documents/sdru/reportSDRuStatus.m" };
 
-emlrtRSInfo qm_emlrtRSI = { 81, "reportSDRuStatus",
+emlrtRSInfo ym_emlrtRSI = { 81, "reportSDRuStatus",
   "/Users/travis/Documents/sdru/reportSDRuStatus.m" };
 
-emlrtRSInfo rm_emlrtRSI = { 73, "reportSDRuStatus",
+emlrtRSInfo an_emlrtRSI = { 73, "reportSDRuStatus",
   "/Users/travis/Documents/sdru/reportSDRuStatus.m" };
 
-emlrtRSInfo sm_emlrtRSI = { 71, "reportSDRuStatus",
+emlrtRSInfo bn_emlrtRSI = { 71, "reportSDRuStatus",
   "/Users/travis/Documents/sdru/reportSDRuStatus.m" };
 
-emlrtRSInfo tm_emlrtRSI = { 63, "reportSDRuStatus",
+emlrtRSInfo cn_emlrtRSI = { 63, "reportSDRuStatus",
   "/Users/travis/Documents/sdru/reportSDRuStatus.m" };
 
-emlrtRSInfo um_emlrtRSI = { 61, "reportSDRuStatus",
+emlrtRSInfo dn_emlrtRSI = { 61, "reportSDRuStatus",
   "/Users/travis/Documents/sdru/reportSDRuStatus.m" };
 
-emlrtRSInfo vm_emlrtRSI = { 53, "reportSDRuStatus",
+emlrtRSInfo en_emlrtRSI = { 53, "reportSDRuStatus",
   "/Users/travis/Documents/sdru/reportSDRuStatus.m" };
 
-emlrtRSInfo wm_emlrtRSI = { 51, "reportSDRuStatus",
+emlrtRSInfo fn_emlrtRSI = { 51, "reportSDRuStatus",
   "/Users/travis/Documents/sdru/reportSDRuStatus.m" };
 
-emlrtRSInfo xm_emlrtRSI = { 42, "reportSDRuStatus",
+emlrtRSInfo gn_emlrtRSI = { 42, "reportSDRuStatus",
   "/Users/travis/Documents/sdru/reportSDRuStatus.m" };
 
-emlrtRSInfo ym_emlrtRSI = { 35, "reportSDRuStatus",
+emlrtRSInfo hn_emlrtRSI = { 35, "reportSDRuStatus",
   "/Users/travis/Documents/sdru/reportSDRuStatus.m" };
 
-emlrtRSInfo an_emlrtRSI = { 17, "getSDRuDriverVersion",
+emlrtRSInfo in_emlrtRSI = { 17, "getSDRuDriverVersion",
   "/Users/travis/Documents/sdru/usrp_uhd_mapi/getSDRuDriverVersion.m" };
 
-emlrtRSInfo bn_emlrtRSI = { 9, "sendInt16Data",
-  "/Users/travis/Documents/sdru/usrp_uhd_mapi/sendInt16Data.m" };
-
-emlrtRSInfo cn_emlrtRSI = { 9, "sendComplexInt16Data",
-  "/Users/travis/Documents/sdru/usrp_uhd_mapi/sendComplexInt16Data.m" };
-
-emlrtRSInfo dn_emlrtRSI = { 9, "sendSingleData",
-  "/Users/travis/Documents/sdru/usrp_uhd_mapi/sendSingleData.m" };
-
-emlrtRSInfo en_emlrtRSI = { 9, "sendComplexSingleData",
-  "/Users/travis/Documents/sdru/usrp_uhd_mapi/sendComplexSingleData.m" };
-
-emlrtRSInfo fn_emlrtRSI = { 9, "sendDoubleData",
-  "/Users/travis/Documents/sdru/usrp_uhd_mapi/sendDoubleData.m" };
-
-emlrtRSInfo ro_emlrtRSI = { 8, "eml_is_positive_integer_scalar",
+emlrtRSInfo rn_emlrtRSI = { 8, "eml_is_positive_integer_scalar",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_is_positive_integer_scalar.m"
 };
 
-emlrtRSInfo to_emlrtRSI = { 219, "AGC",
+emlrtRSInfo tn_emlrtRSI = { 219, "AGC",
   "/Applications/MATLAB_R2013b.app/toolbox/comm/comm/+comm/AGC.m" };
 
-emlrtRSInfo uo_emlrtRSI = { 225, "AGC",
+emlrtRSInfo un_emlrtRSI = { 225, "AGC",
   "/Applications/MATLAB_R2013b.app/toolbox/comm/comm/+comm/AGC.m" };
 
-emlrtRSInfo vo_emlrtRSI = { 227, "AGC",
+emlrtRSInfo vn_emlrtRSI = { 227, "AGC",
   "/Applications/MATLAB_R2013b.app/toolbox/comm/comm/+comm/AGC.m" };
 
-emlrtRSInfo wo_emlrtRSI = { 228, "AGC",
+emlrtRSInfo wn_emlrtRSI = { 228, "AGC",
   "/Applications/MATLAB_R2013b.app/toolbox/comm/comm/+comm/AGC.m" };
 
-emlrtRSInfo xo_emlrtRSI = { 251, "AGC",
+emlrtRSInfo xn_emlrtRSI = { 251, "AGC",
   "/Applications/MATLAB_R2013b.app/toolbox/comm/comm/+comm/AGC.m" };
 
-emlrtRSInfo yo_emlrtRSI = { 339, "AGC",
+emlrtRSInfo yn_emlrtRSI = { 339, "AGC",
   "/Applications/MATLAB_R2013b.app/toolbox/comm/comm/+comm/AGC.m" };
 
-emlrtRSInfo bp_emlrtRSI = { 36, "mean",
+emlrtRSInfo bo_emlrtRSI = { 36, "mean",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/datafun/mean.m" };
 
-emlrtRSInfo cp_emlrtRSI = { 347, "AGC",
+emlrtRSInfo co_emlrtRSI = { 347, "AGC",
   "/Applications/MATLAB_R2013b.app/toolbox/comm/comm/+comm/AGC.m" };
 
-emlrtRSInfo op_emlrtRSI = { 79, "colon",
+emlrtRSInfo fp_emlrtRSI = { 79, "colon",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/colon.m" };
 
-emlrtRSInfo pp_emlrtRSI = { 386, "colon",
+emlrtRSInfo hp_emlrtRSI = { 283, "colon",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/colon.m" };
 
-emlrtRSInfo qp_emlrtRSI = { 387, "colon",
+emlrtRSInfo tp_emlrtRSI = { 14, "fft",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/datafun/fft.m" };
+
+emlrtRSInfo xp_emlrtRSI = { 275, "eml_fft",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
+
+emlrtRSInfo yp_emlrtRSI = { 276, "eml_fft",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
+
+emlrtRSInfo aq_emlrtRSI = { 279, "eml_fft",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
+
+emlrtRSInfo bq_emlrtRSI = { 280, "eml_fft",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
+
+emlrtRSInfo cq_emlrtRSI = { 11, "fftshift",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/datafun/fftshift.m" };
+
+emlrtRSInfo dq_emlrtRSI = { 62, "eml_fftshift",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fftshift.m" };
+
+emlrtRSInfo eq_emlrtRSI = { 59, "eml_fftshift",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fftshift.m" };
+
+emlrtRSInfo fq_emlrtRSI = { 58, "eml_fftshift",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fftshift.m" };
+
+emlrtRSInfo gq_emlrtRSI = { 56, "eml_fftshift",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fftshift.m" };
+
+emlrtRSInfo hq_emlrtRSI = { 53, "eml_fftshift",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fftshift.m" };
+
+emlrtRSInfo iq_emlrtRSI = { 52, "eml_fftshift",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fftshift.m" };
+
+emlrtRSInfo jq_emlrtRSI = { 51, "eml_fftshift",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fftshift.m" };
+
+emlrtRSInfo kq_emlrtRSI = { 50, "eml_fftshift",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fftshift.m" };
+
+emlrtRSInfo lq_emlrtRSI = { 48, "eml_fftshift",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fftshift.m" };
+
+emlrtRSInfo mq_emlrtRSI = { 36, "eml_fftshift",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fftshift.m" };
+
+emlrtRSInfo nq_emlrtRSI = { 30, "eml_fftshift",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fftshift.m" };
+
+emlrtRSInfo oq_emlrtRSI = { 27, "eml_fftshift",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fftshift.m" };
+
+emlrtRSInfo pq_emlrtRSI = { 24, "eml_fftshift",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fftshift.m" };
+
+emlrtRSInfo qq_emlrtRSI = { 23, "eml_fftshift",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fftshift.m" };
+
+emlrtRSInfo rq_emlrtRSI = { 22, "eml_fftshift",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fftshift.m" };
+
+emlrtRSInfo sq_emlrtRSI = { 21, "eml_fftshift",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fftshift.m" };
+
+emlrtRSInfo tq_emlrtRSI = { 20, "eml_fftshift",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fftshift.m" };
+
+emlrtRSInfo uq_emlrtRSI = { 19, "eml_fftshift",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fftshift.m" };
+
+emlrtRSInfo vq_emlrtRSI = { 86, "eml_matrix_vstride",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_matrix_vstride.m"
+};
+
+emlrtRSInfo xq_emlrtRSI = { 16, "eml_matrix_npages",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_matrix_npages.m"
+};
+
+emlrtRSInfo yq_emlrtRSI = { 213, "indexIntRelop",
+  "/Applications/MATLAB_R2013b.app/toolbox/shared/coder/coder/+coder/+internal/indexIntRelop.m"
+};
+
+emlrtRSInfo ar_emlrtRSI = { 71, "eml_div",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_div.m" };
+
+emlrtRSInfo br_emlrtRSI = { 70, "eml_div",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_div.m" };
+
+emlrtRSInfo cr_emlrtRSI = { 59, "eml_div",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_div.m" };
+
+emlrtRSInfo dr_emlrtRSI = { 58, "eml_div",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_div.m" };
+
+emlrtRSInfo er_emlrtRSI = { 39, "eml_div",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_div.m" };
+
+emlrtRSInfo hr_emlrtRSI = { 238, "eml_fft",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
+
+emlrtRSInfo ir_emlrtRSI = { 240, "eml_fft",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
+
+emlrtRSInfo jr_emlrtRSI = { 241, "eml_fft",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
+
+emlrtRSInfo kr_emlrtRSI = { 244, "eml_fft",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
+
+emlrtRSInfo lr_emlrtRSI = { 247, "eml_fft",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
+
+emlrtRSInfo mr_emlrtRSI = { 258, "eml_fft",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
+
+emlrtRSInfo nr_emlrtRSI = { 259, "eml_fft",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
+
+emlrtRSInfo or_emlrtRSI = { 274, "eml_fft",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
+
+emlrtRSInfo pr_emlrtRSI = { 278, "eml_fft",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
+
+emlrtRSInfo qr_emlrtRSI = { 38, "eml_int_forloop_overflow_check",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_int_forloop_overflow_check.m"
+};
+
+emlrtRSInfo rr_emlrtRSI = { 40, "eml_int_forloop_overflow_check",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_int_forloop_overflow_check.m"
+};
+
+emlrtRSInfo hs_emlrtRSI = { 19, "eml_assert_valid_dim",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_assert_valid_dim.m"
+};
+
+emlrtRSInfo is_emlrtRSI = { 42, "eml_sort_idx",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_sort_idx.m" };
+
+emlrtRSInfo js_emlrtRSI = { 134, "eml_sort_idx",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_sort_idx.m" };
+
+emlrtRSInfo ks_emlrtRSI = { 138, "eml_sort_idx",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_sort_idx.m" };
+
+emlrtRSInfo ls_emlrtRSI = { 18, "eml_sort_le",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_sort_le.m" };
+
+emlrtRSInfo vs_emlrtRSI = { 26, "commP25decision_noise",
+  "/Applications/MATLAB_R2013b.app/toolbox/comm/commdemos/commP25decision_noise.m"
+};
+
+emlrtRSInfo ws_emlrtRSI = { 20, "commP25decision_noise",
+  "/Applications/MATLAB_R2013b.app/toolbox/comm/commdemos/commP25decision_noise.m"
+};
+
+emlrtRSInfo ys_emlrtRSI = { 158, "unique",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/unique.m" };
+
+emlrtRSInfo at_emlrtRSI = { 160, "unique",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/unique.m" };
+
+emlrtRSInfo bt_emlrtRSI = { 225, "unique",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/unique.m" };
+
+emlrtRSInfo ct_emlrtRSI = { 231, "indexIntRelop",
+  "/Applications/MATLAB_R2013b.app/toolbox/shared/coder/coder/+coder/+internal/indexIntRelop.m"
+};
+
+emlrtRSInfo ft_emlrtRSI = { 175, "fprintf",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/lang/fprintf.m" };
+
+emlrtRSInfo lt_emlrtRSI = { 9, "sendInt16Data",
+  "/Users/travis/Documents/sdru/usrp_uhd_mapi/sendInt16Data.m" };
+
+emlrtRSInfo mt_emlrtRSI = { 9, "sendComplexInt16Data",
+  "/Users/travis/Documents/sdru/usrp_uhd_mapi/sendComplexInt16Data.m" };
+
+emlrtRSInfo nt_emlrtRSI = { 9, "sendSingleData",
+  "/Users/travis/Documents/sdru/usrp_uhd_mapi/sendSingleData.m" };
+
+emlrtRSInfo ot_emlrtRSI = { 9, "sendComplexSingleData",
+  "/Users/travis/Documents/sdru/usrp_uhd_mapi/sendComplexSingleData.m" };
+
+emlrtRSInfo pt_emlrtRSI = { 9, "sendDoubleData",
+  "/Users/travis/Documents/sdru/usrp_uhd_mapi/sendDoubleData.m" };
+
+emlrtRSInfo ev_emlrtRSI = { 386, "colon",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/colon.m" };
 
-emlrtRSInfo rp_emlrtRSI = { 301, "colon",
+emlrtRSInfo fv_emlrtRSI = { 387, "colon",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/colon.m" };
 
-emlrtRSInfo sp_emlrtRSI = { 300, "colon",
+emlrtRSInfo gv_emlrtRSI = { 324, "colon",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/colon.m" };
 
-emlrtRSInfo tp_emlrtRSI = { 297, "colon",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/colon.m" };
-
-emlrtRSInfo up_emlrtRSI = { 294, "colon",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/colon.m" };
-
-emlrtRSInfo vp_emlrtRSI = { 293, "colon",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/colon.m" };
-
-emlrtRSInfo wp_emlrtRSI = { 299, "colon",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/colon.m" };
-
-emlrtRSInfo xp_emlrtRSI = { 296, "colon",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/colon.m" };
-
-emlrtRSInfo yp_emlrtRSI = { 292, "colon",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/colon.m" };
-
-emlrtRSInfo aq_emlrtRSI = { 291, "colon",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/colon.m" };
-
-emlrtRSInfo bq_emlrtRSI = { 290, "colon",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/colon.m" };
-
-emlrtRSInfo cq_emlrtRSI = { 289, "colon",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/colon.m" };
-
-emlrtRSInfo dq_emlrtRSI = { 283, "colon",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/colon.m" };
-
-emlrtRSInfo eq_emlrtRSI = { 282, "colon",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/colon.m" };
-
-emlrtRSInfo fq_emlrtRSI = { 344, "colon",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/colon.m" };
-
-emlrtRSInfo hq_emlrtRSI = { 74, "power",
+emlrtRSInfo iv_emlrtRSI = { 74, "power",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/power.m" };
 
-emlrtRSInfo iq_emlrtRSI = { 13, "rdivide",
+emlrtRSInfo jv_emlrtRSI = { 13, "rdivide",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/rdivide.m" };
 
-emlrtRSInfo jq_emlrtRSI = { 14, "eml_scalexp_compatible",
+emlrtRSInfo kv_emlrtRSI = { 14, "eml_scalexp_compatible",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_scalexp_compatible.m"
 };
 
-emlrtRSInfo rq_emlrtRSI = { 88, "eml_min_or_max",
+emlrtRSInfo sv_emlrtRSI = { 88, "eml_min_or_max",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_min_or_max.m"
 };
 
-emlrtRSInfo sq_emlrtRSI = { 225, "eml_min_or_max",
+emlrtRSInfo tv_emlrtRSI = { 225, "eml_min_or_max",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_min_or_max.m"
 };
 
-emlrtRSInfo tq_emlrtRSI = { 221, "eml_min_or_max",
+emlrtRSInfo uv_emlrtRSI = { 221, "eml_min_or_max",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_min_or_max.m"
 };
 
-emlrtRSInfo uq_emlrtRSI = { 200, "eml_min_or_max",
+emlrtRSInfo vv_emlrtRSI = { 200, "eml_min_or_max",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_min_or_max.m"
 };
 
-emlrtRSInfo vq_emlrtRSI = { 194, "eml_min_or_max",
+emlrtRSInfo wv_emlrtRSI = { 194, "eml_min_or_max",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_min_or_max.m"
 };
 
-emlrtRSInfo wq_emlrtRSI = { 190, "eml_min_or_max",
+emlrtRSInfo xv_emlrtRSI = { 190, "eml_min_or_max",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_min_or_max.m"
 };
 
-emlrtRSInfo xq_emlrtRSI = { 230, "find",
+emlrtRSInfo yv_emlrtRSI = { 230, "find",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/elmat/find.m" };
 
-emlrtRSInfo br_emlrtRSI = { 157, "colon",
+emlrtRSInfo cw_emlrtRSI = { 157, "colon",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/colon.m" };
 
-emlrtRSInfo qr_emlrtRSI = { 21, "issorted",
+emlrtRSInfo rw_emlrtRSI = { 21, "issorted",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/datafun/issorted.m" };
 
-emlrtRSInfo rr_emlrtRSI = { 22, "issorted",
+emlrtRSInfo sw_emlrtRSI = { 22, "issorted",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/datafun/issorted.m" };
 
-emlrtRSInfo sr_emlrtRSI = { 23, "issorted",
+emlrtRSInfo tw_emlrtRSI = { 23, "issorted",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/datafun/issorted.m" };
 
-emlrtRSInfo tr_emlrtRSI = { 454, "eml_setop",
+emlrtRSInfo uw_emlrtRSI = { 454, "eml_setop",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/eml_setop.m" };
 
-emlrtRSInfo ur_emlrtRSI = { 456, "eml_setop",
+emlrtRSInfo vw_emlrtRSI = { 456, "eml_setop",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/eml_setop.m" };
 
-emlrtRSInfo vr_emlrtRSI = { 457, "eml_setop",
+emlrtRSInfo ww_emlrtRSI = { 457, "eml_setop",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/eml_setop.m" };
 
-emlrtRSInfo wr_emlrtRSI = { 16, "eml_sort_lt",
+emlrtRSInfo xw_emlrtRSI = { 16, "eml_sort_lt",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_sort_lt.m" };
 
-emlrtRSInfo es_emlrtRSI = { 15, "eml_min_or_max",
+emlrtRSInfo fx_emlrtRSI = { 15, "eml_min_or_max",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_min_or_max.m"
 };
 
-emlrtRSInfo js_emlrtRSI = { 17, "sum",
+emlrtRSInfo kx_emlrtRSI = { 17, "sum",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/datafun/sum.m" };
 
-emlrtRSInfo ks_emlrtRSI = { 13, "angle",
+emlrtRSInfo lx_emlrtRSI = { 13, "angle",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/elfun/angle.m" };
 
-emlrtRSInfo ls_emlrtRSI = { 7, "eml_scalar_angle",
+emlrtRSInfo mx_emlrtRSI = { 7, "eml_scalar_angle",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/elfun/eml_scalar_angle.m"
 };
 
-emlrtRSInfo ps_emlrtRSI = { 17, "mean",
+emlrtRSInfo qx_emlrtRSI = { 17, "mean",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/datafun/mean.m" };
 
-emlrtRSInfo qs_emlrtRSI = { 329, "colon",
+emlrtRSInfo rx_emlrtRSI = { 328, "colon",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/colon.m" };
 
-emlrtRSInfo rs_emlrtRSI = { 328, "colon",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/colon.m" };
-
-emlrtRSInfo ss_emlrtRSI = { 324, "colon",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/colon.m" };
-
-emlrtRSInfo ts_emlrtRSI = { 314, "colon",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/colon.m" };
-
-emlrtRSInfo us_emlrtRSI = { 12, "exp",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/elfun/exp.m" };
-
-emlrtRSInfo vs_emlrtRSI = { 10, "eml_scalar_exp",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/elfun/eml_scalar_exp.m"
-};
-
-emlrtRSInfo dt_emlrtRSI = { 104, "OFDMDemodulator",
+emlrtRSInfo yx_emlrtRSI = { 104, "OFDMDemodulator",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/OFDMDemodulator.m" };
 
-emlrtRSInfo lt_emlrtRSI = { 275, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-emlrtRSInfo mt_emlrtRSI = { 276, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-emlrtRSInfo nt_emlrtRSI = { 279, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-emlrtRSInfo ot_emlrtRSI = { 280, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-emlrtRSInfo qt_emlrtRSI = { 68, "reshape",
+emlrtRSInfo hy_emlrtRSI = { 68, "reshape",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/elmat/reshape.m" };
 
-emlrtRSInfo rt_emlrtRSI = { 66, "reshape",
+emlrtRSInfo iy_emlrtRSI = { 66, "reshape",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/elmat/reshape.m" };
 
-emlrtRSInfo st_emlrtRSI = { 61, "reshape",
+emlrtRSInfo jy_emlrtRSI = { 61, "reshape",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/elmat/reshape.m" };
 
-emlrtRSInfo tt_emlrtRSI = { 58, "reshape",
+emlrtRSInfo ky_emlrtRSI = { 58, "reshape",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/elmat/reshape.m" };
 
-emlrtRSInfo wt_emlrtRSI = { 56, "eml_assert_valid_size_arg",
+emlrtRSInfo ny_emlrtRSI = { 56, "eml_assert_valid_size_arg",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_assert_valid_size_arg.m"
 };
 
-emlrtRSInfo xt_emlrtRSI = { 225, "indexIntRelop",
+emlrtRSInfo oy_emlrtRSI = { 225, "indexIntRelop",
   "/Applications/MATLAB_R2013b.app/toolbox/shared/coder/coder/+coder/+internal/indexIntRelop.m"
 };
 
-emlrtRSInfo yt_emlrtRSI = { 215, "indexIntRelop",
+emlrtRSInfo py_emlrtRSI = { 215, "indexIntRelop",
   "/Applications/MATLAB_R2013b.app/toolbox/shared/coder/coder/+coder/+internal/indexIntRelop.m"
 };
 
-emlrtRSInfo eu_emlrtRSI = { 30, "eml_div",
+emlrtRSInfo uy_emlrtRSI = { 30, "eml_div",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_div.m" };
 
-emlrtRSInfo fu_emlrtRSI = { 38, "eml_div",
+emlrtRSInfo vy_emlrtRSI = { 38, "eml_div",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_div.m" };
 
-emlrtRSInfo gu_emlrtRSI = { 39, "eml_div",
+emlrtRSInfo wy_emlrtRSI = { 74, "eml_div",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_div.m" };
 
-emlrtRSInfo hu_emlrtRSI = { 58, "eml_div",
+emlrtRSInfo xy_emlrtRSI = { 75, "eml_div",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_div.m" };
 
-emlrtRSInfo iu_emlrtRSI = { 59, "eml_div",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_div.m" };
-
-emlrtRSInfo ju_emlrtRSI = { 70, "eml_div",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_div.m" };
-
-emlrtRSInfo ku_emlrtRSI = { 71, "eml_div",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_div.m" };
-
-emlrtRSInfo lu_emlrtRSI = { 74, "eml_div",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_div.m" };
-
-emlrtRSInfo mu_emlrtRSI = { 75, "eml_div",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_div.m" };
-
-emlrtRSInfo nu_emlrtRSI = { 73, "sum",
+emlrtRSInfo yy_emlrtRSI = { 73, "sum",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/datafun/sum.m" };
 
-emlrtRSInfo ou_emlrtRSI = { 77, "sum",
+emlrtRSInfo aab_emlrtRSI = { 77, "sum",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/datafun/sum.m" };
 
-emlrtRSInfo pu_emlrtRSI = { 80, "sum",
+emlrtRSInfo bab_emlrtRSI = { 80, "sum",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/datafun/sum.m" };
 
-emlrtRSInfo qu_emlrtRSI = { 157, "OFDMBase",
+emlrtRSInfo cab_emlrtRSI = { 157, "OFDMBase",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/OFDMBase.m" };
 
-emlrtRSInfo tu_emlrtRSI = { 93, "reshape",
+emlrtRSInfo fab_emlrtRSI = { 93, "reshape",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/elmat/reshape.m" };
 
 emlrtMCInfo emlrtMCI = { 1, 1, "SystemCore",
@@ -1021,179 +1048,211 @@ emlrtMCInfo l_emlrtMCI = { 16, 13, "eml_warning",
 emlrtMCInfo m_emlrtMCI = { 16, 5, "eml_warning",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_warning.m" };
 
-emlrtMCInfo o_emlrtMCI = { 266, 5, "mapiPrivate",
+emlrtMCInfo n_emlrtMCI = { 266, 5, "mapiPrivate",
   "/Users/travis/Documents/sdru/usrp_uhd_mapi/mapiPrivate.m" };
 
-emlrtMCInfo p_emlrtMCI = { 19, 15, "mapiPrivate",
+emlrtMCInfo o_emlrtMCI = { 19, 15, "mapiPrivate",
   "/Users/travis/Documents/sdru/usrp_uhd_mapi/mapiPrivate.m" };
 
-emlrtMCInfo q_emlrtMCI = { 19, 5, "mapiPrivate",
+emlrtMCInfo p_emlrtMCI = { 19, 5, "mapiPrivate",
   "/Users/travis/Documents/sdru/usrp_uhd_mapi/mapiPrivate.m" };
 
-emlrtMCInfo r_emlrtMCI = { 104, 13, "mapiPrivate",
+emlrtMCInfo q_emlrtMCI = { 104, 13, "mapiPrivate",
   "/Users/travis/Documents/sdru/usrp_uhd_mapi/mapiPrivate.m" };
 
-emlrtMCInfo v_emlrtMCI = { 14, 5, "rdivide",
+emlrtMCInfo s_emlrtMCI = { 405, 5, "colon",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/colon.m" };
+
+emlrtMCInfo t_emlrtMCI = { 404, 15, "colon",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/colon.m" };
+
+emlrtMCInfo w_emlrtMCI = { 20, 5, "eml_assert_valid_dim",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_assert_valid_dim.m"
+};
+
+emlrtMCInfo x_emlrtMCI = { 18, 15, "eml_assert_valid_dim",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_assert_valid_dim.m"
+};
+
+emlrtMCInfo bb_emlrtMCI = { 225, 1, "unique",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/unique.m" };
+
+emlrtMCInfo db_emlrtMCI = { 14, 5, "rdivide",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/rdivide.m" };
 
-emlrtMCInfo w_emlrtMCI = { 13, 15, "rdivide",
+emlrtMCInfo eb_emlrtMCI = { 13, 15, "rdivide",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/rdivide.m" };
 
-emlrtMCInfo x_emlrtMCI = { 41, 9, "eml_min_or_max",
+emlrtMCInfo fb_emlrtMCI = { 41, 9, "eml_min_or_max",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_min_or_max.m"
 };
 
-emlrtMCInfo y_emlrtMCI = { 38, 19, "eml_min_or_max",
+emlrtMCInfo gb_emlrtMCI = { 38, 19, "eml_min_or_max",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_min_or_max.m"
 };
 
-emlrtMCInfo eb_emlrtMCI = { 18, 9, "sum",
+emlrtMCInfo lb_emlrtMCI = { 18, 9, "sum",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/datafun/sum.m" };
 
-emlrtMCInfo fb_emlrtMCI = { 17, 19, "sum",
+emlrtMCInfo mb_emlrtMCI = { 17, 19, "sum",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/datafun/sum.m" };
 
-emlrtMCInfo gb_emlrtMCI = { 23, 9, "sum",
+emlrtMCInfo nb_emlrtMCI = { 23, 9, "sum",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/datafun/sum.m" };
 
-emlrtMCInfo hb_emlrtMCI = { 20, 19, "sum",
+emlrtMCInfo ob_emlrtMCI = { 20, 19, "sum",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/datafun/sum.m" };
 
-emlrtMCInfo ib_emlrtMCI = { 18, 9, "mean",
+emlrtMCInfo pb_emlrtMCI = { 18, 9, "mean",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/datafun/mean.m" };
 
-emlrtMCInfo jb_emlrtMCI = { 17, 19, "mean",
+emlrtMCInfo qb_emlrtMCI = { 17, 19, "mean",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/datafun/mean.m" };
 
-emlrtMCInfo kb_emlrtMCI = { 23, 9, "mean",
+emlrtMCInfo rb_emlrtMCI = { 23, 9, "mean",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/datafun/mean.m" };
 
-emlrtMCInfo lb_emlrtMCI = { 20, 19, "mean",
+emlrtMCInfo sb_emlrtMCI = { 20, 19, "mean",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/datafun/mean.m" };
 
-emlrtMCInfo mb_emlrtMCI = { 67, 5, "reshape",
+emlrtMCInfo tb_emlrtMCI = { 67, 5, "reshape",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/elmat/reshape.m" };
 
-emlrtMCInfo nb_emlrtMCI = { 66, 15, "reshape",
+emlrtMCInfo ub_emlrtMCI = { 66, 15, "reshape",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/elmat/reshape.m" };
 
-emlrtRTEInfo emlrtRTEI = { 1, 10, "testMACTransmitter",
+emlrtRTEInfo c_emlrtRTEI = { 1, 10, "testMACTransmitter",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/testMACTransmitter.m" };
 
-emlrtRTEInfo d_emlrtRTEI = { 1, 48, "generateOFDMSignal_TX2",
+emlrtRTEInfo f_emlrtRTEI = { 1, 48, "generateOFDMSignal_TX2",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal_TX2.m"
 };
 
-emlrtRTEInfo g_emlrtRTEI = { 127, 5, "find",
+emlrtRTEInfo i_emlrtRTEI = { 127, 5, "find",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/elmat/find.m" };
 
-emlrtRTEInfo j_emlrtRTEI = { 1, 14, "OFDMletters2bits",
+emlrtRTEInfo l_emlrtRTEI = { 1, 14, "OFDMletters2bits",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/OFDMletters2bits.m" };
 
-emlrtRTEInfo k_emlrtRTEI = { 159, 1, "unique",
+emlrtRTEInfo m_emlrtRTEI = { 159, 1, "unique",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/unique.m" };
 
-emlrtRTEInfo l_emlrtRTEI = { 168, 21, "OFDMModulator",
+emlrtRTEInfo n_emlrtRTEI = { 168, 21, "OFDMModulator",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/OFDMModulator.m" };
 
-emlrtRTEInfo m_emlrtRTEI = { 47, 20, "find",
+emlrtRTEInfo o_emlrtRTEI = { 47, 20, "find",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/elmat/find.m" };
 
-emlrtRTEInfo o_emlrtRTEI = { 70, 21, "OFDMDemodulator",
+emlrtRTEInfo q_emlrtRTEI = { 70, 21, "OFDMDemodulator",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/OFDMDemodulator.m" };
 
-emlrtRTEInfo p_emlrtRTEI = { 111, 5, "find",
+emlrtRTEInfo r_emlrtRTEI = { 111, 5, "find",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/elmat/find.m" };
 
-emlrtRTEInfo q_emlrtRTEI = { 1, 17, "checkIPAddressFormat",
+emlrtRTEInfo s_emlrtRTEI = { 1, 17, "checkIPAddressFormat",
   "/Users/travis/Documents/sdru/checkIPAddressFormat.m" };
 
-emlrtRTEInfo r_emlrtRTEI = { 1, 48, "generateOFDMSignal",
+emlrtRTEInfo t_emlrtRTEI = { 1, 48, "generateOFDMSignal",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/generateOFDMSignal.m" };
 
-emlrtRTEInfo u_emlrtRTEI = { 1, 33, "initializeOFDMSyncMemory_sdr",
+emlrtRTEInfo w_emlrtRTEI = { 1, 33, "initializeOFDMSyncMemory_sdr",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/initializeOFDMSyncMemory_sdr.m"
 };
 
-emlrtRTEInfo v_emlrtRTEI = { 1, 28, "MACLayerTransmitter",
+emlrtRTEInfo x_emlrtRTEI = { 1, 41, "MACLayerTransmitter",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/MACLayerTransmitter.m" };
 
-emlrtRTEInfo w_emlrtRTEI = { 1, 13, "SDRuTransmitter",
-  "/Users/travis/Documents/sdru/+comm/SDRuTransmitter.p" };
-
-emlrtRTEInfo x_emlrtRTEI = { 1, 30, "closeDataConnection",
-  "/Users/travis/Documents/sdru/usrp_uhd_mapi/closeDataConnection.m" };
-
-emlrtRTEInfo y_emlrtRTEI = { 1, 41, "sendComplexDoubleData",
-  "/Users/travis/Documents/sdru/usrp_uhd_mapi/sendComplexDoubleData.m" };
-
-emlrtRTEInfo ab_emlrtRTEI = { 1, 10, "error",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/lang/error.m" };
-
-emlrtRTEInfo bb_emlrtRTEI = { 1, 13, "SDRuReceiver",
+emlrtRTEInfo ab_emlrtRTEI = { 1, 13, "SDRuReceiver",
   "/Users/travis/Documents/sdru/+comm/SDRuReceiver.p" };
+
+emlrtRTEInfo bb_emlrtRTEI = { 1, 30, "closeDataConnection",
+  "/Users/travis/Documents/sdru/usrp_uhd_mapi/closeDataConnection.m" };
 
 emlrtRTEInfo cb_emlrtRTEI = { 1, 58, "receiveData",
   "/Users/travis/Documents/sdru/usrp_uhd_mapi/receiveData.m" };
 
-emlrtRTEInfo eb_emlrtRTEI = { 58, 1, "strfind",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/strfun/strfind.m" };
-
-emlrtRTEInfo fb_emlrtRTEI = { 84, 1, "strfind",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/strfun/strfind.m" };
-
-emlrtRTEInfo gb_emlrtRTEI = { 155, 5, "xcorr",
-  "/Applications/MATLAB_R2013b.app/toolbox/signal/eml/xcorr.m" };
+emlrtRTEInfo db_emlrtRTEI = { 1, 10, "error",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/lang/error.m" };
 
 emlrtRTEInfo hb_emlrtRTEI = { 16, 5, "abs",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/elfun/abs.m" };
 
-emlrtRTEInfo ib_emlrtRTEI = { 15, 9, "eml_scalexp_alloc",
+emlrtRTEInfo kb_emlrtRTEI = { 1, 14, "fftshift",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/datafun/fftshift.m" };
+
+emlrtRTEInfo lb_emlrtRTEI = { 52, 1, "eml_sort",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_sort.m" };
+
+emlrtRTEInfo mb_emlrtRTEI = { 53, 1, "eml_sort",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_sort.m" };
+
+emlrtRTEInfo nb_emlrtRTEI = { 61, 5, "eml_sort",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_sort.m" };
+
+emlrtRTEInfo ob_emlrtRTEI = { 27, 5, "eml_sort_idx",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_sort_idx.m" };
+
+emlrtRTEInfo pb_emlrtRTEI = { 1, 20, "eml_sort_idx",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_sort_idx.m" };
+
+emlrtRTEInfo qb_emlrtRTEI = { 1, 13, "SDRuTransmitter",
+  "/Users/travis/Documents/sdru/+comm/SDRuTransmitter.p" };
+
+emlrtRTEInfo rb_emlrtRTEI = { 1, 41, "sendComplexDoubleData",
+  "/Users/travis/Documents/sdru/usrp_uhd_mapi/sendComplexDoubleData.m" };
+
+emlrtRTEInfo tb_emlrtRTEI = { 58, 1, "strfind",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/strfun/strfind.m" };
+
+emlrtRTEInfo ub_emlrtRTEI = { 84, 1, "strfind",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/strfun/strfind.m" };
+
+emlrtRTEInfo vb_emlrtRTEI = { 155, 5, "xcorr",
+  "/Applications/MATLAB_R2013b.app/toolbox/signal/eml/xcorr.m" };
+
+emlrtRTEInfo wb_emlrtRTEI = { 15, 9, "eml_scalexp_alloc",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_scalexp_alloc.m"
 };
 
-emlrtRTEInfo jb_emlrtRTEI = { 1, 14, "rdivide",
+emlrtRTEInfo xb_emlrtRTEI = { 1, 14, "rdivide",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/rdivide.m" };
 
-emlrtRTEInfo kb_emlrtRTEI = { 33, 50, "locateOFDMFrame_sdr",
+emlrtRTEInfo yb_emlrtRTEI = { 33, 50, "locateOFDMFrame_sdr",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m"
 };
 
-emlrtRTEInfo lb_emlrtRTEI = { 191, 5, "eml_setop",
+emlrtRTEInfo ac_emlrtRTEI = { 191, 5, "eml_setop",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/eml_setop.m" };
 
-emlrtRTEInfo mb_emlrtRTEI = { 192, 5, "eml_setop",
+emlrtRTEInfo bc_emlrtRTEI = { 192, 5, "eml_setop",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/eml_setop.m" };
 
-emlrtRTEInfo nb_emlrtRTEI = { 193, 5, "eml_setop",
+emlrtRTEInfo cc_emlrtRTEI = { 193, 5, "eml_setop",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/eml_setop.m" };
 
-emlrtRTEInfo ob_emlrtRTEI = { 131, 22, "eml_setop",
+emlrtRTEInfo dc_emlrtRTEI = { 131, 22, "eml_setop",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/eml_setop.m" };
 
-emlrtRTEInfo pb_emlrtRTEI = { 20, 9, "eml_li_find",
+emlrtRTEInfo ec_emlrtRTEI = { 20, 9, "eml_li_find",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_li_find.m" };
 
-emlrtRTEInfo qb_emlrtRTEI = { 21, 40, "coarseOFDMFreqEst_sdr",
+emlrtRTEInfo fc_emlrtRTEI = { 21, 40, "coarseOFDMFreqEst_sdr",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/coarseOFDMFreqEst_sdr.m"
 };
 
-emlrtRTEInfo rb_emlrtRTEI = { 1, 14, "exp",
+emlrtRTEInfo gc_emlrtRTEI = { 1, 14, "exp",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/elfun/exp.m" };
 
-emlrtRTEInfo vb_emlrtRTEI = { 1, 20, "OFDMbits2letters",
+emlrtRTEInfo kc_emlrtRTEI = { 1, 20, "OFDMbits2letters",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/OFDMbits2letters.m" };
 
-emlrtRTEInfo wb_emlrtRTEI = { 1, 31, "fprintf",
+emlrtRTEInfo lc_emlrtRTEI = { 1, 31, "fprintf",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/lang/fprintf.m" };
 
-emlrtRTEInfo xb_emlrtRTEI = { 1, 1, "setup",
+emlrtRTEInfo mc_emlrtRTEI = { 1, 1, "setup",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/scomp/setup.m" };
 
-emlrtRTEInfo yb_emlrtRTEI = { 284, 1, "colon",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/colon.m" };
-
-emlrtRTEInfo cc_emlrtRTEI = { 52, 20, "step",
+emlrtRTEInfo pc_emlrtRTEI = { 52, 20, "step",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/scomp/step.m" };
 
 emlrtBCInfo emlrtBCI = { 0, 255, 17, 9, "char", "char",
@@ -1205,21 +1264,27 @@ emlrtECInfo c_emlrtECI = { -1, 403, 9, "OFDMModulator",
 emlrtDCInfo emlrtDCI = { 403, 9, "OFDMModulator",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/OFDMModulator.m", 1 };
 
-emlrtBCInfo o_emlrtBCI = { -1, -1, 267, 19, "errStr", "mapiPrivate",
+emlrtBCInfo p_emlrtBCI = { -1, -1, 267, 19, "errStr", "mapiPrivate",
   "/Users/travis/Documents/sdru/usrp_uhd_mapi/mapiPrivate.m", 0 };
 
 testMACTransmitterStackData *c_testMACTransmitterStackDataLo;
-emlrtRSInfo bw_emlrtRSI = { 15, "errorIf",
+emlrtRSInfo lbb_emlrtRSI = { 15, "errorIf",
   "/Applications/MATLAB_R2013b.app/toolbox/shared/coder/coder/+coder/+internal/errorIf.m"
 };
 
-emlrtRSInfo cw_emlrtRSI = { 266, "mapiPrivate",
+emlrtRSInfo mbb_emlrtRSI = { 266, "mapiPrivate",
   "/Users/travis/Documents/sdru/usrp_uhd_mapi/mapiPrivate.m" };
 
-emlrtRSInfo fw_emlrtRSI = { 67, "reshape",
+emlrtRSInfo nbb_emlrtRSI = { 404, "colon",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/colon.m" };
+
+emlrtRSInfo rbb_emlrtRSI = { 67, "reshape",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/elmat/reshape.m" };
 
-emlrtRSInfo kw_emlrtRSI = { 19, "mapiPrivate",
+emlrtRSInfo tbb_emlrtRSI = { 405, "colon",
+  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/colon.m" };
+
+emlrtRSInfo ybb_emlrtRSI = { 19, "mapiPrivate",
   "/Users/travis/Documents/sdru/usrp_uhd_mapi/mapiPrivate.m" };
 
 /* End of code generation (testMACTransmitter_data.c) */

@@ -3,7 +3,7 @@
  *
  * Code generation for function 'eml_int_forloop_overflow_check'
  *
- * C source code generated on: Thu Mar  6 19:04:23 2014
+ * C source code generated on: Thu Mar  6 22:22:39 2014
  *
  */
 
@@ -23,11 +23,11 @@ static emlrtMCInfo f_emlrtMCI = { 51, 15, "eml_int_forloop_overflow_check",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_int_forloop_overflow_check.m"
 };
 
-static emlrtRSInfo dw_emlrtRSI = { 51, "eml_int_forloop_overflow_check",
+static emlrtRSInfo pbb_emlrtRSI = { 51, "eml_int_forloop_overflow_check",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_int_forloop_overflow_check.m"
 };
 
-static emlrtRSInfo iw_emlrtRSI = { 52, "eml_int_forloop_overflow_check",
+static emlrtRSInfo wbb_emlrtRSI = { 52, "eml_int_forloop_overflow_check",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_int_forloop_overflow_check.m"
 };
 
@@ -73,8 +73,8 @@ void check_forloop_overflow_error(const emlrtStack *sp)
 
   emlrtInitCharArrayR2013a(sp, 23, m5, cv48);
   emlrtAssign(&b_y, m5);
-  st.site = &dw_emlrtRSI;
-  b_st.site = &iw_emlrtRSI;
+  st.site = &pbb_emlrtRSI;
+  b_st.site = &wbb_emlrtRSI;
   c_error(&st, message(&b_st, y, b_y, &e_emlrtMCI), &f_emlrtMCI);
 }
 

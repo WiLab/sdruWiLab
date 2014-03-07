@@ -3,7 +3,7 @@
  *
  * Code generation for function 'SystemProp'
  *
- * C source code generated on: Thu Mar  6 19:04:22 2014
+ * C source code generated on: Thu Mar  6 22:22:38 2014
  *
  */
 
@@ -15,7 +15,7 @@
 #include <stdio.h>
 
 /* Variable Definitions */
-static emlrtRTEInfo n_emlrtRTEI = { 1, 13, "SystemProp",
+static emlrtRTEInfo p_emlrtRTEI = { 1, 13, "SystemProp",
   "/Applications/MATLAB_R2013b.app/toolbox/shared/system/coder/+matlab/+system/+coder/SystemProp.p"
 };
 
@@ -42,7 +42,7 @@ void e_SystemProp_matlabCodegenSetAn(const emlrtStack *sp, OFDMModulator_1 *obj,
   i3 = obj->pDataLinearIndices->size[0];
   obj->pDataLinearIndices->size[0] = value_size[0];
   emxEnsureCapacity(sp, (emxArray__common *)obj->pDataLinearIndices, i3,
-                    (int32_T)sizeof(real_T), &n_emlrtRTEI);
+                    (int32_T)sizeof(real_T), &p_emlrtRTEI);
   loop_ub = value_size[0];
   for (i3 = 0; i3 < loop_ub; i3++) {
     obj->pDataLinearIndices->data[i3] = value_data[i3];
@@ -62,15 +62,15 @@ void g_SystemProp_matlabCodegenSetAn(OFDMDemodulator_1 *obj)
 void h_SystemProp_matlabCodegenSetAn(const emlrtStack *sp, OFDMDemodulator_1
   *obj, const real_T value_data[768], const int32_T value_size[1])
 {
-  int32_T i25;
+  int32_T i28;
   int32_T loop_ub;
-  i25 = obj->pDataLinearIndices->size[0];
+  i28 = obj->pDataLinearIndices->size[0];
   obj->pDataLinearIndices->size[0] = value_size[0];
-  emxEnsureCapacity(sp, (emxArray__common *)obj->pDataLinearIndices, i25,
-                    (int32_T)sizeof(real_T), &n_emlrtRTEI);
+  emxEnsureCapacity(sp, (emxArray__common *)obj->pDataLinearIndices, i28,
+                    (int32_T)sizeof(real_T), &p_emlrtRTEI);
   loop_ub = value_size[0];
-  for (i25 = 0; i25 < loop_ub; i25++) {
-    obj->pDataLinearIndices->data[i25] = value_data[i25];
+  for (i28 = 0; i28 < loop_ub; i28++) {
+    obj->pDataLinearIndices->data[i28] = value_data[i28];
   }
 }
 

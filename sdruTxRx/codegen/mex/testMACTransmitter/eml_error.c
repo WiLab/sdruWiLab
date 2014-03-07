@@ -3,7 +3,7 @@
  *
  * Code generation for function 'eml_error'
  *
- * C source code generated on: Thu Mar  6 19:04:23 2014
+ * C source code generated on: Thu Mar  6 22:22:39 2014
  *
  */
 
@@ -14,25 +14,25 @@
 #include <stdio.h>
 
 /* Variable Definitions */
-static emlrtRTEInfo dc_emlrtRTEI = { 20, 5, "eml_error",
+static emlrtRTEInfo qc_emlrtRTEI = { 20, 5, "eml_error",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_error.m" };
 
 /* Function Definitions */
 void b_eml_error(const emlrtStack *sp)
 {
-  emlrtErrorWithMessageIdR2012b(sp, &dc_emlrtRTEI,
+  emlrtErrorWithMessageIdR2012b(sp, &qc_emlrtRTEI,
     "Coder:toolbox:eml_setop_unsortedB", 0);
 }
 
 void c_eml_error(const emlrtStack *sp)
 {
-  emlrtErrorWithMessageIdR2012b(sp, &dc_emlrtRTEI,
+  emlrtErrorWithMessageIdR2012b(sp, &qc_emlrtRTEI,
     "Coder:toolbox:reshape_emptyReshapeLimit", 0);
 }
 
 void eml_error(const emlrtStack *sp)
 {
-  emlrtErrorWithMessageIdR2012b(sp, &dc_emlrtRTEI,
+  emlrtErrorWithMessageIdR2012b(sp, &qc_emlrtRTEI,
     "Coder:toolbox:eml_setop_unsortedA", 0);
 }
 

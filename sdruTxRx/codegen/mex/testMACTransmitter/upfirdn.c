@@ -3,7 +3,7 @@
  *
  * Code generation for function 'upfirdn'
  *
- * C source code generated on: Thu Mar  6 19:04:24 2014
+ * C source code generated on: Thu Mar  6 22:22:41 2014
  *
  */
 
@@ -17,13 +17,13 @@
 #include <stdio.h>
 
 /* Variable Definitions */
-static emlrtRSInfo av_emlrtRSI = { 147, "upfirdn",
+static emlrtRSInfo lab_emlrtRSI = { 147, "upfirdn",
   "/Applications/MATLAB_R2013b.app/toolbox/signal/eml/upfirdn.m" };
 
-static emlrtRSInfo bv_emlrtRSI = { 150, "upfirdn",
+static emlrtRSInfo mab_emlrtRSI = { 150, "upfirdn",
   "/Applications/MATLAB_R2013b.app/toolbox/signal/eml/upfirdn.m" };
 
-static emlrtRSInfo cv_emlrtRSI = { 151, "upfirdn",
+static emlrtRSInfo nab_emlrtRSI = { 151, "upfirdn",
   "/Applications/MATLAB_R2013b.app/toolbox/signal/eml/upfirdn.m" };
 
 /* Function Definitions */
@@ -32,27 +32,27 @@ void upfirdn(testMACTransmitterStackData *SD, const emlrtStack *sp, const
 {
   dspcodegen_FIRRateConverter s;
   creal_T b_x_in[288];
-  int32_T i27;
-  int32_T i28;
+  int32_T i30;
+  int32_T i31;
   emlrtStack st;
   st.prev = sp;
   st.tls = sp->tls;
-  st.site = &av_emlrtRSI;
+  st.site = &lab_emlrtRSI;
   c_FIRRateConverter_FIRRateConve(&s);
-  for (i27 = 0; i27 < 12; i27++) {
-    memcpy(&b_x_in[24 * i27], &x_in[i27 << 2], sizeof(creal_T) << 2);
-    for (i28 = 0; i28 < 20; i28++) {
-      b_x_in[(i28 + 24 * i27) + 4].re = 0.0;
-      b_x_in[(i28 + 24 * i27) + 4].im = 0.0;
+  for (i30 = 0; i30 < 12; i30++) {
+    memcpy(&b_x_in[24 * i30], &x_in[i30 << 2], sizeof(creal_T) << 2);
+    for (i31 = 0; i31 < 20; i31++) {
+      b_x_in[(i31 + 24 * i30) + 4].re = 0.0;
+      b_x_in[(i31 + 24 * i30) + 4].im = 0.0;
     }
   }
 
-  st.site = &bv_emlrtRSI;
-  j_SystemCore_step(&st, &s, b_x_in, SD->u1.f3.y);
-  st.site = &cv_emlrtRSI;
+  st.site = &mab_emlrtRSI;
+  k_SystemCore_step(&st, &s, b_x_in, SD->u1.f5.y);
+  st.site = &nab_emlrtRSI;
   SystemCore_reset(&st, &s);
-  for (i27 = 0; i27 < 12; i27++) {
-    memcpy(&y_out[278 * i27], &SD->u1.f3.y[288 * i27], 278U * sizeof(creal_T));
+  for (i30 = 0; i30 < 12; i30++) {
+    memcpy(&y_out[278 * i30], &SD->u1.f5.y[288 * i30], 278U * sizeof(creal_T));
   }
 
   st.site = NULL;

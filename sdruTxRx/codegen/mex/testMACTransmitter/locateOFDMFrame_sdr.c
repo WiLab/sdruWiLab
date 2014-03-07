@@ -3,7 +3,7 @@
  *
  * Code generation for function 'locateOFDMFrame_sdr'
  *
- * C source code generated on: Thu Mar  6 19:04:24 2014
+ * C source code generated on: Thu Mar  6 22:22:40 2014
  *
  */
 
@@ -19,93 +19,93 @@
 #include <stdio.h>
 
 /* Variable Definitions */
-static emlrtRSInfo kq_emlrtRSI = { 40, "locateOFDMFrame_sdr",
+static emlrtRSInfo lv_emlrtRSI = { 40, "locateOFDMFrame_sdr",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m"
 };
 
-static emlrtRSInfo lq_emlrtRSI = { 41, "locateOFDMFrame_sdr",
+static emlrtRSInfo mv_emlrtRSI = { 41, "locateOFDMFrame_sdr",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m"
 };
 
-static emlrtRSInfo mq_emlrtRSI = { 51, "locateOFDMFrame_sdr",
+static emlrtRSInfo nv_emlrtRSI = { 51, "locateOFDMFrame_sdr",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m"
 };
 
-static emlrtRSInfo nq_emlrtRSI = { 53, "locateOFDMFrame_sdr",
+static emlrtRSInfo ov_emlrtRSI = { 53, "locateOFDMFrame_sdr",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m"
 };
 
-static emlrtRSInfo oq_emlrtRSI = { 58, "locateOFDMFrame_sdr",
+static emlrtRSInfo pv_emlrtRSI = { 58, "locateOFDMFrame_sdr",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m"
 };
 
-static emlrtRSInfo pq_emlrtRSI = { 62, "locateOFDMFrame_sdr",
+static emlrtRSInfo qv_emlrtRSI = { 62, "locateOFDMFrame_sdr",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m"
 };
 
-static emlrtRSInfo qq_emlrtRSI = { 73, "locateOFDMFrame_sdr",
+static emlrtRSInfo rv_emlrtRSI = { 73, "locateOFDMFrame_sdr",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m"
 };
 
-static emlrtRSInfo yq_emlrtRSI = { 23, "intersect",
+static emlrtRSInfo aw_emlrtRSI = { 23, "intersect",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/intersect.m" };
 
-static emlrtRSInfo ar_emlrtRSI = { 67, "eml_setop",
+static emlrtRSInfo bw_emlrtRSI = { 67, "eml_setop",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/eml_setop.m" };
 
-static emlrtRSInfo xr_emlrtRSI = { 11, "eml_li_find",
+static emlrtRSInfo yw_emlrtRSI = { 11, "eml_li_find",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_li_find.m" };
 
-static emlrtRSInfo yr_emlrtRSI = { 26, "eml_li_find",
+static emlrtRSInfo ax_emlrtRSI = { 26, "eml_li_find",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_li_find.m" };
 
-static emlrtRSInfo as_emlrtRSI = { 29, "eml_li_find",
+static emlrtRSInfo bx_emlrtRSI = { 29, "eml_li_find",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_li_find.m" };
 
-static emlrtRSInfo bs_emlrtRSI = { 39, "eml_li_find",
+static emlrtRSInfo cx_emlrtRSI = { 39, "eml_li_find",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_li_find.m" };
 
-static emlrtRSInfo cs_emlrtRSI = { 41, "eml_li_find",
+static emlrtRSInfo dx_emlrtRSI = { 41, "eml_li_find",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_li_find.m" };
 
-static emlrtRSInfo ds_emlrtRSI = { 18, "max",
+static emlrtRSInfo ex_emlrtRSI = { 18, "max",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/datafun/max.m" };
 
-static emlrtMCInfo db_emlrtMCI = { 14, 5, "eml_li_find",
+static emlrtMCInfo kb_emlrtMCI = { 14, 5, "eml_li_find",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_li_find.m" };
 
-static emlrtBCInfo t_emlrtBCI = { -1, -1, 52, 24, "MLocations",
+static emlrtBCInfo jb_emlrtBCI = { -1, -1, 52, 24, "MLocations",
   "locateOFDMFrame_sdr",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m",
   0 };
 
-static emlrtBCInfo u_emlrtBCI = { -1, -1, 53, 33, "MLocations",
+static emlrtBCInfo kb_emlrtBCI = { -1, -1, 53, 33, "MLocations",
   "locateOFDMFrame_sdr",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m",
   0 };
 
-static emlrtECInfo n_emlrtECI = { -1, 53, 33, "locateOFDMFrame_sdr",
+static emlrtECInfo w_emlrtECI = { -1, 53, 33, "locateOFDMFrame_sdr",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m"
 };
 
-static emlrtBCInfo v_emlrtBCI = { -1, -1, 58, 1, "peaks", "locateOFDMFrame_sdr",
+static emlrtBCInfo lb_emlrtBCI = { -1, -1, 58, 1, "peaks", "locateOFDMFrame_sdr",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m",
   0 };
 
-static emlrtBCInfo w_emlrtBCI = { -1, -1, 64, 37, "MLocations",
+static emlrtBCInfo mb_emlrtBCI = { -1, -1, 64, 37, "MLocations",
   "locateOFDMFrame_sdr",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m",
   0 };
 
-static emlrtBCInfo x_emlrtBCI = { -1, -1, 53, 5, "peaks", "locateOFDMFrame_sdr",
+static emlrtBCInfo nb_emlrtBCI = { -1, -1, 53, 5, "peaks", "locateOFDMFrame_sdr",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m",
   0 };
 
-static emlrtDCInfo c_emlrtDCI = { 20, 34, "eml_li_find",
+static emlrtDCInfo o_emlrtDCI = { 20, 34, "eml_li_find",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_li_find.m", 4
 };
 
-static emlrtRSInfo vv_emlrtRSI = { 14, "eml_li_find",
+static emlrtRSInfo hbb_emlrtRSI = { 14, "eml_li_find",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_li_find.m" };
 
 /* Function Declarations */
@@ -119,7 +119,7 @@ static int32_T compute_nones(const emlrtStack *sp, const boolean_T x_data[1224],
   int32_T n)
 {
   int32_T k;
-  boolean_T b4;
+  boolean_T b9;
   int32_T i;
   emlrtStack st;
   emlrtStack b_st;
@@ -128,21 +128,21 @@ static int32_T compute_nones(const emlrtStack *sp, const boolean_T x_data[1224],
   b_st.prev = &st;
   b_st.tls = st.tls;
   k = 0;
-  st.site = &bs_emlrtRSI;
+  st.site = &cx_emlrtRSI;
   if (1 > n) {
-    b4 = FALSE;
+    b9 = FALSE;
   } else {
-    b4 = (n > 2147483646);
+    b9 = (n > 2147483646);
   }
 
-  if (b4) {
+  if (b9) {
     b_st.site = &eg_emlrtRSI;
     check_forloop_overflow_error(&b_st);
   }
 
   for (i = 1; i <= n; i++) {
     if (x_data[i - 1]) {
-      st.site = &cs_emlrtRSI;
+      st.site = &dx_emlrtRSI;
       k++;
     }
   }
@@ -155,30 +155,30 @@ static void eml_li_find(const emlrtStack *sp, const boolean_T x_data[1224],
 {
   int32_T k;
   const mxArray *y;
-  const mxArray *m33;
+  const mxArray *m38;
   int32_T i;
   emlrtStack st;
   st.prev = sp;
   st.tls = sp->tls;
-  st.site = &xr_emlrtRSI;
+  st.site = &yw_emlrtRSI;
   k = compute_nones(&st, x_data, x_size[0]);
   if (k <= x_size[0]) {
   } else {
     y = NULL;
-    m33 = mxCreateString("Assertion failed.");
-    emlrtAssign(&y, m33);
-    st.site = &vv_emlrtRSI;
-    c_error(&st, y, &db_emlrtMCI);
+    m38 = mxCreateString("Assertion failed.");
+    emlrtAssign(&y, m38);
+    st.site = &hbb_emlrtRSI;
+    c_error(&st, y, &kb_emlrtMCI);
   }
 
-  emlrtNonNegativeCheckFastR2012b(k, &c_emlrtDCI, sp);
+  emlrtNonNegativeCheckFastR2012b(k, &o_emlrtDCI, sp);
   y_size[0] = k;
   k = 0;
-  st.site = &yr_emlrtRSI;
+  st.site = &ax_emlrtRSI;
   for (i = 1; i <= x_size[0]; i++) {
     if (x_data[i - 1]) {
       y_data[k] = i;
-      st.site = &as_emlrtRSI;
+      st.site = &bx_emlrtRSI;
       k++;
     }
   }
@@ -199,7 +199,7 @@ void locateShortpreamble(const emlrtStack *sp, const real_T M_data[1224], real_T
   real_T MLocations_data[1224];
   int16_T unnamed_idx_0;
   int32_T peaks_data[1224];
-  int32_T i23;
+  int32_T i26;
   real_T b_MLocations_data[1224];
   int32_T MLocations_size[1];
   real_T MLocations[8];
@@ -223,7 +223,7 @@ void locateShortpreamble(const emlrtStack *sp, const real_T M_data[1224], real_T
   /*  Locate of the start of the actual preamble from timing metric */
   /* % Find peaks of correlation */
   /*  Adjust threshold */
-  st.site = &kq_emlrtRSI;
+  st.site = &lv_emlrtRSI;
   b_st.site = &af_emlrtRSI;
   ixstart = 1;
   thresholdNorm = M_data[0];
@@ -251,9 +251,9 @@ void locateShortpreamble(const emlrtStack *sp, const real_T M_data[1224], real_T
     }
   }
 
-  st.site = &kq_emlrtRSI;
+  st.site = &lv_emlrtRSI;
   thresholdNorm *= 0.6;
-  st.site = &lq_emlrtRSI;
+  st.site = &mv_emlrtRSI;
   for (ixstart = 0; ixstart < 1224; ixstart++) {
     b_M_data[ixstart] = (M_data[ixstart] > thresholdNorm);
   }
@@ -276,42 +276,42 @@ void locateShortpreamble(const emlrtStack *sp, const real_T M_data[1224], real_T
   }
 
   /*  Determine correct peak  */
-  st.site = &mq_emlrtRSI;
+  st.site = &nv_emlrtRSI;
   ix = 0;
   while (ix <= ii_size[0] - 1) {
     ixstart = ix + 1;
-    emlrtDynamicBoundsCheckFastR2012b(ixstart, 1, ii_size[0], &t_emlrtBCI, sp);
+    emlrtDynamicBoundsCheckFastR2012b(ixstart, 1, ii_size[0], &jb_emlrtBCI, sp);
     if (ix + 1 > ii_size[0]) {
       ixstart = 1;
-      i23 = 1;
+      i26 = 1;
     } else {
       ixstart = emlrtDynamicBoundsCheckFastR2012b(ix + 1, 1, ii_size[0],
-        &u_emlrtBCI, sp);
-      i23 = emlrtDynamicBoundsCheckFastR2012b(ii_size[0], 1, ii_size[0],
-        &u_emlrtBCI, sp) + 1;
+        &kb_emlrtBCI, sp);
+      i26 = emlrtDynamicBoundsCheckFastR2012b(ii_size[0], 1, ii_size[0],
+        &kb_emlrtBCI, sp) + 1;
     }
 
-    emlrtVectorVectorIndexCheckR2012b(ii_size[0], 1, 1, i23 - ixstart,
-      &n_emlrtECI, sp);
-    st.site = &nq_emlrtRSI;
-    b_st.site = &yq_emlrtRSI;
-    MLocations_size[0] = i23 - ixstart;
-    loop_ub = i23 - ixstart;
-    for (i23 = 0; i23 < loop_ub; i23++) {
-      b_MLocations_data[i23] = MLocations_data[(ixstart + i23) - 1];
+    emlrtVectorVectorIndexCheckR2012b(ii_size[0], 1, 1, i26 - ixstart,
+      &w_emlrtECI, sp);
+    st.site = &ov_emlrtRSI;
+    b_st.site = &aw_emlrtRSI;
+    MLocations_size[0] = i26 - ixstart;
+    loop_ub = i26 - ixstart;
+    for (i26 = 0; i26 < loop_ub; i26++) {
+      b_MLocations_data[i26] = MLocations_data[(ixstart + i26) - 1];
     }
 
     for (ixstart = 0; ixstart < 8; ixstart++) {
       MLocations[ixstart] = MLocations_data[ix] + (16.0 + 16.0 * (real_T)ixstart);
     }
 
-    c_st.site = &ar_emlrtRSI;
+    c_st.site = &bw_emlrtRSI;
     do_vectors(&c_st, b_MLocations_data, MLocations_size, MLocations, c_data,
                c_size, ia_data, ia_size, ib_data, ib_size);
-    st.site = &nq_emlrtRSI;
+    st.site = &ov_emlrtRSI;
     ixstart = (int16_T)ii_size[0];
-    peaks_data[emlrtDynamicBoundsCheckFastR2012b(ix + 1, 1, ixstart, &x_emlrtBCI,
-      sp) - 1] = c_size[0];
+    peaks_data[emlrtDynamicBoundsCheckFastR2012b(ix + 1, 1, ixstart,
+      &nb_emlrtBCI, sp) - 1] = c_size[0];
     ix++;
     emlrtBreakCheckFastR2012b(emlrtBreakCheckR2012bFlagVar, sp);
   }
@@ -324,19 +324,19 @@ void locateShortpreamble(const emlrtStack *sp, const real_T M_data[1224], real_T
     b_M_data[ixstart] = (peaks_data[ixstart] < 7);
   }
 
-  st.site = &oq_emlrtRSI;
+  st.site = &pv_emlrtRSI;
   eml_li_find(&st, b_M_data, peaks_size, ii_data, ii_size);
   loop_ub = ii_size[0];
   for (ixstart = 0; ixstart < loop_ub; ixstart++) {
-    i23 = (int16_T)MLocations_size_idx_0;
-    peaks_data[emlrtDynamicBoundsCheckFastR2012b(ii_data[ixstart], 1, i23,
-      &v_emlrtBCI, sp) - 1] = 0;
+    i26 = (int16_T)MLocations_size_idx_0;
+    peaks_data[emlrtDynamicBoundsCheckFastR2012b(ii_data[ixstart], 1, i26,
+      &lb_emlrtBCI, sp) - 1] = 0;
   }
 
   /*  Pick earliest peak in time */
   if (!(unnamed_idx_0 == 0)) {
-    st.site = &pq_emlrtRSI;
-    b_st.site = &ds_emlrtRSI;
+    st.site = &qv_emlrtRSI;
+    b_st.site = &ex_emlrtRSI;
     ixstart = peaks_data[0];
     loop_ub = 1;
     if (unnamed_idx_0 > 1) {
@@ -352,7 +352,7 @@ void locateShortpreamble(const emlrtStack *sp, const real_T M_data[1224], real_T
     if (ixstart > 0) {
       *preambleEstimatedLocation =
         MLocations_data[emlrtDynamicBoundsCheckFastR2012b(loop_ub, 1,
-        MLocations_size_idx_0, &w_emlrtBCI, sp) - 1];
+        MLocations_size_idx_0, &mb_emlrtBCI, sp) - 1];
     } else {
       *preambleEstimatedLocation = -1.0;
 
@@ -364,7 +364,7 @@ void locateShortpreamble(const emlrtStack *sp, const real_T M_data[1224], real_T
   }
 
   /*  Normalize max peaks found */
-  st.site = &qq_emlrtRSI;
+  st.site = &rv_emlrtRSI;
   b_st.site = &m_emlrtRSI;
   *numPeaks /= 8.0;
 }

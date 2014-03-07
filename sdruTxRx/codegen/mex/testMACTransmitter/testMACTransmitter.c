@@ -3,7 +3,7 @@
  *
  * Code generation for function 'testMACTransmitter'
  *
- * C source code generated on: Thu Mar  6 19:04:22 2014
+ * C source code generated on: Thu Mar  6 22:22:38 2014
  *
  */
 
@@ -26,16 +26,16 @@
 #include <stdio.h>
 
 /* Variable Definitions */
-static emlrtRSInfo emlrtRSI = { 33, "testMACTransmitter",
+static emlrtRSInfo emlrtRSI = { 34, "testMACTransmitter",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/testMACTransmitter.m" };
 
-static emlrtRSInfo b_emlrtRSI = { 51, "testMACTransmitter",
+static emlrtRSInfo b_emlrtRSI = { 52, "testMACTransmitter",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/testMACTransmitter.m" };
 
-static emlrtRSInfo c_emlrtRSI = { 52, "testMACTransmitter",
+static emlrtRSInfo c_emlrtRSI = { 55, "testMACTransmitter",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/testMACTransmitter.m" };
 
-static emlrtRSInfo d_emlrtRSI = { 53, "testMACTransmitter",
+static emlrtRSInfo d_emlrtRSI = { 57, "testMACTransmitter",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/testMACTransmitter.m" };
 
 static emlrtRSInfo e_emlrtRSI = { 5, "testMACTransmitter",
@@ -62,25 +62,25 @@ static emlrtRSInfo k_emlrtRSI = { 11, "CreateTXRX",
 static emlrtRSInfo l_emlrtRSI = { 25, "CreateTXRX",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/CreateTXRX.m" };
 
-static emlrtRSInfo hp_emlrtRSI = { 12, "ceil",
+static emlrtRSInfo wu_emlrtRSI = { 12, "ceil",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/elfun/ceil.m" };
 
-static emlrtRSInfo sv_emlrtRSI = { 6, "Wait",
+static emlrtRSInfo ebb_emlrtRSI = { 6, "Wait",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/Wait.m" };
 
-static emlrtRSInfo tv_emlrtRSI = { 7, "Wait",
+static emlrtRSInfo fbb_emlrtRSI = { 7, "Wait",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/Wait.m" };
 
-static emlrtRSInfo uv_emlrtRSI = { 10, "Wait",
+static emlrtRSInfo gbb_emlrtRSI = { 10, "Wait",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/Wait.m" };
 
-static emlrtRTEInfo b_emlrtRTEI = { 11, 5, "testMACTransmitter",
+static emlrtRTEInfo d_emlrtRTEI = { 11, 5, "testMACTransmitter",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/testMACTransmitter.m" };
 
-static emlrtRTEInfo c_emlrtRTEI = { 10, 5, "testMACTransmitter",
+static emlrtRTEInfo e_emlrtRTEI = { 10, 5, "testMACTransmitter",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/testMACTransmitter.m" };
 
-static emlrtECInfo emlrtECI = { 2, 33, 5, "testMACTransmitter",
+static emlrtECInfo emlrtECI = { 2, 34, 6, "testMACTransmitter",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/testMACTransmitter.m" };
 
 static emlrtECInfo b_emlrtECI = { 2, 23, 1, "testMACTransmitter",
@@ -138,11 +138,14 @@ void testMACTransmitter(testMACTransmitterStackData *SD, const emlrtStack *sp,
   real_T b_tx_dataSubcarrierIndexies_dat[48];
   real_T tx_offsetTable[3];
   int32_T previousMessage_size[2];
+  real_T correct;
   int32_T run;
-  int32_T tmp_size[2];
-  char_T tmp_data[77];
-  char_T previousMessage_data[80];
+  boolean_T msgStatus;
+  int32_T b_previousMessage_size[2];
+  char_T previousMessage_data[77];
+  char_T b_previousMessage_data[80];
   int32_T loop_ub;
+  real_T d0;
   comm_SDRuReceiver *b_ObjSDRuReceiver;
   int32_T buffer;
   const mxArray *y;
@@ -276,8 +279,8 @@ void testMACTransmitter(testMACTransmitterStackData *SD, const emlrtStack *sp,
   g_st.prev = &f_st;
   g_st.tls = f_st.tls;
   emlrtHeapReferenceStackEnterFcnR2012b(sp);
-  emxInitStruct_OFDMDemodulator_1(sp, &ObjDataDemod, &b_emlrtRTEI, TRUE);
-  emxInitStruct_OFDMDemodulator_1(sp, &ObjPreambleDemod, &c_emlrtRTEI, TRUE);
+  emxInitStruct_OFDMDemodulator_1(sp, &ObjDataDemod, &d_emlrtRTEI, TRUE);
+  emxInitStruct_OFDMDemodulator_1(sp, &ObjPreambleDemod, &e_emlrtRTEI, TRUE);
 
   /*            %Objects */
   /*          %Structs */
@@ -288,62 +291,62 @@ void testMACTransmitter(testMACTransmitterStackData *SD, const emlrtStack *sp,
   /*  Frames to capture */
   b_st.site = &k_emlrtRSI;
   generateOFDMSignal_TX2(SD, &b_st, &b_unusedU1, &b_unusedU0, &unusedU0,
-    &unusedU1, SD->f15.unusedU2, &SD->f15.tx);
+    &unusedU1, SD->f16.unusedU2, &SD->f16.tx);
   for (i = 0; i < 560; i++) {
-    tx_originalData[i] = SD->f15.tx.originalData[i];
+    tx_originalData[i] = SD->f16.tx.originalData[i];
   }
 
   for (i = 0; i < 64; i++) {
-    tx_shortPreambleOFDM[i] = SD->f15.tx.shortPreambleOFDM[i];
+    tx_shortPreambleOFDM[i] = SD->f16.tx.shortPreambleOFDM[i];
   }
 
   for (i = 0; i < 160; i++) {
-    tx_completeShortPreambleOFDM[i] = SD->f15.tx.completeShortPreambleOFDM[i];
+    tx_completeShortPreambleOFDM[i] = SD->f16.tx.completeShortPreambleOFDM[i];
   }
 
   for (i = 0; i < 53; i++) {
-    tx_shortPreamble[i] = SD->f15.tx.shortPreamble[i];
+    tx_shortPreamble[i] = SD->f16.tx.shortPreamble[i];
   }
 
   for (i = 0; i < 53; i++) {
-    tx_longPreamble[i] = SD->f15.tx.longPreamble[i];
+    tx_longPreamble[i] = SD->f16.tx.longPreamble[i];
   }
 
   for (i = 0; i < 64; i++) {
-    tx_longPreambleOFDM[i] = SD->f15.tx.longPreambleOFDM[i];
+    tx_longPreambleOFDM[i] = SD->f16.tx.longPreambleOFDM[i];
   }
 
   for (i = 0; i < 160; i++) {
-    tx_completeLongPreambleOFDM[i] = SD->f15.tx.completeLongPreambleOFDM[i];
+    tx_completeLongPreambleOFDM[i] = SD->f16.tx.completeLongPreambleOFDM[i];
   }
 
   for (i = 0; i < 48; i++) {
-    tx_pilots[i] = SD->f15.tx.pilots[i];
+    tx_pilots[i] = SD->f16.tx.pilots[i];
   }
 
   for (i = 0; i < 320; i++) {
-    tx_preambles[i] = SD->f15.tx.preambles[i];
+    tx_preambles[i] = SD->f16.tx.preambles[i];
   }
 
   for (i = 0; i < 4; i++) {
     c_tx_pilotLocationsWithoutGuard[i] =
-      SD->f15.tx.pilotLocationsWithoutGuardbands[i];
+      SD->f16.tx.pilotLocationsWithoutGuardbands[i];
   }
 
   for (i = 0; i < 48; i++) {
-    tx_dataSubcarrierIndexies_data[i] = SD->f15.tx.dataSubcarrierIndexies.data[i];
+    tx_dataSubcarrierIndexies_data[i] = SD->f16.tx.dataSubcarrierIndexies.data[i];
   }
 
-  tx_FFTLength = SD->f15.tx.FFTLength;
-  tx_enableMA = SD->f15.tx.enableMA;
-  tx_numCarriers = SD->f15.tx.numCarriers;
-  tx_padBits = SD->f15.tx.padBits;
-  tx_numSamples = SD->f15.tx.numSamples;
-  tx_messageCharacters = SD->f15.tx.messageCharacters;
-  tx_numFrames = SD->f15.tx.numFrames;
-  tx_frameLength = SD->f15.tx.frameLength;
-  tx_DecimationFactor = SD->f15.tx.DecimationFactor;
-  tx_receiveBufferLength = SD->f15.tx.receiveBufferLength;
+  tx_FFTLength = SD->f16.tx.FFTLength;
+  tx_enableMA = SD->f16.tx.enableMA;
+  tx_numCarriers = SD->f16.tx.numCarriers;
+  tx_padBits = SD->f16.tx.padBits;
+  tx_numSamples = SD->f16.tx.numSamples;
+  tx_messageCharacters = SD->f16.tx.messageCharacters;
+  tx_numFrames = SD->f16.tx.numFrames;
+  tx_frameLength = SD->f16.tx.frameLength;
+  tx_DecimationFactor = SD->f16.tx.DecimationFactor;
+  tx_receiveBufferLength = SD->f16.tx.receiveBufferLength;
 
   /* just need for sizing */
   /*  Set desired frequeny */
@@ -355,8 +358,8 @@ void testMACTransmitter(testMACTransmitterStackData *SD, const emlrtStack *sp,
   /*  Setup Parameters */
   b_st.site = &l_emlrtRSI;
   generateOFDMSignal(SD, &b_st, &ObjDataDemod, &ObjPreambleDemod,
-                     &b_ObjPreambleDemod, &b_ObjDataDemod, SD->f15.unusedU3,
-                     &SD->f15.rx);
+                     &b_ObjPreambleDemod, &b_ObjDataDemod, SD->f16.unusedU3,
+                     &SD->f16.rx);
 
   /* _TX2('HelloShannon'); */
   /* ceil( rx.frameLength*4 ); %Size of Buffer of sliding window */
@@ -366,7 +369,7 @@ void testMACTransmitter(testMACTransmitterStackData *SD, const emlrtStack *sp,
   /* Number of frequency estimates to be averaged together for frequency corrections (Higher==More stability, Lower==More responsiveness) */
   /* Create memory structure to collect measurements for sync algorithms */
   b_st.site = &g_emlrtRSI;
-  initializeOFDMSyncMemory_sdr(&SD->f15.estimate);
+  initializeOFDMSyncMemory_sdr(&SD->f16.estimate);
 
   /*  Gain control */
   b_st.site = &h_emlrtRSI;
@@ -416,6 +419,9 @@ void testMACTransmitter(testMACTransmitterStackData *SD, const emlrtStack *sp,
   emlrtDimSizeGeqCheckFastR2012b(80, 0, &b_emlrtECI, sp);
   previousMessage_size[0] = 1;
   previousMessage_size[1] = 0;
+  correct = 0.0;
+
+  /* Keep track of successful messages */
   for (run = 0; run < 10000; run++) {
     /* message = ['Random Message',char(96+run)];%Create different messages each times */
     /* Dont create different messages each times */
@@ -423,107 +429,118 @@ void testMACTransmitter(testMACTransmitterStackData *SD, const emlrtStack *sp,
     /*            %Objects */
     /*          %Structs */
     /*   %Values/Vectors */
-    SD->f15.expl_temp.nodeNum = nodeNum;
+    SD->f16.expl_temp.nodeNum = nodeNum;
     for (i = 0; i < 3; i++) {
-      SD->f15.expl_temp.offsetTable[i] = tx_offsetTable[i];
+      SD->f16.expl_temp.offsetTable[i] = tx_offsetTable[i];
     }
 
-    SD->f15.expl_temp.CenterFrequency = 2.24E+9;
-    SD->f15.expl_temp.receiveBufferLength = tx_receiveBufferLength;
-    SD->f15.expl_temp.DecimationFactor = tx_DecimationFactor;
-    SD->f15.expl_temp.freqBin = 78125.0;
-    SD->f15.expl_temp.frameLength = tx_frameLength;
-    SD->f15.expl_temp.numFrames = tx_numFrames;
-    SD->f15.expl_temp.messageCharacters = tx_messageCharacters;
-    SD->f15.expl_temp.numSamples = tx_numSamples;
-    SD->f15.expl_temp.padBits = tx_padBits;
-    SD->f15.expl_temp.numCarriers = tx_numCarriers;
-    SD->f15.expl_temp.enableMA = tx_enableMA;
-    SD->f15.expl_temp.FFTLength = tx_FFTLength;
-    SD->f15.expl_temp.samplingFreq = 5.0E+6;
-    SD->f15.expl_temp.dataSubcarrierIndexies.size[0] = 1;
-    SD->f15.expl_temp.dataSubcarrierIndexies.size[1] = 48;
+    SD->f16.expl_temp.CenterFrequency = 2.24E+9;
+    SD->f16.expl_temp.receiveBufferLength = tx_receiveBufferLength;
+    SD->f16.expl_temp.DecimationFactor = tx_DecimationFactor;
+    SD->f16.expl_temp.freqBin = 78125.0;
+    SD->f16.expl_temp.frameLength = tx_frameLength;
+    SD->f16.expl_temp.numFrames = tx_numFrames;
+    SD->f16.expl_temp.messageCharacters = tx_messageCharacters;
+    SD->f16.expl_temp.numSamples = tx_numSamples;
+    SD->f16.expl_temp.padBits = tx_padBits;
+    SD->f16.expl_temp.numCarriers = tx_numCarriers;
+    SD->f16.expl_temp.enableMA = tx_enableMA;
+    SD->f16.expl_temp.FFTLength = tx_FFTLength;
+    SD->f16.expl_temp.samplingFreq = 5.0E+6;
+    SD->f16.expl_temp.dataSubcarrierIndexies.size[0] = 1;
+    SD->f16.expl_temp.dataSubcarrierIndexies.size[1] = 48;
     for (i = 0; i < 48; i++) {
-      SD->f15.expl_temp.dataSubcarrierIndexies.data[i] =
+      SD->f16.expl_temp.dataSubcarrierIndexies.data[i] =
         b_tx_dataSubcarrierIndexies_dat[i];
     }
 
     for (i = 0; i < 4; i++) {
-      SD->f15.expl_temp.pilotLocationsWithoutGuardbands[i] =
+      SD->f16.expl_temp.pilotLocationsWithoutGuardbands[i] =
         d_tx_pilotLocationsWithoutGuard[i];
     }
 
     for (i = 0; i < 320; i++) {
-      SD->f15.expl_temp.preambles[i] = b_tx_preambles[i];
+      SD->f16.expl_temp.preambles[i] = b_tx_preambles[i];
     }
 
     for (i = 0; i < 48; i++) {
-      SD->f15.expl_temp.pilots[i] = b_tx_pilots[i];
+      SD->f16.expl_temp.pilots[i] = b_tx_pilots[i];
     }
 
     for (i = 0; i < 160; i++) {
-      SD->f15.expl_temp.completeLongPreambleOFDM[i] =
+      SD->f16.expl_temp.completeLongPreambleOFDM[i] =
         b_tx_completeLongPreambleOFDM[i];
     }
 
     for (i = 0; i < 64; i++) {
-      SD->f15.expl_temp.longPreambleOFDM[i] = b_tx_longPreambleOFDM[i];
+      SD->f16.expl_temp.longPreambleOFDM[i] = b_tx_longPreambleOFDM[i];
     }
 
     for (i = 0; i < 53; i++) {
-      SD->f15.expl_temp.longPreamble[i] = b_tx_longPreamble[i];
-      SD->f15.expl_temp.shortPreamble[i] = b_tx_shortPreamble[i];
+      SD->f16.expl_temp.longPreamble[i] = b_tx_longPreamble[i];
+      SD->f16.expl_temp.shortPreamble[i] = b_tx_shortPreamble[i];
     }
 
     for (i = 0; i < 160; i++) {
-      SD->f15.expl_temp.completeShortPreambleOFDM[i] =
+      SD->f16.expl_temp.completeShortPreambleOFDM[i] =
         b_tx_completeShortPreambleOFDM[i];
     }
 
     for (i = 0; i < 64; i++) {
-      SD->f15.expl_temp.shortPreambleOFDM[i] = b_tx_shortPreambleOFDM[i];
+      SD->f16.expl_temp.shortPreambleOFDM[i] = b_tx_shortPreambleOFDM[i];
     }
 
     for (i = 0; i < 560; i++) {
-      SD->f15.expl_temp.originalData[i] = b_tx_originalData[i];
+      SD->f16.expl_temp.originalData[i] = b_tx_originalData[i];
     }
 
     st.site = &emlrtRSI;
     MACLayerTransmitter(SD, &st, &ObjAGC, &ObjSDRuReceiver, &ObjSDRuTransmitter,
                         &ObjDetect, &ObjPreambleDemod, &ObjDataDemod,
-                        &SD->f15.estimate, &SD->f15.expl_temp, messageBits_data,
-                        previousMessage_data, previousMessage_size, tmp_data,
-                        tmp_size);
-    emlrtDimSizeGeqCheckFastR2012b(80, tmp_size[1], &emlrtECI, sp);
+                        &SD->f16.estimate, &SD->f16.expl_temp, messageBits_data,
+                        b_previousMessage_data, previousMessage_size,
+                        previousMessage_data, b_previousMessage_size, &msgStatus);
+    emlrtDimSizeGeqCheckFastR2012b(80, b_previousMessage_size[1], &emlrtECI, sp);
     previousMessage_size[0] = 1;
-    previousMessage_size[1] = tmp_size[1];
-    loop_ub = tmp_size[0] * tmp_size[1];
+    previousMessage_size[1] = b_previousMessage_size[1];
+    loop_ub = b_previousMessage_size[0] * b_previousMessage_size[1];
     for (i = 0; i < loop_ub; i++) {
-      previousMessage_data[i] = tmp_data[i];
+      b_previousMessage_data[i] = previousMessage_data[i];
     }
 
     /* Wait some time */
     /*  Calculated in seconds buts thats far from realistic  */
     st.site = &b_emlrtRSI;
-    x_fprintf(&st);
-    st.site = &c_emlrtRSI;
-    ab_fprintf(&st, 1 + run);
+    cb_fprintf(&st);
+    if (msgStatus) {
+      correct++;
+      d0 = muDoubleScalarRound(correct);
+      if (d0 < 2.147483648E+9) {
+        i = (int32_T)d0;
+      } else {
+        i = MAX_int32_T;
+      }
+
+      st.site = &c_emlrtRSI;
+      eb_fprintf(&st, i);
+    }
+
     st.site = &d_emlrtRSI;
     b_ObjSDRuReceiver = &ObjSDRuReceiver;
 
     /*  Do nothing aka waste time */
     /*  Calculate how many buffer needed to step through to wait */
     /*  desired time */
-    b_st.site = &sv_emlrtRSI;
+    b_st.site = &ebb_emlrtRSI;
     c_st.site = &m_emlrtRSI;
     d_st.site = &n_emlrtRSI;
-    b_st.site = &tv_emlrtRSI;
+    b_st.site = &fbb_emlrtRSI;
     c_st.site = &m_emlrtRSI;
     d_st.site = &n_emlrtRSI;
-    b_st.site = &tv_emlrtRSI;
-    c_st.site = &hp_emlrtRSI;
-    for (buffer = 0; buffer < 996094; buffer++) {
-      b_st.site = &uv_emlrtRSI;
+    b_st.site = &fbb_emlrtRSI;
+    c_st.site = &wu_emlrtRSI;
+    for (buffer = 0; buffer < 19532; buffer++) {
+      b_st.site = &gbb_emlrtRSI;
       if (!b_ObjSDRuReceiver->isReleased) {
       } else {
         y = NULL;
@@ -590,20 +607,20 @@ void testMACTransmitter(testMACTransmitterStackData *SD, const emlrtStack *sp,
         d_st.site = &fb_emlrtRSI;
         d_st.site = &fb_emlrtRSI;
         d_st.site = &fb_emlrtRSI;
-        e_st.site = &vj_emlrtRSI;
+        e_st.site = &ck_emlrtRSI;
         SDRuReceiver_setupImplLocal(&e_st, b_ObjSDRuReceiver, &deviceStatus,
-          errMsg_data, tmp_size);
+          errMsg_data, b_previousMessage_size);
         if (deviceStatus == UsrpDriverSuccess) {
-          e_st.site = &vj_emlrtRSI;
+          e_st.site = &ck_emlrtRSI;
           f_st.site = &gb_emlrtRSI;
         } else {
-          e_st.site = &vj_emlrtRSI;
+          e_st.site = &ck_emlrtRSI;
           closeDataConnection(&e_st, b_ObjSDRuReceiver->pDriverHandle);
-          e_st.site = &vj_emlrtRSI;
+          e_st.site = &ck_emlrtRSI;
           f_st.site = &gb_emlrtRSI;
         }
 
-        e_st.site = &vj_emlrtRSI;
+        e_st.site = &ck_emlrtRSI;
 
         /* reportSDRuStatus SDRu status reporter */
         /*    reportSDRuStatus(STATUS,MSG,IP,METHOD) reports the SDRu status based on */
@@ -615,7 +632,7 @@ void testMACTransmitter(testMACTransmitterStackData *SD, const emlrtStack *sp,
         /*    Copyright 2012-2013 The MathWorks, Inc. */
         switch (deviceStatus) {
          case UsrpDriverNotCompatible:
-          f_st.site = &xm_emlrtRSI;
+          f_st.site = &gn_emlrtRSI;
           if (!(deviceStatus == UsrpDriverNotCompatible)) {
           } else {
             e_y = NULL;
@@ -642,14 +659,14 @@ void testMACTransmitter(testMACTransmitterStackData *SD, const emlrtStack *sp,
 
             emlrtInitCharArrayR2013a(&f_st, 43, m0, cv12);
             emlrtAssign(&g_y, m0);
-            g_st.site = &bw_emlrtRSI;
+            g_st.site = &lbb_emlrtRSI;
             c_error(&g_st, c_message(&g_st, e_y, f_y, g_y, &g_emlrtMCI),
                     &g_emlrtMCI);
           }
           break;
 
          case UsrpDriverNotResponding:
-          f_st.site = &vm_emlrtRSI;
+          f_st.site = &en_emlrtRSI;
           if (!(deviceStatus == UsrpDriverNotResponding)) {
           } else {
             h_y = NULL;
@@ -668,13 +685,13 @@ void testMACTransmitter(testMACTransmitterStackData *SD, const emlrtStack *sp,
 
             emlrtInitCharArrayR2013a(&f_st, 12, m0, cv10);
             emlrtAssign(&i_y, m0);
-            g_st.site = &bw_emlrtRSI;
+            g_st.site = &lbb_emlrtRSI;
             c_error(&g_st, message(&g_st, h_y, i_y, &g_emlrtMCI), &g_emlrtMCI);
           }
           break;
 
          case UsrpDriverRxBusy:
-          f_st.site = &tm_emlrtRSI;
+          f_st.site = &cn_emlrtRSI;
           if (!(deviceStatus == UsrpDriverRxBusy)) {
           } else {
             j_y = NULL;
@@ -693,13 +710,13 @@ void testMACTransmitter(testMACTransmitterStackData *SD, const emlrtStack *sp,
 
             emlrtInitCharArrayR2013a(&f_st, 12, m0, cv10);
             emlrtAssign(&k_y, m0);
-            g_st.site = &bw_emlrtRSI;
+            g_st.site = &lbb_emlrtRSI;
             c_error(&g_st, message(&g_st, j_y, k_y, &g_emlrtMCI), &g_emlrtMCI);
           }
           break;
 
          case UsrpDriverTxBusy:
-          f_st.site = &rm_emlrtRSI;
+          f_st.site = &an_emlrtRSI;
           if (!(deviceStatus == UsrpDriverTxBusy)) {
           } else {
             l_y = NULL;
@@ -718,13 +735,13 @@ void testMACTransmitter(testMACTransmitterStackData *SD, const emlrtStack *sp,
 
             emlrtInitCharArrayR2013a(&f_st, 12, m0, cv10);
             emlrtAssign(&m_y, m0);
-            g_st.site = &bw_emlrtRSI;
+            g_st.site = &lbb_emlrtRSI;
             c_error(&g_st, message(&g_st, l_y, m_y, &g_emlrtMCI), &g_emlrtMCI);
           }
           break;
 
          case UsrpDriverBusy:
-          f_st.site = &pm_emlrtRSI;
+          f_st.site = &xm_emlrtRSI;
           if (!(deviceStatus == UsrpDriverBusy)) {
           } else {
             n_y = NULL;
@@ -743,13 +760,13 @@ void testMACTransmitter(testMACTransmitterStackData *SD, const emlrtStack *sp,
 
             emlrtInitCharArrayR2013a(&f_st, 12, m0, cv10);
             emlrtAssign(&o_y, m0);
-            g_st.site = &bw_emlrtRSI;
+            g_st.site = &lbb_emlrtRSI;
             c_error(&g_st, message(&g_st, n_y, o_y, &g_emlrtMCI), &g_emlrtMCI);
           }
           break;
 
          case UsrpDriverError:
-          f_st.site = &nm_emlrtRSI;
+          f_st.site = &vm_emlrtRSI;
           if (!(deviceStatus == UsrpDriverError)) {
           } else {
             p_y = NULL;
@@ -761,8 +778,8 @@ void testMACTransmitter(testMACTransmitterStackData *SD, const emlrtStack *sp,
             emlrtInitCharArrayR2013a(&f_st, 35, m0, cv8);
             emlrtAssign(&p_y, m0);
             u_size[0] = 1;
-            u_size[1] = tmp_size[1];
-            loop_ub = tmp_size[0] * tmp_size[1];
+            u_size[1] = b_previousMessage_size[1];
+            loop_ub = b_previousMessage_size[0] * b_previousMessage_size[1];
             for (i = 0; i < loop_ub; i++) {
               u_data[i] = errMsg_data[i];
             }
@@ -771,7 +788,7 @@ void testMACTransmitter(testMACTransmitterStackData *SD, const emlrtStack *sp,
             m0 = mxCreateCharArray(2, u_size);
             emlrtInitCharArrayR2013a(&f_st, u_size[1], m0, (char_T *)&u_data);
             emlrtAssign(&q_y, m0);
-            g_st.site = &bw_emlrtRSI;
+            g_st.site = &lbb_emlrtRSI;
             c_error(&g_st, message(&g_st, p_y, q_y, &g_emlrtMCI), &g_emlrtMCI);
           }
           break;
@@ -811,7 +828,7 @@ void testMACTransmitter(testMACTransmitterStackData *SD, const emlrtStack *sp,
       c_st.site = &fb_emlrtRSI;
       c_st.site = &fb_emlrtRSI;
       c_st.site = &fb_emlrtRSI;
-      SDRuReceiver_stepImpl(SD, &c_st, b_ObjSDRuReceiver);
+      b_SDRuReceiver_stepImpl(SD, &c_st, b_ObjSDRuReceiver);
       emlrtBreakCheckFastR2012b(emlrtBreakCheckR2012bFlagVar, &st);
     }
 

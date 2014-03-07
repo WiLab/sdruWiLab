@@ -25,7 +25,7 @@ destNodeID = -1;
 % Duplicates are checked at the last stage
 state = 0;% Initial state
 timeouts = 0; % Counter
-maxTimeouts = 10;
+maxTimeouts = 4;
 
 % Message string holder
 coder.varsize('Response', [1, 80], [0 1]);
@@ -73,7 +73,7 @@ while 1
             timeouts = timeouts + 1;
             if timeouts > maxTimeouts
                 %if DebugFlag;fprintf('DL| Max timeouts reached\n');end
-                fprintf('DL| Max timeouts reached\n');
+                if DebugFlag;fprintf('DL| Max timeouts reached\n');end;
                 Response = 'Timeout';
                 break;
             end
@@ -82,7 +82,7 @@ while 1
         % Message corrupted    
         case 2
             if DebugFlag;fprintf('DL| Message corrupted\n');end
-            timeouts = timeouts + 0.01;
+            timeouts = timeouts + 0.001;
             state = 0;%Get another message
             
         % Default: Message successfully received    
@@ -94,7 +94,6 @@ while 1
             % Final Duplication check
             if strcmp(previousMessage, Response)%Dupe
                 %if DebugFlag;fprintf('DL| Duplicate Message\n');end
-                fprintf('DL| Duplicate Message\n');
                 previousMessage = Response;%Update history for next iteration
                 originNodeID = double(Response(end-2))-48; %extract node ID and convert char to number
                 destNodeID = double(Response(end-1))-48; %extract node ID and convert char to number
@@ -113,10 +112,12 @@ while 1
 end
 
 % Final check
-if abs(destNodeID) > length(tx.offsetTable)
+if abs(destNodeID) > length(tx.offsetTable) || destNodeID==0
     destNodeID=tx.nodeNum;% Something went wrong, probably corrupt message, reset to self
 end
-
+if abs(originNodeID) > length(tx.offsetTable) || originNodeID==0
+    originNodeID=tx.nodeNum;% Something went wrong, probably corrupt message, reset to self
+end
 
 
 end

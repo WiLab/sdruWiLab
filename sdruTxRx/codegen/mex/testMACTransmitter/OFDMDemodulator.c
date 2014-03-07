@@ -3,7 +3,7 @@
  *
  * Code generation for function 'OFDMDemodulator'
  *
- * C source code generated on: Thu Mar  6 19:04:23 2014
+ * C source code generated on: Thu Mar  6 22:22:39 2014
  *
  */
 
@@ -19,95 +19,72 @@
 #include <stdio.h>
 
 /* Variable Definitions */
-static emlrtRSInfo hd_emlrtRSI = { 31, "eml_fftshift",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fftshift.m" };
-
-static emlrtRSInfo id_emlrtRSI = { 35, "eml_fftshift",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fftshift.m" };
-
-static emlrtRSInfo jd_emlrtRSI = { 40, "eml_fftshift",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fftshift.m" };
-
-static emlrtRSInfo kd_emlrtRSI = { 41, "eml_fftshift",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fftshift.m" };
-
-static emlrtRSInfo nd_emlrtRSI = { 49, "eml_fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fft.m" };
-
-static emlrtRSInfo fj_emlrtRSI = { 29, "eml_fftshift",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fftshift.m" };
-
-static emlrtRSInfo gj_emlrtRSI = { 32, "eml_fftshift",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_fftshift.m" };
-
-static emlrtRSInfo ft_emlrtRSI = { 152, "OFDMDemodulator",
+static emlrtRSInfo by_emlrtRSI = { 152, "OFDMDemodulator",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/OFDMDemodulator.m" };
 
-static emlrtRSInfo gt_emlrtRSI = { 162, "OFDMDemodulator",
+static emlrtRSInfo cy_emlrtRSI = { 162, "OFDMDemodulator",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/OFDMDemodulator.m" };
 
-static emlrtRSInfo ht_emlrtRSI = { 168, "OFDMDemodulator",
+static emlrtRSInfo dy_emlrtRSI = { 168, "OFDMDemodulator",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/OFDMDemodulator.m" };
 
-static emlrtRSInfo it_emlrtRSI = { 172, "OFDMDemodulator",
+static emlrtRSInfo ey_emlrtRSI = { 172, "OFDMDemodulator",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/OFDMDemodulator.m" };
 
-static emlrtRSInfo jt_emlrtRSI = { 171, "OFDMDemodulator",
+static emlrtRSInfo fy_emlrtRSI = { 171, "OFDMDemodulator",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/OFDMDemodulator.m" };
 
-static emlrtRSInfo kt_emlrtRSI = { 14, "fft",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/datafun/fft.m" };
-
-static emlrtRSInfo pt_emlrtRSI = { 16, "fftshift",
+static emlrtRSInfo gy_emlrtRSI = { 16, "fftshift",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/datafun/fftshift.m" };
 
-static emlrtRSInfo ut_emlrtRSI = { 22, "reshape",
+static emlrtRSInfo ly_emlrtRSI = { 22, "reshape",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/elmat/reshape.m" };
 
-static emlrtRSInfo vt_emlrtRSI = { 41, "eml_assert_valid_size_arg",
+static emlrtRSInfo my_emlrtRSI = { 41, "eml_assert_valid_size_arg",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_assert_valid_size_arg.m"
 };
 
-static emlrtRSInfo su_emlrtRSI = { 176, "OFDMDemodulator",
+static emlrtRSInfo eab_emlrtRSI = { 176, "OFDMDemodulator",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/OFDMDemodulator.m" };
 
-static emlrtMCInfo ob_emlrtMCI = { 42, 9, "eml_assert_valid_size_arg",
+static emlrtMCInfo vb_emlrtMCI = { 42, 9, "eml_assert_valid_size_arg",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_assert_valid_size_arg.m"
 };
 
-static emlrtMCInfo pb_emlrtMCI = { 41, 19, "eml_assert_valid_size_arg",
+static emlrtMCInfo wb_emlrtMCI = { 41, 19, "eml_assert_valid_size_arg",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_assert_valid_size_arg.m"
 };
 
-static emlrtMCInfo qb_emlrtMCI = { 57, 5, "eml_assert_valid_size_arg",
+static emlrtMCInfo xb_emlrtMCI = { 57, 5, "eml_assert_valid_size_arg",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_assert_valid_size_arg.m"
 };
 
-static emlrtMCInfo rb_emlrtMCI = { 56, 15, "eml_assert_valid_size_arg",
+static emlrtMCInfo yb_emlrtMCI = { 56, 15, "eml_assert_valid_size_arg",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_assert_valid_size_arg.m"
 };
 
-static emlrtRTEInfo tb_emlrtRTEI = { 144, 24, "OFDMDemodulator",
+static emlrtRTEInfo ic_emlrtRTEI = { 144, 24, "OFDMDemodulator",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/OFDMDemodulator.m" };
 
-static emlrtRTEInfo ub_emlrtRTEI = { 65, 1, "reshape",
+static emlrtRTEInfo jc_emlrtRTEI = { 65, 1, "reshape",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/elmat/reshape.m" };
 
-static emlrtBCInfo y_emlrtBCI = { 1, 64, 171, 28, "postShift", "OFDMDemodulator",
-  "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/OFDMDemodulator.m", 0 };
-
-static emlrtDCInfo d_emlrtDCI = { 171, 28, "OFDMDemodulator",
-  "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/OFDMDemodulator.m", 1 };
-
-static emlrtBCInfo ab_emlrtBCI = { 1, 768, 171, 28, "postShift",
+static emlrtBCInfo ob_emlrtBCI = { 1, 64, 171, 28, "postShift",
   "OFDMDemodulator",
   "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/OFDMDemodulator.m", 0 };
 
-static emlrtRSInfo gw_emlrtRSI = { 57, "eml_assert_valid_size_arg",
+static emlrtDCInfo p_emlrtDCI = { 171, 28, "OFDMDemodulator",
+  "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/OFDMDemodulator.m", 1 };
+
+static emlrtBCInfo pb_emlrtBCI = { 1, 768, 171, 28, "postShift",
+  "OFDMDemodulator",
+  "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/OFDMDemodulator.m", 0 };
+
+static emlrtRSInfo sbb_emlrtRSI = { 57, "eml_assert_valid_size_arg",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_assert_valid_size_arg.m"
 };
 
-static emlrtRSInfo nw_emlrtRSI = { 42, "eml_assert_valid_size_arg",
+static emlrtRSInfo ccb_emlrtRSI = { 42, "eml_assert_valid_size_arg",
   "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_assert_valid_size_arg.m"
 };
 
@@ -153,7 +130,7 @@ OFDMDemodulator_2 *OFDMDemodulator_OFDMDemodulator(const emlrtStack *sp,
   f_st.prev = &e_st;
   f_st.tls = e_st.tls;
   b_object = object;
-  st.site = &mj_emlrtRSI;
+  st.site = &sj_emlrtRSI;
   obj = b_object;
   b_st.site = &cb_emlrtRSI;
   c_st.site = &eb_emlrtRSI;
@@ -166,23 +143,23 @@ OFDMDemodulator_2 *OFDMDemodulator_OFDMDemodulator(const emlrtStack *sp,
   e_st.site = &gb_emlrtRSI;
   b_st.site = &cb_emlrtRSI;
   b_st.site = &db_emlrtRSI;
-  st.site = &nj_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  st.site = &oj_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  st.site = &pj_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  st.site = &qj_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  st.site = &rj_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  st.site = &sj_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
   st.site = &tj_emlrtRSI;
+  b_st.site = &gb_emlrtRSI;
+  b_st.site = &gb_emlrtRSI;
+  st.site = &uj_emlrtRSI;
+  b_st.site = &gb_emlrtRSI;
+  b_st.site = &gb_emlrtRSI;
+  st.site = &vj_emlrtRSI;
+  b_st.site = &gb_emlrtRSI;
+  b_st.site = &gb_emlrtRSI;
+  st.site = &wj_emlrtRSI;
+  b_st.site = &gb_emlrtRSI;
+  st.site = &xj_emlrtRSI;
+  b_st.site = &gb_emlrtRSI;
+  b_st.site = &gb_emlrtRSI;
+  st.site = &yj_emlrtRSI;
+  b_st.site = &gb_emlrtRSI;
+  st.site = &ak_emlrtRSI;
   b_st.site = &gb_emlrtRSI;
 
   /* OFDMBase Base object for OFDMModulator and OFDMDemodulator System objects */
@@ -223,29 +200,29 @@ OFDMDemodulator_2 *OFDMDemodulator_OFDMDemodulator(const emlrtStack *sp,
   /*          {'real','integer','positive','finite','3d'}, ... */
   /*          [class(obj) '.' propName], propName);   */
   /*  Check the 3rd dimension for numTx */
-  c_st.site = &xh_emlrtRSI;
-  d_st.site = &yh_emlrtRSI;
+  c_st.site = &ei_emlrtRSI;
+  d_st.site = &fi_emlrtRSI;
   for (i = 0; i < 4; i++) {
     b_data[i] = (int8_T)(12 + 14 * i);
   }
 
-  e_st.site = &pi_emlrtRSI;
+  e_st.site = &vi_emlrtRSI;
   nb = 0;
-  e_st.site = &ni_emlrtRSI;
-  e_st.site = &mi_emlrtRSI;
-  i = 1;
-  while (i <= 4) {
-    x = b_data[i - 1];
+  e_st.site = &ti_emlrtRSI;
+  e_st.site = &si_emlrtRSI;
+  i = 0;
+  while (i + 1 <= 4) {
+    x = b_data[i];
     do {
       exitg1 = 0;
-      e_st.site = &li_emlrtRSI;
+      e_st.site = &ri_emlrtRSI;
       i++;
-      if (i > 4) {
+      if (i + 1 > 4) {
         exitg1 = 1;
       } else {
-        e_st.site = &ki_emlrtRSI;
+        e_st.site = &qi_emlrtRSI;
         frexp((real_T)x / 2.0, &exponent);
-        if (muDoubleScalarAbs(x - b_data[i - 1]) < ldexp(1.0, exponent - 53)) {
+        if (muDoubleScalarAbs(x - b_data[i]) < ldexp(1.0, exponent - 53)) {
           p = TRUE;
         } else {
           p = FALSE;
@@ -257,16 +234,16 @@ OFDMDemodulator_2 *OFDMDemodulator_OFDMDemodulator(const emlrtStack *sp,
       }
     } while (exitg1 == 0);
 
-    e_st.site = &ji_emlrtRSI;
+    e_st.site = &pi_emlrtRSI;
     nb++;
     b_data[nb - 1] = (int8_T)x;
-    e_st.site = &ii_emlrtRSI;
-    e_st.site = &ii_emlrtRSI;
+    e_st.site = &oi_emlrtRSI;
+    e_st.site = &oi_emlrtRSI;
   }
 
-  e_st.site = &ei_emlrtRSI;
-  e_st.site = &di_emlrtRSI;
-  e_st.site = &ai_emlrtRSI;
+  e_st.site = &ki_emlrtRSI;
+  e_st.site = &ji_emlrtRSI;
+  e_st.site = &gi_emlrtRSI;
   if (1 > nb) {
     b1 = FALSE;
   } else {
@@ -278,8 +255,8 @@ OFDMDemodulator_2 *OFDMDemodulator_OFDMDemodulator(const emlrtStack *sp,
     check_forloop_overflow_error(&f_st);
   }
 
-  c_st.site = &xh_emlrtRSI;
-  c_st.site = &xh_emlrtRSI;
+  c_st.site = &ei_emlrtRSI;
+  c_st.site = &ei_emlrtRSI;
   if (1 > nb) {
     i4 = 0;
   } else {
@@ -296,7 +273,7 @@ OFDMDemodulator_2 *OFDMDemodulator_OFDMDemodulator(const emlrtStack *sp,
 
     emlrtInitCharArrayR2013a(&c_st, 13, m9, cv68);
     emlrtAssign(&y, m9);
-    d_st.site = &bw_emlrtRSI;
+    d_st.site = &lbb_emlrtRSI;
     c_error(&d_st, b_message(&d_st, y, &g_emlrtMCI), &g_emlrtMCI);
   }
 
@@ -323,19 +300,19 @@ void OFDMDemodulator_stepImpl(const emlrtStack *sp, const OFDMDemodulator_1 *obj
   int32_T iDelta2;
   int32_T k;
   int32_T iheight;
-  static const real_T dv8[33] = { 0.0, -0.0980171403295606, -0.19509032201612825,
-    -0.29028467725446233, -0.38268343236508978, -0.47139673682599764,
-    -0.55557023301960218, -0.63439328416364549, -0.70710678118654757,
-    -0.773010453362737, -0.83146961230254524, -0.881921264348355,
-    -0.92387953251128674, -0.95694033573220882, -0.98078528040323043,
-    -0.99518472667219693, -1.0, -0.99518472667219693, -0.98078528040323043,
-    -0.95694033573220882, -0.92387953251128674, -0.881921264348355,
-    -0.83146961230254524, -0.773010453362737, -0.70710678118654757,
-    -0.63439328416364549, -0.55557023301960218, -0.47139673682599764,
-    -0.38268343236508978, -0.29028467725446233, -0.19509032201612825,
-    -0.0980171403295606, -0.0 };
+  static const real_T dv11[33] = { 0.0, -0.0980171403295606,
+    -0.19509032201612825, -0.29028467725446233, -0.38268343236508978,
+    -0.47139673682599764, -0.55557023301960218, -0.63439328416364549,
+    -0.70710678118654757, -0.773010453362737, -0.83146961230254524,
+    -0.881921264348355, -0.92387953251128674, -0.95694033573220882,
+    -0.98078528040323043, -0.99518472667219693, -1.0, -0.99518472667219693,
+    -0.98078528040323043, -0.95694033573220882, -0.92387953251128674,
+    -0.881921264348355, -0.83146961230254524, -0.773010453362737,
+    -0.70710678118654757, -0.63439328416364549, -0.55557023301960218,
+    -0.47139673682599764, -0.38268343236508978, -0.29028467725446233,
+    -0.19509032201612825, -0.0980171403295606, -0.0 };
 
-  static const real_T dv9[33] = { 1.0, 0.99518472667219693, 0.98078528040323043,
+  static const real_T dv12[33] = { 1.0, 0.99518472667219693, 0.98078528040323043,
     0.95694033573220882, 0.92387953251128674, 0.881921264348355,
     0.83146961230254524, 0.773010453362737, 0.70710678118654757,
     0.63439328416364549, 0.55557023301960218, 0.47139673682599764,
@@ -351,20 +328,20 @@ void OFDMDemodulator_stepImpl(const emlrtStack *sp, const OFDMDemodulator_1 *obj
   emxArray_creal_T *c_x;
   int32_T varargin_1[3];
   const mxArray *y;
-  static const int32_T iv191[2] = { 1, 21 };
+  static const int32_T iv224[2] = { 1, 21 };
 
-  const mxArray *m34;
-  char_T cv219[21];
-  static const char_T cv220[21] = { 'C', 'o', 'd', 'e', 'r', ':', 'M', 'A', 'T',
+  const mxArray *m39;
+  char_T cv262[21];
+  static const char_T cv263[21] = { 'C', 'o', 'd', 'e', 'r', ':', 'M', 'A', 'T',
     'L', 'A', 'B', ':', 'p', 'm', 'a', 'x', 's', 'i', 'z', 'e' };
 
   int32_T sz[3];
   emxArray_creal_T *b_y;
   const mxArray *c_y;
-  static const int32_T iv192[2] = { 1, 40 };
+  static const int32_T iv225[2] = { 1, 40 };
 
-  char_T cv221[40];
-  static const char_T cv222[40] = { 'C', 'o', 'd', 'e', 'r', ':', 'M', 'A', 'T',
+  char_T cv264[40];
+  static const char_T cv265[40] = { 'C', 'o', 'd', 'e', 'r', ':', 'M', 'A', 'T',
     'L', 'A', 'B', ':', 'g', 'e', 't', 'R', 'e', 's', 'h', 'a', 'p', 'e', 'D',
     'i', 'm', 's', '_', 'n', 'o', 't', 'S', 'a', 'm', 'e', 'N', 'u', 'm', 'e',
     'l' };
@@ -385,10 +362,10 @@ void OFDMDemodulator_stepImpl(const emlrtStack *sp, const OFDMDemodulator_1 *obj
   e_st.prev = &st;
   e_st.tls = st.tls;
   emlrtHeapReferenceStackEnterFcnR2012b(sp);
-  st.site = &ft_emlrtRSI;
+  st.site = &by_emlrtRSI;
   memcpy(&inputIn3D[0], &x[0], sizeof(creal_T) << 6);
-  st.site = &gt_emlrtRSI;
-  b_st.site = &kt_emlrtRSI;
+  st.site = &cy_emlrtRSI;
+  b_st.site = &tp_emlrtRSI;
   c_st.site = &nd_emlrtRSI;
   ix = 0;
   ju = 0;
@@ -442,8 +419,8 @@ void OFDMDemodulator_stepImpl(const emlrtStack *sp, const OFDMDemodulator_1 *obj
       i = ib;
       ix = ib + iheight;
       while (i < ix) {
-        tmp_re = dv9[iy] * postFFT[i + ju].re - dv8[iy] * postFFT[i + ju].im;
-        tmp_im = dv9[iy] * postFFT[i + ju].im + dv8[iy] * postFFT[i + ju].re;
+        tmp_re = dv12[iy] * postFFT[i + ju].re - dv11[iy] * postFFT[i + ju].im;
+        tmp_im = dv12[iy] * postFFT[i + ju].im + dv11[iy] * postFFT[i + ju].re;
         postFFT[i + ju].re = postFFT[i].re - tmp_re;
         postFFT[i + ju].im = postFFT[i].im - tmp_im;
         postFFT[i].re += tmp_re;
@@ -461,8 +438,8 @@ void OFDMDemodulator_stepImpl(const emlrtStack *sp, const OFDMDemodulator_1 *obj
     iheight -= ju;
   }
 
-  st.site = &ht_emlrtRSI;
-  b_st.site = &pt_emlrtRSI;
+  st.site = &dy_emlrtRSI;
+  b_st.site = &gy_emlrtRSI;
   c_st.site = &hd_emlrtRSI;
   iy = 0;
   c_st.site = &id_emlrtRSI;
@@ -479,49 +456,49 @@ void OFDMDemodulator_stepImpl(const emlrtStack *sp, const OFDMDemodulator_1 *obj
     ib++;
   }
 
-  emxInit_real_T(&b_st, &b_x, 1, &tb_emlrtRTEI, TRUE);
-  st.site = &it_emlrtRSI;
+  emxInit_real_T(&b_st, &b_x, 1, &ic_emlrtRTEI, TRUE);
+  st.site = &ey_emlrtRSI;
   ix = b_x->size[0];
   b_x->size[0] = obj->pDataLinearIndices->size[0];
   emxEnsureCapacity(&st, (emxArray__common *)b_x, ix, (int32_T)sizeof(real_T),
-                    &tb_emlrtRTEI);
+                    &ic_emlrtRTEI);
   iy = obj->pDataLinearIndices->size[0];
   for (ix = 0; ix < iy; ix++) {
     b_x->data[ix] = obj->pDataLinearIndices->data[ix];
   }
 
-  b_emxInit_creal_T(&st, &c_x, 1, &tb_emlrtRTEI, TRUE);
-  st.site = &it_emlrtRSI;
+  c_emxInit_creal_T(&st, &c_x, 1, &ic_emlrtRTEI, TRUE);
+  st.site = &ey_emlrtRSI;
   b_st.site = &m_emlrtRSI;
   c_st.site = &n_emlrtRSI;
-  st.site = &it_emlrtRSI;
+  st.site = &ey_emlrtRSI;
   b_st.site = &m_emlrtRSI;
   c_st.site = &n_emlrtRSI;
-  st.site = &jt_emlrtRSI;
+  st.site = &fy_emlrtRSI;
   ix = c_x->size[0];
   c_x->size[0] = obj->pDataLinearIndices->size[0];
   emxEnsureCapacity(&st, (emxArray__common *)c_x, ix, (int32_T)sizeof(creal_T),
-                    &tb_emlrtRTEI);
+                    &ic_emlrtRTEI);
   iy = obj->pDataLinearIndices->size[0];
   for (ix = 0; ix < iy; ix++) {
     tmp_re = obj->pDataLinearIndices->data[ix];
-    ib = (int32_T)emlrtIntegerCheckFastR2012b(tmp_re, &d_emlrtDCI, &st);
+    ib = (int32_T)emlrtIntegerCheckFastR2012b(tmp_re, &p_emlrtDCI, &st);
     c_x->data[ix].re = postFFT[emlrtDynamicBoundsCheckFastR2012b(ib, 1, 64,
-      &y_emlrtBCI, &st) - 1].re;
+      &ob_emlrtBCI, &st) - 1].re;
     tmp_re = obj->pDataLinearIndices->data[ix];
-    ib = (int32_T)emlrtIntegerCheckFastR2012b(tmp_re, &d_emlrtDCI, &st);
+    ib = (int32_T)emlrtIntegerCheckFastR2012b(tmp_re, &p_emlrtDCI, &st);
     c_x->data[ix].im = postFFT[emlrtDynamicBoundsCheckFastR2012b(ib, 1, 64,
-      &y_emlrtBCI, &st) - 1].im;
+      &ob_emlrtBCI, &st) - 1].im;
   }
 
   varargin_1[0] = b_x->size[0];
   varargin_1[1] = 1;
   varargin_1[2] = 1;
-  b_st.site = &ut_emlrtRSI;
-  c_st.site = &vt_emlrtRSI;
+  b_st.site = &ly_emlrtRSI;
+  c_st.site = &my_emlrtRSI;
   emxFree_real_T(&b_x);
-  c_st.site = &vt_emlrtRSI;
-  c_st.site = &wt_emlrtRSI;
+  c_st.site = &my_emlrtRSI;
+  c_st.site = &ny_emlrtRSI;
   tmp_re = 1.0;
   for (k = 0; k < 3; k++) {
     if (varargin_1[k] <= 0) {
@@ -531,34 +508,34 @@ void OFDMDemodulator_stepImpl(const emlrtStack *sp, const OFDMDemodulator_1 *obj
     }
   }
 
-  c_st.site = &wt_emlrtRSI;
+  c_st.site = &ny_emlrtRSI;
   if (2.147483647E+9 >= tmp_re) {
   } else {
     y = NULL;
-    m34 = mxCreateCharArray(2, iv191);
+    m39 = mxCreateCharArray(2, iv224);
     for (i = 0; i < 21; i++) {
-      cv219[i] = cv220[i];
+      cv262[i] = cv263[i];
     }
 
-    emlrtInitCharArrayR2013a(&b_st, 21, m34, cv219);
-    emlrtAssign(&y, m34);
-    c_st.site = &wt_emlrtRSI;
-    d_st.site = &gw_emlrtRSI;
-    c_error(&c_st, b_message(&d_st, y, &qb_emlrtMCI), &rb_emlrtMCI);
+    emlrtInitCharArrayR2013a(&b_st, 21, m39, cv262);
+    emlrtAssign(&y, m39);
+    c_st.site = &ny_emlrtRSI;
+    d_st.site = &sbb_emlrtRSI;
+    c_error(&c_st, b_message(&d_st, y, &xb_emlrtMCI), &yb_emlrtMCI);
   }
 
   for (ix = 0; ix < 3; ix++) {
     sz[ix] = varargin_1[ix];
   }
 
-  b_st.site = &tt_emlrtRSI;
+  b_st.site = &ky_emlrtRSI;
   c_st.site = &af_emlrtRSI;
   iy = c_x->size[0];
   if (1 > iy) {
     iy = 1;
   }
 
-  b_st.site = &tt_emlrtRSI;
+  b_st.site = &ky_emlrtRSI;
   c_st.site = &af_emlrtRSI;
   if (c_x->size[0] < iy) {
   } else {
@@ -566,40 +543,40 @@ void OFDMDemodulator_stepImpl(const emlrtStack *sp, const OFDMDemodulator_1 *obj
   }
 
   if (sz[0] > iy) {
-    b_st.site = &st_emlrtRSI;
+    b_st.site = &jy_emlrtRSI;
     c_eml_error(&b_st);
   }
 
   if (1 > iy) {
-    b_st.site = &st_emlrtRSI;
+    b_st.site = &jy_emlrtRSI;
     c_eml_error(&b_st);
   }
 
-  emxInit_creal_T(&st, &b_y, 3, &tb_emlrtRTEI, TRUE);
+  b_emxInit_creal_T(&st, &b_y, 3, &ic_emlrtRTEI, TRUE);
   ix = b_y->size[0] * b_y->size[1] * b_y->size[2];
   b_y->size[0] = sz[0];
   b_y->size[1] = 1;
   b_y->size[2] = 1;
   emxEnsureCapacity(&st, (emxArray__common *)b_y, ix, (int32_T)sizeof(creal_T),
-                    &ub_emlrtRTEI);
-  b_st.site = &rt_emlrtRSI;
+                    &jc_emlrtRTEI);
+  b_st.site = &iy_emlrtRSI;
   c_st.site = &v_emlrtRSI;
   if (c_x->size[0] == sz[0]) {
   } else {
     c_y = NULL;
-    m34 = mxCreateCharArray(2, iv192);
+    m39 = mxCreateCharArray(2, iv225);
     for (i = 0; i < 40; i++) {
-      cv221[i] = cv222[i];
+      cv264[i] = cv265[i];
     }
 
-    emlrtInitCharArrayR2013a(&st, 40, m34, cv221);
-    emlrtAssign(&c_y, m34);
-    b_st.site = &rt_emlrtRSI;
-    e_st.site = &fw_emlrtRSI;
-    c_error(&b_st, b_message(&e_st, c_y, &mb_emlrtMCI), &nb_emlrtMCI);
+    emlrtInitCharArrayR2013a(&st, 40, m39, cv264);
+    emlrtAssign(&c_y, m39);
+    b_st.site = &iy_emlrtRSI;
+    e_st.site = &rbb_emlrtRSI;
+    c_error(&b_st, b_message(&e_st, c_y, &tb_emlrtMCI), &ub_emlrtMCI);
   }
 
-  b_st.site = &qt_emlrtRSI;
+  b_st.site = &hy_emlrtRSI;
   c_st.site = &dg_emlrtRSI;
   if (1 > c_x->size[0]) {
     overflow = FALSE;
@@ -622,7 +599,7 @@ void OFDMDemodulator_stepImpl(const emlrtStack *sp, const OFDMDemodulator_1 *obj
   varargout_1->size[1] = b_y->size[1];
   varargout_1->size[2] = 1;
   emxEnsureCapacity(sp, (emxArray__common *)varargout_1, ix, (int32_T)sizeof
-                    (creal_T), &tb_emlrtRTEI);
+                    (creal_T), &ic_emlrtRTEI);
   iy = b_y->size[0] * b_y->size[1] * b_y->size[2];
   for (ix = 0; ix < iy; ix++) {
     varargout_1->data[ix] = b_y->data[ix];
@@ -652,7 +629,7 @@ void b_OFDMDemodulator_stepImpl(testMACTransmitterStackData *SD, const
   int32_T k;
   int32_T iheight;
   int32_T ihi;
-  static const real_T dv10[33] = { 0.0, -0.0980171403295606,
+  static const real_T dv13[33] = { 0.0, -0.0980171403295606,
     -0.19509032201612825, -0.29028467725446233, -0.38268343236508978,
     -0.47139673682599764, -0.55557023301960218, -0.63439328416364549,
     -0.70710678118654757, -0.773010453362737, -0.83146961230254524,
@@ -664,7 +641,7 @@ void b_OFDMDemodulator_stepImpl(testMACTransmitterStackData *SD, const
     -0.47139673682599764, -0.38268343236508978, -0.29028467725446233,
     -0.19509032201612825, -0.0980171403295606, -0.0 };
 
-  static const real_T dv11[33] = { 1.0, 0.99518472667219693, 0.98078528040323043,
+  static const real_T dv14[33] = { 1.0, 0.99518472667219693, 0.98078528040323043,
     0.95694033573220882, 0.92387953251128674, 0.881921264348355,
     0.83146961230254524, 0.773010453362737, 0.70710678118654757,
     0.63439328416364549, 0.55557023301960218, 0.47139673682599764,
@@ -681,11 +658,11 @@ void b_OFDMDemodulator_stepImpl(testMACTransmitterStackData *SD, const
   real_T varargin_1[3];
   int32_T exitg1;
   const mxArray *y;
-  static const int32_T iv193[2] = { 1, 57 };
+  static const int32_T iv226[2] = { 1, 57 };
 
-  const mxArray *m35;
-  char_T cv223[57];
-  static const char_T cv224[57] = { 'C', 'o', 'd', 'e', 'r', ':', 't', 'o', 'o',
+  const mxArray *m40;
+  char_T cv266[57];
+  static const char_T cv267[57] = { 'C', 'o', 'd', 'e', 'r', ':', 't', 'o', 'o',
     'l', 'b', 'o', 'x', ':', 'e', 'm', 'l', '_', 'a', 's', 's', 'e', 'r', 't',
     '_', 'v', 'a', 'l', 'i', 'd', '_', 's', 'i', 'z', 'e', '_', 'a', 'r', 'g',
     '_', 'i', 'n', 'v', 'a', 'l', 'i', 'd', 'S', 'i', 'z', 'e', 'V', 'e', 'c',
@@ -694,25 +671,25 @@ void b_OFDMDemodulator_stepImpl(testMACTransmitterStackData *SD, const
   const mxArray *b_y;
   const mxArray *c_y;
   const mxArray *d_y;
-  static const int32_T iv194[2] = { 1, 21 };
+  static const int32_T iv227[2] = { 1, 21 };
 
-  char_T cv225[21];
-  static const char_T cv226[21] = { 'C', 'o', 'd', 'e', 'r', ':', 'M', 'A', 'T',
+  char_T cv268[21];
+  static const char_T cv269[21] = { 'C', 'o', 'd', 'e', 'r', ':', 'M', 'A', 'T',
     'L', 'A', 'B', ':', 'p', 'm', 'a', 'x', 's', 'i', 'z', 'e' };
 
   int32_T sz[3];
   emxArray_creal_T *e_y;
   const mxArray *f_y;
-  static const int32_T iv195[2] = { 1, 40 };
+  static const int32_T iv228[2] = { 1, 40 };
 
-  char_T cv227[40];
-  static const char_T cv228[40] = { 'C', 'o', 'd', 'e', 'r', ':', 'M', 'A', 'T',
+  char_T cv270[40];
+  static const char_T cv271[40] = { 'C', 'o', 'd', 'e', 'r', ':', 'M', 'A', 'T',
     'L', 'A', 'B', ':', 'g', 'e', 't', 'R', 'e', 's', 'h', 'a', 'p', 'e', 'D',
     'i', 'm', 's', '_', 'n', 'o', 't', 'S', 'a', 'm', 'e', 'N', 'u', 'm', 'e',
     'l' };
 
   creal_T d_x[48];
-  static const int16_T iv196[48] = { 11, 25, 39, 53, 75, 89, 103, 117, 139, 153,
+  static const int16_T iv229[48] = { 11, 25, 39, 53, 75, 89, 103, 117, 139, 153,
     167, 181, 203, 217, 231, 245, 267, 281, 295, 309, 331, 345, 359, 373, 395,
     409, 423, 437, 459, 473, 487, 501, 523, 537, 551, 565, 587, 601, 615, 629,
     651, 665, 679, 693, 715, 729, 743, 757 };
@@ -733,10 +710,10 @@ void b_OFDMDemodulator_stepImpl(testMACTransmitterStackData *SD, const
   e_st.prev = &st;
   e_st.tls = st.tls;
   emlrtHeapReferenceStackEnterFcnR2012b(sp);
-  st.site = &ft_emlrtRSI;
-  memcpy(&SD->u1.f4.inputIn3D[0], &x[0], 960U * sizeof(creal_T));
-  st.site = &gt_emlrtRSI;
-  b_st.site = &kt_emlrtRSI;
+  st.site = &by_emlrtRSI;
+  memcpy(&SD->u1.f6.inputIn3D[0], &x[0], 960U * sizeof(creal_T));
+  st.site = &cy_emlrtRSI;
+  b_st.site = &tp_emlrtRSI;
   c_st.site = &nd_emlrtRSI;
   ix = 0;
   for (chanStart = 0; chanStart < 706; chanStart += 64) {
@@ -749,7 +726,7 @@ void b_OFDMDemodulator_stepImpl(testMACTransmitterStackData *SD, const
         b_ix = ~(int32_T)((uint32_T)~ix >> 6);
       }
 
-      postFFT[i2] = SD->u1.f4.inputIn3D[(ix % 64 + 80 * b_ix) + 16];
+      postFFT[i2] = SD->u1.f6.inputIn3D[(ix % 64 + 80 * b_ix) + 16];
       i2 = 64;
       overflow = TRUE;
       while (overflow) {
@@ -773,7 +750,7 @@ void b_OFDMDemodulator_stepImpl(testMACTransmitterStackData *SD, const
       c_ix = ~(int32_T)((uint32_T)~ix >> 6);
     }
 
-    postFFT[i2] = SD->u1.f4.inputIn3D[(ix % 64 + 80 * c_ix) + 16];
+    postFFT[i2] = SD->u1.f6.inputIn3D[(ix % 64 + 80 * c_ix) + 16];
     ix++;
     for (i = chanStart; i <= chanStart + 62; i += 2) {
       tmp_re = postFFT[i + 1].re;
@@ -807,8 +784,8 @@ void b_OFDMDemodulator_stepImpl(testMACTransmitterStackData *SD, const
         i = i2;
         ihi = i2 + iheight;
         while (i < ihi) {
-          tmp_re = dv11[i1] * postFFT[i + ib].re - dv10[i1] * postFFT[i + ib].im;
-          tmp_im = dv11[i1] * postFFT[i + ib].im + dv10[i1] * postFFT[i + ib].re;
+          tmp_re = dv14[i1] * postFFT[i + ib].re - dv13[i1] * postFFT[i + ib].im;
+          tmp_im = dv14[i1] * postFFT[i + ib].im + dv13[i1] * postFFT[i + ib].re;
           postFFT[i + ib].re = postFFT[i].re - tmp_re;
           postFFT[i + ib].im = postFFT[i].im - tmp_im;
           postFFT[i].re += tmp_re;
@@ -827,14 +804,14 @@ void b_OFDMDemodulator_stepImpl(testMACTransmitterStackData *SD, const
     }
   }
 
-  st.site = &ht_emlrtRSI;
-  b_st.site = &pt_emlrtRSI;
+  st.site = &dy_emlrtRSI;
+  b_st.site = &gy_emlrtRSI;
   i2 = 0;
   for (i = 0; i < 12; i++) {
     i1 = i2;
-    c_st.site = &fj_emlrtRSI;
+    c_st.site = &lj_emlrtRSI;
     c_st.site = &hd_emlrtRSI;
-    c_st.site = &gj_emlrtRSI;
+    c_st.site = &mj_emlrtRSI;
     i2 += 64;
     c_st.site = &id_emlrtRSI;
     ib = i1 + 32;
@@ -851,46 +828,46 @@ void b_OFDMDemodulator_stepImpl(testMACTransmitterStackData *SD, const
     }
   }
 
-  emxInit_real_T(&b_st, &b_x, 1, &tb_emlrtRTEI, TRUE);
-  st.site = &it_emlrtRSI;
+  emxInit_real_T(&b_st, &b_x, 1, &ic_emlrtRTEI, TRUE);
+  st.site = &ey_emlrtRSI;
   ib = b_x->size[0];
   b_x->size[0] = obj->pDataLinearIndices->size[0];
   emxEnsureCapacity(&st, (emxArray__common *)b_x, ib, (int32_T)sizeof(real_T),
-                    &tb_emlrtRTEI);
+                    &ic_emlrtRTEI);
   i2 = obj->pDataLinearIndices->size[0];
   for (ib = 0; ib < i2; ib++) {
     b_x->data[ib] = obj->pDataLinearIndices->data[ib];
   }
 
-  b_emxInit_creal_T(&st, &c_x, 1, &tb_emlrtRTEI, TRUE);
-  st.site = &it_emlrtRSI;
+  c_emxInit_creal_T(&st, &c_x, 1, &ic_emlrtRTEI, TRUE);
+  st.site = &ey_emlrtRSI;
   b_st.site = &m_emlrtRSI;
   c_st.site = &n_emlrtRSI;
-  st.site = &it_emlrtRSI;
+  st.site = &ey_emlrtRSI;
   b_st.site = &m_emlrtRSI;
   c_st.site = &n_emlrtRSI;
-  st.site = &jt_emlrtRSI;
+  st.site = &fy_emlrtRSI;
   ib = c_x->size[0];
   c_x->size[0] = obj->pDataLinearIndices->size[0];
   emxEnsureCapacity(&st, (emxArray__common *)c_x, ib, (int32_T)sizeof(creal_T),
-                    &tb_emlrtRTEI);
+                    &ic_emlrtRTEI);
   i2 = obj->pDataLinearIndices->size[0];
   for (ib = 0; ib < i2; ib++) {
     tmp_re = obj->pDataLinearIndices->data[ib];
-    i1 = (int32_T)emlrtIntegerCheckFastR2012b(tmp_re, &d_emlrtDCI, &st);
+    i1 = (int32_T)emlrtIntegerCheckFastR2012b(tmp_re, &p_emlrtDCI, &st);
     c_x->data[ib].re = postFFT[emlrtDynamicBoundsCheckFastR2012b(i1, 1, 768,
-      &ab_emlrtBCI, &st) - 1].re;
+      &pb_emlrtBCI, &st) - 1].re;
     tmp_re = obj->pDataLinearIndices->data[ib];
-    i1 = (int32_T)emlrtIntegerCheckFastR2012b(tmp_re, &d_emlrtDCI, &st);
+    i1 = (int32_T)emlrtIntegerCheckFastR2012b(tmp_re, &p_emlrtDCI, &st);
     c_x->data[ib].im = postFFT[emlrtDynamicBoundsCheckFastR2012b(i1, 1, 768,
-      &ab_emlrtBCI, &st) - 1].im;
+      &pb_emlrtBCI, &st) - 1].im;
   }
 
   varargin_1[0] = (real_T)b_x->size[0] / 12.0;
   varargin_1[1] = 12.0;
   varargin_1[2] = 1.0;
-  b_st.site = &ut_emlrtRSI;
-  c_st.site = &vt_emlrtRSI;
+  b_st.site = &ly_emlrtRSI;
+  c_st.site = &my_emlrtRSI;
   k = 0;
   emxFree_real_T(&b_x);
   do {
@@ -909,7 +886,7 @@ void b_OFDMDemodulator_stepImpl(testMACTransmitterStackData *SD, const
   } while (exitg1 == 0);
 
   if (overflow) {
-    c_st.site = &vt_emlrtRSI;
+    c_st.site = &my_emlrtRSI;
     overflow = TRUE;
   } else {
     overflow = FALSE;
@@ -918,27 +895,27 @@ void b_OFDMDemodulator_stepImpl(testMACTransmitterStackData *SD, const
   if (overflow) {
   } else {
     y = NULL;
-    m35 = mxCreateCharArray(2, iv193);
+    m40 = mxCreateCharArray(2, iv226);
     for (i = 0; i < 57; i++) {
-      cv223[i] = cv224[i];
+      cv266[i] = cv267[i];
     }
 
-    emlrtInitCharArrayR2013a(&b_st, 57, m35, cv223);
-    emlrtAssign(&y, m35);
+    emlrtInitCharArrayR2013a(&b_st, 57, m40, cv266);
+    emlrtAssign(&y, m40);
     b_y = NULL;
-    m35 = mxCreateNumericMatrix(1, 1, mxINT32_CLASS, mxREAL);
-    *(int32_T *)mxGetData(m35) = MIN_int32_T;
-    emlrtAssign(&b_y, m35);
+    m40 = mxCreateNumericMatrix(1, 1, mxINT32_CLASS, mxREAL);
+    *(int32_T *)mxGetData(m40) = MIN_int32_T;
+    emlrtAssign(&b_y, m40);
     c_y = NULL;
-    m35 = mxCreateNumericMatrix(1, 1, mxINT32_CLASS, mxREAL);
-    *(int32_T *)mxGetData(m35) = MAX_int32_T;
-    emlrtAssign(&c_y, m35);
-    c_st.site = &vt_emlrtRSI;
-    d_st.site = &nw_emlrtRSI;
-    c_error(&c_st, c_message(&d_st, y, b_y, c_y, &ob_emlrtMCI), &pb_emlrtMCI);
+    m40 = mxCreateNumericMatrix(1, 1, mxINT32_CLASS, mxREAL);
+    *(int32_T *)mxGetData(m40) = MAX_int32_T;
+    emlrtAssign(&c_y, m40);
+    c_st.site = &my_emlrtRSI;
+    d_st.site = &ccb_emlrtRSI;
+    c_error(&c_st, c_message(&d_st, y, b_y, c_y, &vb_emlrtMCI), &wb_emlrtMCI);
   }
 
-  c_st.site = &wt_emlrtRSI;
+  c_st.site = &ny_emlrtRSI;
   tmp_re = 1.0;
   for (k = 0; k < 3; k++) {
     if (varargin_1[k] <= 0.0) {
@@ -948,34 +925,34 @@ void b_OFDMDemodulator_stepImpl(testMACTransmitterStackData *SD, const
     }
   }
 
-  c_st.site = &wt_emlrtRSI;
+  c_st.site = &ny_emlrtRSI;
   if (2.147483647E+9 >= tmp_re) {
   } else {
     d_y = NULL;
-    m35 = mxCreateCharArray(2, iv194);
+    m40 = mxCreateCharArray(2, iv227);
     for (i = 0; i < 21; i++) {
-      cv225[i] = cv226[i];
+      cv268[i] = cv269[i];
     }
 
-    emlrtInitCharArrayR2013a(&b_st, 21, m35, cv225);
-    emlrtAssign(&d_y, m35);
-    c_st.site = &wt_emlrtRSI;
-    d_st.site = &gw_emlrtRSI;
-    c_error(&c_st, b_message(&d_st, d_y, &qb_emlrtMCI), &rb_emlrtMCI);
+    emlrtInitCharArrayR2013a(&b_st, 21, m40, cv268);
+    emlrtAssign(&d_y, m40);
+    c_st.site = &ny_emlrtRSI;
+    d_st.site = &sbb_emlrtRSI;
+    c_error(&c_st, b_message(&d_st, d_y, &xb_emlrtMCI), &yb_emlrtMCI);
   }
 
   for (ib = 0; ib < 3; ib++) {
     sz[ib] = (int32_T)varargin_1[ib];
   }
 
-  b_st.site = &tt_emlrtRSI;
+  b_st.site = &ky_emlrtRSI;
   c_st.site = &af_emlrtRSI;
   i2 = c_x->size[0];
   if (1 > i2) {
     i2 = 1;
   }
 
-  b_st.site = &tt_emlrtRSI;
+  b_st.site = &ky_emlrtRSI;
   c_st.site = &af_emlrtRSI;
   if (c_x->size[0] < i2) {
   } else {
@@ -983,40 +960,40 @@ void b_OFDMDemodulator_stepImpl(testMACTransmitterStackData *SD, const
   }
 
   if (sz[0] > i2) {
-    b_st.site = &st_emlrtRSI;
+    b_st.site = &jy_emlrtRSI;
     c_eml_error(&b_st);
   }
 
   if (12 > i2) {
-    b_st.site = &st_emlrtRSI;
+    b_st.site = &jy_emlrtRSI;
     c_eml_error(&b_st);
   }
 
-  emxInit_creal_T(&st, &e_y, 3, &tb_emlrtRTEI, TRUE);
+  b_emxInit_creal_T(&st, &e_y, 3, &ic_emlrtRTEI, TRUE);
   ib = e_y->size[0] * e_y->size[1] * e_y->size[2];
   e_y->size[0] = sz[0];
   e_y->size[1] = 12;
   e_y->size[2] = 1;
   emxEnsureCapacity(&st, (emxArray__common *)e_y, ib, (int32_T)sizeof(creal_T),
-                    &ub_emlrtRTEI);
-  b_st.site = &rt_emlrtRSI;
+                    &jc_emlrtRTEI);
+  b_st.site = &iy_emlrtRSI;
   c_st.site = &v_emlrtRSI;
   if (c_x->size[0] == sz[0] * 12) {
   } else {
     f_y = NULL;
-    m35 = mxCreateCharArray(2, iv195);
+    m40 = mxCreateCharArray(2, iv228);
     for (i = 0; i < 40; i++) {
-      cv227[i] = cv228[i];
+      cv270[i] = cv271[i];
     }
 
-    emlrtInitCharArrayR2013a(&st, 40, m35, cv227);
-    emlrtAssign(&f_y, m35);
-    b_st.site = &rt_emlrtRSI;
-    e_st.site = &fw_emlrtRSI;
-    c_error(&b_st, b_message(&e_st, f_y, &mb_emlrtMCI), &nb_emlrtMCI);
+    emlrtInitCharArrayR2013a(&st, 40, m40, cv270);
+    emlrtAssign(&f_y, m40);
+    b_st.site = &iy_emlrtRSI;
+    e_st.site = &rbb_emlrtRSI;
+    c_error(&b_st, b_message(&e_st, f_y, &tb_emlrtMCI), &ub_emlrtMCI);
   }
 
-  b_st.site = &qt_emlrtRSI;
+  b_st.site = &hy_emlrtRSI;
   c_st.site = &dg_emlrtRSI;
   if (1 > c_x->size[0]) {
     overflow = FALSE;
@@ -1039,16 +1016,16 @@ void b_OFDMDemodulator_stepImpl(testMACTransmitterStackData *SD, const
   varargout_1->size[1] = e_y->size[1];
   varargout_1->size[2] = 1;
   emxEnsureCapacity(sp, (emxArray__common *)varargout_1, ib, (int32_T)sizeof
-                    (creal_T), &tb_emlrtRTEI);
+                    (creal_T), &ic_emlrtRTEI);
   i2 = e_y->size[0] * e_y->size[1] * e_y->size[2];
   for (ib = 0; ib < i2; ib++) {
     varargout_1->data[ib] = e_y->data[ib];
   }
 
   emxFree_creal_T(&e_y);
-  st.site = &su_emlrtRSI;
+  st.site = &eab_emlrtRSI;
   for (ib = 0; ib < 48; ib++) {
-    d_x[ib] = postFFT[iv196[ib]];
+    d_x[ib] = postFFT[iv229[ib]];
   }
 
   memcpy(&varargout_2[0], &d_x[0], 48U * sizeof(creal_T));

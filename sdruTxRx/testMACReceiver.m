@@ -26,7 +26,7 @@ previousMessage = '';
 
 for run = 1 : 1e8
     
-    %MAC
+    % MAC
     [~, previousMessage] = MACLayerReceiver(...
         ObjAGC,...           %Objects
         ObjSDRuReceiver,...
@@ -41,7 +41,9 @@ for run = 1 : 1e8
         lookingForACK,...
         previousMessage...
         );
-    
+    %Wait some time
+    waitTime = 0.05; % Calculated in seconds buts thats far from realistic 
+    Wait(ObjSDRuReceiver,tx.samplingFreq,waitTime);
     
 end
 

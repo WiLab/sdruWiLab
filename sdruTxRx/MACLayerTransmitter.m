@@ -1,4 +1,4 @@
-function previousMessage = MACLayerTransmitter(...
+function [previousMessage, msgStatus] = MACLayerTransmitter(...
     ObjAGC,...           %Objects
     ObjSDRuReceiver,...
     ObjSDRuTransmitter,...
@@ -10,7 +10,8 @@ function previousMessage = MACLayerTransmitter(...
     timeoutDuration,...  %Values/Vectors
     messageBits,...
     message,...
-    previousMessage...
+    previousMessage,...
+    recipient...
     )
 
 %% This function is called when the node wants to transmit something
@@ -34,6 +35,13 @@ function previousMessage = MACLayerTransmitter(...
 
 maxRetries = 4;
 
+msgStatus = false;
+
+% Adjust offset for node
+fprintf('Transmitting to node: %d, with offset: %f\n',int16(recipient),tx.offsetTable(recipient));
+ObjSDRuTransmitter.CenterFrequency = tx.CenterFrequency + tx.offsetTable(recipient);
+
+
 %% Spectrum clear, send message
 for tries = 1:maxRetries
     % Send message
@@ -41,12 +49,13 @@ for tries = 1:maxRetries
         ObjSDRuTransmitter,...
         ObjSDRuReceiver,...
         message,...
-        tx.samplingFreq...
+        tx.samplingFreq,...
+        tx.nodeNum,...%originator
+        recipient...%destination
         );
     % Listen for acknowledgement
-    fprintf('###########################################\n');
+    %fprintf('###########################################\n');
     fprintf('MAC| Transmission finished, waiting for ACK\n');
-    
     % Call Receiver
     lookingForACK = true;
     [Response, previousMessage] = MACLayerReceiver(...
@@ -66,12 +75,15 @@ for tries = 1:maxRetries
 
     if strcmp(Response,'ACK')
         fprintf('MAC| Got ACK\n');
+        msgStatus = true;
         break
     else
         fprintf('MAC| Retransmitting message\n');
     end
     if tries >= 4
+        fprintf('###########################################\n');
         fprintf('MAC| No ACK received :(\n');
+        fprintf('###########################################\n');
         return;
     end 
 end

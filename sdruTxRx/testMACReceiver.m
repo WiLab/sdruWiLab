@@ -1,4 +1,4 @@
-function testPHYReceive(offsets, nodeNum)
+function testMACReceiver(offsets, nodeNum)
 
 
 % Create needed objects and structs

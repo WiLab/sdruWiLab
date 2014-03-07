@@ -15,18 +15,23 @@ function testMACTransmitter(offsets, nodeNum)
     messageBits...
     ] = CreateTXRX;
 
-
+tx.offsetTable = offsets;
+tx.nodeNum = nodeNum;
 
 % Previous Message string holder
 coder.varsize('previousMessage', [1, 80], [0 1]);
 previousMessage = '';
 
+correct = 0; %Keep track of successful messages
 
 for run = 1 : 1e4
     %message = ['Random Message',char(96+run)];%Create different messages each times
     message = ['Random Message'];%Dont create different messages each times
     
-    previousMessage = MACLayerTransmitter(...
+    % Who should get the message?
+    recipient = 1;
+    
+    [previousMessage, msgStatus] = MACLayerTransmitter(...
         ObjAGC,...           %Objects
         ObjSDRuReceiver,...
         ObjSDRuTransmitter,...
@@ -38,13 +43,17 @@ for run = 1 : 1e4
         timeoutDuration,...  %Values/Vectors
         messageBits,...
         message,...
-        previousMessage...
+        previousMessage,...
+        recipient...
         );
     
     %Wait some time
-    waitTime = .2e2; % Calculated in seconds buts thats far from realistic 
+    waitTime = 0.2e2; % Calculated in seconds buts thats far from realistic 
     fprintf('TOP| DONE Iteration: Waiting some time between actions\n');
-    fprintf('Transmitted: %d\n',int32(run));
+    if msgStatus
+        correct = correct + 1;
+        fprintf('Successful Transmissions: %d\n',int32(correct));
+    end
     Wait(ObjSDRuReceiver,tx.samplingFreq,waitTime);
     
     

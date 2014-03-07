@@ -1,4 +1,4 @@
-function testPHYTransmit
+function testPHYTransmit(offset)
 
 [...
     ObjAGC,...           %Objects
@@ -13,13 +13,22 @@ function testPHYTransmit
     messageBits...
     ] = CreateTXRX;
 
-inputPayloadMessage = ['Random Message'];
+inputPayloadMessage = ['ACK'];
 
+nodeToTxTo = 1;
+
+% Adjust offset for node
+ObjSDRuTransmitter.CenterFrequency = tx.CenterFrequency + offset;
+
+while 1
 PHYTransmit(...
     ObjSDRuTransmitter,...
     ObjSDRuReceiver,...
     inputPayloadMessage,...
-    tx.samplingFreq...
+    tx.samplingFreq,...
+    nodeToTxTo...
     );
+
+end
 
 end

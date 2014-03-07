@@ -2,6 +2,7 @@
 
 % Run Receiver
 command =['ssh root@monadnock.ece.wpi.edu tb -dest ',hostname,' -act runFreqCalRX -u traviscollins'];
+%command = ['tb -dest ',hostname,' -act runFreqCalRX -u traviscollins'];
 [~,output] = system(command);
 
 % Get offset val

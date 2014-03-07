@@ -1,1 +1,1 @@
-setupsdru([pwd,'/sdru']);
+setupsdru(['../sdru']);

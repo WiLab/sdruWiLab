@@ -1,4 +1,4 @@
-function [hPreambleDemod,hDataDemod, r, tx ] = generateOFDMSignal_TX2(inputPayloadMessage, samplingFreq )
+function [hPreambleDemod,hDataDemod, r, tx ] = generateOFDMSignal_TX2(inputPayloadMessage, samplingFreq, originNode, destNode )
 % generateOFDMSignal: Generate OFDM signal based on the 802.11a standard.
 % This function returns the time domain signal and a structure containing
 % details about the signal itself.  This information is required by the
@@ -7,13 +7,19 @@ function [hPreambleDemod,hDataDemod, r, tx ] = generateOFDMSignal_TX2(inputPaylo
 %% System Parameters
 FFTLength = 64;         % OFDM modulator FFT size
 enableMA = true;    % Enable moving averages for estimates
-numFrames = 30;%30     % Make larger to reduce underflow
+numFrames = 30;%30     % Make larger to reduce underflow on USRP
 
 % Message to transmit
-% message is 80 characters max, so extra 3 for EOF and 1 for uniqueID
-if length(inputPayloadMessage) < 76
+% message is 80 characters max, so extra 3 for EOF, 1 for uniqueID, 1 for
+% the node number of recipient, 1 for origin node
+if length(inputPayloadMessage) < 74
    uniqueID = char(randi([0 (2^7)-1],1,1));%Add additional character to differentiate messages
-   payloadMessage = [inputPayloadMessage,uniqueID,'EOF',repmat('-',1,76 - length(inputPayloadMessage))];
+   destNodeChar = char(48 + destNode);
+   originNodeChar = char(48 + originNode);
+   payloadMessage = [inputPayloadMessage,originNodeChar,destNodeChar,uniqueID,'EOF',repmat('-',1,74 - length(inputPayloadMessage))];
+else
+    fprintf('ERROR: Message incorrect format\n');
+    return;
 end
 %% Create Short Preamble
 shortPreamble = [ 0 0  1+1i 0 0 0  -1-1i 0 0 0 ... % [-27:-17]
@@ -172,22 +178,6 @@ tx = struct('originalData',originalData,...
 
 end
 
-
-
-
-
-
-%                             padBits: 13
-%                          numSamples: 576
-%                   messageCharacters: 80
-%                           numFrames: 1000
-
-%                         frameLength: 1280
-
-%                             freqBin: 312500
-
-%                          hDataDemod: [1x1 struct]
-%                      hPreambleDemod: [1x1 struct]
 
 
 

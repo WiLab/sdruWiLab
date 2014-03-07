@@ -8,7 +8,7 @@ USRPADCSamplingRate = 100e6;
 InterpolationFactor = USRPADCSamplingRate/desiredSamplingFrequency;
 CenterFrequency = 2.24e9;
 
-[ ~, ~, ~, tx ] = generateOFDMSignal_TX2( 'UnimportantMessage', desiredSamplingFrequency);
+[ ~, ~, ~, tx ] = generateOFDMSignal_TX2( 'UnimportantMessage', desiredSamplingFrequency, 1, 1);%just need for sizing
 tx.samplingFreq = desiredSamplingFrequency;% Set desired frequeny
 tx.CenterFrequency = CenterFrequency;
 tx.freqBin = tx.samplingFreq/tx.FFTLength;% Set frequency bin width

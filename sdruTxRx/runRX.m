@@ -1,9 +1,7 @@
-% Be careful with this command!!!
-%fprintf('Updating Files\n');
-%!rsync -uzvr 130.215.23.67:~/git/traviscollins/sdruOFDM /home/sdruser/git/traviscollins/
+
 
 %% Determine Node# and get offsets for other users (all from roundRobin.m)
-load('../../sdruCalib/offsets.mat');
+load('../offsets.mat');
 [~,nodeName]=system('hostname');        
 nodeName = nodeName(1:end-1);%remove newline character
 for k=1:length(hostnames),if strcmp(nodeName,hostnames{k}),break,end,end;%get node number from hostname
@@ -18,8 +16,8 @@ offsets = nodeTable_offsets(nodeNum,:);
 
 % Build Test
 fprintf('Compiling code\n');
-compilesdru('testPHYReceive','mex','-args','{offsets,nodeNum}');
+compilesdru('testMACReceiver','mex','-args','{offsets,nodeNum}');
 fprintf('Compiliation finished\n');
-break;
+%break;
 % Run Tests
-testPHYReceive_mex(offsets, nodeNum);
+testMACReceiver_mex(offsets, nodeNum);

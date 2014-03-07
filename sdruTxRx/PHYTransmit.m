@@ -3,7 +3,9 @@ function PHYTransmit(...
     ObjSDRuTransmitter,...
     ObjSDRuReceiver,...
     inputPayloadMessage,...
-    samplingFreq...
+    samplingFreq,...
+    originNodeID,...
+    destNodeID...
     )
 
 DebugFlag = 0;
@@ -11,7 +13,7 @@ DebugFlag = 0;
 %% Create message bits
 % The output needs to be duplicated to long vectors to help prevent
 % Underflow for the USRP
-[~,~, dataToTx, ~ ] = generateOFDMSignal_TX2(inputPayloadMessage,samplingFreq);% 30 Dupe frames created (NOTE! author shouldcreate shorter simpler function)
+[~,~, dataToTx, ~ ] = generateOFDMSignal_TX2(inputPayloadMessage,samplingFreq, originNodeID, destNodeID);% 30 Dupe frames created (NOTE! author shouldcreate shorter simpler function)
 
 %% Run transmitter
 if DebugFlag
@@ -19,7 +21,7 @@ if DebugFlag
     fprintf('PHY| TX Message: %s\n',inputPayloadMessage);
 end
 
-numFramesToTx = 10;%increasing value will help receiver
+numFramesToTx = 10;%increasing value will help receiver, 10
 % This should be longer to help transmit over periods when the RX is
 % cleaning its buffer
 

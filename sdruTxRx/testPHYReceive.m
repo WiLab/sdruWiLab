@@ -13,6 +13,7 @@ function testPHYReceive
     messageBits...
     ] = CreateTXRX;
 
+while true
 [recoveredMessage] = PHYReceive(...
                 ObjAGC,...           %Objects
                 ObjSDRuReceiver,...
@@ -25,4 +26,8 @@ function testPHYReceive
                 messageBits...
                 );
             
+fprintf('Got Message: %s\n',recoveredMessage);
+
+end
+
 end

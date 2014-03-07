@@ -8,8 +8,9 @@ USRPADCSamplingRate = 100e6;
 InterpolationFactor = USRPADCSamplingRate/desiredSamplingFrequency;
 CenterFrequency = 2.24e9;
 
-[ ~, ~, ~, tx ] = generateOFDMSignal_TX2( 'UnimportantMessage', desiredSamplingFrequency);
+[ ~, ~, ~, tx ] = generateOFDMSignal_TX2( 'UnimportantMessage', desiredSamplingFrequency, 1, 1);
 tx.samplingFreq = desiredSamplingFrequency;% Set desired frequeny
+tx.CenterFrequency = CenterFrequency;
 tx.freqBin = tx.samplingFreq/tx.FFTLength;% Set frequency bin width
 
 
@@ -28,9 +29,9 @@ receiveBufferLength = 5120;
 
 rx.DecimationFactor = USRPADCSamplingRate/rx.samplingFreq;
 
-%offsetCompensationValue = 0;
+offsetCompensationValue = 0;
 %offsetCompensationValue = -77148;% Get from calibration
-offsetCompensationValue = 71289;% Get from calibration
+%offsetCompensationValue = 71289;% Get from calibration
 
 % Sync Algorithms
 numFreqToAverage = 15; %Number of frequency estimates to be averaged together for frequency corrections (Higher==More stability, Lower==More responsiveness)

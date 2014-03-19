@@ -8,18 +8,18 @@ for k=1:length(hostnames),if strcmp(nodeName,hostnames{k}),break,end,end;%get no
 nodeNum = k;
 disp(['Node number: ',num2str(k)]);
 
-targetNode = 1;
+TransmittingNode = 2;
 
 % Rows represent receiver offsets for a single node from many transmitters
-offset = nodeTable_offsets(nodeNum,targetNode);
-
+offset = nodeTable_offsets(TransmittingNode,nodeNum);
+fprintf('Offset: %f\n',offset);
 
 %% Run receiver
 
 % Build Test
 fprintf('Compiling code\n');
-compilesdru('testPHYTransmit','mex');
+compilesdru('testPHYReceive','mex','-args','{offset}');
 fprintf('Compiliation finished\n');
 %break;
 % Run Tests
-testPHYTransmit_mex;
+testPHYReceive_mex(offset);

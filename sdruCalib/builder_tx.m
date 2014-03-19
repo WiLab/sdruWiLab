@@ -15,7 +15,7 @@ prmFreqCalibTx.Fs                      = 100e6/prmFreqCalibTx.USRPInterpolationF
 prmFreqCalibTx.USRPFrameLength         = 4000;     % samples
 prmFreqCalibTx.USRPTxCenterFrequency   = rfTxFreq; % Hz
 prmFreqCalibTx.USRPGain                = 23;       % dB
-prmFreqCalibTx.TotalFrames             = 200000;     % frames
+prmFreqCalibTx.TotalFrames             = 20000000;     % frames
 
 hSineSource = dsp.SineWave (...
     'Frequency',           prmFreqCalibTx.SineFrequency , ...

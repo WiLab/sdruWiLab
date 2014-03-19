@@ -1,4 +1,4 @@
-function testPHYReceive(offset)
+function testPHYReceive(of)
 
 [...
     ObjAGC,...           %Objects
@@ -14,7 +14,7 @@ function testPHYReceive(offset)
     ] = CreateTXRX;
 
 % Adjust offset for node
-ObjSDRuReceiver.CenterFrequency = rx.CenterFrequency - offset;
+ObjSDRuReceiver.CenterFrequency = tx.CenterFrequency + offset;
 
 while true
 [recoveredMessage] = PHYReceive(...

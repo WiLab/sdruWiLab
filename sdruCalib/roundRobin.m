@@ -1,6 +1,19 @@
 clear all; clc;
 
-hostnames = {'k9','badwolf','thedoctor'};%,'tyco'};
+%Kill all existing processes
+system('ssh root@monadnock.ece.wpi.edu "tb -dest k9 -act killallp -u traviscollins">NUL 2>NUL');
+system('ssh root@monadnock.ece.wpi.edu "tb -dest badwolf -act killallp -u traviscollins">NUL 2>NUL');
+system('ssh root@monadnock.ece.wpi.edu "tb -dest thedoctor -act killallp -u traviscollins">NUL 2>NUL');
+
+%Sync Code
+disp('Syncing code');
+system('ssh root@monadnock.ece.wpi.edu "tb -u traviscollins -dest k9 -act sync">NUL 2>NUL');
+system('ssh root@monadnock.ece.wpi.edu "tb -u traviscollins -dest badwolf -act sync">NUL 2>NUL');
+system('ssh root@monadnock.ece.wpi.edu "tb -u traviscollins -dest thedoctor -act sync">NUL 2>NUL');
+disp('Done Syncing');
+
+%hostnames = {'k9','badwolf','thedoctor'};%,'tyco'};
+hostnames = {'thedoctor','k9','badwolf'};%,'tyco'};
 
 Nodes = length(hostnames);
 
@@ -21,6 +34,7 @@ for i = 1:Nodes
     % Start Transmitter on a given node
     disp(['Starting transmitter on node: ',num2str(i),' (',hostnames{i},')']);
     runFreqCalTX( hostnames{i} );
+    pause(4);
     
     % Cycle through reception nodes
     for j = 1:Nodes

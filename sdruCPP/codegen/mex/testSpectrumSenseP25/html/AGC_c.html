@@ -1,0 +1,90 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>RTW Report - AGC.c</title>
+<script language="JavaScript" type="text/javascript" src="rtwreport_utils.js"></script>
+</head>
+<body bgcolor="#eeeeee" text="#1122aa" onload="try {if (top) { if (top.rtwFileOnLoad) top.rtwFileOnLoad(window.document); else local_onload();}} catch(err) {};">
+<p>
+<table border="0" cellspacing="0" cellpadding="6" width="100%%" height="100%%"><tr><td width="100%%" valign="top" bgcolor="#ffffff">
+<h4>File: <a href="../AGC.c" target="rtwreport_document_frame" id="linkToText_plain">AGC.c</a></h4>
+<pre id="RTWcode">
+<a name="1"><font color="#888888 "><i>    1   </i></font></a><font color="#117755"><i>/*</i></font>
+<a name="2"><font color="#888888 "><i>    2   </i></font></a><font color="#117755"><I> * AGC.c</i></font>
+<a name="3"><font color="#888888 "><i>    3   </i></font></a><font color="#117755"><I> *</i></font>
+<a name="4"><font color="#888888 "><i>    4   </i></font></a><font color="#117755"><I> * Code generation for function 'AGC'</i></font>
+<a name="5"><font color="#888888 "><i>    5   </i></font></a><font color="#117755"><I> *</i></font>
+<a name="6"><font color="#888888 "><i>    6   </i></font></a><font color="#117755"><I> * C source code generated on: Thu Mar  6 23:19:55 2014</i></font>
+<a name="7"><font color="#888888 "><i>    7   </i></font></a><font color="#117755"><I> *</i></font>
+<a name="8"><font color="#888888 "><i>    8   </i></font></a><font color="#117755"><I> */</i></font>
+<a name="9"><font color="#888888 "><i>    9   </i></font></a>
+<a name="10"><font color="#888888 "><i>   10   </i></font></a><font color="#117755"><i>/* Include files */</i></font>
+<a name="11"><font color="#888888 "><i>   11   </i></font></a><font color="#992211">#</font><font color="#992211"><b>include</b></font> <font color="#992211">&quot;rt_nonfinite.h&quot;</font>
+<a name="12"><font color="#888888 "><i>   12   </i></font></a><font color="#992211">#</font><font color="#992211"><b>include</b></font> <font color="#992211">&quot;testSpectrumSenseP25.h&quot;</font>
+<a name="13"><font color="#888888 "><i>   13   </i></font></a><font color="#992211">#</font><font color="#992211"><b>include</b></font> <font color="#992211">&quot;AGC.h&quot;</font>
+<a name="14"><font color="#888888 "><i>   14   </i></font></a><font color="#992211">#</font><font color="#992211"><b>include</b></font> <font color="#992211">&quot;abs.h&quot;</font>
+<a name="15"><font color="#888888 "><i>   15   </i></font></a><font color="#992211">#</font><font color="#992211"><b>include</b></font> <font color="#992211">&quot;mean.h&quot;</font>
+<a name="16"><font color="#888888 "><i>   16   </i></font></a><font color="#992211">#</font><font color="#992211"><b>include</b></font> <font color="#992211">&quot;SystemProp.h&quot;</font>
+<a name="17"><font color="#888888 "><i>   17   </i></font></a><font color="#992211">#</font><font color="#992211"><b>include</b></font> <font color="#992211">&lt;stdio.h&gt;</font>
+<a name="18"><font color="#888888 "><i>   18   </i></font></a>
+<a name="19"><font color="#888888 "><i>   19   </i></font></a><font color="#117755"><i>/* Function Declarations */</i></font>
+<a name="20"><font color="#888888 "><i>   20   </i></font></a><font color="#112266"><b>static</b></font> real_T <a href="#fcn_rectifier" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'fcn_rectifier');" target="rtwreport_document_frame"><font color="#1122aa">rectifier</font></a>(<font color="#112266"><b>const</b></font> creal_T x[5120]);
+<a name="21"><font color="#888888 "><i>   21   </i></font></a><font color="#112266"><b>static</b></font> <font color="#112266"><b>void</b></font> <a href="#fcn_rectifierOutput" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'fcn_rectifierOutput');" target="rtwreport_document_frame"><font color="#1122aa">rectifierOutput</font></a>(real_T *z, real_T g);
+<a name="22"><font color="#888888 "><i>   22   </i></font></a>
+<a name="23"><font color="#888888 "><i>   23   </i></font></a><font color="#117755"><i>/* Function Definitions */</i></font>
+<a name="24"><font color="#888888 "><i>   24   </i></font></a><font color="#112266"><b>static</b></font> real_T <a name="fcn_rectifier">rectifier</a>(<font color="#112266"><b>const</b></font> creal_T x[5120])
+<a name="25"><font color="#888888 "><i>   25   </i></font></a><b>{</b>
+<a name="26"><font color="#888888 "><i>   26   </i></font></a>  real_T dv6[5120];
+<a name="27"><font color="#888888 "><i>   27   </i></font></a>  <a href="abs_c.html#fcn_b_abs" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'fcn_b_abs');" target="rtwreport_document_frame"><font color="#1122aa">b_abs</font></a>(x, dv6);
+<a name="28"><font color="#888888 "><i>   28   </i></font></a>  <font color="#112266"><b>return</b></font> <a href="mean_c.html#fcn_mean" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'fcn_mean');" target="rtwreport_document_frame"><font color="#1122aa">mean</font></a>(dv6);
+<a name="29"><font color="#888888 "><i>   29   </i></font></a><b>}</b>
+<a name="30"><font color="#888888 "><i>   30   </i></font></a>
+<a name="31"><font color="#888888 "><i>   31   </i></font></a><font color="#112266"><b>static</b></font> <font color="#112266"><b>void</b></font> <a name="fcn_rectifierOutput">rectifierOutput</a>(real_T *z, real_T g)
+<a name="32"><font color="#888888 "><i>   32   </i></font></a><b>{</b>
+<a name="33"><font color="#888888 "><i>   33   </i></font></a>  *z *= g;
+<a name="34"><font color="#888888 "><i>   34   </i></font></a><b>}</b>
+<a name="35"><font color="#888888 "><i>   35   </i></font></a>
+<a name="36"><font color="#888888 "><i>   36   </i></font></a><a href="testSpectrumSenseP25_types_h.html#type_comm_AGC" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_comm_AGC');" target="rtwreport_document_frame"><font color="#1122aa">comm_AGC</font></a> *<a name="fcn_AGC_AGC">AGC_AGC</a>(<a href="testSpectrumSenseP25_types_h.html#type_comm_AGC" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_comm_AGC');" target="rtwreport_document_frame"><font color="#1122aa">comm_AGC</font></a> *obj)
+<a name="37"><font color="#888888 "><i>   37   </i></font></a><b>{</b>
+<a name="38"><font color="#888888 "><i>   38   </i></font></a>  <a href="testSpectrumSenseP25_types_h.html#type_comm_AGC" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_comm_AGC');" target="rtwreport_document_frame"><font color="#1122aa">comm_AGC</font></a> *b_obj;
+<a name="39"><font color="#888888 "><i>   39   </i></font></a>  <a href="testSpectrumSenseP25_types_h.html#type_comm_AGC" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_comm_AGC');" target="rtwreport_document_frame"><font color="#1122aa">comm_AGC</font></a> *c_obj;
+<a name="40"><font color="#888888 "><i>   40   </i></font></a>  b_obj = obj;
+<a name="41"><font color="#888888 "><i>   41   </i></font></a>  c_obj = b_obj;
+<a name="42"><font color="#888888 "><i>   42   </i></font></a>  c_obj-&gt;isInitialized = FALSE;
+<a name="43"><font color="#888888 "><i>   43   </i></font></a>  c_obj-&gt;isReleased = FALSE;
+<a name="44"><font color="#888888 "><i>   44   </i></font></a>  <font color="#112266"><b>return</b></font> b_obj;
+<a name="45"><font color="#888888 "><i>   45   </i></font></a><b>}</b>
+<a name="46"><font color="#888888 "><i>   46   </i></font></a>
+<a name="47"><font color="#888888 "><i>   47   </i></font></a><font color="#112266"><b>void</b></font> <a name="fcn_AGC_stepImpl">AGC_stepImpl</a>(<a href="testSpectrumSenseP25_types_h.html#type_comm_AGC" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_comm_AGC');" target="rtwreport_document_frame"><font color="#1122aa">comm_AGC</font></a> *obj, <font color="#112266"><b>const</b></font> creal_T x[5120], creal_T y[5120])
+<a name="48"><font color="#888888 "><i>   48   </i></font></a><b>{</b>
+<a name="49"><font color="#888888 "><i>   49   </i></font></a>  real_T g;
+<a name="50"><font color="#888888 "><i>   50   </i></font></a>  creal_T dcv4[5120];
+<a name="51"><font color="#888888 "><i>   51   </i></font></a>  real_T z;
+<a name="52"><font color="#888888 "><i>   52   </i></font></a>  int32_T i;
+<a name="53"><font color="#888888 "><i>   53   </i></font></a>  g = obj-&gt;Gain;
+<a name="54"><font color="#888888 "><i>   54   </i></font></a>  memcpy(&amp;dcv4[0], &amp;x[0], 5120U * <font color="#112266"><b>sizeof</b></font>(creal_T));
+<a name="55"><font color="#888888 "><i>   55   </i></font></a>  z = <a href="#fcn_rectifier" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'fcn_rectifier');" target="rtwreport_document_frame"><font color="#1122aa">rectifier</font></a>(dcv4);
+<a name="56"><font color="#888888 "><i>   56   </i></font></a>  <font color="#112266"><b>for</b></font> (i = 0; i &lt; 5120; i++) <b>{</b>
+<a name="57"><font color="#888888 "><i>   57   </i></font></a>    y[i].re = g * x[i].re;
+<a name="58"><font color="#888888 "><i>   58   </i></font></a>    y[i].im = g * x[i].im;
+<a name="59"><font color="#888888 "><i>   59   </i></font></a>  <b>}</b>
+<a name="60"><font color="#888888 "><i>   60   </i></font></a>
+<a name="61"><font color="#888888 "><i>   61   </i></font></a>  <a href="#fcn_rectifierOutput" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'fcn_rectifierOutput');" target="rtwreport_document_frame"><font color="#1122aa">rectifierOutput</font></a>(&amp;z, g);
+<a name="62"><font color="#888888 "><i>   62   </i></font></a>  g += 0.1 * (1.0 - z);
+<a name="63"><font color="#888888 "><i>   63   </i></font></a>  <font color="#112266"><b>if</b></font> (g &lt; 1.4901161193847656E-8) <b>{</b>
+<a name="64"><font color="#888888 "><i>   64   </i></font></a>    g = 1.4901161193847656E-8;
+<a name="65"><font color="#888888 "><i>   65   </i></font></a>  <b>}</b> <font color="#112266"><b>else</b></font> <b>{</b>
+<a name="66"><font color="#888888 "><i>   66   </i></font></a>    <font color="#112266"><b>if</b></font> (g &gt; 1000.0) <b>{</b>
+<a name="67"><font color="#888888 "><i>   67   </i></font></a>      g = 1000.0;
+<a name="68"><font color="#888888 "><i>   68   </i></font></a>    <b>}</b>
+<a name="69"><font color="#888888 "><i>   69   </i></font></a>  <b>}</b>
+<a name="70"><font color="#888888 "><i>   70   </i></font></a>
+<a name="71"><font color="#888888 "><i>   71   </i></font></a>  <a href="SystemProp_c.html#fcn_f_SystemProp_matlabCodegenSetAn" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'fcn_f_SystemProp_matlabCodegenSetAn');" target="rtwreport_document_frame"><font color="#1122aa">f_SystemProp_matlabCodegenSetAn</font></a>(obj, g);
+<a name="72"><font color="#888888 "><i>   72   </i></font></a><b>}</b>
+<a name="73"><font color="#888888 "><i>   73   </i></font></a>
+<a name="74"><font color="#888888 "><i>   74   </i></font></a><font color="#117755"><i>/* End of code generation (AGC.c) */</i></font>
+<a name="75"><font color="#888888 "><i>   75   </i></font></a></pre>
+</td></tr></table>
+</p>
+</body>
+</html>

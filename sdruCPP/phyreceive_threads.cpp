@@ -1,6 +1,7 @@
 #include "libReceive.h"
 #include <iostream>
 #include <thread>
+#include <unistd.h>
 
 void TX_thread(char *msg)
 {
@@ -12,11 +13,13 @@ void TX_thread(char *msg)
     CreateTXRX_TX(10, ObjAGC_tx,ObjSDRuTransmitter_tx,ObjDetect_tx,ObjPreambleDemod_tx,ObjDataDemod_tx,estimate_tx,rx_tx,timeoutDuration_tx,messageBits_tx,SamplingFreq_tx, destNodeID_tx,originNodeID_tx, inputPayloadMessage_tx);
 
 
+    sleep(25);
     //Call Transmitter
     std::cout << "Starting Transmitter" << std::endl;
     while (1)
     {
 	PHYTransmit(ObjSDRuTransmitter_tx,inputPayloadMessage_tx,SamplingFreq_tx,originNodeID_tx,destNodeID_tx);
+    //CreateTXRX_TX(10, ObjAGC_tx,ObjSDRuTransmitter_tx,ObjDetect_tx,ObjPreambleDemod_tx,ObjDataDemod_tx,estimate_tx,rx_tx,timeoutDuration_tx,messageBits_tx,SamplingFreq_tx, destNodeID_tx,originNodeID_tx, inputPayloadMessage_tx);
     }
 
 }
@@ -26,11 +29,11 @@ void thread_to_run(char *msg)
 
     // Must declare all MATLAB data types after initializing the 
     // application and the library, or their constructors will fail.
-    mwArray ObjAGC,ObjSDRuReceiver,ObjSDRuTransmitter,ObjDetect,ObjPreambleDemod,ObjDataDemod,estimate,rx,timeoutDuration,messageBits,SamplingFreq;
+    mwArray ObjAGC,ObjSDRuReceiver,ObjDetect,ObjPreambleDemod,ObjDataDemod,estimate,rx,timeoutDuration,messageBits,SamplingFreq;
     mwArray result;
 
     //Create Required Objeccts/Structs/Variables
-    CreateTXRX(11, ObjAGC,ObjSDRuReceiver,ObjSDRuTransmitter,ObjDetect,ObjPreambleDemod,ObjDataDemod,estimate,rx,timeoutDuration,messageBits,SamplingFreq);
+    CreateTXRX(10, ObjAGC,ObjSDRuReceiver,ObjDetect,ObjPreambleDemod,ObjDataDemod,estimate,rx,timeoutDuration,messageBits,SamplingFreq);
 
     int k;
     for (k=0;k<100;k++){

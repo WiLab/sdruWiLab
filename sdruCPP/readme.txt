@@ -30,8 +30,8 @@ in the MathWorks Documentation Center.
 
 Files to package for Shared Libraries
 =====================================
--libReceive.so
--libReceive.h
+-libTransmit.so
+-libTransmit.h
 -MCRInstaller.zip 
    -if end users are unable to download the MCR using the above  
     link, include it when building your component by clicking 

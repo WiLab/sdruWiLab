@@ -1,9 +1,8 @@
 //
 // MATLAB Compiler: 4.18.1 (R2013a)
-// Date: Sat Mar 29 16:43:54 2014
+// Date: Mon Mar 31 18:06:59 2014
 // Arguments: "-B" "macro_default" "-v" "-W" "cpplib:libReceive" "-T"
-// "link:lib" "PHYTransmit.m" "PHYReceive.m" "CreateTXRX.m" "CreateTXRX_TX.m"
-// "BoardIdCapiEnumT.m" 
+// "link:lib" "PHYReceive.m" "CreateTXRX.m" "BoardIdCapiEnumT.m" 
 //
 
 #ifndef __libReceive_h
@@ -75,16 +74,10 @@ extern LIB_libReceive_C_API
 void MW_CALL_CONV libReceivePrintStackTrace(void);
 
 extern LIB_libReceive_C_API 
-bool MW_CALL_CONV mlxPHYTransmit(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[]);
-
-extern LIB_libReceive_C_API 
 bool MW_CALL_CONV mlxPHYReceive(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[]);
 
 extern LIB_libReceive_C_API 
 bool MW_CALL_CONV mlxCreateTXRX(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[]);
-
-extern LIB_libReceive_C_API 
-bool MW_CALL_CONV mlxCreateTXRX_TX(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[]);
 
 extern LIB_libReceive_C_API 
 bool MW_CALL_CONV mlxBoardIdCapiEnumT(int nlhs, mxArray *plhs[], int nrhs, mxArray 
@@ -120,13 +113,9 @@ bool MW_CALL_CONV mlxBoardIdCapiEnumT(int nlhs, mxArray *plhs[], int nrhs, mxArr
 
 #endif
 
-extern LIB_libReceive_CPP_API void MW_CALL_CONV PHYTransmit(const mwArray& ObjSDRuTransmitter, const mwArray& inputPayloadMessage, const mwArray& samplingFreq, const mwArray& originNodeID, const mwArray& destNodeID);
-
 extern LIB_libReceive_CPP_API void MW_CALL_CONV PHYReceive(int nargout, mwArray& recoveredMessage, const mwArray& ObjAGC, const mwArray& ObjSDRuReceiver, const mwArray& ObjDetect, const mwArray& ObjPreambleDemod, const mwArray& ObjDataDemod, const mwArray& estimate, const mwArray& rx, const mwArray& timeoutDuration, const mwArray& messageBits);
 
-extern LIB_libReceive_CPP_API void MW_CALL_CONV CreateTXRX(int nargout, mwArray& ObjAGC, mwArray& ObjSDRuReceiver, mwArray& ObjSDRuTransmitter, mwArray& ObjDetect, mwArray& ObjPreambleDemod, mwArray& ObjDataDemod, mwArray& estimate, mwArray& tx, mwArray& timeoutDuration, mwArray& messageBits, mwArray& desiredSamplingFrequency);
-
-extern LIB_libReceive_CPP_API void MW_CALL_CONV CreateTXRX_TX(int nargout, mwArray& ObjAGC, mwArray& ObjSDRuTransmitter, mwArray& ObjDetect, mwArray& ObjPreambleDemod, mwArray& ObjDataDemod, mwArray& estimate, mwArray& tx, mwArray& timeoutDuration, mwArray& messageBits, mwArray& desiredSamplingFrequency, mwArray& destNodeID, mwArray& originNodeID, mwArray& inputPayloadMessage);
+extern LIB_libReceive_CPP_API void MW_CALL_CONV CreateTXRX(int nargout, mwArray& ObjAGC, mwArray& ObjSDRuReceiver, mwArray& ObjDetect, mwArray& ObjPreambleDemod, mwArray& ObjDataDemod, mwArray& estimate, mwArray& tx, mwArray& timeoutDuration, mwArray& messageBits, mwArray& desiredSamplingFrequency);
 
 extern LIB_libReceive_CPP_API void MW_CALL_CONV BoardIdCapiEnumT(int nargout, mwArray& varargout, const mwArray& varargin);
 

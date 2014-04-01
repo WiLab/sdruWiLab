@@ -1,9 +1,8 @@
 //
 // MATLAB Compiler: 4.18.1 (R2013a)
-// Date: Sat Mar 29 16:43:54 2014
+// Date: Mon Mar 31 18:06:59 2014
 // Arguments: "-B" "macro_default" "-v" "-W" "cpplib:libReceive" "-T"
-// "link:lib" "PHYTransmit.m" "PHYReceive.m" "CreateTXRX.m" "CreateTXRX_TX.m"
-// "BoardIdCapiEnumT.m" 
+// "link:lib" "PHYReceive.m" "CreateTXRX.m" "BoardIdCapiEnumT.m" 
 //
 
 #include <stdio.h>
@@ -109,12 +108,6 @@ void MW_CALL_CONV libReceivePrintStackTrace(void)
 
 
 LIB_libReceive_C_API 
-bool MW_CALL_CONV mlxPHYTransmit(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])
-{
-  return mclFeval(_mcr_inst, "PHYTransmit", nlhs, plhs, nrhs, prhs);
-}
-
-LIB_libReceive_C_API 
 bool MW_CALL_CONV mlxPHYReceive(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])
 {
   return mclFeval(_mcr_inst, "PHYReceive", nlhs, plhs, nrhs, prhs);
@@ -127,24 +120,10 @@ bool MW_CALL_CONV mlxCreateTXRX(int nlhs, mxArray *plhs[], int nrhs, mxArray *pr
 }
 
 LIB_libReceive_C_API 
-bool MW_CALL_CONV mlxCreateTXRX_TX(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])
-{
-  return mclFeval(_mcr_inst, "CreateTXRX_TX", nlhs, plhs, nrhs, prhs);
-}
-
-LIB_libReceive_C_API 
 bool MW_CALL_CONV mlxBoardIdCapiEnumT(int nlhs, mxArray *plhs[], int nrhs, mxArray 
                                       *prhs[])
 {
   return mclFeval(_mcr_inst, "BoardIdCapiEnumT", nlhs, plhs, nrhs, prhs);
-}
-
-LIB_libReceive_CPP_API 
-void MW_CALL_CONV PHYTransmit(const mwArray& ObjSDRuTransmitter, const mwArray& 
-                              inputPayloadMessage, const mwArray& samplingFreq, const 
-                              mwArray& originNodeID, const mwArray& destNodeID)
-{
-  mclcppMlfFeval(_mcr_inst, "PHYTransmit", 0, 0, 5, &ObjSDRuTransmitter, &inputPayloadMessage, &samplingFreq, &originNodeID, &destNodeID);
 }
 
 LIB_libReceive_CPP_API 
@@ -159,24 +138,12 @@ void MW_CALL_CONV PHYReceive(int nargout, mwArray& recoveredMessage, const mwArr
 
 LIB_libReceive_CPP_API 
 void MW_CALL_CONV CreateTXRX(int nargout, mwArray& ObjAGC, mwArray& ObjSDRuReceiver, 
-                             mwArray& ObjSDRuTransmitter, mwArray& ObjDetect, mwArray& 
-                             ObjPreambleDemod, mwArray& ObjDataDemod, mwArray& estimate, 
-                             mwArray& tx, mwArray& timeoutDuration, mwArray& messageBits, 
-                             mwArray& desiredSamplingFrequency)
+                             mwArray& ObjDetect, mwArray& ObjPreambleDemod, mwArray& 
+                             ObjDataDemod, mwArray& estimate, mwArray& tx, mwArray& 
+                             timeoutDuration, mwArray& messageBits, mwArray& 
+                             desiredSamplingFrequency)
 {
-  mclcppMlfFeval(_mcr_inst, "CreateTXRX", nargout, 11, 0, &ObjAGC, &ObjSDRuReceiver, &ObjSDRuTransmitter, &ObjDetect, &ObjPreambleDemod, &ObjDataDemod, &estimate, &tx, &timeoutDuration, &messageBits, &desiredSamplingFrequency);
-}
-
-LIB_libReceive_CPP_API 
-void MW_CALL_CONV CreateTXRX_TX(int nargout, mwArray& ObjAGC, mwArray& 
-                                ObjSDRuTransmitter, mwArray& ObjDetect, mwArray& 
-                                ObjPreambleDemod, mwArray& ObjDataDemod, mwArray& 
-                                estimate, mwArray& tx, mwArray& timeoutDuration, mwArray& 
-                                messageBits, mwArray& desiredSamplingFrequency, mwArray& 
-                                destNodeID, mwArray& originNodeID, mwArray& 
-                                inputPayloadMessage)
-{
-  mclcppMlfFeval(_mcr_inst, "CreateTXRX_TX", nargout, 13, 0, &ObjAGC, &ObjSDRuTransmitter, &ObjDetect, &ObjPreambleDemod, &ObjDataDemod, &estimate, &tx, &timeoutDuration, &messageBits, &desiredSamplingFrequency, &destNodeID, &originNodeID, &inputPayloadMessage);
+  mclcppMlfFeval(_mcr_inst, "CreateTXRX", nargout, 10, 0, &ObjAGC, &ObjSDRuReceiver, &ObjDetect, &ObjPreambleDemod, &ObjDataDemod, &estimate, &tx, &timeoutDuration, &messageBits, &desiredSamplingFrequency);
 }
 
 LIB_libReceive_CPP_API 

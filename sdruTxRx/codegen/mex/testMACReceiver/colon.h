@@ -3,7 +3,7 @@
  *
  * Code generation for function 'colon'
  *
- * C source code generated on: Thu Mar  6 18:47:05 2014
+ * C source code generated on: Thu Apr  3 19:51:42 2014
  *
  */
 
@@ -23,7 +23,6 @@
 #include "testMACReceiver_types.h"
 
 /* Function Declarations */
-extern void assert_pmaxsize(const emlrtStack *sp, boolean_T p);
 extern void b_float_colon_length(int32_T *n, real_T *anew, real_T *bnew, boolean_T *n_too_large);
 extern void float_colon_length(int32_T *n, real_T *anew, real_T *bnew, boolean_T *n_too_large);
 #endif

@@ -3,7 +3,7 @@
  *
  * Code generation for function 'OFDMletters2bits'
  *
- * C source code generated on: Thu Feb 27 11:47:47 2014
+ * C source code generated on: Sat Mar 29 15:48:37 2014
  *
  */
 
@@ -23,7 +23,7 @@
 #include "testPHYTransmit_types.h"
 
 /* Function Declarations */
-extern void OFDMletters2bits(const emlrtStack *sp, const char_T str[80], real_T f[560]);
-extern void b_OFDMletters2bits(const emlrtStack *sp, real_T f[560]);
+extern void OFDMletters2bits(const char_T str[80], real_T f[560]);
+extern void b_OFDMletters2bits(real_T f[560]);
 #endif
 /* End of code generation (OFDMletters2bits.h) */

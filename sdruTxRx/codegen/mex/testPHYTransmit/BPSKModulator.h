@@ -3,7 +3,7 @@
  *
  * Code generation for function 'BPSKModulator'
  *
- * C source code generated on: Thu Feb 27 11:47:47 2014
+ * C source code generated on: Sat Mar 29 15:48:37 2014
  *
  */
 
@@ -24,7 +24,7 @@
 
 /* Function Declarations */
 extern commcodegen_BPSKModulator *BPSKModulator_BPSKModulator(commcodegen_BPSKModulator *obj);
-extern commcodegen_BPSKModulator_1 *b_BPSKModulator_BPSKModulator(commcodegen_BPSKModulator_1 *obj);
-extern commcodegen_BPSKModulator_2 *c_BPSKModulator_BPSKModulator(commcodegen_BPSKModulator_2 *obj);
+extern commcodegen_BPSKModulator_191 *b_BPSKModulator_BPSKModulator(commcodegen_BPSKModulator_191 *obj);
+extern commcodegen_BPSKModulator_348 *c_BPSKModulator_BPSKModulator(commcodegen_BPSKModulator_348 *obj);
 #endif
 /* End of code generation (BPSKModulator.h) */

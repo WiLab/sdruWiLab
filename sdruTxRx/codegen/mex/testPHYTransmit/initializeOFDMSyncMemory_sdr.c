@@ -3,7 +3,7 @@
  *
  * Code generation for function 'initializeOFDMSyncMemory_sdr'
  *
- * C source code generated on: Thu Feb 27 11:47:47 2014
+ * C source code generated on: Sat Mar 29 15:48:37 2014
  *
  */
 
@@ -13,7 +13,7 @@
 #include "initializeOFDMSyncMemory_sdr.h"
 
 /* Function Definitions */
-void initializeOFDMSyncMemory_sdr(c_struct_T *estimate)
+void initializeOFDMSyncMemory_sdr(b_struct_T *estimate)
 {
   int32_T i;
 

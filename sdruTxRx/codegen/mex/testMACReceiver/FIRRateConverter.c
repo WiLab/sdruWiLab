@@ -3,7 +3,7 @@
  *
  * Code generation for function 'FIRRateConverter'
  *
- * C source code generated on: Thu Mar  6 18:47:07 2014
+ * C source code generated on: Thu Apr  3 19:51:42 2014
  *
  */
 
@@ -11,7 +11,7 @@
 #include "rt_nonfinite.h"
 #include "testMACReceiver.h"
 #include "FIRRateConverter.h"
-#include <stdio.h>
+#include "testMACReceiver_data.h"
 
 /* Function Definitions */
 dspcodegen_FIRRateConverter *c_FIRRateConverter_FIRRateConve
@@ -21,7 +21,7 @@ dspcodegen_FIRRateConverter *c_FIRRateConverter_FIRRateConve
   dspcodegen_FIRRateConverter *c_obj;
   dsp_FIRRateConverter_7 *d_obj;
   int32_T i;
-  static const real_T dv11[252] = { 0.0, -0.00080944841270701856,
+  static const real_T dv14[252] = { 0.0, -0.00080944841270701856,
     0.0017448652212834904, -0.003229237105918336, 0.005467801350010737,
     -0.0087713345939752219, 0.013701072061976847, -0.021508898209755666,
     0.0358577019470654, -0.074074931596807128, 0.98846260348411263,
@@ -104,17 +104,46 @@ dspcodegen_FIRRateConverter *c_FIRRateConverter_FIRRateConve
     0.0019335163432223723, -0.00072341743910430008, 0.0 };
 
   b_obj = obj;
+  emlrtPushRtStackR2012b(&nj_emlrtRSI, emlrtRootTLSGlobal);
   c_obj = b_obj;
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   c_obj->isInitialized = FALSE;
   c_obj->isReleased = FALSE;
+  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
   c_obj->inputDirectFeedthrough1 = FALSE;
+  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&p_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&p_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&nj_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&nj_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&nj_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&nj_emlrtRSI, emlrtRootTLSGlobal);
   d_obj = &b_obj->cSFunObject;
 
   /* System object Constructor function: dsp.FIRRateConverter */
   d_obj->S0_isInitialized = FALSE;
   d_obj->S1_isReleased = FALSE;
   for (i = 0; i < 252; i++) {
-    d_obj->P0_FILTER[i] = dv11[i];
+    d_obj->P0_FILTER[i] = dv14[i];
   }
 
   for (i = 0; i < 12; i++) {
@@ -123,6 +152,43 @@ dspcodegen_FIRRateConverter *c_FIRRateConverter_FIRRateConve
 
   d_obj->P2_StartIdx = 0;
   d_obj->P3_StopIdx = 12;
+  emlrtPopRtStackR2012b(&nj_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&nj_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&p_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&p_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&u_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&u_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&u_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&u_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&u_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&u_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&p_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&p_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&nj_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&nj_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&nj_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&nj_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&nj_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&nj_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&nj_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&nj_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&nj_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&nj_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&nj_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&nj_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&nj_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&nj_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&nj_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&nj_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&nj_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&nj_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&nj_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&nj_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&nj_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&nj_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&nj_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&nj_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&nj_emlrtRSI, emlrtRootTLSGlobal);
   return b_obj;
 }
 

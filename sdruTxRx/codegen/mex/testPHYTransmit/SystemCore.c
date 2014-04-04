@@ -3,7 +3,7 @@
  *
  * Code generation for function 'SystemCore'
  *
- * C source code generated on: Thu Feb 27 11:47:47 2014
+ * C source code generated on: Sat Mar 29 15:48:37 2014
  *
  */
 
@@ -12,130 +12,202 @@
 #include "testPHYTransmit.h"
 #include "SystemCore.h"
 #include "SDRuTransmitter.h"
-#include "closeDataConnection.h"
+#include "sendComplexDoubleData.h"
 #include "SDRuReceiver.h"
-#include "SystemProp.h"
-#include "find.h"
 #include "testPHYTransmit_emxutil.h"
-#include "Nondirect1.h"
 #include "OFDMModulator.h"
 #include "testPHYTransmit_mexutil.h"
 #include "testPHYTransmit_data.h"
 
 /* Variable Definitions */
-static emlrtRSInfo uc_emlrtRSI = { 345, "OFDMModulator",
-  "/Users/travis/Git/sdruWiLab/sdruTxRx/OFDMModulator.m" };
+static emlrtRSInfo rc_emlrtRSI = { 318, "OFDMModulator",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdruTxRx/OFDMModulator.m" };
 
-static emlrtRSInfo vc_emlrtRSI = { 374, "OFDMModulator",
-  "/Users/travis/Git/sdruWiLab/sdruTxRx/OFDMModulator.m" };
+static emlrtRSInfo sc_emlrtRSI = { 163, "OFDMBase",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdruTxRx/OFDMBase.m" };
 
-static emlrtRSInfo wc_emlrtRSI = { 375, "OFDMModulator",
-  "/Users/travis/Git/sdruWiLab/sdruTxRx/OFDMModulator.m" };
+static emlrtRSInfo wc_emlrtRSI = { 419, "OFDMModulator",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdruTxRx/OFDMModulator.m" };
 
-static emlrtRSInfo xc_emlrtRSI = { 388, "OFDMModulator",
-  "/Users/travis/Git/sdruWiLab/sdruTxRx/OFDMModulator.m" };
+static emlrtRSInfo xc_emlrtRSI = { 25, "ifft",
+  "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/datafun/ifft.m" };
 
-static emlrtRSInfo bd_emlrtRSI = { 415, "OFDMModulator",
-  "/Users/travis/Git/sdruWiLab/sdruTxRx/OFDMModulator.m" };
+static emlrtRSInfo yc_emlrtRSI = { 49, "eml_fft",
+  "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/eml/eml_fft.m" };
 
-static emlrtRSInfo cd_emlrtRSI = { 419, "OFDMModulator",
-  "/Users/travis/Git/sdruWiLab/sdruTxRx/OFDMModulator.m" };
+static emlrtRSInfo ad_emlrtRSI = { 113, "eml_fft",
+  "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/eml/eml_fft.m" };
 
-static emlrtRSInfo dd_emlrtRSI = { 423, "OFDMModulator",
-  "/Users/travis/Git/sdruWiLab/sdruTxRx/OFDMModulator.m" };
+static emlrtRSInfo ef_emlrtRSI = { 73, "reportSDRuStatus",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdru/reportSDRuStatus.m" };
 
-static emlrtRSInfo ed_emlrtRSI = { 424, "OFDMModulator",
-  "/Users/travis/Git/sdruWiLab/sdruTxRx/OFDMModulator.m" };
+static emlrtRSInfo gf_emlrtRSI = { 63, "reportSDRuStatus",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdru/reportSDRuStatus.m" };
 
-static emlrtRSInfo ig_emlrtRSI = { 1, "Nondirect",
-  "/Applications/MATLAB_R2013b.app/toolbox/shared/system/coder/+matlab/+system/+mixin/+coder/Nondirect.p"
-};
+static emlrtRSInfo if_emlrtRSI = { 53, "reportSDRuStatus",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdru/reportSDRuStatus.m" };
 
-static emlrtRSInfo yl_emlrtRSI = { 93, "reportSDRuStatus",
-  "/Users/travis/Documents/sdru/reportSDRuStatus.m" };
-
-static emlrtRSInfo bm_emlrtRSI = { 83, "reportSDRuStatus",
-  "/Users/travis/Documents/sdru/reportSDRuStatus.m" };
-
-static emlrtRSInfo dm_emlrtRSI = { 73, "reportSDRuStatus",
-  "/Users/travis/Documents/sdru/reportSDRuStatus.m" };
-
-static emlrtRSInfo fm_emlrtRSI = { 63, "reportSDRuStatus",
-  "/Users/travis/Documents/sdru/reportSDRuStatus.m" };
-
-static emlrtRSInfo hm_emlrtRSI = { 53, "reportSDRuStatus",
-  "/Users/travis/Documents/sdru/reportSDRuStatus.m" };
-
-static emlrtRSInfo jm_emlrtRSI = { 42, "reportSDRuStatus",
-  "/Users/travis/Documents/sdru/reportSDRuStatus.m" };
+static emlrtRSInfo kf_emlrtRSI = { 42, "reportSDRuStatus",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdru/reportSDRuStatus.m" };
 
 static emlrtRTEInfo f_emlrtRTEI = { 1, 13, "SystemCore",
-  "/Applications/MATLAB_R2013b.app/toolbox/shared/system/coder/+matlab/+system/+coder/SystemCore.p"
+  "/opt/MATLAB/R2013a/toolbox/shared/system/coder/+matlab/+system/+coder/SystemCore.p"
 };
 
 static emlrtBCInfo d_emlrtBCI = { 1, 768, 403, 9, "packedData", "OFDMModulator",
-  "/Users/travis/Git/sdruWiLab/sdruTxRx/OFDMModulator.m", 0 };
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdruTxRx/OFDMModulator.m", 0 };
 
 /* Function Declarations */
-static void SystemCore_validateProperties(void);
-static const mxArray *c_message(const emlrtStack *sp, const mxArray *b, const
-  mxArray *c, const mxArray *d, emlrtMCInfo *location);
+static const mxArray *c_message(const mxArray *b, const mxArray *c, const
+  mxArray *d, emlrtMCInfo *location);
 
 /* Function Definitions */
-static void SystemCore_validateProperties(void)
-{
-}
-
-static const mxArray *c_message(const emlrtStack *sp, const mxArray *b, const
-  mxArray *c, const mxArray *d, emlrtMCInfo *location)
+static const mxArray *c_message(const mxArray *b, const mxArray *c, const
+  mxArray *d, emlrtMCInfo *location)
 {
   const mxArray *pArrays[3];
-  const mxArray *m30;
+  const mxArray *m35;
   pArrays[0] = b;
   pArrays[1] = c;
   pArrays[2] = d;
-  return emlrtCallMATLABR2012b(sp, 1, &m30, 3, pArrays, "message", TRUE,
-    location);
+  return emlrtCallMATLABR2012b(emlrtRootTLSGlobal, 1, &m35, 3, pArrays,
+    "message", TRUE, location);
 }
 
-void SystemCore_step(const emlrtStack *sp, OFDMModulator *obj, creal_T
-                     varargout_1[64])
+void SystemCore_checkTunableProps(commcodegen_BPSKModulator *obj)
+{
+  commcodegen_BPSKModulator *b_obj;
+  if (obj->TunablePropsChanged) {
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    b_obj = obj;
+    b_obj->TunablePropsChanged = FALSE;
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  }
+}
+
+void SystemCore_setup(commcodegen_BPSKModulator *obj)
 {
   const mxArray *y;
-  static const int32_T iv10[2] = { 1, 45 };
+  static const int32_T iv31[2] = { 1, 51 };
+
+  const mxArray *m6;
+  char_T cv35[51];
+  int32_T i;
+  static const char_T cv36[51] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
+    's', 't', 'e', 'm', ':', 'm', 'e', 't', 'h', 'o', 'd', 'C', 'a', 'l', 'l',
+    'e', 'd', 'W', 'h', 'e', 'n', 'L', 'o', 'c', 'k', 'e', 'd', 'R', 'e', 'l',
+    'e', 'a', 's', 'e', 'd', 'C', 'o', 'd', 'e', 'g', 'e', 'n' };
+
+  const mxArray *b_y;
+  static const int32_T iv32[2] = { 1, 5 };
+
+  char_T cv37[5];
+  static const char_T cv38[5] = { 's', 'e', 't', 'u', 'p' };
+
+  commcodegen_BPSKModulator *b_obj;
+  static const int16_T value[8] = { 563, 1, 1, 1, 1, 1, 1, 1 };
+
+  if (!obj->isInitialized) {
+  } else {
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    y = NULL;
+    m6 = mxCreateCharArray(2, iv31);
+    for (i = 0; i < 51; i++) {
+      cv35[i] = cv36[i];
+    }
+
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 51, m6, cv35);
+    emlrtAssign(&y, m6);
+    b_y = NULL;
+    m6 = mxCreateCharArray(2, iv32);
+    for (i = 0; i < 5; i++) {
+      cv37[i] = cv38[i];
+    }
+
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 5, m6, cv37);
+    emlrtAssign(&b_y, m6);
+    c_error(message(y, b_y, &b_emlrtMCI), &b_emlrtMCI);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  }
+
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  b_obj = obj;
+  b_obj->isInitialized = TRUE;
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  b_obj = obj;
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  for (i = 0; i < 8; i++) {
+    b_obj->inputVarSize1[i] = (uint32_T)value[i];
+  }
+
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  b_obj = obj;
+  b_obj->TunablePropsChanged = FALSE;
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+}
+
+void SystemCore_step(OFDMModulator_4 *obj, creal_T varargout_1[64])
+{
+  const mxArray *y;
+  static const int32_T iv12[2] = { 1, 45 };
 
   const mxArray *m1;
-  char_T cv11[45];
+  char_T cv7[45];
   int32_T i;
-  static const char_T cv12[45] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
+  static const char_T cv8[45] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
     's', 't', 'e', 'm', ':', 'm', 'e', 't', 'h', 'o', 'd', 'C', 'a', 'l', 'l',
     'e', 'd', 'W', 'h', 'e', 'n', 'R', 'e', 'l', 'e', 'a', 's', 'e', 'd', 'C',
     'o', 'd', 'e', 'g', 'e', 'n' };
 
   const mxArray *b_y;
-  static const int32_T iv11[2] = { 1, 4 };
+  static const int32_T iv13[2] = { 1, 4 };
 
-  char_T cv13[4];
-  static const char_T cv14[4] = { 's', 't', 'e', 'p' };
+  char_T cv9[4];
+  static const char_T cv10[4] = { 's', 't', 'e', 'p' };
 
-  OFDMModulator *b_obj;
+  OFDMModulator_4 *b_obj;
   const mxArray *c_y;
-  static const int32_T iv12[2] = { 1, 51 };
+  static const int32_T iv14[2] = { 1, 51 };
 
-  char_T cv15[51];
-  static const char_T cv16[51] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
+  char_T cv11[51];
+  static const char_T cv12[51] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
     's', 't', 'e', 'm', ':', 'm', 'e', 't', 'h', 'o', 'd', 'C', 'a', 'l', 'l',
     'e', 'd', 'W', 'h', 'e', 'n', 'L', 'o', 'c', 'k', 'e', 'd', 'R', 'e', 'l',
     'e', 'a', 's', 'e', 'd', 'C', 'o', 'd', 'e', 'g', 'e', 'n' };
 
   const mxArray *d_y;
-  static const int32_T iv13[2] = { 1, 5 };
+  static const int32_T iv15[2] = { 1, 5 };
 
-  char_T cv17[5];
-  static const char_T cv18[5] = { 's', 'e', 't', 'u', 'p' };
+  char_T cv13[5];
+  static const char_T cv14[5] = { 's', 'e', 't', 'u', 'p' };
 
   real_T value[64];
-  static const int8_T iv14[11] = { 0, 1, 2, 3, 4, 5, 59, 60, 61, 62, 63 };
+  static const int8_T iv16[11] = { 0, 1, 2, 3, 4, 5, 59, 60, 61, 62, 63 };
 
   boolean_T x[64];
   int8_T ii_data[64];
@@ -155,106 +227,98 @@ void SystemCore_step(const emlrtStack *sp, OFDMModulator *obj, creal_T
     }, { 0.0, 0.0 }, { 1.0, 1.0 }, { 0.0, 0.0 }, { 0.0, 0.0 }, { 0.0, 0.0 }, {
       1.0, 1.0 }, { 0.0, 0.0 }, { 0.0, 0.0 } };
 
-  emlrtStack st;
-  emlrtStack b_st;
-  emlrtStack c_st;
-  st.prev = sp;
-  st.tls = sp->tls;
-  b_st.prev = &st;
-  b_st.tls = st.tls;
-  c_st.prev = &b_st;
-  c_st.tls = b_st.tls;
   if (!obj->isReleased) {
   } else {
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
     y = NULL;
-    m1 = mxCreateCharArray(2, iv10);
+    m1 = mxCreateCharArray(2, iv12);
     for (i = 0; i < 45; i++) {
-      cv11[i] = cv12[i];
+      cv7[i] = cv8[i];
     }
 
-    emlrtInitCharArrayR2013a(sp, 45, m1, cv11);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 45, m1, cv7);
     emlrtAssign(&y, m1);
     b_y = NULL;
-    m1 = mxCreateCharArray(2, iv11);
+    m1 = mxCreateCharArray(2, iv13);
     for (i = 0; i < 4; i++) {
-      cv13[i] = cv14[i];
+      cv9[i] = cv10[i];
     }
 
-    emlrtInitCharArrayR2013a(sp, 4, m1, cv13);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 4, m1, cv9);
     emlrtAssign(&b_y, m1);
-    st.site = &gb_emlrtRSI;
-    c_error(&st, message(&st, y, b_y, &emlrtMCI), &emlrtMCI);
+    c_error(message(y, b_y, &b_emlrtMCI), &b_emlrtMCI);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   }
 
   if (!obj->isInitialized) {
-    st.site = &gb_emlrtRSI;
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
     b_obj = obj;
     if (!b_obj->isInitialized) {
     } else {
+      emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
       c_y = NULL;
-      m1 = mxCreateCharArray(2, iv12);
+      m1 = mxCreateCharArray(2, iv14);
       for (i = 0; i < 51; i++) {
-        cv15[i] = cv16[i];
+        cv11[i] = cv12[i];
       }
 
-      emlrtInitCharArrayR2013a(&st, 51, m1, cv15);
+      emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 51, m1, cv11);
       emlrtAssign(&c_y, m1);
       d_y = NULL;
-      m1 = mxCreateCharArray(2, iv13);
+      m1 = mxCreateCharArray(2, iv15);
       for (i = 0; i < 5; i++) {
-        cv17[i] = cv18[i];
+        cv13[i] = cv14[i];
       }
 
-      emlrtInitCharArrayR2013a(&st, 5, m1, cv17);
+      emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 5, m1, cv13);
       emlrtAssign(&d_y, m1);
-      b_st.site = &gb_emlrtRSI;
-      c_error(&b_st, message(&b_st, c_y, d_y, &emlrtMCI), &emlrtMCI);
+      c_error(message(c_y, d_y, &b_emlrtMCI), &b_emlrtMCI);
+      emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
     }
 
-    b_st.site = &gb_emlrtRSI;
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
     b_obj->isInitialized = TRUE;
-    c_st.site = &hb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    c_st.site = &uc_emlrtRSI;
-    c_st.site = &vc_emlrtRSI;
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&mb_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&mb_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&nb_emlrtRSI, emlrtRootTLSGlobal);
     for (i = 0; i < 64; i++) {
       b_obj->pFullGrid[i] = 1.0;
     }
 
+    emlrtPopRtStackR2012b(&nb_emlrtRSI, emlrtRootTLSGlobal);
     for (i = 0; i < 64; i++) {
       value[i] = b_obj->pFullGrid[i];
     }
 
     for (i = 0; i < 11; i++) {
-      value[iv14[i]] = 0.0;
+      value[iv16[i]] = 0.0;
     }
 
-    c_st.site = &wc_emlrtRSI;
+    emlrtPushRtStackR2012b(&ob_emlrtRSI, emlrtRootTLSGlobal);
     for (i = 0; i < 64; i++) {
       b_obj->pFullGrid[i] = value[i];
     }
 
-    c_st.site = &xc_emlrtRSI;
+    emlrtPopRtStackR2012b(&ob_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&pb_emlrtRSI, emlrtRootTLSGlobal);
     for (i = 0; i < 64; i++) {
       x[i] = (b_obj->pFullGrid[i] == 1.0);
     }
@@ -295,72 +359,170 @@ void SystemCore_step(const emlrtStack *sp, OFDMModulator *obj, creal_T
       ii_data[i] = b_ii_data[i];
     }
 
-    c_st.site = &xc_emlrtRSI;
     i = b_obj->pDataLinearIndices->size[0];
     b_obj->pDataLinearIndices->size[0] = ii;
-    emxEnsureCapacity(&c_st, (emxArray__common *)b_obj->pDataLinearIndices, i,
-                      (int32_T)sizeof(real_T), &f_emlrtRTEI);
+    emxEnsureCapacity((emxArray__common *)b_obj->pDataLinearIndices, i, (int32_T)
+                      sizeof(real_T), &f_emlrtRTEI);
     for (i = 0; i < ii; i++) {
       b_obj->pDataLinearIndices->data[i] = ii_data[i];
     }
 
-    b_st.site = &gb_emlrtRSI;
+    emlrtPopRtStackR2012b(&pb_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    b_obj->TunablePropsChanged = FALSE;
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   }
 
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  OFDMModulator_stepImpl(&st, obj, dcv1, varargout_1);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  b_obj = obj;
+  if (b_obj->TunablePropsChanged) {
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    b_obj->TunablePropsChanged = FALSE;
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  }
+
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  OFDMModulator_stepImpl(obj, dcv1, varargout_1);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
 }
 
-void b_SystemCore_step(const emlrtStack *sp, OFDMModulator *obj, creal_T
-  varargout_1[64])
+void b_SystemCore_checkTunableProps(commcodegen_BPSKModulator *obj)
+{
+  commcodegen_BPSKModulator *b_obj;
+  if (obj->TunablePropsChanged) {
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    b_obj = obj;
+    b_obj->TunablePropsChanged = FALSE;
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  }
+}
+
+void b_SystemCore_setup(commcodegen_BPSKModulator *obj)
 {
   const mxArray *y;
-  static const int32_T iv15[2] = { 1, 45 };
+  static const int32_T iv34[2] = { 1, 51 };
+
+  const mxArray *m7;
+  char_T cv39[51];
+  int32_T i;
+  static const char_T cv40[51] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
+    's', 't', 'e', 'm', ':', 'm', 'e', 't', 'h', 'o', 'd', 'C', 'a', 'l', 'l',
+    'e', 'd', 'W', 'h', 'e', 'n', 'L', 'o', 'c', 'k', 'e', 'd', 'R', 'e', 'l',
+    'e', 'a', 's', 'e', 'd', 'C', 'o', 'd', 'e', 'g', 'e', 'n' };
+
+  const mxArray *b_y;
+  static const int32_T iv35[2] = { 1, 5 };
+
+  char_T cv41[5];
+  static const char_T cv42[5] = { 's', 'e', 't', 'u', 'p' };
+
+  commcodegen_BPSKModulator *b_obj;
+  static const int8_T value[8] = { 13, 1, 1, 1, 1, 1, 1, 1 };
+
+  if (!obj->isInitialized) {
+  } else {
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    y = NULL;
+    m7 = mxCreateCharArray(2, iv34);
+    for (i = 0; i < 51; i++) {
+      cv39[i] = cv40[i];
+    }
+
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 51, m7, cv39);
+    emlrtAssign(&y, m7);
+    b_y = NULL;
+    m7 = mxCreateCharArray(2, iv35);
+    for (i = 0; i < 5; i++) {
+      cv41[i] = cv42[i];
+    }
+
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 5, m7, cv41);
+    emlrtAssign(&b_y, m7);
+    c_error(message(y, b_y, &b_emlrtMCI), &b_emlrtMCI);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  }
+
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  b_obj = obj;
+  b_obj->isInitialized = TRUE;
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  b_obj = obj;
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  for (i = 0; i < 8; i++) {
+    b_obj->inputVarSize1[i] = (uint32_T)value[i];
+  }
+
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  b_obj = obj;
+  b_obj->TunablePropsChanged = FALSE;
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+}
+
+void b_SystemCore_step(OFDMModulator_4 *obj, creal_T varargout_1[64])
+{
+  const mxArray *y;
+  static const int32_T iv17[2] = { 1, 45 };
 
   const mxArray *m2;
-  char_T cv19[45];
+  char_T cv15[45];
   int32_T i;
-  static const char_T cv20[45] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
+  static const char_T cv16[45] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
     's', 't', 'e', 'm', ':', 'm', 'e', 't', 'h', 'o', 'd', 'C', 'a', 'l', 'l',
     'e', 'd', 'W', 'h', 'e', 'n', 'R', 'e', 'l', 'e', 'a', 's', 'e', 'd', 'C',
     'o', 'd', 'e', 'g', 'e', 'n' };
 
   const mxArray *b_y;
-  static const int32_T iv16[2] = { 1, 4 };
+  static const int32_T iv18[2] = { 1, 4 };
 
-  char_T cv21[4];
-  static const char_T cv22[4] = { 's', 't', 'e', 'p' };
+  char_T cv17[4];
+  static const char_T cv18[4] = { 's', 't', 'e', 'p' };
 
-  OFDMModulator *b_obj;
+  OFDMModulator_4 *b_obj;
   const mxArray *c_y;
-  static const int32_T iv17[2] = { 1, 51 };
+  static const int32_T iv19[2] = { 1, 51 };
 
-  char_T cv23[51];
-  static const char_T cv24[51] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
+  char_T cv19[51];
+  static const char_T cv20[51] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
     's', 't', 'e', 'm', ':', 'm', 'e', 't', 'h', 'o', 'd', 'C', 'a', 'l', 'l',
     'e', 'd', 'W', 'h', 'e', 'n', 'L', 'o', 'c', 'k', 'e', 'd', 'R', 'e', 'l',
     'e', 'a', 's', 'e', 'd', 'C', 'o', 'd', 'e', 'g', 'e', 'n' };
 
   const mxArray *d_y;
-  static const int32_T iv18[2] = { 1, 5 };
+  static const int32_T iv20[2] = { 1, 5 };
 
-  char_T cv25[5];
-  static const char_T cv26[5] = { 's', 'e', 't', 'u', 'p' };
+  char_T cv21[5];
+  static const char_T cv22[5] = { 's', 'e', 't', 'u', 'p' };
 
   real_T value[64];
-  static const int8_T iv19[11] = { 0, 1, 2, 3, 4, 5, 59, 60, 61, 62, 63 };
+  static const int8_T iv21[11] = { 0, 1, 2, 3, 4, 5, 59, 60, 61, 62, 63 };
 
   boolean_T x[64];
   int8_T ii_data[64];
@@ -369,110 +531,102 @@ void b_SystemCore_step(const emlrtStack *sp, OFDMModulator *obj, creal_T
   boolean_T guard1 = FALSE;
   int8_T b_ii_data[64];
   creal_T dcv2[53];
-  static const int8_T iv20[53] = { 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, 1, 1, 1,
+  static const int8_T iv22[53] = { 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, 1, 1, 1,
     1, -1, -1, 1, 1, -1, 1, -1, 1, 1, 1, 1, 0, 1, -1, -1, 1, 1, -1, 1, -1, 1, -1,
     -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, 1, 1, 1, 1 };
 
-  emlrtStack st;
-  emlrtStack b_st;
-  emlrtStack c_st;
-  st.prev = sp;
-  st.tls = sp->tls;
-  b_st.prev = &st;
-  b_st.tls = st.tls;
-  c_st.prev = &b_st;
-  c_st.tls = b_st.tls;
   if (!obj->isReleased) {
   } else {
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
     y = NULL;
-    m2 = mxCreateCharArray(2, iv15);
+    m2 = mxCreateCharArray(2, iv17);
     for (i = 0; i < 45; i++) {
-      cv19[i] = cv20[i];
+      cv15[i] = cv16[i];
     }
 
-    emlrtInitCharArrayR2013a(sp, 45, m2, cv19);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 45, m2, cv15);
     emlrtAssign(&y, m2);
     b_y = NULL;
-    m2 = mxCreateCharArray(2, iv16);
+    m2 = mxCreateCharArray(2, iv18);
     for (i = 0; i < 4; i++) {
-      cv21[i] = cv22[i];
+      cv17[i] = cv18[i];
     }
 
-    emlrtInitCharArrayR2013a(sp, 4, m2, cv21);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 4, m2, cv17);
     emlrtAssign(&b_y, m2);
-    st.site = &gb_emlrtRSI;
-    c_error(&st, message(&st, y, b_y, &emlrtMCI), &emlrtMCI);
+    c_error(message(y, b_y, &b_emlrtMCI), &b_emlrtMCI);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   }
 
   if (!obj->isInitialized) {
-    st.site = &gb_emlrtRSI;
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
     b_obj = obj;
     if (!b_obj->isInitialized) {
     } else {
+      emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
       c_y = NULL;
-      m2 = mxCreateCharArray(2, iv17);
+      m2 = mxCreateCharArray(2, iv19);
       for (i = 0; i < 51; i++) {
-        cv23[i] = cv24[i];
+        cv19[i] = cv20[i];
       }
 
-      emlrtInitCharArrayR2013a(&st, 51, m2, cv23);
+      emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 51, m2, cv19);
       emlrtAssign(&c_y, m2);
       d_y = NULL;
-      m2 = mxCreateCharArray(2, iv18);
+      m2 = mxCreateCharArray(2, iv20);
       for (i = 0; i < 5; i++) {
-        cv25[i] = cv26[i];
+        cv21[i] = cv22[i];
       }
 
-      emlrtInitCharArrayR2013a(&st, 5, m2, cv25);
+      emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 5, m2, cv21);
       emlrtAssign(&d_y, m2);
-      b_st.site = &gb_emlrtRSI;
-      c_error(&b_st, message(&b_st, c_y, d_y, &emlrtMCI), &emlrtMCI);
+      c_error(message(c_y, d_y, &b_emlrtMCI), &b_emlrtMCI);
+      emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
     }
 
-    b_st.site = &gb_emlrtRSI;
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
     b_obj->isInitialized = TRUE;
-    c_st.site = &hb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    c_st.site = &uc_emlrtRSI;
-    c_st.site = &vc_emlrtRSI;
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&mb_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&mb_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&nb_emlrtRSI, emlrtRootTLSGlobal);
     for (i = 0; i < 64; i++) {
       b_obj->pFullGrid[i] = 1.0;
     }
 
+    emlrtPopRtStackR2012b(&nb_emlrtRSI, emlrtRootTLSGlobal);
     for (i = 0; i < 64; i++) {
       value[i] = b_obj->pFullGrid[i];
     }
 
     for (i = 0; i < 11; i++) {
-      value[iv19[i]] = 0.0;
+      value[iv21[i]] = 0.0;
     }
 
-    c_st.site = &wc_emlrtRSI;
+    emlrtPushRtStackR2012b(&ob_emlrtRSI, emlrtRootTLSGlobal);
     for (i = 0; i < 64; i++) {
       b_obj->pFullGrid[i] = value[i];
     }
 
-    c_st.site = &xc_emlrtRSI;
+    emlrtPopRtStackR2012b(&ob_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&pb_emlrtRSI, emlrtRootTLSGlobal);
     for (i = 0; i < 64; i++) {
       x[i] = (b_obj->pFullGrid[i] == 1.0);
     }
@@ -513,81 +667,211 @@ void b_SystemCore_step(const emlrtStack *sp, OFDMModulator *obj, creal_T
       ii_data[i] = b_ii_data[i];
     }
 
-    c_st.site = &xc_emlrtRSI;
     i = b_obj->pDataLinearIndices->size[0];
     b_obj->pDataLinearIndices->size[0] = ii;
-    emxEnsureCapacity(&c_st, (emxArray__common *)b_obj->pDataLinearIndices, i,
-                      (int32_T)sizeof(real_T), &f_emlrtRTEI);
+    emxEnsureCapacity((emxArray__common *)b_obj->pDataLinearIndices, i, (int32_T)
+                      sizeof(real_T), &f_emlrtRTEI);
     for (i = 0; i < ii; i++) {
       b_obj->pDataLinearIndices->data[i] = ii_data[i];
     }
 
-    b_st.site = &gb_emlrtRSI;
+    emlrtPopRtStackR2012b(&pb_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    b_obj->TunablePropsChanged = FALSE;
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   }
 
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  b_obj = obj;
+  if (b_obj->TunablePropsChanged) {
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    b_obj->TunablePropsChanged = FALSE;
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  }
+
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   for (i = 0; i < 53; i++) {
-    dcv2[i].re = iv20[i];
+    dcv2[i].re = iv22[i];
     dcv2[i].im = 0.0;
   }
 
-  st.site = &gb_emlrtRSI;
-  OFDMModulator_stepImpl(&st, obj, dcv2, varargout_1);
+  OFDMModulator_stepImpl(obj, dcv2, varargout_1);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
 }
 
-void c_SystemCore_step(const emlrtStack *sp, commcodegen_CRCGenerator *obj,
-  const real_T varargin_1[560], real_T varargout_1[563])
+void c_SystemCore_checkTunableProps(commcodegen_BPSKModulator_191 *obj)
+{
+  commcodegen_BPSKModulator_191 *b_obj;
+  if (obj->TunablePropsChanged) {
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    b_obj = obj;
+    b_obj->TunablePropsChanged = FALSE;
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  }
+}
+
+boolean_T c_SystemCore_detectInputSizeCha(commcodegen_BPSKModulator *obj)
+{
+  boolean_T anyInputSizeChanged;
+  int32_T k;
+  boolean_T exitg1;
+  static const int16_T iv33[8] = { 563, 1, 1, 1, 1, 1, 1, 1 };
+
+  commcodegen_BPSKModulator *b_obj;
+  static const int16_T inputSize[8] = { 563, 1, 1, 1, 1, 1, 1, 1 };
+
+  anyInputSizeChanged = FALSE;
+  k = 0;
+  exitg1 = FALSE;
+  while ((exitg1 == FALSE) && (k < 8)) {
+    if (obj->inputVarSize1[k] != (uint32_T)iv33[k]) {
+      anyInputSizeChanged = TRUE;
+      emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+      b_obj = obj;
+      for (k = 0; k < 8; k++) {
+        b_obj->inputVarSize1[k] = (uint32_T)inputSize[k];
+      }
+
+      emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+      exitg1 = TRUE;
+    } else {
+      k++;
+    }
+  }
+
+  return anyInputSizeChanged;
+}
+
+void c_SystemCore_setup(commcodegen_BPSKModulator_191 *obj)
 {
   const mxArray *y;
-  static const int32_T iv24[2] = { 1, 45 };
+  static const int32_T iv73[2] = { 1, 51 };
+
+  const mxArray *m14;
+  char_T cv72[51];
+  int32_T i;
+  static const char_T cv73[51] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
+    's', 't', 'e', 'm', ':', 'm', 'e', 't', 'h', 'o', 'd', 'C', 'a', 'l', 'l',
+    'e', 'd', 'W', 'h', 'e', 'n', 'L', 'o', 'c', 'k', 'e', 'd', 'R', 'e', 'l',
+    'e', 'a', 's', 'e', 'd', 'C', 'o', 'd', 'e', 'g', 'e', 'n' };
+
+  const mxArray *b_y;
+  static const int32_T iv74[2] = { 1, 5 };
+
+  char_T cv74[5];
+  static const char_T cv75[5] = { 's', 'e', 't', 'u', 'p' };
+
+  commcodegen_BPSKModulator_191 *b_obj;
+  static const int16_T value[8] = { 563, 1, 1, 1, 1, 1, 1, 1 };
+
+  if (!obj->isInitialized) {
+  } else {
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    y = NULL;
+    m14 = mxCreateCharArray(2, iv73);
+    for (i = 0; i < 51; i++) {
+      cv72[i] = cv73[i];
+    }
+
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 51, m14, cv72);
+    emlrtAssign(&y, m14);
+    b_y = NULL;
+    m14 = mxCreateCharArray(2, iv74);
+    for (i = 0; i < 5; i++) {
+      cv74[i] = cv75[i];
+    }
+
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 5, m14, cv74);
+    emlrtAssign(&b_y, m14);
+    c_error(message(y, b_y, &b_emlrtMCI), &b_emlrtMCI);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  }
+
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  b_obj = obj;
+  b_obj->isInitialized = TRUE;
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  b_obj = obj;
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  for (i = 0; i < 8; i++) {
+    b_obj->inputVarSize1[i] = (uint32_T)value[i];
+  }
+
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  b_obj = obj;
+  b_obj->TunablePropsChanged = FALSE;
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+}
+
+void c_SystemCore_step(commcodegen_CRCGenerator *obj, const real_T varargin_1
+  [560], real_T varargout_1[563])
+{
+  const mxArray *y;
+  static const int32_T iv26[2] = { 1, 45 };
 
   const mxArray *m5;
-  char_T cv31[45];
+  char_T cv27[45];
   int32_T i;
-  static const char_T cv32[45] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
+  static const char_T cv28[45] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
     's', 't', 'e', 'm', ':', 'm', 'e', 't', 'h', 'o', 'd', 'C', 'a', 'l', 'l',
     'e', 'd', 'W', 'h', 'e', 'n', 'R', 'e', 'l', 'e', 'a', 's', 'e', 'd', 'C',
     'o', 'd', 'e', 'g', 'e', 'n' };
 
   const mxArray *b_y;
-  static const int32_T iv25[2] = { 1, 4 };
+  static const int32_T iv27[2] = { 1, 4 };
 
-  char_T cv33[4];
-  static const char_T cv34[4] = { 's', 't', 'e', 'p' };
+  char_T cv29[4];
+  static const char_T cv30[4] = { 's', 't', 'e', 'p' };
 
   commcodegen_CRCGenerator *b_obj;
   const mxArray *c_y;
-  static const int32_T iv26[2] = { 1, 51 };
+  static const int32_T iv28[2] = { 1, 51 };
 
-  char_T cv35[51];
-  static const char_T cv36[51] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
+  char_T cv31[51];
+  static const char_T cv32[51] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
     's', 't', 'e', 'm', ':', 'm', 'e', 't', 'h', 'o', 'd', 'C', 'a', 'l', 'l',
     'e', 'd', 'W', 'h', 'e', 'n', 'L', 'o', 'c', 'k', 'e', 'd', 'R', 'e', 'l',
     'e', 'a', 's', 'e', 'd', 'C', 'o', 'd', 'e', 'g', 'e', 'n' };
 
   const mxArray *d_y;
-  static const int32_T iv27[2] = { 1, 5 };
+  static const int32_T iv29[2] = { 1, 5 };
 
-  char_T cv37[5];
-  static const char_T cv38[5] = { 's', 'e', 't', 'u', 'p' };
+  char_T cv33[5];
+  static const char_T cv34[5] = { 's', 'e', 't', 'u', 'p' };
 
   int32_T k;
   static const int16_T value[8] = { 560, 1, 1, 1, 1, 1, 1, 1 };
 
-  boolean_T anyInputSizeChanged;
   boolean_T exitg1;
-  static const int16_T iv28[8] = { 560, 1, 1, 1, 1, 1, 1, 1 };
+  static const int16_T iv30[8] = { 560, 1, 1, 1, 1, 1, 1, 1 };
 
   comm_CRCGenerator_0 *c_obj;
   uint32_T shReg;
@@ -595,121 +879,132 @@ void c_SystemCore_step(const emlrtStack *sp, commcodegen_CRCGenerator *obj,
   uint32_T bitMask;
   int32_T j;
   uint32_T inpBit;
-  emlrtStack st;
-  emlrtStack b_st;
-  st.prev = sp;
-  st.tls = sp->tls;
-  b_st.prev = &st;
-  b_st.tls = st.tls;
   if (!obj->isReleased) {
   } else {
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
     y = NULL;
-    m5 = mxCreateCharArray(2, iv24);
+    m5 = mxCreateCharArray(2, iv26);
     for (i = 0; i < 45; i++) {
-      cv31[i] = cv32[i];
+      cv27[i] = cv28[i];
     }
 
-    emlrtInitCharArrayR2013a(sp, 45, m5, cv31);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 45, m5, cv27);
     emlrtAssign(&y, m5);
     b_y = NULL;
-    m5 = mxCreateCharArray(2, iv25);
+    m5 = mxCreateCharArray(2, iv27);
     for (i = 0; i < 4; i++) {
-      cv33[i] = cv34[i];
+      cv29[i] = cv30[i];
     }
 
-    emlrtInitCharArrayR2013a(sp, 4, m5, cv33);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 4, m5, cv29);
     emlrtAssign(&b_y, m5);
-    st.site = &gb_emlrtRSI;
-    c_error(&st, message(&st, y, b_y, &emlrtMCI), &emlrtMCI);
+    c_error(message(y, b_y, &b_emlrtMCI), &b_emlrtMCI);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   }
 
   if (!obj->isInitialized) {
-    st.site = &gb_emlrtRSI;
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
     b_obj = obj;
     if (!b_obj->isInitialized) {
     } else {
+      emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
       c_y = NULL;
-      m5 = mxCreateCharArray(2, iv26);
+      m5 = mxCreateCharArray(2, iv28);
       for (i = 0; i < 51; i++) {
-        cv35[i] = cv36[i];
+        cv31[i] = cv32[i];
       }
 
-      emlrtInitCharArrayR2013a(&st, 51, m5, cv35);
+      emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 51, m5, cv31);
       emlrtAssign(&c_y, m5);
       d_y = NULL;
-      m5 = mxCreateCharArray(2, iv27);
+      m5 = mxCreateCharArray(2, iv29);
       for (i = 0; i < 5; i++) {
-        cv37[i] = cv38[i];
+        cv33[i] = cv34[i];
       }
 
-      emlrtInitCharArrayR2013a(&st, 5, m5, cv37);
+      emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 5, m5, cv33);
       emlrtAssign(&d_y, m5);
-      b_st.site = &gb_emlrtRSI;
-      c_error(&b_st, message(&b_st, c_y, d_y, &emlrtMCI), &emlrtMCI);
+      c_error(message(c_y, d_y, &b_emlrtMCI), &b_emlrtMCI);
+      emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
     }
 
-    b_st.site = &gb_emlrtRSI;
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
     b_obj->isInitialized = TRUE;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
     for (k = 0; k < 8; k++) {
       b_obj->inputVarSize1[k] = (uint32_T)value[k];
     }
 
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    b_obj->TunablePropsChanged = FALSE;
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   }
 
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   b_obj = obj;
-  anyInputSizeChanged = FALSE;
+  if (b_obj->TunablePropsChanged) {
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    b_obj->TunablePropsChanged = FALSE;
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  }
+
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  b_obj = obj;
   k = 0;
   exitg1 = FALSE;
   while ((exitg1 == FALSE) && (k < 8)) {
-    if (b_obj->inputVarSize1[k] != (uint32_T)iv28[k]) {
-      anyInputSizeChanged = TRUE;
-      b_st.site = &gb_emlrtRSI;
+    if (b_obj->inputVarSize1[k] != (uint32_T)iv30[k]) {
+      emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
       for (k = 0; k < 8; k++) {
         b_obj->inputVarSize1[k] = (uint32_T)value[k];
       }
 
+      emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
       exitg1 = TRUE;
     } else {
       k++;
     }
   }
 
-  if (anyInputSizeChanged) {
-    st.site = &gb_emlrtRSI;
-    st.site = &gb_emlrtRSI;
-  }
-
-  st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   b_obj = obj;
-  b_st.site = &ig_emlrtRSI;
-  b_st.site = &ig_emlrtRSI;
-  b_st.site = &ig_emlrtRSI;
-  b_st.site = &ig_emlrtRSI;
-  b_st.site = &ig_emlrtRSI;
-  b_st.site = &ig_emlrtRSI;
+  emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
   c_obj = &b_obj->cSFunObject;
 
   /* System object Outputs function: comm.CRCGenerator */
@@ -749,172 +1044,154 @@ void c_SystemCore_step(const emlrtStack *sp, commcodegen_CRCGenerator *obj,
   varargout_1[560] = (int32_T)(shReg >> 2U) & 1;
   varargout_1[561] = (int32_T)(shReg >> 1U) & 1;
   varargout_1[562] = (int32_T)shReg & 1;
-  b_st.site = &ig_emlrtRSI;
+  emlrtPopRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
 }
 
-void d_SystemCore_step(const emlrtStack *sp, commcodegen_BPSKModulator *obj,
-  const real_T varargin_1[563], creal_T varargout_1[563])
+void d_SystemCore_checkTunableProps(commcodegen_BPSKModulator_191 *obj)
 {
-  const mxArray *y;
-  static const int32_T iv29[2] = { 1, 45 };
+  commcodegen_BPSKModulator_191 *b_obj;
+  if (obj->TunablePropsChanged) {
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    b_obj = obj;
+    b_obj->TunablePropsChanged = FALSE;
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  }
+}
 
-  const mxArray *m6;
-  char_T cv39[45];
-  int32_T i;
-  static const char_T cv40[45] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
-    's', 't', 'e', 'm', ':', 'm', 'e', 't', 'h', 'o', 'd', 'C', 'a', 'l', 'l',
-    'e', 'd', 'W', 'h', 'e', 'n', 'R', 'e', 'l', 'e', 'a', 's', 'e', 'd', 'C',
-    'o', 'd', 'e', 'g', 'e', 'n' };
-
-  const mxArray *b_y;
-  static const int32_T iv30[2] = { 1, 4 };
-
-  char_T cv41[4];
-  static const char_T cv42[4] = { 's', 't', 'e', 'p' };
+boolean_T d_SystemCore_detectInputSizeCha(commcodegen_BPSKModulator *obj)
+{
+  boolean_T anyInputSizeChanged;
+  int32_T k;
+  boolean_T exitg1;
+  static const int8_T iv36[8] = { 13, 1, 1, 1, 1, 1, 1, 1 };
 
   commcodegen_BPSKModulator *b_obj;
-  const mxArray *c_y;
-  static const int32_T iv31[2] = { 1, 51 };
+  static const int8_T inputSize[8] = { 13, 1, 1, 1, 1, 1, 1, 1 };
 
-  char_T cv43[51];
-  static const char_T cv44[51] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
+  anyInputSizeChanged = FALSE;
+  k = 0;
+  exitg1 = FALSE;
+  while ((exitg1 == FALSE) && (k < 8)) {
+    if (obj->inputVarSize1[k] != (uint32_T)iv36[k]) {
+      anyInputSizeChanged = TRUE;
+      emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+      b_obj = obj;
+      for (k = 0; k < 8; k++) {
+        b_obj->inputVarSize1[k] = (uint32_T)inputSize[k];
+      }
+
+      emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+      exitg1 = TRUE;
+    } else {
+      k++;
+    }
+  }
+
+  return anyInputSizeChanged;
+}
+
+void d_SystemCore_setup(commcodegen_BPSKModulator_191 *obj)
+{
+  const mxArray *y;
+  static const int32_T iv76[2] = { 1, 51 };
+
+  const mxArray *m15;
+  char_T cv76[51];
+  int32_T i;
+  static const char_T cv77[51] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
     's', 't', 'e', 'm', ':', 'm', 'e', 't', 'h', 'o', 'd', 'C', 'a', 'l', 'l',
     'e', 'd', 'W', 'h', 'e', 'n', 'L', 'o', 'c', 'k', 'e', 'd', 'R', 'e', 'l',
     'e', 'a', 's', 'e', 'd', 'C', 'o', 'd', 'e', 'g', 'e', 'n' };
 
-  const mxArray *d_y;
-  static const int32_T iv32[2] = { 1, 5 };
+  const mxArray *b_y;
+  static const int32_T iv77[2] = { 1, 5 };
 
-  char_T cv45[5];
-  static const char_T cv46[5] = { 's', 'e', 't', 'u', 'p' };
+  char_T cv78[5];
+  static const char_T cv79[5] = { 's', 'e', 't', 'u', 'p' };
 
-  static const int16_T value[8] = { 563, 1, 1, 1, 1, 1, 1, 1 };
-
-  boolean_T anyInputSizeChanged;
-  boolean_T exitg1;
-  static const int16_T iv33[8] = { 563, 1, 1, 1, 1, 1, 1, 1 };
-
-  emlrtStack st;
-  emlrtStack b_st;
-  st.prev = sp;
-  st.tls = sp->tls;
-  b_st.prev = &st;
-  b_st.tls = st.tls;
-  if (!obj->isReleased) {
-  } else {
-    y = NULL;
-    m6 = mxCreateCharArray(2, iv29);
-    for (i = 0; i < 45; i++) {
-      cv39[i] = cv40[i];
-    }
-
-    emlrtInitCharArrayR2013a(sp, 45, m6, cv39);
-    emlrtAssign(&y, m6);
-    b_y = NULL;
-    m6 = mxCreateCharArray(2, iv30);
-    for (i = 0; i < 4; i++) {
-      cv41[i] = cv42[i];
-    }
-
-    emlrtInitCharArrayR2013a(sp, 4, m6, cv41);
-    emlrtAssign(&b_y, m6);
-    st.site = &gb_emlrtRSI;
-    c_error(&st, message(&st, y, b_y, &emlrtMCI), &emlrtMCI);
-  }
+  commcodegen_BPSKModulator_191 *b_obj;
+  static const int8_T value[8] = { 13, 1, 1, 1, 1, 1, 1, 1 };
 
   if (!obj->isInitialized) {
-    st.site = &gb_emlrtRSI;
-    b_obj = obj;
-    if (!b_obj->isInitialized) {
-    } else {
-      c_y = NULL;
-      m6 = mxCreateCharArray(2, iv31);
-      for (i = 0; i < 51; i++) {
-        cv43[i] = cv44[i];
-      }
-
-      emlrtInitCharArrayR2013a(&st, 51, m6, cv43);
-      emlrtAssign(&c_y, m6);
-      d_y = NULL;
-      m6 = mxCreateCharArray(2, iv32);
-      for (i = 0; i < 5; i++) {
-        cv45[i] = cv46[i];
-      }
-
-      emlrtInitCharArrayR2013a(&st, 5, m6, cv45);
-      emlrtAssign(&d_y, m6);
-      b_st.site = &gb_emlrtRSI;
-      c_error(&b_st, message(&b_st, c_y, d_y, &emlrtMCI), &emlrtMCI);
+  } else {
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    y = NULL;
+    m15 = mxCreateCharArray(2, iv76);
+    for (i = 0; i < 51; i++) {
+      cv76[i] = cv77[i];
     }
 
-    b_st.site = &gb_emlrtRSI;
-    b_obj->isInitialized = TRUE;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    for (i = 0; i < 8; i++) {
-      b_obj->inputVarSize1[i] = (uint32_T)value[i];
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 51, m15, cv76);
+    emlrtAssign(&y, m15);
+    b_y = NULL;
+    m15 = mxCreateCharArray(2, iv77);
+    for (i = 0; i < 5; i++) {
+      cv78[i] = cv79[i];
     }
 
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 5, m15, cv78);
+    emlrtAssign(&b_y, m15);
+    c_error(message(y, b_y, &b_emlrtMCI), &b_emlrtMCI);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   }
 
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   b_obj = obj;
-  anyInputSizeChanged = FALSE;
-  i = 0;
-  exitg1 = FALSE;
-  while ((exitg1 == FALSE) && (i < 8)) {
-    if (b_obj->inputVarSize1[i] != (uint32_T)iv33[i]) {
-      anyInputSizeChanged = TRUE;
-      b_st.site = &gb_emlrtRSI;
-      for (i = 0; i < 8; i++) {
-        b_obj->inputVarSize1[i] = (uint32_T)value[i];
-      }
-
-      exitg1 = TRUE;
-    } else {
-      i++;
-    }
+  b_obj->isInitialized = TRUE;
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  b_obj = obj;
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  for (i = 0; i < 8; i++) {
+    b_obj->inputVarSize1[i] = (uint32_T)value[i];
   }
 
-  if (anyInputSizeChanged) {
-    st.site = &gb_emlrtRSI;
-    st.site = &gb_emlrtRSI;
-  }
-
-  st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  Nondirect_stepImpl(obj, varargin_1, varargout_1);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  b_obj = obj;
+  b_obj->TunablePropsChanged = FALSE;
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
 }
 
-void e_SystemCore_step(const emlrtStack *sp, OFDMModulator_1 *obj, const creal_T
-  varargin_1[576], const real_T varargin_2[48], creal_T varargout_1[960])
+void d_SystemCore_step(OFDMModulator_196 *obj, const creal_T varargin_1[576],
+  const real_T varargin_2[48], creal_T varargout_1[960])
 {
   const mxArray *y;
   static const int32_T iv37[2] = { 1, 45 };
 
   const mxArray *m8;
-  char_T cv49[45];
+  char_T cv43[45];
   int32_T i;
-  static const char_T cv50[45] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
+  static const char_T cv44[45] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
     's', 't', 'e', 'm', ':', 'm', 'e', 't', 'h', 'o', 'd', 'C', 'a', 'l', 'l',
     'e', 'd', 'W', 'h', 'e', 'n', 'R', 'e', 'l', 'e', 'a', 's', 'e', 'd', 'C',
     'o', 'd', 'e', 'g', 'e', 'n' };
@@ -922,15 +1199,15 @@ void e_SystemCore_step(const emlrtStack *sp, OFDMModulator_1 *obj, const creal_T
   const mxArray *b_y;
   static const int32_T iv38[2] = { 1, 4 };
 
-  char_T cv51[4];
-  static const char_T cv52[4] = { 's', 't', 'e', 'p' };
+  char_T cv45[4];
+  static const char_T cv46[4] = { 's', 't', 'e', 'p' };
 
-  OFDMModulator_1 *b_obj;
+  OFDMModulator_196 *b_obj;
   const mxArray *c_y;
   static const int32_T iv39[2] = { 1, 51 };
 
-  char_T cv53[51];
-  static const char_T cv54[51] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
+  char_T cv47[51];
+  static const char_T cv48[51] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
     's', 't', 'e', 'm', ':', 'm', 'e', 't', 'h', 'o', 'd', 'C', 'a', 'l', 'l',
     'e', 'd', 'W', 'h', 'e', 'n', 'L', 'o', 'c', 'k', 'e', 'd', 'R', 'e', 'l',
     'e', 'a', 's', 'e', 'd', 'C', 'o', 'd', 'e', 'g', 'e', 'n' };
@@ -938,27 +1215,20 @@ void e_SystemCore_step(const emlrtStack *sp, OFDMModulator_1 *obj, const creal_T
   const mxArray *d_y;
   static const int32_T iv40[2] = { 1, 5 };
 
-  char_T cv55[5];
-  static const char_T cv56[5] = { 's', 'e', 't', 'u', 'p' };
+  char_T cv49[5];
+  static const char_T cv50[5] = { 's', 'e', 't', 'u', 'p' };
 
-  real_T ii_data[768];
+  creal_T packedData[768];
   int32_T j;
+  emxArray_int32_T *r1;
+  int32_T i2;
+  real_T temp_re;
   int32_T iy;
-  static const int8_T iv41[11] = { 0, 1, 2, 3, 4, 5, 59, 60, 61, 62, 63 };
-
-  static const int16_T iv42[48] = { 11, 25, 39, 53, 75, 89, 103, 117, 139, 153,
+  static const int16_T iv41[48] = { 11, 25, 39, 53, 75, 89, 103, 117, 139, 153,
     167, 181, 203, 217, 231, 245, 267, 281, 295, 309, 331, 345, 359, 373, 395,
     409, 423, 437, 459, 473, 487, 501, 523, 537, 551, 565, 587, 601, 615, 629,
     651, 665, 679, 693, 715, 729, 743, 757 };
 
-  boolean_T x[768];
-  int32_T ii_size[1];
-  int32_T b_ii_data[768];
-  int32_T b_ii_size[1];
-  int32_T i2;
-  creal_T packedData[768];
-  emxArray_int32_T *r1;
-  real_T temp_re;
   int32_T k;
   real_T temp_im;
   creal_T postIFFT[768];
@@ -994,159 +1264,140 @@ void e_SystemCore_step(const emlrtStack *sp, OFDMModulator_1 *obj, const creal_T
 
   creal_T postCP[960];
   int32_T b_ix;
-  emlrtStack st;
-  emlrtStack b_st;
-  emlrtStack c_st;
-  st.prev = sp;
-  st.tls = sp->tls;
-  b_st.prev = &st;
-  b_st.tls = st.tls;
-  c_st.prev = &b_st;
-  c_st.tls = b_st.tls;
-  emlrtHeapReferenceStackEnterFcnR2012b(sp);
+  emlrtHeapReferenceStackEnterFcnR2012b(emlrtRootTLSGlobal);
   if (!obj->isReleased) {
   } else {
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
     y = NULL;
     m8 = mxCreateCharArray(2, iv37);
     for (i = 0; i < 45; i++) {
-      cv49[i] = cv50[i];
+      cv43[i] = cv44[i];
     }
 
-    emlrtInitCharArrayR2013a(sp, 45, m8, cv49);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 45, m8, cv43);
     emlrtAssign(&y, m8);
     b_y = NULL;
     m8 = mxCreateCharArray(2, iv38);
     for (i = 0; i < 4; i++) {
-      cv51[i] = cv52[i];
+      cv45[i] = cv46[i];
     }
 
-    emlrtInitCharArrayR2013a(sp, 4, m8, cv51);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 4, m8, cv45);
     emlrtAssign(&b_y, m8);
-    st.site = &gb_emlrtRSI;
-    c_error(&st, message(&st, y, b_y, &emlrtMCI), &emlrtMCI);
+    c_error(message(y, b_y, &b_emlrtMCI), &b_emlrtMCI);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   }
 
   if (!obj->isInitialized) {
-    st.site = &gb_emlrtRSI;
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
     b_obj = obj;
     if (!b_obj->isInitialized) {
     } else {
+      emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
       c_y = NULL;
       m8 = mxCreateCharArray(2, iv39);
       for (i = 0; i < 51; i++) {
-        cv53[i] = cv54[i];
+        cv47[i] = cv48[i];
       }
 
-      emlrtInitCharArrayR2013a(&st, 51, m8, cv53);
+      emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 51, m8, cv47);
       emlrtAssign(&c_y, m8);
       d_y = NULL;
       m8 = mxCreateCharArray(2, iv40);
       for (i = 0; i < 5; i++) {
-        cv55[i] = cv56[i];
+        cv49[i] = cv50[i];
       }
 
-      emlrtInitCharArrayR2013a(&st, 5, m8, cv55);
+      emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 5, m8, cv49);
       emlrtAssign(&d_y, m8);
-      b_st.site = &gb_emlrtRSI;
-      c_error(&b_st, message(&b_st, c_y, d_y, &emlrtMCI), &emlrtMCI);
+      c_error(message(c_y, d_y, &b_emlrtMCI), &b_emlrtMCI);
+      emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
     }
 
-    b_st.site = &gb_emlrtRSI;
-    c_SystemProp_matlabCodegenSetAn(b_obj);
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    SystemCore_validateProperties();
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    for (j = 0; j < 768; j++) {
-      ii_data[j] = 1.0;
-    }
-
-    d_SystemProp_matlabCodegenSetAn(b_obj, ii_data);
-    for (j = 0; j < 768; j++) {
-      ii_data[j] = b_obj->pFullGrid[j];
-    }
-
-    for (j = 0; j < 12; j++) {
-      for (iy = 0; iy < 11; iy++) {
-        ii_data[iv41[iy] + (j << 6)] = 0.0;
-      }
-    }
-
-    d_SystemProp_matlabCodegenSetAn(b_obj, ii_data);
-    for (j = 0; j < 768; j++) {
-      ii_data[j] = b_obj->pFullGrid[j];
-    }
-
-    for (j = 0; j < 12; j++) {
-      ii_data[32 + (j << 6)] = 0.0;
-    }
-
-    d_SystemProp_matlabCodegenSetAn(b_obj, ii_data);
-    for (j = 0; j < 768; j++) {
-      ii_data[j] = b_obj->pFullGrid[j];
-    }
-
-    for (j = 0; j < 48; j++) {
-      ii_data[iv42[j]] = 2.0;
-    }
-
-    d_SystemProp_matlabCodegenSetAn(b_obj, ii_data);
-    for (j = 0; j < 768; j++) {
-      x[j] = (b_obj->pFullGrid[j] == 1.0);
-    }
-
-    eml_find(x, b_ii_data, ii_size);
-    b_ii_size[0] = ii_size[0];
-    i2 = ii_size[0];
-    for (j = 0; j < i2; j++) {
-      ii_data[j] = b_ii_data[j];
-    }
-
-    c_st.site = &xc_emlrtRSI;
-    e_SystemProp_matlabCodegenSetAn(&c_st, b_obj, ii_data, b_ii_size);
-    b_st.site = &gb_emlrtRSI;
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    b_obj->isInitialized = TRUE;
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&rc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&sc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&sc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&rc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    OFDMModulator_setupImpl(b_obj);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    b_obj->TunablePropsChanged = FALSE;
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   }
 
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  b_obj = obj;
+  if (b_obj->TunablePropsChanged) {
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&rc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&sc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&sc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&rc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    b_obj->TunablePropsChanged = FALSE;
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  }
+
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   b_obj = obj;
   for (j = 0; j < 768; j++) {
     packedData[j].re = b_obj->pFullGrid[j];
     packedData[j].im = 0.0;
   }
 
-  emxInit_int32_T(&st, &r1, 1, &f_emlrtRTEI, TRUE);
+  emxInit_int32_T(&r1, 1, &f_emlrtRTEI, TRUE);
   j = r1->size[0];
   r1->size[0] = b_obj->pDataLinearIndices->size[0];
-  emxEnsureCapacity(&st, (emxArray__common *)r1, j, (int32_T)sizeof(int32_T),
+  emxEnsureCapacity((emxArray__common *)r1, j, (int32_T)sizeof(int32_T),
                     &f_emlrtRTEI);
   i2 = b_obj->pDataLinearIndices->size[0];
   for (j = 0; j < i2; j++) {
     temp_re = b_obj->pDataLinearIndices->data[j];
-    iy = (int32_T)emlrtIntegerCheckFastR2012b(temp_re, &emlrtDCI, &st);
-    r1->data[j] = emlrtDynamicBoundsCheckFastR2012b(iy, 1, 768, &d_emlrtBCI, &st);
+    iy = (int32_T)emlrtIntegerCheckFastR2012b(temp_re, &emlrtDCI,
+      emlrtRootTLSGlobal);
+    r1->data[j] = emlrtDynamicBoundsCheckFastR2012b(iy, 1, 768, &d_emlrtBCI,
+      emlrtRootTLSGlobal);
   }
 
   j = r1->size[0];
-  emlrtSizeEqCheck1DFastR2012b(j, 576, &emlrtECI, &st);
+  emlrtSizeEqCheck1DFastR2012b(j, 576, &emlrtECI, emlrtRootTLSGlobal);
   i2 = r1->size[0];
   for (j = 0; j < i2; j++) {
     packedData[r1->data[j] - 1] = varargin_1[j];
@@ -1154,11 +1405,10 @@ void e_SystemCore_step(const emlrtStack *sp, OFDMModulator_1 *obj, const creal_T
 
   emxFree_int32_T(&r1);
   for (j = 0; j < 48; j++) {
-    packedData[iv42[j]].re = varargin_2[j];
-    packedData[iv42[j]].im = 0.0;
+    packedData[iv41[j]].re = varargin_2[j];
+    packedData[iv41[j]].im = 0.0;
   }
 
-  b_st.site = &bd_emlrtRSI;
   i2 = 0;
   for (i = 0; i < 12; i++) {
     iy = i2;
@@ -1175,7 +1425,9 @@ void e_SystemCore_step(const emlrtStack *sp, OFDMModulator_1 *obj, const creal_T
     }
   }
 
-  b_st.site = &cd_emlrtRSI;
+  emlrtPushRtStackR2012b(&wc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&xc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&yc_emlrtRSI, emlrtRootTLSGlobal);
   ix = 0;
   for (chanStart = 0; chanStart < 706; chanStart += 64) {
     i2 = 0;
@@ -1201,6 +1453,8 @@ void e_SystemCore_step(const emlrtStack *sp, OFDMModulator_1 *obj, const creal_T
 
     postIFFT[iy] = packedData[ix];
     ix++;
+    emlrtPushRtStackR2012b(&ad_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&ad_emlrtRSI, emlrtRootTLSGlobal);
     for (i = chanStart; i <= chanStart + 62; i += 2) {
       temp_re = postIFFT[i + 1].re;
       temp_im = postIFFT[i + 1].im;
@@ -1258,8 +1512,10 @@ void e_SystemCore_step(const emlrtStack *sp, OFDMModulator_1 *obj, const creal_T
     postIFFT[j].im *= 0.015625;
   }
 
-  b_st.site = &dd_emlrtRSI;
-  iy = 1;
+  emlrtPopRtStackR2012b(&yc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&xc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&wc_emlrtRSI, emlrtRootTLSGlobal);
+  iy = 0;
   for (i = 0; i < 12; i++) {
     ix = i << 4;
     for (i2 = 0; i2 < 16; i2++) {
@@ -1269,66 +1525,194 @@ void e_SystemCore_step(const emlrtStack *sp, OFDMModulator_1 *obj, const creal_T
         b_ix = ~(int32_T)((uint32_T)~ix >> 4);
       }
 
-      postCP[iy - 1] = postIFFT[(ix % 16 + (b_ix << 6)) + 48];
+      postCP[iy] = postIFFT[(ix % 16 + (b_ix << 6)) + 48];
       ix++;
       iy++;
     }
 
     ix = i << 6;
     for (i2 = 0; i2 < 64; i2++) {
-      postCP[iy - 1] = postIFFT[ix];
+      postCP[iy] = postIFFT[ix];
       ix++;
       iy++;
     }
   }
 
-  b_st.site = &ed_emlrtRSI;
   memcpy(&varargout_1[0], &postCP[0], 960U * sizeof(creal_T));
-  emlrtHeapReferenceStackLeaveFcnR2012b(sp);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtHeapReferenceStackLeaveFcnR2012b(emlrtRootTLSGlobal);
 }
 
-void f_SystemCore_step(const emlrtStack *sp, commcodegen_CRCGenerator_6 *obj,
-  const real_T varargin_1[560], real_T varargout_1[563])
+void e_SystemCore_checkTunableProps(commcodegen_BPSKModulator_348 *obj)
+{
+  commcodegen_BPSKModulator_348 *b_obj;
+  if (obj->TunablePropsChanged) {
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    b_obj = obj;
+    b_obj->TunablePropsChanged = FALSE;
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  }
+}
+
+boolean_T e_SystemCore_detectInputSizeCha(commcodegen_BPSKModulator_191 *obj)
+{
+  boolean_T anyInputSizeChanged;
+  int32_T k;
+  boolean_T exitg1;
+  static const int16_T iv75[8] = { 563, 1, 1, 1, 1, 1, 1, 1 };
+
+  commcodegen_BPSKModulator_191 *b_obj;
+  static const int16_T inputSize[8] = { 563, 1, 1, 1, 1, 1, 1, 1 };
+
+  anyInputSizeChanged = FALSE;
+  k = 0;
+  exitg1 = FALSE;
+  while ((exitg1 == FALSE) && (k < 8)) {
+    if (obj->inputVarSize1[k] != (uint32_T)iv75[k]) {
+      anyInputSizeChanged = TRUE;
+      emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+      b_obj = obj;
+      for (k = 0; k < 8; k++) {
+        b_obj->inputVarSize1[k] = (uint32_T)inputSize[k];
+      }
+
+      emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+      exitg1 = TRUE;
+    } else {
+      k++;
+    }
+  }
+
+  return anyInputSizeChanged;
+}
+
+void e_SystemCore_setup(commcodegen_BPSKModulator_348 *obj)
 {
   const mxArray *y;
-  static const int32_T iv65[2] = { 1, 45 };
+  static const int32_T iv97[2] = { 1, 51 };
 
-  const mxArray *m12;
-  char_T cv74[45];
+  const mxArray *m19;
+  char_T cv96[51];
   int32_T i;
-  static const char_T cv75[45] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
+  static const char_T cv97[51] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
+    's', 't', 'e', 'm', ':', 'm', 'e', 't', 'h', 'o', 'd', 'C', 'a', 'l', 'l',
+    'e', 'd', 'W', 'h', 'e', 'n', 'L', 'o', 'c', 'k', 'e', 'd', 'R', 'e', 'l',
+    'e', 'a', 's', 'e', 'd', 'C', 'o', 'd', 'e', 'g', 'e', 'n' };
+
+  const mxArray *b_y;
+  static const int32_T iv98[2] = { 1, 5 };
+
+  char_T cv98[5];
+  static const char_T cv99[5] = { 's', 'e', 't', 'u', 'p' };
+
+  commcodegen_BPSKModulator_348 *b_obj;
+  static const int16_T value[8] = { 563, 1, 1, 1, 1, 1, 1, 1 };
+
+  if (!obj->isInitialized) {
+  } else {
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    y = NULL;
+    m19 = mxCreateCharArray(2, iv97);
+    for (i = 0; i < 51; i++) {
+      cv96[i] = cv97[i];
+    }
+
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 51, m19, cv96);
+    emlrtAssign(&y, m19);
+    b_y = NULL;
+    m19 = mxCreateCharArray(2, iv98);
+    for (i = 0; i < 5; i++) {
+      cv98[i] = cv99[i];
+    }
+
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 5, m19, cv98);
+    emlrtAssign(&b_y, m19);
+    c_error(message(y, b_y, &b_emlrtMCI), &b_emlrtMCI);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  }
+
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  b_obj = obj;
+  b_obj->isInitialized = TRUE;
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  b_obj = obj;
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  for (i = 0; i < 8; i++) {
+    b_obj->inputVarSize1[i] = (uint32_T)value[i];
+  }
+
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  b_obj = obj;
+  b_obj->TunablePropsChanged = FALSE;
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+}
+
+void e_SystemCore_step(commcodegen_CRCGenerator_256 *obj, const real_T
+  varargin_1[560], real_T varargout_1[563])
+{
+  const mxArray *y;
+  static const int32_T iv68[2] = { 1, 45 };
+
+  const mxArray *m13;
+  char_T cv64[45];
+  int32_T i;
+  static const char_T cv65[45] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
     's', 't', 'e', 'm', ':', 'm', 'e', 't', 'h', 'o', 'd', 'C', 'a', 'l', 'l',
     'e', 'd', 'W', 'h', 'e', 'n', 'R', 'e', 'l', 'e', 'a', 's', 'e', 'd', 'C',
     'o', 'd', 'e', 'g', 'e', 'n' };
 
   const mxArray *b_y;
-  static const int32_T iv66[2] = { 1, 4 };
+  static const int32_T iv69[2] = { 1, 4 };
 
-  char_T cv76[4];
-  static const char_T cv77[4] = { 's', 't', 'e', 'p' };
+  char_T cv66[4];
+  static const char_T cv67[4] = { 's', 't', 'e', 'p' };
 
-  commcodegen_CRCGenerator_6 *b_obj;
+  commcodegen_CRCGenerator_256 *b_obj;
   const mxArray *c_y;
-  static const int32_T iv67[2] = { 1, 51 };
+  static const int32_T iv70[2] = { 1, 51 };
 
-  char_T cv78[51];
-  static const char_T cv79[51] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
+  char_T cv68[51];
+  static const char_T cv69[51] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
     's', 't', 'e', 'm', ':', 'm', 'e', 't', 'h', 'o', 'd', 'C', 'a', 'l', 'l',
     'e', 'd', 'W', 'h', 'e', 'n', 'L', 'o', 'c', 'k', 'e', 'd', 'R', 'e', 'l',
     'e', 'a', 's', 'e', 'd', 'C', 'o', 'd', 'e', 'g', 'e', 'n' };
 
   const mxArray *d_y;
-  static const int32_T iv68[2] = { 1, 5 };
+  static const int32_T iv71[2] = { 1, 5 };
 
-  char_T cv80[5];
-  static const char_T cv81[5] = { 's', 'e', 't', 'u', 'p' };
+  char_T cv70[5];
+  static const char_T cv71[5] = { 's', 'e', 't', 'u', 'p' };
 
   int32_T k;
   static const int16_T value[8] = { 560, 1, 1, 1, 1, 1, 1, 1 };
 
-  boolean_T anyInputSizeChanged;
   boolean_T exitg1;
-  static const int16_T iv69[8] = { 560, 1, 1, 1, 1, 1, 1, 1 };
+  static const int16_T iv72[8] = { 560, 1, 1, 1, 1, 1, 1, 1 };
 
   comm_CRCGenerator_3 *c_obj;
   uint32_T shReg;
@@ -1336,121 +1720,132 @@ void f_SystemCore_step(const emlrtStack *sp, commcodegen_CRCGenerator_6 *obj,
   uint32_T bitMask;
   int32_T j;
   uint32_T inpBit;
-  emlrtStack st;
-  emlrtStack b_st;
-  st.prev = sp;
-  st.tls = sp->tls;
-  b_st.prev = &st;
-  b_st.tls = st.tls;
   if (!obj->isReleased) {
   } else {
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
     y = NULL;
-    m12 = mxCreateCharArray(2, iv65);
+    m13 = mxCreateCharArray(2, iv68);
     for (i = 0; i < 45; i++) {
-      cv74[i] = cv75[i];
+      cv64[i] = cv65[i];
     }
 
-    emlrtInitCharArrayR2013a(sp, 45, m12, cv74);
-    emlrtAssign(&y, m12);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 45, m13, cv64);
+    emlrtAssign(&y, m13);
     b_y = NULL;
-    m12 = mxCreateCharArray(2, iv66);
+    m13 = mxCreateCharArray(2, iv69);
     for (i = 0; i < 4; i++) {
-      cv76[i] = cv77[i];
+      cv66[i] = cv67[i];
     }
 
-    emlrtInitCharArrayR2013a(sp, 4, m12, cv76);
-    emlrtAssign(&b_y, m12);
-    st.site = &gb_emlrtRSI;
-    c_error(&st, message(&st, y, b_y, &emlrtMCI), &emlrtMCI);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 4, m13, cv66);
+    emlrtAssign(&b_y, m13);
+    c_error(message(y, b_y, &b_emlrtMCI), &b_emlrtMCI);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   }
 
   if (!obj->isInitialized) {
-    st.site = &gb_emlrtRSI;
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
     b_obj = obj;
     if (!b_obj->isInitialized) {
     } else {
+      emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
       c_y = NULL;
-      m12 = mxCreateCharArray(2, iv67);
+      m13 = mxCreateCharArray(2, iv70);
       for (i = 0; i < 51; i++) {
-        cv78[i] = cv79[i];
+        cv68[i] = cv69[i];
       }
 
-      emlrtInitCharArrayR2013a(&st, 51, m12, cv78);
-      emlrtAssign(&c_y, m12);
+      emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 51, m13, cv68);
+      emlrtAssign(&c_y, m13);
       d_y = NULL;
-      m12 = mxCreateCharArray(2, iv68);
+      m13 = mxCreateCharArray(2, iv71);
       for (i = 0; i < 5; i++) {
-        cv80[i] = cv81[i];
+        cv70[i] = cv71[i];
       }
 
-      emlrtInitCharArrayR2013a(&st, 5, m12, cv80);
-      emlrtAssign(&d_y, m12);
-      b_st.site = &gb_emlrtRSI;
-      c_error(&b_st, message(&b_st, c_y, d_y, &emlrtMCI), &emlrtMCI);
+      emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 5, m13, cv70);
+      emlrtAssign(&d_y, m13);
+      c_error(message(c_y, d_y, &b_emlrtMCI), &b_emlrtMCI);
+      emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
     }
 
-    b_st.site = &gb_emlrtRSI;
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
     b_obj->isInitialized = TRUE;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
     for (k = 0; k < 8; k++) {
       b_obj->inputVarSize1[k] = (uint32_T)value[k];
     }
 
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    b_obj->TunablePropsChanged = FALSE;
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   }
 
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   b_obj = obj;
-  anyInputSizeChanged = FALSE;
+  if (b_obj->TunablePropsChanged) {
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    b_obj->TunablePropsChanged = FALSE;
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  }
+
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  b_obj = obj;
   k = 0;
   exitg1 = FALSE;
   while ((exitg1 == FALSE) && (k < 8)) {
-    if (b_obj->inputVarSize1[k] != (uint32_T)iv69[k]) {
-      anyInputSizeChanged = TRUE;
-      b_st.site = &gb_emlrtRSI;
+    if (b_obj->inputVarSize1[k] != (uint32_T)iv72[k]) {
+      emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
       for (k = 0; k < 8; k++) {
         b_obj->inputVarSize1[k] = (uint32_T)value[k];
       }
 
+      emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
       exitg1 = TRUE;
     } else {
       k++;
     }
   }
 
-  if (anyInputSizeChanged) {
-    st.site = &gb_emlrtRSI;
-    st.site = &gb_emlrtRSI;
-  }
-
-  st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   b_obj = obj;
-  b_st.site = &ig_emlrtRSI;
-  b_st.site = &ig_emlrtRSI;
-  b_st.site = &ig_emlrtRSI;
-  b_st.site = &ig_emlrtRSI;
-  b_st.site = &ig_emlrtRSI;
-  b_st.site = &ig_emlrtRSI;
+  emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
   c_obj = &b_obj->cSFunObject;
 
   /* System object Outputs function: comm.CRCGenerator */
@@ -1490,204 +1885,185 @@ void f_SystemCore_step(const emlrtStack *sp, commcodegen_CRCGenerator_6 *obj,
   varargout_1[560] = (int32_T)(shReg >> 2U) & 1;
   varargout_1[561] = (int32_T)(shReg >> 1U) & 1;
   varargout_1[562] = (int32_T)shReg & 1;
-  b_st.site = &ig_emlrtRSI;
+  emlrtPopRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
 }
 
-void g_SystemCore_step(const emlrtStack *sp, commcodegen_BPSKModulator_1 *obj,
-  const real_T varargin_1[563], creal_T varargout_1[563])
+void f_SystemCore_checkTunableProps(commcodegen_BPSKModulator_348 *obj)
 {
-  const mxArray *y;
-  static const int32_T iv70[2] = { 1, 45 };
-
-  const mxArray *m13;
-  char_T cv82[45];
-  int32_T i;
-  static const char_T cv83[45] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
-    's', 't', 'e', 'm', ':', 'm', 'e', 't', 'h', 'o', 'd', 'C', 'a', 'l', 'l',
-    'e', 'd', 'W', 'h', 'e', 'n', 'R', 'e', 'l', 'e', 'a', 's', 'e', 'd', 'C',
-    'o', 'd', 'e', 'g', 'e', 'n' };
-
-  const mxArray *b_y;
-  static const int32_T iv71[2] = { 1, 4 };
-
-  char_T cv84[4];
-  static const char_T cv85[4] = { 's', 't', 'e', 'p' };
-
-  commcodegen_BPSKModulator_1 *b_obj;
-  const mxArray *c_y;
-  static const int32_T iv72[2] = { 1, 51 };
-
-  char_T cv86[51];
-  static const char_T cv87[51] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
-    's', 't', 'e', 'm', ':', 'm', 'e', 't', 'h', 'o', 'd', 'C', 'a', 'l', 'l',
-    'e', 'd', 'W', 'h', 'e', 'n', 'L', 'o', 'c', 'k', 'e', 'd', 'R', 'e', 'l',
-    'e', 'a', 's', 'e', 'd', 'C', 'o', 'd', 'e', 'g', 'e', 'n' };
-
-  const mxArray *d_y;
-  static const int32_T iv73[2] = { 1, 5 };
-
-  char_T cv88[5];
-  static const char_T cv89[5] = { 's', 'e', 't', 'u', 'p' };
-
-  static const int16_T value[8] = { 563, 1, 1, 1, 1, 1, 1, 1 };
-
-  boolean_T anyInputSizeChanged;
-  boolean_T exitg1;
-  static const int16_T iv74[8] = { 563, 1, 1, 1, 1, 1, 1, 1 };
-
-  emlrtStack st;
-  emlrtStack b_st;
-  st.prev = sp;
-  st.tls = sp->tls;
-  b_st.prev = &st;
-  b_st.tls = st.tls;
-  if (!obj->isReleased) {
-  } else {
-    y = NULL;
-    m13 = mxCreateCharArray(2, iv70);
-    for (i = 0; i < 45; i++) {
-      cv82[i] = cv83[i];
-    }
-
-    emlrtInitCharArrayR2013a(sp, 45, m13, cv82);
-    emlrtAssign(&y, m13);
-    b_y = NULL;
-    m13 = mxCreateCharArray(2, iv71);
-    for (i = 0; i < 4; i++) {
-      cv84[i] = cv85[i];
-    }
-
-    emlrtInitCharArrayR2013a(sp, 4, m13, cv84);
-    emlrtAssign(&b_y, m13);
-    st.site = &gb_emlrtRSI;
-    c_error(&st, message(&st, y, b_y, &emlrtMCI), &emlrtMCI);
-  }
-
-  if (!obj->isInitialized) {
-    st.site = &gb_emlrtRSI;
+  commcodegen_BPSKModulator_348 *b_obj;
+  if (obj->TunablePropsChanged) {
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
     b_obj = obj;
-    if (!b_obj->isInitialized) {
-    } else {
-      c_y = NULL;
-      m13 = mxCreateCharArray(2, iv72);
-      for (i = 0; i < 51; i++) {
-        cv86[i] = cv87[i];
-      }
-
-      emlrtInitCharArrayR2013a(&st, 51, m13, cv86);
-      emlrtAssign(&c_y, m13);
-      d_y = NULL;
-      m13 = mxCreateCharArray(2, iv73);
-      for (i = 0; i < 5; i++) {
-        cv88[i] = cv89[i];
-      }
-
-      emlrtInitCharArrayR2013a(&st, 5, m13, cv88);
-      emlrtAssign(&d_y, m13);
-      b_st.site = &gb_emlrtRSI;
-      c_error(&b_st, message(&b_st, c_y, d_y, &emlrtMCI), &emlrtMCI);
-    }
-
-    b_st.site = &gb_emlrtRSI;
-    b_obj->isInitialized = TRUE;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    for (i = 0; i < 8; i++) {
-      b_obj->inputVarSize1[i] = (uint32_T)value[i];
-    }
-
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
+    b_obj->TunablePropsChanged = FALSE;
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   }
+}
 
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  b_obj = obj;
+boolean_T f_SystemCore_detectInputSizeCha(commcodegen_BPSKModulator_191 *obj)
+{
+  boolean_T anyInputSizeChanged;
+  int32_T k;
+  boolean_T exitg1;
+  static const int8_T iv78[8] = { 13, 1, 1, 1, 1, 1, 1, 1 };
+
+  commcodegen_BPSKModulator_191 *b_obj;
+  static const int8_T inputSize[8] = { 13, 1, 1, 1, 1, 1, 1, 1 };
+
   anyInputSizeChanged = FALSE;
-  i = 0;
+  k = 0;
   exitg1 = FALSE;
-  while ((exitg1 == FALSE) && (i < 8)) {
-    if (b_obj->inputVarSize1[i] != (uint32_T)iv74[i]) {
+  while ((exitg1 == FALSE) && (k < 8)) {
+    if (obj->inputVarSize1[k] != (uint32_T)iv78[k]) {
       anyInputSizeChanged = TRUE;
-      b_st.site = &gb_emlrtRSI;
-      for (i = 0; i < 8; i++) {
-        b_obj->inputVarSize1[i] = (uint32_T)value[i];
+      emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+      b_obj = obj;
+      for (k = 0; k < 8; k++) {
+        b_obj->inputVarSize1[k] = (uint32_T)inputSize[k];
       }
 
+      emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
       exitg1 = TRUE;
     } else {
-      i++;
+      k++;
     }
   }
 
-  if (anyInputSizeChanged) {
-    st.site = &gb_emlrtRSI;
-    st.site = &gb_emlrtRSI;
-  }
-
-  st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  c_Nondirect_stepImpl(obj, varargin_1, varargout_1);
+  return anyInputSizeChanged;
 }
 
-void h_SystemCore_step(const emlrtStack *sp, commcodegen_CRCGenerator_12 *obj,
-  const real_T varargin_1[560], real_T varargout_1[563])
+void f_SystemCore_setup(commcodegen_BPSKModulator_348 *obj)
 {
   const mxArray *y;
-  static const int32_T iv88[2] = { 1, 45 };
+  static const int32_T iv100[2] = { 1, 51 };
 
-  const mxArray *m15;
-  char_T cv102[45];
+  const mxArray *m20;
+  char_T cv100[51];
   int32_T i;
-  static const char_T cv103[45] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
+  static const char_T cv101[51] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
+    's', 't', 'e', 'm', ':', 'm', 'e', 't', 'h', 'o', 'd', 'C', 'a', 'l', 'l',
+    'e', 'd', 'W', 'h', 'e', 'n', 'L', 'o', 'c', 'k', 'e', 'd', 'R', 'e', 'l',
+    'e', 'a', 's', 'e', 'd', 'C', 'o', 'd', 'e', 'g', 'e', 'n' };
+
+  const mxArray *b_y;
+  static const int32_T iv101[2] = { 1, 5 };
+
+  char_T cv102[5];
+  static const char_T cv103[5] = { 's', 'e', 't', 'u', 'p' };
+
+  commcodegen_BPSKModulator_348 *b_obj;
+  static const int8_T value[8] = { 13, 1, 1, 1, 1, 1, 1, 1 };
+
+  if (!obj->isInitialized) {
+  } else {
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    y = NULL;
+    m20 = mxCreateCharArray(2, iv100);
+    for (i = 0; i < 51; i++) {
+      cv100[i] = cv101[i];
+    }
+
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 51, m20, cv100);
+    emlrtAssign(&y, m20);
+    b_y = NULL;
+    m20 = mxCreateCharArray(2, iv101);
+    for (i = 0; i < 5; i++) {
+      cv102[i] = cv103[i];
+    }
+
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 5, m20, cv102);
+    emlrtAssign(&b_y, m20);
+    c_error(message(y, b_y, &b_emlrtMCI), &b_emlrtMCI);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  }
+
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  b_obj = obj;
+  b_obj->isInitialized = TRUE;
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  b_obj = obj;
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  for (i = 0; i < 8; i++) {
+    b_obj->inputVarSize1[i] = (uint32_T)value[i];
+  }
+
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  b_obj = obj;
+  b_obj->TunablePropsChanged = FALSE;
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+}
+
+void f_SystemCore_step(commcodegen_CRCGenerator_478 *obj, const real_T
+  varargin_1[560], real_T varargout_1[563])
+{
+  const mxArray *y;
+  static const int32_T iv92[2] = { 1, 45 };
+
+  const mxArray *m18;
+  char_T cv88[45];
+  int32_T i;
+  static const char_T cv89[45] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
     's', 't', 'e', 'm', ':', 'm', 'e', 't', 'h', 'o', 'd', 'C', 'a', 'l', 'l',
     'e', 'd', 'W', 'h', 'e', 'n', 'R', 'e', 'l', 'e', 'a', 's', 'e', 'd', 'C',
     'o', 'd', 'e', 'g', 'e', 'n' };
 
   const mxArray *b_y;
-  static const int32_T iv89[2] = { 1, 4 };
+  static const int32_T iv93[2] = { 1, 4 };
 
-  char_T cv104[4];
-  static const char_T cv105[4] = { 's', 't', 'e', 'p' };
+  char_T cv90[4];
+  static const char_T cv91[4] = { 's', 't', 'e', 'p' };
 
-  commcodegen_CRCGenerator_12 *b_obj;
+  commcodegen_CRCGenerator_478 *b_obj;
   const mxArray *c_y;
-  static const int32_T iv90[2] = { 1, 51 };
+  static const int32_T iv94[2] = { 1, 51 };
 
-  char_T cv106[51];
-  static const char_T cv107[51] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
+  char_T cv92[51];
+  static const char_T cv93[51] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
     's', 't', 'e', 'm', ':', 'm', 'e', 't', 'h', 'o', 'd', 'C', 'a', 'l', 'l',
     'e', 'd', 'W', 'h', 'e', 'n', 'L', 'o', 'c', 'k', 'e', 'd', 'R', 'e', 'l',
     'e', 'a', 's', 'e', 'd', 'C', 'o', 'd', 'e', 'g', 'e', 'n' };
 
   const mxArray *d_y;
-  static const int32_T iv91[2] = { 1, 5 };
+  static const int32_T iv95[2] = { 1, 5 };
 
-  char_T cv108[5];
-  static const char_T cv109[5] = { 's', 'e', 't', 'u', 'p' };
+  char_T cv94[5];
+  static const char_T cv95[5] = { 's', 'e', 't', 'u', 'p' };
 
   int32_T k;
   static const int16_T value[8] = { 560, 1, 1, 1, 1, 1, 1, 1 };
 
-  boolean_T anyInputSizeChanged;
   boolean_T exitg1;
-  static const int16_T iv92[8] = { 560, 1, 1, 1, 1, 1, 1, 1 };
+  static const int16_T iv96[8] = { 560, 1, 1, 1, 1, 1, 1, 1 };
 
   comm_CRCGenerator_7 *c_obj;
   uint32_T shReg;
@@ -1695,121 +2071,132 @@ void h_SystemCore_step(const emlrtStack *sp, commcodegen_CRCGenerator_12 *obj,
   uint32_T bitMask;
   int32_T j;
   uint32_T inpBit;
-  emlrtStack st;
-  emlrtStack b_st;
-  st.prev = sp;
-  st.tls = sp->tls;
-  b_st.prev = &st;
-  b_st.tls = st.tls;
   if (!obj->isReleased) {
   } else {
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
     y = NULL;
-    m15 = mxCreateCharArray(2, iv88);
+    m18 = mxCreateCharArray(2, iv92);
     for (i = 0; i < 45; i++) {
-      cv102[i] = cv103[i];
+      cv88[i] = cv89[i];
     }
 
-    emlrtInitCharArrayR2013a(sp, 45, m15, cv102);
-    emlrtAssign(&y, m15);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 45, m18, cv88);
+    emlrtAssign(&y, m18);
     b_y = NULL;
-    m15 = mxCreateCharArray(2, iv89);
+    m18 = mxCreateCharArray(2, iv93);
     for (i = 0; i < 4; i++) {
-      cv104[i] = cv105[i];
+      cv90[i] = cv91[i];
     }
 
-    emlrtInitCharArrayR2013a(sp, 4, m15, cv104);
-    emlrtAssign(&b_y, m15);
-    st.site = &gb_emlrtRSI;
-    c_error(&st, message(&st, y, b_y, &emlrtMCI), &emlrtMCI);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 4, m18, cv90);
+    emlrtAssign(&b_y, m18);
+    c_error(message(y, b_y, &b_emlrtMCI), &b_emlrtMCI);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   }
 
   if (!obj->isInitialized) {
-    st.site = &gb_emlrtRSI;
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
     b_obj = obj;
     if (!b_obj->isInitialized) {
     } else {
+      emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
       c_y = NULL;
-      m15 = mxCreateCharArray(2, iv90);
+      m18 = mxCreateCharArray(2, iv94);
       for (i = 0; i < 51; i++) {
-        cv106[i] = cv107[i];
+        cv92[i] = cv93[i];
       }
 
-      emlrtInitCharArrayR2013a(&st, 51, m15, cv106);
-      emlrtAssign(&c_y, m15);
+      emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 51, m18, cv92);
+      emlrtAssign(&c_y, m18);
       d_y = NULL;
-      m15 = mxCreateCharArray(2, iv91);
+      m18 = mxCreateCharArray(2, iv95);
       for (i = 0; i < 5; i++) {
-        cv108[i] = cv109[i];
+        cv94[i] = cv95[i];
       }
 
-      emlrtInitCharArrayR2013a(&st, 5, m15, cv108);
-      emlrtAssign(&d_y, m15);
-      b_st.site = &gb_emlrtRSI;
-      c_error(&b_st, message(&b_st, c_y, d_y, &emlrtMCI), &emlrtMCI);
+      emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 5, m18, cv94);
+      emlrtAssign(&d_y, m18);
+      c_error(message(c_y, d_y, &b_emlrtMCI), &b_emlrtMCI);
+      emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
     }
 
-    b_st.site = &gb_emlrtRSI;
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
     b_obj->isInitialized = TRUE;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
     for (k = 0; k < 8; k++) {
       b_obj->inputVarSize1[k] = (uint32_T)value[k];
     }
 
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    b_obj->TunablePropsChanged = FALSE;
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   }
 
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   b_obj = obj;
-  anyInputSizeChanged = FALSE;
+  if (b_obj->TunablePropsChanged) {
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    b_obj->TunablePropsChanged = FALSE;
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  }
+
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  b_obj = obj;
   k = 0;
   exitg1 = FALSE;
   while ((exitg1 == FALSE) && (k < 8)) {
-    if (b_obj->inputVarSize1[k] != (uint32_T)iv92[k]) {
-      anyInputSizeChanged = TRUE;
-      b_st.site = &gb_emlrtRSI;
+    if (b_obj->inputVarSize1[k] != (uint32_T)iv96[k]) {
+      emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
       for (k = 0; k < 8; k++) {
         b_obj->inputVarSize1[k] = (uint32_T)value[k];
       }
 
+      emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
       exitg1 = TRUE;
     } else {
       k++;
     }
   }
 
-  if (anyInputSizeChanged) {
-    st.site = &gb_emlrtRSI;
-    st.site = &gb_emlrtRSI;
-  }
-
-  st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   b_obj = obj;
-  b_st.site = &ig_emlrtRSI;
-  b_st.site = &ig_emlrtRSI;
-  b_st.site = &ig_emlrtRSI;
-  b_st.site = &ig_emlrtRSI;
-  b_st.site = &ig_emlrtRSI;
-  b_st.site = &ig_emlrtRSI;
+  emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
   c_obj = &b_obj->cSFunObject;
 
   /* System object Outputs function: comm.CRCGenerator */
@@ -1849,393 +2236,221 @@ void h_SystemCore_step(const emlrtStack *sp, commcodegen_CRCGenerator_12 *obj,
   varargout_1[560] = (int32_T)(shReg >> 2U) & 1;
   varargout_1[561] = (int32_T)(shReg >> 1U) & 1;
   varargout_1[562] = (int32_T)shReg & 1;
-  b_st.site = &ig_emlrtRSI;
+  emlrtPopRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
 }
 
-void i_SystemCore_step(const emlrtStack *sp, commcodegen_BPSKModulator_2 *obj,
-  const real_T varargin_1[563], creal_T varargout_1[563])
+boolean_T g_SystemCore_detectInputSizeCha(commcodegen_BPSKModulator_348 *obj)
 {
-  const mxArray *y;
-  static const int32_T iv93[2] = { 1, 45 };
-
-  const mxArray *m16;
-  char_T cv110[45];
-  int32_T i;
-  static const char_T cv111[45] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
-    's', 't', 'e', 'm', ':', 'm', 'e', 't', 'h', 'o', 'd', 'C', 'a', 'l', 'l',
-    'e', 'd', 'W', 'h', 'e', 'n', 'R', 'e', 'l', 'e', 'a', 's', 'e', 'd', 'C',
-    'o', 'd', 'e', 'g', 'e', 'n' };
-
-  const mxArray *b_y;
-  static const int32_T iv94[2] = { 1, 4 };
-
-  char_T cv112[4];
-  static const char_T cv113[4] = { 's', 't', 'e', 'p' };
-
-  commcodegen_BPSKModulator_2 *b_obj;
-  const mxArray *c_y;
-  static const int32_T iv95[2] = { 1, 51 };
-
-  char_T cv114[51];
-  static const char_T cv115[51] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
-    's', 't', 'e', 'm', ':', 'm', 'e', 't', 'h', 'o', 'd', 'C', 'a', 'l', 'l',
-    'e', 'd', 'W', 'h', 'e', 'n', 'L', 'o', 'c', 'k', 'e', 'd', 'R', 'e', 'l',
-    'e', 'a', 's', 'e', 'd', 'C', 'o', 'd', 'e', 'g', 'e', 'n' };
-
-  const mxArray *d_y;
-  static const int32_T iv96[2] = { 1, 5 };
-
-  char_T cv116[5];
-  static const char_T cv117[5] = { 's', 'e', 't', 'u', 'p' };
-
-  static const int16_T value[8] = { 563, 1, 1, 1, 1, 1, 1, 1 };
-
   boolean_T anyInputSizeChanged;
+  int32_T k;
   boolean_T exitg1;
-  static const int16_T iv97[8] = { 563, 1, 1, 1, 1, 1, 1, 1 };
+  static const int16_T iv99[8] = { 563, 1, 1, 1, 1, 1, 1, 1 };
 
-  emlrtStack st;
-  emlrtStack b_st;
-  st.prev = sp;
-  st.tls = sp->tls;
-  b_st.prev = &st;
-  b_st.tls = st.tls;
-  if (!obj->isReleased) {
-  } else {
-    y = NULL;
-    m16 = mxCreateCharArray(2, iv93);
-    for (i = 0; i < 45; i++) {
-      cv110[i] = cv111[i];
-    }
+  commcodegen_BPSKModulator_348 *b_obj;
+  static const int16_T inputSize[8] = { 563, 1, 1, 1, 1, 1, 1, 1 };
 
-    emlrtInitCharArrayR2013a(sp, 45, m16, cv110);
-    emlrtAssign(&y, m16);
-    b_y = NULL;
-    m16 = mxCreateCharArray(2, iv94);
-    for (i = 0; i < 4; i++) {
-      cv112[i] = cv113[i];
-    }
-
-    emlrtInitCharArrayR2013a(sp, 4, m16, cv112);
-    emlrtAssign(&b_y, m16);
-    st.site = &gb_emlrtRSI;
-    c_error(&st, message(&st, y, b_y, &emlrtMCI), &emlrtMCI);
-  }
-
-  if (!obj->isInitialized) {
-    st.site = &gb_emlrtRSI;
-    b_obj = obj;
-    if (!b_obj->isInitialized) {
-    } else {
-      c_y = NULL;
-      m16 = mxCreateCharArray(2, iv95);
-      for (i = 0; i < 51; i++) {
-        cv114[i] = cv115[i];
-      }
-
-      emlrtInitCharArrayR2013a(&st, 51, m16, cv114);
-      emlrtAssign(&c_y, m16);
-      d_y = NULL;
-      m16 = mxCreateCharArray(2, iv96);
-      for (i = 0; i < 5; i++) {
-        cv116[i] = cv117[i];
-      }
-
-      emlrtInitCharArrayR2013a(&st, 5, m16, cv116);
-      emlrtAssign(&d_y, m16);
-      b_st.site = &gb_emlrtRSI;
-      c_error(&b_st, message(&b_st, c_y, d_y, &emlrtMCI), &emlrtMCI);
-    }
-
-    b_st.site = &gb_emlrtRSI;
-    b_obj->isInitialized = TRUE;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    for (i = 0; i < 8; i++) {
-      b_obj->inputVarSize1[i] = (uint32_T)value[i];
-    }
-
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-  }
-
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  b_obj = obj;
   anyInputSizeChanged = FALSE;
-  i = 0;
+  k = 0;
   exitg1 = FALSE;
-  while ((exitg1 == FALSE) && (i < 8)) {
-    if (b_obj->inputVarSize1[i] != (uint32_T)iv97[i]) {
+  while ((exitg1 == FALSE) && (k < 8)) {
+    if (obj->inputVarSize1[k] != (uint32_T)iv99[k]) {
       anyInputSizeChanged = TRUE;
-      b_st.site = &gb_emlrtRSI;
-      for (i = 0; i < 8; i++) {
-        b_obj->inputVarSize1[i] = (uint32_T)value[i];
+      emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+      b_obj = obj;
+      for (k = 0; k < 8; k++) {
+        b_obj->inputVarSize1[k] = (uint32_T)inputSize[k];
       }
 
+      emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
       exitg1 = TRUE;
     } else {
-      i++;
+      k++;
     }
   }
 
-  if (anyInputSizeChanged) {
-    st.site = &gb_emlrtRSI;
-    st.site = &gb_emlrtRSI;
-  }
-
-  st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  e_Nondirect_stepImpl(obj, varargin_1, varargout_1);
+  return anyInputSizeChanged;
 }
 
-void j_SystemCore_step(testPHYTransmitStackData *SD, const emlrtStack *sp,
-  comm_SDRuTransmitter *obj, const creal_T varargin_1[38400])
+void g_SystemCore_step(testPHYTransmitStackData *SD, comm_SDRuTransmitter *obj,
+  const creal_T varargin_1[38400])
 {
   const mxArray *y;
-  static const int32_T iv100[2] = { 1, 45 };
+  static const int32_T iv103[2] = { 1, 45 };
 
-  const mxArray *m17;
-  char_T cv118[45];
+  const mxArray *m21;
+  char_T cv104[45];
   int32_T i;
-  static const char_T cv119[45] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
+  static const char_T cv105[45] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
     's', 't', 'e', 'm', ':', 'm', 'e', 't', 'h', 'o', 'd', 'C', 'a', 'l', 'l',
     'e', 'd', 'W', 'h', 'e', 'n', 'R', 'e', 'l', 'e', 'a', 's', 'e', 'd', 'C',
     'o', 'd', 'e', 'g', 'e', 'n' };
 
   const mxArray *b_y;
-  static const int32_T iv101[2] = { 1, 4 };
+  static const int32_T iv104[2] = { 1, 4 };
 
-  char_T cv120[4];
-  static const char_T cv121[4] = { 's', 't', 'e', 'p' };
+  char_T cv106[4];
+  static const char_T cv107[4] = { 's', 't', 'e', 'p' };
 
   comm_SDRuTransmitter *b_obj;
   const mxArray *c_y;
-  static const int32_T iv102[2] = { 1, 51 };
+  static const int32_T iv105[2] = { 1, 51 };
 
-  char_T cv122[51];
-  static const char_T cv123[51] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
+  char_T cv108[51];
+  static const char_T cv109[51] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
     's', 't', 'e', 'm', ':', 'm', 'e', 't', 'h', 'o', 'd', 'C', 'a', 'l', 'l',
     'e', 'd', 'W', 'h', 'e', 'n', 'L', 'o', 'c', 'k', 'e', 'd', 'R', 'e', 'l',
     'e', 'a', 's', 'e', 'd', 'C', 'o', 'd', 'e', 'g', 'e', 'n' };
 
   const mxArray *d_y;
-  static const int32_T iv103[2] = { 1, 5 };
+  static const int32_T iv106[2] = { 1, 5 };
 
-  char_T cv124[5];
-  static const char_T cv125[5] = { 's', 'e', 't', 'u', 'p' };
+  char_T cv110[5];
+  static const char_T cv111[5] = { 's', 'e', 't', 'u', 'p' };
 
+  int32_T i18;
   static const uint16_T value[8] = { 38400U, 1U, 1U, 1U, 1U, 1U, 1U, 1U };
 
   int32_T errMsg_size[2];
   char_T errMsg_data[1024];
   UsrpErrorCapiEnumT deviceStatus;
   const mxArray *e_y;
-  static const int32_T iv104[2] = { 1, 35 };
+  static const int32_T iv107[2] = { 1, 35 };
 
-  char_T cv126[35];
-  static const char_T cv127[35] = { 's', 'd', 'r', 'u', ':', 'r', 'e', 'p', 'o',
+  char_T cv112[35];
+  static const char_T cv113[35] = { 's', 'd', 'r', 'u', ':', 'r', 'e', 'p', 'o',
     'r', 't', 'S', 'D', 'R', 'u', 'S', 't', 'a', 't', 'u', 's', ':', 'N', 'o',
     't', 'C', 'o', 'm', 'p', 'a', 't', 'i', 'b', 'l', 'e' };
 
   const mxArray *f_y;
-  static const int32_T iv105[2] = { 1, 12 };
+  static const int32_T iv108[2] = { 1, 12 };
 
-  char_T cv128[12];
-  static const char_T cv129[12] = { '1', '9', '2', '.', '1', '6', '8', '.', '1',
+  char_T cv114[12];
+  static const char_T cv115[12] = { '1', '9', '2', '.', '1', '6', '8', '.', '1',
     '0', '.', '2' };
 
   const mxArray *g_y;
-  static const int32_T iv106[2] = { 1, 43 };
+  static const int32_T iv109[2] = { 1, 43 };
 
-  char_T cv130[43];
-  static const char_T cv131[43] = { 'r', 'e', 't', 'u', 'r', 'n', 'e', 'd', ' ',
+  char_T cv116[43];
+  static const char_T cv117[43] = { 'r', 'e', 't', 'u', 'r', 'n', 'e', 'd', ' ',
     'b', 'y', ' ', '\'', 'g', 'e', 't', 'S', 'D', 'R', 'u', 'D', 'r', 'i', 'v',
     'e', 'r', 'V', 'e', 'r', 's', 'i', 'o', 'n', '\'', ' ', 'f', 'u', 'n', 'c',
     't', 'i', 'o', 'n' };
 
   const mxArray *h_y;
-  static const int32_T iv107[2] = { 1, 35 };
+  static const int32_T iv110[2] = { 1, 35 };
 
-  static const char_T cv132[35] = { 's', 'd', 'r', 'u', ':', 'r', 'e', 'p', 'o',
+  static const char_T cv118[35] = { 's', 'd', 'r', 'u', ':', 'r', 'e', 'p', 'o',
     'r', 't', 'S', 'D', 'R', 'u', 'S', 't', 'a', 't', 'u', 's', ':', 'N', 'o',
     't', 'R', 'e', 's', 'p', 'o', 'n', 'd', 'i', 'n', 'g' };
 
   const mxArray *i_y;
-  static const int32_T iv108[2] = { 1, 12 };
+  static const int32_T iv111[2] = { 1, 12 };
 
   const mxArray *j_y;
-  static const int32_T iv109[2] = { 1, 28 };
+  static const int32_T iv112[2] = { 1, 26 };
 
-  char_T cv133[28];
-  static const char_T cv134[28] = { 's', 'd', 'r', 'u', ':', 'r', 'e', 'p', 'o',
-    'r', 't', 'S', 'D', 'R', 'u', 'S', 't', 'a', 't', 'u', 's', ':', 'R', 'x',
-    'B', 'u', 's', 'y' };
-
-  const mxArray *k_y;
-  static const int32_T iv110[2] = { 1, 12 };
-
-  const mxArray *l_y;
-  static const int32_T iv111[2] = { 1, 28 };
-
-  static const char_T cv135[28] = { 's', 'd', 'r', 'u', ':', 'r', 'e', 'p', 'o',
-    'r', 't', 'S', 'D', 'R', 'u', 'S', 't', 'a', 't', 'u', 's', ':', 'T', 'x',
-    'B', 'u', 's', 'y' };
-
-  const mxArray *m_y;
-  static const int32_T iv112[2] = { 1, 12 };
-
-  const mxArray *n_y;
-  static const int32_T iv113[2] = { 1, 26 };
-
-  char_T cv136[26];
-  static const char_T cv137[26] = { 's', 'd', 'r', 'u', ':', 'r', 'e', 'p', 'o',
+  char_T cv119[26];
+  static const char_T cv120[26] = { 's', 'd', 'r', 'u', ':', 'r', 'e', 'p', 'o',
     'r', 't', 'S', 'D', 'R', 'u', 'S', 't', 'a', 't', 'u', 's', ':', 'B', 'u',
     's', 'y' };
 
-  const mxArray *o_y;
-  static const int32_T iv114[2] = { 1, 12 };
+  const mxArray *k_y;
+  static const int32_T iv113[2] = { 1, 12 };
 
-  const mxArray *p_y;
-  static const int32_T iv115[2] = { 1, 35 };
+  const mxArray *l_y;
+  static const int32_T iv114[2] = { 1, 35 };
 
-  static const char_T cv138[35] = { 's', 'd', 'r', 'u', ':', 'r', 'e', 'p', 'o',
+  static const char_T cv121[35] = { 's', 'd', 'r', 'u', ':', 'r', 'e', 'p', 'o',
     'r', 't', 'S', 'D', 'R', 'u', 'S', 't', 'a', 't', 'u', 's', ':', 'U', 'n',
     'k', 'n', 'o', 'w', 'n', 'S', 't', 'a', 't', 'u', 's' };
 
-  int32_T u_size[2];
-  int32_T loop_ub;
-  char_T u_data[1024];
-  const mxArray *q_y;
-  boolean_T anyInputSizeChanged;
+  boolean_T b_value[4];
   boolean_T exitg1;
   static const uint16_T uv0[8] = { 38400U, 1U, 1U, 1U, 1U, 1U, 1U, 1U };
 
-  emlrtStack st;
-  emlrtStack b_st;
-  emlrtStack c_st;
-  emlrtStack d_st;
-  emlrtStack e_st;
-  st.prev = sp;
-  st.tls = sp->tls;
-  b_st.prev = &st;
-  b_st.tls = st.tls;
-  c_st.prev = &b_st;
-  c_st.tls = b_st.tls;
-  d_st.prev = &c_st;
-  d_st.tls = c_st.tls;
-  e_st.prev = &d_st;
-  e_st.tls = d_st.tls;
   if (!obj->isReleased) {
   } else {
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
     y = NULL;
-    m17 = mxCreateCharArray(2, iv100);
+    m21 = mxCreateCharArray(2, iv103);
     for (i = 0; i < 45; i++) {
-      cv118[i] = cv119[i];
+      cv104[i] = cv105[i];
     }
 
-    emlrtInitCharArrayR2013a(sp, 45, m17, cv118);
-    emlrtAssign(&y, m17);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 45, m21, cv104);
+    emlrtAssign(&y, m21);
     b_y = NULL;
-    m17 = mxCreateCharArray(2, iv101);
+    m21 = mxCreateCharArray(2, iv104);
     for (i = 0; i < 4; i++) {
-      cv120[i] = cv121[i];
+      cv106[i] = cv107[i];
     }
 
-    emlrtInitCharArrayR2013a(sp, 4, m17, cv120);
-    emlrtAssign(&b_y, m17);
-    st.site = &gb_emlrtRSI;
-    c_error(&st, message(&st, y, b_y, &emlrtMCI), &emlrtMCI);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 4, m21, cv106);
+    emlrtAssign(&b_y, m21);
+    c_error(message(y, b_y, &b_emlrtMCI), &b_emlrtMCI);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   }
 
   if (!obj->isInitialized) {
-    st.site = &gb_emlrtRSI;
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
     b_obj = obj;
     if (!b_obj->isInitialized) {
     } else {
+      emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
       c_y = NULL;
-      m17 = mxCreateCharArray(2, iv102);
+      m21 = mxCreateCharArray(2, iv105);
       for (i = 0; i < 51; i++) {
-        cv122[i] = cv123[i];
+        cv108[i] = cv109[i];
       }
 
-      emlrtInitCharArrayR2013a(&st, 51, m17, cv122);
-      emlrtAssign(&c_y, m17);
+      emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 51, m21, cv108);
+      emlrtAssign(&c_y, m21);
       d_y = NULL;
-      m17 = mxCreateCharArray(2, iv103);
+      m21 = mxCreateCharArray(2, iv106);
       for (i = 0; i < 5; i++) {
-        cv124[i] = cv125[i];
+        cv110[i] = cv111[i];
       }
 
-      emlrtInitCharArrayR2013a(&st, 5, m17, cv124);
-      emlrtAssign(&d_y, m17);
-      b_st.site = &gb_emlrtRSI;
-      c_error(&b_st, message(&b_st, c_y, d_y, &emlrtMCI), &emlrtMCI);
+      emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 5, m21, cv110);
+      emlrtAssign(&d_y, m21);
+      c_error(message(c_y, d_y, &b_emlrtMCI), &b_emlrtMCI);
+      emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
     }
 
-    b_st.site = &gb_emlrtRSI;
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
     b_obj->isInitialized = TRUE;
-    c_st.site = &hb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    d_st.site = &hb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    d_st.site = &hb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    d_st.site = &hb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    for (i = 0; i < 8; i++) {
-      b_obj->inputVarSize1[i] = value[i];
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    for (i18 = 0; i18 < 8; i18++) {
+      b_obj->inputVarSize1[i18] = value[i18];
     }
 
-    d_st.site = &hb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    d_st.site = &gb_emlrtRSI;
-    d_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    c_st.site = &vj_emlrtRSI;
-    SDRuTransmitter_setupImplLocal(&c_st, b_obj, &deviceStatus, errMsg_data,
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
+    SDRuTransmitter_setupImplLocal(b_obj, &deviceStatus, errMsg_data,
       errMsg_size);
-    if (deviceStatus == UsrpDriverSuccess) {
-      c_st.site = &vj_emlrtRSI;
-      d_st.site = &hb_emlrtRSI;
-    } else {
-      c_st.site = &vj_emlrtRSI;
-      closeDataConnection(&c_st, b_obj->pDriverHandle);
-      c_st.site = &vj_emlrtRSI;
-      d_st.site = &hb_emlrtRSI;
-    }
-
-    c_st.site = &vj_emlrtRSI;
+    emlrtPopRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
 
     /* reportSDRuStatus SDRu status reporter */
     /*    reportSDRuStatus(STATUS,MSG,IP,METHOD) reports the SDRu status based on */
@@ -2244,444 +2459,367 @@ void j_SystemCore_step(testPHYTransmitStackData *SD, const emlrtStack *sp,
     /*    can be Warning, Error , or None. */
     /*  */
     /*    USRP(R) is a trademark of National Instruments Corp. */
-    /*    Copyright 2012-2013 The MathWorks, Inc. */
+    /*    Copyright 2012 The MathWorks, Inc. */
     switch (deviceStatus) {
      case UsrpDriverNotCompatible:
-      d_st.site = &jm_emlrtRSI;
+      emlrtPushRtStackR2012b(&kf_emlrtRSI, emlrtRootTLSGlobal);
       if (!(deviceStatus == UsrpDriverNotCompatible)) {
       } else {
+        emlrtPushRtStackR2012b(&qc_emlrtRSI, emlrtRootTLSGlobal);
         e_y = NULL;
-        m17 = mxCreateCharArray(2, iv104);
+        m21 = mxCreateCharArray(2, iv107);
         for (i = 0; i < 35; i++) {
-          cv126[i] = cv127[i];
+          cv112[i] = cv113[i];
         }
 
-        emlrtInitCharArrayR2013a(&d_st, 35, m17, cv126);
-        emlrtAssign(&e_y, m17);
+        emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 35, m21, cv112);
+        emlrtAssign(&e_y, m21);
         f_y = NULL;
-        m17 = mxCreateCharArray(2, iv105);
+        m21 = mxCreateCharArray(2, iv108);
         for (i = 0; i < 12; i++) {
-          cv128[i] = cv129[i];
+          cv114[i] = cv115[i];
         }
 
-        emlrtInitCharArrayR2013a(&d_st, 12, m17, cv128);
-        emlrtAssign(&f_y, m17);
+        emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 12, m21, cv114);
+        emlrtAssign(&f_y, m21);
         g_y = NULL;
-        m17 = mxCreateCharArray(2, iv106);
+        m21 = mxCreateCharArray(2, iv109);
         for (i = 0; i < 43; i++) {
-          cv130[i] = cv131[i];
+          cv116[i] = cv117[i];
         }
 
-        emlrtInitCharArrayR2013a(&d_st, 43, m17, cv130);
-        emlrtAssign(&g_y, m17);
-        e_st.site = &um_emlrtRSI;
-        c_error(&e_st, c_message(&e_st, e_y, f_y, g_y, &g_emlrtMCI), &g_emlrtMCI);
+        emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 43, m21, cv116);
+        emlrtAssign(&g_y, m21);
+        c_error(c_message(e_y, f_y, g_y, &h_emlrtMCI), &h_emlrtMCI);
+        emlrtPopRtStackR2012b(&qc_emlrtRSI, emlrtRootTLSGlobal);
       }
+
+      emlrtPopRtStackR2012b(&kf_emlrtRSI, emlrtRootTLSGlobal);
       break;
 
      case UsrpDriverNotResponding:
-      d_st.site = &hm_emlrtRSI;
+      emlrtPushRtStackR2012b(&if_emlrtRSI, emlrtRootTLSGlobal);
       if (!(deviceStatus == UsrpDriverNotResponding)) {
       } else {
+        emlrtPushRtStackR2012b(&qc_emlrtRSI, emlrtRootTLSGlobal);
         h_y = NULL;
-        m17 = mxCreateCharArray(2, iv107);
+        m21 = mxCreateCharArray(2, iv110);
         for (i = 0; i < 35; i++) {
-          cv126[i] = cv132[i];
+          cv112[i] = cv118[i];
         }
 
-        emlrtInitCharArrayR2013a(&d_st, 35, m17, cv126);
-        emlrtAssign(&h_y, m17);
+        emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 35, m21, cv112);
+        emlrtAssign(&h_y, m21);
         i_y = NULL;
-        m17 = mxCreateCharArray(2, iv108);
+        m21 = mxCreateCharArray(2, iv111);
         for (i = 0; i < 12; i++) {
-          cv128[i] = cv129[i];
+          cv114[i] = cv115[i];
         }
 
-        emlrtInitCharArrayR2013a(&d_st, 12, m17, cv128);
-        emlrtAssign(&i_y, m17);
-        e_st.site = &um_emlrtRSI;
-        c_error(&e_st, message(&e_st, h_y, i_y, &g_emlrtMCI), &g_emlrtMCI);
+        emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 12, m21, cv114);
+        emlrtAssign(&i_y, m21);
+        c_error(message(h_y, i_y, &h_emlrtMCI), &h_emlrtMCI);
+        emlrtPopRtStackR2012b(&qc_emlrtRSI, emlrtRootTLSGlobal);
       }
-      break;
 
-     case UsrpDriverRxBusy:
-      d_st.site = &fm_emlrtRSI;
-      if (!(deviceStatus == UsrpDriverRxBusy)) {
-      } else {
-        j_y = NULL;
-        m17 = mxCreateCharArray(2, iv109);
-        for (i = 0; i < 28; i++) {
-          cv133[i] = cv134[i];
-        }
-
-        emlrtInitCharArrayR2013a(&d_st, 28, m17, cv133);
-        emlrtAssign(&j_y, m17);
-        k_y = NULL;
-        m17 = mxCreateCharArray(2, iv110);
-        for (i = 0; i < 12; i++) {
-          cv128[i] = cv129[i];
-        }
-
-        emlrtInitCharArrayR2013a(&d_st, 12, m17, cv128);
-        emlrtAssign(&k_y, m17);
-        e_st.site = &um_emlrtRSI;
-        c_error(&e_st, message(&e_st, j_y, k_y, &g_emlrtMCI), &g_emlrtMCI);
-      }
-      break;
-
-     case UsrpDriverTxBusy:
-      d_st.site = &dm_emlrtRSI;
-      if (!(deviceStatus == UsrpDriverTxBusy)) {
-      } else {
-        l_y = NULL;
-        m17 = mxCreateCharArray(2, iv111);
-        for (i = 0; i < 28; i++) {
-          cv133[i] = cv135[i];
-        }
-
-        emlrtInitCharArrayR2013a(&d_st, 28, m17, cv133);
-        emlrtAssign(&l_y, m17);
-        m_y = NULL;
-        m17 = mxCreateCharArray(2, iv112);
-        for (i = 0; i < 12; i++) {
-          cv128[i] = cv129[i];
-        }
-
-        emlrtInitCharArrayR2013a(&d_st, 12, m17, cv128);
-        emlrtAssign(&m_y, m17);
-        e_st.site = &um_emlrtRSI;
-        c_error(&e_st, message(&e_st, l_y, m_y, &g_emlrtMCI), &g_emlrtMCI);
-      }
+      emlrtPopRtStackR2012b(&if_emlrtRSI, emlrtRootTLSGlobal);
       break;
 
      case UsrpDriverBusy:
-      d_st.site = &bm_emlrtRSI;
+      emlrtPushRtStackR2012b(&gf_emlrtRSI, emlrtRootTLSGlobal);
       if (!(deviceStatus == UsrpDriverBusy)) {
       } else {
-        n_y = NULL;
-        m17 = mxCreateCharArray(2, iv113);
+        emlrtPushRtStackR2012b(&qc_emlrtRSI, emlrtRootTLSGlobal);
+        j_y = NULL;
+        m21 = mxCreateCharArray(2, iv112);
         for (i = 0; i < 26; i++) {
-          cv136[i] = cv137[i];
+          cv119[i] = cv120[i];
         }
 
-        emlrtInitCharArrayR2013a(&d_st, 26, m17, cv136);
-        emlrtAssign(&n_y, m17);
-        o_y = NULL;
-        m17 = mxCreateCharArray(2, iv114);
+        emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 26, m21, cv119);
+        emlrtAssign(&j_y, m21);
+        k_y = NULL;
+        m21 = mxCreateCharArray(2, iv113);
         for (i = 0; i < 12; i++) {
-          cv128[i] = cv129[i];
+          cv114[i] = cv115[i];
         }
 
-        emlrtInitCharArrayR2013a(&d_st, 12, m17, cv128);
-        emlrtAssign(&o_y, m17);
-        e_st.site = &um_emlrtRSI;
-        c_error(&e_st, message(&e_st, n_y, o_y, &g_emlrtMCI), &g_emlrtMCI);
+        emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 12, m21, cv114);
+        emlrtAssign(&k_y, m21);
+        c_error(message(j_y, k_y, &h_emlrtMCI), &h_emlrtMCI);
+        emlrtPopRtStackR2012b(&qc_emlrtRSI, emlrtRootTLSGlobal);
       }
+
+      emlrtPopRtStackR2012b(&gf_emlrtRSI, emlrtRootTLSGlobal);
       break;
 
      case UsrpDriverError:
-      d_st.site = &yl_emlrtRSI;
+      emlrtPushRtStackR2012b(&ef_emlrtRSI, emlrtRootTLSGlobal);
       if (!(deviceStatus == UsrpDriverError)) {
       } else {
-        p_y = NULL;
-        m17 = mxCreateCharArray(2, iv115);
+        emlrtPushRtStackR2012b(&qc_emlrtRSI, emlrtRootTLSGlobal);
+        l_y = NULL;
+        m21 = mxCreateCharArray(2, iv114);
         for (i = 0; i < 35; i++) {
-          cv126[i] = cv138[i];
+          cv112[i] = cv121[i];
         }
 
-        emlrtInitCharArrayR2013a(&d_st, 35, m17, cv126);
-        emlrtAssign(&p_y, m17);
-        u_size[0] = 1;
-        u_size[1] = errMsg_size[1];
-        loop_ub = errMsg_size[0] * errMsg_size[1];
-        for (i = 0; i < loop_ub; i++) {
-          u_data[i] = errMsg_data[i];
-        }
-
-        q_y = NULL;
-        m17 = mxCreateCharArray(2, u_size);
-        emlrtInitCharArrayR2013a(&d_st, u_size[1], m17, (char_T *)&u_data);
-        emlrtAssign(&q_y, m17);
-        e_st.site = &um_emlrtRSI;
-        c_error(&e_st, message(&e_st, p_y, q_y, &g_emlrtMCI), &g_emlrtMCI);
+        emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 35, m21, cv112);
+        emlrtAssign(&l_y, m21);
+        c_error(b_message(l_y, &h_emlrtMCI), &h_emlrtMCI);
+        emlrtPopRtStackR2012b(&qc_emlrtRSI, emlrtRootTLSGlobal);
       }
+
+      emlrtPopRtStackR2012b(&ef_emlrtRSI, emlrtRootTLSGlobal);
       break;
     }
 
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_obj->TunablePropsChanged = FALSE;
-    c_st.site = &hb_emlrtRSI;
-  }
-
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  b_obj = obj;
-  if (b_obj->TunablePropsChanged) {
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_obj->TunablePropsChanged = FALSE;
-    c_st.site = &hb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    c_st.site = &hb_emlrtRSI;
-    for (i = 0; i < 4; i++) {
-      b_obj->tunablePropertyChanged[i] = FALSE;
+    emlrtPopRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
+    if (deviceStatus == UsrpDriverSuccess) {
+      emlrtPushRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
+      emlrtPopRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
+    } else {
+      emlrtPushRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
+      emlrtPopRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
     }
 
-    d_st.site = &hb_emlrtRSI;
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    b_obj->TunablePropsChanged = FALSE;
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   }
 
-  st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   b_obj = obj;
-  anyInputSizeChanged = FALSE;
+  if (b_obj->TunablePropsChanged) {
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    b_obj->TunablePropsChanged = FALSE;
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    for (i = 0; i < 4; i++) {
+      for (i18 = 0; i18 < 4; i18++) {
+        b_value[i18] = b_obj->tunablePropertyChanged[i18];
+      }
+
+      b_value[i] = FALSE;
+      emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+      for (i18 = 0; i18 < 4; i18++) {
+        b_obj->tunablePropertyChanged[i18] = b_value[i18];
+      }
+
+      emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+    }
+
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  }
+
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  b_obj = obj;
   i = 0;
   exitg1 = FALSE;
   while ((exitg1 == FALSE) && (i < 8)) {
     if (b_obj->inputVarSize1[i] != uv0[i]) {
-      anyInputSizeChanged = TRUE;
-      b_st.site = &gb_emlrtRSI;
-      for (i = 0; i < 8; i++) {
-        b_obj->inputVarSize1[i] = value[i];
+      emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+      for (i18 = 0; i18 < 8; i18++) {
+        b_obj->inputVarSize1[i18] = value[i18];
       }
 
-      c_st.site = &hb_emlrtRSI;
+      emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
       exitg1 = TRUE;
     } else {
       i++;
     }
   }
 
-  if (anyInputSizeChanged) {
-    st.site = &gb_emlrtRSI;
-    st.site = &gb_emlrtRSI;
-  }
-
-  st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  SDRuTransmitter_stepImpl(SD, &st, obj, varargin_1);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  SDRuTransmitter_stepImpl(SD, obj, varargin_1);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
 }
 
-void k_SystemCore_step(testPHYTransmitStackData *SD, const emlrtStack *sp,
-  comm_SDRuReceiver *obj)
+boolean_T h_SystemCore_detectInputSizeCha(commcodegen_BPSKModulator_348 *obj)
+{
+  boolean_T anyInputSizeChanged;
+  int32_T k;
+  boolean_T exitg1;
+  static const int8_T iv102[8] = { 13, 1, 1, 1, 1, 1, 1, 1 };
+
+  commcodegen_BPSKModulator_348 *b_obj;
+  static const int8_T inputSize[8] = { 13, 1, 1, 1, 1, 1, 1, 1 };
+
+  anyInputSizeChanged = FALSE;
+  k = 0;
+  exitg1 = FALSE;
+  while ((exitg1 == FALSE) && (k < 8)) {
+    if (obj->inputVarSize1[k] != (uint32_T)iv102[k]) {
+      anyInputSizeChanged = TRUE;
+      emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+      b_obj = obj;
+      for (k = 0; k < 8; k++) {
+        b_obj->inputVarSize1[k] = (uint32_T)inputSize[k];
+      }
+
+      emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+      exitg1 = TRUE;
+    } else {
+      k++;
+    }
+  }
+
+  return anyInputSizeChanged;
+}
+
+void h_SystemCore_step(testPHYTransmitStackData *SD, comm_SDRuReceiver *obj)
 {
   const mxArray *y;
-  static const int32_T iv120[2] = { 1, 45 };
+  static const int32_T iv118[2] = { 1, 45 };
 
-  const mxArray *m22;
-  char_T cv147[45];
+  const mxArray *m25;
+  char_T cv128[45];
   int32_T i;
-  static const char_T cv148[45] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
+  static const char_T cv129[45] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
     's', 't', 'e', 'm', ':', 'm', 'e', 't', 'h', 'o', 'd', 'C', 'a', 'l', 'l',
     'e', 'd', 'W', 'h', 'e', 'n', 'R', 'e', 'l', 'e', 'a', 's', 'e', 'd', 'C',
     'o', 'd', 'e', 'g', 'e', 'n' };
 
   const mxArray *b_y;
-  static const int32_T iv121[2] = { 1, 4 };
+  static const int32_T iv119[2] = { 1, 4 };
 
-  char_T cv149[4];
-  static const char_T cv150[4] = { 's', 't', 'e', 'p' };
+  char_T cv130[4];
+  static const char_T cv131[4] = { 's', 't', 'e', 'p' };
 
   comm_SDRuReceiver *b_obj;
   const mxArray *c_y;
-  static const int32_T iv122[2] = { 1, 51 };
+  static const int32_T iv120[2] = { 1, 51 };
 
-  char_T cv151[51];
-  static const char_T cv152[51] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
+  char_T cv132[51];
+  static const char_T cv133[51] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
     's', 't', 'e', 'm', ':', 'm', 'e', 't', 'h', 'o', 'd', 'C', 'a', 'l', 'l',
     'e', 'd', 'W', 'h', 'e', 'n', 'L', 'o', 'c', 'k', 'e', 'd', 'R', 'e', 'l',
     'e', 'a', 's', 'e', 'd', 'C', 'o', 'd', 'e', 'g', 'e', 'n' };
 
   const mxArray *d_y;
-  static const int32_T iv123[2] = { 1, 5 };
+  static const int32_T iv121[2] = { 1, 5 };
 
-  char_T cv153[5];
-  static const char_T cv154[5] = { 's', 'e', 't', 'u', 'p' };
+  char_T cv134[5];
+  static const char_T cv135[5] = { 's', 'e', 't', 'u', 'p' };
 
   int32_T errMsg_size[2];
   char_T errMsg_data[1024];
   UsrpErrorCapiEnumT deviceStatus;
   const mxArray *e_y;
-  static const int32_T iv124[2] = { 1, 35 };
+  static const int32_T iv122[2] = { 1, 35 };
 
-  char_T cv155[35];
-  static const char_T cv156[35] = { 's', 'd', 'r', 'u', ':', 'r', 'e', 'p', 'o',
+  char_T cv136[35];
+  static const char_T cv137[35] = { 's', 'd', 'r', 'u', ':', 'r', 'e', 'p', 'o',
     'r', 't', 'S', 'D', 'R', 'u', 'S', 't', 'a', 't', 'u', 's', ':', 'N', 'o',
     't', 'C', 'o', 'm', 'p', 'a', 't', 'i', 'b', 'l', 'e' };
 
   const mxArray *f_y;
-  static const int32_T iv125[2] = { 1, 12 };
+  static const int32_T iv123[2] = { 1, 12 };
 
-  char_T cv157[12];
-  static const char_T cv158[12] = { '1', '9', '2', '.', '1', '6', '8', '.', '1',
+  char_T cv138[12];
+  static const char_T cv139[12] = { '1', '9', '2', '.', '1', '6', '8', '.', '1',
     '0', '.', '2' };
 
   const mxArray *g_y;
-  static const int32_T iv126[2] = { 1, 43 };
+  static const int32_T iv124[2] = { 1, 43 };
 
-  char_T cv159[43];
-  static const char_T cv160[43] = { 'r', 'e', 't', 'u', 'r', 'n', 'e', 'd', ' ',
+  char_T cv140[43];
+  static const char_T cv141[43] = { 'r', 'e', 't', 'u', 'r', 'n', 'e', 'd', ' ',
     'b', 'y', ' ', '\'', 'g', 'e', 't', 'S', 'D', 'R', 'u', 'D', 'r', 'i', 'v',
     'e', 'r', 'V', 'e', 'r', 's', 'i', 'o', 'n', '\'', ' ', 'f', 'u', 'n', 'c',
     't', 'i', 'o', 'n' };
 
   const mxArray *h_y;
-  static const int32_T iv127[2] = { 1, 35 };
+  static const int32_T iv125[2] = { 1, 35 };
 
-  static const char_T cv161[35] = { 's', 'd', 'r', 'u', ':', 'r', 'e', 'p', 'o',
+  static const char_T cv142[35] = { 's', 'd', 'r', 'u', ':', 'r', 'e', 'p', 'o',
     'r', 't', 'S', 'D', 'R', 'u', 'S', 't', 'a', 't', 'u', 's', ':', 'N', 'o',
     't', 'R', 'e', 's', 'p', 'o', 'n', 'd', 'i', 'n', 'g' };
 
   const mxArray *i_y;
-  static const int32_T iv128[2] = { 1, 12 };
+  static const int32_T iv126[2] = { 1, 12 };
 
   const mxArray *j_y;
-  static const int32_T iv129[2] = { 1, 28 };
+  static const int32_T iv127[2] = { 1, 26 };
 
-  char_T cv162[28];
-  static const char_T cv163[28] = { 's', 'd', 'r', 'u', ':', 'r', 'e', 'p', 'o',
-    'r', 't', 'S', 'D', 'R', 'u', 'S', 't', 'a', 't', 'u', 's', ':', 'R', 'x',
-    'B', 'u', 's', 'y' };
-
-  const mxArray *k_y;
-  static const int32_T iv130[2] = { 1, 12 };
-
-  const mxArray *l_y;
-  static const int32_T iv131[2] = { 1, 28 };
-
-  static const char_T cv164[28] = { 's', 'd', 'r', 'u', ':', 'r', 'e', 'p', 'o',
-    'r', 't', 'S', 'D', 'R', 'u', 'S', 't', 'a', 't', 'u', 's', ':', 'T', 'x',
-    'B', 'u', 's', 'y' };
-
-  const mxArray *m_y;
-  static const int32_T iv132[2] = { 1, 12 };
-
-  const mxArray *n_y;
-  static const int32_T iv133[2] = { 1, 26 };
-
-  char_T cv165[26];
-  static const char_T cv166[26] = { 's', 'd', 'r', 'u', ':', 'r', 'e', 'p', 'o',
+  char_T cv143[26];
+  static const char_T cv144[26] = { 's', 'd', 'r', 'u', ':', 'r', 'e', 'p', 'o',
     'r', 't', 'S', 'D', 'R', 'u', 'S', 't', 'a', 't', 'u', 's', ':', 'B', 'u',
     's', 'y' };
 
-  const mxArray *o_y;
-  static const int32_T iv134[2] = { 1, 12 };
+  const mxArray *k_y;
+  static const int32_T iv128[2] = { 1, 12 };
 
-  const mxArray *p_y;
-  static const int32_T iv135[2] = { 1, 35 };
+  const mxArray *l_y;
+  static const int32_T iv129[2] = { 1, 35 };
 
-  static const char_T cv167[35] = { 's', 'd', 'r', 'u', ':', 'r', 'e', 'p', 'o',
+  static const char_T cv145[35] = { 's', 'd', 'r', 'u', ':', 'r', 'e', 'p', 'o',
     'r', 't', 'S', 'D', 'R', 'u', 'S', 't', 'a', 't', 'u', 's', ':', 'U', 'n',
     'k', 'n', 'o', 'w', 'n', 'S', 't', 'a', 't', 'u', 's' };
 
-  int32_T u_size[2];
-  int32_T i17;
-  char_T u_data[1024];
-  const mxArray *q_y;
-  emlrtStack st;
-  emlrtStack b_st;
-  emlrtStack c_st;
-  emlrtStack d_st;
-  emlrtStack e_st;
-  st.prev = sp;
-  st.tls = sp->tls;
-  b_st.prev = &st;
-  b_st.tls = st.tls;
-  c_st.prev = &b_st;
-  c_st.tls = b_st.tls;
-  d_st.prev = &c_st;
-  d_st.tls = c_st.tls;
-  e_st.prev = &d_st;
-  e_st.tls = d_st.tls;
+  boolean_T value[4];
+  int32_T i22;
   if (!obj->isReleased) {
   } else {
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
     y = NULL;
-    m22 = mxCreateCharArray(2, iv120);
+    m25 = mxCreateCharArray(2, iv118);
     for (i = 0; i < 45; i++) {
-      cv147[i] = cv148[i];
+      cv128[i] = cv129[i];
     }
 
-    emlrtInitCharArrayR2013a(sp, 45, m22, cv147);
-    emlrtAssign(&y, m22);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 45, m25, cv128);
+    emlrtAssign(&y, m25);
     b_y = NULL;
-    m22 = mxCreateCharArray(2, iv121);
+    m25 = mxCreateCharArray(2, iv119);
     for (i = 0; i < 4; i++) {
-      cv149[i] = cv150[i];
+      cv130[i] = cv131[i];
     }
 
-    emlrtInitCharArrayR2013a(sp, 4, m22, cv149);
-    emlrtAssign(&b_y, m22);
-    st.site = &gb_emlrtRSI;
-    c_error(&st, message(&st, y, b_y, &emlrtMCI), &emlrtMCI);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 4, m25, cv130);
+    emlrtAssign(&b_y, m25);
+    c_error(message(y, b_y, &b_emlrtMCI), &b_emlrtMCI);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   }
 
   if (!obj->isInitialized) {
-    st.site = &gb_emlrtRSI;
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
     b_obj = obj;
     if (!b_obj->isInitialized) {
     } else {
+      emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
       c_y = NULL;
-      m22 = mxCreateCharArray(2, iv122);
+      m25 = mxCreateCharArray(2, iv120);
       for (i = 0; i < 51; i++) {
-        cv151[i] = cv152[i];
+        cv132[i] = cv133[i];
       }
 
-      emlrtInitCharArrayR2013a(&st, 51, m22, cv151);
-      emlrtAssign(&c_y, m22);
+      emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 51, m25, cv132);
+      emlrtAssign(&c_y, m25);
       d_y = NULL;
-      m22 = mxCreateCharArray(2, iv123);
+      m25 = mxCreateCharArray(2, iv121);
       for (i = 0; i < 5; i++) {
-        cv153[i] = cv154[i];
+        cv134[i] = cv135[i];
       }
 
-      emlrtInitCharArrayR2013a(&st, 5, m22, cv153);
-      emlrtAssign(&d_y, m22);
-      b_st.site = &gb_emlrtRSI;
-      c_error(&b_st, message(&b_st, c_y, d_y, &emlrtMCI), &emlrtMCI);
+      emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 5, m25, cv134);
+      emlrtAssign(&d_y, m25);
+      c_error(message(c_y, d_y, &b_emlrtMCI), &b_emlrtMCI);
+      emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
     }
 
-    b_st.site = &gb_emlrtRSI;
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
     b_obj->isInitialized = TRUE;
-    c_st.site = &hb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    d_st.site = &gb_emlrtRSI;
-    d_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    c_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    c_st.site = &vj_emlrtRSI;
-    SDRuReceiver_setupImplLocal(&c_st, b_obj, &deviceStatus, errMsg_data,
-      errMsg_size);
-    if (deviceStatus == UsrpDriverSuccess) {
-      c_st.site = &vj_emlrtRSI;
-      d_st.site = &hb_emlrtRSI;
-    } else {
-      c_st.site = &vj_emlrtRSI;
-      closeDataConnection(&c_st, b_obj->pDriverHandle);
-      c_st.site = &vj_emlrtRSI;
-      d_st.site = &hb_emlrtRSI;
-    }
-
-    c_st.site = &vj_emlrtRSI;
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
+    SDRuReceiver_setupImplLocal(b_obj, &deviceStatus, errMsg_data, errMsg_size);
+    emlrtPopRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
 
     /* reportSDRuStatus SDRu status reporter */
     /*    reportSDRuStatus(STATUS,MSG,IP,METHOD) reports the SDRu status based on */
@@ -2690,206 +2828,165 @@ void k_SystemCore_step(testPHYTransmitStackData *SD, const emlrtStack *sp,
     /*    can be Warning, Error , or None. */
     /*  */
     /*    USRP(R) is a trademark of National Instruments Corp. */
-    /*    Copyright 2012-2013 The MathWorks, Inc. */
+    /*    Copyright 2012 The MathWorks, Inc. */
     switch (deviceStatus) {
      case UsrpDriverNotCompatible:
-      d_st.site = &jm_emlrtRSI;
+      emlrtPushRtStackR2012b(&kf_emlrtRSI, emlrtRootTLSGlobal);
       if (!(deviceStatus == UsrpDriverNotCompatible)) {
       } else {
+        emlrtPushRtStackR2012b(&qc_emlrtRSI, emlrtRootTLSGlobal);
         e_y = NULL;
-        m22 = mxCreateCharArray(2, iv124);
+        m25 = mxCreateCharArray(2, iv122);
         for (i = 0; i < 35; i++) {
-          cv155[i] = cv156[i];
+          cv136[i] = cv137[i];
         }
 
-        emlrtInitCharArrayR2013a(&d_st, 35, m22, cv155);
-        emlrtAssign(&e_y, m22);
+        emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 35, m25, cv136);
+        emlrtAssign(&e_y, m25);
         f_y = NULL;
-        m22 = mxCreateCharArray(2, iv125);
+        m25 = mxCreateCharArray(2, iv123);
         for (i = 0; i < 12; i++) {
-          cv157[i] = cv158[i];
+          cv138[i] = cv139[i];
         }
 
-        emlrtInitCharArrayR2013a(&d_st, 12, m22, cv157);
-        emlrtAssign(&f_y, m22);
+        emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 12, m25, cv138);
+        emlrtAssign(&f_y, m25);
         g_y = NULL;
-        m22 = mxCreateCharArray(2, iv126);
+        m25 = mxCreateCharArray(2, iv124);
         for (i = 0; i < 43; i++) {
-          cv159[i] = cv160[i];
+          cv140[i] = cv141[i];
         }
 
-        emlrtInitCharArrayR2013a(&d_st, 43, m22, cv159);
-        emlrtAssign(&g_y, m22);
-        e_st.site = &um_emlrtRSI;
-        c_error(&e_st, c_message(&e_st, e_y, f_y, g_y, &g_emlrtMCI), &g_emlrtMCI);
+        emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 43, m25, cv140);
+        emlrtAssign(&g_y, m25);
+        c_error(c_message(e_y, f_y, g_y, &h_emlrtMCI), &h_emlrtMCI);
+        emlrtPopRtStackR2012b(&qc_emlrtRSI, emlrtRootTLSGlobal);
       }
+
+      emlrtPopRtStackR2012b(&kf_emlrtRSI, emlrtRootTLSGlobal);
       break;
 
      case UsrpDriverNotResponding:
-      d_st.site = &hm_emlrtRSI;
+      emlrtPushRtStackR2012b(&if_emlrtRSI, emlrtRootTLSGlobal);
       if (!(deviceStatus == UsrpDriverNotResponding)) {
       } else {
+        emlrtPushRtStackR2012b(&qc_emlrtRSI, emlrtRootTLSGlobal);
         h_y = NULL;
-        m22 = mxCreateCharArray(2, iv127);
+        m25 = mxCreateCharArray(2, iv125);
         for (i = 0; i < 35; i++) {
-          cv155[i] = cv161[i];
+          cv136[i] = cv142[i];
         }
 
-        emlrtInitCharArrayR2013a(&d_st, 35, m22, cv155);
-        emlrtAssign(&h_y, m22);
+        emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 35, m25, cv136);
+        emlrtAssign(&h_y, m25);
         i_y = NULL;
-        m22 = mxCreateCharArray(2, iv128);
+        m25 = mxCreateCharArray(2, iv126);
         for (i = 0; i < 12; i++) {
-          cv157[i] = cv158[i];
+          cv138[i] = cv139[i];
         }
 
-        emlrtInitCharArrayR2013a(&d_st, 12, m22, cv157);
-        emlrtAssign(&i_y, m22);
-        e_st.site = &um_emlrtRSI;
-        c_error(&e_st, message(&e_st, h_y, i_y, &g_emlrtMCI), &g_emlrtMCI);
+        emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 12, m25, cv138);
+        emlrtAssign(&i_y, m25);
+        c_error(message(h_y, i_y, &h_emlrtMCI), &h_emlrtMCI);
+        emlrtPopRtStackR2012b(&qc_emlrtRSI, emlrtRootTLSGlobal);
       }
-      break;
 
-     case UsrpDriverRxBusy:
-      d_st.site = &fm_emlrtRSI;
-      if (!(deviceStatus == UsrpDriverRxBusy)) {
-      } else {
-        j_y = NULL;
-        m22 = mxCreateCharArray(2, iv129);
-        for (i = 0; i < 28; i++) {
-          cv162[i] = cv163[i];
-        }
-
-        emlrtInitCharArrayR2013a(&d_st, 28, m22, cv162);
-        emlrtAssign(&j_y, m22);
-        k_y = NULL;
-        m22 = mxCreateCharArray(2, iv130);
-        for (i = 0; i < 12; i++) {
-          cv157[i] = cv158[i];
-        }
-
-        emlrtInitCharArrayR2013a(&d_st, 12, m22, cv157);
-        emlrtAssign(&k_y, m22);
-        e_st.site = &um_emlrtRSI;
-        c_error(&e_st, message(&e_st, j_y, k_y, &g_emlrtMCI), &g_emlrtMCI);
-      }
-      break;
-
-     case UsrpDriverTxBusy:
-      d_st.site = &dm_emlrtRSI;
-      if (!(deviceStatus == UsrpDriverTxBusy)) {
-      } else {
-        l_y = NULL;
-        m22 = mxCreateCharArray(2, iv131);
-        for (i = 0; i < 28; i++) {
-          cv162[i] = cv164[i];
-        }
-
-        emlrtInitCharArrayR2013a(&d_st, 28, m22, cv162);
-        emlrtAssign(&l_y, m22);
-        m_y = NULL;
-        m22 = mxCreateCharArray(2, iv132);
-        for (i = 0; i < 12; i++) {
-          cv157[i] = cv158[i];
-        }
-
-        emlrtInitCharArrayR2013a(&d_st, 12, m22, cv157);
-        emlrtAssign(&m_y, m22);
-        e_st.site = &um_emlrtRSI;
-        c_error(&e_st, message(&e_st, l_y, m_y, &g_emlrtMCI), &g_emlrtMCI);
-      }
+      emlrtPopRtStackR2012b(&if_emlrtRSI, emlrtRootTLSGlobal);
       break;
 
      case UsrpDriverBusy:
-      d_st.site = &bm_emlrtRSI;
+      emlrtPushRtStackR2012b(&gf_emlrtRSI, emlrtRootTLSGlobal);
       if (!(deviceStatus == UsrpDriverBusy)) {
       } else {
-        n_y = NULL;
-        m22 = mxCreateCharArray(2, iv133);
+        emlrtPushRtStackR2012b(&qc_emlrtRSI, emlrtRootTLSGlobal);
+        j_y = NULL;
+        m25 = mxCreateCharArray(2, iv127);
         for (i = 0; i < 26; i++) {
-          cv165[i] = cv166[i];
+          cv143[i] = cv144[i];
         }
 
-        emlrtInitCharArrayR2013a(&d_st, 26, m22, cv165);
-        emlrtAssign(&n_y, m22);
-        o_y = NULL;
-        m22 = mxCreateCharArray(2, iv134);
+        emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 26, m25, cv143);
+        emlrtAssign(&j_y, m25);
+        k_y = NULL;
+        m25 = mxCreateCharArray(2, iv128);
         for (i = 0; i < 12; i++) {
-          cv157[i] = cv158[i];
+          cv138[i] = cv139[i];
         }
 
-        emlrtInitCharArrayR2013a(&d_st, 12, m22, cv157);
-        emlrtAssign(&o_y, m22);
-        e_st.site = &um_emlrtRSI;
-        c_error(&e_st, message(&e_st, n_y, o_y, &g_emlrtMCI), &g_emlrtMCI);
+        emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 12, m25, cv138);
+        emlrtAssign(&k_y, m25);
+        c_error(message(j_y, k_y, &h_emlrtMCI), &h_emlrtMCI);
+        emlrtPopRtStackR2012b(&qc_emlrtRSI, emlrtRootTLSGlobal);
       }
+
+      emlrtPopRtStackR2012b(&gf_emlrtRSI, emlrtRootTLSGlobal);
       break;
 
      case UsrpDriverError:
-      d_st.site = &yl_emlrtRSI;
+      emlrtPushRtStackR2012b(&ef_emlrtRSI, emlrtRootTLSGlobal);
       if (!(deviceStatus == UsrpDriverError)) {
       } else {
-        p_y = NULL;
-        m22 = mxCreateCharArray(2, iv135);
+        emlrtPushRtStackR2012b(&qc_emlrtRSI, emlrtRootTLSGlobal);
+        l_y = NULL;
+        m25 = mxCreateCharArray(2, iv129);
         for (i = 0; i < 35; i++) {
-          cv155[i] = cv167[i];
+          cv136[i] = cv145[i];
         }
 
-        emlrtInitCharArrayR2013a(&d_st, 35, m22, cv155);
-        emlrtAssign(&p_y, m22);
-        u_size[0] = 1;
-        u_size[1] = errMsg_size[1];
-        i = errMsg_size[0] * errMsg_size[1];
-        for (i17 = 0; i17 < i; i17++) {
-          u_data[i17] = errMsg_data[i17];
-        }
-
-        q_y = NULL;
-        m22 = mxCreateCharArray(2, u_size);
-        emlrtInitCharArrayR2013a(&d_st, u_size[1], m22, (char_T *)&u_data);
-        emlrtAssign(&q_y, m22);
-        e_st.site = &um_emlrtRSI;
-        c_error(&e_st, message(&e_st, p_y, q_y, &g_emlrtMCI), &g_emlrtMCI);
+        emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 35, m25, cv136);
+        emlrtAssign(&l_y, m25);
+        c_error(b_message(l_y, &h_emlrtMCI), &h_emlrtMCI);
+        emlrtPopRtStackR2012b(&qc_emlrtRSI, emlrtRootTLSGlobal);
       }
+
+      emlrtPopRtStackR2012b(&ef_emlrtRSI, emlrtRootTLSGlobal);
       break;
     }
 
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_obj->TunablePropsChanged = FALSE;
-    c_st.site = &hb_emlrtRSI;
-  }
-
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  b_obj = obj;
-  if (b_obj->TunablePropsChanged) {
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_obj->TunablePropsChanged = FALSE;
-    c_st.site = &hb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    b_st.site = &gb_emlrtRSI;
-    c_st.site = &hb_emlrtRSI;
-    for (i17 = 0; i17 < 4; i17++) {
-      b_obj->tunablePropertyChanged[i17] = FALSE;
+    emlrtPopRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
+    if (deviceStatus == UsrpDriverSuccess) {
+      emlrtPushRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
+      emlrtPopRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
+    } else {
+      emlrtPushRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
+      emlrtPopRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
     }
 
-    d_st.site = &hb_emlrtRSI;
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    b_obj->TunablePropsChanged = FALSE;
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   }
 
-  st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  b_st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  st.site = &gb_emlrtRSI;
-  SDRuReceiver_stepImpl(SD, &st, obj);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  b_obj = obj;
+  if (b_obj->TunablePropsChanged) {
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    b_obj->TunablePropsChanged = FALSE;
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    for (i = 0; i < 4; i++) {
+      for (i22 = 0; i22 < 4; i22++) {
+        value[i22] = b_obj->tunablePropertyChanged[i22];
+      }
+
+      value[i] = FALSE;
+      emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+      for (i22 = 0; i22 < 4; i22++) {
+        b_obj->tunablePropertyChanged[i22] = value[i22];
+      }
+
+      emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+    }
+
+    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  }
+
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  SDRuReceiver_stepImpl(SD, obj);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
 }
 
 /* End of code generation (SystemCore.c) */

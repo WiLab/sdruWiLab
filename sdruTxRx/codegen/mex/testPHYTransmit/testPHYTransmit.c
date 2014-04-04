@@ -3,61 +3,50 @@
  *
  * Code generation for function 'testPHYTransmit'
  *
- * C source code generated on: Thu Feb 27 11:47:47 2014
+ * C source code generated on: Sat Mar 29 15:48:37 2014
  *
  */
 
 /* Include files */
 #include "rt_nonfinite.h"
 #include "testPHYTransmit.h"
+#include "PHYTransmit.h"
+#include "generateOFDMSignal_TX2.h"
+#include "SDRuTransmitter.h"
+#include "generateOFDMSignal.h"
 #include "initializeOFDMSyncMemory_sdr.h"
 #include "AGC.h"
-#include "CRCDetector.h"
-#include "PHYTransmit.h"
 #include "SDRuReceiver.h"
-#include "generateOFDMSignal.h"
-#include "SDRuTransmitter.h"
-#include "generateOFDMSignal_TX2.h"
+#include "CRCDetector.h"
+#include "testPHYTransmit_data.h"
 
 /* Variable Definitions */
-static emlrtRSInfo emlrtRSI = { 18, "testPHYTransmit",
-  "/Users/travis/Git/sdruWiLab/sdruTxRx/testPHYTransmit.m" };
+static emlrtRSInfo emlrtRSI = { 26, "testPHYTransmit",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdruTxRx/testPHYTransmit.m" };
 
 static emlrtRSInfo b_emlrtRSI = { 3, "testPHYTransmit",
-  "/Users/travis/Git/sdruWiLab/sdruTxRx/testPHYTransmit.m" };
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdruTxRx/testPHYTransmit.m" };
 
-static emlrtRSInfo c_emlrtRSI = { 14, "CreateTXRX",
-  "/Users/travis/Git/sdruWiLab/sdruTxRx/CreateTXRX.m" };
+static emlrtRSInfo c_emlrtRSI = { 18, "CreateTXRX",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdruTxRx/CreateTXRX.m" };
 
-static emlrtRSInfo d_emlrtRSI = { 18, "CreateTXRX",
-  "/Users/travis/Git/sdruWiLab/sdruTxRx/CreateTXRX.m" };
+static emlrtRSInfo d_emlrtRSI = { 43, "CreateTXRX",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdruTxRx/CreateTXRX.m" };
 
-static emlrtRSInfo e_emlrtRSI = { 40, "CreateTXRX",
-  "/Users/travis/Git/sdruWiLab/sdruTxRx/CreateTXRX.m" };
+static emlrtRSInfo e_emlrtRSI = { 46, "CreateTXRX",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdruTxRx/CreateTXRX.m" };
 
-static emlrtRSInfo f_emlrtRSI = { 43, "CreateTXRX",
-  "/Users/travis/Git/sdruWiLab/sdruTxRx/CreateTXRX.m" };
+static emlrtRSInfo f_emlrtRSI = { 11, "CreateTXRX",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdruTxRx/CreateTXRX.m" };
 
-static emlrtRSInfo g_emlrtRSI = { 46, "CreateTXRX",
-  "/Users/travis/Git/sdruWiLab/sdruTxRx/CreateTXRX.m" };
+static emlrtRSInfo g_emlrtRSI = { 25, "CreateTXRX",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdruTxRx/CreateTXRX.m" };
 
-static emlrtRSInfo h_emlrtRSI = { 57, "CreateTXRX",
-  "/Users/travis/Git/sdruWiLab/sdruTxRx/CreateTXRX.m" };
-
-static emlrtRSInfo i_emlrtRSI = { 58, "CreateTXRX",
-  "/Users/travis/Git/sdruWiLab/sdruTxRx/CreateTXRX.m" };
-
-static emlrtRSInfo j_emlrtRSI = { 11, "CreateTXRX",
-  "/Users/travis/Git/sdruWiLab/sdruTxRx/CreateTXRX.m" };
-
-static emlrtRSInfo k_emlrtRSI = { 25, "CreateTXRX",
-  "/Users/travis/Git/sdruWiLab/sdruTxRx/CreateTXRX.m" };
-
-static emlrtRSInfo l_emlrtRSI = { 54, "CreateTXRX",
-  "/Users/travis/Git/sdruWiLab/sdruTxRx/CreateTXRX.m" };
+static emlrtRSInfo h_emlrtRSI = { 54, "CreateTXRX",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdruTxRx/CreateTXRX.m" };
 
 /* Function Definitions */
-void testPHYTransmit(testPHYTransmitStackData *SD, const emlrtStack *sp)
+void testPHYTransmit(testPHYTransmitStackData *SD)
 {
   OFDMDemodulator *unusedU1;
   OFDMDemodulator_1 *unusedU0;
@@ -68,41 +57,36 @@ void testPHYTransmit(testPHYTransmitStackData *SD, const emlrtStack *sp)
   OFDMDemodulator_1 *ObjPreambleDemod;
   OFDMDemodulator_1 b_ObjPreambleDemod;
   OFDMDemodulator b_ObjDataDemod;
-  c_struct_T bn_emlrtRSI;
+  b_struct_T c_ObjPreambleDemod;
   comm_AGC ObjAGC;
   comm_SDRuReceiver ObjSDRuReceiver;
   commcodegen_CRCDetector ObjDetect;
-  emlrtStack st;
-  emlrtStack b_st;
-  st.prev = sp;
-  st.tls = sp->tls;
-  b_st.prev = &st;
-  b_st.tls = st.tls;
 
   /*            %Objects */
   /*          %Structs */
   /*   %Values/Vectors */
-  st.site = &b_emlrtRSI;
+  emlrtPushRtStackR2012b(&b_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  System parameters to adjust because of hardware limitation */
   /*  Frames to capture */
-  b_st.site = &j_emlrtRSI;
-  generateOFDMSignal_TX2(&b_st, &b_unusedU1, &b_unusedU0, &unusedU0, &unusedU1,
+  emlrtPushRtStackR2012b(&f_emlrtRSI, emlrtRootTLSGlobal);
+  generateOFDMSignal_TX2(&b_unusedU1, &b_unusedU0, &unusedU0, &unusedU1,
     SD->f3.unusedU2, &SD->f3.rx);
+  emlrtPopRtStackR2012b(&f_emlrtRSI, emlrtRootTLSGlobal);
 
+  /* just need for sizing */
   /*  Set desired frequeny */
-  b_st.site = &c_emlrtRSI;
-
   /*  Set frequency bin width */
   /*  Setup transmitter */
-  b_st.site = &d_emlrtRSI;
-  SDRuTransmitter_SDRuTransmitter(&b_st, &ObjSDRuTransmitter);
+  emlrtPushRtStackR2012b(&c_emlrtRSI, emlrtRootTLSGlobal);
+  SDRuTransmitter_SDRuTransmitter(&ObjSDRuTransmitter);
+  emlrtPopRtStackR2012b(&c_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  Setup Parameters */
-  b_st.site = &k_emlrtRSI;
-  generateOFDMSignal(&b_st, &b_ObjDataDemod, &b_ObjPreambleDemod,
-                     &ObjPreambleDemod, &ObjDataDemod, SD->f3.unusedU3,
-                     &SD->f3.b_rx);
+  emlrtPushRtStackR2012b(&g_emlrtRSI, emlrtRootTLSGlobal);
+  generateOFDMSignal(&b_ObjDataDemod, &b_ObjPreambleDemod, &ObjPreambleDemod,
+                     &ObjDataDemod, SD->f3.unusedU3, &SD->f3.b_rx);
+  emlrtPopRtStackR2012b(&g_emlrtRSI, emlrtRootTLSGlobal);
 
   /* _TX2('HelloShannon'); */
   /* ceil( rx.frameLength*4 ); %Size of Buffer of sliding window */
@@ -111,32 +95,37 @@ void testPHYTransmit(testPHYTransmitStackData *SD, const emlrtStack *sp)
   /*  Sync Algorithms */
   /* Number of frequency estimates to be averaged together for frequency corrections (Higher==More stability, Lower==More responsiveness) */
   /* Create memory structure to collect measurements for sync algorithms */
-  b_st.site = &e_emlrtRSI;
-  initializeOFDMSyncMemory_sdr(&bn_emlrtRSI);
+  initializeOFDMSyncMemory_sdr(&c_ObjPreambleDemod);
 
   /*  Gain control */
-  b_st.site = &f_emlrtRSI;
+  emlrtPushRtStackR2012b(&d_emlrtRSI, emlrtRootTLSGlobal);
   AGC_AGC(&ObjAGC);
+  emlrtPopRtStackR2012b(&d_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  Value must be constant, equal to rx.receiveBufferLength */
   /*  USRP */
-  b_st.site = &g_emlrtRSI;
-  SDRuReceiver_SDRuReceiver(&b_st, &ObjSDRuReceiver);
+  emlrtPushRtStackR2012b(&e_emlrtRSI, emlrtRootTLSGlobal);
+  SDRuReceiver_SDRuReceiver(&ObjSDRuReceiver);
+  emlrtPopRtStackR2012b(&e_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  CRC */
-  b_st.site = &l_emlrtRSI;
+  emlrtPushRtStackR2012b(&h_emlrtRSI, emlrtRootTLSGlobal);
   CRCDetector_CRCDetector(&ObjDetect);
+  emlrtPopRtStackR2012b(&h_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  Timeout info */
-  b_st.site = &h_emlrtRSI;
-  b_st.site = &h_emlrtRSI;
-  b_st.site = &i_emlrtRSI;
-  b_st.site = &i_emlrtRSI;
-
   /*  Soft decisions */
   /* 3 for CRC */
-  st.site = &emlrtRSI;
-  PHYTransmit(SD, &st, &ObjSDRuTransmitter, &ObjSDRuReceiver);
+  emlrtPopRtStackR2012b(&b_emlrtRSI, emlrtRootTLSGlobal);
+
+  /*  Adjust offset for node */
+  /* ObjSDRuTransmitter.CenterFrequency = tx.CenterFrequency + offset; */
+  while (1) {
+    emlrtPushRtStackR2012b(&emlrtRSI, emlrtRootTLSGlobal);
+    PHYTransmit(SD, &ObjSDRuTransmitter, &ObjSDRuReceiver);
+    emlrtPopRtStackR2012b(&emlrtRSI, emlrtRootTLSGlobal);
+    emlrtBreakCheckFastR2012b(emlrtBreakCheckR2012bFlagVar, emlrtRootTLSGlobal);
+  }
 }
 
 /* End of code generation (testPHYTransmit.c) */

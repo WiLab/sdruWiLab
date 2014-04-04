@@ -3,7 +3,7 @@
  *
  * Code generation for function 'OFDMletters2bits'
  *
- * C source code generated on: Thu Mar  6 18:47:05 2014
+ * C source code generated on: Thu Apr  3 19:51:42 2014
  *
  */
 
@@ -23,7 +23,6 @@
 #include "testMACReceiver_types.h"
 
 /* Function Declarations */
-extern void OFDMletters2bits(const emlrtStack *sp, const char_T str[80], real_T f[560]);
-extern void b_OFDMletters2bits(const emlrtStack *sp, real_T f[560]);
+extern void OFDMletters2bits(const char_T str[80], real_T f[560]);
 #endif
 /* End of code generation (OFDMletters2bits.h) */

@@ -3,7 +3,7 @@
  *
  * Code generation for function 'OFDMDemodulator'
  *
- * C source code generated on: Thu Feb 27 11:53:20 2014
+ * C source code generated on: Thu Apr  3 19:36:37 2014
  *
  */
 
@@ -23,7 +23,6 @@
 #include "testPHYReceive_types.h"
 
 /* Function Declarations */
-extern void OFDMDemodulator_stepImpl(const emlrtStack *sp, const OFDMDemodulator_1 *obj, const creal_T x[64], emxArray_creal_T *varargout_1);
-extern void b_OFDMDemodulator_stepImpl(testPHYReceiveStackData *SD, const emlrtStack *sp, const OFDMDemodulator_1 *obj, const creal_T x[960], emxArray_creal_T *varargout_1, creal_T varargout_2[48]);
+extern void OFDMDemodulator_setupImpl(OFDMDemodulator *obj);
 #endif
 /* End of code generation (OFDMDemodulator.h) */

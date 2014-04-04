@@ -3,7 +3,7 @@
  *
  * Code generation for function 'locateOFDMFrame_sdr'
  *
- * C source code generated on: Thu Mar  6 18:47:06 2014
+ * C source code generated on: Thu Apr  3 19:51:42 2014
  *
  */
 
@@ -23,6 +23,6 @@
 #include "testMACReceiver_types.h"
 
 /* Function Declarations */
-extern void locateShortpreamble(const emlrtStack *sp, const real_T M_data[1224], real_T *preambleEstimatedLocation, real_T *numPeaks);
+extern void locateShortpreamble(const real_T M_data[1224], real_T *preambleEstimatedLocation, real_T *numPeaks);
 #endif
 /* End of code generation (locateOFDMFrame_sdr.h) */

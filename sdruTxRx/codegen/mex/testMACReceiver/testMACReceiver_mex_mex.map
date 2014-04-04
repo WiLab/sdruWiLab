@@ -1,6 +1,10 @@
-_mexFunction
-_emlrtMexFcnProperties
-_testMACReceiver
-_testMACReceiver_initialize
-_testMACReceiver_terminate
-_testMACReceiver_atexit
+MEX {
+	global:
+		mexFunction;
+		emlrtMexFcnProperties;
+		testMACReceiver;
+		testMACReceiver_initialize;
+		testMACReceiver_terminate;
+	local:
+		*;
+};

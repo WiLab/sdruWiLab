@@ -3,7 +3,7 @@
  *
  * Code generation for function 'testPHYTransmit'
  *
- * C source code generated on: Thu Feb 27 11:47:47 2014
+ * C source code generated on: Sat Mar 29 15:48:37 2014
  *
  */
 
@@ -23,6 +23,6 @@
 #include "testPHYTransmit_types.h"
 
 /* Function Declarations */
-extern void testPHYTransmit(testPHYTransmitStackData *SD, const emlrtStack *sp);
+extern void testPHYTransmit(testPHYTransmitStackData *SD);
 #endif
 /* End of code generation (testPHYTransmit.h) */

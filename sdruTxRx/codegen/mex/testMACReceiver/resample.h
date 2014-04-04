@@ -3,7 +3,7 @@
  *
  * Code generation for function 'resample'
  *
- * C source code generated on: Thu Mar  6 18:47:07 2014
+ * C source code generated on: Thu Apr  3 19:51:42 2014
  *
  */
 
@@ -23,6 +23,6 @@
 #include "testMACReceiver_types.h"
 
 /* Function Declarations */
-extern void resample(testMACReceiverStackData *SD, const emlrtStack *sp, const creal_T x[48], creal_T yout[576]);
+extern void resample(testMACReceiverStackData *SD, const creal_T x[48], creal_T yout[576]);
 #endif
 /* End of code generation (resample.h) */

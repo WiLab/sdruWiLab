@@ -3,7 +3,7 @@
  *
  * Code generation for function 'OFDMModulator'
  *
- * C source code generated on: Thu Feb 27 11:47:47 2014
+ * C source code generated on: Sat Mar 29 15:48:37 2014
  *
  */
 
@@ -23,8 +23,8 @@
 #include "testPHYTransmit_types.h"
 
 /* Function Declarations */
-extern OFDMModulator *OFDMModulator_OFDMModulator(OFDMModulator *object);
-extern void OFDMModulator_stepImpl(const emlrtStack *sp, const OFDMModulator *obj, const creal_T dataIn[53], creal_T yout[64]);
-extern OFDMModulator_1 *b_OFDMModulator_OFDMModulator(const emlrtStack *sp, OFDMModulator_1 *object);
+extern OFDMModulator_4 *OFDMModulator_OFDMModulator(OFDMModulator_4 *object);
+extern void OFDMModulator_setupImpl(OFDMModulator_196 *obj);
+extern void OFDMModulator_stepImpl(const OFDMModulator_4 *obj, const creal_T dataIn[53], creal_T yout[64]);
 #endif
 /* End of code generation (OFDMModulator.h) */

@@ -3,7 +3,7 @@
  *
  * Code generation for function 'error'
  *
- * C source code generated on: Thu Feb 27 11:53:20 2014
+ * C source code generated on: Thu Apr  3 19:36:38 2014
  *
  */
 
@@ -23,6 +23,6 @@
 #include "testPHYReceive_types.h"
 
 /* Function Declarations */
-extern void error(const emlrtStack *sp, const char_T varargin_2_data[1024], const int32_T varargin_2_size[2]);
+extern void error(const char_T varargin_2_data[1024], const int32_T varargin_2_size[2]);
 #endif
 /* End of code generation (error.h) */

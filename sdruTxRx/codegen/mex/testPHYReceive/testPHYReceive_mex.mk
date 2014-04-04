@@ -1,6 +1,6 @@
-START_DIR = /Users/travis/Git/sdruWiLab/sdruTxRx
+START_DIR = /home/sdruser/git/traviscollins/sdruWiLab/sdruTxRx
 
-MATLAB_ROOT = /Applications/MATLAB_R2013b.app
+MATLAB_ROOT = /opt/MATLAB/R2013a
 MAKEFILE = testPHYReceive_mex.mk
 
 include testPHYReceive_mex.mki
@@ -15,22 +15,15 @@ SRC_FILES =  \
 	rdivide.c \
 	generateOFDMSignal_TX2.c \
 	power.c \
-	floor.c \
 	OFDMModulator.c \
 	SystemProp.c \
 	SystemCore.c \
-	eml_error.c \
 	sum.c \
 	colon.c \
 	abs.c \
-	find.c \
-	eml_int_forloop_overflow_check.c \
 	OFDMletters2bits.c \
 	CRCGenerator.c \
-	Nondirect1.c \
 	setup.c \
-	BPSKModulator.c \
-	step.c \
 	OFDMDemodulator.c \
 	SDRuTransmitter.c \
 	checkIPAddressFormat.c \
@@ -40,39 +33,34 @@ SRC_FILES =  \
 	SDRuReceiver.c \
 	CRCDetector.c \
 	PHYReceive.c \
-	mapiPrivate.c \
-	closeDataConnection.c \
 	receiveData.c \
 	error.c \
 	mean.c \
 	locateOFDMFrame_sdr.c \
 	xcorr.c \
-	eml_setop.c \
 	coarseOFDMFreqEst_sdr.c \
-	angle.c \
 	exp.c \
 	equalizeOFDM.c \
 	resample.c \
-	upfirdn.c \
 	FIRRateConverter.c \
 	OFDMbits2letters.c \
+	fprintf.c \
 	testPHYReceive_api.c \
 	testPHYReceive_emxutil.c \
-	testPHYReceive_mex.c \
-	_coder_testPHYReceive_info.c
+	testPHYReceive_mex.c
 
 MEX_FILE_NAME_WO_EXT = testPHYReceive_mex
-MEX_FILE_NAME = $(MEX_FILE_NAME_WO_EXT).mexmaci64
+MEX_FILE_NAME = $(MEX_FILE_NAME_WO_EXT).mexa64
 TARGET = $(MEX_FILE_NAME)
 
-CustomCode_LIBS = "/Users/travis/Documents/sdru/bin/maci64/libmwusrp_uhd_capi.dylib" 
+CustomCode_LIBS = "/home/sdruser/git/traviscollins/sdruWiLab/sdru/bin/glnxa64/libmwusrp_uhd_capi.so" 
 SYS_LIBS = $(CustomCode_LIBS) 
 
 
 #
 #====================================================================
 # gmake makefile fragment for building MEX functions using Unix
-# Copyright 2007-2013 The MathWorks, Inc.
+# Copyright 2007-2012 The MathWorks, Inc.
 #====================================================================
 #
 OBJEXT = o
@@ -86,19 +74,19 @@ target: $(TARGET)
 
 ML_INCLUDES = -I "$(MATLAB_ROOT)/simulink/include"
 ML_INCLUDES+= -I "$(MATLAB_ROOT)/toolbox/shared/simtargets"
+ML_INCLUDES+= -I "$(MATLAB_ROOT)/rtw/ext_mode/common"
+ML_INCLUDES+= -I "$(MATLAB_ROOT)/rtw/c/src/ext_mode/common"
 SYS_INCLUDE = $(ML_INCLUDES)
 
 # Additional includes
 
 SYS_INCLUDE += -I "$(START_DIR)"
 SYS_INCLUDE += -I "$(START_DIR)/codegen/mex/testPHYReceive"
-SYS_INCLUDE += -I "$(START_DIR)/codegen/mex/testPHYReceive/interface"
+SYS_INCLUDE += -I "/home/sdruser/git/traviscollins/sdruWiLab/sdru/include"
 SYS_INCLUDE += -I "$(MATLAB_ROOT)/extern/include"
 SYS_INCLUDE += -I "$(MATLAB_ROOT)/src/include"
-SYS_INCLUDE += -I "/Users/travis/Documents/sdru/include"
-SYS_INCLUDE += -I "."
 
-EML_LIBS = -lemlrt -lcovrt -lut -lmwmathutil -lmwblas 
+EML_LIBS = -lemlrt -lut -lmwmathutil -lmwblas
 SYS_LIBS += $(CLIBS) $(EML_LIBS)
 
 
@@ -157,9 +145,6 @@ CPPFLAGS =   $(CXX_FLAGS) $(USER_INCLUDE) $(SYS_INCLUDE)
 %.$(OBJEXT) : $(START_DIR)/codegen/mex/testPHYReceive/%.c
 	$(CC) $(CCFLAGS) "$<"
 
-%.$(OBJEXT) : interface/%.c
-	$(CC) $(CCFLAGS) "$<"
-
 
 
 %.$(OBJEXT) : $(START_DIR)/%.cu
@@ -168,18 +153,12 @@ CPPFLAGS =   $(CXX_FLAGS) $(USER_INCLUDE) $(SYS_INCLUDE)
 %.$(OBJEXT) : $(START_DIR)/codegen/mex/testPHYReceive/%.cu
 	$(CC) $(CCFLAGS) "$<"
 
-%.$(OBJEXT) : interface/%.cu
-	$(CC) $(CCFLAGS) "$<"
-
 
 
 %.$(OBJEXT) : $(START_DIR)/%.cpp
 	$(CXX) $(CPPFLAGS) "$<"
 
 %.$(OBJEXT) : $(START_DIR)/codegen/mex/testPHYReceive/%.cpp
-	$(CXX) $(CPPFLAGS) "$<"
-
-%.$(OBJEXT) : interface/%.cpp
 	$(CXX) $(CPPFLAGS) "$<"
 
 

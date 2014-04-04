@@ -3,7 +3,7 @@
  *
  * Code generation for function 'testPHYReceive_terminate'
  *
- * C source code generated on: Thu Feb 27 11:53:20 2014
+ * C source code generated on: Thu Apr  3 19:36:37 2014
  *
  */
 
@@ -11,20 +11,20 @@
 #include "rt_nonfinite.h"
 #include "testPHYReceive.h"
 #include "testPHYReceive_terminate.h"
+#include <stdio.h>
 
 /* Function Definitions */
-void testPHYReceive_atexit(emlrtStack *sp)
+void testPHYReceive_atexit(void)
 {
   emlrtCreateRootTLS(&emlrtRootTLSGlobal, &emlrtContextGlobal, NULL, 1);
-  sp->tls = emlrtRootTLSGlobal;
-  emlrtEnterRtStackR2012b(sp);
-  emlrtLeaveRtStackR2012b(sp);
+  emlrtEnterRtStackR2012b(emlrtRootTLSGlobal);
+  emlrtLeaveRtStackR2012b(emlrtRootTLSGlobal);
   emlrtDestroyRootTLS(&emlrtRootTLSGlobal);
 }
 
-void testPHYReceive_terminate(emlrtStack *sp)
+void testPHYReceive_terminate(void)
 {
-  emlrtLeaveRtStackR2012b(sp);
+  emlrtLeaveRtStackR2012b(emlrtRootTLSGlobal);
   emlrtDestroyRootTLS(&emlrtRootTLSGlobal);
 }
 

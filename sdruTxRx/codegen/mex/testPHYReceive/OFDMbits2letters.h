@@ -3,7 +3,7 @@
  *
  * Code generation for function 'OFDMbits2letters'
  *
- * C source code generated on: Thu Feb 27 11:53:20 2014
+ * C source code generated on: Thu Apr  3 19:36:38 2014
  *
  */
 
@@ -23,6 +23,6 @@
 #include "testPHYReceive_types.h"
 
 /* Function Declarations */
-extern void OFDMbits2letters(const emlrtStack *sp, const boolean_T bits_data[560], const int32_T bits_size[2], real_T Letters_data[80], int32_T Letters_size[1]);
+extern void OFDMbits2letters(const boolean_T bits_data[560], const int32_T bits_size[2], real_T Letters_data[80], int32_T Letters_size[1]);
 #endif
 /* End of code generation (OFDMbits2letters.h) */

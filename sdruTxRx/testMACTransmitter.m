@@ -18,6 +18,9 @@ function testMACTransmitter(offsets, nodeNum)
 tx.offsetTable = offsets;
 tx.nodeNum = nodeNum;
 
+
+ObjSDRuTransmitter.CenterFrequency = ObjSDRuTransmitter.CenterFrequency + 1e6;
+
 % Previous Message string holder
 coder.varsize('previousMessage', [1, 80], [0 1]);
 previousMessage = '';

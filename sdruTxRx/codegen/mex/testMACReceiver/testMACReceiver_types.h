@@ -3,7 +3,7 @@
  *
  * Code generation for function 'testMACReceiver'
  *
- * C source code generated on: Thu Mar  6 18:47:03 2014
+ * C source code generated on: Thu Apr  3 19:51:42 2014
  *
  */
 
@@ -30,12 +30,23 @@ struct emxArray_real_T
 #define typedef_emxArray_real_T
 typedef struct emxArray_real_T emxArray_real_T;
 #endif /*typedef_emxArray_real_T*/
+#ifndef typedef_OFDMDemodulator
+#define typedef_OFDMDemodulator
+typedef struct
+{
+    boolean_T isInitialized;
+    boolean_T isReleased;
+    boolean_T TunablePropsChanged;
+    emxArray_real_T *pDataLinearIndices;
+} OFDMDemodulator;
+#endif /*typedef_OFDMDemodulator*/
 #ifndef typedef_OFDMDemodulator_1
 #define typedef_OFDMDemodulator_1
 typedef struct
 {
     boolean_T isInitialized;
     boolean_T isReleased;
+    boolean_T TunablePropsChanged;
     emxArray_real_T *pDataLinearIndices;
 } OFDMDemodulator_1;
 #endif /*typedef_OFDMDemodulator_1*/
@@ -55,26 +66,42 @@ typedef struct
     boolean_T isReleased;
 } OFDMDemodulator_3;
 #endif /*typedef_OFDMDemodulator_3*/
-#ifndef typedef_OFDMModulator
-#define typedef_OFDMModulator
+#ifndef typedef_OFDMModulator_196
+#define typedef_OFDMModulator_196
 typedef struct
 {
     boolean_T isInitialized;
     boolean_T isReleased;
-    emxArray_real_T *pDataLinearIndices;
-    real_T pFullGrid[64];
-} OFDMModulator;
-#endif /*typedef_OFDMModulator*/
-#ifndef typedef_OFDMModulator_1
-#define typedef_OFDMModulator_1
-typedef struct
-{
-    boolean_T isInitialized;
-    boolean_T isReleased;
+    boolean_T TunablePropsChanged;
     emxArray_real_T *pDataLinearIndices;
     real_T pFullGrid[768];
-} OFDMModulator_1;
-#endif /*typedef_OFDMModulator_1*/
+} OFDMModulator_196;
+#endif /*typedef_OFDMModulator_196*/
+#ifndef typedef_OFDMModulator_4
+#define typedef_OFDMModulator_4
+typedef struct
+{
+    boolean_T isInitialized;
+    boolean_T isReleased;
+    boolean_T TunablePropsChanged;
+    emxArray_real_T *pDataLinearIndices;
+    real_T pFullGrid[64];
+} OFDMModulator_4;
+#endif /*typedef_OFDMModulator_4*/
+#ifndef typedef_ResolvedFunctionInfo
+#define typedef_ResolvedFunctionInfo
+typedef struct
+{
+    const char * context;
+    const char * name;
+    const char * dominantType;
+    const char * resolved;
+    uint32_T fileTimeLo;
+    uint32_T fileTimeHi;
+    uint32_T mFileTimeLo;
+    uint32_T mFileTimeHi;
+} ResolvedFunctionInfo;
+#endif /*typedef_ResolvedFunctionInfo*/
 #ifndef enum_UsrpReportMethodEnumT
 #define enum_UsrpReportMethodEnumT
 enum UsrpReportMethodEnumT
@@ -88,136 +115,18 @@ enum UsrpReportMethodEnumT
 #define typedef_UsrpReportMethodEnumT
 typedef enum UsrpReportMethodEnumT UsrpReportMethodEnumT;
 #endif /*typedef_UsrpReportMethodEnumT*/
-#ifndef typedef_b_struct_T
-#define typedef_b_struct_T
-typedef struct
-{
-    real_T Polynomial[4];
-    real_T InitialConditions;
-    boolean_T DirectMethod;
-    boolean_T ReflectInputBytes;
-    boolean_T ReflectChecksums;
-    real_T FinalXOR;
-    real_T ChecksumsPerFrame;
-} b_struct_T;
-#endif /*typedef_b_struct_T*/
-#ifndef struct_emxArray_creal_T_48x12
-#define struct_emxArray_creal_T_48x12
-struct emxArray_creal_T_48x12
-{
-    creal_T data[576];
-    int32_T size[2];
-};
-#endif /*struct_emxArray_creal_T_48x12*/
-#ifndef typedef_emxArray_creal_T_48x12
-#define typedef_emxArray_creal_T_48x12
-typedef struct emxArray_creal_T_48x12 emxArray_creal_T_48x12;
-#endif /*typedef_emxArray_creal_T_48x12*/
-#ifndef struct_emxArray_creal_T_53
-#define struct_emxArray_creal_T_53
-struct emxArray_creal_T_53
-{
-    creal_T data[53];
-    int32_T size[1];
-};
-#endif /*struct_emxArray_creal_T_53*/
-#ifndef typedef_emxArray_creal_T_53
-#define typedef_emxArray_creal_T_53
-typedef struct emxArray_creal_T_53 emxArray_creal_T_53;
-#endif /*typedef_emxArray_creal_T_53*/
-#ifndef struct_emxArray_real_T_80
-#define struct_emxArray_real_T_80
-struct emxArray_real_T_80
-{
-    real_T data[80];
-    int32_T size[1];
-};
-#endif /*struct_emxArray_real_T_80*/
-#ifndef typedef_emxArray_real_T_80
-#define typedef_emxArray_real_T_80
-typedef struct emxArray_real_T_80 emxArray_real_T_80;
-#endif /*typedef_emxArray_real_T_80*/
-#ifndef struct_sppt1GAZrXJQNGwlMv8eWNC
-#define struct_sppt1GAZrXJQNGwlMv8eWNC
-struct sppt1GAZrXJQNGwlMv8eWNC
-{
-    real_T phi;
-    real_T delay;
-    real_T numPeaks;
-    real_T frequency[15];
-    real_T phase;
-    real_T frequencyMA;
-    real_T numProcessed;
-    real_T inputBufferLength;
-    real_T numFreqToAverage;
-    emxArray_creal_T_48x12 pilotEqGains;
-    emxArray_creal_T_53 preambleEqGains;
-    emxArray_real_T_80 message;
-    boolean_T printReceivedData;
-};
-#endif /*struct_sppt1GAZrXJQNGwlMv8eWNC*/
-#ifndef typedef_c_struct_T
-#define typedef_c_struct_T
-typedef struct sppt1GAZrXJQNGwlMv8eWNC c_struct_T;
-#endif /*typedef_c_struct_T*/
 #ifndef typedef_comm_AGC
 #define typedef_comm_AGC
 typedef struct
 {
     boolean_T isInitialized;
     boolean_T isReleased;
+    boolean_T TunablePropsChanged;
     uint32_T inputVarSize1[8];
+    boolean_T pDetectorIsRectifier;
     real_T Gain;
 } comm_AGC;
 #endif /*typedef_comm_AGC*/
-#ifndef struct_comm_PNSequence_10
-#define struct_comm_PNSequence_10
-struct comm_PNSequence_10
-{
-    boolean_T S0_isInitialized;
-    boolean_T S1_isReleased;
-    uint8_T W0_shiftReg[7];
-    uint8_T P0_Polynomial[8];
-    uint8_T P1_IniState[7];
-    uint8_T P2_Mask[7];
-};
-#endif /*struct_comm_PNSequence_10*/
-#ifndef typedef_comm_PNSequence_10
-#define typedef_comm_PNSequence_10
-typedef struct comm_PNSequence_10 comm_PNSequence_10;
-#endif /*typedef_comm_PNSequence_10*/
-#ifndef struct_comm_PNSequence_2
-#define struct_comm_PNSequence_2
-struct comm_PNSequence_2
-{
-    boolean_T S0_isInitialized;
-    boolean_T S1_isReleased;
-    uint8_T W0_shiftReg[7];
-    uint8_T P0_Polynomial[8];
-    uint8_T P1_IniState[7];
-    uint8_T P2_Mask[7];
-};
-#endif /*struct_comm_PNSequence_2*/
-#ifndef typedef_comm_PNSequence_2
-#define typedef_comm_PNSequence_2
-typedef struct comm_PNSequence_2 comm_PNSequence_2;
-#endif /*typedef_comm_PNSequence_2*/
-#ifndef struct_comm_PNSequence_5
-#define struct_comm_PNSequence_5
-struct comm_PNSequence_5
-{
-    boolean_T S0_isInitialized;
-    boolean_T S1_isReleased;
-    uint8_T W0_shiftReg[7];
-    uint8_T P0_Polynomial[8];
-    uint8_T P1_IniState[7];
-    uint8_T P2_Mask[7];
-};
-#endif /*struct_comm_PNSequence_5*/
-#ifndef typedef_comm_PNSequence_5
-#define typedef_comm_PNSequence_5
-typedef struct comm_PNSequence_5 comm_PNSequence_5;
-#endif /*typedef_comm_PNSequence_5*/
 #ifndef typedef_comm_SDRuReceiver
 #define typedef_comm_SDRuReceiver
 typedef struct
@@ -272,6 +181,7 @@ typedef struct
 {
     boolean_T isInitialized;
     boolean_T isReleased;
+    boolean_T TunablePropsChanged;
     uint32_T inputVarSize1[8];
     boolean_T inputDirectFeedthrough1;
     comm_BPSKModulator_1 cSFunObject;
@@ -290,17 +200,18 @@ struct comm_BPSKModulator_4
 #define typedef_comm_BPSKModulator_4
 typedef struct comm_BPSKModulator_4 comm_BPSKModulator_4;
 #endif /*typedef_comm_BPSKModulator_4*/
-#ifndef typedef_commcodegen_BPSKModulator_1
-#define typedef_commcodegen_BPSKModulator_1
+#ifndef typedef_commcodegen_BPSKModulator_191
+#define typedef_commcodegen_BPSKModulator_191
 typedef struct
 {
     boolean_T isInitialized;
     boolean_T isReleased;
+    boolean_T TunablePropsChanged;
     uint32_T inputVarSize1[8];
     boolean_T inputDirectFeedthrough1;
     comm_BPSKModulator_4 cSFunObject;
-} commcodegen_BPSKModulator_1;
-#endif /*typedef_commcodegen_BPSKModulator_1*/
+} commcodegen_BPSKModulator_191;
+#endif /*typedef_commcodegen_BPSKModulator_191*/
 #ifndef struct_comm_BPSKModulator_9
 #define struct_comm_BPSKModulator_9
 struct comm_BPSKModulator_9
@@ -314,17 +225,18 @@ struct comm_BPSKModulator_9
 #define typedef_comm_BPSKModulator_9
 typedef struct comm_BPSKModulator_9 comm_BPSKModulator_9;
 #endif /*typedef_comm_BPSKModulator_9*/
-#ifndef typedef_commcodegen_BPSKModulator_2
-#define typedef_commcodegen_BPSKModulator_2
+#ifndef typedef_commcodegen_BPSKModulator_348
+#define typedef_commcodegen_BPSKModulator_348
 typedef struct
 {
     boolean_T isInitialized;
     boolean_T isReleased;
+    boolean_T TunablePropsChanged;
     uint32_T inputVarSize1[8];
     boolean_T inputDirectFeedthrough1;
     comm_BPSKModulator_9 cSFunObject;
-} commcodegen_BPSKModulator_2;
-#endif /*typedef_commcodegen_BPSKModulator_2*/
+} commcodegen_BPSKModulator_348;
+#endif /*typedef_commcodegen_BPSKModulator_348*/
 #ifndef struct_comm_CRCDetector_6
 #define struct_comm_CRCDetector_6
 struct comm_CRCDetector_6
@@ -344,59 +256,12 @@ typedef struct
 {
     boolean_T isInitialized;
     boolean_T isReleased;
+    boolean_T TunablePropsChanged;
     uint32_T inputVarSize1[8];
     boolean_T inputDirectFeedthrough1;
     comm_CRCDetector_6 cSFunObject;
 } commcodegen_CRCDetector;
 #endif /*typedef_commcodegen_CRCDetector*/
-#ifndef struct_comm_CRCGenerator_0
-#define struct_comm_CRCGenerator_0
-struct comm_CRCGenerator_0
-{
-    boolean_T S0_isInitialized;
-    boolean_T S1_isReleased;
-    uint32_T P0_CRCTable[256];
-};
-#endif /*struct_comm_CRCGenerator_0*/
-#ifndef typedef_comm_CRCGenerator_0
-#define typedef_comm_CRCGenerator_0
-typedef struct comm_CRCGenerator_0 comm_CRCGenerator_0;
-#endif /*typedef_comm_CRCGenerator_0*/
-#ifndef typedef_commcodegen_CRCGenerator
-#define typedef_commcodegen_CRCGenerator
-typedef struct
-{
-    boolean_T isInitialized;
-    boolean_T isReleased;
-    uint32_T inputVarSize1[8];
-    boolean_T inputDirectFeedthrough1;
-    comm_CRCGenerator_0 cSFunObject;
-} commcodegen_CRCGenerator;
-#endif /*typedef_commcodegen_CRCGenerator*/
-#ifndef struct_comm_CRCGenerator_8
-#define struct_comm_CRCGenerator_8
-struct comm_CRCGenerator_8
-{
-    boolean_T S0_isInitialized;
-    boolean_T S1_isReleased;
-    uint32_T P0_CRCTable[256];
-};
-#endif /*struct_comm_CRCGenerator_8*/
-#ifndef typedef_comm_CRCGenerator_8
-#define typedef_comm_CRCGenerator_8
-typedef struct comm_CRCGenerator_8 comm_CRCGenerator_8;
-#endif /*typedef_comm_CRCGenerator_8*/
-#ifndef typedef_commcodegen_CRCGenerator_12
-#define typedef_commcodegen_CRCGenerator_12
-typedef struct
-{
-    boolean_T isInitialized;
-    boolean_T isReleased;
-    uint32_T inputVarSize1[8];
-    boolean_T inputDirectFeedthrough1;
-    comm_CRCGenerator_8 cSFunObject;
-} commcodegen_CRCGenerator_12;
-#endif /*typedef_commcodegen_CRCGenerator_12*/
 #ifndef struct_comm_CRCGenerator_3
 #define struct_comm_CRCGenerator_3
 struct comm_CRCGenerator_3
@@ -410,17 +275,18 @@ struct comm_CRCGenerator_3
 #define typedef_comm_CRCGenerator_3
 typedef struct comm_CRCGenerator_3 comm_CRCGenerator_3;
 #endif /*typedef_comm_CRCGenerator_3*/
-#ifndef typedef_commcodegen_CRCGenerator_6
-#define typedef_commcodegen_CRCGenerator_6
+#ifndef typedef_commcodegen_CRCGenerator_256
+#define typedef_commcodegen_CRCGenerator_256
 typedef struct
 {
     boolean_T isInitialized;
     boolean_T isReleased;
+    boolean_T TunablePropsChanged;
     uint32_T inputVarSize1[8];
     boolean_T inputDirectFeedthrough1;
     comm_CRCGenerator_3 cSFunObject;
-} commcodegen_CRCGenerator_6;
-#endif /*typedef_commcodegen_CRCGenerator_6*/
+} commcodegen_CRCGenerator_256;
+#endif /*typedef_commcodegen_CRCGenerator_256*/
 #ifndef struct_dsp_FIRRateConverter_7
 #define struct_dsp_FIRRateConverter_7
 struct dsp_FIRRateConverter_7
@@ -445,6 +311,7 @@ typedef struct
 {
     boolean_T isInitialized;
     boolean_T isReleased;
+    boolean_T TunablePropsChanged;
     uint32_T inputVarSize1[8];
     boolean_T inputDirectFeedthrough1;
     dsp_FIRRateConverter_7 cSFunObject;
@@ -465,18 +332,6 @@ struct emxArray__common
 #define typedef_emxArray__common
 typedef struct emxArray__common emxArray__common;
 #endif /*typedef_emxArray__common*/
-#ifndef struct_emxArray_b_boolean_T_1224
-#define struct_emxArray_b_boolean_T_1224
-struct emxArray_b_boolean_T_1224
-{
-    boolean_T data[1224];
-    int32_T size[1];
-};
-#endif /*struct_emxArray_b_boolean_T_1224*/
-#ifndef typedef_emxArray_b_boolean_T_1224
-#define typedef_emxArray_b_boolean_T_1224
-typedef struct emxArray_b_boolean_T_1224 emxArray_b_boolean_T_1224;
-#endif /*typedef_emxArray_b_boolean_T_1224*/
 #ifndef struct_emxArray_b_real_T_1224
 #define struct_emxArray_b_real_T_1224
 struct emxArray_b_real_T_1224
@@ -513,6 +368,18 @@ struct emxArray_boolean_T_560x1
 #define typedef_emxArray_boolean_T_560x1
 typedef struct emxArray_boolean_T_560x1 emxArray_boolean_T_560x1;
 #endif /*typedef_emxArray_boolean_T_560x1*/
+#ifndef struct_emxArray_boolean_T_563
+#define struct_emxArray_boolean_T_563
+struct emxArray_boolean_T_563
+{
+    boolean_T data[563];
+    int32_T size[1];
+};
+#endif /*struct_emxArray_boolean_T_563*/
+#ifndef typedef_emxArray_boolean_T_563
+#define typedef_emxArray_boolean_T_563
+typedef struct emxArray_boolean_T_563 emxArray_boolean_T_563;
+#endif /*typedef_emxArray_boolean_T_563*/
 #ifndef struct_emxArray_boolean_T_7x80
 #define struct_emxArray_boolean_T_7x80
 struct emxArray_boolean_T_7x80
@@ -537,18 +404,6 @@ struct emxArray_char_T_1x1024
 #define typedef_emxArray_char_T_1x1024
 typedef struct emxArray_char_T_1x1024 emxArray_char_T_1x1024;
 #endif /*typedef_emxArray_char_T_1x1024*/
-#ifndef struct_emxArray_char_T_1x76
-#define struct_emxArray_char_T_1x76
-struct emxArray_char_T_1x76
-{
-    char_T data[76];
-    int32_T size[2];
-};
-#endif /*struct_emxArray_char_T_1x76*/
-#ifndef typedef_emxArray_char_T_1x76
-#define typedef_emxArray_char_T_1x76
-typedef struct emxArray_char_T_1x76 emxArray_char_T_1x76;
-#endif /*typedef_emxArray_char_T_1x76*/
 #ifndef struct_emxArray_char_T_1x80
 #define struct_emxArray_char_T_1x80
 struct emxArray_char_T_1x80
@@ -600,6 +455,18 @@ struct emxArray_creal_T_1224
 #define typedef_emxArray_creal_T_1224
 typedef struct emxArray_creal_T_1224 emxArray_creal_T_1224;
 #endif /*typedef_emxArray_creal_T_1224*/
+#ifndef struct_emxArray_creal_T_1231
+#define struct_emxArray_creal_T_1231
+struct emxArray_creal_T_1231
+{
+    creal_T data[1231];
+    int32_T size[1];
+};
+#endif /*struct_emxArray_creal_T_1231*/
+#ifndef typedef_emxArray_creal_T_1231
+#define typedef_emxArray_creal_T_1231
+typedef struct emxArray_creal_T_1231 emxArray_creal_T_1231;
+#endif /*typedef_emxArray_creal_T_1231*/
 #ifndef struct_emxArray_creal_T_1280
 #define struct_emxArray_creal_T_1280
 struct emxArray_creal_T_1280
@@ -675,6 +542,42 @@ struct emxArray_int32_T
 #define typedef_emxArray_int32_T
 typedef struct emxArray_int32_T emxArray_int32_T;
 #endif /*typedef_emxArray_int32_T*/
+#ifndef struct_emxArray_int32_T_1024
+#define struct_emxArray_int32_T_1024
+struct emxArray_int32_T_1024
+{
+    int32_T data[1024];
+    int32_T size[1];
+};
+#endif /*struct_emxArray_int32_T_1024*/
+#ifndef typedef_emxArray_int32_T_1024
+#define typedef_emxArray_int32_T_1024
+typedef struct emxArray_int32_T_1024 emxArray_int32_T_1024;
+#endif /*typedef_emxArray_int32_T_1024*/
+#ifndef struct_emxArray_int32_T_11
+#define struct_emxArray_int32_T_11
+struct emxArray_int32_T_11
+{
+    int32_T data[11];
+    int32_T size[1];
+};
+#endif /*struct_emxArray_int32_T_11*/
+#ifndef typedef_emxArray_int32_T_11
+#define typedef_emxArray_int32_T_11
+typedef struct emxArray_int32_T_11 emxArray_int32_T_11;
+#endif /*typedef_emxArray_int32_T_11*/
+#ifndef struct_emxArray_int32_T_12
+#define struct_emxArray_int32_T_12
+struct emxArray_int32_T_12
+{
+    int32_T data[12];
+    int32_T size[1];
+};
+#endif /*struct_emxArray_int32_T_12*/
+#ifndef typedef_emxArray_int32_T_12
+#define typedef_emxArray_int32_T_12
+typedef struct emxArray_int32_T_12 emxArray_int32_T_12;
+#endif /*typedef_emxArray_int32_T_12*/
 #ifndef struct_emxArray_int32_T_1224
 #define struct_emxArray_int32_T_1224
 struct emxArray_int32_T_1224
@@ -699,6 +602,18 @@ struct emxArray_int32_T_1x12
 #define typedef_emxArray_int32_T_1x12
 typedef struct emxArray_int32_T_1x12 emxArray_int32_T_1x12;
 #endif /*typedef_emxArray_int32_T_1x12*/
+#ifndef struct_emxArray_int32_T_1x1280
+#define struct_emxArray_int32_T_1x1280
+struct emxArray_int32_T_1x1280
+{
+    int32_T data[1280];
+    int32_T size[2];
+};
+#endif /*struct_emxArray_int32_T_1x1280*/
+#ifndef typedef_emxArray_int32_T_1x1280
+#define typedef_emxArray_int32_T_1x1280
+typedef struct emxArray_int32_T_1x1280 emxArray_int32_T_1x1280;
+#endif /*typedef_emxArray_int32_T_1x1280*/
 #ifndef struct_emxArray_int32_T_1x80
 #define struct_emxArray_int32_T_1x80
 struct emxArray_int32_T_1x80
@@ -723,6 +638,18 @@ struct emxArray_int32_T_64
 #define typedef_emxArray_int32_T_64
 typedef struct emxArray_int32_T_64 emxArray_int32_T_64;
 #endif /*typedef_emxArray_int32_T_64*/
+#ifndef struct_emxArray_int32_T_74
+#define struct_emxArray_int32_T_74
+struct emxArray_int32_T_74
+{
+    int32_T data[74];
+    int32_T size[1];
+};
+#endif /*struct_emxArray_int32_T_74*/
+#ifndef typedef_emxArray_int32_T_74
+#define typedef_emxArray_int32_T_74
+typedef struct emxArray_int32_T_74 emxArray_int32_T_74;
+#endif /*typedef_emxArray_int32_T_74*/
 #ifndef struct_emxArray_int32_T_768
 #define struct_emxArray_int32_T_768
 struct emxArray_int32_T_768
@@ -735,6 +662,18 @@ struct emxArray_int32_T_768
 #define typedef_emxArray_int32_T_768
 typedef struct emxArray_int32_T_768 emxArray_int32_T_768;
 #endif /*typedef_emxArray_int32_T_768*/
+#ifndef struct_emxArray_int32_T_77
+#define struct_emxArray_int32_T_77
+struct emxArray_int32_T_77
+{
+    int32_T data[77];
+    int32_T size[1];
+};
+#endif /*struct_emxArray_int32_T_77*/
+#ifndef typedef_emxArray_int32_T_77
+#define typedef_emxArray_int32_T_77
+typedef struct emxArray_int32_T_77 emxArray_int32_T_77;
+#endif /*typedef_emxArray_int32_T_77*/
 #ifndef struct_emxArray_int32_T_8
 #define struct_emxArray_int32_T_8
 struct emxArray_int32_T_8
@@ -771,6 +710,18 @@ struct emxArray_real_T_1231
 #define typedef_emxArray_real_T_1231
 typedef struct emxArray_real_T_1231 emxArray_real_T_1231;
 #endif /*typedef_emxArray_real_T_1231*/
+#ifndef struct_emxArray_real_T_1280
+#define struct_emxArray_real_T_1280
+struct emxArray_real_T_1280
+{
+    real_T data[1280];
+    int32_T size[1];
+};
+#endif /*struct_emxArray_real_T_1280*/
+#ifndef typedef_emxArray_real_T_1280
+#define typedef_emxArray_real_T_1280
+typedef struct emxArray_real_T_1280 emxArray_real_T_1280;
+#endif /*typedef_emxArray_real_T_1280*/
 #ifndef struct_emxArray_real_T_1x1280
 #define struct_emxArray_real_T_1x1280
 struct emxArray_real_T_1x1280
@@ -783,18 +734,6 @@ struct emxArray_real_T_1x1280
 #define typedef_emxArray_real_T_1x1280
 typedef struct emxArray_real_T_1x1280 emxArray_real_T_1x1280;
 #endif /*typedef_emxArray_real_T_1x1280*/
-#ifndef struct_emxArray_real_T_1x563
-#define struct_emxArray_real_T_1x563
-struct emxArray_real_T_1x563
-{
-    real_T data[563];
-    int32_T size[2];
-};
-#endif /*struct_emxArray_real_T_1x563*/
-#ifndef typedef_emxArray_real_T_1x563
-#define typedef_emxArray_real_T_1x563
-typedef struct emxArray_real_T_1x563 emxArray_real_T_1x563;
-#endif /*typedef_emxArray_real_T_1x563*/
 #ifndef struct_emxArray_real_T_2461
 #define struct_emxArray_real_T_2461
 struct emxArray_real_T_2461
@@ -807,6 +746,30 @@ struct emxArray_real_T_2461
 #define typedef_emxArray_real_T_2461
 typedef struct emxArray_real_T_2461 emxArray_real_T_2461;
 #endif /*typedef_emxArray_real_T_2461*/
+#ifndef struct_emxArray_real_T_3
+#define struct_emxArray_real_T_3
+struct emxArray_real_T_3
+{
+    real_T data[3];
+    int32_T size[1];
+};
+#endif /*struct_emxArray_real_T_3*/
+#ifndef typedef_emxArray_real_T_3
+#define typedef_emxArray_real_T_3
+typedef struct emxArray_real_T_3 emxArray_real_T_3;
+#endif /*typedef_emxArray_real_T_3*/
+#ifndef struct_emxArray_real_T_3x563
+#define struct_emxArray_real_T_3x563
+struct emxArray_real_T_3x563
+{
+    real_T data[1689];
+    int32_T size[2];
+};
+#endif /*struct_emxArray_real_T_3x563*/
+#ifndef typedef_emxArray_real_T_3x563
+#define typedef_emxArray_real_T_3x563
+typedef struct emxArray_real_T_3x563 emxArray_real_T_3x563;
+#endif /*typedef_emxArray_real_T_3x563*/
 #ifndef struct_emxArray_real_T_4
 #define struct_emxArray_real_T_4
 struct emxArray_real_T_4
@@ -855,12 +818,64 @@ struct emxArray_real_T_8
 #define typedef_emxArray_real_T_8
 typedef struct emxArray_real_T_8 emxArray_real_T_8;
 #endif /*typedef_emxArray_real_T_8*/
+#ifndef struct_emxArray_creal_T_48x12
+#define struct_emxArray_creal_T_48x12
+struct emxArray_creal_T_48x12
+{
+    creal_T data[576];
+    int32_T size[2];
+};
+#endif /*struct_emxArray_creal_T_48x12*/
+#ifndef typedef_emxArray_creal_T_48x12
+#define typedef_emxArray_creal_T_48x12
+typedef struct emxArray_creal_T_48x12 emxArray_creal_T_48x12;
+#endif /*typedef_emxArray_creal_T_48x12*/
+#ifndef struct_emxArray_creal_T_53
+#define struct_emxArray_creal_T_53
+struct emxArray_creal_T_53
+{
+    creal_T data[53];
+    int32_T size[1];
+};
+#endif /*struct_emxArray_creal_T_53*/
+#ifndef typedef_emxArray_creal_T_53
+#define typedef_emxArray_creal_T_53
+typedef struct emxArray_creal_T_53 emxArray_creal_T_53;
+#endif /*typedef_emxArray_creal_T_53*/
+#ifndef struct_emxArray_real_T_80
+#define struct_emxArray_real_T_80
+struct emxArray_real_T_80
+{
+    real_T data[80];
+    int32_T size[1];
+};
+#endif /*struct_emxArray_real_T_80*/
+#ifndef typedef_emxArray_real_T_80
+#define typedef_emxArray_real_T_80
+typedef struct emxArray_real_T_80 emxArray_real_T_80;
+#endif /*typedef_emxArray_real_T_80*/
+#ifndef struct_sppt1GAZrXJQNGwlMv8eWNC
+#define struct_sppt1GAZrXJQNGwlMv8eWNC
+struct sppt1GAZrXJQNGwlMv8eWNC
+{
+    real_T phi;
+    real_T delay;
+    real_T numPeaks;
+    real_T frequency[15];
+    real_T phase;
+    real_T frequencyMA;
+    real_T numProcessed;
+    real_T inputBufferLength;
+    real_T numFreqToAverage;
+    emxArray_creal_T_48x12 pilotEqGains;
+    emxArray_creal_T_53 preambleEqGains;
+    emxArray_real_T_80 message;
+    boolean_T printReceivedData;
+};
+#endif /*struct_sppt1GAZrXJQNGwlMv8eWNC*/
 #ifndef typedef_struct_T
 #define typedef_struct_T
-typedef struct
-{
-    int32_T intNumBits;
-} struct_T;
+typedef struct sppt1GAZrXJQNGwlMv8eWNC struct_T;
 #endif /*typedef_struct_T*/
 #ifndef struct_emxArray_real_T_1x48
 #define struct_emxArray_real_T_1x48
@@ -903,10 +918,10 @@ struct sIYtbYoinQVxVxupYgk4vFD
     real_T receiveBufferLength;
 };
 #endif /*struct_sIYtbYoinQVxVxupYgk4vFD*/
-#ifndef typedef_d_struct_T
-#define typedef_d_struct_T
-typedef struct sIYtbYoinQVxVxupYgk4vFD d_struct_T;
-#endif /*typedef_d_struct_T*/
+#ifndef typedef_b_struct_T
+#define typedef_b_struct_T
+typedef struct sIYtbYoinQVxVxupYgk4vFD b_struct_T;
+#endif /*typedef_b_struct_T*/
 #ifndef typedef_testMACReceiverStackData
 #define typedef_testMACReceiverStackData
 typedef struct
@@ -923,52 +938,62 @@ typedef struct
         } f1;
         struct
         {
-            creal_T y[3456];
+            creal_T r[1280];
         } f2;
         struct
         {
-            creal_T inputIn3D[960];
-            creal_T postFFT[768];
+            creal_T y[3456];
         } f3;
         struct
         {
-            creal_T dcv4[5120];
+            creal_T inputIn3D[960];
         } f4;
         struct
         {
-            cint16_T yTemp[46336];
+            creal_T tmp_data[1280];
         } f5;
+        struct
+        {
+            real_T y[5120];
+        } f6;
+        struct
+        {
+            real_T y[5120];
+        } f7;
+        struct
+        {
+            cint16_T yTemp[46336];
+        } f8;
     } u1;
     union
     {
         struct
         {
             creal_T dataToTx[38400];
-            d_struct_T unusedU2;
-        } f6;
+            b_struct_T unusedU2;
+        } f9;
         struct
         {
-            creal_T y[3336];
-        } f7;
+            creal_T buffer[5120];
+            creal_T b_buffer[5120];
+            creal_T Phat_data[2461];
+            creal_T buffer_data[1280];
+            creal_T rFreqShifted_data[1280];
+            creal_T b_buffer_data[1231];
+            creal_T c_buffer_data[1231];
+            real_T Rhat_data[2461];
+            creal_T b_Phat_data[1224];
+        } f10;
     } u2;
-    struct
-    {
-        creal_T buffer[5120];
-        creal_T b_buffer[5120];
-        creal_T Phat_data[2461];
-        creal_T rFrame_data[1280];
-        creal_T b_rFrame_data[1280];
-        creal_T rWin_data[1231];
-        real_T Rhat_data[2461];
-        creal_T b_Phat_data[1224];
-    } f8;
     struct
     {
         creal_T unusedU2[38400];
         creal_T unusedU3[25600];
-        d_struct_T tx;
-        d_struct_T rx;
-    } f9;
+        b_struct_T tx;
+        b_struct_T rx;
+        real_T messageBits_data[1689];
+        real_T b_messageBits_data[1689];
+    } f11;
 } testMACReceiverStackData;
 #endif /*typedef_testMACReceiverStackData*/
 

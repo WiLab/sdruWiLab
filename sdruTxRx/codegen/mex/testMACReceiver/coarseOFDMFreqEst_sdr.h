@@ -3,7 +3,7 @@
  *
  * Code generation for function 'coarseOFDMFreqEst_sdr'
  *
- * C source code generated on: Thu Mar  6 18:47:06 2014
+ * C source code generated on: Thu Apr  3 19:51:42 2014
  *
  */
 
@@ -23,6 +23,6 @@
 #include "testMACReceiver_types.h"
 
 /* Function Declarations */
-extern void freqCorrectOFDM(const emlrtStack *sp, c_struct_T *estimate, const creal_T rFrame_data[1280], creal_T rFreqShifted_data[1280], int32_T rFreqShifted_size[1]);
+extern void freqCorrectOFDM(testMACReceiverStackData *SD, struct_T *estimate, const creal_T rFrame_data[1280], creal_T rFreqShifted_data[1280], int32_T rFreqShifted_size[1]);
 #endif
 /* End of code generation (coarseOFDMFreqEst_sdr.h) */

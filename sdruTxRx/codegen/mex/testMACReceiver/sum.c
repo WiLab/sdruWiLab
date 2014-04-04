@@ -3,7 +3,7 @@
  *
  * Code generation for function 'sum'
  *
- * C source code generated on: Thu Mar  6 18:47:05 2014
+ * C source code generated on: Thu Apr  3 19:51:42 2014
  *
  */
 
@@ -11,7 +11,6 @@
 #include "rt_nonfinite.h"
 #include "testMACReceiver.h"
 #include "sum.h"
-#include <stdio.h>
 
 /* Function Definitions */
 creal_T sum(const creal_T x_data[32])

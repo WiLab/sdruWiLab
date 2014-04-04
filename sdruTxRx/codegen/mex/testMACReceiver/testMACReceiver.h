@@ -3,7 +3,7 @@
  *
  * Code generation for function 'testMACReceiver'
  *
- * C source code generated on: Thu Mar  6 18:47:04 2014
+ * C source code generated on: Thu Apr  3 19:51:42 2014
  *
  */
 
@@ -23,6 +23,6 @@
 #include "testMACReceiver_types.h"
 
 /* Function Declarations */
-extern void testMACReceiver(testMACReceiverStackData *SD, const emlrtStack *sp, const real_T offsets[3], real_T nodeNum);
+extern void testMACReceiver(testMACReceiverStackData *SD, const real_T offsets[3], real_T nodeNum);
 #endif
 /* End of code generation (testMACReceiver.h) */

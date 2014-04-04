@@ -3,7 +3,7 @@
  *
  * Code generation for function 'resample'
  *
- * C source code generated on: Thu Mar  6 18:47:07 2014
+ * C source code generated on: Thu Apr  3 19:51:42 2014
  *
  */
 
@@ -11,25 +11,53 @@
 #include "rt_nonfinite.h"
 #include "testMACReceiver.h"
 #include "resample.h"
-#include "upfirdn.h"
-#include <stdio.h>
+#include "setup.h"
+#include "SystemCore.h"
+#include "FIRRateConverter.h"
 
 /* Variable Definitions */
-static emlrtRSInfo eu_emlrtRSI = { 93, "resample",
-  "/Applications/MATLAB_R2013b.app/toolbox/signal/eml/resample.m" };
+static emlrtRSInfo jj_emlrtRSI = { 84, "resample",
+  "/opt/MATLAB/R2013a/toolbox/signal/eml/resample.m" };
+
+static emlrtRSInfo kj_emlrtRSI = { 146, "upfirdn",
+  "/opt/MATLAB/R2013a/toolbox/signal/eml/upfirdn.m" };
+
+static emlrtRSInfo lj_emlrtRSI = { 149, "upfirdn",
+  "/opt/MATLAB/R2013a/toolbox/signal/eml/upfirdn.m" };
+
+static emlrtRSInfo mj_emlrtRSI = { 150, "upfirdn",
+  "/opt/MATLAB/R2013a/toolbox/signal/eml/upfirdn.m" };
 
 /* Function Definitions */
-void resample(testMACReceiverStackData *SD, const emlrtStack *sp, const creal_T
-              x[48], creal_T yout[576])
+void resample(testMACReceiverStackData *SD, const creal_T x[48], creal_T yout
+              [576])
 {
-  int32_T i23;
-  emlrtStack st;
-  st.prev = sp;
-  st.tls = sp->tls;
-  st.site = &eu_emlrtRSI;
-  upfirdn(SD, &st, x, SD->u2.f7.y);
-  for (i23 = 0; i23 < 12; i23++) {
-    memcpy(&yout[48 * i23], &SD->u2.f7.y[121 + 278 * i23], 48U * sizeof(creal_T));
+  dspcodegen_FIRRateConverter s;
+  creal_T b_x[288];
+  int32_T i26;
+  int32_T i27;
+  emlrtPushRtStackR2012b(&jj_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&kj_emlrtRSI, emlrtRootTLSGlobal);
+  c_FIRRateConverter_FIRRateConve(&s);
+  emlrtPopRtStackR2012b(&kj_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&lj_emlrtRSI, emlrtRootTLSGlobal);
+  for (i26 = 0; i26 < 12; i26++) {
+    memcpy(&b_x[24 * i26], &x[i26 << 2], sizeof(creal_T) << 2);
+    for (i27 = 0; i27 < 20; i27++) {
+      b_x[(i27 + 24 * i26) + 4].re = 0.0;
+      b_x[(i27 + 24 * i26) + 4].im = 0.0;
+    }
+  }
+
+  g_SystemCore_step(&s, b_x, SD->u1.f3.y);
+  emlrtPopRtStackR2012b(&lj_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&mj_emlrtRSI, emlrtRootTLSGlobal);
+  SystemCore_reset(&s);
+  emlrtPopRtStackR2012b(&mj_emlrtRSI, emlrtRootTLSGlobal);
+  Destructor(&s.cSFunObject);
+  emlrtPopRtStackR2012b(&jj_emlrtRSI, emlrtRootTLSGlobal);
+  for (i26 = 0; i26 < 12; i26++) {
+    memcpy(&yout[48 * i26], &SD->u1.f3.y[121 + 288 * i26], 48U * sizeof(creal_T));
   }
 }
 

@@ -3,7 +3,7 @@
  *
  * Code generation for function 'setup'
  *
- * C source code generated on: Thu Mar  6 18:47:05 2014
+ * C source code generated on: Thu Apr  3 19:51:42 2014
  *
  */
 
@@ -11,9 +11,19 @@
 #include "rt_nonfinite.h"
 #include "testMACReceiver.h"
 #include "setup.h"
-#include <stdio.h>
 
 /* Function Definitions */
+void Destructor(dsp_FIRRateConverter_7 *obj)
+{
+  /* System object Destructor function: dsp.FIRRateConverter */
+  if (obj->S0_isInitialized) {
+    obj->S0_isInitialized = FALSE;
+    if (!obj->S1_isReleased) {
+      obj->S1_isReleased = TRUE;
+    }
+  }
+}
+
 void Outputs(const comm_BPSKModulator_1 *obj, const real_T U0_data[563], const
              int32_T U0_size[2], creal_T Y0_data[563], int32_T Y0_size[2])
 {
@@ -59,17 +69,6 @@ void b_Outputs(const comm_BPSKModulator_4 *obj, const real_T U0_data[563], const
     Y0_data[outIdx].re = obj->P0_modmap[symbolIndex << 1];
     Y0_data[outIdx].im = obj->P0_modmap[(symbolIndex << 1) + 1];
     outIdx++;
-  }
-}
-
-void c_Destructor(dsp_FIRRateConverter_7 *obj)
-{
-  /* System object Destructor function: dsp.FIRRateConverter */
-  if (obj->S0_isInitialized) {
-    obj->S0_isInitialized = FALSE;
-    if (!obj->S1_isReleased) {
-      obj->S1_isReleased = TRUE;
-    }
   }
 }
 

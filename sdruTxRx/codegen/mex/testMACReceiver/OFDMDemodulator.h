@@ -3,7 +3,7 @@
  *
  * Code generation for function 'OFDMDemodulator'
  *
- * C source code generated on: Thu Mar  6 18:47:05 2014
+ * C source code generated on: Thu Apr  3 19:51:42 2014
  *
  */
 
@@ -23,8 +23,7 @@
 #include "testMACReceiver_types.h"
 
 /* Function Declarations */
-extern OFDMDemodulator_2 *OFDMDemodulator_OFDMDemodulator(const emlrtStack *sp, OFDMDemodulator_2 *object);
-extern void OFDMDemodulator_stepImpl(const emlrtStack *sp, const OFDMDemodulator_1 *obj, const creal_T x[64], emxArray_creal_T *varargout_1);
-extern void b_OFDMDemodulator_stepImpl(testMACReceiverStackData *SD, const emlrtStack *sp, const OFDMDemodulator_1 *obj, const creal_T x[960], emxArray_creal_T *varargout_1, creal_T varargout_2[48]);
+extern OFDMDemodulator_2 *OFDMDemodulator_OFDMDemodulator(OFDMDemodulator_2 *object);
+extern void OFDMDemodulator_setupImpl(OFDMDemodulator *obj);
 #endif
 /* End of code generation (OFDMDemodulator.h) */

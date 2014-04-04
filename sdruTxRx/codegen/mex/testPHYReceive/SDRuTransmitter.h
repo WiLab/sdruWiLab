@@ -3,7 +3,7 @@
  *
  * Code generation for function 'SDRuTransmitter'
  *
- * C source code generated on: Thu Feb 27 11:53:20 2014
+ * C source code generated on: Thu Apr  3 19:36:37 2014
  *
  */
 
@@ -23,6 +23,6 @@
 #include "testPHYReceive_types.h"
 
 /* Function Declarations */
-extern comm_SDRuTransmitter *SDRuTransmitter_SDRuTransmitter(const emlrtStack *sp, comm_SDRuTransmitter *obj);
+extern comm_SDRuTransmitter *SDRuTransmitter_SDRuTransmitter(comm_SDRuTransmitter *obj);
 #endif
 /* End of code generation (SDRuTransmitter.h) */

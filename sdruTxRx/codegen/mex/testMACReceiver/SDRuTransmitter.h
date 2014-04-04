@@ -3,7 +3,7 @@
  *
  * Code generation for function 'SDRuTransmitter'
  *
- * C source code generated on: Thu Mar  6 18:47:05 2014
+ * C source code generated on: Thu Apr  3 19:51:42 2014
  *
  */
 
@@ -23,8 +23,8 @@
 #include "testMACReceiver_types.h"
 
 /* Function Declarations */
-extern comm_SDRuTransmitter *SDRuTransmitter_SDRuTransmitter(const emlrtStack *sp, comm_SDRuTransmitter *obj);
-extern void SDRuTransmitter_setupImplLocal(const emlrtStack *sp, comm_SDRuTransmitter *obj, UsrpErrorCapiEnumT *errStatus, char_T errMsg_data[1024], int32_T errMsg_size[2]);
-extern void SDRuTransmitter_stepImpl(testMACReceiverStackData *SD, const emlrtStack *sp, const comm_SDRuTransmitter *obj, const creal_T x[38400]);
+extern comm_SDRuTransmitter *SDRuTransmitter_SDRuTransmitter(comm_SDRuTransmitter *obj);
+extern void SDRuTransmitter_setupImplLocal(comm_SDRuTransmitter *obj, UsrpErrorCapiEnumT *errStatus, char_T errMsg_data[1024], int32_T errMsg_size[2]);
+extern void SDRuTransmitter_stepImpl(testMACReceiverStackData *SD, const comm_SDRuTransmitter *obj, const creal_T x[38400]);
 #endif
 /* End of code generation (SDRuTransmitter.h) */

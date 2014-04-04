@@ -3,7 +3,7 @@
  *
  * Code generation for function 'receiveData'
  *
- * C source code generated on: Thu Feb 27 11:53:20 2014
+ * C source code generated on: Thu Apr  3 19:36:38 2014
  *
  */
 
@@ -11,57 +11,55 @@
 #include "rt_nonfinite.h"
 #include "testPHYReceive.h"
 #include "receiveData.h"
-#include "PHYReceive.h"
 #include "testPHYReceive_mexutil.h"
 #include "testPHYReceive_data.h"
+#include <stdio.h>
 
 /* Variable Definitions */
-static emlrtRSInfo nm_emlrtRSI = { 7, "receiveData",
-  "/Users/travis/Documents/sdru/usrp_uhd_mapi/receiveData.m" };
+static emlrtRSInfo uf_emlrtRSI = { 7, "receiveData",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/receiveData.m" };
+
+static emlrtRSInfo vf_emlrtRSI = { 216, "mapiPrivate",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m" };
 
 /* Function Definitions */
-void receiveData(const emlrtStack *sp, int32_T driverApiH, real_T freq, real_T
-                 loOffset, real_T gain, real_T decim, cint16_T data[46336],
-                 uint32_T *dataLength, uint32_T *overflow, UsrpErrorCapiEnumT
-                 *errStat, char_T errStr_data[1024], int32_T errStr_size[2])
+void receiveData(int32_T driverApiH, real_T freq, real_T loOffset, real_T gain,
+                 real_T decim, cint16_T data[46336], uint32_T *dataLength,
+                 uint32_T *overflow, UsrpErrorCapiEnumT *errStat, char_T
+                 errStr_data[1024], int32_T errStr_size[2])
 {
   const mxArray *y;
-  static const int32_T iv107[2] = { 1, 6 };
+  static const int32_T iv103[2] = { 1, 6 };
 
-  const mxArray *m17;
-  char_T cv118[6];
+  const mxArray *m19;
+  char_T cv107[6];
   int32_T i;
-  static const char_T cv119[6] = { 's', 'i', 'l', 'e', 'n', 't' };
+  static const char_T cv108[6] = { 's', 'i', 'l', 'e', 'n', 't' };
 
   const mxArray *b_y;
   int32_T loop_ub;
+  int32_T tmp_data[1024];
   char_T b_errStr_data[1024];
-  emlrtStack st;
-  emlrtStack b_st;
-  st.prev = sp;
-  st.tls = sp->tls;
-  b_st.prev = &st;
-  b_st.tls = st.tls;
+  int32_T i16;
 
   /*    Copyright 2011-2012 The MathWorks, Inc. */
-  st.site = &nm_emlrtRSI;
+  emlrtPushRtStackR2012b(&uf_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  */
   /*  This function unifies handling of interp vs. codegen call as well as */
   /*  errStat / errStr assignment. */
   /*  */
-  /*    Copyright 2011-2013 The MathWorks, Inc. */
+  /*    Copyright 2011-2012 The MathWorks, Inc. */
   if (!isSetupsdruCalled) {
     y = NULL;
-    m17 = mxCreateCharArray(2, iv107);
+    m19 = mxCreateCharArray(2, iv103);
     for (i = 0; i < 6; i++) {
-      cv118[i] = cv119[i];
+      cv107[i] = cv108[i];
     }
 
-    emlrtInitCharArrayR2013a(&st, 6, m17, cv118);
-    emlrtAssign(&y, m17);
-    b_st.site = &eu_emlrtRSI;
-    setupsdru(&b_st, sdruroot(&b_st, &o_emlrtMCI), y, &p_emlrtMCI);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 6, m19, cv107);
+    emlrtAssign(&y, m19);
+    setupsdru(sdruroot(&p_emlrtMCI), y, &q_emlrtMCI);
     isSetupsdruCalled = TRUE;
   }
 
@@ -78,28 +76,42 @@ void receiveData(const emlrtStack *sp, int32_T driverApiH, real_T freq, real_T
   /*  46336 represents 0.00185344 seconds at 25Msps.  1 ms seems to be a decent */
   /*  time interval to interact with the IP stack on a default glnxa64 machine. */
   /*  32768 seems to be the max for UHD(TM) so we may want to change to that. */
+  emlrtPushRtStackR2012b(&vf_emlrtRSI, emlrtRootTLSGlobal);
   receiveData_c(driverApiH, freq, loOffset, gain, decim, data, dataLength,
                 overflow, errStat, &errStr_data[0]);
+  emlrtPopRtStackR2012b(&vf_emlrtRSI, emlrtRootTLSGlobal);
 
   /* errStat = UsrpErrorCapiEnumT(errStat_i); */
+  emlrtPushRtStackR2012b(&gf_emlrtRSI, emlrtRootTLSGlobal);
   i = strlen(&errStr_data[0]);
+  emlrtPopRtStackR2012b(&gf_emlrtRSI, emlrtRootTLSGlobal);
   if (i <= 1024) {
   } else {
+    emlrtPushRtStackR2012b(&hf_emlrtRSI, emlrtRootTLSGlobal);
     b_y = NULL;
-    m17 = mxCreateString("Assertion failed.");
-    emlrtAssign(&b_y, m17);
-    b_st.site = &bu_emlrtRSI;
-    b_error(&b_st, b_y, &n_emlrtMCI);
+    m19 = mxCreateString("Assertion failed.");
+    emlrtAssign(&b_y, m19);
+    b_error(b_y, &o_emlrtMCI);
+    emlrtPopRtStackR2012b(&hf_emlrtRSI, emlrtRootTLSGlobal);
   }
 
   if (1 > i) {
     loop_ub = 0;
   } else {
-    loop_ub = emlrtDynamicBoundsCheckFastR2012b(i, 1, 1024, &q_emlrtBCI, &st);
+    loop_ub = emlrtDynamicBoundsCheckFastR2012b(i, 1, 1024, &q_emlrtBCI,
+      emlrtRootTLSGlobal);
   }
 
   for (i = 0; i < loop_ub; i++) {
-    b_errStr_data[i] = errStr_data[i];
+    tmp_data[i] = 1 + i;
+  }
+
+  for (i = 0; i < loop_ub; i++) {
+    i16 = 0;
+    while (i16 <= 0) {
+      b_errStr_data[i] = errStr_data[tmp_data[i] - 1];
+      i16 = 1;
+    }
   }
 
   errStr_size[0] = 1;
@@ -107,6 +119,8 @@ void receiveData(const emlrtStack *sp, int32_T driverApiH, real_T freq, real_T
   for (i = 0; i < loop_ub; i++) {
     errStr_data[i] = b_errStr_data[i];
   }
+
+  emlrtPopRtStackR2012b(&uf_emlrtRSI, emlrtRootTLSGlobal);
 }
 
 /* End of code generation (receiveData.c) */

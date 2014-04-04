@@ -3,7 +3,7 @@
  *
  * Code generation for function 'checkIPAddressFormat'
  *
- * C source code generated on: Thu Mar  6 18:47:05 2014
+ * C source code generated on: Thu Apr  3 19:51:42 2014
  *
  */
 
@@ -11,83 +11,80 @@
 #include "rt_nonfinite.h"
 #include "testMACReceiver.h"
 #include "checkIPAddressFormat.h"
-#include "PHYReceive.h"
+#include "receiveData.h"
+#include "SystemCore.h"
 #include "testMACReceiver_mexutil.h"
 #include "testMACReceiver_data.h"
-#include <stdio.h>
 
 /* Variable Definitions */
-static emlrtRSInfo pc_emlrtRSI = { 12, "any",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/any.m" };
+static emlrtRSInfo md_emlrtRSI = { 34, "checkIPAddressFormat",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdru/checkIPAddressFormat.m" };
 
-static emlrtRSInfo wc_emlrtRSI = { 232, "find",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/elmat/find.m" };
+static emlrtRSInfo nd_emlrtRSI = { 43, "checkIPAddressFormat",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdru/checkIPAddressFormat.m" };
 
-static emlrtRSInfo tj_emlrtRSI = { 32, "checkIPAddressFormat",
-  "/Users/travis/Documents/sdru/checkIPAddressFormat.m" };
+static emlrtRSInfo od_emlrtRSI = { 44, "checkIPAddressFormat",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdru/checkIPAddressFormat.m" };
 
-static emlrtRSInfo uj_emlrtRSI = { 34, "checkIPAddressFormat",
-  "/Users/travis/Documents/sdru/checkIPAddressFormat.m" };
+static emlrtRSInfo pd_emlrtRSI = { 45, "checkIPAddressFormat",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdru/checkIPAddressFormat.m" };
 
-static emlrtRSInfo vj_emlrtRSI = { 43, "checkIPAddressFormat",
-  "/Users/travis/Documents/sdru/checkIPAddressFormat.m" };
+static emlrtRSInfo qd_emlrtRSI = { 46, "checkIPAddressFormat",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdru/checkIPAddressFormat.m" };
 
-static emlrtRSInfo wj_emlrtRSI = { 44, "checkIPAddressFormat",
-  "/Users/travis/Documents/sdru/checkIPAddressFormat.m" };
+static emlrtRSInfo rd_emlrtRSI = { 53, "checkIPAddressFormat",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdru/checkIPAddressFormat.m" };
 
-static emlrtRSInfo xj_emlrtRSI = { 45, "checkIPAddressFormat",
-  "/Users/travis/Documents/sdru/checkIPAddressFormat.m" };
+static emlrtRSInfo sd_emlrtRSI = { 52, "checkIPAddressFormat",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdru/checkIPAddressFormat.m" };
 
-static emlrtRSInfo yj_emlrtRSI = { 46, "checkIPAddressFormat",
-  "/Users/travis/Documents/sdru/checkIPAddressFormat.m" };
+static emlrtRSInfo td_emlrtRSI = { 12, "any",
+  "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/ops/any.m" };
 
-static emlrtRSInfo ak_emlrtRSI = { 53, "checkIPAddressFormat",
-  "/Users/travis/Documents/sdru/checkIPAddressFormat.m" };
-
-static emlrtRSInfo bk_emlrtRSI = { 52, "checkIPAddressFormat",
-  "/Users/travis/Documents/sdru/checkIPAddressFormat.m" };
+static emlrtRSInfo wd_emlrtRSI = { 109, "eml_all_or_any",
+  "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/eml/eml_all_or_any.m" };
 
 static emlrtECInfo i_emlrtECI = { 2, 53, 23, "checkIPAddressFormat",
-  "/Users/travis/Documents/sdru/checkIPAddressFormat.m" };
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdru/checkIPAddressFormat.m" };
 
-static emlrtBCInfo m_emlrtBCI = { 1, 12, 41, 8, "aAddrs", "checkIPAddressFormat",
-  "/Users/travis/Documents/sdru/checkIPAddressFormat.m", 0 };
+static emlrtBCInfo l_emlrtBCI = { 1, 12, 41, 8, "aAddrs", "checkIPAddressFormat",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdru/checkIPAddressFormat.m", 0 };
 
-static emlrtBCInfo n_emlrtBCI = { -1, -1, 41, 15, "dotIndices",
-  "checkIPAddressFormat", "/Users/travis/Documents/sdru/checkIPAddressFormat.m",
-  0 };
+static emlrtBCInfo m_emlrtBCI = { -1, -1, 41, 15, "dotIndices",
+  "checkIPAddressFormat",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdru/checkIPAddressFormat.m", 0 };
 
-static emlrtBCInfo o_emlrtBCI = { 1, 12, 40, 8, "aAddrs", "checkIPAddressFormat",
-  "/Users/travis/Documents/sdru/checkIPAddressFormat.m", 0 };
+static emlrtBCInfo n_emlrtBCI = { 1, 12, 40, 8, "aAddrs", "checkIPAddressFormat",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdru/checkIPAddressFormat.m", 0 };
 
-static emlrtBCInfo p_emlrtBCI = { -1, -1, 40, 31, "dotIndices",
-  "checkIPAddressFormat", "/Users/travis/Documents/sdru/checkIPAddressFormat.m",
-  0 };
+static emlrtBCInfo o_emlrtBCI = { -1, -1, 40, 31, "dotIndices",
+  "checkIPAddressFormat",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdru/checkIPAddressFormat.m", 0 };
 
-static emlrtBCInfo q_emlrtBCI = { -1, -1, 40, 15, "dotIndices",
-  "checkIPAddressFormat", "/Users/travis/Documents/sdru/checkIPAddressFormat.m",
-  0 };
+static emlrtBCInfo p_emlrtBCI = { -1, -1, 40, 15, "dotIndices",
+  "checkIPAddressFormat",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdru/checkIPAddressFormat.m", 0 };
 
-static emlrtBCInfo r_emlrtBCI = { 1, 12, 39, 8, "aAddrs", "checkIPAddressFormat",
-  "/Users/travis/Documents/sdru/checkIPAddressFormat.m", 0 };
+static emlrtBCInfo q_emlrtBCI = { 1, 12, 39, 8, "aAddrs", "checkIPAddressFormat",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdru/checkIPAddressFormat.m", 0 };
 
-static emlrtBCInfo s_emlrtBCI = { -1, -1, 39, 31, "dotIndices",
-  "checkIPAddressFormat", "/Users/travis/Documents/sdru/checkIPAddressFormat.m",
-  0 };
+static emlrtBCInfo r_emlrtBCI = { -1, -1, 39, 31, "dotIndices",
+  "checkIPAddressFormat",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdru/checkIPAddressFormat.m", 0 };
 
-static emlrtBCInfo t_emlrtBCI = { -1, -1, 39, 15, "dotIndices",
-  "checkIPAddressFormat", "/Users/travis/Documents/sdru/checkIPAddressFormat.m",
-  0 };
+static emlrtBCInfo s_emlrtBCI = { -1, -1, 39, 15, "dotIndices",
+  "checkIPAddressFormat",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdru/checkIPAddressFormat.m", 0 };
 
-static emlrtBCInfo u_emlrtBCI = { 1, 12, 38, 8, "aAddrs", "checkIPAddressFormat",
-  "/Users/travis/Documents/sdru/checkIPAddressFormat.m", 0 };
+static emlrtBCInfo t_emlrtBCI = { 1, 12, 38, 8, "aAddrs", "checkIPAddressFormat",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdru/checkIPAddressFormat.m", 0 };
 
-static emlrtBCInfo v_emlrtBCI = { -1, -1, 38, 17, "dotIndices",
-  "checkIPAddressFormat", "/Users/travis/Documents/sdru/checkIPAddressFormat.m",
-  0 };
+static emlrtBCInfo u_emlrtBCI = { -1, -1, 38, 17, "dotIndices",
+  "checkIPAddressFormat",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdru/checkIPAddressFormat.m", 0 };
 
 /* Function Definitions */
-void checkIPAddressFormat(const emlrtStack *sp)
+void checkIPAddressFormat(void)
 {
   int32_T idx;
   int8_T ii_data[12];
@@ -98,31 +95,33 @@ void checkIPAddressFormat(const emlrtStack *sp)
     FALSE, TRUE, FALSE, FALSE, TRUE, FALSE };
 
   int32_T loop_ub;
+  int32_T tmp_data[12];
+  int32_T i7;
   int8_T b_ii_data[12];
-  int32_T i6;
+  int32_T i8;
   int8_T dotIndices_data[12];
   const mxArray *y;
-  static const int32_T iv43[2] = { 1, 42 };
+  static const int32_T iv56[2] = { 1, 42 };
 
-  const mxArray *m9;
-  char_T cv53[42];
-  static const char_T cv54[42] = { 's', 'd', 'r', 'u', ':', 'c', 'h', 'e', 'c',
+  const mxArray *m13;
+  char_T cv71[42];
+  static const char_T cv72[42] = { 's', 'd', 'r', 'u', ':', 'c', 'h', 'e', 'c',
     'k', 'I', 'P', 'A', 'd', 'd', 'r', 'e', 's', 's', 'F', 'o', 'r', 'm', 'a',
     't', ':', 'I', 'n', 'v', 'a', 'l', 'i', 'd', 'I', 'P', 'A', 'd', 'd', 'r',
     'e', 's', 's' };
 
   const mxArray *b_y;
-  static const int32_T iv44[2] = { 1, 9 };
+  static const int32_T iv57[2] = { 1, 9 };
 
-  char_T cv55[9];
-  static const char_T cv56[9] = { 'I', 'P', 'A', 'd', 'd', 'r', 'e', 's', 's' };
+  char_T cv73[9];
+  static const char_T cv74[9] = { 'I', 'P', 'A', 'd', 'd', 'r', 'e', 's', 's' };
 
-  int32_T i7;
-  int32_T i8;
   int32_T i9;
   int32_T i10;
   int32_T i11;
-  static const char_T cv57[12] = { '1', '9', '2', '.', '1', '6', '8', '.', '1',
+  int32_T i12;
+  int32_T b_tmp_data[11];
+  static const char_T cv75[12] = { '1', '9', '2', '.', '1', '6', '8', '.', '1',
     '0', '.', '2' };
 
   int8_T x_data[12];
@@ -131,48 +130,38 @@ void checkIPAddressFormat(const emlrtStack *sp)
   boolean_T b_x_data[12];
   int32_T tmp_size[2];
   int32_T x[2];
-  int32_T iv45[2];
-  boolean_T c_y;
+  int32_T iv58[2];
+  boolean_T cond;
   boolean_T exitg4;
-  const mxArray *d_y;
-  static const int32_T iv46[2] = { 1, 42 };
+  const mxArray *c_y;
+  static const int32_T iv59[2] = { 1, 42 };
 
-  const mxArray *e_y;
-  static const int32_T iv47[2] = { 1, 9 };
+  const mxArray *d_y;
+  static const int32_T iv60[2] = { 1, 9 };
 
   boolean_T guard3 = FALSE;
   boolean_T exitg3;
-  const mxArray *f_y;
-  static const int32_T iv48[2] = { 1, 42 };
+  const mxArray *e_y;
+  static const int32_T iv61[2] = { 1, 42 };
 
-  const mxArray *g_y;
-  static const int32_T iv49[2] = { 1, 9 };
+  const mxArray *f_y;
+  static const int32_T iv62[2] = { 1, 9 };
 
   boolean_T guard2 = FALSE;
   boolean_T exitg2;
-  const mxArray *h_y;
-  static const int32_T iv50[2] = { 1, 42 };
+  const mxArray *g_y;
+  static const int32_T iv63[2] = { 1, 42 };
 
-  const mxArray *i_y;
-  static const int32_T iv51[2] = { 1, 9 };
+  const mxArray *h_y;
+  static const int32_T iv64[2] = { 1, 9 };
 
   boolean_T b_guard1 = FALSE;
   boolean_T exitg1;
+  const mxArray *i_y;
+  static const int32_T iv65[2] = { 1, 42 };
+
   const mxArray *j_y;
-  static const int32_T iv52[2] = { 1, 42 };
-
-  const mxArray *k_y;
-  static const int32_T iv53[2] = { 1, 9 };
-
-  emlrtStack st;
-  emlrtStack b_st;
-  emlrtStack c_st;
-  st.prev = sp;
-  st.tls = sp->tls;
-  b_st.prev = &st;
-  b_st.tls = st.tls;
-  c_st.prev = &b_st;
-  c_st.tls = b_st.tls;
+  static const int32_T iv66[2] = { 1, 9 };
 
   /* checkIPAddressFormat IP address format checker */
   /*  */
@@ -189,15 +178,12 @@ void checkIPAddressFormat(const emlrtStack *sp)
   /*    checkIPAddressFormat('192.168.10.a', 'IPAddress') */
   /*    Copyright 2012 The MathWorks, Inc. */
   /*  Look for three dots */
-  st.site = &tj_emlrtRSI;
-  b_st.site = &vc_emlrtRSI;
   idx = 0;
   ii = 1;
   exitg5 = FALSE;
   while ((exitg5 == FALSE) && (ii < 13)) {
     guard1 = FALSE;
     if (bv0[ii - 1]) {
-      c_st.site = &wc_emlrtRSI;
       idx++;
       ii_data[idx - 1] = (int8_T)ii;
       if (idx >= 12) {
@@ -220,90 +206,116 @@ void checkIPAddressFormat(const emlrtStack *sp)
     loop_ub = idx;
   }
 
-  for (i6 = 0; i6 < loop_ub; i6++) {
-    b_ii_data[i6] = ii_data[i6];
+  for (i7 = 0; i7 < loop_ub; i7++) {
+    tmp_data[i7] = 1 + i7;
   }
 
-  for (i6 = 0; i6 < loop_ub; i6++) {
-    ii_data[i6] = b_ii_data[i6];
+  for (i7 = 0; i7 < loop_ub; i7++) {
+    i8 = 0;
+    while (i8 <= 0) {
+      b_ii_data[i7] = ii_data[tmp_data[i7] - 1];
+      i8 = 1;
+    }
   }
 
-  for (i6 = 0; i6 < loop_ub; i6++) {
-    dotIndices_data[i6] = ii_data[i6];
+  for (i7 = 0; i7 < loop_ub; i7++) {
+    ii_data[i7] = b_ii_data[i7];
+  }
+
+  for (i7 = 0; i7 < loop_ub; i7++) {
+    dotIndices_data[i7] = ii_data[i7];
   }
 
   /*  Used instead of findstr since */
   /*  findstr does not generate code */
-  st.site = &uj_emlrtRSI;
-  st.site = &uj_emlrtRSI;
+  emlrtPushRtStackR2012b(&md_emlrtRSI, emlrtRootTLSGlobal);
   if (!(loop_ub != 3)) {
   } else {
+    emlrtPushRtStackR2012b(&rc_emlrtRSI, emlrtRootTLSGlobal);
     y = NULL;
-    m9 = mxCreateCharArray(2, iv43);
+    m13 = mxCreateCharArray(2, iv56);
     for (idx = 0; idx < 42; idx++) {
-      cv53[idx] = cv54[idx];
+      cv71[idx] = cv72[idx];
     }
 
-    emlrtInitCharArrayR2013a(&st, 42, m9, cv53);
-    emlrtAssign(&y, m9);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 42, m13, cv71);
+    emlrtAssign(&y, m13);
     b_y = NULL;
-    m9 = mxCreateCharArray(2, iv44);
+    m13 = mxCreateCharArray(2, iv57);
     for (idx = 0; idx < 9; idx++) {
-      cv55[idx] = cv56[idx];
+      cv73[idx] = cv74[idx];
     }
 
-    emlrtInitCharArrayR2013a(&st, 9, m9, cv55);
-    emlrtAssign(&b_y, m9);
-    b_st.site = &mv_emlrtRSI;
-    c_error(&b_st, message(&b_st, y, b_y, &g_emlrtMCI), &g_emlrtMCI);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 9, m13, cv73);
+    emlrtAssign(&b_y, m13);
+    c_error(message(y, b_y, &h_emlrtMCI), &h_emlrtMCI);
+    emlrtPopRtStackR2012b(&rc_emlrtRSI, emlrtRootTLSGlobal);
   }
 
+  emlrtPopRtStackR2012b(&md_emlrtRSI, emlrtRootTLSGlobal);
+
   /*  Check if all the elements other than the dots are numbers */
-  emlrtDynamicBoundsCheckFastR2012b(1, 1, loop_ub, &v_emlrtBCI, sp);
+  emlrtDynamicBoundsCheckFastR2012b(1, 1, loop_ub, &u_emlrtBCI,
+    emlrtRootTLSGlobal);
   if (1 > dotIndices_data[0] - 1) {
     ii = 0;
   } else {
-    i6 = dotIndices_data[0] - 1;
-    ii = emlrtDynamicBoundsCheckFastR2012b(i6, 1, 12, &u_emlrtBCI, sp);
+    i7 = dotIndices_data[0] - 1;
+    ii = emlrtDynamicBoundsCheckFastR2012b(i7, 1, 12, &t_emlrtBCI,
+      emlrtRootTLSGlobal);
   }
 
-  emlrtDynamicBoundsCheckFastR2012b(1, 1, loop_ub, &t_emlrtBCI, sp);
-  emlrtDynamicBoundsCheckFastR2012b(2, 1, loop_ub, &s_emlrtBCI, sp);
+  emlrtDynamicBoundsCheckFastR2012b(1, 1, loop_ub, &s_emlrtBCI,
+    emlrtRootTLSGlobal);
+  emlrtDynamicBoundsCheckFastR2012b(2, 1, loop_ub, &r_emlrtBCI,
+    emlrtRootTLSGlobal);
   if (dotIndices_data[0] + 1 > dotIndices_data[1] - 1) {
-    i6 = 0;
-    i7 = 0;
-  } else {
-    i6 = dotIndices_data[0] + 1;
-    i6 = emlrtDynamicBoundsCheckFastR2012b(i6, 1, 12, &r_emlrtBCI, sp) - 1;
-    i7 = dotIndices_data[1] - 1;
-    i7 = emlrtDynamicBoundsCheckFastR2012b(i7, 1, 12, &r_emlrtBCI, sp);
-  }
-
-  emlrtDynamicBoundsCheckFastR2012b(2, 1, loop_ub, &q_emlrtBCI, sp);
-  emlrtDynamicBoundsCheckFastR2012b(3, 1, loop_ub, &p_emlrtBCI, sp);
-  if (dotIndices_data[1] + 1 > dotIndices_data[2] - 1) {
+    i7 = 1;
     i8 = 0;
-    i9 = 0;
   } else {
-    i8 = dotIndices_data[1] + 1;
-    i8 = emlrtDynamicBoundsCheckFastR2012b(i8, 1, 12, &o_emlrtBCI, sp) - 1;
-    i9 = dotIndices_data[2] - 1;
-    i9 = emlrtDynamicBoundsCheckFastR2012b(i9, 1, 12, &o_emlrtBCI, sp);
+    i7 = dotIndices_data[0] + 1;
+    i7 = emlrtDynamicBoundsCheckFastR2012b(i7, 1, 12, &q_emlrtBCI,
+      emlrtRootTLSGlobal);
+    i8 = dotIndices_data[1] - 1;
+    i8 = emlrtDynamicBoundsCheckFastR2012b(i8, 1, 12, &q_emlrtBCI,
+      emlrtRootTLSGlobal);
   }
 
-  emlrtDynamicBoundsCheckFastR2012b(3, 1, loop_ub, &n_emlrtBCI, sp);
-  if (dotIndices_data[2] + 1 > 12) {
+  emlrtDynamicBoundsCheckFastR2012b(2, 1, loop_ub, &p_emlrtBCI,
+    emlrtRootTLSGlobal);
+  emlrtDynamicBoundsCheckFastR2012b(3, 1, loop_ub, &o_emlrtBCI,
+    emlrtRootTLSGlobal);
+  if (dotIndices_data[1] + 1 > dotIndices_data[2] - 1) {
+    i9 = 1;
     i10 = 0;
-    i11 = -1;
   } else {
-    i10 = dotIndices_data[2] + 1;
-    i10 = emlrtDynamicBoundsCheckFastR2012b(i10, 1, 12, &m_emlrtBCI, sp) - 1;
-    i11 = 11;
+    i9 = dotIndices_data[1] + 1;
+    i9 = emlrtDynamicBoundsCheckFastR2012b(i9, 1, 12, &n_emlrtBCI,
+      emlrtRootTLSGlobal);
+    i10 = dotIndices_data[2] - 1;
+    i10 = emlrtDynamicBoundsCheckFastR2012b(i10, 1, 12, &n_emlrtBCI,
+      emlrtRootTLSGlobal);
   }
 
-  st.site = &vj_emlrtRSI;
+  emlrtDynamicBoundsCheckFastR2012b(3, 1, loop_ub, &m_emlrtBCI,
+    emlrtRootTLSGlobal);
+  if (dotIndices_data[2] + 1 > 12) {
+    i11 = 1;
+    i12 = 1;
+  } else {
+    i11 = dotIndices_data[2] + 1;
+    i11 = emlrtDynamicBoundsCheckFastR2012b(i11, 1, 12, &l_emlrtBCI,
+      emlrtRootTLSGlobal);
+    i12 = 13;
+  }
+
+  emlrtPushRtStackR2012b(&nd_emlrtRSI, emlrtRootTLSGlobal);
   for (idx = 0; idx < ii; idx++) {
-    x_data[idx] = cv57[idx];
+    b_tmp_data[idx] = 1 + idx;
+  }
+
+  for (idx = 0; idx < ii; idx++) {
+    x_data[idx] = cv75[b_tmp_data[idx] - 1];
   }
 
   guard4 = FALSE;
@@ -320,67 +332,78 @@ void checkIPAddressFormat(const emlrtStack *sp)
     tmp_size[1] = ii;
     for (idx = 0; idx < 2; idx++) {
       x[idx] = x_size[idx];
-      iv45[idx] = tmp_size[idx];
+      iv58[idx] = tmp_size[idx];
     }
 
-    emlrtSizeEqCheck2DFastR2012b(x, iv45, &i_emlrtECI, &st);
-    b_st.site = &ak_emlrtRSI;
+    emlrtSizeEqCheck2DFastR2012b(x, iv58, &i_emlrtECI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&rd_emlrtRSI, emlrtRootTLSGlobal);
     for (idx = 0; idx < ii; idx++) {
       b_x_data[idx] = !b_x_data[idx];
     }
 
-    c_st.site = &pc_emlrtRSI;
-    c_y = FALSE;
+    emlrtPushRtStackR2012b(&td_emlrtRSI, emlrtRootTLSGlobal);
+    cond = FALSE;
+    emlrtPushRtStackR2012b(&wd_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&wd_emlrtRSI, emlrtRootTLSGlobal);
     idx = 1;
     exitg4 = FALSE;
     while ((exitg4 == FALSE) && (idx <= ii)) {
       if (!(b_x_data[idx - 1] == 0)) {
-        c_y = TRUE;
+        cond = TRUE;
         exitg4 = TRUE;
       } else {
         idx++;
       }
     }
 
-    if (c_y) {
+    emlrtPopRtStackR2012b(&td_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&rd_emlrtRSI, emlrtRootTLSGlobal);
+    if (cond) {
       guard4 = TRUE;
     } else {
-      c_y = FALSE;
+      cond = FALSE;
     }
   }
 
   if (guard4 == TRUE) {
-    c_y = TRUE;
+    cond = TRUE;
   }
 
-  b_st.site = &bk_emlrtRSI;
-  if (!c_y) {
+  emlrtPushRtStackR2012b(&sd_emlrtRSI, emlrtRootTLSGlobal);
+  if (!cond) {
   } else {
-    d_y = NULL;
-    m9 = mxCreateCharArray(2, iv46);
+    emlrtPushRtStackR2012b(&rc_emlrtRSI, emlrtRootTLSGlobal);
+    c_y = NULL;
+    m13 = mxCreateCharArray(2, iv59);
     for (idx = 0; idx < 42; idx++) {
-      cv53[idx] = cv54[idx];
+      cv71[idx] = cv72[idx];
     }
 
-    emlrtInitCharArrayR2013a(&b_st, 42, m9, cv53);
-    emlrtAssign(&d_y, m9);
-    e_y = NULL;
-    m9 = mxCreateCharArray(2, iv47);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 42, m13, cv71);
+    emlrtAssign(&c_y, m13);
+    d_y = NULL;
+    m13 = mxCreateCharArray(2, iv60);
     for (idx = 0; idx < 9; idx++) {
-      cv55[idx] = cv56[idx];
+      cv73[idx] = cv74[idx];
     }
 
-    emlrtInitCharArrayR2013a(&b_st, 9, m9, cv55);
-    emlrtAssign(&e_y, m9);
-    c_st.site = &mv_emlrtRSI;
-    c_error(&c_st, message(&c_st, d_y, e_y, &g_emlrtMCI), &g_emlrtMCI);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 9, m13, cv73);
+    emlrtAssign(&d_y, m13);
+    c_error(message(c_y, d_y, &h_emlrtMCI), &h_emlrtMCI);
+    emlrtPopRtStackR2012b(&rc_emlrtRSI, emlrtRootTLSGlobal);
   }
 
-  st.site = &wj_emlrtRSI;
-  ii = i7 - i6;
-  loop_ub = i7 - i6;
-  for (i7 = 0; i7 < loop_ub; i7++) {
-    x_data[i7] = cv57[i6 + i7];
+  emlrtPopRtStackR2012b(&sd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&nd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&od_emlrtRSI, emlrtRootTLSGlobal);
+  ii = (i8 - i7) + 1;
+  loop_ub = i8 - i7;
+  for (i8 = 0; i8 <= loop_ub; i8++) {
+    b_tmp_data[i8] = i7 + i8;
+  }
+
+  for (i7 = 0; i7 < ii; i7++) {
+    x_data[i7] = cv75[b_tmp_data[i7] - 1];
   }
 
   guard3 = FALSE;
@@ -389,75 +412,86 @@ void checkIPAddressFormat(const emlrtStack *sp)
   } else {
     x_size[0] = 1;
     x_size[1] = ii;
-    for (i6 = 0; i6 < ii; i6++) {
-      b_x_data[i6] = (x_data[i6] >= 48);
+    for (i7 = 0; i7 < ii; i7++) {
+      b_x_data[i7] = (x_data[i7] >= 48);
     }
 
     tmp_size[0] = 1;
     tmp_size[1] = ii;
-    for (i6 = 0; i6 < 2; i6++) {
-      x[i6] = x_size[i6];
-      iv45[i6] = tmp_size[i6];
+    for (i7 = 0; i7 < 2; i7++) {
+      x[i7] = x_size[i7];
+      iv58[i7] = tmp_size[i7];
     }
 
-    emlrtSizeEqCheck2DFastR2012b(x, iv45, &i_emlrtECI, &st);
-    b_st.site = &ak_emlrtRSI;
-    for (i6 = 0; i6 < ii; i6++) {
-      b_x_data[i6] = !b_x_data[i6];
+    emlrtSizeEqCheck2DFastR2012b(x, iv58, &i_emlrtECI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&rd_emlrtRSI, emlrtRootTLSGlobal);
+    for (i7 = 0; i7 < ii; i7++) {
+      b_x_data[i7] = !b_x_data[i7];
     }
 
-    c_st.site = &pc_emlrtRSI;
-    c_y = FALSE;
+    emlrtPushRtStackR2012b(&td_emlrtRSI, emlrtRootTLSGlobal);
+    cond = FALSE;
+    emlrtPushRtStackR2012b(&wd_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&wd_emlrtRSI, emlrtRootTLSGlobal);
     idx = 1;
     exitg3 = FALSE;
     while ((exitg3 == FALSE) && (idx <= ii)) {
       if (!(b_x_data[idx - 1] == 0)) {
-        c_y = TRUE;
+        cond = TRUE;
         exitg3 = TRUE;
       } else {
         idx++;
       }
     }
 
-    if (c_y) {
+    emlrtPopRtStackR2012b(&td_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&rd_emlrtRSI, emlrtRootTLSGlobal);
+    if (cond) {
       guard3 = TRUE;
     } else {
-      c_y = FALSE;
+      cond = FALSE;
     }
   }
 
   if (guard3 == TRUE) {
-    c_y = TRUE;
+    cond = TRUE;
   }
 
-  b_st.site = &bk_emlrtRSI;
-  if (!c_y) {
+  emlrtPushRtStackR2012b(&sd_emlrtRSI, emlrtRootTLSGlobal);
+  if (!cond) {
   } else {
-    f_y = NULL;
-    m9 = mxCreateCharArray(2, iv48);
+    emlrtPushRtStackR2012b(&rc_emlrtRSI, emlrtRootTLSGlobal);
+    e_y = NULL;
+    m13 = mxCreateCharArray(2, iv61);
     for (idx = 0; idx < 42; idx++) {
-      cv53[idx] = cv54[idx];
+      cv71[idx] = cv72[idx];
     }
 
-    emlrtInitCharArrayR2013a(&b_st, 42, m9, cv53);
-    emlrtAssign(&f_y, m9);
-    g_y = NULL;
-    m9 = mxCreateCharArray(2, iv49);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 42, m13, cv71);
+    emlrtAssign(&e_y, m13);
+    f_y = NULL;
+    m13 = mxCreateCharArray(2, iv62);
     for (idx = 0; idx < 9; idx++) {
-      cv55[idx] = cv56[idx];
+      cv73[idx] = cv74[idx];
     }
 
-    emlrtInitCharArrayR2013a(&b_st, 9, m9, cv55);
-    emlrtAssign(&g_y, m9);
-    c_st.site = &mv_emlrtRSI;
-    c_error(&c_st, message(&c_st, f_y, g_y, &g_emlrtMCI), &g_emlrtMCI);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 9, m13, cv73);
+    emlrtAssign(&f_y, m13);
+    c_error(message(e_y, f_y, &h_emlrtMCI), &h_emlrtMCI);
+    emlrtPopRtStackR2012b(&rc_emlrtRSI, emlrtRootTLSGlobal);
   }
 
-  st.site = &xj_emlrtRSI;
-  ii = i9 - i8;
-  loop_ub = i9 - i8;
-  for (i6 = 0; i6 < loop_ub; i6++) {
-    x_data[i6] = cv57[i8 + i6];
+  emlrtPopRtStackR2012b(&sd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&od_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&pd_emlrtRSI, emlrtRootTLSGlobal);
+  ii = (i10 - i9) + 1;
+  loop_ub = i10 - i9;
+  for (i7 = 0; i7 <= loop_ub; i7++) {
+    b_tmp_data[i7] = i9 + i7;
+  }
+
+  for (i7 = 0; i7 < ii; i7++) {
+    x_data[i7] = cv75[b_tmp_data[i7] - 1];
   }
 
   guard2 = FALSE;
@@ -466,75 +500,86 @@ void checkIPAddressFormat(const emlrtStack *sp)
   } else {
     x_size[0] = 1;
     x_size[1] = ii;
-    for (i6 = 0; i6 < ii; i6++) {
-      b_x_data[i6] = (x_data[i6] >= 48);
+    for (i7 = 0; i7 < ii; i7++) {
+      b_x_data[i7] = (x_data[i7] >= 48);
     }
 
     tmp_size[0] = 1;
     tmp_size[1] = ii;
-    for (i6 = 0; i6 < 2; i6++) {
-      x[i6] = x_size[i6];
-      iv45[i6] = tmp_size[i6];
+    for (i7 = 0; i7 < 2; i7++) {
+      x[i7] = x_size[i7];
+      iv58[i7] = tmp_size[i7];
     }
 
-    emlrtSizeEqCheck2DFastR2012b(x, iv45, &i_emlrtECI, &st);
-    b_st.site = &ak_emlrtRSI;
-    for (i6 = 0; i6 < ii; i6++) {
-      b_x_data[i6] = !b_x_data[i6];
+    emlrtSizeEqCheck2DFastR2012b(x, iv58, &i_emlrtECI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&rd_emlrtRSI, emlrtRootTLSGlobal);
+    for (i7 = 0; i7 < ii; i7++) {
+      b_x_data[i7] = !b_x_data[i7];
     }
 
-    c_st.site = &pc_emlrtRSI;
-    c_y = FALSE;
+    emlrtPushRtStackR2012b(&td_emlrtRSI, emlrtRootTLSGlobal);
+    cond = FALSE;
+    emlrtPushRtStackR2012b(&wd_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&wd_emlrtRSI, emlrtRootTLSGlobal);
     idx = 1;
     exitg2 = FALSE;
     while ((exitg2 == FALSE) && (idx <= ii)) {
       if (!(b_x_data[idx - 1] == 0)) {
-        c_y = TRUE;
+        cond = TRUE;
         exitg2 = TRUE;
       } else {
         idx++;
       }
     }
 
-    if (c_y) {
+    emlrtPopRtStackR2012b(&td_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&rd_emlrtRSI, emlrtRootTLSGlobal);
+    if (cond) {
       guard2 = TRUE;
     } else {
-      c_y = FALSE;
+      cond = FALSE;
     }
   }
 
   if (guard2 == TRUE) {
-    c_y = TRUE;
+    cond = TRUE;
   }
 
-  b_st.site = &bk_emlrtRSI;
-  if (!c_y) {
+  emlrtPushRtStackR2012b(&sd_emlrtRSI, emlrtRootTLSGlobal);
+  if (!cond) {
   } else {
-    h_y = NULL;
-    m9 = mxCreateCharArray(2, iv50);
+    emlrtPushRtStackR2012b(&rc_emlrtRSI, emlrtRootTLSGlobal);
+    g_y = NULL;
+    m13 = mxCreateCharArray(2, iv63);
     for (idx = 0; idx < 42; idx++) {
-      cv53[idx] = cv54[idx];
+      cv71[idx] = cv72[idx];
     }
 
-    emlrtInitCharArrayR2013a(&b_st, 42, m9, cv53);
-    emlrtAssign(&h_y, m9);
-    i_y = NULL;
-    m9 = mxCreateCharArray(2, iv51);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 42, m13, cv71);
+    emlrtAssign(&g_y, m13);
+    h_y = NULL;
+    m13 = mxCreateCharArray(2, iv64);
     for (idx = 0; idx < 9; idx++) {
-      cv55[idx] = cv56[idx];
+      cv73[idx] = cv74[idx];
     }
 
-    emlrtInitCharArrayR2013a(&b_st, 9, m9, cv55);
-    emlrtAssign(&i_y, m9);
-    c_st.site = &mv_emlrtRSI;
-    c_error(&c_st, message(&c_st, h_y, i_y, &g_emlrtMCI), &g_emlrtMCI);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 9, m13, cv73);
+    emlrtAssign(&h_y, m13);
+    c_error(message(g_y, h_y, &h_emlrtMCI), &h_emlrtMCI);
+    emlrtPopRtStackR2012b(&rc_emlrtRSI, emlrtRootTLSGlobal);
   }
 
-  st.site = &yj_emlrtRSI;
-  ii = (i11 - i10) + 1;
-  loop_ub = i11 - i10;
-  for (i6 = 0; i6 <= loop_ub; i6++) {
-    x_data[i6] = cv57[i10 + i6];
+  emlrtPopRtStackR2012b(&sd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&pd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&qd_emlrtRSI, emlrtRootTLSGlobal);
+  ii = i12 - i11;
+  loop_ub = i12 - i11;
+  for (i7 = 0; i7 < loop_ub; i7++) {
+    tmp_data[i7] = i11 + i7;
+  }
+
+  for (i7 = 0; i7 < ii; i7++) {
+    x_data[i7] = cv75[tmp_data[i7] - 1];
   }
 
   b_guard1 = FALSE;
@@ -543,69 +588,77 @@ void checkIPAddressFormat(const emlrtStack *sp)
   } else {
     x_size[0] = 1;
     x_size[1] = ii;
-    for (i6 = 0; i6 < ii; i6++) {
-      b_x_data[i6] = (x_data[i6] >= 48);
+    for (i7 = 0; i7 < ii; i7++) {
+      b_x_data[i7] = (x_data[i7] >= 48);
     }
 
     tmp_size[0] = 1;
     tmp_size[1] = ii;
-    for (i6 = 0; i6 < 2; i6++) {
-      x[i6] = x_size[i6];
-      iv45[i6] = tmp_size[i6];
+    for (i7 = 0; i7 < 2; i7++) {
+      x[i7] = x_size[i7];
+      iv58[i7] = tmp_size[i7];
     }
 
-    emlrtSizeEqCheck2DFastR2012b(x, iv45, &i_emlrtECI, &st);
-    b_st.site = &ak_emlrtRSI;
-    for (i6 = 0; i6 < ii; i6++) {
-      b_x_data[i6] = !b_x_data[i6];
+    emlrtSizeEqCheck2DFastR2012b(x, iv58, &i_emlrtECI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&rd_emlrtRSI, emlrtRootTLSGlobal);
+    for (i7 = 0; i7 < ii; i7++) {
+      b_x_data[i7] = !b_x_data[i7];
     }
 
-    c_st.site = &pc_emlrtRSI;
-    c_y = FALSE;
+    emlrtPushRtStackR2012b(&td_emlrtRSI, emlrtRootTLSGlobal);
+    cond = FALSE;
+    emlrtPushRtStackR2012b(&wd_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&wd_emlrtRSI, emlrtRootTLSGlobal);
     idx = 1;
     exitg1 = FALSE;
     while ((exitg1 == FALSE) && (idx <= ii)) {
       if (!(b_x_data[idx - 1] == 0)) {
-        c_y = TRUE;
+        cond = TRUE;
         exitg1 = TRUE;
       } else {
         idx++;
       }
     }
 
-    if (c_y) {
+    emlrtPopRtStackR2012b(&td_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&rd_emlrtRSI, emlrtRootTLSGlobal);
+    if (cond) {
       b_guard1 = TRUE;
     } else {
-      c_y = FALSE;
+      cond = FALSE;
     }
   }
 
   if (b_guard1 == TRUE) {
-    c_y = TRUE;
+    cond = TRUE;
   }
 
-  b_st.site = &bk_emlrtRSI;
-  if (!c_y) {
+  emlrtPushRtStackR2012b(&sd_emlrtRSI, emlrtRootTLSGlobal);
+  if (!cond) {
   } else {
-    j_y = NULL;
-    m9 = mxCreateCharArray(2, iv52);
+    emlrtPushRtStackR2012b(&rc_emlrtRSI, emlrtRootTLSGlobal);
+    i_y = NULL;
+    m13 = mxCreateCharArray(2, iv65);
     for (idx = 0; idx < 42; idx++) {
-      cv53[idx] = cv54[idx];
+      cv71[idx] = cv72[idx];
     }
 
-    emlrtInitCharArrayR2013a(&b_st, 42, m9, cv53);
-    emlrtAssign(&j_y, m9);
-    k_y = NULL;
-    m9 = mxCreateCharArray(2, iv53);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 42, m13, cv71);
+    emlrtAssign(&i_y, m13);
+    j_y = NULL;
+    m13 = mxCreateCharArray(2, iv66);
     for (idx = 0; idx < 9; idx++) {
-      cv55[idx] = cv56[idx];
+      cv73[idx] = cv74[idx];
     }
 
-    emlrtInitCharArrayR2013a(&b_st, 9, m9, cv55);
-    emlrtAssign(&k_y, m9);
-    c_st.site = &mv_emlrtRSI;
-    c_error(&c_st, message(&c_st, j_y, k_y, &g_emlrtMCI), &g_emlrtMCI);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 9, m13, cv73);
+    emlrtAssign(&j_y, m13);
+    c_error(message(i_y, j_y, &h_emlrtMCI), &h_emlrtMCI);
+    emlrtPopRtStackR2012b(&rc_emlrtRSI, emlrtRootTLSGlobal);
   }
+
+  emlrtPopRtStackR2012b(&sd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&qd_emlrtRSI, emlrtRootTLSGlobal);
 }
 
 /* End of code generation (checkIPAddressFormat.c) */

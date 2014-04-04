@@ -3,7 +3,7 @@
  *
  * Code generation for function 'exp'
  *
- * C source code generated on: Thu Mar  6 18:47:06 2014
+ * C source code generated on: Thu Apr  3 19:51:42 2014
  *
  */
 
@@ -11,18 +11,17 @@
 #include "rt_nonfinite.h"
 #include "testMACReceiver.h"
 #include "exp.h"
-#include <stdio.h>
 
 /* Function Definitions */
 void b_exp(creal_T x_data[1280], int32_T x_size[1])
 {
-  int32_T i33;
+  int32_T i39;
   int32_T k;
   real_T r;
   real_T x_data_im;
   real_T b_x_data_im;
-  i33 = x_size[0];
-  for (k = 0; k < i33; k++) {
+  i39 = x_size[0];
+  for (k = 0; k < i39; k++) {
     r = muDoubleScalarExp(x_data[k].re / 2.0);
     x_data_im = x_data[k].im;
     b_x_data_im = x_data[k].im;

@@ -3,7 +3,7 @@
  *
  * Code generation for function 'abs'
  *
- * C source code generated on: Thu Feb 27 11:53:20 2014
+ * C source code generated on: Thu Apr  3 19:36:37 2014
  *
  */
 
@@ -23,8 +23,7 @@
 #include "testPHYReceive_types.h"
 
 /* Function Declarations */
-extern void b_abs(const creal_T x[5120], real_T y[5120]);
-extern void c_abs(const creal_T x_data[1231], const int32_T x_size[1], real_T y_data[1231], int32_T y_size[1]);
-extern void d_abs(const creal_T x[106], real_T y[106]);
+extern void b_abs(const creal_T x_data[1231], const int32_T x_size[1], real_T y_data[1231], int32_T y_size[1]);
+extern void c_abs(const creal_T x[106], real_T y[106]);
 #endif
 /* End of code generation (abs.h) */

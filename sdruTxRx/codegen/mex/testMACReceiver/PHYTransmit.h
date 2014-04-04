@@ -3,7 +3,7 @@
  *
  * Code generation for function 'PHYTransmit'
  *
- * C source code generated on: Thu Mar  6 18:47:07 2014
+ * C source code generated on: Thu Apr  3 19:51:42 2014
  *
  */
 
@@ -23,6 +23,6 @@
 #include "testMACReceiver_types.h"
 
 /* Function Declarations */
-extern void PHYTransmit(testMACReceiverStackData *SD, const emlrtStack *sp, comm_SDRuTransmitter *ObjSDRuTransmitter, comm_SDRuReceiver *ObjSDRuReceiver, real_T originNodeID, real_T destNodeID);
+extern void PHYTransmit(testMACReceiverStackData *SD, comm_SDRuTransmitter *ObjSDRuTransmitter, comm_SDRuReceiver *ObjSDRuReceiver, real_T originNodeID, real_T destNodeID);
 #endif
 /* End of code generation (PHYTransmit.h) */

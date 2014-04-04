@@ -1,8 +1,8 @@
-MATLAB="/Applications/MATLAB_R2013b.app"
-Arch=maci64
+MATLAB="/opt/MATLAB/R2013a"
+Arch=glnxa64
 ENTRYPOINT=mexFunction
 MAPFILE=$ENTRYPOINT'.map'
-PREFDIR="/Users/travis/.matlab/R2013b"
+PREFDIR="/home/sdruser/.matlab/R2013a"
 OPTSFILE_NAME="./mexopts.sh"
 . $OPTSFILE_NAME
 COMPILER=$CC
@@ -27,4 +27,4 @@ echo OMPFLAGS= >> testPHYReceive_mex.mki
 echo OMPLINKFLAGS= >> testPHYReceive_mex.mki
 echo "EMC_COMPILER=" >> testPHYReceive_mex.mki
 echo "EMC_CONFIG=optim" >> testPHYReceive_mex.mki
-"/Applications/MATLAB_R2013b.app/bin/maci64/gmake" -B -f testPHYReceive_mex.mk
+"/opt/MATLAB/R2013a/bin/glnxa64/gmake" -B -f testPHYReceive_mex.mk

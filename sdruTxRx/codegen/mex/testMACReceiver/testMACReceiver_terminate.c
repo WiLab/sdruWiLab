@@ -3,7 +3,7 @@
  *
  * Code generation for function 'testMACReceiver_terminate'
  *
- * C source code generated on: Thu Mar  6 18:47:04 2014
+ * C source code generated on: Thu Apr  3 19:51:42 2014
  *
  */
 
@@ -11,21 +11,19 @@
 #include "rt_nonfinite.h"
 #include "testMACReceiver.h"
 #include "testMACReceiver_terminate.h"
-#include <stdio.h>
 
 /* Function Definitions */
-void testMACReceiver_atexit(emlrtStack *sp)
+void testMACReceiver_atexit(void)
 {
   emlrtCreateRootTLS(&emlrtRootTLSGlobal, &emlrtContextGlobal, NULL, 1);
-  sp->tls = emlrtRootTLSGlobal;
-  emlrtEnterRtStackR2012b(sp);
-  emlrtLeaveRtStackR2012b(sp);
+  emlrtEnterRtStackR2012b(emlrtRootTLSGlobal);
+  emlrtLeaveRtStackR2012b(emlrtRootTLSGlobal);
   emlrtDestroyRootTLS(&emlrtRootTLSGlobal);
 }
 
-void testMACReceiver_terminate(emlrtStack *sp)
+void testMACReceiver_terminate(void)
 {
-  emlrtLeaveRtStackR2012b(sp);
+  emlrtLeaveRtStackR2012b(emlrtRootTLSGlobal);
   emlrtDestroyRootTLS(&emlrtRootTLSGlobal);
 }
 

@@ -3,7 +3,7 @@
  *
  * Code generation for function 'locateOFDMFrame_sdr'
  *
- * C source code generated on: Thu Feb 27 11:53:20 2014
+ * C source code generated on: Thu Apr  3 19:36:38 2014
  *
  */
 
@@ -11,125 +11,179 @@
 #include "rt_nonfinite.h"
 #include "testPHYReceive.h"
 #include "locateOFDMFrame_sdr.h"
-#include "find.h"
-#include "eml_setop.h"
-#include "PHYReceive.h"
-#include "eml_int_forloop_overflow_check.h"
+#include "receiveData.h"
+#include "equalizeOFDM.h"
 #include "testPHYReceive_mexutil.h"
 #include "testPHYReceive_data.h"
+#include <stdio.h>
 
 /* Variable Definitions */
-static emlrtRSInfo no_emlrtRSI = { 40, "locateOFDMFrame_sdr",
-  "/Users/travis/Git/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m" };
-
-static emlrtRSInfo oo_emlrtRSI = { 41, "locateOFDMFrame_sdr",
-  "/Users/travis/Git/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m" };
-
-static emlrtRSInfo po_emlrtRSI = { 51, "locateOFDMFrame_sdr",
-  "/Users/travis/Git/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m" };
-
-static emlrtRSInfo qo_emlrtRSI = { 53, "locateOFDMFrame_sdr",
-  "/Users/travis/Git/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m" };
-
-static emlrtRSInfo ro_emlrtRSI = { 58, "locateOFDMFrame_sdr",
-  "/Users/travis/Git/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m" };
-
-static emlrtRSInfo so_emlrtRSI = { 62, "locateOFDMFrame_sdr",
-  "/Users/travis/Git/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m" };
-
-static emlrtRSInfo to_emlrtRSI = { 73, "locateOFDMFrame_sdr",
-  "/Users/travis/Git/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m" };
-
-static emlrtRSInfo cp_emlrtRSI = { 23, "intersect",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/intersect.m" };
-
-static emlrtRSInfo dp_emlrtRSI = { 67, "eml_setop",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/ops/eml_setop.m" };
-
-static emlrtRSInfo bq_emlrtRSI = { 11, "eml_li_find",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_li_find.m" };
-
-static emlrtRSInfo cq_emlrtRSI = { 26, "eml_li_find",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_li_find.m" };
-
-static emlrtRSInfo dq_emlrtRSI = { 29, "eml_li_find",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_li_find.m" };
-
-static emlrtRSInfo eq_emlrtRSI = { 39, "eml_li_find",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_li_find.m" };
-
-static emlrtRSInfo fq_emlrtRSI = { 41, "eml_li_find",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_li_find.m" };
-
-static emlrtRSInfo gq_emlrtRSI = { 18, "max",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/datafun/max.m" };
-
-static emlrtMCInfo cb_emlrtMCI = { 14, 5, "eml_li_find",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_li_find.m" };
-
-static emlrtBCInfo t_emlrtBCI = { -1, -1, 52, 24, "MLocations",
-  "locateOFDMFrame_sdr",
-  "/Users/travis/Git/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m", 0 };
-
-static emlrtBCInfo u_emlrtBCI = { -1, -1, 53, 33, "MLocations",
-  "locateOFDMFrame_sdr",
-  "/Users/travis/Git/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m", 0 };
-
-static emlrtECInfo l_emlrtECI = { -1, 53, 33, "locateOFDMFrame_sdr",
-  "/Users/travis/Git/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m" };
-
-static emlrtBCInfo v_emlrtBCI = { -1, -1, 58, 1, "peaks", "locateOFDMFrame_sdr",
-  "/Users/travis/Git/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m", 0 };
-
-static emlrtBCInfo w_emlrtBCI = { -1, -1, 64, 37, "MLocations",
-  "locateOFDMFrame_sdr",
-  "/Users/travis/Git/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m", 0 };
-
-static emlrtBCInfo x_emlrtBCI = { -1, -1, 53, 5, "peaks", "locateOFDMFrame_sdr",
-  "/Users/travis/Git/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m", 0 };
-
-static emlrtDCInfo c_emlrtDCI = { 20, 34, "eml_li_find",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_li_find.m", 4
+static emlrtRSInfo ug_emlrtRSI = { 40, "locateOFDMFrame_sdr",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m"
 };
 
-static emlrtRSInfo vt_emlrtRSI = { 14, "eml_li_find",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/eml/eml_li_find.m" };
+static emlrtRSInfo vg_emlrtRSI = { 41, "locateOFDMFrame_sdr",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m"
+};
+
+static emlrtRSInfo wg_emlrtRSI = { 53, "locateOFDMFrame_sdr",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m"
+};
+
+static emlrtRSInfo xg_emlrtRSI = { 58, "locateOFDMFrame_sdr",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m"
+};
+
+static emlrtRSInfo yg_emlrtRSI = { 62, "locateOFDMFrame_sdr",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m"
+};
+
+static emlrtRSInfo ah_emlrtRSI = { 16, "max",
+  "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/datafun/max.m" };
+
+static emlrtRSInfo bh_emlrtRSI = { 18, "eml_min_or_max",
+  "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/eml/eml_min_or_max.m" };
+
+static emlrtRSInfo ch_emlrtRSI = { 88, "eml_min_or_max",
+  "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/eml/eml_min_or_max.m" };
+
+static emlrtRSInfo eh_emlrtRSI = { 219, "eml_min_or_max",
+  "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/eml/eml_min_or_max.m" };
+
+static emlrtRSInfo fh_emlrtRSI = { 192, "eml_min_or_max",
+  "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/eml/eml_min_or_max.m" };
+
+static emlrtRSInfo gh_emlrtRSI = { 41, "find",
+  "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/elmat/find.m" };
+
+static emlrtRSInfo hh_emlrtRSI = { 230, "find",
+  "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/elmat/find.m" };
+
+static emlrtRSInfo ih_emlrtRSI = { 23, "intersect",
+  "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/ops/intersect.m" };
+
+static emlrtRSInfo jh_emlrtRSI = { 65, "eml_setop",
+  "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/ops/eml_setop.m" };
+
+static emlrtRSInfo kh_emlrtRSI = { 210, "eml_setop",
+  "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/ops/eml_setop.m" };
+
+static emlrtRSInfo lh_emlrtRSI = { 211, "eml_setop",
+  "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/ops/eml_setop.m" };
+
+static emlrtRSInfo mh_emlrtRSI = { 214, "eml_setop",
+  "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/ops/eml_setop.m" };
+
+static emlrtRSInfo nh_emlrtRSI = { 363, "eml_setop",
+  "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/ops/eml_setop.m" };
+
+static emlrtRSInfo oh_emlrtRSI = { 374, "eml_setop",
+  "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/ops/eml_setop.m" };
+
+static emlrtRSInfo ph_emlrtRSI = { 401, "eml_setop",
+  "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/ops/eml_setop.m" };
+
+static emlrtRSInfo qh_emlrtRSI = { 22, "issorted",
+  "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/datafun/issorted.m" };
+
+static emlrtRSInfo rh_emlrtRSI = { 11, "eml_li_find",
+  "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/eml/eml_li_find.m" };
+
+static emlrtRSInfo sh_emlrtRSI = { 14, "eml_li_find",
+  "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/eml/eml_li_find.m" };
+
+static emlrtRSInfo th_emlrtRSI = { 26, "eml_li_find",
+  "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/eml/eml_li_find.m" };
+
+static emlrtRSInfo uh_emlrtRSI = { 39, "eml_li_find",
+  "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/eml/eml_li_find.m" };
+
+static emlrtRSInfo vh_emlrtRSI = { 18, "max",
+  "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/datafun/max.m" };
+
+static emlrtRSInfo wh_emlrtRSI = { 15, "eml_min_or_max",
+  "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/eml/eml_min_or_max.m" };
+
+static emlrtMCInfo ab_emlrtMCI = { 363, 5, "eml_setop",
+  "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/ops/eml_setop.m" };
+
+static emlrtMCInfo bb_emlrtMCI = { 374, 9, "eml_setop",
+  "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/ops/eml_setop.m" };
+
+static emlrtMCInfo cb_emlrtMCI = { 401, 5, "eml_setop",
+  "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/ops/eml_setop.m" };
+
+static emlrtMCInfo db_emlrtMCI = { 14, 5, "eml_li_find",
+  "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/eml/eml_li_find.m" };
+
+static emlrtECInfo l_emlrtECI = { -1, 53, 33, "locateOFDMFrame_sdr",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m"
+};
+
+static emlrtBCInfo t_emlrtBCI = { -1, -1, 53, 33, "MLocations",
+  "locateOFDMFrame_sdr",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m",
+  0 };
+
+static emlrtBCInfo u_emlrtBCI = { -1, -1, 58, 1, "peaks", "locateOFDMFrame_sdr",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m",
+  0 };
+
+static emlrtBCInfo v_emlrtBCI = { -1, -1, 64, 37, "MLocations",
+  "locateOFDMFrame_sdr",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m",
+  0 };
+
+static emlrtBCInfo w_emlrtBCI = { -1, -1, 52, 24, "MLocations",
+  "locateOFDMFrame_sdr",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m",
+  0 };
+
+static emlrtBCInfo x_emlrtBCI = { -1, -1, 53, 5, "peaks", "locateOFDMFrame_sdr",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdruTxRx/private/locateOFDMFrame_sdr.m",
+  0 };
 
 /* Function Declarations */
-static int32_T compute_nones(const emlrtStack *sp, const boolean_T x_data[1224],
-  int32_T n);
-static void eml_li_find(const emlrtStack *sp, const boolean_T x_data[1224],
-  const int32_T x_size[1], int32_T y_data[1224], int32_T y_size[1]);
+static void b_eml_error(void);
+static int32_T compute_nones(const boolean_T x_data[1224], int32_T n);
+static void do_vectors(const real_T a_data[1224], const int32_T a_size[1], const
+  real_T b[8], real_T c_data[8], int32_T c_size[1], int32_T ia_data[8], int32_T
+  ia_size[1], int32_T ib_data[8], int32_T ib_size[1]);
+static void eml_error(void);
+static void eml_li_find(const boolean_T x_data[1224], const int32_T x_size[1],
+  int32_T y_data[1224], int32_T y_size[1]);
 
 /* Function Definitions */
-static int32_T compute_nones(const emlrtStack *sp, const boolean_T x_data[1224],
-  int32_T n)
+static void b_eml_error(void)
+{
+  emlrtPushRtStackR2012b(&u_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtErrorWithMessageIdR2012b(emlrtRootTLSGlobal, &ac_emlrtRTEI,
+    "Coder:toolbox:eml_setop_unsortedB", 0);
+  emlrtPopRtStackR2012b(&u_emlrtRSI, emlrtRootTLSGlobal);
+}
+
+static int32_T compute_nones(const boolean_T x_data[1224], int32_T n)
 {
   int32_T k;
-  boolean_T b4;
+  boolean_T b5;
   int32_T i;
-  emlrtStack st;
-  emlrtStack b_st;
-  st.prev = sp;
-  st.tls = sp->tls;
-  b_st.prev = &st;
-  b_st.tls = st.tls;
   k = 0;
-  st.site = &eq_emlrtRSI;
+  emlrtPushRtStackR2012b(&uh_emlrtRSI, emlrtRootTLSGlobal);
   if (1 > n) {
-    b4 = FALSE;
+    b5 = FALSE;
   } else {
-    b4 = (n > 2147483646);
+    b5 = (n > 2147483646);
   }
 
-  if (b4) {
-    b_st.site = &vf_emlrtRSI;
-    check_forloop_overflow_error(&b_st);
+  if (b5) {
+    emlrtPushRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
+    check_forloop_overflow_error();
+    emlrtPopRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
   }
 
+  emlrtPopRtStackR2012b(&uh_emlrtRSI, emlrtRootTLSGlobal);
   for (i = 1; i <= n; i++) {
     if (x_data[i - 1]) {
-      st.site = &fq_emlrtRSI;
       k++;
     }
   }
@@ -137,91 +191,381 @@ static int32_T compute_nones(const emlrtStack *sp, const boolean_T x_data[1224],
   return k;
 }
 
-static void eml_li_find(const emlrtStack *sp, const boolean_T x_data[1224],
-  const int32_T x_size[1], int32_T y_data[1224], int32_T y_size[1])
+static void do_vectors(const real_T a_data[1224], const int32_T a_size[1], const
+  real_T b[8], real_T c_data[8], int32_T c_size[1], int32_T ia_data[8], int32_T
+  ia_size[1], int32_T ib_data[8], int32_T ib_size[1])
+{
+  int32_T ncmax;
+  boolean_T y;
+  int32_T ialast;
+  boolean_T exitg4;
+  boolean_T p;
+  boolean_T exitg3;
+  int32_T nc;
+  int32_T iafirst;
+  int32_T ibfirst;
+  int32_T iblast;
+  int32_T b_ialast;
+  real_T ak;
+  boolean_T exitg2;
+  real_T absxk;
+  int32_T exponent;
+  int32_T b_iblast;
+  real_T bk;
+  boolean_T exitg1;
+  int32_T b_exponent;
+  int32_T c_exponent;
+  const mxArray *b_y;
+  const mxArray *m23;
+  int32_T b_ia_data[8];
+  const mxArray *c_y;
+  const mxArray *d_y;
+  real_T b_c_data[8];
+  ncmax = muIntScalarMin_sint32(a_size[0], 8);
+  c_size[0] = (int8_T)ncmax;
+  ia_size[0] = ncmax;
+  ib_size[0] = ncmax;
+  emlrtPushRtStackR2012b(&kh_emlrtRSI, emlrtRootTLSGlobal);
+  y = TRUE;
+  if (a_size[0] == 0) {
+  } else {
+    emlrtPushRtStackR2012b(&qh_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&qh_emlrtRSI, emlrtRootTLSGlobal);
+    ialast = 1;
+    exitg4 = FALSE;
+    while ((exitg4 == FALSE) && (ialast <= a_size[0] - 1)) {
+      if ((a_data[ialast - 1] <= a_data[ialast]) || muDoubleScalarIsNaN
+          (a_data[ialast])) {
+        p = TRUE;
+      } else {
+        p = FALSE;
+      }
+
+      if (!p) {
+        y = FALSE;
+        exitg4 = TRUE;
+      } else {
+        ialast++;
+      }
+    }
+  }
+
+  emlrtPopRtStackR2012b(&kh_emlrtRSI, emlrtRootTLSGlobal);
+  if (!y) {
+    emlrtPushRtStackR2012b(&lh_emlrtRSI, emlrtRootTLSGlobal);
+    eml_error();
+    emlrtPopRtStackR2012b(&lh_emlrtRSI, emlrtRootTLSGlobal);
+  }
+
+  y = TRUE;
+  ialast = 1;
+  exitg3 = FALSE;
+  while ((exitg3 == FALSE) && (ialast < 8)) {
+    if ((b[ialast - 1] <= b[ialast]) || muDoubleScalarIsNaN(b[ialast])) {
+      p = TRUE;
+    } else {
+      p = FALSE;
+    }
+
+    if (!p) {
+      y = FALSE;
+      exitg3 = TRUE;
+    } else {
+      ialast++;
+    }
+  }
+
+  if (!y) {
+    emlrtPushRtStackR2012b(&mh_emlrtRSI, emlrtRootTLSGlobal);
+    b_eml_error();
+    emlrtPopRtStackR2012b(&mh_emlrtRSI, emlrtRootTLSGlobal);
+  }
+
+  nc = 0;
+  iafirst = 0;
+  ialast = 0;
+  ibfirst = 0;
+  iblast = 0;
+  while ((ialast + 1 <= a_size[0]) && (iblast + 1 <= 8)) {
+    b_ialast = ialast + 1;
+    ak = a_data[ialast];
+    exitg2 = FALSE;
+    while ((exitg2 == FALSE) && (b_ialast < a_size[0])) {
+      absxk = muDoubleScalarAbs(a_data[ialast] / 2.0);
+      if ((!muDoubleScalarIsInf(absxk)) && (!muDoubleScalarIsNaN(absxk))) {
+        if (absxk <= 2.2250738585072014E-308) {
+          absxk = 4.94065645841247E-324;
+        } else {
+          frexp(absxk, &exponent);
+          absxk = ldexp(1.0, exponent - 53);
+        }
+      } else {
+        absxk = rtNaN;
+      }
+
+      if ((muDoubleScalarAbs(a_data[ialast] - a_data[b_ialast]) < absxk) ||
+          (muDoubleScalarIsInf(a_data[b_ialast]) && muDoubleScalarIsInf
+           (a_data[ialast]) && ((a_data[b_ialast] > 0.0) == (a_data[ialast] >
+             0.0)))) {
+        p = TRUE;
+      } else {
+        p = FALSE;
+      }
+
+      if (p) {
+        b_ialast++;
+      } else {
+        exitg2 = TRUE;
+      }
+    }
+
+    ialast = b_ialast - 1;
+    b_iblast = iblast + 1;
+    bk = b[iblast];
+    exitg1 = FALSE;
+    while ((exitg1 == FALSE) && (b_iblast < 8)) {
+      absxk = muDoubleScalarAbs(b[iblast] / 2.0);
+      if ((!muDoubleScalarIsInf(absxk)) && (!muDoubleScalarIsNaN(absxk))) {
+        if (absxk <= 2.2250738585072014E-308) {
+          absxk = 4.94065645841247E-324;
+        } else {
+          frexp(absxk, &b_exponent);
+          absxk = ldexp(1.0, b_exponent - 53);
+        }
+      } else {
+        absxk = rtNaN;
+      }
+
+      if ((muDoubleScalarAbs(b[iblast] - b[b_iblast]) < absxk) ||
+          (muDoubleScalarIsInf(b[b_iblast]) && muDoubleScalarIsInf(b[iblast]) &&
+           ((b[b_iblast] > 0.0) == (b[iblast] > 0.0)))) {
+        p = TRUE;
+      } else {
+        p = FALSE;
+      }
+
+      if (p) {
+        b_iblast++;
+      } else {
+        exitg1 = TRUE;
+      }
+    }
+
+    iblast = b_iblast - 1;
+    absxk = muDoubleScalarAbs(bk / 2.0);
+    if ((!muDoubleScalarIsInf(absxk)) && (!muDoubleScalarIsNaN(absxk))) {
+      if (absxk <= 2.2250738585072014E-308) {
+        absxk = 4.94065645841247E-324;
+      } else {
+        frexp(absxk, &c_exponent);
+        absxk = ldexp(1.0, c_exponent - 53);
+      }
+    } else {
+      absxk = rtNaN;
+    }
+
+    if ((muDoubleScalarAbs(bk - ak) < absxk) || (muDoubleScalarIsInf(ak) &&
+         muDoubleScalarIsInf(bk) && ((ak > 0.0) == (bk > 0.0)))) {
+      p = TRUE;
+    } else {
+      p = FALSE;
+    }
+
+    if (p) {
+      nc++;
+      c_data[nc - 1] = ak;
+      ia_data[nc - 1] = iafirst + 1;
+      ib_data[nc - 1] = ibfirst + 1;
+      ialast = b_ialast;
+      iafirst = b_ialast;
+      iblast = b_iblast;
+      ibfirst = b_iblast;
+    } else {
+      if ((ak < bk) || muDoubleScalarIsNaN(bk)) {
+        p = TRUE;
+      } else {
+        p = FALSE;
+      }
+
+      if (p) {
+        ialast = b_ialast;
+        iafirst = b_ialast;
+      } else {
+        iblast = b_iblast;
+        ibfirst = b_iblast;
+      }
+    }
+  }
+
+  if (ncmax > 0) {
+    if (nc <= ncmax) {
+    } else {
+      emlrtPushRtStackR2012b(&nh_emlrtRSI, emlrtRootTLSGlobal);
+      b_y = NULL;
+      m23 = mxCreateString("Assertion failed.");
+      emlrtAssign(&b_y, m23);
+      b_error(b_y, &ab_emlrtMCI);
+      emlrtPopRtStackR2012b(&nh_emlrtRSI, emlrtRootTLSGlobal);
+    }
+
+    if (1 > nc) {
+      ialast = 0;
+    } else {
+      ialast = nc;
+    }
+
+    for (iafirst = 0; iafirst < ialast; iafirst++) {
+      b_ia_data[iafirst] = ia_data[iafirst];
+    }
+
+    ia_size[0] = ialast;
+    for (iafirst = 0; iafirst < ialast; iafirst++) {
+      ia_data[iafirst] = b_ia_data[iafirst];
+    }
+  }
+
+  if (ncmax > 0) {
+    if (nc <= ncmax) {
+    } else {
+      emlrtPushRtStackR2012b(&oh_emlrtRSI, emlrtRootTLSGlobal);
+      c_y = NULL;
+      m23 = mxCreateString("Assertion failed.");
+      emlrtAssign(&c_y, m23);
+      b_error(c_y, &bb_emlrtMCI);
+      emlrtPopRtStackR2012b(&oh_emlrtRSI, emlrtRootTLSGlobal);
+    }
+
+    if (1 > nc) {
+      ialast = 0;
+    } else {
+      ialast = nc;
+    }
+
+    for (iafirst = 0; iafirst < ialast; iafirst++) {
+      b_ia_data[iafirst] = ib_data[iafirst];
+    }
+
+    ib_size[0] = ialast;
+    for (iafirst = 0; iafirst < ialast; iafirst++) {
+      ib_data[iafirst] = b_ia_data[iafirst];
+    }
+  }
+
+  if (ncmax > 0) {
+    if (nc <= ncmax) {
+    } else {
+      emlrtPushRtStackR2012b(&ph_emlrtRSI, emlrtRootTLSGlobal);
+      d_y = NULL;
+      m23 = mxCreateString("Assertion failed.");
+      emlrtAssign(&d_y, m23);
+      b_error(d_y, &cb_emlrtMCI);
+      emlrtPopRtStackR2012b(&ph_emlrtRSI, emlrtRootTLSGlobal);
+    }
+
+    if (1 > nc) {
+      ialast = 0;
+    } else {
+      ialast = nc;
+    }
+
+    for (iafirst = 0; iafirst < ialast; iafirst++) {
+      b_c_data[iafirst] = c_data[iafirst];
+    }
+
+    c_size[0] = ialast;
+    for (iafirst = 0; iafirst < ialast; iafirst++) {
+      c_data[iafirst] = b_c_data[iafirst];
+    }
+  }
+}
+
+static void eml_error(void)
+{
+  emlrtPushRtStackR2012b(&u_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtErrorWithMessageIdR2012b(emlrtRootTLSGlobal, &ac_emlrtRTEI,
+    "Coder:toolbox:eml_setop_unsortedA", 0);
+  emlrtPopRtStackR2012b(&u_emlrtRSI, emlrtRootTLSGlobal);
+}
+
+static void eml_li_find(const boolean_T x_data[1224], const int32_T x_size[1],
+  int32_T y_data[1224], int32_T y_size[1])
 {
   int32_T k;
   const mxArray *y;
-  const mxArray *m21;
+  const mxArray *m24;
   int32_T i;
-  emlrtStack st;
-  st.prev = sp;
-  st.tls = sp->tls;
-  st.site = &bq_emlrtRSI;
-  k = compute_nones(&st, x_data, x_size[0]);
+  emlrtPushRtStackR2012b(&rh_emlrtRSI, emlrtRootTLSGlobal);
+  k = compute_nones(x_data, x_size[0]);
+  emlrtPopRtStackR2012b(&rh_emlrtRSI, emlrtRootTLSGlobal);
   if (k <= x_size[0]) {
   } else {
+    emlrtPushRtStackR2012b(&sh_emlrtRSI, emlrtRootTLSGlobal);
     y = NULL;
-    m21 = mxCreateString("Assertion failed.");
-    emlrtAssign(&y, m21);
-    st.site = &vt_emlrtRSI;
-    b_error(&st, y, &cb_emlrtMCI);
+    m24 = mxCreateString("Assertion failed.");
+    emlrtAssign(&y, m24);
+    b_error(y, &db_emlrtMCI);
+    emlrtPopRtStackR2012b(&sh_emlrtRSI, emlrtRootTLSGlobal);
   }
 
-  emlrtNonNegativeCheckFastR2012b(k, &c_emlrtDCI, sp);
   y_size[0] = k;
   k = 0;
-  st.site = &cq_emlrtRSI;
+  emlrtPushRtStackR2012b(&th_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&th_emlrtRSI, emlrtRootTLSGlobal);
   for (i = 1; i <= x_size[0]; i++) {
     if (x_data[i - 1]) {
       y_data[k] = i;
-      st.site = &dq_emlrtRSI;
       k++;
     }
   }
 }
 
-void locateShortpreamble(const emlrtStack *sp, const real_T M_data[1224], real_T
+void locateShortpreamble(const real_T M_data[1224], real_T
   *preambleEstimatedLocation, real_T *numPeaks)
 {
   int32_T ixstart;
-  real_T thresholdNorm;
+  real_T mtmp;
   int32_T ix;
-  boolean_T exitg1;
-  boolean_T b_M_data[1224];
-  int32_T ii_size[1];
+  boolean_T exitg2;
   int32_T ii_data[1224];
-  int32_T MLocations_size_idx_0;
+  int32_T ii;
+  boolean_T exitg1;
+  boolean_T guard1 = FALSE;
   int32_T loop_ub;
-  real_T MLocations_data[1224];
-  int16_T unnamed_idx_0;
+  int16_T b_ii_data[1224];
+  int16_T MLocations_data[1224];
   int32_T peaks_data[1224];
-  int32_T i20;
+  real_T MLocationGuesses[8];
+  int32_T i22;
   real_T b_MLocations_data[1224];
-  int32_T MLocations_size[1];
-  real_T MLocations[8];
+  int32_T ii_size[1];
   int32_T ib_size[1];
   int32_T ib_data[8];
   int32_T ia_size[1];
   int32_T ia_data[8];
   int32_T c_size[1];
   real_T c_data[8];
+  boolean_T b_peaks_data[1224];
   int32_T peaks_size[1];
-  emlrtStack st;
-  emlrtStack b_st;
-  emlrtStack c_st;
-  st.prev = sp;
-  st.tls = sp->tls;
-  b_st.prev = &st;
-  b_st.tls = st.tls;
-  c_st.prev = &b_st;
-  c_st.tls = b_st.tls;
 
   /*  Locate of the start of the actual preamble from timing metric */
   /* % Find peaks of correlation */
   /*  Adjust threshold */
-  st.site = &no_emlrtRSI;
-  b_st.site = &te_emlrtRSI;
+  emlrtPushRtStackR2012b(&ug_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&ah_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&bh_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&ch_emlrtRSI, emlrtRootTLSGlobal);
   ixstart = 1;
-  thresholdNorm = M_data[0];
+  mtmp = M_data[0];
   if (muDoubleScalarIsNaN(M_data[0])) {
+    emlrtPushRtStackR2012b(&fh_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&fh_emlrtRSI, emlrtRootTLSGlobal);
     ix = 2;
-    exitg1 = FALSE;
-    while ((exitg1 == FALSE) && (ix <= 1224)) {
+    exitg2 = FALSE;
+    while ((exitg2 == FALSE) && (ix <= 1224)) {
       ixstart = ix;
       if (!muDoubleScalarIsNaN(M_data[ix - 1])) {
-        thresholdNorm = M_data[ix - 1];
-        exitg1 = TRUE;
+        mtmp = M_data[ix - 1];
+        exitg2 = TRUE;
       } else {
         ix++;
       }
@@ -229,117 +573,163 @@ void locateShortpreamble(const emlrtStack *sp, const real_T M_data[1224], real_T
   }
 
   if (ixstart < 1224) {
+    emlrtPushRtStackR2012b(&eh_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&eh_emlrtRSI, emlrtRootTLSGlobal);
     while (ixstart + 1 <= 1224) {
-      if (M_data[ixstart] > thresholdNorm) {
-        thresholdNorm = M_data[ixstart];
+      if (M_data[ixstart] > mtmp) {
+        mtmp = M_data[ixstart];
       }
 
       ixstart++;
     }
   }
 
-  st.site = &no_emlrtRSI;
-  thresholdNorm *= 0.6;
-  st.site = &oo_emlrtRSI;
-  for (ixstart = 0; ixstart < 1224; ixstart++) {
-    b_M_data[ixstart] = (M_data[ixstart] > thresholdNorm);
+  emlrtPopRtStackR2012b(&ch_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&bh_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&ah_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&ug_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&vg_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&gh_emlrtRSI, emlrtRootTLSGlobal);
+  ixstart = 0;
+  emlrtPushRtStackR2012b(&hh_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&hh_emlrtRSI, emlrtRootTLSGlobal);
+  ii = 1;
+  exitg1 = FALSE;
+  while ((exitg1 == FALSE) && (ii <= 1224)) {
+    guard1 = FALSE;
+    if (M_data[ii - 1] > mtmp * 0.6) {
+      ixstart++;
+      ii_data[ixstart - 1] = ii;
+      if (ixstart >= 1224) {
+        exitg1 = TRUE;
+      } else {
+        guard1 = TRUE;
+      }
+    } else {
+      guard1 = TRUE;
+    }
+
+    if (guard1 == TRUE) {
+      ii++;
+    }
   }
 
-  b_st.site = &vc_emlrtRSI;
-  b_eml_find(b_M_data, ii_data, ii_size);
+  if (1 > ixstart) {
+    loop_ub = 0;
+  } else {
+    loop_ub = ixstart;
+  }
+
+  for (ixstart = 0; ixstart < loop_ub; ixstart++) {
+    b_ii_data[ixstart] = (int16_T)ii_data[ixstart];
+  }
+
+  for (ixstart = 0; ixstart < loop_ub; ixstart++) {
+    ii_data[ixstart] = b_ii_data[ixstart];
+  }
+
+  emlrtPopRtStackR2012b(&gh_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&vg_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  Correct estimate to start of preamble not its center */
-  MLocations_size_idx_0 = ii_size[0];
-  loop_ub = ii_size[0];
   for (ixstart = 0; ixstart < loop_ub; ixstart++) {
-    MLocations_data[ixstart] = (real_T)ii_data[ixstart] - 9.0;
+    MLocations_data[ixstart] = (int16_T)(ii_data[ixstart] - 9);
   }
 
   /*  Frame Detection */
-  unnamed_idx_0 = (int16_T)ii_size[0];
-  loop_ub = (int16_T)ii_size[0];
-  for (ixstart = 0; ixstart < loop_ub; ixstart++) {
+  ii = (int16_T)loop_ub;
+  for (ixstart = 0; ixstart < ii; ixstart++) {
     peaks_data[ixstart] = 0;
   }
 
   /*  Determine correct peak  */
-  st.site = &po_emlrtRSI;
-  ix = 0;
-  while (ix <= ii_size[0] - 1) {
-    ixstart = ix + 1;
-    emlrtDynamicBoundsCheckFastR2012b(ixstart, 1, ii_size[0], &t_emlrtBCI, sp);
-    if (ix + 1 > ii_size[0]) {
-      ixstart = 1;
-      i20 = 1;
-    } else {
-      ixstart = emlrtDynamicBoundsCheckFastR2012b(ix + 1, 1, ii_size[0],
-        &u_emlrtBCI, sp);
-      i20 = emlrtDynamicBoundsCheckFastR2012b(ii_size[0], 1, ii_size[0],
-        &u_emlrtBCI, sp) + 1;
-    }
-
-    emlrtVectorVectorIndexCheckR2012b(ii_size[0], 1, 1, i20 - ixstart,
-      &l_emlrtECI, sp);
-    st.site = &qo_emlrtRSI;
-    b_st.site = &cp_emlrtRSI;
-    MLocations_size[0] = i20 - ixstart;
-    loop_ub = i20 - ixstart;
-    for (i20 = 0; i20 < loop_ub; i20++) {
-      b_MLocations_data[i20] = MLocations_data[(ixstart + i20) - 1];
-    }
-
+  ix = 1;
+  while (ix - 1 <= loop_ub - 1) {
+    emlrtDynamicBoundsCheckFastR2012b(ix, 1, loop_ub, &w_emlrtBCI,
+      emlrtRootTLSGlobal);
     for (ixstart = 0; ixstart < 8; ixstart++) {
-      MLocations[ixstart] = MLocations_data[ix] + (16.0 + 16.0 * (real_T)ixstart);
+      MLocationGuesses[ixstart] = (MLocations_data[ix - 1] + 16 * ixstart) + 16;
     }
 
-    c_st.site = &dp_emlrtRSI;
-    do_vectors(&c_st, b_MLocations_data, MLocations_size, MLocations, c_data,
-               c_size, ia_data, ia_size, ib_data, ib_size);
-    st.site = &qo_emlrtRSI;
-    ixstart = (int16_T)ii_size[0];
-    peaks_data[emlrtDynamicBoundsCheckFastR2012b(ix + 1, 1, ixstart, &x_emlrtBCI,
-      sp) - 1] = c_size[0];
+    if (ix > loop_ub) {
+      ixstart = 0;
+      i22 = 0;
+    } else {
+      ixstart = emlrtDynamicBoundsCheckFastR2012b(ix, 1, loop_ub, &t_emlrtBCI,
+        emlrtRootTLSGlobal) - 1;
+      i22 = emlrtDynamicBoundsCheckFastR2012b(loop_ub, 1, loop_ub, &t_emlrtBCI,
+        emlrtRootTLSGlobal);
+    }
+
+    emlrtVectorVectorIndexCheckR2012b(loop_ub, 1, 1, i22 - ixstart, &l_emlrtECI,
+      emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&wg_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&ih_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&jh_emlrtRSI, emlrtRootTLSGlobal);
+    ii_size[0] = i22 - ixstart;
+    ii = i22 - ixstart;
+    for (i22 = 0; i22 < ii; i22++) {
+      b_MLocations_data[i22] = MLocations_data[ixstart + i22];
+    }
+
+    do_vectors(b_MLocations_data, ii_size, MLocationGuesses, c_data, c_size,
+               ia_data, ia_size, ib_data, ib_size);
+    emlrtPopRtStackR2012b(&jh_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&ih_emlrtRSI, emlrtRootTLSGlobal);
+    ixstart = (int16_T)loop_ub;
+    peaks_data[emlrtDynamicBoundsCheckFastR2012b(ix, 1, ixstart, &x_emlrtBCI,
+      emlrtRootTLSGlobal) - 1] = c_size[0];
+    emlrtPopRtStackR2012b(&wg_emlrtRSI, emlrtRootTLSGlobal);
     ix++;
-    emlrtBreakCheckFastR2012b(emlrtBreakCheckR2012bFlagVar, sp);
+    emlrtBreakCheckFastR2012b(emlrtBreakCheckR2012bFlagVar, emlrtRootTLSGlobal);
   }
 
   /*  Have at least 5 peaks for positive match */
   /*  (TUNABLE) */
-  peaks_size[0] = (int16_T)ii_size[0];
-  loop_ub = (int16_T)ii_size[0];
-  for (ixstart = 0; ixstart < loop_ub; ixstart++) {
-    b_M_data[ixstart] = (peaks_data[ixstart] < 7);
+  emlrtPushRtStackR2012b(&xg_emlrtRSI, emlrtRootTLSGlobal);
+  peaks_size[0] = (int16_T)loop_ub;
+  ii = (int16_T)loop_ub;
+  for (ixstart = 0; ixstart < ii; ixstart++) {
+    b_peaks_data[ixstart] = (peaks_data[ixstart] < 7);
   }
 
-  st.site = &ro_emlrtRSI;
-  eml_li_find(&st, b_M_data, peaks_size, ii_data, ii_size);
-  loop_ub = ii_size[0];
-  for (ixstart = 0; ixstart < loop_ub; ixstart++) {
-    i20 = (int16_T)MLocations_size_idx_0;
-    peaks_data[emlrtDynamicBoundsCheckFastR2012b(ii_data[ixstart], 1, i20,
-      &v_emlrtBCI, sp) - 1] = 0;
+  eml_li_find(b_peaks_data, peaks_size, ii_data, ii_size);
+  emlrtPopRtStackR2012b(&xg_emlrtRSI, emlrtRootTLSGlobal);
+  ii = ii_size[0];
+  for (ixstart = 0; ixstart < ii; ixstart++) {
+    i22 = (int16_T)loop_ub;
+    peaks_data[emlrtDynamicBoundsCheckFastR2012b(ii_data[ixstart], 1, i22,
+      &u_emlrtBCI, emlrtRootTLSGlobal) - 1] = 0;
   }
 
   /*  Pick earliest peak in time */
-  if (!(unnamed_idx_0 == 0)) {
-    st.site = &so_emlrtRSI;
-    b_st.site = &gq_emlrtRSI;
+  if (!((int16_T)loop_ub == 0)) {
+    emlrtPushRtStackR2012b(&yg_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&vh_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&wh_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&ch_emlrtRSI, emlrtRootTLSGlobal);
     ixstart = peaks_data[0];
-    loop_ub = 1;
-    if (unnamed_idx_0 > 1) {
-      for (ix = 2; ix <= unnamed_idx_0; ix++) {
+    ii = 1;
+    if (((int16_T)loop_ub > 1) && (1 < (int16_T)loop_ub)) {
+      emlrtPushRtStackR2012b(&eh_emlrtRSI, emlrtRootTLSGlobal);
+      emlrtPopRtStackR2012b(&eh_emlrtRSI, emlrtRootTLSGlobal);
+      for (ix = 2; ix <= (int16_T)loop_ub; ix++) {
         if (peaks_data[ix - 1] > ixstart) {
           ixstart = peaks_data[ix - 1];
-          loop_ub = ix;
+          ii = ix;
         }
       }
     }
 
+    emlrtPopRtStackR2012b(&ch_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&wh_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&vh_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&yg_emlrtRSI, emlrtRootTLSGlobal);
     *numPeaks = ixstart;
     if (ixstart > 0) {
       *preambleEstimatedLocation =
-        MLocations_data[emlrtDynamicBoundsCheckFastR2012b(loop_ub, 1,
-        MLocations_size_idx_0, &w_emlrtBCI, sp) - 1];
+        MLocations_data[emlrtDynamicBoundsCheckFastR2012b(ii, 1, loop_ub,
+        &v_emlrtBCI, emlrtRootTLSGlobal) - 1];
     } else {
       *preambleEstimatedLocation = -1.0;
 
@@ -351,8 +741,6 @@ void locateShortpreamble(const emlrtStack *sp, const real_T M_data[1224], real_T
   }
 
   /*  Normalize max peaks found */
-  st.site = &to_emlrtRSI;
-  b_st.site = &j_emlrtRSI;
   *numPeaks /= 8.0;
 }
 

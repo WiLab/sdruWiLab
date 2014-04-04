@@ -3,7 +3,7 @@
  *
  * Code generation for function 'PHYTransmit'
  *
- * C source code generated on: Thu Mar  6 18:47:07 2014
+ * C source code generated on: Thu Apr  3 19:51:42 2014
  *
  */
 
@@ -11,42 +11,39 @@
 #include "rt_nonfinite.h"
 #include "testMACReceiver.h"
 #include "PHYTransmit.h"
-#include "SystemCore.h"
 #include "generateOFDMSignal_TX2.h"
+#include "SystemCore.h"
 #include "testMACReceiver_data.h"
-#include <stdio.h>
 
 /* Variable Definitions */
-static emlrtRSInfo yu_emlrtRSI = { 29, "PHYTransmit",
-  "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/PHYTransmit.m" };
+static emlrtRSInfo bk_emlrtRSI = { 29, "PHYTransmit",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdruTxRx/PHYTransmit.m" };
 
-static emlrtRSInfo av_emlrtRSI = { 32, "PHYTransmit",
-  "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/PHYTransmit.m" };
+static emlrtRSInfo ck_emlrtRSI = { 32, "PHYTransmit",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdruTxRx/PHYTransmit.m" };
 
-static emlrtRSInfo bv_emlrtRSI = { 16, "PHYTransmit",
-  "/Volumes/git/traviscollins/sdruWiLab/sdruTxRx/PHYTransmit.m" };
+static emlrtRSInfo dk_emlrtRSI = { 16, "PHYTransmit",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdruTxRx/PHYTransmit.m" };
 
 /* Function Definitions */
-void PHYTransmit(testMACReceiverStackData *SD, const emlrtStack *sp,
-                 comm_SDRuTransmitter *ObjSDRuTransmitter, comm_SDRuReceiver
-                 *ObjSDRuReceiver, real_T originNodeID, real_T destNodeID)
+void PHYTransmit(testMACReceiverStackData *SD, comm_SDRuTransmitter
+                 *ObjSDRuTransmitter, comm_SDRuReceiver *ObjSDRuReceiver, real_T
+                 originNodeID, real_T destNodeID)
 {
   OFDMDemodulator_2 *unusedU1;
   OFDMDemodulator_3 *unusedU0;
   OFDMDemodulator_3 b_unusedU0;
   OFDMDemodulator_2 b_unusedU1;
   int32_T framesTransmitted;
-  emlrtStack st;
-  st.prev = sp;
-  st.tls = sp->tls;
 
   /*  Send Messages */
   /* % Create message bits */
   /*  The output needs to be duplicated to long vectors to help prevent */
   /*  Underflow for the USRP */
-  st.site = &bv_emlrtRSI;
-  b_generateOFDMSignal_TX2(&st, originNodeID, destNodeID, &b_unusedU1,
-    &b_unusedU0, &unusedU0, &unusedU1, SD->u2.f6.dataToTx, &SD->u2.f6.unusedU2);
+  emlrtPushRtStackR2012b(&dk_emlrtRSI, emlrtRootTLSGlobal);
+  b_generateOFDMSignal_TX2(SD, originNodeID, destNodeID, &b_unusedU1,
+    &b_unusedU0, &unusedU0, &unusedU1, SD->u2.f9.dataToTx, &SD->u2.f9.unusedU2);
+  emlrtPopRtStackR2012b(&dk_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  30 Dupe frames created (NOTE! author shouldcreate shorter simpler function) */
   /* % Run transmitter */
@@ -54,16 +51,18 @@ void PHYTransmit(testMACReceiverStackData *SD, const emlrtStack *sp,
   /*  This should be longer to help transmit over periods when the RX is */
   /*  cleaning its buffer */
   for (framesTransmitted = 0; framesTransmitted < 10; framesTransmitted++) {
-    st.site = &yu_emlrtRSI;
-    i_SystemCore_step(SD, &st, ObjSDRuTransmitter, SD->u2.f6.dataToTx);
+    emlrtPushRtStackR2012b(&bk_emlrtRSI, emlrtRootTLSGlobal);
+    i_SystemCore_step(SD, ObjSDRuTransmitter, SD->u2.f9.dataToTx);
+    emlrtPopRtStackR2012b(&bk_emlrtRSI, emlrtRootTLSGlobal);
 
     /* if mod(framesTransmitted,60) == 0 */
-    st.site = &av_emlrtRSI;
-    j_SystemCore_step(SD, &st, ObjSDRuReceiver);
+    emlrtPushRtStackR2012b(&ck_emlrtRSI, emlrtRootTLSGlobal);
+    j_SystemCore_step(SD, ObjSDRuReceiver);
+    emlrtPopRtStackR2012b(&ck_emlrtRSI, emlrtRootTLSGlobal);
 
     /*  Call used to prevent Overflow.  Essentially will clean up receive buffer, will be filled with crosstalk frames */
     /* end */
-    emlrtBreakCheckFastR2012b(emlrtBreakCheckR2012bFlagVar, sp);
+    emlrtBreakCheckFastR2012b(emlrtBreakCheckR2012bFlagVar, emlrtRootTLSGlobal);
   }
 
   /* obj.pSDRuTransmitter.reset;%stop transmitting? */

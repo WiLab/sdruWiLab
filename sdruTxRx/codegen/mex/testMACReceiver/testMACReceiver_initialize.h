@@ -3,7 +3,7 @@
  *
  * Code generation for function 'testMACReceiver_initialize'
  *
- * C source code generated on: Thu Mar  6 18:47:04 2014
+ * C source code generated on: Thu Apr  3 19:51:42 2014
  *
  */
 
@@ -23,6 +23,6 @@
 #include "testMACReceiver_types.h"
 
 /* Function Declarations */
-extern void testMACReceiver_initialize(emlrtStack *sp, emlrtContext *aContext);
+extern void testMACReceiver_initialize(emlrtContext *aContext);
 #endif
 /* End of code generation (testMACReceiver_initialize.h) */

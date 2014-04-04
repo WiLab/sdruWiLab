@@ -3,7 +3,7 @@
  *
  * Code generation for function 'testPHYReceive_terminate'
  *
- * C source code generated on: Thu Feb 27 11:53:20 2014
+ * C source code generated on: Thu Apr  3 19:36:37 2014
  *
  */
 
@@ -23,7 +23,7 @@
 #include "testPHYReceive_types.h"
 
 /* Function Declarations */
-extern void testPHYReceive_atexit(emlrtStack *sp);
-extern void testPHYReceive_terminate(emlrtStack *sp);
+extern void testPHYReceive_atexit(void);
+extern void testPHYReceive_terminate(void);
 #endif
 /* End of code generation (testPHYReceive_terminate.h) */

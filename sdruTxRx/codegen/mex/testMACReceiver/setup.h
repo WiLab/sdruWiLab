@@ -3,7 +3,7 @@
  *
  * Code generation for function 'setup'
  *
- * C source code generated on: Thu Mar  6 18:47:05 2014
+ * C source code generated on: Thu Apr  3 19:51:42 2014
  *
  */
 
@@ -23,9 +23,9 @@
 #include "testMACReceiver_types.h"
 
 /* Function Declarations */
+extern void Destructor(dsp_FIRRateConverter_7 *obj);
 extern void Outputs(const comm_BPSKModulator_1 *obj, const real_T U0_data[563], const int32_T U0_size[2], creal_T Y0_data[563], int32_T Y0_size[2]);
 extern void b_Outputs(const comm_BPSKModulator_4 *obj, const real_T U0_data[563], const int32_T U0_size[2], creal_T Y0_data[563], int32_T Y0_size[2]);
-extern void c_Destructor(dsp_FIRRateConverter_7 *obj);
 extern void c_Outputs(const comm_BPSKModulator_9 *obj, const real_T U0_data[563], const int32_T U0_size[2], creal_T Y0_data[563], int32_T Y0_size[2]);
 #endif
 /* End of code generation (setup.h) */

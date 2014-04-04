@@ -3,7 +3,7 @@
  *
  * Code generation for function 'testPHYReceive'
  *
- * C source code generated on: Thu Feb 27 11:53:20 2014
+ * C source code generated on: Thu Apr  3 19:36:37 2014
  *
  */
 
@@ -23,6 +23,6 @@
 #include "testPHYReceive_types.h"
 
 /* Function Declarations */
-extern void testPHYReceive(testPHYReceiveStackData *SD, const emlrtStack *sp);
+extern void testPHYReceive(testPHYReceiveStackData *SD, real_T offset);
 #endif
 /* End of code generation (testPHYReceive.h) */

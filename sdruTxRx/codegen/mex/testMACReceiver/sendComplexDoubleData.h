@@ -3,7 +3,7 @@
  *
  * Code generation for function 'sendComplexDoubleData'
  *
- * C source code generated on: Thu Mar  6 18:47:07 2014
+ * C source code generated on: Thu Apr  3 19:51:42 2014
  *
  */
 
@@ -23,6 +23,6 @@
 #include "testMACReceiver_types.h"
 
 /* Function Declarations */
-extern void sendComplexDoubleData(testMACReceiverStackData *SD, const emlrtStack *sp, int32_T driverApiH, const creal_T data[38400], real_T freq, real_T loOffset, real_T gain, real_T interp, uint32_T *underflow, UsrpErrorCapiEnumT *errStat, char_T errStr_data[1024], int32_T errStr_size[2]);
+extern void sendComplexDoubleData(testMACReceiverStackData *SD, int32_T driverApiH, const creal_T data[38400], real_T freq, real_T loOffset, real_T gain, real_T interp, uint32_T *underflow, UsrpErrorCapiEnumT *errStat, char_T errStr_data[1024], int32_T errStr_size[2]);
 #endif
 /* End of code generation (sendComplexDoubleData.h) */

@@ -3,7 +3,7 @@
  *
  * Code generation for function 'equalizeOFDM'
  *
- * C source code generated on: Thu Feb 27 11:53:20 2014
+ * C source code generated on: Thu Apr  3 19:36:38 2014
  *
  */
 
@@ -23,6 +23,8 @@
 #include "testPHYReceive_types.h"
 
 /* Function Declarations */
-extern void equalizeOFDM(testPHYReceiveStackData *SD, const emlrtStack *sp, const creal_T recv_data[1280], const real_T tx_longPreamble[53], const real_T tx_pilots[48], const real_T c_tx_pilotLocationsWithoutGuard[4], const real_T tx_dataSubcarrierIndexies_data[48], const int32_T tx_dataSubcarrierIndexies_size[2], const b_struct_T *estimate, OFDMDemodulator_1 *hPreambleDemod, OFDMDemodulator_1 *hDataDemod, creal_T R[576], emxArray_creal_T *Rraw, b_struct_T *b_estimate);
+extern void c_eml_error(void);
+extern void check_forloop_overflow_error(void);
+extern void equalizeOFDM(testPHYReceiveStackData *SD, const creal_T recv_data[1280], const real_T tx_longPreamble[53], const real_T tx_pilots[48], const real_T c_tx_pilotLocationsWithoutGuard[4], const real_T tx_dataSubcarrierIndexies_data[48], const int32_T tx_dataSubcarrierIndexies_size[2], const struct_T *estimate, OFDMDemodulator_1 *hPreambleDemod, OFDMDemodulator *hDataDemod, creal_T R[576], emxArray_creal_T *Rraw, struct_T *b_estimate);
 #endif
 /* End of code generation (equalizeOFDM.h) */

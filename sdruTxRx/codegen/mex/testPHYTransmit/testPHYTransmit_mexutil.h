@@ -3,7 +3,7 @@
  *
  * Code generation for function 'testPHYTransmit_mexutil'
  *
- * C source code generated on: Thu Feb 27 11:47:47 2014
+ * C source code generated on: Sat Mar 29 15:48:37 2014
  *
  */
 
@@ -23,10 +23,17 @@
 #include "testPHYTransmit_types.h"
 
 /* Function Declarations */
-extern const mxArray *b_message(const emlrtStack *sp, const mxArray *b, emlrtMCInfo *location);
-extern void c_error(const emlrtStack *sp, const mxArray *b, emlrtMCInfo *location);
-extern const mxArray *message(const emlrtStack *sp, const mxArray *b, const mxArray *c, emlrtMCInfo *location);
-extern const mxArray *sdruroot(const emlrtStack *sp, emlrtMCInfo *location);
-extern void setupsdru(const emlrtStack *sp, const mxArray *b, const mxArray *c, emlrtMCInfo *location);
+extern const mxArray *b_message(const mxArray *b, emlrtMCInfo *location);
+extern const mxArray *b_rand(const mxArray *b, const mxArray *c, emlrtMCInfo *location);
+extern void c_error(const mxArray *b, emlrtMCInfo *location);
+extern void e_emlrt_marshallIn(const mxArray *c_rand, const char_T *identifier, real_T y[13]);
+extern void g_emlrt_marshallIn(const mxArray *c_rand, const char_T *identifier, real_T y[10]);
+extern real_T i_emlrt_marshallIn(const mxArray *src, const emlrtMsgIdentifier *msgId);
+#ifdef __WATCOMC__
+#pragma aux i_emlrt_marshallIn value [8087];
+#endif
+extern const mxArray *message(const mxArray *b, const mxArray *c, emlrtMCInfo *location);
+extern const mxArray *sdruroot(emlrtMCInfo *location);
+extern void setupsdru(const mxArray *b, const mxArray *c, emlrtMCInfo *location);
 #endif
 /* End of code generation (testPHYTransmit_mexutil.h) */

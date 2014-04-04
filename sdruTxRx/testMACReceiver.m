@@ -20,6 +20,8 @@ lookingForACK = 0;
 tx.offsetTable = offsets;
 tx.nodeNum = nodeNum;
 
+ObjSDRuReceiver.CenterFrequency = ObjSDRuReceiver.CenterFrequency + 1e6;
+
 % Previous Message string holder
 coder.varsize('previousMessage', [1, 80], [0 1]);
 previousMessage = '';

@@ -3,7 +3,7 @@
  *
  * Code generation for function 'generateOFDMSignal_TX2'
  *
- * C source code generated on: Thu Mar  6 18:47:05 2014
+ * C source code generated on: Thu Apr  3 19:51:42 2014
  *
  */
 
@@ -23,7 +23,7 @@
 #include "testMACReceiver_types.h"
 
 /* Function Declarations */
-extern void b_generateOFDMSignal_TX2(const emlrtStack *sp, real_T originNode, real_T destNode, OFDMDemodulator_2 *iobj_0, OFDMDemodulator_3 *iobj_1, OFDMDemodulator_3 **hPreambleDemod, OFDMDemodulator_2 **hDataDemod, creal_T r[38400], d_struct_T *tx);
-extern void generateOFDMSignal_TX2(const emlrtStack *sp, OFDMDemodulator_2 *iobj_0, OFDMDemodulator_3 *iobj_1, OFDMDemodulator_3 **hPreambleDemod, OFDMDemodulator_2 **hDataDemod, creal_T r[38400], d_struct_T *tx);
+extern void b_generateOFDMSignal_TX2(testMACReceiverStackData *SD, real_T originNode, real_T destNode, OFDMDemodulator_2 *iobj_0, OFDMDemodulator_3 *iobj_1, OFDMDemodulator_3 **hPreambleDemod, OFDMDemodulator_2 **hDataDemod, creal_T r[38400], b_struct_T *tx);
+extern void generateOFDMSignal_TX2(OFDMDemodulator_2 *iobj_0, OFDMDemodulator_3 *iobj_1, OFDMDemodulator_3 **hPreambleDemod, OFDMDemodulator_2 **hDataDemod, creal_T r[38400], b_struct_T *tx);
 #endif
 /* End of code generation (generateOFDMSignal_TX2.h) */

@@ -3,7 +3,7 @@
  *
  * Code generation for function 'AGC'
  *
- * C source code generated on: Thu Feb 27 11:53:20 2014
+ * C source code generated on: Thu Apr  3 19:36:37 2014
  *
  */
 
@@ -24,6 +24,6 @@
 
 /* Function Declarations */
 extern comm_AGC *AGC_AGC(comm_AGC *obj);
-extern void AGC_stepImpl(testPHYReceiveStackData *SD, comm_AGC *obj, const creal_T x[5120], creal_T y[5120]);
+extern void AGC_stepImpl(comm_AGC *obj, const creal_T x[5120], creal_T y[5120]);
 #endif
 /* End of code generation (AGC.h) */

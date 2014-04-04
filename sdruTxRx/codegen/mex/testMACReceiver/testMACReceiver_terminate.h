@@ -3,7 +3,7 @@
  *
  * Code generation for function 'testMACReceiver_terminate'
  *
- * C source code generated on: Thu Mar  6 18:47:04 2014
+ * C source code generated on: Thu Apr  3 19:51:42 2014
  *
  */
 
@@ -23,7 +23,7 @@
 #include "testMACReceiver_types.h"
 
 /* Function Declarations */
-extern void testMACReceiver_atexit(emlrtStack *sp);
-extern void testMACReceiver_terminate(emlrtStack *sp);
+extern void testMACReceiver_atexit(void);
+extern void testMACReceiver_terminate(void);
 #endif
 /* End of code generation (testMACReceiver_terminate.h) */

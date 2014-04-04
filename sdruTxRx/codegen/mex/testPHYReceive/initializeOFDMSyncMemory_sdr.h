@@ -3,7 +3,7 @@
  *
  * Code generation for function 'initializeOFDMSyncMemory_sdr'
  *
- * C source code generated on: Thu Feb 27 11:53:20 2014
+ * C source code generated on: Thu Apr  3 19:36:37 2014
  *
  */
 
@@ -23,6 +23,6 @@
 #include "testPHYReceive_types.h"
 
 /* Function Declarations */
-extern void initializeOFDMSyncMemory_sdr(b_struct_T *estimate);
+extern void initializeOFDMSyncMemory_sdr(struct_T *estimate);
 #endif
 /* End of code generation (initializeOFDMSyncMemory_sdr.h) */

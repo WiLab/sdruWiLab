@@ -1,0 +1,6 @@
+codegen
+*.m~
+*.swp
+*.mexmaci64
+*.mexa64
+._*

@@ -1,9 +1,10 @@
-function testPHYReceive(offset)
+function result = testPHYReceive
+
+result = 100;
 
 [...
     ObjAGC,...           %Objects
     ObjSDRuReceiver,...
-    ObjSDRuTransmitter,...
     ObjDetect,...
     ObjPreambleDemod,...
     ObjDataDemod,...
@@ -14,7 +15,7 @@ function testPHYReceive(offset)
     ] = CreateTXRX;
 
 % Adjust offset for node
-ObjSDRuReceiver.CenterFrequency = rx.CenterFrequency - offset;
+%ObjSDRuReceiver.CenterFrequency = rx.CenterFrequency - offset;
 
 while true
 [recoveredMessage] = PHYReceive(...
@@ -33,7 +34,7 @@ while true
             if ~strcmp(recoveredMessage,'CRC Error') && ~strcmp(recoveredMessage,'Timeout') 
                 fprintf('Got Message: %s\n',recoveredMessage);
             end
-
+	fprintf('Looped\n');
 end
 
 end

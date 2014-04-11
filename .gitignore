@@ -4,3 +4,5 @@ codegen
 *.mexmaci64
 *.mexa64
 ._*
+mccExcludedFiles.log
+*.so

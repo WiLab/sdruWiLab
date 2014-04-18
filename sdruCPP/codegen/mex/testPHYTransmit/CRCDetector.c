@@ -3,7 +3,7 @@
  *
  * Code generation for function 'CRCDetector'
  *
- * C source code generated on: Thu Feb 27 11:47:47 2014
+ * C source code generated on: Fri Apr 18 15:35:33 2014
  *
  */
 
@@ -11,6 +11,11 @@
 #include "rt_nonfinite.h"
 #include "testPHYTransmit.h"
 #include "CRCDetector.h"
+#include "testPHYTransmit_data.h"
+
+/* Variable Definitions */
+static emlrtRSInfo pe_emlrtRSI = { 1, "CRCDetector",
+  "/opt/MATLAB/R2013a/toolbox/comm/comm/+commcodegen/CRCDetector.p" };
 
 /* Function Definitions */
 commcodegen_CRCDetector *CRCDetector_CRCDetector(commcodegen_CRCDetector *obj)
@@ -18,9 +23,63 @@ commcodegen_CRCDetector *CRCDetector_CRCDetector(commcodegen_CRCDetector *obj)
   commcodegen_CRCDetector *b_obj;
   commcodegen_CRCDetector *c_obj;
   b_obj = obj;
+  emlrtPushRtStackR2012b(&pe_emlrtRSI, emlrtRootTLSGlobal);
   c_obj = b_obj;
+  emlrtPushRtStackR2012b(&l_emlrtRSI, emlrtRootTLSGlobal);
   c_obj->isInitialized = FALSE;
   c_obj->isReleased = FALSE;
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&l_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&pe_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&pe_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&pe_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&pe_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&pe_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&pe_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&pe_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&pe_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&pe_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&pe_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&pe_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&pe_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&pe_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&pe_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&pe_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&pe_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&pe_emlrtRSI, emlrtRootTLSGlobal);
   return b_obj;
 }
 

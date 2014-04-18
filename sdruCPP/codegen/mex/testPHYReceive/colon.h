@@ -3,7 +3,7 @@
  *
  * Code generation for function 'colon'
  *
- * C source code generated on: Thu Feb 27 11:53:20 2014
+ * C source code generated on: Thu Apr 17 22:51:42 2014
  *
  */
 
@@ -23,7 +23,6 @@
 #include "testPHYReceive_types.h"
 
 /* Function Declarations */
-extern void assert_pmaxsize(const emlrtStack *sp, boolean_T p);
 extern void b_float_colon_length(int32_T *n, real_T *anew, real_T *bnew, boolean_T *n_too_large);
 extern void float_colon_length(int32_T *n, real_T *anew, real_T *bnew, boolean_T *n_too_large);
 #endif

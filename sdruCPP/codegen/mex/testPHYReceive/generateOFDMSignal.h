@@ -3,7 +3,7 @@
  *
  * Code generation for function 'generateOFDMSignal'
  *
- * C source code generated on: Thu Feb 27 11:53:20 2014
+ * C source code generated on: Thu Apr 17 22:51:42 2014
  *
  */
 
@@ -23,6 +23,6 @@
 #include "testPHYReceive_types.h"
 
 /* Function Declarations */
-extern void generateOFDMSignal(const emlrtStack *sp, OFDMDemodulator_1 *iobj_0, OFDMDemodulator_1 *iobj_1, OFDMDemodulator_1 **hPreambleDemod, OFDMDemodulator_1 **hDataDemod, creal_T r[25600], c_struct_T *tx);
+extern void generateOFDMSignal(OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1, OFDMDemodulator_1 **hPreambleDemod, OFDMDemodulator **hDataDemod, creal_T r[25600], b_struct_T *tx);
 #endif
 /* End of code generation (generateOFDMSignal.h) */

@@ -3,7 +3,7 @@
  *
  * Code generation for function 'initializeOFDMSyncMemory_sdr'
  *
- * C source code generated on: Thu Feb 27 11:47:47 2014
+ * C source code generated on: Fri Apr 18 15:35:33 2014
  *
  */
 
@@ -13,55 +13,55 @@
 #include "initializeOFDMSyncMemory_sdr.h"
 
 /* Function Definitions */
-void initializeOFDMSyncMemory_sdr(c_struct_T *estimate)
+void initializeOFDMSyncMemory_sdr(struct_T *b_estimate)
 {
   int32_T i;
 
   /*  initializeOFDMSyncMemory: Initialize memory for simulation which is returned by */
   /*  the main function OFDM80211aReceiver */
   /*  Pre-initialize estimates to be saved between numFrames */
-  estimate->phi = 0.0;
-  estimate->delay = 0.0;
+  b_estimate->phi = 0.0;
+  b_estimate->delay = 0.0;
 
   /* Additional points needed for sliding buffer  */
-  estimate->numPeaks = 0.0;
+  b_estimate->numPeaks = 0.0;
 
   /* Additional points needed for sliding buffer */
   for (i = 0; i < 15; i++) {
-    estimate->frequency[i] = 0.0;
+    b_estimate->frequency[i] = 0.0;
   }
 
-  estimate->phase = 0.0;
-  estimate->frequencyMA = 0.0;
-  estimate->numProcessed = 0.0;
+  b_estimate->phase = 0.0;
+  b_estimate->frequencyMA = 0.0;
+  b_estimate->numProcessed = 0.0;
 
   /* Tracking number of processed found numFrames */
-  estimate->inputBufferLength = 5120.0;
+  b_estimate->inputBufferLength = 5120.0;
 
   /* Input buffer */
-  estimate->numFreqToAverage = 15.0;
+  b_estimate->numFreqToAverage = 15.0;
 
   /* Buffer for moving averages of offset estimates */
-  estimate->pilotEqGains.size[0] = 48;
-  estimate->pilotEqGains.size[1] = 12;
+  b_estimate->pilotEqGains.size[0] = 48;
+  b_estimate->pilotEqGains.size[1] = 12;
   for (i = 0; i < 576; i++) {
-    estimate->pilotEqGains.data[i].re = 0.0;
-    estimate->pilotEqGains.data[i].im = 0.0;
+    b_estimate->pilotEqGains.data[i].re = 0.0;
+    b_estimate->pilotEqGains.data[i].im = 0.0;
   }
 
-  estimate->preambleEqGains.size[0] = 53;
+  b_estimate->preambleEqGains.size[0] = 53;
   for (i = 0; i < 53; i++) {
-    estimate->preambleEqGains.data[i].re = 0.0;
-    estimate->preambleEqGains.data[i].im = 0.0;
+    b_estimate->preambleEqGains.data[i].re = 0.0;
+    b_estimate->preambleEqGains.data[i].im = 0.0;
   }
 
-  estimate->message.size[0] = 80;
+  b_estimate->message.size[0] = 80;
   for (i = 0; i < 80; i++) {
-    estimate->message.data[i] = 0.0;
+    b_estimate->message.data[i] = 0.0;
   }
 
   /* Save individual received frame BER's */
-  estimate->printReceivedData = FALSE;
+  b_estimate->printReceivedData = FALSE;
 }
 
 /* End of code generation (initializeOFDMSyncMemory_sdr.c) */

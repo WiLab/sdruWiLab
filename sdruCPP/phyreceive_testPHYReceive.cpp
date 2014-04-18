@@ -22,15 +22,15 @@ int main()
 
     // Must declare all MATLAB data types after initializing the 
     // application and the library, or their constructors will fail.
-    //mwArray text(av[2]);
-    //mwArray key(av[3]);
     mwArray result;
-
+    mwArray decimation;
+    decimation = mwArray(100);
+    
     // Initialization succeeded. Encrypt or decrypt.
     std::cout << "Starting Receiver" << std::endl;
     //while (1)
     //{
-    testPHYReceive(1,result);
+    testPHYReceive(1,result,decimation);
 	//}
     std::cout << "Done Receiving" << std::endl;
     //std::cout << result << std::endl;

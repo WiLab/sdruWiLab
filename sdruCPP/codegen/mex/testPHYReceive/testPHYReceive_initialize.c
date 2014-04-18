@@ -3,7 +3,7 @@
  *
  * Code generation for function 'testPHYReceive_initialize'
  *
- * C source code generated on: Thu Feb 27 11:53:20 2014
+ * C source code generated on: Thu Apr 17 22:51:41 2014
  *
  */
 
@@ -11,8 +11,8 @@
 #include "rt_nonfinite.h"
 #include "testPHYReceive.h"
 #include "testPHYReceive_initialize.h"
-#include "mapiPrivate.h"
 #include "testPHYReceive_data.h"
+#include <stdio.h>
 
 /* Function Declarations */
 static void testPHYReceive_once(void);
@@ -20,19 +20,18 @@ static void testPHYReceive_once(void);
 /* Function Definitions */
 static void testPHYReceive_once(void)
 {
-  mapiPrivate_init();
+  isSetupsdruCalled = FALSE;
 }
 
-void testPHYReceive_initialize(emlrtStack *sp, emlrtContext *aContext)
+void testPHYReceive_initialize(emlrtContext *aContext)
 {
   emlrtBreakCheckR2012bFlagVar = emlrtGetBreakCheckFlagAddressR2012b();
   emlrtCreateRootTLS(&emlrtRootTLSGlobal, aContext, NULL, 1);
-  sp->tls = emlrtRootTLSGlobal;
-  emlrtClearAllocCountR2012b(sp, FALSE, 0U, 0);
-  emlrtEnterRtStackR2012b(sp);
-  emlrtLicenseCheckR2012b(sp, "Communication_Toolbox", 2);
-  emlrtLicenseCheckR2012b(sp, "communication_toolbox", 2);
-  emlrtLicenseCheckR2012b(sp, "Signal_Toolbox", 2);
+  emlrtClearAllocCountR2012b(emlrtRootTLSGlobal, FALSE, 0U, 0);
+  emlrtEnterRtStackR2012b(emlrtRootTLSGlobal);
+  emlrtLicenseCheckR2012b(emlrtRootTLSGlobal, "Communication_Toolbox", 2);
+  emlrtLicenseCheckR2012b(emlrtRootTLSGlobal, "communication_toolbox", 2);
+  emlrtLicenseCheckR2012b(emlrtRootTLSGlobal, "Signal_Toolbox", 2);
   if (emlrtFirstTimeR2012b(emlrtRootTLSGlobal)) {
     testPHYReceive_once();
   }

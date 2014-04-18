@@ -25,12 +25,14 @@ int main()
     //mwArray text(av[2]);
     //mwArray key(av[3]);
     mwArray result;
-
+    mwArray decimation;
+    decimation = mwArray(100);
+    
     // Initialization succeeded. Encrypt or decrypt.
     std::cout << "Starting Receiver" << std::endl;
     //while (1)
     //{
-    basic_RX(1,result);
+    basic_RX(1,result,decimation);
 	//}
     std::cout << "Done Receiving" << std::endl;
     //std::cout << result << std::endl;

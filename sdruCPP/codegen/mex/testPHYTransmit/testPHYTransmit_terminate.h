@@ -3,7 +3,7 @@
  *
  * Code generation for function 'testPHYTransmit_terminate'
  *
- * C source code generated on: Thu Feb 27 11:47:47 2014
+ * C source code generated on: Fri Apr 18 15:35:32 2014
  *
  */
 
@@ -23,7 +23,7 @@
 #include "testPHYTransmit_types.h"
 
 /* Function Declarations */
-extern void testPHYTransmit_atexit(emlrtStack *sp);
-extern void testPHYTransmit_terminate(emlrtStack *sp);
+extern void testPHYTransmit_atexit(void);
+extern void testPHYTransmit_terminate(void);
 #endif
 /* End of code generation (testPHYTransmit_terminate.h) */

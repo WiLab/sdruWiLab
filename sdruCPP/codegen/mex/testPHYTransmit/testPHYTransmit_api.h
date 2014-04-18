@@ -3,7 +3,7 @@
  *
  * Code generation for function 'testPHYTransmit_api'
  *
- * C source code generated on: Thu Feb 27 11:47:47 2014
+ * C source code generated on: Fri Apr 18 15:35:33 2014
  *
  */
 
@@ -23,6 +23,7 @@
 #include "testPHYTransmit_types.h"
 
 /* Function Declarations */
-extern void testPHYTransmit_api(testPHYTransmitStackData *SD, emlrtStack *sp);
+extern const mxArray *emlrtMexFcnResolvedFunctionsInfo(void);
+extern void testPHYTransmit_api(testPHYTransmitStackData *SD);
 #endif
 /* End of code generation (testPHYTransmit_api.h) */

@@ -3,7 +3,7 @@
  *
  * Code generation for function 'testPHYTransmit_initialize'
  *
- * C source code generated on: Thu Feb 27 11:47:47 2014
+ * C source code generated on: Fri Apr 18 15:35:32 2014
  *
  */
 
@@ -11,7 +11,7 @@
 #include "rt_nonfinite.h"
 #include "testPHYTransmit.h"
 #include "testPHYTransmit_initialize.h"
-#include "mapiPrivate.h"
+#include "testPHYTransmit_emxutil.h"
 #include "testPHYTransmit_data.h"
 
 /* Function Declarations */
@@ -20,18 +20,21 @@ static void testPHYTransmit_once(void);
 /* Function Definitions */
 static void testPHYTransmit_once(void)
 {
-  mapiPrivate_init();
+  emxInitStruct_struct_T(&estimate);
+  b_emxInitStruct_struct_T(&tx);
+  messageBits.size[1] = 0;
+  ObjSDRuTransmitter_not_empty = FALSE;
+  isSetupsdruCalled = FALSE;
 }
 
-void testPHYTransmit_initialize(emlrtStack *sp, emlrtContext *aContext)
+void testPHYTransmit_initialize(emlrtContext *aContext)
 {
   emlrtBreakCheckR2012bFlagVar = emlrtGetBreakCheckFlagAddressR2012b();
   emlrtCreateRootTLS(&emlrtRootTLSGlobal, aContext, NULL, 1);
-  sp->tls = emlrtRootTLSGlobal;
-  emlrtClearAllocCountR2012b(sp, FALSE, 0U, 0);
-  emlrtEnterRtStackR2012b(sp);
-  emlrtLicenseCheckR2012b(sp, "Communication_Toolbox", 2);
-  emlrtLicenseCheckR2012b(sp, "communication_toolbox", 2);
+  emlrtClearAllocCountR2012b(emlrtRootTLSGlobal, FALSE, 0U, 0);
+  emlrtEnterRtStackR2012b(emlrtRootTLSGlobal);
+  emlrtLicenseCheckR2012b(emlrtRootTLSGlobal, "Communication_Toolbox", 2);
+  emlrtLicenseCheckR2012b(emlrtRootTLSGlobal, "communication_toolbox", 2);
   if (emlrtFirstTimeR2012b(emlrtRootTLSGlobal)) {
     testPHYTransmit_once();
   }

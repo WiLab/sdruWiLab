@@ -1,4 +1,4 @@
-function result = testPHYReceive
+function result = testPHYReceive(decimation)
 
 result = 100;
 
@@ -14,8 +14,11 @@ result = 100;
     messageBits...
     ] = CreateTXRX;
 
+ObjSDRuReceiver.DecimationFactor = double(decimation);
 % Adjust offset for node
 %ObjSDRuReceiver.CenterFrequency = rx.CenterFrequency - offset;
+
+fprintf('Starting Receiver Loop\n');
 
 while true
 [recoveredMessage] = PHYReceive(...
@@ -34,7 +37,9 @@ while true
             if ~strcmp(recoveredMessage,'CRC Error') && ~strcmp(recoveredMessage,'Timeout') 
                 fprintf('Got Message: %s\n',recoveredMessage);
             end
-	fprintf('Looped\n');
 end
+
+fprintf('Finished Receiver Loop\n');
+
 
 end

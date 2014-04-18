@@ -3,7 +3,7 @@
  *
  * Code generation for function 'testPHYReceive_initialize'
  *
- * C source code generated on: Thu Feb 27 11:53:20 2014
+ * C source code generated on: Thu Apr 17 22:51:41 2014
  *
  */
 
@@ -23,6 +23,6 @@
 #include "testPHYReceive_types.h"
 
 /* Function Declarations */
-extern void testPHYReceive_initialize(emlrtStack *sp, emlrtContext *aContext);
+extern void testPHYReceive_initialize(emlrtContext *aContext);
 #endif
 /* End of code generation (testPHYReceive_initialize.h) */

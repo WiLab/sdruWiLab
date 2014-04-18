@@ -3,7 +3,7 @@
  *
  * Code generation for function 'initializeOFDMSyncMemory_sdr'
  *
- * C source code generated on: Thu Feb 27 11:53:20 2014
+ * C source code generated on: Thu Apr 17 22:51:42 2014
  *
  */
 
@@ -11,9 +11,10 @@
 #include "rt_nonfinite.h"
 #include "testPHYReceive.h"
 #include "initializeOFDMSyncMemory_sdr.h"
+#include <stdio.h>
 
 /* Function Definitions */
-void initializeOFDMSyncMemory_sdr(b_struct_T *estimate)
+void initializeOFDMSyncMemory_sdr(struct_T *estimate)
 {
   int32_T i;
 

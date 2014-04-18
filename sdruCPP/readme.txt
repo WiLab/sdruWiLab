@@ -30,8 +30,8 @@ in the MathWorks Documentation Center.
 
 Files to package for Shared Libraries
 =====================================
--libtestPHYReceive.so
--libtestPHYReceive.h
+-libMEXtestPHY.so
+-libMEXtestPHY.h
 -MCRInstaller.zip 
    -if end users are unable to download the MCR using the above  
     link, include it when building your component by clicking 

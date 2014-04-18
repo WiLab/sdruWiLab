@@ -3,7 +3,7 @@
  *
  * Code generation for function 'generateOFDMSignal'
  *
- * C source code generated on: Thu Feb 27 11:47:47 2014
+ * C source code generated on: Fri Apr 18 15:35:33 2014
  *
  */
 
@@ -23,6 +23,6 @@
 #include "testPHYTransmit_types.h"
 
 /* Function Declarations */
-extern void generateOFDMSignal(const emlrtStack *sp, OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1, OFDMDemodulator_1 **hPreambleDemod, OFDMDemodulator **hDataDemod, creal_T r[25600], b_struct_T *tx);
+extern void generateOFDMSignal(testPHYTransmitStackData *SD, OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1, OFDMDemodulator_1 **hPreambleDemod, OFDMDemodulator **hDataDemod, creal_T r[25600], c_struct_T *b_tx);
 #endif
 /* End of code generation (generateOFDMSignal.h) */

@@ -3,7 +3,7 @@
  *
  * Code generation for function 'testPHYReceive'
  *
- * C source code generated on: Thu Feb 27 11:53:20 2014
+ * C source code generated on: Thu Apr 17 22:51:41 2014
  *
  */
 
@@ -23,6 +23,9 @@
 #include "testPHYReceive_types.h"
 
 /* Function Declarations */
-extern void testPHYReceive(testPHYReceiveStackData *SD, const emlrtStack *sp);
+extern real_T testPHYReceive(testPHYReceiveStackData *SD, real_T decimation);
+#ifdef __WATCOMC__
+#pragma aux testPHYReceive value [8087];
+#endif
 #endif
 /* End of code generation (testPHYReceive.h) */

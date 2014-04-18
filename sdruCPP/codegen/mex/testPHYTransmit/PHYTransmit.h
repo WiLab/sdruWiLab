@@ -3,7 +3,7 @@
  *
  * Code generation for function 'PHYTransmit'
  *
- * C source code generated on: Thu Feb 27 11:47:47 2014
+ * C source code generated on: Fri Apr 18 15:35:33 2014
  *
  */
 
@@ -23,6 +23,6 @@
 #include "testPHYTransmit_types.h"
 
 /* Function Declarations */
-extern void PHYTransmit(testPHYTransmitStackData *SD, const emlrtStack *sp, comm_SDRuTransmitter *ObjSDRuTransmitter, comm_SDRuReceiver *ObjSDRuReceiver);
+extern void PHYTransmit(testPHYTransmitStackData *SD, comm_SDRuTransmitter *b_ObjSDRuTransmitter);
 #endif
 /* End of code generation (PHYTransmit.h) */

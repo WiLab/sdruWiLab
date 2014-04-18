@@ -3,7 +3,7 @@
  *
  * Code generation for function 'error'
  *
- * C source code generated on: Thu Feb 27 11:53:20 2014
+ * C source code generated on: Thu Apr 17 22:51:42 2014
  *
  */
 
@@ -11,69 +11,66 @@
 #include "rt_nonfinite.h"
 #include "testPHYReceive.h"
 #include "error.h"
+#include <stdio.h>
 
 /* Variable Definitions */
-static emlrtMCInfo r_emlrtMCI = { 16, 1, "error",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/lang/error.m" };
+static emlrtRSInfo yf_emlrtRSI = { 16, "error",
+  "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/lang/error.m" };
 
-static emlrtRSInfo ut_emlrtRSI = { 16, "error",
-  "/Applications/MATLAB_R2013b.app/toolbox/eml/lib/matlab/lang/error.m" };
+static emlrtMCInfo t_emlrtMCI = { 16, 1, "error",
+  "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/lang/error.m" };
 
 /* Function Declarations */
-static void c_error(const emlrtStack *sp, const mxArray *b, const mxArray *c,
-                    emlrtMCInfo *location);
+static void c_error(const mxArray *b, const mxArray *c, emlrtMCInfo *location);
 
 /* Function Definitions */
-static void c_error(const emlrtStack *sp, const mxArray *b, const mxArray *c,
-                    emlrtMCInfo *location)
+static void c_error(const mxArray *b, const mxArray *c, emlrtMCInfo *location)
 {
   const mxArray *pArrays[2];
   pArrays[0] = b;
   pArrays[1] = c;
-  emlrtCallMATLABR2012b(sp, 0, NULL, 2, pArrays, "error", TRUE, location);
+  emlrtCallMATLABR2012b(emlrtRootTLSGlobal, 0, NULL, 2, pArrays, "error", TRUE,
+                        location);
 }
 
-void error(const emlrtStack *sp, const char_T varargin_2_data[1024], const
-           int32_T varargin_2_size[2])
+void error(const char_T varargin_2_data[1024], const int32_T varargin_2_size[2])
 {
   const mxArray *y;
-  static const int32_T iv108[2] = { 1, 37 };
+  static const int32_T iv107[2] = { 1, 37 };
 
-  const mxArray *m18;
-  char_T cv120[37];
+  const mxArray *m20;
+  char_T cv115[37];
   int32_T i;
-  static const char_T cv121[37] = { 's', 'd', 'r', 'u', ':', 'S', 'D', 'R', 'u',
+  static const char_T cv116[37] = { 's', 'd', 'r', 'u', ':', 'S', 'D', 'R', 'u',
     'R', 'e', 'c', 'e', 'i', 'v', 'e', 'r', ':', 'R', 'e', 'c', 'e', 'i', 'v',
     'e', 'U', 'n', 's', 'u', 'c', 'c', 'e', 's', 's', 'f', 'u', 'l' };
 
   int32_T u_size[2];
-  int32_T i15;
+  int32_T i16;
   char_T u_data[1024];
   const mxArray *b_y;
-  emlrtStack st;
-  st.prev = sp;
-  st.tls = sp->tls;
+  emlrtPushRtStackR2012b(&yf_emlrtRSI, emlrtRootTLSGlobal);
   y = NULL;
-  m18 = mxCreateCharArray(2, iv108);
+  m20 = mxCreateCharArray(2, iv107);
   for (i = 0; i < 37; i++) {
-    cv120[i] = cv121[i];
+    cv115[i] = cv116[i];
   }
 
-  emlrtInitCharArrayR2013a(sp, 37, m18, cv120);
-  emlrtAssign(&y, m18);
+  emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 37, m20, cv115);
+  emlrtAssign(&y, m20);
   u_size[0] = 1;
   u_size[1] = varargin_2_size[1];
   i = varargin_2_size[0] * varargin_2_size[1];
-  for (i15 = 0; i15 < i; i15++) {
-    u_data[i15] = varargin_2_data[i15];
+  for (i16 = 0; i16 < i; i16++) {
+    u_data[i16] = varargin_2_data[i16];
   }
 
   b_y = NULL;
-  m18 = mxCreateCharArray(2, u_size);
-  emlrtInitCharArrayR2013a(sp, u_size[1], m18, (char_T *)&u_data);
-  emlrtAssign(&b_y, m18);
-  st.site = &ut_emlrtRSI;
-  c_error(&st, y, b_y, &r_emlrtMCI);
+  m20 = mxCreateCharArray(2, u_size);
+  emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, u_size[1], m20, (char_T *)&u_data);
+  emlrtAssign(&b_y, m20);
+  c_error(y, b_y, &t_emlrtMCI);
+  emlrtPopRtStackR2012b(&yf_emlrtRSI, emlrtRootTLSGlobal);
 }
 
 /* End of code generation (error.c) */

@@ -3,7 +3,7 @@
  *
  * Code generation for function 'PHYReceive'
  *
- * C source code generated on: Thu Feb 27 11:53:20 2014
+ * C source code generated on: Thu Apr 17 22:51:42 2014
  *
  */
 
@@ -23,6 +23,6 @@
 #include "testPHYReceive_types.h"
 
 /* Function Declarations */
-extern void PHYReceive(testPHYReceiveStackData *SD, const emlrtStack *sp, comm_AGC *ObjAGC, comm_SDRuReceiver *ObjSDRuReceiver, commcodegen_CRCDetector *ObjDetect, OFDMDemodulator_1 *ObjPreambleDemod, OFDMDemodulator_1 *ObjDataDemod, b_struct_T *estimate, const creal_T rx_shortPreambleOFDM[64], const real_T rx_longPreamble[53], const real_T rx_pilots[48], const real_T c_rx_pilotLocationsWithoutGuard[4], const real_T rx_dataSubcarrierIndexies_data[48], const int32_T rx_dataSubcarrierIndexies_size[2], real_T messageBits_data[563], int32_T messageBits_size[2], char_T recoveredMessage_data[80], int32_T recoveredMessage_size[2]);
+extern void PHYReceive(testPHYReceiveStackData *SD, comm_AGC *ObjAGC, comm_SDRuReceiver *ObjSDRuReceiver, commcodegen_CRCDetector *ObjDetect, OFDMDemodulator_1 *ObjPreambleDemod, OFDMDemodulator *ObjDataDemod, struct_T *estimate, const creal_T rx_shortPreambleOFDM[64], const real_T rx_longPreamble[53], const real_T rx_pilots[48], const real_T c_rx_pilotLocationsWithoutGuard[4], const real_T rx_dataSubcarrierIndexies_data[48], const int32_T rx_dataSubcarrierIndexies_size[2], real_T messageBits_data[1689], int32_T messageBits_size[2], char_T recoveredMessage_data[80], int32_T recoveredMessage_size[2]);
 #endif
 /* End of code generation (PHYReceive.h) */

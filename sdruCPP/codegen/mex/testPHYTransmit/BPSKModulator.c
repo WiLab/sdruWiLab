@@ -3,7 +3,7 @@
  *
  * Code generation for function 'BPSKModulator'
  *
- * C source code generated on: Thu Feb 27 11:47:47 2014
+ * C source code generated on: Fri Apr 18 15:35:33 2014
  *
  */
 
@@ -11,6 +11,7 @@
 #include "rt_nonfinite.h"
 #include "testPHYTransmit.h"
 #include "BPSKModulator.h"
+#include "testPHYTransmit_data.h"
 
 /* Function Definitions */
 commcodegen_BPSKModulator *BPSKModulator_BPSKModulator(commcodegen_BPSKModulator
@@ -20,13 +21,42 @@ commcodegen_BPSKModulator *BPSKModulator_BPSKModulator(commcodegen_BPSKModulator
   commcodegen_BPSKModulator *c_obj;
   comm_BPSKModulator_1 *d_obj;
   int32_T i;
-  static const real_T dv2[4] = { 1.0, 0.0, -1.0, 1.2246467991473532E-16 };
+  static const real_T dv2[4] = { 1.0, 0.0, -1.0, 1.2246063538223773E-16 };
 
   b_obj = obj;
+  emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
   c_obj = b_obj;
+  emlrtPushRtStackR2012b(&l_emlrtRSI, emlrtRootTLSGlobal);
   c_obj->isInitialized = FALSE;
   c_obj->isReleased = FALSE;
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   c_obj->inputDirectFeedthrough1 = FALSE;
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&l_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
   d_obj = &b_obj->cSFunObject;
 
   /* System object Constructor function: comm.BPSKModulator */
@@ -36,23 +66,61 @@ commcodegen_BPSKModulator *BPSKModulator_BPSKModulator(commcodegen_BPSKModulator
     d_obj->P0_modmap[i] = dv2[i];
   }
 
+  emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
   return b_obj;
 }
 
-commcodegen_BPSKModulator_1 *b_BPSKModulator_BPSKModulator
-  (commcodegen_BPSKModulator_1 *obj)
+commcodegen_BPSKModulator_191 *b_BPSKModulator_BPSKModulator
+  (commcodegen_BPSKModulator_191 *obj)
 {
-  commcodegen_BPSKModulator_1 *b_obj;
-  commcodegen_BPSKModulator_1 *c_obj;
+  commcodegen_BPSKModulator_191 *b_obj;
+  commcodegen_BPSKModulator_191 *c_obj;
   comm_BPSKModulator_4 *d_obj;
   int32_T i;
-  static const real_T dv5[4] = { 1.0, 0.0, -1.0, 1.2246467991473532E-16 };
+  static const real_T dv5[4] = { 1.0, 0.0, -1.0, 1.2246063538223773E-16 };
 
   b_obj = obj;
+  emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
   c_obj = b_obj;
+  emlrtPushRtStackR2012b(&l_emlrtRSI, emlrtRootTLSGlobal);
   c_obj->isInitialized = FALSE;
   c_obj->isReleased = FALSE;
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   c_obj->inputDirectFeedthrough1 = FALSE;
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&l_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
   d_obj = &b_obj->cSFunObject;
 
   /* System object Constructor function: comm.BPSKModulator */
@@ -62,23 +130,61 @@ commcodegen_BPSKModulator_1 *b_BPSKModulator_BPSKModulator
     d_obj->P0_modmap[i] = dv5[i];
   }
 
+  emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
   return b_obj;
 }
 
-commcodegen_BPSKModulator_2 *c_BPSKModulator_BPSKModulator
-  (commcodegen_BPSKModulator_2 *obj)
+commcodegen_BPSKModulator_348 *c_BPSKModulator_BPSKModulator
+  (commcodegen_BPSKModulator_348 *obj)
 {
-  commcodegen_BPSKModulator_2 *b_obj;
-  commcodegen_BPSKModulator_2 *c_obj;
+  commcodegen_BPSKModulator_348 *b_obj;
+  commcodegen_BPSKModulator_348 *c_obj;
   comm_BPSKModulator_8 *d_obj;
   int32_T i;
-  static const real_T dv6[4] = { 1.0, 0.0, -1.0, 1.2246467991473532E-16 };
+  static const real_T dv6[4] = { 1.0, 0.0, -1.0, 1.2246063538223773E-16 };
 
   b_obj = obj;
+  emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
   c_obj = b_obj;
+  emlrtPushRtStackR2012b(&l_emlrtRSI, emlrtRootTLSGlobal);
   c_obj->isInitialized = FALSE;
   c_obj->isReleased = FALSE;
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   c_obj->inputDirectFeedthrough1 = FALSE;
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&l_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
   d_obj = &b_obj->cSFunObject;
 
   /* System object Constructor function: comm.BPSKModulator */
@@ -88,6 +194,15 @@ commcodegen_BPSKModulator_2 *c_BPSKModulator_BPSKModulator
     d_obj->P0_modmap[i] = dv6[i];
   }
 
+  emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
   return b_obj;
 }
 

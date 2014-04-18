@@ -3,7 +3,7 @@
  *
  * Code generation for function 'testPHYReceive_api'
  *
- * C source code generated on: Thu Feb 27 11:53:20 2014
+ * C source code generated on: Thu Apr 17 22:51:42 2014
  *
  */
 
@@ -23,6 +23,7 @@
 #include "testPHYReceive_types.h"
 
 /* Function Declarations */
-extern void testPHYReceive_api(testPHYReceiveStackData *SD, emlrtStack *sp);
+extern const mxArray *emlrtMexFcnResolvedFunctionsInfo(void);
+extern void testPHYReceive_api(testPHYReceiveStackData *SD, const mxArray * const prhs[1], const mxArray *plhs[1]);
 #endif
 /* End of code generation (testPHYReceive_api.h) */

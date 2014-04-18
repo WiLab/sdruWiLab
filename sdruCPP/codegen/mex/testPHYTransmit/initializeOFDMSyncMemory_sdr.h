@@ -3,7 +3,7 @@
  *
  * Code generation for function 'initializeOFDMSyncMemory_sdr'
  *
- * C source code generated on: Thu Feb 27 11:47:47 2014
+ * C source code generated on: Fri Apr 18 15:35:33 2014
  *
  */
 
@@ -23,6 +23,6 @@
 #include "testPHYTransmit_types.h"
 
 /* Function Declarations */
-extern void initializeOFDMSyncMemory_sdr(c_struct_T *estimate);
+extern void initializeOFDMSyncMemory_sdr(struct_T *b_estimate);
 #endif
 /* End of code generation (initializeOFDMSyncMemory_sdr.h) */

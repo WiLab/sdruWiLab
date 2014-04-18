@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
+  <configuration target="target.ezdeploy.library" target-name="MATLAB Compiler for Libraries and Classes" name="testPHYReceive" location="/Volumes/travis/git/traviscollins/sdruWiLab/sdruCPP" file="/Volumes/travis/git/traviscollins/sdruWiLab/sdruCPP/testPHYReceive.prj">
+    <param.appname>testPHYReceive</param.appname>
+    <param.authnamewatermark />
+    <param.email />
+    <param.company />
+    <param.icon />
+    <param.icons />
+    <param.summary />
+    <param.description />
+    <param.screenshot />
+    <param.version>1.0</param.version>
+    <param.namespace>testPHYReceive</param.namespace>
+    <param.guid />
+    <param.installpath.string>/testPHYReceive/</param.installpath.string>
+    <param.installpath.combo>option.installpath.systemwideapp</param.installpath.combo>
+    <param.logo />
+    <param.install.notes />
+    <param.intermediate>${PROJECT_ROOT}/testPHYReceive/for_testing</param.intermediate>
+    <param.output>${PROJECT_ROOT}/testPHYReceive/for_redistribution</param.output>
+    <param.embed.ctf>true</param.embed.ctf>
+    <param.target.type>subtarget.library.cpp</param.target.type>
+    <param.classorg />
+    <param.web.mcr>true</param.web.mcr>
+    <param.package.mcr>false</param.package.mcr>
+    <param.no.mcr>false</param.no.mcr>
+    <param.web.mcr.name>MyAppInstaller_web</param.web.mcr.name>
+    <param.package.mcr.name>MyAppInstaller_mcr</param.package.mcr.name>
+    <param.no.mcr.name>MyAppInstaller_app</param.no.mcr.name>
+    <param.user.defined.mcr.options />
+    <param.windows.command.prompt>true</param.windows.command.prompt>
+    <param.user.only.registration>false</param.user.only.registration>
+    <param.mads.no.java>false</param.mads.no.java>
+    <param.mads.exclusive.mcr>false</param.mads.exclusive.mcr>
+    <param.net.framework>option.net.framework.default</param.net.framework>
+    <param.assembly.type>false</param.assembly.type>
+    <param.encryption.key.file />
+    <param.net.enable.remoting>false</param.net.enable.remoting>
+    <param.net.tsa.enable>false</param.net.tsa.enable>
+    <param.net.tsa.assembly />
+    <param.net.tsa.interface />
+    <param.net.tsa.namespace>testPHYReceive</param.net.tsa.namespace>
+    <param.net.tsa.superclass>Class1</param.net.tsa.superclass>
+    <param.net.tsa.metadata />
+    <param.net.tsa.metadata.assembly>/Users/travis/Documents/MATLAB</param.net.tsa.metadata.assembly>
+    <param.create.log>false</param.create.log>
+    <param.log.file />
+    <unset>
+      <param.authnamewatermark />
+      <param.email />
+      <param.company />
+      <param.icon />
+      <param.icons />
+      <param.summary />
+      <param.description />
+      <param.screenshot />
+      <param.version />
+      <param.namespace />
+      <param.guid />
+      <param.installpath.string />
+      <param.logo />
+      <param.install.notes />
+      <param.intermediate />
+      <param.output />
+      <param.embed.ctf />
+      <param.classorg />
+      <param.web.mcr />
+      <param.package.mcr />
+      <param.no.mcr />
+      <param.web.mcr.name />
+      <param.package.mcr.name />
+      <param.no.mcr.name />
+      <param.user.defined.mcr.options />
+      <param.windows.command.prompt />
+      <param.user.only.registration />
+      <param.mads.no.java />
+      <param.mads.exclusive.mcr />
+      <param.net.framework />
+      <param.assembly.type />
+      <param.encryption.key.file />
+      <param.net.enable.remoting />
+      <param.net.tsa.enable />
+      <param.net.tsa.assembly />
+      <param.net.tsa.interface />
+      <param.net.tsa.namespace />
+      <param.net.tsa.metadata />
+      <param.net.tsa.metadata.assembly />
+      <param.create.log />
+      <param.log.file />
+    </unset>
+    <fileset.exports>
+      <file>${PROJECT_ROOT}/testPHYReceive.m</file>
+    </fileset.exports>
+    <fileset.classes>
+      <entity.package name="">
+        <entity.class name="Class1">
+          <file>${PROJECT_ROOT}/testPHYReceive.m</file>
+        </entity.class>
+      </entity.package>
+    </fileset.classes>
+    <fileset.resources>
+      <file>/Users/travis/Documents/MathWorks/sdru/+comm/SDRuReceiver.p</file>
+      <file>${PROJECT_ROOT}/CreateTXRX.m</file>
+      <file>${PROJECT_ROOT}/OFDMBase.m</file>
+      <file>${PROJECT_ROOT}/OFDMDemodulator.m</file>
+      <file>${PROJECT_ROOT}/OFDMModulator.m</file>
+      <file>${PROJECT_ROOT}/PHYReceive.m</file>
+      <file>${PROJECT_ROOT}/private/OFDMbits2letters.m</file>
+      <file>${PROJECT_ROOT}/private/OFDMletters2bits.m</file>
+      <file>${PROJECT_ROOT}/private/coarseOFDMFreqEst_sdr.m</file>
+      <file>${PROJECT_ROOT}/private/demodOFDMSubcarriers_sdr.m</file>
+      <file>${PROJECT_ROOT}/private/equalizeOFDM.m</file>
+      <file>${PROJECT_ROOT}/private/generateOFDMSignal.m</file>
+      <file>${PROJECT_ROOT}/private/generateOFDMSignal_TX2.m</file>
+      <file>${PROJECT_ROOT}/private/initializeOFDMSyncMemory_sdr.m</file>
+      <file>${PROJECT_ROOT}/private/locateOFDMFrame_sdr.m</file>
+    </fileset.resources>
+    <fileset.package />
+    <build-deliverables>
+      <file name="testPHYReceive.h" location="${PROJECT_ROOT}/testPHYReceive/for_testing" optional="false">/Volumes/travis/git/traviscollins/sdruWiLab/sdruCPP/testPHYReceive/for_testing/testPHYReceive.h</file>
+      <file name="readme.txt" location="${PROJECT_ROOT}/testPHYReceive/for_testing" optional="true">/Volumes/travis/git/traviscollins/sdruWiLab/sdruCPP/testPHYReceive/for_testing/readme.txt</file>
+      <file name="testPHYReceive.dylib" location="${PROJECT_ROOT}/testPHYReceive/for_testing" optional="false">/Volumes/travis/git/traviscollins/sdruWiLab/sdruCPP/testPHYReceive/for_testing/testPHYReceive.dylib</file>
+    </build-deliverables>
+    <workflow />
+    <matlab>
+      <root>/Applications/MATLAB_R2013b.app</root>
+      <toolboxes>
+        <toolbox name="fixedpoint" />
+      </toolboxes>
+    </matlab>
+    <platform>
+      <unix>true</unix>
+      <mac>true</mac>
+      <windows>false</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>false</linux>
+      <solaris>false</solaris>
+      <osver>10.9.2</osver>
+      <os32>false</os32>
+      <os64>true</os64>
+      <arch>maci64</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>
+

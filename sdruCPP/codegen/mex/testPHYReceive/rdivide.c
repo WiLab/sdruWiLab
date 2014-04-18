@@ -3,7 +3,7 @@
  *
  * Code generation for function 'rdivide'
  *
- * C source code generated on: Thu Feb 27 11:53:20 2014
+ * C source code generated on: Thu Apr 17 22:51:41 2014
  *
  */
 
@@ -11,21 +11,22 @@
 #include "rt_nonfinite.h"
 #include "testPHYReceive.h"
 #include "rdivide.h"
+#include <stdio.h>
 
 /* Function Definitions */
 void b_rdivide(const creal_T x[106], const real_T y[106], creal_T z[106])
 {
-  int32_T i21;
-  for (i21 = 0; i21 < 106; i21++) {
-    if (x[i21].im == 0.0) {
-      z[i21].re = x[i21].re / y[i21];
-      z[i21].im = 0.0;
-    } else if (x[i21].re == 0.0) {
-      z[i21].re = 0.0;
-      z[i21].im = x[i21].im / y[i21];
+  int32_T i22;
+  for (i22 = 0; i22 < 106; i22++) {
+    if (x[i22].im == 0.0) {
+      z[i22].re = x[i22].re / y[i22];
+      z[i22].im = 0.0;
+    } else if (x[i22].re == 0.0) {
+      z[i22].re = 0.0;
+      z[i22].im = x[i22].im / y[i22];
     } else {
-      z[i21].re = x[i21].re / y[i21];
-      z[i21].im = x[i21].im / y[i21];
+      z[i22].re = x[i22].re / y[i22];
+      z[i22].im = x[i22].im / y[i22];
     }
   }
 }

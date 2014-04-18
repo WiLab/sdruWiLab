@@ -3,7 +3,7 @@
  *
  * Code generation for function 'receiveData'
  *
- * C source code generated on: Thu Feb 27 11:53:20 2014
+ * C source code generated on: Thu Apr 17 22:51:42 2014
  *
  */
 
@@ -23,6 +23,6 @@
 #include "testPHYReceive_types.h"
 
 /* Function Declarations */
-extern void receiveData(const emlrtStack *sp, int32_T driverApiH, real_T freq, real_T loOffset, real_T gain, real_T decim, cint16_T data[46336], uint32_T *dataLength, uint32_T *overflow, UsrpErrorCapiEnumT *errStat, char_T errStr_data[1024], int32_T errStr_size[2]);
+extern void receiveData(int32_T driverApiH, real_T freq, real_T loOffset, real_T gain, real_T decim, cint16_T data[46336], uint32_T *dataLength, uint32_T *overflow, UsrpErrorCapiEnumT *errStat, char_T errStr_data[1024], int32_T errStr_size[2]);
 #endif
 /* End of code generation (receiveData.h) */

@@ -3,7 +3,7 @@
  *
  * Code generation for function 'mean'
  *
- * C source code generated on: Thu Feb 27 11:53:20 2014
+ * C source code generated on: Thu Apr 17 22:51:42 2014
  *
  */
 
@@ -23,13 +23,9 @@
 #include "testPHYReceive_types.h"
 
 /* Function Declarations */
-extern real_T b_mean(const real_T x_data[1]);
-#ifdef __WATCOMC__
-#pragma aux b_mean value [8087];
-#endif
-extern void c_mean(const real_T x[106], real_T y[53]);
-extern void d_mean(const creal_T x[106], creal_T y[53]);
-extern real_T mean(const real_T x[5120]);
+extern void b_mean(const real_T x[106], real_T y[53]);
+extern void c_mean(const creal_T x[106], creal_T y[53]);
+extern real_T mean(const real_T x_data[3], const int32_T x_size[1]);
 #ifdef __WATCOMC__
 #pragma aux mean value [8087];
 #endif

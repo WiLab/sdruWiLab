@@ -1,6 +1,10 @@
-_mexFunction
-_emlrtMexFcnProperties
-_testPHYTransmit
-_testPHYTransmit_initialize
-_testPHYTransmit_terminate
-_testPHYTransmit_atexit
+MEX {
+	global:
+		mexFunction;
+		emlrtMexFcnProperties;
+		testPHYTransmit;
+		testPHYTransmit_initialize;
+		testPHYTransmit_terminate;
+	local:
+		*;
+};

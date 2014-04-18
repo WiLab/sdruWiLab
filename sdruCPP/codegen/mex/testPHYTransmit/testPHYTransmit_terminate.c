@@ -3,7 +3,7 @@
  *
  * Code generation for function 'testPHYTransmit_terminate'
  *
- * C source code generated on: Thu Feb 27 11:47:47 2014
+ * C source code generated on: Fri Apr 18 15:35:32 2014
  *
  */
 
@@ -13,18 +13,17 @@
 #include "testPHYTransmit_terminate.h"
 
 /* Function Definitions */
-void testPHYTransmit_atexit(emlrtStack *sp)
+void testPHYTransmit_atexit(void)
 {
   emlrtCreateRootTLS(&emlrtRootTLSGlobal, &emlrtContextGlobal, NULL, 1);
-  sp->tls = emlrtRootTLSGlobal;
-  emlrtEnterRtStackR2012b(sp);
-  emlrtLeaveRtStackR2012b(sp);
+  emlrtEnterRtStackR2012b(emlrtRootTLSGlobal);
+  emlrtLeaveRtStackR2012b(emlrtRootTLSGlobal);
   emlrtDestroyRootTLS(&emlrtRootTLSGlobal);
 }
 
-void testPHYTransmit_terminate(emlrtStack *sp)
+void testPHYTransmit_terminate(void)
 {
-  emlrtLeaveRtStackR2012b(sp);
+  emlrtLeaveRtStackR2012b(emlrtRootTLSGlobal);
   emlrtDestroyRootTLS(&emlrtRootTLSGlobal);
 }
 

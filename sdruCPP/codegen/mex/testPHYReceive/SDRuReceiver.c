@@ -3,7 +3,7 @@
  *
  * Code generation for function 'SDRuReceiver'
  *
- * C source code generated on: Thu Feb 27 11:53:20 2014
+ * C source code generated on: Thu Apr 17 22:51:42 2014
  *
  */
 
@@ -13,132 +13,169 @@
 #include "SDRuReceiver.h"
 #include "error.h"
 #include "receiveData.h"
-#include "PHYReceive.h"
 #include "checkIPAddressFormat.h"
+#include "generateOFDMSignal_TX2.h"
 #include "testPHYReceive_mexutil.h"
 #include "testPHYReceive_data.h"
+#include <stdio.h>
 
 /* Type Definitions */
 #include "usrp_uhd_capi.hpp"
 
 /* Variable Definitions */
-static emlrtRSInfo kl_emlrtRSI = { 1, "SDRuReceiver",
-  "/Users/travis/Documents/sdru/+comm/SDRuReceiver.p" };
+static emlrtRSInfo cf_emlrtRSI = { 6, "openDataConnection",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/openDataConnection.m"
+};
 
-static emlrtRSInfo xl_emlrtRSI = { 6, "openDataConnection",
-  "/Users/travis/Documents/sdru/usrp_uhd_mapi/openDataConnection.m" };
+static emlrtRSInfo df_emlrtRSI = { 138, "mapiPrivate",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m" };
+
+static emlrtRSInfo ef_emlrtRSI = { 141, "mapiPrivate",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m" };
+
+static emlrtRSInfo ff_emlrtRSI = { 146, "mapiPrivate",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m" };
+
+static emlrtRSInfo gf_emlrtRSI = { 151, "mapiPrivate",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m" };
+
+static emlrtRSInfo hf_emlrtRSI = { 152, "mapiPrivate",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m" };
+
+/* Function Declarations */
+static void g_emlrt_marshallIn(const mxArray *c_rand, const char_T *identifier,
+  real_T y[10]);
+static void h_emlrt_marshallIn(const mxArray *u, const emlrtMsgIdentifier
+  *parentId, real_T y[10]);
+static void k_emlrt_marshallIn(const mxArray *src, const emlrtMsgIdentifier
+  *msgId, real_T ret[10]);
 
 /* Function Definitions */
-comm_SDRuReceiver *SDRuReceiver_SDRuReceiver(const emlrtStack *sp,
-  comm_SDRuReceiver *obj)
+static void g_emlrt_marshallIn(const mxArray *c_rand, const char_T *identifier,
+  real_T y[10])
+{
+  emlrtMsgIdentifier thisId;
+  thisId.fIdentifier = identifier;
+  thisId.fParent = NULL;
+  h_emlrt_marshallIn(emlrtAlias(c_rand), &thisId, y);
+  emlrtDestroyArray(&c_rand);
+}
+
+static void h_emlrt_marshallIn(const mxArray *u, const emlrtMsgIdentifier
+  *parentId, real_T y[10])
+{
+  k_emlrt_marshallIn(emlrtAlias(u), parentId, y);
+  emlrtDestroyArray(&u);
+}
+
+static void k_emlrt_marshallIn(const mxArray *src, const emlrtMsgIdentifier
+  *msgId, real_T ret[10])
+{
+  int32_T iv133[2];
+  int32_T i31;
+  for (i31 = 0; i31 < 2; i31++) {
+    iv133[i31] = 1 + 9 * i31;
+  }
+
+  emlrtCheckBuiltInR2012b(emlrtRootTLSGlobal, msgId, src, "double", FALSE, 2U,
+    iv133);
+  for (i31 = 0; i31 < 10; i31++) {
+    ret[i31] = (*(real_T (*)[10])mxGetData(src))[i31];
+  }
+
+  emlrtDestroyArray(&src);
+}
+
+comm_SDRuReceiver *SDRuReceiver_SDRuReceiver(comm_SDRuReceiver *obj)
 {
   comm_SDRuReceiver *b_obj;
   comm_SDRuReceiver *c_obj;
   int32_T k;
-  real_T varargin_1[10];
-  int32_T i14;
-  static const char_T cv89[5] = { 'S', 'D', 'R', 'u', '_' };
+  real_T r[10];
+  char_T temp[10];
+  int32_T i6;
+  static const char_T cv78[5] = { 'S', 'D', 'R', 'u', '_' };
 
-  real_T d0;
   boolean_T flag;
-  emlrtStack st;
-  emlrtStack b_st;
-  emlrtStack c_st;
-  emlrtStack d_st;
-  emlrtStack e_st;
-  emlrtStack f_st;
-  emlrtStack g_st;
-  emlrtStack h_st;
-  st.prev = sp;
-  st.tls = sp->tls;
-  b_st.prev = &st;
-  b_st.tls = st.tls;
-  c_st.prev = &b_st;
-  c_st.tls = b_st.tls;
-  d_st.prev = &c_st;
-  d_st.tls = c_st.tls;
-  e_st.prev = &d_st;
-  e_st.tls = d_st.tls;
-  f_st.prev = &e_st;
-  f_st.tls = e_st.tls;
-  g_st.prev = &f_st;
-  g_st.tls = f_st.tls;
-  h_st.prev = &g_st;
-  h_st.tls = g_st.tls;
   b_obj = obj;
-  st.site = &kl_emlrtRSI;
+  emlrtPushRtStackR2012b(&yd_emlrtRSI, emlrtRootTLSGlobal);
   c_obj = b_obj;
   c_obj->LocalOscillatorOffset = 0.0;
   c_obj->pSubDevice = RxId;
-  b_st.site = &qj_emlrtRSI;
-  c_st.site = &bb_emlrtRSI;
-  c_st.site = &bb_emlrtRSI;
+  emlrtPushRtStackR2012b(&ae_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
   c_obj->isInitialized = FALSE;
   c_obj->isReleased = FALSE;
-  d_st.site = &cb_emlrtRSI;
-  e_st.site = &db_emlrtRSI;
+  emlrtPushRtStackR2012b(&p_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&q_emlrtRSI, emlrtRootTLSGlobal);
   for (k = 0; k < 4; k++) {
     c_obj->tunablePropertyChanged[k] = FALSE;
   }
 
-  f_st.site = &db_emlrtRSI;
-  d_st.site = &cb_emlrtRSI;
-  e_st.site = &db_emlrtRSI;
-  b_st.site = &qj_emlrtRSI;
-  b_st.site = &qj_emlrtRSI;
-  c_st.site = &db_emlrtRSI;
-  b_st.site = &qj_emlrtRSI;
-  c_st.site = &u_emlrtRSI;
-  emlrtRandu(varargin_1, 10);
+  emlrtPopRtStackR2012b(&q_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&p_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&ae_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&ae_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&ae_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&ae_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&k_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&l_emlrtRSI, emlrtRootTLSGlobal);
+  g_emlrt_marshallIn(b_rand(emlrt_marshallOut(1.0), emlrt_marshallOut(10.0),
+    &emlrtMCI), "rand", r);
+  emlrtPopRtStackR2012b(&l_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&k_emlrtRSI, emlrtRootTLSGlobal);
   for (k = 0; k < 10; k++) {
-    c_st.site = &v_emlrtRSI;
-    c_st.site = &v_emlrtRSI;
-    d_st.site = &p_emlrtRSI;
-    varargin_1[k] = 48.0 + muDoubleScalarFloor(varargin_1[k] * 10.0);
+    r[k] = 48.0 + muDoubleScalarFloor(r[k] * 10.0);
   }
 
-  b_st.site = &qj_emlrtRSI;
   for (k = 0; k < 10; k++) {
-    i14 = (int32_T)varargin_1[k];
-    emlrtDynamicBoundsCheckFastR2012b(i14, 0, 255, &emlrtBCI, &b_st);
+    i6 = (int32_T)r[k];
+    i6 = emlrtDynamicBoundsCheckFastR2012b(i6, 0, 255, &emlrtBCI,
+      emlrtRootTLSGlobal);
+    i6 = (int32_T)muDoubleScalarRem(i6, 256.0);
+    if (i6 < 0) {
+      temp[k] = (int8_T)-(int8_T)(uint8_T)-(real_T)i6;
+    } else {
+      temp[k] = (int8_T)(uint8_T)(real_T)i6;
+    }
   }
 
-  b_st.site = &qj_emlrtRSI;
+  emlrtPopRtStackR2012b(&ae_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&ae_emlrtRSI, emlrtRootTLSGlobal);
   for (k = 0; k < 5; k++) {
-    c_obj->ObjectID[k] = cv89[k];
+    c_obj->ObjectID[k] = cv78[k];
   }
 
   for (k = 0; k < 10; k++) {
-    d0 = muDoubleScalarFloor(varargin_1[k]);
-    if (muDoubleScalarIsNaN(d0) || muDoubleScalarIsInf(d0)) {
-      d0 = 0.0;
-    } else {
-      d0 = muDoubleScalarRem(d0, 256.0);
-    }
-
-    if (d0 < 0.0) {
-      c_obj->ObjectID[k + 5] = (int8_T)-(int8_T)(uint8_T)-d0;
-    } else {
-      c_obj->ObjectID[k + 5] = (int8_T)(uint8_T)d0;
-    }
+    c_obj->ObjectID[k + 5] = temp[k];
   }
 
-  c_st.site = &db_emlrtRSI;
-  b_st.site = &qj_emlrtRSI;
-  c_st.site = &db_emlrtRSI;
-  d_st.site = &db_emlrtRSI;
-  e_st.site = &db_emlrtRSI;
-  f_st.site = &yf_emlrtRSI;
-  g_st.site = &db_emlrtRSI;
-  h_st.site = &qj_emlrtRSI;
-  checkIPAddressFormat(&h_st);
-  g_st.site = &db_emlrtRSI;
-  d_st.site = &db_emlrtRSI;
-  e_st.site = &ob_emlrtRSI;
-  f_st.site = &db_emlrtRSI;
+  emlrtPopRtStackR2012b(&ae_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&ae_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&q_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&q_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&q_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&q_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&ae_emlrtRSI, emlrtRootTLSGlobal);
+  checkIPAddressFormat();
+  emlrtPopRtStackR2012b(&ae_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&ae_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&ae_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&q_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&q_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&q_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&q_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&v_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&q_emlrtRSI, emlrtRootTLSGlobal);
   c_obj->CenterFrequency = 2.24E+9;
-  g_st.site = &qj_emlrtRSI;
-  f_st.site = &db_emlrtRSI;
+  emlrtPushRtStackR2012b(&ae_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&ae_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&q_emlrtRSI, emlrtRootTLSGlobal);
   if (c_obj->isInitialized && (!c_obj->isReleased)) {
     flag = TRUE;
   } else {
@@ -150,11 +187,13 @@ comm_SDRuReceiver *SDRuReceiver_SDRuReceiver(const emlrtStack *sp,
     c_obj->tunablePropertyChanged[1] = TRUE;
   }
 
-  e_st.site = &ob_emlrtRSI;
-  f_st.site = &db_emlrtRSI;
-  c_obj->DecimationFactor = 20.0;
-  g_st.site = &kl_emlrtRSI;
-  f_st.site = &db_emlrtRSI;
+  emlrtPopRtStackR2012b(&v_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&v_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&q_emlrtRSI, emlrtRootTLSGlobal);
+  c_obj->DecimationFactor = 100.0;
+  emlrtPushRtStackR2012b(&yd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&yd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&q_emlrtRSI, emlrtRootTLSGlobal);
   if (c_obj->isInitialized && (!c_obj->isReleased)) {
     flag = TRUE;
   } else {
@@ -166,16 +205,17 @@ comm_SDRuReceiver *SDRuReceiver_SDRuReceiver(const emlrtStack *sp,
     c_obj->tunablePropertyChanged[0] = TRUE;
   }
 
-  e_st.site = &ob_emlrtRSI;
-  f_st.site = &db_emlrtRSI;
-  f_st.site = &db_emlrtRSI;
-  e_st.site = &ob_emlrtRSI;
-  f_st.site = &db_emlrtRSI;
-  e_st.site = &ob_emlrtRSI;
-  f_st.site = &db_emlrtRSI;
+  emlrtPopRtStackR2012b(&v_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&v_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&v_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&v_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&v_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&v_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&q_emlrtRSI, emlrtRootTLSGlobal);
   c_obj->Gain = 18.0;
-  g_st.site = &qj_emlrtRSI;
-  f_st.site = &db_emlrtRSI;
+  emlrtPushRtStackR2012b(&ae_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&ae_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&q_emlrtRSI, emlrtRootTLSGlobal);
   if (c_obj->isInitialized && (!c_obj->isReleased)) {
     flag = TRUE;
   } else {
@@ -187,12 +227,16 @@ comm_SDRuReceiver *SDRuReceiver_SDRuReceiver(const emlrtStack *sp,
     c_obj->tunablePropertyChanged[3] = TRUE;
   }
 
+  emlrtPopRtStackR2012b(&v_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&q_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&q_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&ae_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&yd_emlrtRSI, emlrtRootTLSGlobal);
   return b_obj;
 }
 
-void SDRuReceiver_setupImplLocal(const emlrtStack *sp, comm_SDRuReceiver *obj,
-  UsrpErrorCapiEnumT *deviceStatus, char_T errMsg_data[1024], int32_T
-  errMsg_size[2])
+void SDRuReceiver_setupImplLocal(comm_SDRuReceiver *obj, UsrpErrorCapiEnumT
+  *deviceStatus, char_T errMsg_data[1024], int32_T errMsg_size[2])
 {
   BoardIdCapiEnumT boardId;
   uint8_T requester[15];
@@ -200,9 +244,9 @@ void SDRuReceiver_setupImplLocal(const emlrtStack *sp, comm_SDRuReceiver *obj,
   const mxArray *y;
   static const int32_T iv105[2] = { 1, 6 };
 
-  const mxArray *m15;
-  char_T cv114[6];
-  static const char_T cv115[6] = { 's', 'i', 'l', 'e', 'n', 't' };
+  const mxArray *m18;
+  char_T cv111[6];
+  static const char_T cv112[6] = { 's', 'i', 'l', 'e', 'n', 't' };
 
   static const uint8_T addr_null[13] = { 49U, 57U, 50U, 46U, 49U, 54U, 56U, 46U,
     49U, 48U, 46U, 50U, 0U };
@@ -213,42 +257,34 @@ void SDRuReceiver_setupImplLocal(const emlrtStack *sp, comm_SDRuReceiver *obj,
   int32_T driverApiH;
   const mxArray *b_y;
   int32_T loop_ub;
+  int32_T tmp_data[1024];
   char_T b_errMsg_data[1024];
+  int32_T i14;
   comm_SDRuReceiver *b_obj;
-  emlrtStack st;
-  emlrtStack b_st;
-  emlrtStack c_st;
-  st.prev = sp;
-  st.tls = sp->tls;
-  b_st.prev = &st;
-  b_st.tls = st.tls;
-  c_st.prev = &b_st;
-  c_st.tls = b_st.tls;
-  st.site = &kl_emlrtRSI;
+  emlrtPushRtStackR2012b(&yd_emlrtRSI, emlrtRootTLSGlobal);
   boardId = obj->pSubDevice;
   for (i = 0; i < 15; i++) {
     requester[i] = (uint8_T)obj->ObjectID[i];
   }
 
   /*    Copyright 2011-2012 The MathWorks, Inc. */
-  b_st.site = &xl_emlrtRSI;
+  emlrtPushRtStackR2012b(&cf_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  */
   /*  This function unifies handling of interp vs. codegen call as well as */
   /*  errStat / errStr assignment. */
   /*  */
-  /*    Copyright 2011-2013 The MathWorks, Inc. */
+  /*    Copyright 2011-2012 The MathWorks, Inc. */
   if (!isSetupsdruCalled) {
     y = NULL;
-    m15 = mxCreateCharArray(2, iv105);
+    m18 = mxCreateCharArray(2, iv105);
     for (i = 0; i < 6; i++) {
-      cv114[i] = cv115[i];
+      cv111[i] = cv112[i];
     }
 
-    emlrtInitCharArrayR2013a(&b_st, 6, m15, cv114);
-    emlrtAssign(&y, m15);
-    c_st.site = &eu_emlrtRSI;
-    setupsdru(&c_st, sdruroot(&c_st, &o_emlrtMCI), y, &p_emlrtMCI);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 6, m18, cv111);
+    emlrtAssign(&y, m18);
+    setupsdru(sdruroot(&q_emlrtMCI), y, &r_emlrtMCI);
     isSetupsdruCalled = TRUE;
   }
 
@@ -266,39 +302,62 @@ void SDRuReceiver_setupImplLocal(const emlrtStack *sp, comm_SDRuReceiver *obj,
   /*            addr, boardId, requester, frameLength, dportType, buffMode, buffSize */
   /*  varargout  1         2         3 */
   /*            driverH, errStat, errMsg */
+  emlrtPushRtStackR2012b(&df_emlrtRSI, emlrtRootTLSGlobal);
   addr_c = (char *)(addr_null);
+  emlrtPopRtStackR2012b(&df_emlrtRSI, emlrtRootTLSGlobal);
   for (i = 0; i < 15; i++) {
     req_null[i] = requester[i];
   }
 
   req_null[15] = 0;
+  emlrtPushRtStackR2012b(&ef_emlrtRSI, emlrtRootTLSGlobal);
   req_c = (char *)(req_null);
-  openDataConnection_c(addr_c, boardId, req_c, 5120U, DPortDTypeCInt16, FALSE,
-                       0U, &driverApiH, deviceStatus, &errMsg_data[0]);
+  emlrtPopRtStackR2012b(&ef_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&ff_emlrtRSI, emlrtRootTLSGlobal);
+  openDataConnection_c(addr_c, boardId, req_c, 5120U, DPortDTypeCInt16,
+                       BuffModeContinuous, 0U, &driverApiH, deviceStatus,
+                       &errMsg_data[0]);
+  emlrtPopRtStackR2012b(&ff_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  Tell coder that addr_null & req_null must be alive and separate throughout the call to cmd_c. */
+  emlrtPushRtStackR2012b(&gf_emlrtRSI, emlrtRootTLSGlobal);
   (void)(addr_null);
+  emlrtPopRtStackR2012b(&gf_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&hf_emlrtRSI, emlrtRootTLSGlobal);
   (void)(req_null);
+  emlrtPopRtStackR2012b(&hf_emlrtRSI, emlrtRootTLSGlobal);
 
   /* errStat = UsrpErrorCapiEnumT(errStat_i); */
+  emlrtPushRtStackR2012b(&if_emlrtRSI, emlrtRootTLSGlobal);
   i = strlen(&errMsg_data[0]);
+  emlrtPopRtStackR2012b(&if_emlrtRSI, emlrtRootTLSGlobal);
   if (i <= 1024) {
   } else {
+    emlrtPushRtStackR2012b(&jf_emlrtRSI, emlrtRootTLSGlobal);
     b_y = NULL;
-    m15 = mxCreateString("Assertion failed.");
-    emlrtAssign(&b_y, m15);
-    c_st.site = &bu_emlrtRSI;
-    b_error(&c_st, b_y, &n_emlrtMCI);
+    m18 = mxCreateString("Assertion failed.");
+    emlrtAssign(&b_y, m18);
+    b_error(b_y, &p_emlrtMCI);
+    emlrtPopRtStackR2012b(&jf_emlrtRSI, emlrtRootTLSGlobal);
   }
 
   if (1 > i) {
     loop_ub = 0;
   } else {
-    loop_ub = emlrtDynamicBoundsCheckFastR2012b(i, 1, 1024, &q_emlrtBCI, &b_st);
+    loop_ub = emlrtDynamicBoundsCheckFastR2012b(i, 1, 1024, &q_emlrtBCI,
+      emlrtRootTLSGlobal);
   }
 
   for (i = 0; i < loop_ub; i++) {
-    b_errMsg_data[i] = errMsg_data[i];
+    tmp_data[i] = 1 + i;
+  }
+
+  for (i = 0; i < loop_ub; i++) {
+    i14 = 0;
+    while (i14 <= 0) {
+      b_errMsg_data[i] = errMsg_data[tmp_data[i] - 1];
+      i14 = 1;
+    }
   }
 
   errMsg_size[0] = 1;
@@ -307,16 +366,18 @@ void SDRuReceiver_setupImplLocal(const emlrtStack *sp, comm_SDRuReceiver *obj,
     errMsg_data[i] = b_errMsg_data[i];
   }
 
-  st.site = &kl_emlrtRSI;
+  emlrtPopRtStackR2012b(&cf_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&yd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&yd_emlrtRSI, emlrtRootTLSGlobal);
   b_obj = obj;
   b_obj->pDriverHandle = driverApiH;
-  b_st.site = &db_emlrtRSI;
-  st.site = &kl_emlrtRSI;
-  b_st.site = &db_emlrtRSI;
+  emlrtPopRtStackR2012b(&yd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&yd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&yd_emlrtRSI, emlrtRootTLSGlobal);
 }
 
-void SDRuReceiver_stepImpl(testPHYReceiveStackData *SD, const emlrtStack *sp,
-  const comm_SDRuReceiver *obj, creal_T y[5120])
+void SDRuReceiver_stepImpl(testPHYReceiveStackData *SD, const comm_SDRuReceiver *
+  obj, creal_T y[5120])
 {
   real_T fc;
   real_T loOffset;
@@ -328,28 +389,23 @@ void SDRuReceiver_stepImpl(testPHYReceiveStackData *SD, const emlrtStack *sp,
   uint32_T overrun;
   uint32_T dataLen;
   int32_T i;
-  emlrtStack st;
-  st.prev = sp;
-  st.tls = sp->tls;
   fc = obj->CenterFrequency;
   loOffset = obj->LocalOscillatorOffset;
   gain = obj->Gain;
   decim = obj->DecimationFactor;
-  st.site = &kl_emlrtRSI;
-  receiveData(&st, obj->pDriverHandle, fc, loOffset, gain, decim,
-              SD->u1.f3.yTemp, &dataLen, &overrun, &errStatus, errMsg_data,
-              errMsg_size);
+  emlrtPushRtStackR2012b(&yd_emlrtRSI, emlrtRootTLSGlobal);
+  receiveData(obj->pDriverHandle, fc, loOffset, gain, decim, SD->u1.f1.yTemp,
+              &dataLen, &overrun, &errStatus, errMsg_data, errMsg_size);
+  emlrtPopRtStackR2012b(&yd_emlrtRSI, emlrtRootTLSGlobal);
   if (errStatus != UsrpDriverSuccess) {
-    st.site = &kl_emlrtRSI;
-    error(&st, errMsg_data, errMsg_size);
+    emlrtPushRtStackR2012b(&yd_emlrtRSI, emlrtRootTLSGlobal);
+    error(errMsg_data, errMsg_size);
+    emlrtPopRtStackR2012b(&yd_emlrtRSI, emlrtRootTLSGlobal);
   }
 
   for (i = 0; i < 5120; i++) {
-    y[i].re = SD->u1.f3.yTemp[i].re;
-    y[i].im = SD->u1.f3.yTemp[i].im;
-  }
-
-  for (i = 0; i < 5120; i++) {
+    y[i].re = SD->u1.f1.yTemp[i].re;
+    y[i].im = SD->u1.f1.yTemp[i].im;
     fc = y[i].im;
     y[i].re *= 3.0518509475997192E-5;
     y[i].im = 3.0518509475997192E-5 * fc;

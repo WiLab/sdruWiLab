@@ -3,7 +3,7 @@
  *
  * Code generation for function 'checkIPAddressFormat'
  *
- * C source code generated on: Thu Feb 27 11:47:47 2014
+ * C source code generated on: Fri Apr 18 15:35:33 2014
  *
  */
 
@@ -23,6 +23,6 @@
 #include "testPHYTransmit_types.h"
 
 /* Function Declarations */
-extern void checkIPAddressFormat(const emlrtStack *sp);
+extern void checkIPAddressFormat(void);
 #endif
 /* End of code generation (checkIPAddressFormat.h) */

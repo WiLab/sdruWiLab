@@ -1,5 +1,5 @@
 #include "libReceive.h"
-#include "libTransmit.h"
+//#include "libTransmit.h"
 #include <iostream>
 #include <thread>
 #include <unistd.h>
@@ -8,47 +8,47 @@
 #define MSGLEN  64
 
 
-void Process_TX(int *fd)
-{
-            
-	// Initialize the MATLAB Compiler Runtime global state
-	if (!mclInitializeApplication(NULL,0)) 
-	{
-	std::cerr << "Could not initialize the application properly."
-		  << std::endl;
-	//return -1;
-	}
-
-	// Initialize the Vigenere library
-	if( !libTransmitInitialize() )
-	{
-	std::cerr << "Could not initialize the library properly."
-		  << std::endl;
-	//return -1;
-	}
-
-	mwArray ObjAGC_tx,ObjSDRuTransmitter_tx,ObjDetect_tx,ObjPreambleDemod_tx,ObjDataDemod_tx,estimate_tx,rx_tx,timeoutDuration_tx,messageBits_tx,SamplingFreq_tx;
-	mwArray destNodeID_tx, originNodeID_tx, inputPayloadMessage_tx;
-
-	CreateTXRX_TX(10, ObjAGC_tx,ObjSDRuTransmitter_tx,ObjDetect_tx,ObjPreambleDemod_tx,ObjDataDemod_tx,estimate_tx,rx_tx,timeoutDuration_tx,messageBits_tx,SamplingFreq_tx, destNodeID_tx,originNodeID_tx, inputPayloadMessage_tx);
-
-	//Call Transmitter
-	//char *message = "HelloFromTX";
-	std::string message = "HelloFromTX";
-	while (1)
-	{
-	PHYTransmit(ObjSDRuTransmitter_tx,inputPayloadMessage_tx,SamplingFreq_tx,originNodeID_tx,destNodeID_tx);
-        //Writing message to the pipe
-        //write(fd[1], message, strlen(message));
-        write(fd[1], "HelloFromTX",11 );
-	}
-
-	// Shut down the library and the application global state.
-	libTransmitTerminate();
-	mclTerminateApplication();
-
-
-}
+// void Process_TX(int *fd)
+// {
+//             
+// 	// Initialize the MATLAB Compiler Runtime global state
+// 	if (!mclInitializeApplication(NULL,0)) 
+// 	{
+// 	std::cerr << "Could not initialize the application properly."
+// 		  << std::endl;
+// 	//return -1;
+// 	}
+// 
+// 	// Initialize the Vigenere library
+// 	if( !libTransmitInitialize() )
+// 	{
+// 	std::cerr << "Could not initialize the library properly."
+// 		  << std::endl;
+// 	//return -1;
+// 	}
+// 
+// 	mwArray ObjAGC_tx,ObjSDRuTransmitter_tx,ObjDetect_tx,ObjPreambleDemod_tx,ObjDataDemod_tx,estimate_tx,rx_tx,timeoutDuration_tx,messageBits_tx,SamplingFreq_tx;
+// 	mwArray destNodeID_tx, originNodeID_tx, inputPayloadMessage_tx;
+// 
+// 	CreateTXRX_TX(10, ObjAGC_tx,ObjSDRuTransmitter_tx,ObjDetect_tx,ObjPreambleDemod_tx,ObjDataDemod_tx,estimate_tx,rx_tx,timeoutDuration_tx,messageBits_tx,SamplingFreq_tx, destNodeID_tx,originNodeID_tx, inputPayloadMessage_tx);
+// 
+// 	//Call Transmitter
+// 	//char *message = "HelloFromTX";
+// 	std::string message = "HelloFromTX";
+// 	while (1)
+// 	{
+// 	PHYTransmit(ObjSDRuTransmitter_tx,inputPayloadMessage_tx,SamplingFreq_tx,originNodeID_tx,destNodeID_tx);
+//         //Writing message to the pipe
+//         //write(fd[1], message, strlen(message));
+//         write(fd[1], "HelloFromTX",11 );
+// 	}
+// 
+// 	// Shut down the library and the application global state.
+// 	libTransmitTerminate();
+// 	mclTerminateApplication();
+// 
+// 
+// }
 
 void Process_RX(int *fd)
 {
@@ -80,7 +80,7 @@ void Process_RX(int *fd)
 	int k;
 	//char *message = "HelloFromRX";
 	std::string message = "HelloFromRX";
-	for (k=0;k<100;k++){
+	for (k=0;k<100000;k++){
 	// Initialization succeeded. Encrypt or decrypt.
 	PHYReceive(1, result,ObjAGC,ObjSDRuReceiver,ObjDetect,ObjPreambleDemod,ObjDataDemod,estimate,rx,timeoutDuration,messageBits);
         write(fd[1], "HelloFromRX", 11);
@@ -135,7 +135,7 @@ if (pid > 0) {
 		}
 	else{
 		std::cout<<"Child"<<std::endl;
-		Process_TX( fd );
+		//Process_TX( fd );
 	}
 }
 else if (pid == 0) {

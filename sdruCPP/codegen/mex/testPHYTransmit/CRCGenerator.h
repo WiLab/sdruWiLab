@@ -3,7 +3,7 @@
  *
  * Code generation for function 'CRCGenerator'
  *
- * C source code generated on: Thu Feb 27 11:47:47 2014
+ * C source code generated on: Fri Apr 18 15:35:33 2014
  *
  */
 
@@ -24,7 +24,7 @@
 
 /* Function Declarations */
 extern commcodegen_CRCGenerator *CRCGenerator_CRCGenerator(commcodegen_CRCGenerator *obj);
-extern commcodegen_CRCGenerator_6 *b_CRCGenerator_CRCGenerator(commcodegen_CRCGenerator_6 *obj);
-extern commcodegen_CRCGenerator_12 *c_CRCGenerator_CRCGenerator(commcodegen_CRCGenerator_12 *obj);
+extern commcodegen_CRCGenerator_256 *b_CRCGenerator_CRCGenerator(commcodegen_CRCGenerator_256 *obj);
+extern commcodegen_CRCGenerator_478 *c_CRCGenerator_CRCGenerator(commcodegen_CRCGenerator_478 *obj);
 #endif
 /* End of code generation (CRCGenerator.h) */

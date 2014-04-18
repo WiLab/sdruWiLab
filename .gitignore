@@ -6,3 +6,5 @@ codegen
 ._*
 mccExcludedFiles.log
 *.so
+.DS_Store
+NUL

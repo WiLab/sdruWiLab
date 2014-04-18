@@ -3,7 +3,7 @@
  *
  * Code generation for function 'testPHYTransmit_mexutil'
  *
- * C source code generated on: Fri Apr 18 15:35:32 2014
+ * C source code generated on: Fri Apr 18 16:24:31 2014
  *
  */
 
@@ -27,6 +27,10 @@ extern void b_error(const mxArray *b, emlrtMCInfo *location);
 extern const mxArray *b_message(const mxArray *b, emlrtMCInfo *location);
 extern const mxArray *b_rand(const mxArray *b, const mxArray *c, emlrtMCInfo *location);
 extern void e_emlrt_marshallIn(const mxArray *c_rand, const char_T *identifier, real_T y[13]);
+extern real_T emlrt_marshallIn(const mxArray *c_rand, const char_T *identifier);
+#ifdef __WATCOMC__
+#pragma aux emlrt_marshallIn value [8087];
+#endif
 extern real_T i_emlrt_marshallIn(const mxArray *src, const emlrtMsgIdentifier *msgId);
 #ifdef __WATCOMC__
 #pragma aux i_emlrt_marshallIn value [8087];

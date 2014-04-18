@@ -3,7 +3,7 @@
  *
  * Code generation for function 'SDRuTransmitter'
  *
- * C source code generated on: Fri Apr 18 15:35:33 2014
+ * C source code generated on: Fri Apr 18 16:24:32 2014
  *
  */
 
@@ -17,31 +17,32 @@
 #include "generateOFDMSignal_TX2.h"
 #include "testPHYTransmit_mexutil.h"
 #include "testPHYTransmit_data.h"
+#include <stdio.h>
 
 /* Type Definitions */
 #include "usrp_uhd_capi.hpp"
 
 /* Variable Definitions */
-static emlrtRSInfo id_emlrtRSI = { 1, "SDRuTransmitter",
+static emlrtRSInfo jd_emlrtRSI = { 1, "SDRuTransmitter",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/SDRuTransmitter.p" };
 
-static emlrtRSInfo se_emlrtRSI = { 6, "openDataConnection",
+static emlrtRSInfo we_emlrtRSI = { 6, "openDataConnection",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/openDataConnection.m"
 };
 
-static emlrtRSInfo te_emlrtRSI = { 138, "mapiPrivate",
+static emlrtRSInfo xe_emlrtRSI = { 138, "mapiPrivate",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m" };
 
-static emlrtRSInfo ue_emlrtRSI = { 141, "mapiPrivate",
+static emlrtRSInfo ye_emlrtRSI = { 141, "mapiPrivate",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m" };
 
-static emlrtRSInfo ve_emlrtRSI = { 146, "mapiPrivate",
+static emlrtRSInfo af_emlrtRSI = { 146, "mapiPrivate",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m" };
 
-static emlrtRSInfo we_emlrtRSI = { 151, "mapiPrivate",
+static emlrtRSInfo bf_emlrtRSI = { 151, "mapiPrivate",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m" };
 
-static emlrtRSInfo xe_emlrtRSI = { 152, "mapiPrivate",
+static emlrtRSInfo cf_emlrtRSI = { 152, "mapiPrivate",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m" };
 
 /* Function Declarations */
@@ -73,14 +74,14 @@ static void h_emlrt_marshallIn(const mxArray *u, const emlrtMsgIdentifier
 static void k_emlrt_marshallIn(const mxArray *src, const emlrtMsgIdentifier
   *msgId, real_T ret[10])
 {
-  int32_T iv120[2];
+  int32_T iv122[2];
   int32_T i24;
   for (i24 = 0; i24 < 2; i24++) {
-    iv120[i24] = 1 + 9 * i24;
+    iv122[i24] = 1 + 9 * i24;
   }
 
   emlrtCheckBuiltInR2012b(emlrtRootTLSGlobal, msgId, src, "double", FALSE, 2U,
-    iv120);
+    iv122);
   for (i24 = 0; i24 < 10; i24++) {
     ret[i24] = (*(real_T (*)[10])mxGetData(src))[i24];
   }
@@ -103,31 +104,31 @@ comm_SDRuTransmitter *SDRuTransmitter_SDRuTransmitter(comm_SDRuTransmitter *obj)
 
   boolean_T flag;
   b_obj = obj;
-  emlrtPushRtStackR2012b(&id_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&jd_emlrtRSI, emlrtRootTLSGlobal);
   c_obj = b_obj;
   c_obj->LocalOscillatorOffset = 0.0;
   c_obj->pSubDevice = TxId;
-  emlrtPushRtStackR2012b(&jd_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&k_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&l_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   c_obj->isInitialized = FALSE;
   c_obj->isReleased = FALSE;
-  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
   for (k = 0; k < 4; k++) {
     c_obj->tunablePropertyChanged[k] = FALSE;
   }
 
+  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&l_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&k_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&jd_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&jd_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&jd_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&jd_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&h_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&i_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&j_emlrtRSI, emlrtRootTLSGlobal);
   y = NULL;
   m9 = mxCreateDoubleScalar(1.0);
   emlrtAssign(&y, m9);
@@ -135,8 +136,8 @@ comm_SDRuTransmitter *SDRuTransmitter_SDRuTransmitter(comm_SDRuTransmitter *obj)
   m9 = mxCreateDoubleScalar(10.0);
   emlrtAssign(&b_y, m9);
   g_emlrt_marshallIn(b_rand(y, b_y, &emlrtMCI), "rand", r);
+  emlrtPopRtStackR2012b(&j_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&i_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&h_emlrtRSI, emlrtRootTLSGlobal);
   for (k = 0; k < 10; k++) {
     r[k] = 48.0 + muDoubleScalarFloor(r[k] * 10.0);
   }
@@ -153,8 +154,8 @@ comm_SDRuTransmitter *SDRuTransmitter_SDRuTransmitter(comm_SDRuTransmitter *obj)
     }
   }
 
-  emlrtPopRtStackR2012b(&jd_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&jd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
   for (k = 0; k < 5; k++) {
     c_obj->ObjectID[k] = cv51[k];
   }
@@ -163,29 +164,29 @@ comm_SDRuTransmitter *SDRuTransmitter_SDRuTransmitter(comm_SDRuTransmitter *obj)
     c_obj->ObjectID[k + 5] = temp[k];
   }
 
-  emlrtPopRtStackR2012b(&jd_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&jd_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&jd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&ec_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
   checkIPAddressFormat();
-  emlrtPopRtStackR2012b(&jd_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&jd_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&jd_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&dc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&ec_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
   c_obj->CenterFrequency = 2.24E+9;
-  emlrtPushRtStackR2012b(&jd_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&jd_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
   if (c_obj->isInitialized && (!c_obj->isReleased)) {
     flag = TRUE;
   } else {
@@ -197,13 +198,13 @@ comm_SDRuTransmitter *SDRuTransmitter_SDRuTransmitter(comm_SDRuTransmitter *obj)
     c_obj->tunablePropertyChanged[1] = TRUE;
   }
 
-  emlrtPopRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
   c_obj->InterpolationFactor = 20.0;
-  emlrtPushRtStackR2012b(&id_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&id_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&jd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&jd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
   if (c_obj->isInitialized && (!c_obj->isReleased)) {
     flag = TRUE;
   } else {
@@ -215,13 +216,13 @@ comm_SDRuTransmitter *SDRuTransmitter_SDRuTransmitter(comm_SDRuTransmitter *obj)
     c_obj->tunablePropertyChanged[0] = TRUE;
   }
 
-  emlrtPopRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
   c_obj->Gain = 25.0;
-  emlrtPushRtStackR2012b(&jd_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&jd_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
   if (c_obj->isInitialized && (!c_obj->isReleased)) {
     flag = TRUE;
   } else {
@@ -233,11 +234,11 @@ comm_SDRuTransmitter *SDRuTransmitter_SDRuTransmitter(comm_SDRuTransmitter *obj)
     c_obj->tunablePropertyChanged[3] = TRUE;
   }
 
-  emlrtPopRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&jd_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&id_emlrtRSI, emlrtRootTLSGlobal);
   return b_obj;
 }
 
@@ -248,11 +249,11 @@ void SDRuTransmitter_setupImplLocal(comm_SDRuTransmitter *obj,
   uint8_T requester[15];
   int32_T i;
   const mxArray *y;
-  static const int32_T iv115[2] = { 1, 6 };
+  static const int32_T iv117[2] = { 1, 6 };
 
-  const mxArray *m21;
-  char_T cv121[6];
-  static const char_T cv122[6] = { 's', 'i', 'l', 'e', 'n', 't' };
+  const mxArray *m22;
+  char_T cv125[6];
+  static const char_T cv126[6] = { 's', 'i', 'l', 'e', 'n', 't' };
 
   static const uint8_T addr_null[13] = { 49U, 57U, 50U, 46U, 49U, 54U, 56U, 46U,
     50U, 48U, 46U, 50U, 0U };
@@ -267,18 +268,18 @@ void SDRuTransmitter_setupImplLocal(comm_SDRuTransmitter *obj,
   char_T b_errMsg_data[1024];
   int32_T i19;
   comm_SDRuTransmitter *b_obj;
-  emlrtPushRtStackR2012b(&id_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&id_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&id_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&id_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&id_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&jd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&jd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&jd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&jd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&jd_emlrtRSI, emlrtRootTLSGlobal);
   boardId = obj->pSubDevice;
   for (i = 0; i < 15; i++) {
     requester[i] = (uint8_T)obj->ObjectID[i];
   }
 
   /*    Copyright 2011-2012 The MathWorks, Inc. */
-  emlrtPushRtStackR2012b(&se_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&we_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  */
   /*  This function unifies handling of interp vs. codegen call as well as */
@@ -287,14 +288,14 @@ void SDRuTransmitter_setupImplLocal(comm_SDRuTransmitter *obj,
   /*    Copyright 2011-2012 The MathWorks, Inc. */
   if (!isSetupsdruCalled) {
     y = NULL;
-    m21 = mxCreateCharArray(2, iv115);
+    m22 = mxCreateCharArray(2, iv117);
     for (i = 0; i < 6; i++) {
-      cv121[i] = cv122[i];
+      cv125[i] = cv126[i];
     }
 
-    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 6, m21, cv121);
-    emlrtAssign(&y, m21);
-    setupsdru(sdruroot(&p_emlrtMCI), y, &q_emlrtMCI);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 6, m22, cv125);
+    emlrtAssign(&y, m22);
+    setupsdru(sdruroot(&q_emlrtMCI), y, &r_emlrtMCI);
     isSetupsdruCalled = TRUE;
   }
 
@@ -312,43 +313,43 @@ void SDRuTransmitter_setupImplLocal(comm_SDRuTransmitter *obj,
   /*            addr, boardId, requester, frameLength, dportType, buffMode, buffSize */
   /*  varargout  1         2         3 */
   /*            driverH, errStat, errMsg */
-  emlrtPushRtStackR2012b(&te_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&xe_emlrtRSI, emlrtRootTLSGlobal);
   addr_c = (char *)(addr_null);
-  emlrtPopRtStackR2012b(&te_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&xe_emlrtRSI, emlrtRootTLSGlobal);
   for (i = 0; i < 15; i++) {
     req_null[i] = requester[i];
   }
 
   req_null[15] = 0;
-  emlrtPushRtStackR2012b(&ue_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&ye_emlrtRSI, emlrtRootTLSGlobal);
   req_c = (char *)(req_null);
-  emlrtPopRtStackR2012b(&ue_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&ve_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&ye_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&af_emlrtRSI, emlrtRootTLSGlobal);
   openDataConnection_c(addr_c, boardId, req_c, 38400U, DPortDTypeCDouble,
                        BuffModeContinuous, 0U, &driverApiH, errStatus,
                        &errMsg_data[0]);
-  emlrtPopRtStackR2012b(&ve_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&af_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  Tell coder that addr_null & req_null must be alive and separate throughout the call to cmd_c. */
-  emlrtPushRtStackR2012b(&we_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&bf_emlrtRSI, emlrtRootTLSGlobal);
   (void)(addr_null);
-  emlrtPopRtStackR2012b(&we_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&xe_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&bf_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&cf_emlrtRSI, emlrtRootTLSGlobal);
   (void)(req_null);
-  emlrtPopRtStackR2012b(&xe_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&cf_emlrtRSI, emlrtRootTLSGlobal);
 
   /* errStat = UsrpErrorCapiEnumT(errStat_i); */
-  emlrtPushRtStackR2012b(&ye_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&df_emlrtRSI, emlrtRootTLSGlobal);
   i = strlen(&errMsg_data[0]);
-  emlrtPopRtStackR2012b(&ye_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&df_emlrtRSI, emlrtRootTLSGlobal);
   if (i <= 1024) {
   } else {
-    emlrtPushRtStackR2012b(&af_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&ef_emlrtRSI, emlrtRootTLSGlobal);
     b_y = NULL;
-    m21 = mxCreateString("Assertion failed.");
-    emlrtAssign(&b_y, m21);
-    b_error(b_y, &o_emlrtMCI);
-    emlrtPopRtStackR2012b(&af_emlrtRSI, emlrtRootTLSGlobal);
+    m22 = mxCreateString("Assertion failed.");
+    emlrtAssign(&b_y, m22);
+    b_error(b_y, &p_emlrtMCI);
+    emlrtPopRtStackR2012b(&ef_emlrtRSI, emlrtRootTLSGlobal);
   }
 
   if (1 > i) {
@@ -376,12 +377,12 @@ void SDRuTransmitter_setupImplLocal(comm_SDRuTransmitter *obj,
     errMsg_data[i] = b_errMsg_data[i];
   }
 
-  emlrtPopRtStackR2012b(&se_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&id_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&id_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&we_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&jd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&jd_emlrtRSI, emlrtRootTLSGlobal);
   b_obj = obj;
   b_obj->pDriverHandle = driverApiH;
-  emlrtPopRtStackR2012b(&id_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&jd_emlrtRSI, emlrtRootTLSGlobal);
 }
 
 void SDRuTransmitter_stepImpl(testPHYTransmitStackData *SD, const
@@ -399,14 +400,14 @@ void SDRuTransmitter_stepImpl(testPHYTransmitStackData *SD, const
   loOffset = obj->LocalOscillatorOffset;
   gain = obj->Gain;
   interp = obj->InterpolationFactor;
-  emlrtPushRtStackR2012b(&id_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&jd_emlrtRSI, emlrtRootTLSGlobal);
   sendComplexDoubleData(SD, obj->pDriverHandle, x, fc, loOffset, gain, interp,
                         &underrun, &errStatus, errMsg_data, errMsg_size);
-  emlrtPopRtStackR2012b(&id_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&jd_emlrtRSI, emlrtRootTLSGlobal);
   if (errStatus != UsrpDriverSuccess) {
-    emlrtPushRtStackR2012b(&id_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&jd_emlrtRSI, emlrtRootTLSGlobal);
     error(errMsg_data, errMsg_size);
-    emlrtPopRtStackR2012b(&id_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&jd_emlrtRSI, emlrtRootTLSGlobal);
   }
 }
 

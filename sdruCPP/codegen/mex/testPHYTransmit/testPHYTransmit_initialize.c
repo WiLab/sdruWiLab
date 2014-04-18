@@ -3,7 +3,7 @@
  *
  * Code generation for function 'testPHYTransmit_initialize'
  *
- * C source code generated on: Fri Apr 18 15:35:32 2014
+ * C source code generated on: Fri Apr 18 16:24:31 2014
  *
  */
 
@@ -13,6 +13,7 @@
 #include "testPHYTransmit_initialize.h"
 #include "testPHYTransmit_emxutil.h"
 #include "testPHYTransmit_data.h"
+#include <stdio.h>
 
 /* Function Declarations */
 static void testPHYTransmit_once(void);

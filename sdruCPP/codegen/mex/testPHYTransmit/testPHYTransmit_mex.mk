@@ -27,6 +27,7 @@ SRC_FILES =  \
 	initializeOFDMSyncMemory_sdr.c \
 	AGC.c \
 	CRCDetector.c \
+	fprintf.c \
 	PHYTransmit.c \
 	sendComplexDoubleData.c \
 	error.c \

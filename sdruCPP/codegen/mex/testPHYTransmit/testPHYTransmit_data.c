@@ -3,7 +3,7 @@
  *
  * Code generation for function 'testPHYTransmit_data'
  *
- * C source code generated on: Fri Apr 18 15:35:32 2014
+ * C source code generated on: Fri Apr 18 16:24:31 2014
  *
  */
 
@@ -11,6 +11,7 @@
 #include "rt_nonfinite.h"
 #include "testPHYTransmit.h"
 #include "testPHYTransmit_data.h"
+#include <stdio.h>
 
 /* Variable Definitions */
 const volatile char_T *emlrtBreakCheckR2012bFlagVar;
@@ -19,200 +20,203 @@ struct_T estimate;
 b_struct_T tx;
 emxArray_real_T_3x563 messageBits;
 boolean_T isSetupsdruCalled;
-emlrtRSInfo h_emlrtRSI = { 39, "randi",
+emlrtRSInfo i_emlrtRSI = { 39, "randi",
   "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/randfun/randi.m" };
 
-emlrtRSInfo i_emlrtRSI = { 79, "rand",
+emlrtRSInfo j_emlrtRSI = { 79, "rand",
   "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/randfun/rand.m" };
 
-emlrtRSInfo j_emlrtRSI = { 1, "OFDMBase",
+emlrtRSInfo k_emlrtRSI = { 1, "OFDMBase",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/OFDMBase.m" };
 
-emlrtRSInfo k_emlrtRSI = { 1, "System",
+emlrtRSInfo l_emlrtRSI = { 1, "System",
   "/opt/MATLAB/R2013a/toolbox/matlab/system/+matlab/System.p" };
 
-emlrtRSInfo l_emlrtRSI = { 1, "System",
+emlrtRSInfo m_emlrtRSI = { 1, "System",
   "/opt/MATLAB/R2013a/toolbox/shared/system/coder/+matlab/+system/+coder/System.p"
 };
 
-emlrtRSInfo m_emlrtRSI = { 1, "SystemCore",
+emlrtRSInfo n_emlrtRSI = { 1, "SystemCore",
   "/opt/MATLAB/R2013a/toolbox/shared/system/coder/+matlab/+system/+coder/SystemCore.p"
 };
 
-emlrtRSInfo n_emlrtRSI = { 1, "SystemProp",
+emlrtRSInfo o_emlrtRSI = { 1, "SystemProp",
   "/opt/MATLAB/R2013a/toolbox/shared/system/coder/+matlab/+system/+coder/SystemProp.p"
 };
 
-emlrtRSInfo o_emlrtRSI = { 1, "OFDMModulator",
+emlrtRSInfo p_emlrtRSI = { 1, "OFDMModulator",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/OFDMModulator.m" };
 
-emlrtRSInfo p_emlrtRSI = { 182, "OFDMModulator",
+emlrtRSInfo q_emlrtRSI = { 182, "OFDMModulator",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/OFDMModulator.m" };
 
-emlrtRSInfo q_emlrtRSI = { 29, "log2",
+emlrtRSInfo r_emlrtRSI = { 29, "log2",
   "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/elfun/log2.m" };
 
-emlrtRSInfo r_emlrtRSI = { 20, "eml_error",
+emlrtRSInfo s_emlrtRSI = { 20, "eml_error",
   "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/eml/eml_error.m" };
 
-emlrtRSInfo s_emlrtRSI = { 1, "pvParse",
+emlrtRSInfo t_emlrtRSI = { 1, "pvParse",
   "/opt/MATLAB/R2013a/toolbox/matlab/system/+matlab/+system/pvParse.p" };
 
-emlrtRSInfo t_emlrtRSI = { 14, "sqrt",
+emlrtRSInfo u_emlrtRSI = { 14, "sqrt",
   "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/elfun/sqrt.m" };
 
-emlrtRSInfo lb_emlrtRSI = { 345, "OFDMModulator",
+emlrtRSInfo mb_emlrtRSI = { 345, "OFDMModulator",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/OFDMModulator.m" };
 
-emlrtRSInfo mb_emlrtRSI = { 374, "OFDMModulator",
+emlrtRSInfo nb_emlrtRSI = { 374, "OFDMModulator",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/OFDMModulator.m" };
 
-emlrtRSInfo nb_emlrtRSI = { 375, "OFDMModulator",
+emlrtRSInfo ob_emlrtRSI = { 375, "OFDMModulator",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/OFDMModulator.m" };
 
-emlrtRSInfo ob_emlrtRSI = { 388, "OFDMModulator",
+emlrtRSInfo pb_emlrtRSI = { 388, "OFDMModulator",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/OFDMModulator.m" };
 
-emlrtRSInfo rb_emlrtRSI = { 30, "dec2bin",
+emlrtRSInfo sb_emlrtRSI = { 30, "dec2bin",
   "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/strfun/dec2bin.m" };
 
-emlrtRSInfo vb_emlrtRSI = { 38, "bitget",
+emlrtRSInfo wb_emlrtRSI = { 38, "bitget",
   "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/ops/bitget.m" };
 
-emlrtRSInfo ac_emlrtRSI = { 12, "eml_int_forloop_overflow_check",
+emlrtRSInfo bc_emlrtRSI = { 12, "eml_int_forloop_overflow_check",
   "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/eml/eml_int_forloop_overflow_check.m"
 };
 
-emlrtRSInfo cc_emlrtRSI = { 1, "CRCGenerator",
+emlrtRSInfo dc_emlrtRSI = { 1, "CRCGenerator",
   "/opt/MATLAB/R2013a/toolbox/comm/comm/+commcodegen/CRCGenerator.p" };
 
-emlrtRSInfo dc_emlrtRSI = { 1, "setProp",
+emlrtRSInfo ec_emlrtRSI = { 1, "setProp",
   "/opt/MATLAB/R2013a/toolbox/matlab/system/+matlab/+system/setProp.p" };
 
-emlrtRSInfo ec_emlrtRSI = { 1, "Nondirect",
+emlrtRSInfo fc_emlrtRSI = { 1, "Nondirect",
   "/opt/MATLAB/R2013a/toolbox/shared/system/coder/+matlab/+system/+mixin/+coder/Nondirect.p"
 };
 
-emlrtRSInfo fc_emlrtRSI = { 1, "BPSKModulator",
+emlrtRSInfo gc_emlrtRSI = { 1, "BPSKModulator",
   "/opt/MATLAB/R2013a/toolbox/comm/comm/+commcodegen/BPSKModulator.p" };
 
-emlrtRSInfo gc_emlrtRSI = { 52, "step",
+emlrtRSInfo hc_emlrtRSI = { 52, "step",
   "/opt/MATLAB/R2013a/toolbox/eml/lib/scomp/step.m" };
 
-emlrtRSInfo hc_emlrtRSI = { 185, "eml_sort_idx",
+emlrtRSInfo ic_emlrtRSI = { 185, "eml_sort_idx",
   "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/eml/eml_sort_idx.m" };
 
-emlrtRSInfo ic_emlrtRSI = { 102, "OFDMBase",
+emlrtRSInfo jc_emlrtRSI = { 102, "OFDMBase",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/OFDMBase.m" };
 
-emlrtRSInfo jc_emlrtRSI = { 42, "unique",
+emlrtRSInfo kc_emlrtRSI = { 42, "unique",
   "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/ops/unique.m" };
 
-emlrtRSInfo kc_emlrtRSI = { 228, "unique",
+emlrtRSInfo lc_emlrtRSI = { 228, "unique",
   "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/ops/unique.m" };
 
-emlrtRSInfo lc_emlrtRSI = { 218, "unique",
+emlrtRSInfo mc_emlrtRSI = { 218, "unique",
   "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/ops/unique.m" };
 
-emlrtRSInfo mc_emlrtRSI = { 207, "unique",
+emlrtRSInfo nc_emlrtRSI = { 207, "unique",
   "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/ops/unique.m" };
 
-emlrtRSInfo nc_emlrtRSI = { 194, "unique",
+emlrtRSInfo oc_emlrtRSI = { 194, "unique",
   "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/ops/unique.m" };
 
-emlrtRSInfo oc_emlrtRSI = { 169, "unique",
+emlrtRSInfo pc_emlrtRSI = { 169, "unique",
   "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/ops/unique.m" };
 
-emlrtRSInfo pc_emlrtRSI = { 15, "errorIf",
+emlrtRSInfo qc_emlrtRSI = { 15, "errorIf",
   "/opt/MATLAB/R2013a/toolbox/shared/coder/coder/+coder/+internal/errorIf.m" };
 
-emlrtRSInfo ad_emlrtRSI = { 1, "OFDMDemodulator",
+emlrtRSInfo bd_emlrtRSI = { 1, "OFDMDemodulator",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/OFDMDemodulator.m" };
 
-emlrtRSInfo bd_emlrtRSI = { 73, "OFDMDemodulator",
+emlrtRSInfo cd_emlrtRSI = { 73, "OFDMDemodulator",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/OFDMDemodulator.m" };
 
-emlrtRSInfo cd_emlrtRSI = { 74, "OFDMDemodulator",
+emlrtRSInfo dd_emlrtRSI = { 74, "OFDMDemodulator",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/OFDMDemodulator.m" };
 
-emlrtRSInfo dd_emlrtRSI = { 75, "OFDMDemodulator",
+emlrtRSInfo ed_emlrtRSI = { 75, "OFDMDemodulator",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/OFDMDemodulator.m" };
 
-emlrtRSInfo ed_emlrtRSI = { 76, "OFDMDemodulator",
+emlrtRSInfo fd_emlrtRSI = { 76, "OFDMDemodulator",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/OFDMDemodulator.m" };
 
-emlrtRSInfo fd_emlrtRSI = { 77, "OFDMDemodulator",
+emlrtRSInfo gd_emlrtRSI = { 77, "OFDMDemodulator",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/OFDMDemodulator.m" };
 
-emlrtRSInfo gd_emlrtRSI = { 78, "OFDMDemodulator",
+emlrtRSInfo hd_emlrtRSI = { 78, "OFDMDemodulator",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/OFDMDemodulator.m" };
 
-emlrtRSInfo hd_emlrtRSI = { 80, "OFDMDemodulator",
+emlrtRSInfo id_emlrtRSI = { 80, "OFDMDemodulator",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/OFDMDemodulator.m" };
 
-emlrtRSInfo jd_emlrtRSI = { 1, "SDRuBase",
+emlrtRSInfo kd_emlrtRSI = { 1, "SDRuBase",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/+internal/SDRuBase.p" };
 
-emlrtRSInfo sd_emlrtRSI = { 24, "eml_all_or_any",
+emlrtRSInfo td_emlrtRSI = { 24, "eml_all_or_any",
   "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/eml/eml_all_or_any.m" };
 
-emlrtRSInfo td_emlrtRSI = { 27, "eml_all_or_any",
+emlrtRSInfo ud_emlrtRSI = { 27, "eml_all_or_any",
   "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/eml/eml_all_or_any.m" };
 
-emlrtRSInfo vd_emlrtRSI = { 9, "warning",
+emlrtRSInfo wd_emlrtRSI = { 9, "warning",
   "/opt/MATLAB/R2013a/toolbox/shared/coder/coder/+coder/+internal/warning.m" };
 
-emlrtRSInfo wd_emlrtRSI = { 16, "eml_warning",
+emlrtRSInfo xd_emlrtRSI = { 16, "eml_warning",
   "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/eml/eml_warning.m" };
 
-emlrtRSInfo ye_emlrtRSI = { 248, "mapiPrivate",
+emlrtRSInfo te_emlrtRSI = { 76, "fprintf",
+  "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/lang/fprintf.m" };
+
+emlrtRSInfo df_emlrtRSI = { 248, "mapiPrivate",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m" };
 
-emlrtRSInfo af_emlrtRSI = { 249, "mapiPrivate",
+emlrtRSInfo ef_emlrtRSI = { 249, "mapiPrivate",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m" };
 
-emlrtRSInfo cf_emlrtRSI = { 71, "reportSDRuStatus",
+emlrtRSInfo gf_emlrtRSI = { 71, "reportSDRuStatus",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/reportSDRuStatus.m" };
 
-emlrtRSInfo ef_emlrtRSI = { 61, "reportSDRuStatus",
+emlrtRSInfo if_emlrtRSI = { 61, "reportSDRuStatus",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/reportSDRuStatus.m" };
 
-emlrtRSInfo gf_emlrtRSI = { 51, "reportSDRuStatus",
+emlrtRSInfo kf_emlrtRSI = { 51, "reportSDRuStatus",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/reportSDRuStatus.m" };
 
-emlrtRSInfo if_emlrtRSI = { 35, "reportSDRuStatus",
+emlrtRSInfo mf_emlrtRSI = { 35, "reportSDRuStatus",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/reportSDRuStatus.m" };
 
-emlrtRSInfo jf_emlrtRSI = { 17, "getSDRuDriverVersion",
+emlrtRSInfo nf_emlrtRSI = { 17, "getSDRuDriverVersion",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/getSDRuDriverVersion.m"
 };
 
-emlrtRSInfo kf_emlrtRSI = { 85, "mapiPrivate",
+emlrtRSInfo of_emlrtRSI = { 85, "mapiPrivate",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m" };
 
-emlrtRSInfo lf_emlrtRSI = { 86, "mapiPrivate",
+emlrtRSInfo pf_emlrtRSI = { 86, "mapiPrivate",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m" };
 
-emlrtRSInfo mf_emlrtRSI = { 87, "mapiPrivate",
+emlrtRSInfo qf_emlrtRSI = { 87, "mapiPrivate",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m" };
 
-emlrtRSInfo nf_emlrtRSI = { 9, "sendInt16Data",
+emlrtRSInfo rf_emlrtRSI = { 9, "sendInt16Data",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/sendInt16Data.m"
 };
 
-emlrtRSInfo pf_emlrtRSI = { 9, "sendComplexInt16Data",
+emlrtRSInfo tf_emlrtRSI = { 9, "sendComplexInt16Data",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/sendComplexInt16Data.m"
 };
 
-emlrtRSInfo qf_emlrtRSI = { 9, "sendSingleData",
+emlrtRSInfo uf_emlrtRSI = { 9, "sendSingleData",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/sendSingleData.m"
 };
 
-emlrtRSInfo rf_emlrtRSI = { 9, "sendComplexSingleData",
+emlrtRSInfo vf_emlrtRSI = { 9, "sendComplexSingleData",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/sendComplexSingleData.m"
 };
 
-emlrtRSInfo sf_emlrtRSI = { 9, "sendDoubleData",
+emlrtRSInfo wf_emlrtRSI = { 9, "sendDoubleData",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/sendDoubleData.m"
 };
 
@@ -250,16 +254,16 @@ emlrtMCInfo m_emlrtMCI = { 16, 13, "eml_warning",
 emlrtMCInfo n_emlrtMCI = { 16, 5, "eml_warning",
   "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/eml/eml_warning.m" };
 
-emlrtMCInfo o_emlrtMCI = { 249, 5, "mapiPrivate",
+emlrtMCInfo p_emlrtMCI = { 249, 5, "mapiPrivate",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m" };
 
-emlrtMCInfo p_emlrtMCI = { 19, 15, "mapiPrivate",
+emlrtMCInfo q_emlrtMCI = { 19, 15, "mapiPrivate",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m" };
 
-emlrtMCInfo q_emlrtMCI = { 19, 5, "mapiPrivate",
+emlrtMCInfo r_emlrtMCI = { 19, 5, "mapiPrivate",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m" };
 
-emlrtMCInfo r_emlrtMCI = { 87, 13, "mapiPrivate",
+emlrtMCInfo s_emlrtMCI = { 87, 13, "mapiPrivate",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m" };
 
 emlrtRTEInfo emlrtRTEI = { 9, 5, "testPHYTransmit",

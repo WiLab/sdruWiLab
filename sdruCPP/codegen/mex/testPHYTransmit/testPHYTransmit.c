@@ -3,7 +3,7 @@
  *
  * Code generation for function 'testPHYTransmit'
  *
- * C source code generated on: Fri Apr 18 15:35:32 2014
+ * C source code generated on: Fri Apr 18 16:24:31 2014
  *
  */
 
@@ -12,7 +12,9 @@
 #include "testPHYTransmit.h"
 #include "PHYTransmit.h"
 #include "CreateTXRX_TX.h"
+#include "fprintf.h"
 #include "testPHYTransmit_data.h"
+#include <stdio.h>
 
 /* Variable Definitions */
 static OFDMDemodulator ObjDataDemod;
@@ -23,7 +25,10 @@ static comm_AGC ObjAGC;
 static emlrtRSInfo emlrtRSI = { 40, "testPHYTransmit",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/testPHYTransmit.m" };
 
-static emlrtRSInfo b_emlrtRSI = { 16, "testPHYTransmit",
+static emlrtRSInfo b_emlrtRSI = { 41, "testPHYTransmit",
+  "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/testPHYTransmit.m" };
+
+static emlrtRSInfo c_emlrtRSI = { 16, "testPHYTransmit",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/testPHYTransmit.m" };
 
 /* Function Definitions */
@@ -48,7 +53,7 @@ void testPHYTransmit(testPHYTransmitStackData *SD)
     /*            %Objects */
     /*          %Structs */
     /*   %Values/Vectors */
-    emlrtPushRtStackR2012b(&b_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&c_emlrtRSI, emlrtRootTLSGlobal);
     CreateTXRX_TX(SD, &ObjSDRuTransmitter, &ObjPreambleDemod, &ObjDataDemod,
                   &ObjAGC, &ObjDetect, &b_ObjAGC, &b_ObjSDRuTransmitter,
                   &b_ObjDetect, &b_ObjPreambleDemod, &b_ObjDataDemod, &r0,
@@ -62,7 +67,7 @@ void testPHYTransmit(testPHYTransmitStackData *SD)
 
     tx = SD->f5.r1;
     estimate = r0;
-    emlrtPopRtStackR2012b(&b_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&c_emlrtRSI, emlrtRootTLSGlobal);
     ObjSDRuTransmitter_not_empty = TRUE;
   }
 
@@ -70,8 +75,11 @@ void testPHYTransmit(testPHYTransmitStackData *SD)
   /* ObjSDRuTransmitter.CenterFrequency = tx.CenterFrequency + offset; */
   while (1) {
     emlrtPushRtStackR2012b(&emlrtRSI, emlrtRootTLSGlobal);
-    PHYTransmit(SD, &ObjSDRuTransmitter);
+    b_fprintf();
     emlrtPopRtStackR2012b(&emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&b_emlrtRSI, emlrtRootTLSGlobal);
+    PHYTransmit(SD, &ObjSDRuTransmitter);
+    emlrtPopRtStackR2012b(&b_emlrtRSI, emlrtRootTLSGlobal);
     emlrtBreakCheckFastR2012b(emlrtBreakCheckR2012bFlagVar, emlrtRootTLSGlobal);
   }
 }

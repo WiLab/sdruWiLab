@@ -3,7 +3,7 @@
  *
  * Code generation for function 'OFDMletters2bits'
  *
- * C source code generated on: Fri Apr 18 15:35:32 2014
+ * C source code generated on: Fri Apr 18 16:24:32 2014
  *
  */
 
@@ -13,32 +13,33 @@
 #include "OFDMletters2bits.h"
 #include "testPHYTransmit_mexutil.h"
 #include "testPHYTransmit_data.h"
+#include <stdio.h>
 
 /* Variable Definitions */
-static emlrtRSInfo pb_emlrtRSI = { 11, "OFDMletters2bits",
+static emlrtRSInfo qb_emlrtRSI = { 11, "OFDMletters2bits",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/private/OFDMletters2bits.m"
 };
 
-static emlrtRSInfo qb_emlrtRSI = { 7, "OFDMletters2bits",
+static emlrtRSInfo rb_emlrtRSI = { 7, "OFDMletters2bits",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/private/OFDMletters2bits.m"
 };
 
-static emlrtRSInfo sb_emlrtRSI = { 33, "dec2bin",
+static emlrtRSInfo tb_emlrtRSI = { 33, "dec2bin",
   "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/strfun/dec2bin.m" };
 
-static emlrtRSInfo tb_emlrtRSI = { 141, "dec2bin",
+static emlrtRSInfo ub_emlrtRSI = { 141, "dec2bin",
   "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/strfun/dec2bin.m" };
 
-static emlrtRSInfo ub_emlrtRSI = { 146, "dec2bin",
+static emlrtRSInfo vb_emlrtRSI = { 146, "dec2bin",
   "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/strfun/dec2bin.m" };
 
-static emlrtRSInfo wb_emlrtRSI = { 101, "dec2bin",
+static emlrtRSInfo xb_emlrtRSI = { 101, "dec2bin",
   "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/strfun/dec2bin.m" };
 
-static emlrtRSInfo xb_emlrtRSI = { 100, "dec2bin",
+static emlrtRSInfo yb_emlrtRSI = { 100, "dec2bin",
   "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/strfun/dec2bin.m" };
 
-static emlrtRSInfo yb_emlrtRSI = { 93, "dec2bin",
+static emlrtRSInfo ac_emlrtRSI = { 93, "dec2bin",
   "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/strfun/dec2bin.m" };
 
 static emlrtMCInfo c_emlrtMCI = { 11, 16, "OFDMletters2bits",
@@ -81,9 +82,9 @@ static real_T d_emlrt_marshallIn(const mxArray *u, const emlrtMsgIdentifier
 static const mxArray *str2double(const mxArray *b, emlrtMCInfo *location)
 {
   const mxArray *pArray;
-  const mxArray *m27;
+  const mxArray *m28;
   pArray = b;
-  return emlrtCallMATLABR2012b(emlrtRootTLSGlobal, 1, &m27, 1, &pArray,
+  return emlrtCallMATLABR2012b(emlrtRootTLSGlobal, 1, &m28, 1, &pArray,
     "str2double", TRUE, location);
 }
 
@@ -103,8 +104,8 @@ void OFDMletters2bits(const char_T str[80], real_T f[560])
   const mxArray *m3;
 
   /*  Encode a string of ASCII text into bits(1,0) */
-  emlrtPushRtStackR2012b(&qb_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&sb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&rb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&tb_emlrtRSI, emlrtRootTLSGlobal);
   bits_size_idx_1 = 16;
   for (i3 = 0; i3 < 1280; i3++) {
     bits_data[i3] = '0';
@@ -112,18 +113,18 @@ void OFDMletters2bits(const char_T str[80], real_T f[560])
 
   for (firstcol = 0; firstcol < 80; firstcol++) {
     for (j = 0; j < 16; j++) {
-      emlrtPushRtStackR2012b(&tb_emlrtRSI, emlrtRootTLSGlobal);
-      emlrtPopRtStackR2012b(&tb_emlrtRSI, emlrtRootTLSGlobal);
+      emlrtPushRtStackR2012b(&ub_emlrtRSI, emlrtRootTLSGlobal);
+      emlrtPopRtStackR2012b(&ub_emlrtRSI, emlrtRootTLSGlobal);
       if (((uint8_T)str[firstcol] & 1 << j) != 0) {
         bits_data[firstcol + 80 * (15 - j)] = '1';
       }
     }
   }
 
-  emlrtPushRtStackR2012b(&ub_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&vb_emlrtRSI, emlrtRootTLSGlobal);
   firstcol = 16;
-  emlrtPushRtStackR2012b(&yb_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&yb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&ac_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&ac_emlrtRSI, emlrtRootTLSGlobal);
   j = 1;
   exitg1 = FALSE;
   while ((exitg1 == FALSE) && (j <= 15)) {
@@ -148,11 +149,11 @@ void OFDMletters2bits(const char_T str[80], real_T f[560])
   }
 
   if (firstcol > 1) {
-    emlrtPushRtStackR2012b(&xb_emlrtRSI, emlrtRootTLSGlobal);
-    emlrtPopRtStackR2012b(&xb_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&yb_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&yb_emlrtRSI, emlrtRootTLSGlobal);
     for (j = firstcol; j < 17; j++) {
-      emlrtPushRtStackR2012b(&wb_emlrtRSI, emlrtRootTLSGlobal);
-      emlrtPopRtStackR2012b(&wb_emlrtRSI, emlrtRootTLSGlobal);
+      emlrtPushRtStackR2012b(&xb_emlrtRSI, emlrtRootTLSGlobal);
+      emlrtPopRtStackR2012b(&xb_emlrtRSI, emlrtRootTLSGlobal);
       for (i = 0; i < 80; i++) {
         bits_data[i + 80 * (j - firstcol)] = bits_data[i + 80 * (j - 1)];
       }
@@ -170,12 +171,12 @@ void OFDMletters2bits(const char_T str[80], real_T f[560])
     }
   }
 
-  emlrtPopRtStackR2012b(&ub_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&sb_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&qb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&vb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&tb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&rb_emlrtRSI, emlrtRootTLSGlobal);
   for (firstcol = 0; firstcol < 80; firstcol++) {
     for (i = 0; i < 7; i++) {
-      emlrtPushRtStackR2012b(&pb_emlrtRSI, emlrtRootTLSGlobal);
+      emlrtPushRtStackR2012b(&qb_emlrtRSI, emlrtRootTLSGlobal);
       i3 = 1 + i;
       emlrtDynamicBoundsCheckFastR2012b(i3, 1, bits_size_idx_1, &c_emlrtBCI,
         emlrtRootTLSGlobal);
@@ -184,7 +185,7 @@ void OFDMletters2bits(const char_T str[80], real_T f[560])
       emlrtAssign(&y, m3);
       f[firstcol + 80 * i] = c_emlrt_marshallIn(str2double(y, &c_emlrtMCI),
         "str2double");
-      emlrtPopRtStackR2012b(&pb_emlrtRSI, emlrtRootTLSGlobal);
+      emlrtPopRtStackR2012b(&qb_emlrtRSI, emlrtRootTLSGlobal);
       emlrtBreakCheckFastR2012b(emlrtBreakCheckR2012bFlagVar, emlrtRootTLSGlobal);
     }
 
@@ -216,8 +217,8 @@ void b_OFDMletters2bits(real_T f[560])
   const mxArray *m12;
 
   /*  Encode a string of ASCII text into bits(1,0) */
-  emlrtPushRtStackR2012b(&qb_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&sb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&rb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&tb_emlrtRSI, emlrtRootTLSGlobal);
   bits_size_idx_1 = 16;
   for (i15 = 0; i15 < 1280; i15++) {
     bits_data[i15] = '0';
@@ -226,18 +227,18 @@ void b_OFDMletters2bits(real_T f[560])
   for (firstcol = 0; firstcol < 80; firstcol++) {
     dk = (uint16_T)cv63[firstcol];
     for (j = 0; j < 16; j++) {
-      emlrtPushRtStackR2012b(&tb_emlrtRSI, emlrtRootTLSGlobal);
-      emlrtPopRtStackR2012b(&tb_emlrtRSI, emlrtRootTLSGlobal);
+      emlrtPushRtStackR2012b(&ub_emlrtRSI, emlrtRootTLSGlobal);
+      emlrtPopRtStackR2012b(&ub_emlrtRSI, emlrtRootTLSGlobal);
       if ((dk & 1 << j) != 0) {
         bits_data[firstcol + 80 * (15 - j)] = '1';
       }
     }
   }
 
-  emlrtPushRtStackR2012b(&ub_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&vb_emlrtRSI, emlrtRootTLSGlobal);
   firstcol = 16;
-  emlrtPushRtStackR2012b(&yb_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&yb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&ac_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&ac_emlrtRSI, emlrtRootTLSGlobal);
   j = 1;
   exitg1 = FALSE;
   while ((exitg1 == FALSE) && (j <= 15)) {
@@ -262,11 +263,11 @@ void b_OFDMletters2bits(real_T f[560])
   }
 
   if (firstcol > 1) {
-    emlrtPushRtStackR2012b(&xb_emlrtRSI, emlrtRootTLSGlobal);
-    emlrtPopRtStackR2012b(&xb_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&yb_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&yb_emlrtRSI, emlrtRootTLSGlobal);
     for (j = firstcol; j < 17; j++) {
-      emlrtPushRtStackR2012b(&wb_emlrtRSI, emlrtRootTLSGlobal);
-      emlrtPopRtStackR2012b(&wb_emlrtRSI, emlrtRootTLSGlobal);
+      emlrtPushRtStackR2012b(&xb_emlrtRSI, emlrtRootTLSGlobal);
+      emlrtPopRtStackR2012b(&xb_emlrtRSI, emlrtRootTLSGlobal);
       for (i = 0; i < 80; i++) {
         bits_data[i + 80 * (j - firstcol)] = bits_data[i + 80 * (j - 1)];
       }
@@ -284,12 +285,12 @@ void b_OFDMletters2bits(real_T f[560])
     }
   }
 
-  emlrtPopRtStackR2012b(&ub_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&sb_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&qb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&vb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&tb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&rb_emlrtRSI, emlrtRootTLSGlobal);
   for (firstcol = 0; firstcol < 80; firstcol++) {
     for (i = 0; i < 7; i++) {
-      emlrtPushRtStackR2012b(&pb_emlrtRSI, emlrtRootTLSGlobal);
+      emlrtPushRtStackR2012b(&qb_emlrtRSI, emlrtRootTLSGlobal);
       i15 = 1 + i;
       emlrtDynamicBoundsCheckFastR2012b(i15, 1, bits_size_idx_1, &c_emlrtBCI,
         emlrtRootTLSGlobal);
@@ -298,7 +299,7 @@ void b_OFDMletters2bits(real_T f[560])
       emlrtAssign(&y, m12);
       f[firstcol + 80 * i] = c_emlrt_marshallIn(str2double(y, &c_emlrtMCI),
         "str2double");
-      emlrtPopRtStackR2012b(&pb_emlrtRSI, emlrtRootTLSGlobal);
+      emlrtPopRtStackR2012b(&qb_emlrtRSI, emlrtRootTLSGlobal);
       emlrtBreakCheckFastR2012b(emlrtBreakCheckR2012bFlagVar, emlrtRootTLSGlobal);
     }
 

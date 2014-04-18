@@ -3,7 +3,7 @@
  *
  * Code generation for function 'testPHYTransmit_emxutil'
  *
- * C source code generated on: Fri Apr 18 15:35:33 2014
+ * C source code generated on: Fri Apr 18 16:24:32 2014
  *
  */
 
@@ -11,6 +11,7 @@
 #include "rt_nonfinite.h"
 #include "testPHYTransmit.h"
 #include "testPHYTransmit_emxutil.h"
+#include <stdio.h>
 
 /* Function Declarations */
 static void emxFree_real_T(emxArray_real_T **pEmxArray);

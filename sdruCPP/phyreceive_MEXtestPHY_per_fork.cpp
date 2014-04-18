@@ -1,4 +1,4 @@
-#include "libMEXtestPHYReceive.h"
+#include "libMEXtestPHY.h"
 #include <iostream>
 #include <thread>
 #include <unistd.h>
@@ -19,7 +19,7 @@ void Process_TX(int *fd)
 	}
 
 	// Initialize the Vigenere library
-	if( !libMEXtestPHYReceiveInitialize() )
+	if( !libMEXtestPHYInitialize() )
 	{
 	std::cerr << "Could not initialize the library properly."
 	  << std::endl;
@@ -36,13 +36,13 @@ void Process_TX(int *fd)
 	int k;
 	for (k=0;k<100000;k++){
 		// Initialization succeeded. Encrypt or decrypt.
-		MEXtestPHYReceive_per(1,result,decimation);
-		c = strdup( mwString( result.ToString() ) );
-        	write(fd[1], c, 11);
+		MEXtestPHYTransmit(1,result);
+		//c = strdup( mwString( result.ToString() ) );
+        	write(fd[1], "HelloFromTX", 11);
 	}
 
 	// Shut down the library and the application global state.
-	libMEXtestPHYReceiveTerminate();
+	libMEXtestPHYTerminate();
 	mclTerminateApplication();
 	//mxfree(objSDRuReceiver);
 }
@@ -59,7 +59,7 @@ void Process_RX(int *fd)
 	}
 
 	// Initialize the Vigenere library
-	if( !libMEXtestPHYReceiveInitialize() )
+	if( !libMEXtestPHYInitialize() )
 	{
 	std::cerr << "Could not initialize the library properly."
 	  << std::endl;
@@ -82,7 +82,7 @@ void Process_RX(int *fd)
 	}
 
 	// Shut down the library and the application global state.
-	libMEXtestPHYReceiveTerminate();
+	libMEXtestPHYTerminate();
 	mclTerminateApplication();
 	//mxfree(objSDRuReceiver);
 }
@@ -130,7 +130,7 @@ if (pid > 0) {
 		}
 	else{
 		std::cout<<"Child"<<std::endl;
-		//Process_TX( fd );
+		Process_TX( fd );
 	}
 }
 else if (pid == 0) {

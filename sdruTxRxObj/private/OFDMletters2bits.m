@@ -8,6 +8,7 @@ bits = dec2bin(str);
 for k=1:N
     letter = bits(k,:);
     for i = 1:7
-        f(k,i)=str2double(letter(i));
+        %f(k,i)=str2double(letter(i));
+        f(k,i) = coder.ceval('atoi',letter(i));
     end
 end

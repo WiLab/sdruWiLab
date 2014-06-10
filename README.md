@@ -1,4 +1,4 @@
-sdruOFDM
+sdruWiLab
 ========
 
 Wireless communication system based on an OFDM implemented in MATLAB for USRP radios

@@ -1,5 +1,7 @@
+mccExcludedFiles.log
 codegen
 *.m~
+*.cpp~
 *.swp
 *.mexmaci64
 *.mexa64

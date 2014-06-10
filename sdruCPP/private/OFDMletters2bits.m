@@ -14,7 +14,20 @@ f=zeros(N,7);
 % end
 
 for k=1:N
+<<<<<<< HEAD
     f(k,:) = de2bi(double(str(k)),'left-msb');
 end
 
 end
+=======
+    letter = bits(k,:);
+    for i = 1:7
+        %f(k,i)=str2double(letter(i));
+        f(k,i)=coder.ceval('atoi',c_string(letter(i)));
+    end
+end
+
+% Create a NUL terminated C string given a MATLAB string
+function y = c_string(s)
+y = [s 0];
+>>>>>>> phyObj

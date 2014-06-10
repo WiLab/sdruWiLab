@@ -4,6 +4,7 @@ function [hPreambleDemod,hDataDemod, r, tx ] = generateOFDMSignal_TX2(inputPaylo
 % details about the signal itself.  This information is required by the
 % receiver to operate correctly.
 
+
 %% System Parameters
 FFTLength = 64;         % OFDM modulator FFT size
 enableMA = true;    % Enable moving averages for estimates

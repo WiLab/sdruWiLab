@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 #include "libMEXtestPHY.h"
+=======
+//#include "libMEXtestPHY.h"
+#include "testPHYReceive_per.h"
+#include "testPHYTransmit.h"
+>>>>>>> phyObj
 #include <iostream>
 #include <thread>
 #include <unistd.h>

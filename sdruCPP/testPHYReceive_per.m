@@ -12,6 +12,7 @@ persistent ObjAGC...           %Objects
     timeoutDuration...  %Values/Vectors
     messageBits;
 
+
 if isempty(ObjSDRuReceiver)
 [...
     ObjAGC,...           %Objects
@@ -24,15 +25,18 @@ if isempty(ObjSDRuReceiver)
     timeoutDuration,...  %Values/Vectors
     messageBits...
     ] = CreateTXRX;
+	ObjSDRuReceiver.DecimationFactor = double(decimation);
 end
 
-ObjSDRuReceiver.DecimationFactor = double(decimation);
 % Adjust offset for node
 %ObjSDRuReceiver.CenterFrequency = rx.CenterFrequency - offset;
 
-%fprintf('Starting Receiver Loop\n');
 
 for k=1:1e5
+<<<<<<< HEAD
+=======
+%fprintf('Starting Receiver Loop\n');
+>>>>>>> phyObj
 [recoveredMessage] = PHYReceive(...
                 ObjAGC,...           %Objects
                 ObjSDRuReceiver,...

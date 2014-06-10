@@ -3,7 +3,7 @@
  *
  * Code generation for function 'testPHYTransmit_api'
  *
- * C source code generated on: Fri Apr 18 16:24:32 2014
+ * C source code generated on: Thu Apr 24 14:26:15 2014
  *
  */
 
@@ -11,21 +11,20 @@
 #include "rt_nonfinite.h"
 #include "testPHYTransmit.h"
 #include "testPHYTransmit_api.h"
-#include <stdio.h>
 
 /* Function Declarations */
-static void b_info_helper(ResolvedFunctionInfo info[475]);
-static void c_info_helper(ResolvedFunctionInfo info[475]);
-static void d_info_helper(ResolvedFunctionInfo info[475]);
-static void e_info_helper(ResolvedFunctionInfo info[475]);
-static const mxArray *emlrt_marshallOut(ResolvedFunctionInfo u[475]);
-static void f_info_helper(ResolvedFunctionInfo info[475]);
-static void g_info_helper(ResolvedFunctionInfo info[475]);
-static void h_info_helper(ResolvedFunctionInfo info[475]);
-static void info_helper(ResolvedFunctionInfo info[475]);
+static void b_info_helper(ResolvedFunctionInfo info[470]);
+static void c_info_helper(ResolvedFunctionInfo info[470]);
+static void d_info_helper(ResolvedFunctionInfo info[470]);
+static void e_info_helper(ResolvedFunctionInfo info[470]);
+static const mxArray *emlrt_marshallOut(ResolvedFunctionInfo u[470]);
+static void f_info_helper(ResolvedFunctionInfo info[470]);
+static void g_info_helper(ResolvedFunctionInfo info[470]);
+static void h_info_helper(ResolvedFunctionInfo info[470]);
+static void info_helper(ResolvedFunctionInfo info[470]);
 
 /* Function Definitions */
-static void b_info_helper(ResolvedFunctionInfo info[475])
+static void b_info_helper(ResolvedFunctionInfo info[470])
 {
   info[64].context =
     "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/OFDMBase.m";
@@ -638,7 +637,7 @@ static void b_info_helper(ResolvedFunctionInfo info[475])
   info[127].mFileTimeHi = 0U;
 }
 
-static void c_info_helper(ResolvedFunctionInfo info[475])
+static void c_info_helper(ResolvedFunctionInfo info[470])
 {
   info[128].context =
     "[ILXE]$matlabroot$/toolbox/eml/lib/matlab/eml/eml_fftshift.m";
@@ -1265,7 +1264,7 @@ static void c_info_helper(ResolvedFunctionInfo info[475])
   info[191].mFileTimeHi = 0U;
 }
 
-static void d_info_helper(ResolvedFunctionInfo info[475])
+static void d_info_helper(ResolvedFunctionInfo info[470])
 {
   info[192].context =
     "[ILXE]$matlabroot$/toolbox/eml/lib/matlab/eml/eml_fft.m!eml_fft_bitrevidx";
@@ -1502,7 +1501,7 @@ static void d_info_helper(ResolvedFunctionInfo info[475])
   info[216].dominantType = "char";
   info[216].resolved =
     "[PE]/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/private/OFDMletters2bits.m";
-  info[216].fileTimeLo = 1397752622U;
+  info[216].fileTimeLo = 1398358315U;
   info[216].fileTimeHi = 0U;
   info[216].mFileTimeLo = 0U;
   info[216].mFileTimeHi = 0U;
@@ -1888,7 +1887,7 @@ static void d_info_helper(ResolvedFunctionInfo info[475])
   info[255].mFileTimeHi = 0U;
 }
 
-static void e_info_helper(ResolvedFunctionInfo info[475])
+static void e_info_helper(ResolvedFunctionInfo info[470])
 {
   info[256].context = "[ILXE]$matlabroot$/toolbox/eml/lib/scomp/getNumInputs.m";
   info[256].name = "checkSystemObjectInput";
@@ -2493,15 +2492,15 @@ static void e_info_helper(ResolvedFunctionInfo info[475])
   info[319].mFileTimeHi = 0U;
 }
 
-static const mxArray *emlrt_marshallOut(ResolvedFunctionInfo u[475])
+static const mxArray *emlrt_marshallOut(ResolvedFunctionInfo u[470])
 {
   const mxArray *y;
-  int32_T iv120[1];
+  int32_T iv118[1];
   int32_T i22;
   ResolvedFunctionInfo *r4;
   const char * b_u;
   const mxArray *b_y;
-  const mxArray *m25;
+  const mxArray *m24;
   const mxArray *c_y;
   const mxArray *d_y;
   const mxArray *e_y;
@@ -2511,60 +2510,60 @@ static const mxArray *emlrt_marshallOut(ResolvedFunctionInfo u[475])
   const mxArray *h_y;
   const mxArray *i_y;
   y = NULL;
-  iv120[0] = 475;
-  emlrtAssign(&y, mxCreateStructArray(1, iv120, 0, NULL));
-  for (i22 = 0; i22 < 475; i22++) {
+  iv118[0] = 470;
+  emlrtAssign(&y, mxCreateStructArray(1, iv118, 0, NULL));
+  for (i22 = 0; i22 < 470; i22++) {
     r4 = &u[i22];
     b_u = r4->context;
     b_y = NULL;
-    m25 = mxCreateString(b_u);
-    emlrtAssign(&b_y, m25);
+    m24 = mxCreateString(b_u);
+    emlrtAssign(&b_y, m24);
     emlrtAddField(y, b_y, "context", i22);
     b_u = r4->name;
     c_y = NULL;
-    m25 = mxCreateString(b_u);
-    emlrtAssign(&c_y, m25);
+    m24 = mxCreateString(b_u);
+    emlrtAssign(&c_y, m24);
     emlrtAddField(y, c_y, "name", i22);
     b_u = r4->dominantType;
     d_y = NULL;
-    m25 = mxCreateString(b_u);
-    emlrtAssign(&d_y, m25);
+    m24 = mxCreateString(b_u);
+    emlrtAssign(&d_y, m24);
     emlrtAddField(y, d_y, "dominantType", i22);
     b_u = r4->resolved;
     e_y = NULL;
-    m25 = mxCreateString(b_u);
-    emlrtAssign(&e_y, m25);
+    m24 = mxCreateString(b_u);
+    emlrtAssign(&e_y, m24);
     emlrtAddField(y, e_y, "resolved", i22);
     c_u = r4->fileTimeLo;
     f_y = NULL;
-    m25 = mxCreateNumericMatrix(1, 1, mxUINT32_CLASS, mxREAL);
-    *(uint32_T *)mxGetData(m25) = c_u;
-    emlrtAssign(&f_y, m25);
+    m24 = mxCreateNumericMatrix(1, 1, mxUINT32_CLASS, mxREAL);
+    *(uint32_T *)mxGetData(m24) = c_u;
+    emlrtAssign(&f_y, m24);
     emlrtAddField(y, f_y, "fileTimeLo", i22);
     c_u = r4->fileTimeHi;
     g_y = NULL;
-    m25 = mxCreateNumericMatrix(1, 1, mxUINT32_CLASS, mxREAL);
-    *(uint32_T *)mxGetData(m25) = c_u;
-    emlrtAssign(&g_y, m25);
+    m24 = mxCreateNumericMatrix(1, 1, mxUINT32_CLASS, mxREAL);
+    *(uint32_T *)mxGetData(m24) = c_u;
+    emlrtAssign(&g_y, m24);
     emlrtAddField(y, g_y, "fileTimeHi", i22);
     c_u = r4->mFileTimeLo;
     h_y = NULL;
-    m25 = mxCreateNumericMatrix(1, 1, mxUINT32_CLASS, mxREAL);
-    *(uint32_T *)mxGetData(m25) = c_u;
-    emlrtAssign(&h_y, m25);
+    m24 = mxCreateNumericMatrix(1, 1, mxUINT32_CLASS, mxREAL);
+    *(uint32_T *)mxGetData(m24) = c_u;
+    emlrtAssign(&h_y, m24);
     emlrtAddField(y, h_y, "mFileTimeLo", i22);
     c_u = r4->mFileTimeHi;
     i_y = NULL;
-    m25 = mxCreateNumericMatrix(1, 1, mxUINT32_CLASS, mxREAL);
-    *(uint32_T *)mxGetData(m25) = c_u;
-    emlrtAssign(&i_y, m25);
+    m24 = mxCreateNumericMatrix(1, 1, mxUINT32_CLASS, mxREAL);
+    *(uint32_T *)mxGetData(m24) = c_u;
+    emlrtAssign(&i_y, m24);
     emlrtAddField(y, i_y, "mFileTimeHi", i22);
   }
 
   return y;
 }
 
-static void f_info_helper(ResolvedFunctionInfo info[475])
+static void f_info_helper(ResolvedFunctionInfo info[470])
 {
   info[320].context =
     "[ILXE]$matlabroot$/toolbox/eml/lib/matlab/eml/eml_sort_idx.m";
@@ -2952,7 +2951,7 @@ static void f_info_helper(ResolvedFunctionInfo info[475])
   info[359].dominantType = "unknown";
   info[359].resolved =
     "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/OFDMBase.m";
-  info[359].fileTimeLo = 1397789457U;
+  info[359].fileTimeLo = 1398358298U;
   info[359].fileTimeHi = 0U;
   info[359].mFileTimeLo = 0U;
   info[359].mFileTimeHi = 0U;
@@ -2962,7 +2961,7 @@ static void f_info_helper(ResolvedFunctionInfo info[475])
   info[360].dominantType = "OFDMModulator";
   info[360].resolved =
     "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/OFDMDemodulator.m";
-  info[360].fileTimeLo = 1397789457U;
+  info[360].fileTimeLo = 1398358298U;
   info[360].fileTimeHi = 0U;
   info[360].mFileTimeLo = 0U;
   info[360].mFileTimeHi = 0U;
@@ -3000,7 +2999,7 @@ static void f_info_helper(ResolvedFunctionInfo info[475])
   info[364].dominantType = "unknown";
   info[364].resolved =
     "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/+internal/SDRuBase.p";
-  info[364].fileTimeLo = 1397789456U;
+  info[364].fileTimeLo = 1398358298U;
   info[364].fileTimeHi = 0U;
   info[364].mFileTimeLo = 0U;
   info[364].mFileTimeHi = 0U;
@@ -3010,7 +3009,7 @@ static void f_info_helper(ResolvedFunctionInfo info[475])
   info[365].dominantType = "char";
   info[365].resolved =
     "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/SDRuTransmitter.p";
-  info[365].fileTimeLo = 1397789456U;
+  info[365].fileTimeLo = 1398358298U;
   info[365].fileTimeHi = 0U;
   info[365].mFileTimeLo = 0U;
   info[365].mFileTimeHi = 0U;
@@ -3059,7 +3058,7 @@ static void f_info_helper(ResolvedFunctionInfo info[475])
   info[370].dominantType = "char";
   info[370].resolved =
     "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/checkIPAddressFormat.m";
-  info[370].fileTimeLo = 1397789456U;
+  info[370].fileTimeLo = 1398358298U;
   info[370].fileTimeHi = 0U;
   info[370].mFileTimeLo = 0U;
   info[370].mFileTimeHi = 0U;
@@ -3190,7 +3189,7 @@ static void f_info_helper(ResolvedFunctionInfo info[475])
   info[383].mFileTimeHi = 0U;
 }
 
-static void g_info_helper(ResolvedFunctionInfo info[475])
+static void g_info_helper(ResolvedFunctionInfo info[470])
 {
   info[384].context =
     "[ILXE]$matlabroot$/toolbox/eml/lib/matlab/eml/eml_all_or_any.m";
@@ -3268,7 +3267,7 @@ static void g_info_helper(ResolvedFunctionInfo info[475])
   info[391].dominantType = "double";
   info[391].resolved =
     "[PE]/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/private/generateOFDMSignal.m";
-  info[391].fileTimeLo = 1397752493U;
+  info[391].fileTimeLo = 1398358315U;
   info[391].fileTimeHi = 0U;
   info[391].mFileTimeLo = 0U;
   info[391].mFileTimeHi = 0U;
@@ -3278,7 +3277,7 @@ static void g_info_helper(ResolvedFunctionInfo info[475])
   info[392].dominantType = "char";
   info[392].resolved =
     "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/OFDMModulator.m";
-  info[392].fileTimeLo = 1397789457U;
+  info[392].fileTimeLo = 1398358298U;
   info[392].fileTimeHi = 0U;
   info[392].mFileTimeLo = 0U;
   info[392].mFileTimeHi = 0U;
@@ -3316,7 +3315,7 @@ static void g_info_helper(ResolvedFunctionInfo info[475])
   info[396].dominantType = "char";
   info[396].resolved =
     "[PE]/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/private/OFDMletters2bits.m";
-  info[396].fileTimeLo = 1397752622U;
+  info[396].fileTimeLo = 1398358315U;
   info[396].fileTimeHi = 0U;
   info[396].mFileTimeLo = 0U;
   info[396].mFileTimeHi = 0U;
@@ -3424,7 +3423,7 @@ static void g_info_helper(ResolvedFunctionInfo info[475])
   info[407].dominantType = "OFDMModulator";
   info[407].resolved =
     "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/OFDMDemodulator.m";
-  info[407].fileTimeLo = 1397789457U;
+  info[407].fileTimeLo = 1398358298U;
   info[407].fileTimeHi = 0U;
   info[407].mFileTimeLo = 0U;
   info[407].mFileTimeHi = 0U;
@@ -3452,7 +3451,7 @@ static void g_info_helper(ResolvedFunctionInfo info[475])
   info[410].dominantType = "OFDMDemodulator";
   info[410].resolved =
     "[PE]/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/private/initializeOFDMSyncMemory_sdr.m";
-  info[410].fileTimeLo = 1397752622U;
+  info[410].fileTimeLo = 1398358315U;
   info[410].fileTimeHi = 0U;
   info[410].mFileTimeLo = 0U;
   info[410].mFileTimeHi = 0U;
@@ -3677,413 +3676,366 @@ static void g_info_helper(ResolvedFunctionInfo info[475])
   info[433].mFileTimeHi = 0U;
   info[434].context =
     "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/testPHYTransmit.m";
-  info[434].name = "fprintf";
-  info[434].dominantType = "char";
+  info[434].name = "PHYTransmit";
+  info[434].dominantType = "comm.SDRuTransmitter";
   info[434].resolved =
-    "[ILXE]$matlabroot$/toolbox/eml/lib/matlab/lang/fprintf.m";
-  info[434].fileTimeLo = 1354862384U;
+    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/PHYTransmit.m";
+  info[434].fileTimeLo = 1398358298U;
   info[434].fileTimeHi = 0U;
   info[434].mFileTimeLo = 0U;
   info[434].mFileTimeHi = 0U;
-  info[435].context = "[ILXE]$matlabroot$/toolbox/eml/lib/matlab/lang/fprintf.m";
-  info[435].name = "isequal";
+  info[435].context =
+    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/PHYTransmit.m";
+  info[435].name = "generateOFDMSignal_TX2";
   info[435].dominantType = "char";
   info[435].resolved =
-    "[ILXE]$matlabroot$/toolbox/eml/lib/matlab/elmat/isequal.m";
-  info[435].fileTimeLo = 1286840358U;
+    "[PE]/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/private/generateOFDMSignal_TX2.m";
+  info[435].fileTimeLo = 1398358315U;
   info[435].fileTimeHi = 0U;
   info[435].mFileTimeLo = 0U;
   info[435].mFileTimeHi = 0U;
   info[436].context =
-    "[ILXE]$matlabroot$/toolbox/eml/lib/matlab/elmat/isequal.m";
-  info[436].name = "eml_isequal_core";
+    "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/+internal/SDRuBase.p";
+  info[436].name = "coder.internal.assert";
   info[436].dominantType = "char";
   info[436].resolved =
-    "[ILXE]$matlabroot$/toolbox/eml/lib/matlab/eml/eml_isequal_core.m";
-  info[436].fileTimeLo = 1286840386U;
+    "[IXE]$matlabroot$/toolbox/shared/coder/coder/+coder/+internal/assert.m";
+  info[436].fileTimeLo = 1334093538U;
   info[436].fileTimeHi = 0U;
   info[436].mFileTimeLo = 0U;
   info[436].mFileTimeHi = 0U;
   info[437].context =
-    "[ILXE]$matlabroot$/toolbox/eml/lib/matlab/eml/eml_isequal_core.m!isequal_scalar";
-  info[437].name = "isnan";
+    "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/+internal/SDRuBase.p";
+  info[437].name = "length";
   info[437].dominantType = "char";
-  info[437].resolved = "[ILXE]$matlabroot$/toolbox/eml/lib/matlab/elmat/isnan.m";
-  info[437].fileTimeLo = 1286840360U;
+  info[437].resolved =
+    "[ILXE]$matlabroot$/toolbox/eml/lib/matlab/elmat/length.m";
+  info[437].fileTimeLo = 1303167806U;
   info[437].fileTimeHi = 0U;
   info[437].mFileTimeLo = 0U;
   info[437].mFileTimeHi = 0U;
-  info[438].context = "[ILXE]$matlabroot$/toolbox/eml/lib/matlab/lang/fprintf.m";
-  info[438].name = "fprintf";
-  info[438].dominantType = "double";
-  info[438].resolved =
-    "[ILXE]$matlabroot$/toolbox/eml/lib/matlab/lang/fprintf.m";
-  info[438].fileTimeLo = 1354862384U;
+  info[438].context =
+    "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/+internal/SDRuBase.p";
+  info[438].name = "all";
+  info[438].dominantType = "logical";
+  info[438].resolved = "[ILXE]$matlabroot$/toolbox/eml/lib/matlab/ops/all.m";
+  info[438].fileTimeLo = 1286840434U;
   info[438].fileTimeHi = 0U;
   info[438].mFileTimeLo = 0U;
   info[438].mFileTimeHi = 0U;
-  info[439].context =
-    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/testPHYTransmit.m";
-  info[439].name = "PHYTransmit";
-  info[439].dominantType = "comm.SDRuTransmitter";
+  info[439].context = "[ILXE]$matlabroot$/toolbox/eml/lib/matlab/ops/all.m";
+  info[439].name = "eml_all_or_any";
+  info[439].dominantType = "char";
   info[439].resolved =
-    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/PHYTransmit.m";
-  info[439].fileTimeLo = 1397789457U;
+    "[ILXE]$matlabroot$/toolbox/eml/lib/matlab/eml/eml_all_or_any.m";
+  info[439].fileTimeLo = 1286840294U;
   info[439].fileTimeHi = 0U;
   info[439].mFileTimeLo = 0U;
   info[439].mFileTimeHi = 0U;
   info[440].context =
-    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/PHYTransmit.m";
-  info[440].name = "generateOFDMSignal_TX2";
-  info[440].dominantType = "char";
+    "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/SDRuTransmitter.p";
+  info[440].name = "DataPortDataTypeCapiEnumT";
+  info[440].dominantType = "";
   info[440].resolved =
-    "[PE]/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/private/generateOFDMSignal_TX2.m";
-  info[440].fileTimeLo = 1397752622U;
+    "[N]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/DataPortDataTypeCapiEnumT.m";
+  info[440].fileTimeLo = 1398358298U;
   info[440].fileTimeHi = 0U;
   info[440].mFileTimeLo = 0U;
   info[440].mFileTimeHi = 0U;
   info[441].context =
-    "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/+internal/SDRuBase.p";
-  info[441].name = "coder.internal.assert";
-  info[441].dominantType = "char";
+    "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/SDRuTransmitter.p";
+  info[441].name = "length";
+  info[441].dominantType = "double";
   info[441].resolved =
-    "[IXE]$matlabroot$/toolbox/shared/coder/coder/+coder/+internal/assert.m";
-  info[441].fileTimeLo = 1334093538U;
+    "[ILXE]$matlabroot$/toolbox/eml/lib/matlab/elmat/length.m";
+  info[441].fileTimeLo = 1303167806U;
   info[441].fileTimeHi = 0U;
   info[441].mFileTimeLo = 0U;
   info[441].mFileTimeHi = 0U;
   info[442].context =
-    "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/+internal/SDRuBase.p";
-  info[442].name = "length";
-  info[442].dominantType = "char";
+    "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/SDRuTransmitter.p";
+  info[442].name = "openDataConnection";
+  info[442].dominantType = "BoardIdCapiEnumT";
   info[442].resolved =
-    "[ILXE]$matlabroot$/toolbox/eml/lib/matlab/elmat/length.m";
-  info[442].fileTimeLo = 1303167806U;
+    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/openDataConnection.m";
+  info[442].fileTimeLo = 1398358298U;
   info[442].fileTimeHi = 0U;
   info[442].mFileTimeLo = 0U;
   info[442].mFileTimeHi = 0U;
   info[443].context =
-    "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/+internal/SDRuBase.p";
-  info[443].name = "all";
-  info[443].dominantType = "logical";
-  info[443].resolved = "[ILXE]$matlabroot$/toolbox/eml/lib/matlab/ops/all.m";
-  info[443].fileTimeLo = 1286840434U;
+    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/openDataConnection.m";
+  info[443].name = "mapiPrivate";
+  info[443].dominantType = "BoardIdCapiEnumT";
+  info[443].resolved =
+    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m";
+  info[443].fileTimeLo = 1398358298U;
   info[443].fileTimeHi = 0U;
   info[443].mFileTimeLo = 0U;
   info[443].mFileTimeHi = 0U;
-  info[444].context = "[ILXE]$matlabroot$/toolbox/eml/lib/matlab/ops/all.m";
-  info[444].name = "eml_all_or_any";
-  info[444].dominantType = "char";
+  info[444].context =
+    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m";
+  info[444].name = "UsrpErrorCapiEnumT";
+  info[444].dominantType = "double";
   info[444].resolved =
-    "[ILXE]$matlabroot$/toolbox/eml/lib/matlab/eml/eml_all_or_any.m";
-  info[444].fileTimeLo = 1286840294U;
+    "[N]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/UsrpErrorCapiEnumT.m";
+  info[444].fileTimeLo = 1398358298U;
   info[444].fileTimeHi = 0U;
   info[444].mFileTimeLo = 0U;
   info[444].mFileTimeHi = 0U;
   info[445].context =
-    "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/SDRuTransmitter.p";
-  info[445].name = "DataPortDataTypeCapiEnumT";
-  info[445].dominantType = "";
-  info[445].resolved =
-    "[N]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/DataPortDataTypeCapiEnumT.m";
-  info[445].fileTimeLo = 1397789457U;
+    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m";
+  info[445].name = "char";
+  info[445].dominantType = "double";
+  info[445].resolved = "[ILXE]$matlabroot$/toolbox/eml/lib/matlab/strfun/char.m";
+  info[445].fileTimeLo = 1319751568U;
   info[445].fileTimeHi = 0U;
   info[445].mFileTimeLo = 0U;
   info[445].mFileTimeHi = 0U;
   info[446].context =
-    "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/SDRuTransmitter.p";
-  info[446].name = "length";
-  info[446].dominantType = "double";
+    "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/+internal/SDRuBase.p";
+  info[446].name = "UsrpReportMethodEnumT";
+  info[446].dominantType = "";
   info[446].resolved =
-    "[ILXE]$matlabroot$/toolbox/eml/lib/matlab/elmat/length.m";
-  info[446].fileTimeLo = 1303167806U;
+    "[N]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/UsrpReportMethodEnumT.m";
+  info[446].fileTimeLo = 1398358298U;
   info[446].fileTimeHi = 0U;
   info[446].mFileTimeLo = 0U;
   info[446].mFileTimeHi = 0U;
   info[447].context =
-    "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/SDRuTransmitter.p";
-  info[447].name = "openDataConnection";
-  info[447].dominantType = "BoardIdCapiEnumT";
+    "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/+internal/SDRuBase.p";
+  info[447].name = "reportSDRuStatus";
+  info[447].dominantType = "UsrpErrorCapiEnumT";
   info[447].resolved =
-    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/openDataConnection.m";
-  info[447].fileTimeLo = 1397789457U;
+    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/reportSDRuStatus.m";
+  info[447].fileTimeLo = 1398358298U;
   info[447].fileTimeHi = 0U;
   info[447].mFileTimeLo = 0U;
   info[447].mFileTimeHi = 0U;
 }
 
-static void h_info_helper(ResolvedFunctionInfo info[475])
+static void h_info_helper(ResolvedFunctionInfo info[470])
 {
   info[448].context =
-    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/openDataConnection.m";
-  info[448].name = "mapiPrivate";
-  info[448].dominantType = "BoardIdCapiEnumT";
+    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/reportSDRuStatus.m";
+  info[448].name = "coder.internal.errorIf";
+  info[448].dominantType = "char";
   info[448].resolved =
-    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m";
-  info[448].fileTimeLo = 1397789457U;
+    "[IXE]$matlabroot$/toolbox/shared/coder/coder/+coder/+internal/errorIf.m";
+  info[448].fileTimeLo = 1334093538U;
   info[448].fileTimeHi = 0U;
   info[448].mFileTimeLo = 0U;
   info[448].mFileTimeHi = 0U;
   info[449].context =
-    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m";
-  info[449].name = "UsrpErrorCapiEnumT";
-  info[449].dominantType = "double";
-  info[449].resolved =
-    "[N]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/UsrpErrorCapiEnumT.m";
-  info[449].fileTimeLo = 1397789457U;
+    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/reportSDRuStatus.m";
+  info[449].name = "isrow";
+  info[449].dominantType = "char";
+  info[449].resolved = "[ILXE]$matlabroot$/toolbox/eml/lib/fixedpoint/isrow.m";
+  info[449].fileTimeLo = 1346531960U;
   info[449].fileTimeHi = 0U;
   info[449].mFileTimeLo = 0U;
   info[449].mFileTimeHi = 0U;
   info[450].context =
-    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m";
-  info[450].name = "char";
-  info[450].dominantType = "double";
-  info[450].resolved = "[ILXE]$matlabroot$/toolbox/eml/lib/matlab/strfun/char.m";
-  info[450].fileTimeLo = 1319751568U;
+    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/reportSDRuStatus.m";
+  info[450].name = "UsrpErrorCapiEnumT";
+  info[450].dominantType = "";
+  info[450].resolved =
+    "[N]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/UsrpErrorCapiEnumT.m";
+  info[450].fileTimeLo = 1398358298U;
   info[450].fileTimeHi = 0U;
   info[450].mFileTimeLo = 0U;
   info[450].mFileTimeHi = 0U;
   info[451].context =
-    "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/+internal/SDRuBase.p";
+    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/reportSDRuStatus.m";
   info[451].name = "UsrpReportMethodEnumT";
   info[451].dominantType = "";
   info[451].resolved =
     "[N]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/UsrpReportMethodEnumT.m";
-  info[451].fileTimeLo = 1397789457U;
+  info[451].fileTimeLo = 1398358298U;
   info[451].fileTimeHi = 0U;
   info[451].mFileTimeLo = 0U;
   info[451].mFileTimeHi = 0U;
   info[452].context =
-    "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/+internal/SDRuBase.p";
-  info[452].name = "reportSDRuStatus";
-  info[452].dominantType = "UsrpErrorCapiEnumT";
-  info[452].resolved =
     "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/reportSDRuStatus.m";
-  info[452].fileTimeLo = 1397789456U;
+  info[452].name = "coder.internal.warning";
+  info[452].dominantType = "char";
+  info[452].resolved =
+    "[IXE]$matlabroot$/toolbox/shared/coder/coder/+coder/+internal/warning.m";
+  info[452].fileTimeLo = 1311277408U;
   info[452].fileTimeHi = 0U;
   info[452].mFileTimeLo = 0U;
   info[452].mFileTimeHi = 0U;
   info[453].context =
     "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/reportSDRuStatus.m";
-  info[453].name = "coder.internal.errorIf";
-  info[453].dominantType = "char";
+  info[453].name = "getSDRuDriverVersion";
+  info[453].dominantType = "";
   info[453].resolved =
-    "[IXE]$matlabroot$/toolbox/shared/coder/coder/+coder/+internal/errorIf.m";
-  info[453].fileTimeLo = 1334093538U;
+    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/getSDRuDriverVersion.m";
+  info[453].fileTimeLo = 1398358298U;
   info[453].fileTimeHi = 0U;
   info[453].mFileTimeLo = 0U;
   info[453].mFileTimeHi = 0U;
   info[454].context =
-    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/reportSDRuStatus.m";
-  info[454].name = "isrow";
+    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/getSDRuDriverVersion.m";
+  info[454].name = "mapiPrivate";
   info[454].dominantType = "char";
-  info[454].resolved = "[ILXE]$matlabroot$/toolbox/eml/lib/fixedpoint/isrow.m";
-  info[454].fileTimeLo = 1346531960U;
+  info[454].resolved =
+    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m";
+  info[454].fileTimeLo = 1398358298U;
   info[454].fileTimeHi = 0U;
   info[454].mFileTimeLo = 0U;
   info[454].mFileTimeHi = 0U;
   info[455].context =
-    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/reportSDRuStatus.m";
+    "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/+internal/SDRuBase.p";
   info[455].name = "UsrpErrorCapiEnumT";
   info[455].dominantType = "";
   info[455].resolved =
     "[N]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/UsrpErrorCapiEnumT.m";
-  info[455].fileTimeLo = 1397789457U;
+  info[455].fileTimeLo = 1398358298U;
   info[455].fileTimeHi = 0U;
   info[455].mFileTimeLo = 0U;
   info[455].mFileTimeHi = 0U;
   info[456].context =
-    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/reportSDRuStatus.m";
-  info[456].name = "UsrpReportMethodEnumT";
-  info[456].dominantType = "";
+    "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/SDRuTransmitter.p";
+  info[456].name = "sendInt16Data";
+  info[456].dominantType = "DataPortDataTypeCapiEnumT";
   info[456].resolved =
-    "[N]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/UsrpReportMethodEnumT.m";
-  info[456].fileTimeLo = 1397789457U;
+    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/sendInt16Data.m";
+  info[456].fileTimeLo = 1398358298U;
   info[456].fileTimeHi = 0U;
   info[456].mFileTimeLo = 0U;
   info[456].mFileTimeHi = 0U;
   info[457].context =
-    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/reportSDRuStatus.m";
-  info[457].name = "coder.internal.warning";
-  info[457].dominantType = "char";
+    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/sendInt16Data.m";
+  info[457].name = "mapiPrivate";
+  info[457].dominantType = "DataPortDataTypeCapiEnumT";
   info[457].resolved =
-    "[IXE]$matlabroot$/toolbox/shared/coder/coder/+coder/+internal/warning.m";
-  info[457].fileTimeLo = 1311277408U;
+    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m";
+  info[457].fileTimeLo = 1398358298U;
   info[457].fileTimeHi = 0U;
   info[457].mFileTimeLo = 0U;
   info[457].mFileTimeHi = 0U;
   info[458].context =
-    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/reportSDRuStatus.m";
-  info[458].name = "getSDRuDriverVersion";
-  info[458].dominantType = "";
+    "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/SDRuTransmitter.p";
+  info[458].name = "sendComplexInt16Data";
+  info[458].dominantType = "DataPortDataTypeCapiEnumT";
   info[458].resolved =
-    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/getSDRuDriverVersion.m";
-  info[458].fileTimeLo = 1397789457U;
+    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/sendComplexInt16Data.m";
+  info[458].fileTimeLo = 1398358298U;
   info[458].fileTimeHi = 0U;
   info[458].mFileTimeLo = 0U;
   info[458].mFileTimeHi = 0U;
   info[459].context =
-    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/getSDRuDriverVersion.m";
+    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/sendComplexInt16Data.m";
   info[459].name = "mapiPrivate";
-  info[459].dominantType = "char";
+  info[459].dominantType = "DataPortDataTypeCapiEnumT";
   info[459].resolved =
     "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m";
-  info[459].fileTimeLo = 1397789457U;
+  info[459].fileTimeLo = 1398358298U;
   info[459].fileTimeHi = 0U;
   info[459].mFileTimeLo = 0U;
   info[459].mFileTimeHi = 0U;
   info[460].context =
-    "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/+internal/SDRuBase.p";
-  info[460].name = "UsrpErrorCapiEnumT";
-  info[460].dominantType = "";
+    "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/SDRuTransmitter.p";
+  info[460].name = "sendSingleData";
+  info[460].dominantType = "DataPortDataTypeCapiEnumT";
   info[460].resolved =
-    "[N]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/UsrpErrorCapiEnumT.m";
-  info[460].fileTimeLo = 1397789457U;
+    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/sendSingleData.m";
+  info[460].fileTimeLo = 1398358298U;
   info[460].fileTimeHi = 0U;
   info[460].mFileTimeLo = 0U;
   info[460].mFileTimeHi = 0U;
   info[461].context =
-    "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/SDRuTransmitter.p";
-  info[461].name = "sendInt16Data";
+    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/sendSingleData.m";
+  info[461].name = "mapiPrivate";
   info[461].dominantType = "DataPortDataTypeCapiEnumT";
   info[461].resolved =
-    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/sendInt16Data.m";
-  info[461].fileTimeLo = 1397789457U;
+    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m";
+  info[461].fileTimeLo = 1398358298U;
   info[461].fileTimeHi = 0U;
   info[461].mFileTimeLo = 0U;
   info[461].mFileTimeHi = 0U;
   info[462].context =
-    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/sendInt16Data.m";
-  info[462].name = "mapiPrivate";
+    "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/SDRuTransmitter.p";
+  info[462].name = "sendComplexSingleData";
   info[462].dominantType = "DataPortDataTypeCapiEnumT";
   info[462].resolved =
-    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m";
-  info[462].fileTimeLo = 1397789457U;
+    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/sendComplexSingleData.m";
+  info[462].fileTimeLo = 1398358298U;
   info[462].fileTimeHi = 0U;
   info[462].mFileTimeLo = 0U;
   info[462].mFileTimeHi = 0U;
   info[463].context =
-    "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/SDRuTransmitter.p";
-  info[463].name = "sendComplexInt16Data";
+    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/sendComplexSingleData.m";
+  info[463].name = "mapiPrivate";
   info[463].dominantType = "DataPortDataTypeCapiEnumT";
   info[463].resolved =
-    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/sendComplexInt16Data.m";
-  info[463].fileTimeLo = 1397789457U;
+    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m";
+  info[463].fileTimeLo = 1398358298U;
   info[463].fileTimeHi = 0U;
   info[463].mFileTimeLo = 0U;
   info[463].mFileTimeHi = 0U;
   info[464].context =
-    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/sendComplexInt16Data.m";
-  info[464].name = "mapiPrivate";
+    "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/SDRuTransmitter.p";
+  info[464].name = "sendDoubleData";
   info[464].dominantType = "DataPortDataTypeCapiEnumT";
   info[464].resolved =
-    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m";
-  info[464].fileTimeLo = 1397789457U;
+    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/sendDoubleData.m";
+  info[464].fileTimeLo = 1398358298U;
   info[464].fileTimeHi = 0U;
   info[464].mFileTimeLo = 0U;
   info[464].mFileTimeHi = 0U;
   info[465].context =
-    "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/SDRuTransmitter.p";
-  info[465].name = "sendSingleData";
+    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/sendDoubleData.m";
+  info[465].name = "mapiPrivate";
   info[465].dominantType = "DataPortDataTypeCapiEnumT";
   info[465].resolved =
-    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/sendSingleData.m";
-  info[465].fileTimeLo = 1397789457U;
+    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m";
+  info[465].fileTimeLo = 1398358298U;
   info[465].fileTimeHi = 0U;
   info[465].mFileTimeLo = 0U;
   info[465].mFileTimeHi = 0U;
   info[466].context =
-    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/sendSingleData.m";
-  info[466].name = "mapiPrivate";
+    "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/SDRuTransmitter.p";
+  info[466].name = "sendComplexDoubleData";
   info[466].dominantType = "DataPortDataTypeCapiEnumT";
   info[466].resolved =
-    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m";
-  info[466].fileTimeLo = 1397789457U;
+    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/sendComplexDoubleData.m";
+  info[466].fileTimeLo = 1398358298U;
   info[466].fileTimeHi = 0U;
   info[466].mFileTimeLo = 0U;
   info[466].mFileTimeHi = 0U;
   info[467].context =
-    "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/SDRuTransmitter.p";
-  info[467].name = "sendComplexSingleData";
+    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/sendComplexDoubleData.m";
+  info[467].name = "mapiPrivate";
   info[467].dominantType = "DataPortDataTypeCapiEnumT";
   info[467].resolved =
-    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/sendComplexSingleData.m";
-  info[467].fileTimeLo = 1397789457U;
+    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m";
+  info[467].fileTimeLo = 1398358298U;
   info[467].fileTimeHi = 0U;
   info[467].mFileTimeLo = 0U;
   info[467].mFileTimeHi = 0U;
   info[468].context =
-    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/sendComplexSingleData.m";
-  info[468].name = "mapiPrivate";
-  info[468].dominantType = "DataPortDataTypeCapiEnumT";
+    "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/SDRuTransmitter.p";
+  info[468].name = "UsrpErrorCapiEnumT";
+  info[468].dominantType = "";
   info[468].resolved =
-    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m";
-  info[468].fileTimeLo = 1397789457U;
+    "[N]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/UsrpErrorCapiEnumT.m";
+  info[468].fileTimeLo = 1398358298U;
   info[468].fileTimeHi = 0U;
   info[468].mFileTimeLo = 0U;
   info[468].mFileTimeHi = 0U;
   info[469].context =
     "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/SDRuTransmitter.p";
-  info[469].name = "sendDoubleData";
-  info[469].dominantType = "DataPortDataTypeCapiEnumT";
-  info[469].resolved =
-    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/sendDoubleData.m";
-  info[469].fileTimeLo = 1397789457U;
+  info[469].name = "error";
+  info[469].dominantType = "char";
+  info[469].resolved = "[ILXE]$matlabroot$/toolbox/eml/lib/matlab/lang/error.m";
+  info[469].fileTimeLo = 1319751566U;
   info[469].fileTimeHi = 0U;
   info[469].mFileTimeLo = 0U;
   info[469].mFileTimeHi = 0U;
-  info[470].context =
-    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/sendDoubleData.m";
-  info[470].name = "mapiPrivate";
-  info[470].dominantType = "DataPortDataTypeCapiEnumT";
-  info[470].resolved =
-    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m";
-  info[470].fileTimeLo = 1397789457U;
-  info[470].fileTimeHi = 0U;
-  info[470].mFileTimeLo = 0U;
-  info[470].mFileTimeHi = 0U;
-  info[471].context =
-    "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/SDRuTransmitter.p";
-  info[471].name = "sendComplexDoubleData";
-  info[471].dominantType = "DataPortDataTypeCapiEnumT";
-  info[471].resolved =
-    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/sendComplexDoubleData.m";
-  info[471].fileTimeLo = 1397789457U;
-  info[471].fileTimeHi = 0U;
-  info[471].mFileTimeLo = 0U;
-  info[471].mFileTimeHi = 0U;
-  info[472].context =
-    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/sendComplexDoubleData.m";
-  info[472].name = "mapiPrivate";
-  info[472].dominantType = "DataPortDataTypeCapiEnumT";
-  info[472].resolved =
-    "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m";
-  info[472].fileTimeLo = 1397789457U;
-  info[472].fileTimeHi = 0U;
-  info[472].mFileTimeLo = 0U;
-  info[472].mFileTimeHi = 0U;
-  info[473].context =
-    "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/SDRuTransmitter.p";
-  info[473].name = "UsrpErrorCapiEnumT";
-  info[473].dominantType = "";
-  info[473].resolved =
-    "[N]/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/UsrpErrorCapiEnumT.m";
-  info[473].fileTimeLo = 1397789457U;
-  info[473].fileTimeHi = 0U;
-  info[473].mFileTimeLo = 0U;
-  info[473].mFileTimeHi = 0U;
-  info[474].context =
-    "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdru/+comm/SDRuTransmitter.p";
-  info[474].name = "error";
-  info[474].dominantType = "char";
-  info[474].resolved = "[ILXE]$matlabroot$/toolbox/eml/lib/matlab/lang/error.m";
-  info[474].fileTimeLo = 1319751566U;
-  info[474].fileTimeHi = 0U;
-  info[474].mFileTimeLo = 0U;
-  info[474].mFileTimeHi = 0U;
 }
 
-static void info_helper(ResolvedFunctionInfo info[475])
+static void info_helper(ResolvedFunctionInfo info[470])
 {
   info[0].context =
     "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/testPHYTransmit.m";
@@ -4091,7 +4043,7 @@ static void info_helper(ResolvedFunctionInfo info[475])
   info[0].dominantType = "";
   info[0].resolved =
     "[E]/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/CreateTXRX_TX.m";
-  info[0].fileTimeLo = 1397789457U;
+  info[0].fileTimeLo = 1398358298U;
   info[0].fileTimeHi = 0U;
   info[0].mFileTimeLo = 0U;
   info[0].mFileTimeHi = 0U;
@@ -4135,7 +4087,7 @@ static void info_helper(ResolvedFunctionInfo info[475])
   info[5].dominantType = "char";
   info[5].resolved =
     "[PE]/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/private/generateOFDMSignal_TX2.m";
-  info[5].fileTimeLo = 1397752622U;
+  info[5].fileTimeLo = 1398358315U;
   info[5].fileTimeHi = 0U;
   info[5].mFileTimeLo = 0U;
   info[5].mFileTimeHi = 0U;
@@ -4430,7 +4382,7 @@ static void info_helper(ResolvedFunctionInfo info[475])
   info[37].dominantType = "unknown";
   info[37].resolved =
     "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/OFDMBase.m";
-  info[37].fileTimeLo = 1397789457U;
+  info[37].fileTimeLo = 1398358298U;
   info[37].fileTimeHi = 0U;
   info[37].mFileTimeLo = 0U;
   info[37].mFileTimeHi = 0U;
@@ -4440,7 +4392,7 @@ static void info_helper(ResolvedFunctionInfo info[475])
   info[38].dominantType = "char";
   info[38].resolved =
     "[C]/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/OFDMModulator.m";
-  info[38].fileTimeLo = 1397789457U;
+  info[38].fileTimeLo = 1398358298U;
   info[38].fileTimeHi = 0U;
   info[38].mFileTimeLo = 0U;
   info[38].mFileTimeHi = 0U;
@@ -4685,7 +4637,7 @@ static void info_helper(ResolvedFunctionInfo info[475])
 const mxArray *emlrtMexFcnResolvedFunctionsInfo(void)
 {
   const mxArray *nameCaptureInfo;
-  ResolvedFunctionInfo info[475];
+  ResolvedFunctionInfo info[470];
   nameCaptureInfo = NULL;
   info_helper(info);
   b_info_helper(info);

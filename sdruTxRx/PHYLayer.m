@@ -39,7 +39,7 @@ classdef PHYLayer < handle
             obj.USRPADCSamplingRate = 100e6;
             obj.InterpolationFactor = obj.USRPADCSamplingRate/obj.desiredSamplingFrequency;
             
-            [ ~, ~, ~, obj.tx ] = generateOFDMSignal_TX2( 'UnimportantMessage' );
+            [ ~, ~, ~, obj.tx ] = generateOFDMSignal_TX2( 'UnimportantMessage',obj.desiredSamplingFrequency,1,1);
             obj.tx.samplingFreq = obj.desiredSamplingFrequency;% Set desired frequeny
             obj.tx.freqBin = obj.tx.samplingFreq/obj.tx.FFTLength;% Set frequency bin width
             
@@ -52,7 +52,7 @@ classdef PHYLayer < handle
             
                         
             % Setup Parameters
-            [ obj.ObjPreambleDemod, obj.ObjDataDemod, ~, obj.rx ] = generateOFDMSignal;%_TX2('HelloShannon');
+            [ obj.ObjPreambleDemod, obj.ObjDataDemod, ~, obj.rx ] = generateOFDMSignal(obj.desiredSamplingFrequency );%_TX2('HelloShannon');
             
             obj.rx.receiveBufferLength = ceil( obj.rx.frameLength*4 ); %Size of Buffer of sliding window
             
@@ -86,6 +86,7 @@ classdef PHYLayer < handle
             obj.numFreqToAverage = 15; %Number of frequency estimates to be averaged together for frequency corrections (Higher==More stability, Lower==More responsiveness)
             
             % Soft decisions
+	    numFrames = 1;
             obj.messageBits = zeros(numFrames,obj.rx.messageCharacters*7+3);%3 for CRC
             
             

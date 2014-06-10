@@ -1,9 +1,0 @@
-libPassPointerInitialize
-libPassPointerInitializeWithHandlers
-libPassPointerTerminate
-libPassPointerPrintStackTrace
-mlxWriteDataToPipe
-WriteDataToPipe
-mlxCreateObj
-CreateObj
-

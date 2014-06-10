@@ -46,6 +46,7 @@ while estimate.numProcessed < numFrames
     %% Find preamble in buffer
     [estimate.delay, estimate.numPeaks] = locateOFDMFrame_sdr( rx.FFTLength, rx.shortPreambleOFDM, buffer);
     
+    %fprintf('Peaks: %d\n',double(estimate.numPeaks));
     % Check if frame exists in correct location and whether it's duplicate
     FrameFound = ((estimate.delay + rx.frameLength) < length(buffer) ) &&... %Check if full data frame exists in buffer
         (estimate.delay > -1 ) &&... %Check if preamble located
@@ -104,8 +105,8 @@ for recMessage = 1:estimate.numProcessed
     else
         if DebugFlag ;fprintf('PHY| CRC Message Failure\n');end;
         %View corrupted messages
-        %recoveredMessage = char(OFDMbits2letters(msg > 0).');%messageBits(recMessage,1:end-3)
-        %fprintf('Corrupted Message: %s\n',recoveredMessage);
+        recoveredMessage = char(OFDMbits2letters(msg > 0).');%messageBits(recMessage,1:end-3)
+        fprintf('Corrupted Message: %s\n',recoveredMessage);
         recoveredMessage = 'CRC Error';
     end
 end

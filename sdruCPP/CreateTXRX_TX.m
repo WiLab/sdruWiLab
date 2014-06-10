@@ -7,19 +7,20 @@ inputPayloadMessage = 'Hello World';
 
 % System parameters to adjust because of hardware limitation
 numFrames = 3; % Frames to capture
-desiredSamplingFrequency =  5e6;
+desiredSamplingFrequency =  10e6;
 USRPADCSamplingRate = 100e6;
-InterpolationFactor = USRPADCSamplingRate/desiredSamplingFrequency;
+%InterpolationFactor = USRPADCSamplingRate/desiredSamplingFrequency;
+InterpolationFactor = 14;
 CenterFrequency = 2.24e9;
 
-[ ~, ~, ~, tx ] = generateOFDMSignal_TX2( 'UnimportantMessage', desiredSamplingFrequency, 1, 1);%just need for sizing
+[ ~, ~, ~, tx ] = generateOFDMSignal_TX3( 'UnimportantMessage', desiredSamplingFrequency, 1, 1);%just need for sizing
 tx.samplingFreq = desiredSamplingFrequency;% Set desired frequeny
 tx.CenterFrequency = CenterFrequency;
 tx.freqBin = tx.samplingFreq/tx.FFTLength;% Set frequency bin width
 
 
 % Setup transmitter
-ObjSDRuTransmitter = comm.SDRuTransmitter('192.168.20.2', ...
+ObjSDRuTransmitter = comm.SDRuTransmitter('192.168.10.2', ...
     'CenterFrequency',      CenterFrequency, ...
     'InterpolationFactor',  InterpolationFactor,...
     'Gain',                 25);

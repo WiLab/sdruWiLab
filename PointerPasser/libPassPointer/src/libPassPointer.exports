@@ -1,0 +1,7 @@
+libPassPointerInitialize
+libPassPointerInitializeWithHandlers
+libPassPointerTerminate
+libPassPointerPrintStackTrace
+mlxWriteDataToPipe
+WriteDataToPipe
+

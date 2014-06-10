@@ -38,8 +38,12 @@ classdef PHYLayer < handle
             obj.desiredSamplingFrequency =  5e6;
             obj.USRPADCSamplingRate = 100e6;
             obj.InterpolationFactor = obj.USRPADCSamplingRate/obj.desiredSamplingFrequency;
-            
-            [ ~, ~, ~, obj.tx ] = generateOFDMSignal_TX2( 'UnimportantMessage' );
+           
+	    % FIX ME!!!!!!!! 
+	    destinationNode = 1;
+	    originNode = 1;
+
+            [ ~, ~, ~, obj.tx ] = generateOFDMSignal_TX2( 'UnimportantMessage',obj.desiredSamplingFrequency,destinationNode, originNode);
             obj.tx.samplingFreq = obj.desiredSamplingFrequency;% Set desired frequeny
             obj.tx.freqBin = obj.tx.samplingFreq/obj.tx.FFTLength;% Set frequency bin width
             

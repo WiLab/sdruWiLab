@@ -3,7 +3,7 @@
  *
  * Code generation for function 'checkIPAddressFormat'
  *
- * C source code generated on: Fri Apr 18 16:24:32 2014
+ * C source code generated on: Thu Apr 24 14:26:15 2014
  *
  */
 
@@ -11,38 +11,36 @@
 #include "rt_nonfinite.h"
 #include "testPHYTransmit.h"
 #include "checkIPAddressFormat.h"
-#include "sendComplexDoubleData.h"
-#include "SystemCore.h"
+#include "generateOFDMSignal_TX2.h"
 #include "testPHYTransmit_mexutil.h"
 #include "testPHYTransmit_data.h"
-#include <stdio.h>
 
 /* Variable Definitions */
-static emlrtRSInfo ld_emlrtRSI = { 34, "checkIPAddressFormat",
+static emlrtRSInfo kd_emlrtRSI = { 34, "checkIPAddressFormat",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/checkIPAddressFormat.m" };
 
-static emlrtRSInfo md_emlrtRSI = { 43, "checkIPAddressFormat",
+static emlrtRSInfo ld_emlrtRSI = { 43, "checkIPAddressFormat",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/checkIPAddressFormat.m" };
 
-static emlrtRSInfo nd_emlrtRSI = { 44, "checkIPAddressFormat",
+static emlrtRSInfo md_emlrtRSI = { 44, "checkIPAddressFormat",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/checkIPAddressFormat.m" };
 
-static emlrtRSInfo od_emlrtRSI = { 45, "checkIPAddressFormat",
+static emlrtRSInfo nd_emlrtRSI = { 45, "checkIPAddressFormat",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/checkIPAddressFormat.m" };
 
-static emlrtRSInfo pd_emlrtRSI = { 46, "checkIPAddressFormat",
+static emlrtRSInfo od_emlrtRSI = { 46, "checkIPAddressFormat",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/checkIPAddressFormat.m" };
 
-static emlrtRSInfo qd_emlrtRSI = { 53, "checkIPAddressFormat",
+static emlrtRSInfo pd_emlrtRSI = { 53, "checkIPAddressFormat",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/checkIPAddressFormat.m" };
 
-static emlrtRSInfo rd_emlrtRSI = { 52, "checkIPAddressFormat",
+static emlrtRSInfo qd_emlrtRSI = { 52, "checkIPAddressFormat",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/checkIPAddressFormat.m" };
 
-static emlrtRSInfo sd_emlrtRSI = { 12, "any",
+static emlrtRSInfo rd_emlrtRSI = { 12, "any",
   "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/ops/any.m" };
 
-static emlrtRSInfo vd_emlrtRSI = { 109, "eml_all_or_any",
+static emlrtRSInfo ud_emlrtRSI = { 109, "eml_all_or_any",
   "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/eml/eml_all_or_any.m" };
 
 static emlrtECInfo b_emlrtECI = { 2, 53, 23, "checkIPAddressFormat",
@@ -229,10 +227,10 @@ void checkIPAddressFormat(void)
 
   /*  Used instead of findstr since */
   /*  findstr does not generate code */
-  emlrtPushRtStackR2012b(&ld_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
   if (!(loop_ub != 3)) {
   } else {
-    emlrtPushRtStackR2012b(&qc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&pc_emlrtRSI, emlrtRootTLSGlobal);
     y = NULL;
     m10 = mxCreateCharArray(2, iv44);
     for (idx = 0; idx < 42; idx++) {
@@ -250,10 +248,10 @@ void checkIPAddressFormat(void)
     emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 9, m10, cv54);
     emlrtAssign(&b_y, m10);
     b_error(message(y, b_y, &h_emlrtMCI), &h_emlrtMCI);
-    emlrtPopRtStackR2012b(&qc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&pc_emlrtRSI, emlrtRootTLSGlobal);
   }
 
-  emlrtPopRtStackR2012b(&ld_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&kd_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  Check if all the elements other than the dots are numbers */
   emlrtDynamicBoundsCheckFastR2012b(1, 1, loop_ub, &n_emlrtBCI,
@@ -310,7 +308,7 @@ void checkIPAddressFormat(void)
     i12 = 13;
   }
 
-  emlrtPushRtStackR2012b(&md_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&ld_emlrtRSI, emlrtRootTLSGlobal);
   for (idx = 0; idx < ii; idx++) {
     b_tmp_data[idx] = 1 + idx;
   }
@@ -337,15 +335,15 @@ void checkIPAddressFormat(void)
     }
 
     emlrtSizeEqCheck2DFastR2012b(x, iv46, &b_emlrtECI, emlrtRootTLSGlobal);
-    emlrtPushRtStackR2012b(&qd_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&pd_emlrtRSI, emlrtRootTLSGlobal);
     for (idx = 0; idx < ii; idx++) {
       b_x_data[idx] = !b_x_data[idx];
     }
 
-    emlrtPushRtStackR2012b(&sd_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&rd_emlrtRSI, emlrtRootTLSGlobal);
     cond = FALSE;
-    emlrtPushRtStackR2012b(&vd_emlrtRSI, emlrtRootTLSGlobal);
-    emlrtPopRtStackR2012b(&vd_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&ud_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&ud_emlrtRSI, emlrtRootTLSGlobal);
     idx = 1;
     exitg4 = FALSE;
     while ((exitg4 == FALSE) && (idx <= ii)) {
@@ -357,8 +355,8 @@ void checkIPAddressFormat(void)
       }
     }
 
-    emlrtPopRtStackR2012b(&sd_emlrtRSI, emlrtRootTLSGlobal);
-    emlrtPopRtStackR2012b(&qd_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&rd_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&pd_emlrtRSI, emlrtRootTLSGlobal);
     if (cond) {
       guard4 = TRUE;
     } else {
@@ -370,10 +368,10 @@ void checkIPAddressFormat(void)
     cond = TRUE;
   }
 
-  emlrtPushRtStackR2012b(&rd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&qd_emlrtRSI, emlrtRootTLSGlobal);
   if (!cond) {
   } else {
-    emlrtPushRtStackR2012b(&qc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&pc_emlrtRSI, emlrtRootTLSGlobal);
     c_y = NULL;
     m10 = mxCreateCharArray(2, iv47);
     for (idx = 0; idx < 42; idx++) {
@@ -391,12 +389,12 @@ void checkIPAddressFormat(void)
     emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 9, m10, cv54);
     emlrtAssign(&d_y, m10);
     b_error(message(c_y, d_y, &h_emlrtMCI), &h_emlrtMCI);
-    emlrtPopRtStackR2012b(&qc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&pc_emlrtRSI, emlrtRootTLSGlobal);
   }
 
-  emlrtPopRtStackR2012b(&rd_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&md_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&nd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&qd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&ld_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&md_emlrtRSI, emlrtRootTLSGlobal);
   ii = (i8 - i7) + 1;
   loop_ub = i8 - i7;
   for (i8 = 0; i8 <= loop_ub; i8++) {
@@ -425,15 +423,15 @@ void checkIPAddressFormat(void)
     }
 
     emlrtSizeEqCheck2DFastR2012b(x, iv46, &b_emlrtECI, emlrtRootTLSGlobal);
-    emlrtPushRtStackR2012b(&qd_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&pd_emlrtRSI, emlrtRootTLSGlobal);
     for (i7 = 0; i7 < ii; i7++) {
       b_x_data[i7] = !b_x_data[i7];
     }
 
-    emlrtPushRtStackR2012b(&sd_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&rd_emlrtRSI, emlrtRootTLSGlobal);
     cond = FALSE;
-    emlrtPushRtStackR2012b(&vd_emlrtRSI, emlrtRootTLSGlobal);
-    emlrtPopRtStackR2012b(&vd_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&ud_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&ud_emlrtRSI, emlrtRootTLSGlobal);
     idx = 1;
     exitg3 = FALSE;
     while ((exitg3 == FALSE) && (idx <= ii)) {
@@ -445,8 +443,8 @@ void checkIPAddressFormat(void)
       }
     }
 
-    emlrtPopRtStackR2012b(&sd_emlrtRSI, emlrtRootTLSGlobal);
-    emlrtPopRtStackR2012b(&qd_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&rd_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&pd_emlrtRSI, emlrtRootTLSGlobal);
     if (cond) {
       guard3 = TRUE;
     } else {
@@ -458,10 +456,10 @@ void checkIPAddressFormat(void)
     cond = TRUE;
   }
 
-  emlrtPushRtStackR2012b(&rd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&qd_emlrtRSI, emlrtRootTLSGlobal);
   if (!cond) {
   } else {
-    emlrtPushRtStackR2012b(&qc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&pc_emlrtRSI, emlrtRootTLSGlobal);
     e_y = NULL;
     m10 = mxCreateCharArray(2, iv49);
     for (idx = 0; idx < 42; idx++) {
@@ -479,12 +477,12 @@ void checkIPAddressFormat(void)
     emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 9, m10, cv54);
     emlrtAssign(&f_y, m10);
     b_error(message(e_y, f_y, &h_emlrtMCI), &h_emlrtMCI);
-    emlrtPopRtStackR2012b(&qc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&pc_emlrtRSI, emlrtRootTLSGlobal);
   }
 
-  emlrtPopRtStackR2012b(&rd_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&nd_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&od_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&qd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&md_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&nd_emlrtRSI, emlrtRootTLSGlobal);
   ii = (i10 - i9) + 1;
   loop_ub = i10 - i9;
   for (i7 = 0; i7 <= loop_ub; i7++) {
@@ -513,15 +511,15 @@ void checkIPAddressFormat(void)
     }
 
     emlrtSizeEqCheck2DFastR2012b(x, iv46, &b_emlrtECI, emlrtRootTLSGlobal);
-    emlrtPushRtStackR2012b(&qd_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&pd_emlrtRSI, emlrtRootTLSGlobal);
     for (i7 = 0; i7 < ii; i7++) {
       b_x_data[i7] = !b_x_data[i7];
     }
 
-    emlrtPushRtStackR2012b(&sd_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&rd_emlrtRSI, emlrtRootTLSGlobal);
     cond = FALSE;
-    emlrtPushRtStackR2012b(&vd_emlrtRSI, emlrtRootTLSGlobal);
-    emlrtPopRtStackR2012b(&vd_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&ud_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&ud_emlrtRSI, emlrtRootTLSGlobal);
     idx = 1;
     exitg2 = FALSE;
     while ((exitg2 == FALSE) && (idx <= ii)) {
@@ -533,8 +531,8 @@ void checkIPAddressFormat(void)
       }
     }
 
-    emlrtPopRtStackR2012b(&sd_emlrtRSI, emlrtRootTLSGlobal);
-    emlrtPopRtStackR2012b(&qd_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&rd_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&pd_emlrtRSI, emlrtRootTLSGlobal);
     if (cond) {
       guard2 = TRUE;
     } else {
@@ -546,10 +544,10 @@ void checkIPAddressFormat(void)
     cond = TRUE;
   }
 
-  emlrtPushRtStackR2012b(&rd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&qd_emlrtRSI, emlrtRootTLSGlobal);
   if (!cond) {
   } else {
-    emlrtPushRtStackR2012b(&qc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&pc_emlrtRSI, emlrtRootTLSGlobal);
     g_y = NULL;
     m10 = mxCreateCharArray(2, iv51);
     for (idx = 0; idx < 42; idx++) {
@@ -567,12 +565,12 @@ void checkIPAddressFormat(void)
     emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 9, m10, cv54);
     emlrtAssign(&h_y, m10);
     b_error(message(g_y, h_y, &h_emlrtMCI), &h_emlrtMCI);
-    emlrtPopRtStackR2012b(&qc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&pc_emlrtRSI, emlrtRootTLSGlobal);
   }
 
-  emlrtPopRtStackR2012b(&rd_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&od_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&pd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&qd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&nd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&od_emlrtRSI, emlrtRootTLSGlobal);
   ii = i12 - i11;
   loop_ub = i12 - i11;
   for (i7 = 0; i7 < loop_ub; i7++) {
@@ -601,15 +599,15 @@ void checkIPAddressFormat(void)
     }
 
     emlrtSizeEqCheck2DFastR2012b(x, iv46, &b_emlrtECI, emlrtRootTLSGlobal);
-    emlrtPushRtStackR2012b(&qd_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&pd_emlrtRSI, emlrtRootTLSGlobal);
     for (i7 = 0; i7 < ii; i7++) {
       b_x_data[i7] = !b_x_data[i7];
     }
 
-    emlrtPushRtStackR2012b(&sd_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&rd_emlrtRSI, emlrtRootTLSGlobal);
     cond = FALSE;
-    emlrtPushRtStackR2012b(&vd_emlrtRSI, emlrtRootTLSGlobal);
-    emlrtPopRtStackR2012b(&vd_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&ud_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&ud_emlrtRSI, emlrtRootTLSGlobal);
     idx = 1;
     exitg1 = FALSE;
     while ((exitg1 == FALSE) && (idx <= ii)) {
@@ -621,8 +619,8 @@ void checkIPAddressFormat(void)
       }
     }
 
-    emlrtPopRtStackR2012b(&sd_emlrtRSI, emlrtRootTLSGlobal);
-    emlrtPopRtStackR2012b(&qd_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&rd_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&pd_emlrtRSI, emlrtRootTLSGlobal);
     if (cond) {
       b_guard1 = TRUE;
     } else {
@@ -634,10 +632,10 @@ void checkIPAddressFormat(void)
     cond = TRUE;
   }
 
-  emlrtPushRtStackR2012b(&rd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&qd_emlrtRSI, emlrtRootTLSGlobal);
   if (!cond) {
   } else {
-    emlrtPushRtStackR2012b(&qc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&pc_emlrtRSI, emlrtRootTLSGlobal);
     i_y = NULL;
     m10 = mxCreateCharArray(2, iv53);
     for (idx = 0; idx < 42; idx++) {
@@ -655,11 +653,11 @@ void checkIPAddressFormat(void)
     emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 9, m10, cv54);
     emlrtAssign(&j_y, m10);
     b_error(message(i_y, j_y, &h_emlrtMCI), &h_emlrtMCI);
-    emlrtPopRtStackR2012b(&qc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&pc_emlrtRSI, emlrtRootTLSGlobal);
   }
 
-  emlrtPopRtStackR2012b(&rd_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&pd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&qd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&od_emlrtRSI, emlrtRootTLSGlobal);
 }
 
 /* End of code generation (checkIPAddressFormat.c) */

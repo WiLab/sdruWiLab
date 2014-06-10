@@ -3,7 +3,7 @@
  *
  * Code generation for function 'OFDMModulator'
  *
- * C source code generated on: Fri Apr 18 16:24:31 2014
+ * C source code generated on: Thu Apr 24 14:26:15 2014
  *
  */
 
@@ -14,16 +14,15 @@
 #include "SystemProp.h"
 #include "testPHYTransmit_emxutil.h"
 #include "testPHYTransmit_data.h"
-#include <stdio.h>
 
 /* Variable Definitions */
-static emlrtRSInfo tc_emlrtRSI = { 355, "OFDMModulator",
+static emlrtRSInfo sc_emlrtRSI = { 355, "OFDMModulator",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/OFDMModulator.m" };
 
-static emlrtRSInfo uc_emlrtRSI = { 378, "OFDMModulator",
+static emlrtRSInfo tc_emlrtRSI = { 378, "OFDMModulator",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/OFDMModulator.m" };
 
-static emlrtRSInfo vc_emlrtRSI = { 384, "OFDMModulator",
+static emlrtRSInfo uc_emlrtRSI = { 384, "OFDMModulator",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/OFDMModulator.m" };
 
 static emlrtRTEInfo l_emlrtRTEI = { 391, 19, "OFDMModulator",
@@ -38,35 +37,35 @@ OFDMModulator_4 *OFDMModulator_OFDMModulator(OFDMModulator_4 *object)
   OFDMModulator_4 *b_object;
   OFDMModulator_4 *obj;
   b_object = object;
-  emlrtPushRtStackR2012b(&p_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
   obj = b_object;
+  emlrtPushRtStackR2012b(&j_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&k_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&l_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   obj->isInitialized = FALSE;
   obj->isReleased = FALSE;
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&l_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&k_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&j_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&p_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&p_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&q_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&q_emlrtRSI, emlrtRootTLSGlobal);
   return b_object;
 }
 
@@ -88,17 +87,17 @@ void OFDMModulator_setupImpl(OFDMModulator_196 *obj)
   boolean_T guard1 = FALSE;
   int16_T c_ii_data[768];
   int32_T ii_size[1];
+  emlrtPushRtStackR2012b(&lb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&lb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&sc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&sc_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&mb_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&mb_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&tc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&tc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&nb_emlrtRSI, emlrtRootTLSGlobal);
   for (ii = 0; ii < 768; ii++) {
     ii_data[ii] = 1.0;
   }
 
   c_SystemProp_matlabCodegenSetAn(obj, ii_data);
-  emlrtPopRtStackR2012b(&nb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&mb_emlrtRSI, emlrtRootTLSGlobal);
   for (ii = 0; ii < 768; ii++) {
     ii_data[ii] = obj->pFullGrid[ii];
   }
@@ -109,9 +108,9 @@ void OFDMModulator_setupImpl(OFDMModulator_196 *obj)
     }
   }
 
-  emlrtPushRtStackR2012b(&ob_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&nb_emlrtRSI, emlrtRootTLSGlobal);
   c_SystemProp_matlabCodegenSetAn(obj, ii_data);
-  emlrtPopRtStackR2012b(&ob_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&nb_emlrtRSI, emlrtRootTLSGlobal);
   for (ii = 0; ii < 768; ii++) {
     ii_data[ii] = obj->pFullGrid[ii];
   }
@@ -120,9 +119,9 @@ void OFDMModulator_setupImpl(OFDMModulator_196 *obj)
     ii_data[32 + (ii << 6)] = 0.0;
   }
 
-  emlrtPushRtStackR2012b(&uc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&tc_emlrtRSI, emlrtRootTLSGlobal);
   c_SystemProp_matlabCodegenSetAn(obj, ii_data);
-  emlrtPopRtStackR2012b(&uc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&tc_emlrtRSI, emlrtRootTLSGlobal);
   for (ii = 0; ii < 768; ii++) {
     ii_data[ii] = obj->pFullGrid[ii];
   }
@@ -131,10 +130,10 @@ void OFDMModulator_setupImpl(OFDMModulator_196 *obj)
     ii_data[iv43[ii]] = 2.0;
   }
 
-  emlrtPushRtStackR2012b(&vc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&uc_emlrtRSI, emlrtRootTLSGlobal);
   c_SystemProp_matlabCodegenSetAn(obj, ii_data);
-  emlrtPopRtStackR2012b(&vc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&pb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&uc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&ob_emlrtRSI, emlrtRootTLSGlobal);
   for (ii = 0; ii < 768; ii++) {
     x[ii] = (obj->pFullGrid[ii] == 1.0);
   }
@@ -179,7 +178,7 @@ void OFDMModulator_setupImpl(OFDMModulator_196 *obj)
   }
 
   d_SystemProp_matlabCodegenSetAn(obj, ii_data, ii_size);
-  emlrtPopRtStackR2012b(&pb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&ob_emlrtRSI, emlrtRootTLSGlobal);
 }
 
 void OFDMModulator_stepImpl(const OFDMModulator_4 *obj, const creal_T dataIn[53],

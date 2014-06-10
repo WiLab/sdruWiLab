@@ -12,7 +12,7 @@ DebugFlag = 0;
 %% Create message bits
 % The output needs to be duplicated to long vectors to help prevent
 % Underflow for the USRP
-[~,~, dataToTx, ~ ] = generateOFDMSignal_TX2(inputPayloadMessage,samplingFreq, originNodeID, destNodeID);% 30 Dupe frames created (NOTE! author shouldcreate shorter simpler function)
+[~,~, dataToTx, ~ ] = generateOFDMSignal_TX3(inputPayloadMessage,samplingFreq, originNodeID, destNodeID);% 30 Dupe frames created (NOTE! author shouldcreate shorter simpler function)
 
 %% Run transmitter
 if DebugFlag

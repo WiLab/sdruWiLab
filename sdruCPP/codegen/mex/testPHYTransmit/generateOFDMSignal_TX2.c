@@ -3,7 +3,7 @@
  *
  * Code generation for function 'generateOFDMSignal_TX2'
  *
- * C source code generated on: Fri Apr 18 16:24:31 2014
+ * C source code generated on: Thu Apr 24 14:26:15 2014
  *
  */
 
@@ -12,7 +12,6 @@
 #include "testPHYTransmit.h"
 #include "generateOFDMSignal_TX2.h"
 #include "testPHYTransmit_emxutil.h"
-#include "sendComplexDoubleData.h"
 #include "SystemCore.h"
 #include "setup.h"
 #include "BPSKModulator.h"
@@ -21,7 +20,6 @@
 #include "OFDMModulator.h"
 #include "testPHYTransmit_mexutil.h"
 #include "testPHYTransmit_data.h"
-#include <stdio.h>
 
 /* Type Definitions */
 #ifndef struct_comm_PNSequence_2
@@ -69,71 +67,71 @@ typedef struct comm_PNSequence_9 comm_PNSequence_9;
 #endif                                 /*typedef_comm_PNSequence_9*/
 
 /* Variable Definitions */
-static emlrtRSInfo v_emlrtRSI = { 16, "generateOFDMSignal_TX2",
+static emlrtRSInfo u_emlrtRSI = { 16, "generateOFDMSignal_TX2",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/private/generateOFDMSignal_TX2.m"
 };
 
-static emlrtRSInfo w_emlrtRSI = { 39, "generateOFDMSignal_TX2",
+static emlrtRSInfo v_emlrtRSI = { 39, "generateOFDMSignal_TX2",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/private/generateOFDMSignal_TX2.m"
 };
 
-static emlrtRSInfo x_emlrtRSI = { 46, "generateOFDMSignal_TX2",
+static emlrtRSInfo w_emlrtRSI = { 46, "generateOFDMSignal_TX2",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/private/generateOFDMSignal_TX2.m"
 };
 
-static emlrtRSInfo y_emlrtRSI = { 58, "generateOFDMSignal_TX2",
+static emlrtRSInfo x_emlrtRSI = { 58, "generateOFDMSignal_TX2",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/private/generateOFDMSignal_TX2.m"
 };
 
-static emlrtRSInfo ab_emlrtRSI = { 69, "generateOFDMSignal_TX2",
+static emlrtRSInfo y_emlrtRSI = { 69, "generateOFDMSignal_TX2",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/private/generateOFDMSignal_TX2.m"
 };
 
-static emlrtRSInfo bb_emlrtRSI = { 73, "generateOFDMSignal_TX2",
+static emlrtRSInfo ab_emlrtRSI = { 73, "generateOFDMSignal_TX2",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/private/generateOFDMSignal_TX2.m"
 };
 
-static emlrtRSInfo cb_emlrtRSI = { 74, "generateOFDMSignal_TX2",
+static emlrtRSInfo bb_emlrtRSI = { 74, "generateOFDMSignal_TX2",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/private/generateOFDMSignal_TX2.m"
 };
 
-static emlrtRSInfo db_emlrtRSI = { 77, "generateOFDMSignal_TX2",
+static emlrtRSInfo cb_emlrtRSI = { 77, "generateOFDMSignal_TX2",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/private/generateOFDMSignal_TX2.m"
 };
 
-static emlrtRSInfo eb_emlrtRSI = { 80, "generateOFDMSignal_TX2",
+static emlrtRSInfo db_emlrtRSI = { 80, "generateOFDMSignal_TX2",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/private/generateOFDMSignal_TX2.m"
 };
 
-static emlrtRSInfo fb_emlrtRSI = { 87, "generateOFDMSignal_TX2",
+static emlrtRSInfo eb_emlrtRSI = { 87, "generateOFDMSignal_TX2",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/private/generateOFDMSignal_TX2.m"
 };
 
-static emlrtRSInfo gb_emlrtRSI = { 99, "generateOFDMSignal_TX2",
+static emlrtRSInfo fb_emlrtRSI = { 99, "generateOFDMSignal_TX2",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/private/generateOFDMSignal_TX2.m"
 };
 
-static emlrtRSInfo hb_emlrtRSI = { 106, "generateOFDMSignal_TX2",
+static emlrtRSInfo gb_emlrtRSI = { 106, "generateOFDMSignal_TX2",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/private/generateOFDMSignal_TX2.m"
 };
 
-static emlrtRSInfo ib_emlrtRSI = { 112, "generateOFDMSignal_TX2",
+static emlrtRSInfo hb_emlrtRSI = { 112, "generateOFDMSignal_TX2",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/private/generateOFDMSignal_TX2.m"
 };
 
-static emlrtRSInfo jb_emlrtRSI = { 123, "generateOFDMSignal_TX2",
+static emlrtRSInfo ib_emlrtRSI = { 123, "generateOFDMSignal_TX2",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/private/generateOFDMSignal_TX2.m"
 };
 
-static emlrtRSInfo kb_emlrtRSI = { 136, "generateOFDMSignal_TX2",
+static emlrtRSInfo jb_emlrtRSI = { 136, "generateOFDMSignal_TX2",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/private/generateOFDMSignal_TX2.m"
 };
 
-static emlrtRSInfo lb_emlrtRSI = { 137, "generateOFDMSignal_TX2",
+static emlrtRSInfo kb_emlrtRSI = { 137, "generateOFDMSignal_TX2",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/private/generateOFDMSignal_TX2.m"
 };
 
-static emlrtRSInfo cc_emlrtRSI = { 51, "eml_int_forloop_overflow_check",
+static emlrtRSInfo bc_emlrtRSI = { 51, "eml_int_forloop_overflow_check",
   "/opt/MATLAB/R2013a/toolbox/eml/lib/matlab/eml/eml_int_forloop_overflow_check.m"
 };
 
@@ -153,7 +151,32 @@ static emlrtRTEInfo i_emlrtRTEI = { 39, 1, "generateOFDMSignal_TX2",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdruCPP/private/generateOFDMSignal_TX2.m"
 };
 
+/* Function Declarations */
+static real_T b_emlrt_marshallIn(const mxArray *u, const emlrtMsgIdentifier
+  *parentId);
+static real_T emlrt_marshallIn(const mxArray *c_rand, const char_T *identifier);
+
 /* Function Definitions */
+static real_T b_emlrt_marshallIn(const mxArray *u, const emlrtMsgIdentifier
+  *parentId)
+{
+  real_T y;
+  y = i_emlrt_marshallIn(emlrtAlias(u), parentId);
+  emlrtDestroyArray(&u);
+  return y;
+}
+
+static real_T emlrt_marshallIn(const mxArray *c_rand, const char_T *identifier)
+{
+  real_T y;
+  emlrtMsgIdentifier thisId;
+  thisId.fIdentifier = identifier;
+  thisId.fParent = NULL;
+  y = b_emlrt_marshallIn(emlrtAlias(c_rand), &thisId);
+  emlrtDestroyArray(&c_rand);
+  return y;
+}
+
 void b_generateOFDMSignal_TX2(OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1,
   OFDMDemodulator_1 **hPreambleDemod, OFDMDemodulator **hDataDemod, creal_T r
   [38400], c_struct_T *b_tx)
@@ -161,7 +184,7 @@ void b_generateOFDMSignal_TX2(OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1
   OFDMModulator_196 hDataMod;
   OFDMModulator_4 hPreambleMod;
   const mxArray *y;
-  const mxArray *m17;
+  const mxArray *m16;
   const mxArray *b_y;
   real_T b_r;
   int32_T i;
@@ -174,7 +197,7 @@ void b_generateOFDMSignal_TX2(OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1
   static const char_T b_inputPayloadMessage[11] = { 'H', 'e', 'l', 'l', 'o', ' ',
     'W', 'o', 'r', 'l', 'd' };
 
-  static const char_T cv84[3] = { 'E', 'O', 'F' };
+  static const char_T cv80[3] = { 'E', 'O', 'F' };
 
   real_T originalData[560];
   real_T x[560];
@@ -185,44 +208,44 @@ void b_generateOFDMSignal_TX2(OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1
   commcodegen_BPSKModulator_348 hMod;
   commcodegen_BPSKModulator_348 *obj;
   const mxArray *c_y;
-  static const int32_T iv81[2] = { 1, 45 };
+  static const int32_T iv79[2] = { 1, 45 };
 
-  char_T cv85[45];
-  static const char_T cv86[45] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
+  char_T cv81[45];
+  static const char_T cv82[45] = { 'M', 'A', 'T', 'L', 'A', 'B', ':', 's', 'y',
     's', 't', 'e', 'm', ':', 'm', 'e', 't', 'h', 'o', 'd', 'C', 'a', 'l', 'l',
     'e', 'd', 'W', 'h', 'e', 'n', 'R', 'e', 'l', 'e', 'a', 's', 'e', 'd', 'C',
     'o', 'd', 'e', 'g', 'e', 'n' };
 
   const mxArray *d_y;
-  static const int32_T iv82[2] = { 1, 4 };
+  static const int32_T iv80[2] = { 1, 4 };
 
-  char_T cv87[4];
-  static const char_T cv88[4] = { 's', 't', 'e', 'p' };
+  char_T cv83[4];
+  static const char_T cv84[4] = { 's', 't', 'e', 'p' };
 
   int32_T tmp_size[2];
   creal_T tmp_data[563];
-  static int32_T iv83[2] = { 563, 1 };
+  static int32_T iv81[2] = { 563, 1 };
 
   const mxArray *e_y;
   const mxArray *f_y;
   real_T c_r[13];
   int32_T k;
   const mxArray *g_y;
-  static const int32_T iv84[2] = { 1, 45 };
+  static const int32_T iv82[2] = { 1, 45 };
 
   const mxArray *h_y;
-  static const int32_T iv85[2] = { 1, 4 };
+  static const int32_T iv83[2] = { 1, 4 };
 
   creal_T b_tmp_data[563];
-  static int32_T iv86[2] = { 13, 1 };
+  static int32_T iv84[2] = { 13, 1 };
 
   creal_T modData[576];
   creal_T ofdmData[576];
   comm_PNSequence_9 hPN;
   comm_PNSequence_9 *b_obj;
-  static const int8_T iv87[8] = { 1, 0, 0, 0, 1, 0, 0, 1 };
+  static const int8_T iv85[8] = { 1, 0, 0, 0, 1, 0, 0, 1 };
 
-  static const int8_T iv88[7] = { 0, 0, 0, 0, 0, 0, 1 };
+  static const int8_T iv86[7] = { 0, 0, 0, 0, 0, 0, 1 };
 
   int8_T pilot[12];
   uint8_T tmp;
@@ -237,10 +260,10 @@ void b_generateOFDMSignal_TX2(OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1
   boolean_T b4;
   int32_T i16;
   const mxArray *i_y;
-  static const int32_T iv89[2] = { 1, 13 };
+  static const int32_T iv87[2] = { 1, 13 };
 
-  char_T cv89[13];
-  static const char_T cv90[13] = { 'c', 'o', 'm', 'm', ':', 'O', 'F', 'D', 'M',
+  char_T cv85[13];
+  static const char_T cv86[13] = { 'c', 'o', 'm', 'm', ':', 'O', 'F', 'D', 'M',
     ':', 'x', 'x', 'x' };
 
   creal_T d_r[960];
@@ -252,7 +275,7 @@ void b_generateOFDMSignal_TX2(OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1
   boolean_T b5;
   int32_T i17;
   const mxArray *j_y;
-  static const int32_T iv90[2] = { 1, 13 };
+  static const int32_T iv88[2] = { 1, 13 };
 
   OFDMDemodulator_1 *c_object;
   static const creal_T dcv4[53] = { { 0.0, 0.0 }, { 0.0, 0.0 }, { 1.0, 1.0 }, {
@@ -267,11 +290,11 @@ void b_generateOFDMSignal_TX2(OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1
     }, { 0.0, 0.0 }, { 1.0, 1.0 }, { 0.0, 0.0 }, { 0.0, 0.0 }, { 0.0, 0.0 }, {
       1.0, 1.0 }, { 0.0, 0.0 }, { 0.0, 0.0 } };
 
-  static const int8_T iv91[53] = { 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, 1, 1, 1,
+  static const int8_T iv89[53] = { 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, 1, 1, 1,
     1, -1, -1, 1, 1, -1, 1, -1, 1, 1, 1, 1, 0, 1, -1, -1, 1, 1, -1, 1, -1, 1, -1,
     -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, 1, 1, 1, 1 };
 
-  static const int8_T iv92[48] = { 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14,
+  static const int8_T iv90[48] = { 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14,
     15, 16, 17, 18, 19, 21, 22, 23, 24, 25, 26, 28, 29, 30, 31, 32, 33, 35, 36,
     37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 49, 50, 51, 52, 53 };
 
@@ -290,18 +313,18 @@ void b_generateOFDMSignal_TX2(OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1
   /*  Message to transmit */
   /*  message is 80 characters max, so extra 3 for EOF, 1 for uniqueID, 1 for */
   /*  the node number of recipient, 1 for origin node */
-  emlrtPushRtStackR2012b(&v_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&u_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&h_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&i_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&j_emlrtRSI, emlrtRootTLSGlobal);
   y = NULL;
-  m17 = mxCreateDoubleScalar(1.0);
-  emlrtAssign(&y, m17);
+  m16 = mxCreateDoubleScalar(1.0);
+  emlrtAssign(&y, m16);
   b_y = NULL;
-  m17 = mxCreateDoubleScalar(1.0);
-  emlrtAssign(&b_y, m17);
+  m16 = mxCreateDoubleScalar(1.0);
+  emlrtAssign(&b_y, m16);
   b_r = emlrt_marshallIn(b_rand(y, b_y, &emlrtMCI), "rand");
-  emlrtPopRtStackR2012b(&j_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&i_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&h_emlrtRSI, emlrtRootTLSGlobal);
   i = (int32_T)muDoubleScalarFloor(b_r * 128.0);
   i = emlrtDynamicBoundsCheckFastR2012b(i, 0, 255, &emlrtBCI, emlrtRootTLSGlobal);
   i = (int32_T)muDoubleScalarRem(i, 256.0);
@@ -311,7 +334,7 @@ void b_generateOFDMSignal_TX2(OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1
     uniqueID = (int8_T)(uint8_T)(real_T)i;
   }
 
-  emlrtPopRtStackR2012b(&v_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&u_emlrtRSI, emlrtRootTLSGlobal);
 
   /* Add additional character to differentiate messages */
   /* % Create Short Preamble */
@@ -326,19 +349,19 @@ void b_generateOFDMSignal_TX2(OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1
   /*      'FFTLength' ,           FFTLength,... */
   /*      'NumSymbols',           1);     */
   /*  Create modulator */
-  emlrtPushRtStackR2012b(&w_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&v_emlrtRSI, emlrtRootTLSGlobal);
   OFDMModulator_OFDMModulator(&hPreambleMod);
-  emlrtPopRtStackR2012b(&w_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&v_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  Modulate and scale */
-  emlrtPushRtStackR2012b(&x_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&w_emlrtRSI, emlrtRootTLSGlobal);
   SystemCore_step(&hPreambleMod, shortPreambleOFDM);
   for (i = 0; i < 64; i++) {
     shortPreambleOFDM[i].re *= 1.4719601443879744;
     shortPreambleOFDM[i].im *= 1.4719601443879744;
   }
 
-  emlrtPopRtStackR2012b(&x_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&w_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  Form 10 Short Preambles */
   memcpy(&completeShortPreambleOFDM[0], &shortPreambleOFDM[0], sizeof(creal_T) <<
@@ -350,9 +373,9 @@ void b_generateOFDMSignal_TX2(OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1
 
   /* % Create Long Preamble */
   /*  Modulate */
-  emlrtPushRtStackR2012b(&y_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&x_emlrtRSI, emlrtRootTLSGlobal);
   b_SystemCore_step(&hPreambleMod, longPreambleOFDM);
-  emlrtPopRtStackR2012b(&y_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&x_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  Form 2 Long Preambles */
   memcpy(&completeLongPreambleOFDM[0], &longPreambleOFDM[32], sizeof(creal_T) <<
@@ -364,7 +387,7 @@ void b_generateOFDMSignal_TX2(OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1
 
   /* % Generate Data */
   /*  Use string as message */
-  emlrtPushRtStackR2012b(&ab_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&y_emlrtRSI, emlrtRootTLSGlobal);
   for (i = 0; i < 11; i++) {
     inputPayloadMessage[i] = b_inputPayloadMessage[i];
   }
@@ -373,7 +396,7 @@ void b_generateOFDMSignal_TX2(OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1
   inputPayloadMessage[12] = '1';
   inputPayloadMessage[13] = uniqueID;
   for (i = 0; i < 3; i++) {
-    inputPayloadMessage[i + 14] = cv84[i];
+    inputPayloadMessage[i + 14] = cv80[i];
   }
 
   for (i = 0; i < 63; i++) {
@@ -381,7 +404,7 @@ void b_generateOFDMSignal_TX2(OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1
   }
 
   OFDMletters2bits(inputPayloadMessage, originalData);
-  emlrtPopRtStackR2012b(&ab_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&y_emlrtRSI, emlrtRootTLSGlobal);
   for (i = 0; i < 80; i++) {
     for (ib = 0; ib < 7; ib++) {
       x[ib + 7 * i] = originalData[i + 80 * ib];
@@ -391,90 +414,90 @@ void b_generateOFDMSignal_TX2(OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1
   memcpy(&b_originalData[0], &x[0], 560U * sizeof(real_T));
 
   /*  Generate CRC */
-  emlrtPushRtStackR2012b(&bb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&ab_emlrtRSI, emlrtRootTLSGlobal);
   c_CRCGenerator_CRCGenerator(&hGen);
-  emlrtPopRtStackR2012b(&bb_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&cb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&ab_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&bb_emlrtRSI, emlrtRootTLSGlobal);
   f_SystemCore_step(&hGen, b_originalData, dataWithCRC);
-  emlrtPopRtStackR2012b(&cb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&bb_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  Add CRC */
   /*  Construct modulator for each subcarrier */
-  emlrtPushRtStackR2012b(&db_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&cb_emlrtRSI, emlrtRootTLSGlobal);
   c_BPSKModulator_BPSKModulator(&hMod);
-  emlrtPopRtStackR2012b(&db_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&cb_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  BPSK */
   /*  Apply modulator for each subcarrier */
-  emlrtPushRtStackR2012b(&eb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&db_emlrtRSI, emlrtRootTLSGlobal);
   obj = &hMod;
   if (!obj->isReleased) {
   } else {
-    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
     c_y = NULL;
-    m17 = mxCreateCharArray(2, iv81);
+    m16 = mxCreateCharArray(2, iv79);
     for (i = 0; i < 45; i++) {
-      cv85[i] = cv86[i];
+      cv81[i] = cv82[i];
     }
 
-    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 45, m17, cv85);
-    emlrtAssign(&c_y, m17);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 45, m16, cv81);
+    emlrtAssign(&c_y, m16);
     d_y = NULL;
-    m17 = mxCreateCharArray(2, iv82);
+    m16 = mxCreateCharArray(2, iv80);
     for (i = 0; i < 4; i++) {
-      cv87[i] = cv88[i];
+      cv83[i] = cv84[i];
     }
 
-    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 4, m17, cv87);
-    emlrtAssign(&d_y, m17);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 4, m16, cv83);
+    emlrtAssign(&d_y, m16);
     b_error(message(c_y, d_y, &b_emlrtMCI), &b_emlrtMCI);
-    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   }
 
   if (!obj->isInitialized) {
-    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
     e_SystemCore_setup(obj);
-    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   }
 
-  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   e_SystemCore_checkTunableProps(obj);
-  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   g_SystemCore_detectInputSizeCha(obj);
-  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
-  c_Outputs(&obj->cSFunObject, dataWithCRC, iv83, tmp_data, tmp_size);
-  emlrtPopRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&ec_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
+  c_Outputs(&obj->cSFunObject, dataWithCRC, iv81, tmp_data, tmp_size);
   emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&eb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&ec_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&ec_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&ec_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&db_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  Pad IFFT */
-  emlrtPushRtStackR2012b(&fb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&eb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&h_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&i_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&j_emlrtRSI, emlrtRootTLSGlobal);
   e_y = NULL;
-  m17 = mxCreateDoubleScalar(13.0);
-  emlrtAssign(&e_y, m17);
+  m16 = mxCreateDoubleScalar(13.0);
+  emlrtAssign(&e_y, m16);
   f_y = NULL;
-  m17 = mxCreateDoubleScalar(1.0);
-  emlrtAssign(&f_y, m17);
+  m16 = mxCreateDoubleScalar(1.0);
+  emlrtAssign(&f_y, m16);
   e_emlrt_marshallIn(b_rand(e_y, f_y, &emlrtMCI), "rand", c_r);
-  emlrtPopRtStackR2012b(&j_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&i_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&h_emlrtRSI, emlrtRootTLSGlobal);
   for (k = 0; k < 13; k++) {
     c_r[k] = muDoubleScalarFloor(c_r[k] * 2.0);
   }
@@ -482,59 +505,59 @@ void b_generateOFDMSignal_TX2(OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1
   obj = &hMod;
   if (!obj->isReleased) {
   } else {
-    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
     g_y = NULL;
-    m17 = mxCreateCharArray(2, iv84);
+    m16 = mxCreateCharArray(2, iv82);
     for (i = 0; i < 45; i++) {
-      cv85[i] = cv86[i];
+      cv81[i] = cv82[i];
     }
 
-    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 45, m17, cv85);
-    emlrtAssign(&g_y, m17);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 45, m16, cv81);
+    emlrtAssign(&g_y, m16);
     h_y = NULL;
-    m17 = mxCreateCharArray(2, iv85);
+    m16 = mxCreateCharArray(2, iv83);
     for (i = 0; i < 4; i++) {
-      cv87[i] = cv88[i];
+      cv83[i] = cv84[i];
     }
 
-    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 4, m17, cv87);
-    emlrtAssign(&h_y, m17);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 4, m16, cv83);
+    emlrtAssign(&h_y, m16);
     b_error(message(g_y, h_y, &b_emlrtMCI), &b_emlrtMCI);
-    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   }
 
   if (!obj->isInitialized) {
-    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
     f_SystemCore_setup(obj);
-    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   }
 
-  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   f_SystemCore_checkTunableProps(obj);
-  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   h_SystemCore_detectInputSizeCha(obj);
-  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
-  c_Outputs(&obj->cSFunObject, c_r, iv86, b_tmp_data, tmp_size);
-  emlrtPopRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&ec_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
+  c_Outputs(&obj->cSFunObject, c_r, iv84, b_tmp_data, tmp_size);
   emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&ec_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&ec_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&ec_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   memcpy(&modData[0], &tmp_data[0], 563U * sizeof(creal_T));
   memcpy(&modData[563], &b_tmp_data[0], 13U * sizeof(creal_T));
-  emlrtPopRtStackR2012b(&fb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&eb_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  Calculate required data sizes for correct receiver operation */
   /*  Save desired message size */
@@ -543,25 +566,25 @@ void b_generateOFDMSignal_TX2(OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1
   memcpy(&ofdmData[0], &modData[0], 576U * sizeof(creal_T));
 
   /*  Create Pilots */
-  emlrtPushRtStackR2012b(&gb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&fb_emlrtRSI, emlrtRootTLSGlobal);
   b_obj = &hPN;
 
   /* System object Constructor function: comm.PNSequence */
   b_obj->S0_isInitialized = FALSE;
   b_obj->S1_isReleased = FALSE;
   for (i = 0; i < 8; i++) {
-    b_obj->P0_Polynomial[i] = (uint8_T)iv87[i];
+    b_obj->P0_Polynomial[i] = (uint8_T)iv85[i];
   }
 
   for (i = 0; i < 7; i++) {
     b_obj->P1_IniState[i] = 1;
-    b_obj->P2_Mask[i] = (uint8_T)iv88[i];
+    b_obj->P2_Mask[i] = (uint8_T)iv86[i];
   }
 
-  emlrtPopRtStackR2012b(&gb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&fb_emlrtRSI, emlrtRootTLSGlobal);
 
   /* pilot=[1 0  0  1  0  0  1  0  0  0  0  0]'; */
-  emlrtPushRtStackR2012b(&hb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&gb_emlrtRSI, emlrtRootTLSGlobal);
   b_obj = &hPN;
   if (!b_obj->S0_isInitialized) {
     b_obj->S0_isInitialized = TRUE;
@@ -577,7 +600,7 @@ void b_generateOFDMSignal_TX2(OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1
     }
   }
 
-  emlrtPushRtStackR2012b(&hc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
 
   /* System object Outputs function: comm.PNSequence */
   for (ib = 0; ib < 12; ib++) {
@@ -602,8 +625,8 @@ void b_generateOFDMSignal_TX2(OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1
     b_obj->W0_shiftReg[0U] = tmp;
   }
 
-  emlrtPopRtStackR2012b(&hc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&hb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&gb_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  Create pilot */
   ib = 0;
@@ -628,37 +651,37 @@ void b_generateOFDMSignal_TX2(OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1
 
   /*  Invert last pilot */
   /*  Construct Modulator */
-  emlrtPushRtStackR2012b(&ib_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&hb_emlrtRSI, emlrtRootTLSGlobal);
   object = &hDataMod;
-  emlrtPushRtStackR2012b(&p_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&j_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&k_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&l_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   object->isInitialized = FALSE;
   object->isReleased = FALSE;
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&l_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&k_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&p_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&q_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&j_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&p_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
 
   /* OFDMBase Base object for OFDMModulator and OFDMDemodulator System objects */
   /*  Copyright 2013 The MathWorks, Inc. */
@@ -698,8 +721,8 @@ void b_generateOFDMSignal_TX2(OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1
   /*          {'real','integer','positive','finite','3d'}, ... */
   /*          [class(obj) '.' propName], propName);   */
   /*  Check the 3rd dimension for numTx */
+  emlrtPushRtStackR2012b(&ic_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&jc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&kc_emlrtRSI, emlrtRootTLSGlobal);
   for (k = 0; k < 4; k++) {
     b_data[k] = (int8_T)(12 + 14 * k);
   }
@@ -724,13 +747,13 @@ void b_generateOFDMSignal_TX2(OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1
 
     i++;
     b_data[i - 1] = (int8_T)ib;
-    emlrtPushRtStackR2012b(&oc_emlrtRSI, emlrtRootTLSGlobal);
-    emlrtPopRtStackR2012b(&oc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&nc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&nc_emlrtRSI, emlrtRootTLSGlobal);
   }
 
-  emlrtPushRtStackR2012b(&mc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&mc_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&lc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&lc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&kc_emlrtRSI, emlrtRootTLSGlobal);
   if (1 > i) {
     b4 = FALSE;
   } else {
@@ -738,13 +761,13 @@ void b_generateOFDMSignal_TX2(OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1
   }
 
   if (b4) {
-    emlrtPushRtStackR2012b(&bc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&ac_emlrtRSI, emlrtRootTLSGlobal);
     check_forloop_overflow_error();
-    emlrtPopRtStackR2012b(&bc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&ac_emlrtRSI, emlrtRootTLSGlobal);
   }
 
-  emlrtPopRtStackR2012b(&lc_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&kc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&jc_emlrtRSI, emlrtRootTLSGlobal);
   if (1 > i) {
     i16 = 0;
   } else {
@@ -753,37 +776,37 @@ void b_generateOFDMSignal_TX2(OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1
 
   if (!(4 != i16)) {
   } else {
-    emlrtPushRtStackR2012b(&qc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&pc_emlrtRSI, emlrtRootTLSGlobal);
     i_y = NULL;
-    m17 = mxCreateCharArray(2, iv89);
+    m16 = mxCreateCharArray(2, iv87);
     for (i = 0; i < 13; i++) {
-      cv89[i] = cv90[i];
+      cv85[i] = cv86[i];
     }
 
-    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 13, m17, cv89);
-    emlrtAssign(&i_y, m17);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 13, m16, cv85);
+    emlrtAssign(&i_y, m16);
     b_error(b_message(i_y, &h_emlrtMCI), &h_emlrtMCI);
-    emlrtPopRtStackR2012b(&qc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&pc_emlrtRSI, emlrtRootTLSGlobal);
   }
 
-  emlrtPopRtStackR2012b(&jc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&ic_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  Error message:  */
   /*  If pilot index is 2-D, the indices per symbol must be unique; */
   /*  If pilot index is 3-D, the indices across transmit antennas per symbol must be unique. */
-  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&q_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&ib_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&p_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&hb_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  Modulate */
-  emlrtPushRtStackR2012b(&jb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&ib_emlrtRSI, emlrtRootTLSGlobal);
   d_SystemCore_step(&hDataMod, ofdmData, b_pilots, d_r);
-  emlrtPopRtStackR2012b(&jb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&ib_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  Add preambles to data */
   memcpy(&preambles[0], &completeShortPreambleOFDM[0], 160U * sizeof(creal_T));
@@ -805,23 +828,25 @@ void b_generateOFDMSignal_TX2(OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1
   /*  Save Demodulator object data for receiver */
   /* hDataDemod = get(OFDMDemodulator(hDataMod)); */
   /* hPreambleDemod = get(OFDMDemodulator(hPreambleMod)); */
-  emlrtPushRtStackR2012b(&kb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&jb_emlrtRSI, emlrtRootTLSGlobal);
   b_object = iobj_0;
   *hDataDemod = b_object;
-  emlrtPushRtStackR2012b(&bd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&ad_emlrtRSI, emlrtRootTLSGlobal);
   b_object = *hDataDemod;
+  emlrtPushRtStackR2012b(&j_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&k_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&l_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   b_object->isInitialized = FALSE;
   b_object->isReleased = FALSE;
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&l_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&k_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&j_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&ad_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&bd_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&bd_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&cd_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&cd_emlrtRSI, emlrtRootTLSGlobal);
@@ -834,9 +859,7 @@ void b_generateOFDMSignal_TX2(OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1
   emlrtPushRtStackR2012b(&gd_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&gd_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&hd_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&hd_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&id_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
 
   /* OFDMBase Base object for OFDMModulator and OFDMDemodulator System objects */
   /*  Copyright 2013 The MathWorks, Inc. */
@@ -876,8 +899,8 @@ void b_generateOFDMSignal_TX2(OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1
   /*          {'real','integer','positive','finite','3d'}, ... */
   /*          [class(obj) '.' propName], propName);   */
   /*  Check the 3rd dimension for numTx */
+  emlrtPushRtStackR2012b(&ic_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&jc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&kc_emlrtRSI, emlrtRootTLSGlobal);
   for (k = 0; k < 4; k++) {
     b_data[k] = (int8_T)(12 + 14 * k);
   }
@@ -902,13 +925,13 @@ void b_generateOFDMSignal_TX2(OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1
 
     i++;
     b_data[i - 1] = (int8_T)ib;
-    emlrtPushRtStackR2012b(&oc_emlrtRSI, emlrtRootTLSGlobal);
-    emlrtPopRtStackR2012b(&oc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&nc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&nc_emlrtRSI, emlrtRootTLSGlobal);
   }
 
-  emlrtPushRtStackR2012b(&mc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&mc_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&lc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&lc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&kc_emlrtRSI, emlrtRootTLSGlobal);
   if (1 > i) {
     b5 = FALSE;
   } else {
@@ -916,13 +939,13 @@ void b_generateOFDMSignal_TX2(OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1
   }
 
   if (b5) {
-    emlrtPushRtStackR2012b(&bc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&ac_emlrtRSI, emlrtRootTLSGlobal);
     check_forloop_overflow_error();
-    emlrtPopRtStackR2012b(&bc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&ac_emlrtRSI, emlrtRootTLSGlobal);
   }
 
-  emlrtPopRtStackR2012b(&lc_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&kc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&jc_emlrtRSI, emlrtRootTLSGlobal);
   if (1 > i) {
     i17 = 0;
   } else {
@@ -931,44 +954,46 @@ void b_generateOFDMSignal_TX2(OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1
 
   if (!(4 != i17)) {
   } else {
-    emlrtPushRtStackR2012b(&qc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&pc_emlrtRSI, emlrtRootTLSGlobal);
     j_y = NULL;
-    m17 = mxCreateCharArray(2, iv90);
+    m16 = mxCreateCharArray(2, iv88);
     for (i = 0; i < 13; i++) {
-      cv89[i] = cv90[i];
+      cv85[i] = cv86[i];
     }
 
-    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 13, m17, cv89);
-    emlrtAssign(&j_y, m17);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 13, m16, cv85);
+    emlrtAssign(&j_y, m16);
     b_error(b_message(j_y, &h_emlrtMCI), &h_emlrtMCI);
-    emlrtPopRtStackR2012b(&qc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&pc_emlrtRSI, emlrtRootTLSGlobal);
   }
 
-  emlrtPopRtStackR2012b(&jc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&ic_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  Error message:  */
   /*  If pilot index is 2-D, the indices per symbol must be unique; */
   /*  If pilot index is 3-D, the indices across transmit antennas per symbol must be unique. */
-  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&id_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&kb_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&lb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&hd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&jb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&kb_emlrtRSI, emlrtRootTLSGlobal);
   c_object = iobj_1;
   *hPreambleDemod = c_object;
-  emlrtPushRtStackR2012b(&bd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&ad_emlrtRSI, emlrtRootTLSGlobal);
   c_object = *hPreambleDemod;
+  emlrtPushRtStackR2012b(&j_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&k_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&l_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   c_object->isInitialized = FALSE;
   c_object->isReleased = FALSE;
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&l_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&k_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&j_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&ad_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&bd_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&bd_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&cd_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&cd_emlrtRSI, emlrtRootTLSGlobal);
@@ -980,9 +1005,7 @@ void b_generateOFDMSignal_TX2(OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1
   emlrtPopRtStackR2012b(&fd_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&gd_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&gd_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&hd_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&hd_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&lb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&kb_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  Calcuate OFDM frequency bin size */
   /*  Calculate locations of pilots without guardbands */
@@ -1009,7 +1032,7 @@ void b_generateOFDMSignal_TX2(OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1
   }
 
   for (i = 0; i < 53; i++) {
-    b_tx->longPreamble[i] = iv91[i];
+    b_tx->longPreamble[i] = iv89[i];
   }
 
   for (i = 0; i < 64; i++) {
@@ -1035,7 +1058,7 @@ void b_generateOFDMSignal_TX2(OFDMDemodulator *iobj_0, OFDMDemodulator_1 *iobj_1
   b_tx->dataSubcarrierIndexies.size[0] = 1;
   b_tx->dataSubcarrierIndexies.size[1] = 48;
   for (i = 0; i < 48; i++) {
-    b_tx->dataSubcarrierIndexies.data[i] = iv92[i];
+    b_tx->dataSubcarrierIndexies.data[i] = iv90[i];
   }
 
   b_tx->samplingFreq = 5.0E+6;
@@ -1084,7 +1107,7 @@ void check_forloop_overflow_error(void)
   static const char_T cv26[23] = { 'c', 'o', 'd', 'e', 'r', '.', 'i', 'n', 't',
     'e', 'r', 'n', 'a', 'l', '.', 'i', 'n', 'd', 'e', 'x', 'I', 'n', 't' };
 
-  emlrtPushRtStackR2012b(&cc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&bc_emlrtRSI, emlrtRootTLSGlobal);
   y = NULL;
   m4 = mxCreateCharArray(2, iv23);
   for (i = 0; i < 34; i++) {
@@ -1102,7 +1125,7 @@ void check_forloop_overflow_error(void)
   emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 23, m4, cv25);
   emlrtAssign(&b_y, m4);
   b_error(message(y, b_y, &f_emlrtMCI), &g_emlrtMCI);
-  emlrtPopRtStackR2012b(&cc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&bc_emlrtRSI, emlrtRootTLSGlobal);
 }
 
 void generateOFDMSignal_TX2(testPHYTransmitStackData *SD, OFDMDemodulator
@@ -1240,9 +1263,9 @@ void generateOFDMSignal_TX2(testPHYTransmitStackData *SD, OFDMDemodulator
   /*  Message to transmit */
   /*  message is 80 characters max, so extra 3 for EOF, 1 for uniqueID, 1 for */
   /*  the node number of recipient, 1 for origin node */
-  emlrtPushRtStackR2012b(&v_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&u_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&h_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&i_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&j_emlrtRSI, emlrtRootTLSGlobal);
   y = NULL;
   m0 = mxCreateDoubleScalar(1.0);
   emlrtAssign(&y, m0);
@@ -1250,8 +1273,8 @@ void generateOFDMSignal_TX2(testPHYTransmitStackData *SD, OFDMDemodulator
   m0 = mxCreateDoubleScalar(1.0);
   emlrtAssign(&b_y, m0);
   b_r = emlrt_marshallIn(b_rand(y, b_y, &emlrtMCI), "rand");
-  emlrtPopRtStackR2012b(&j_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&i_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&h_emlrtRSI, emlrtRootTLSGlobal);
   i = (int32_T)muDoubleScalarFloor(b_r * 128.0);
   i = emlrtDynamicBoundsCheckFastR2012b(i, 0, 255, &emlrtBCI, emlrtRootTLSGlobal);
   i = (int32_T)muDoubleScalarRem(i, 256.0);
@@ -1261,7 +1284,7 @@ void generateOFDMSignal_TX2(testPHYTransmitStackData *SD, OFDMDemodulator
     uniqueID = (int8_T)(uint8_T)(real_T)i;
   }
 
-  emlrtPopRtStackR2012b(&v_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&u_emlrtRSI, emlrtRootTLSGlobal);
 
   /* Add additional character to differentiate messages */
   /* % Create Short Preamble */
@@ -1276,19 +1299,19 @@ void generateOFDMSignal_TX2(testPHYTransmitStackData *SD, OFDMDemodulator
   /*      'FFTLength' ,           FFTLength,... */
   /*      'NumSymbols',           1);     */
   /*  Create modulator */
-  emlrtPushRtStackR2012b(&w_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&v_emlrtRSI, emlrtRootTLSGlobal);
   OFDMModulator_OFDMModulator(&hPreambleMod);
-  emlrtPopRtStackR2012b(&w_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&v_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  Modulate and scale */
-  emlrtPushRtStackR2012b(&x_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&w_emlrtRSI, emlrtRootTLSGlobal);
   SystemCore_step(&hPreambleMod, shortPreambleOFDM);
   for (i = 0; i < 64; i++) {
     shortPreambleOFDM[i].re *= 1.4719601443879744;
     shortPreambleOFDM[i].im *= 1.4719601443879744;
   }
 
-  emlrtPopRtStackR2012b(&x_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&w_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  Form 10 Short Preambles */
   memcpy(&completeShortPreambleOFDM[0], &shortPreambleOFDM[0], sizeof(creal_T) <<
@@ -1300,9 +1323,9 @@ void generateOFDMSignal_TX2(testPHYTransmitStackData *SD, OFDMDemodulator
 
   /* % Create Long Preamble */
   /*  Modulate */
-  emlrtPushRtStackR2012b(&y_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&x_emlrtRSI, emlrtRootTLSGlobal);
   b_SystemCore_step(&hPreambleMod, longPreambleOFDM);
-  emlrtPopRtStackR2012b(&y_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&x_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  Form 2 Long Preambles */
   memcpy(&completeLongPreambleOFDM[0], &longPreambleOFDM[32], sizeof(creal_T) <<
@@ -1314,7 +1337,7 @@ void generateOFDMSignal_TX2(testPHYTransmitStackData *SD, OFDMDemodulator
 
   /* % Generate Data */
   /*  Use string as message */
-  emlrtPushRtStackR2012b(&ab_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&y_emlrtRSI, emlrtRootTLSGlobal);
   for (i = 0; i < 18; i++) {
     inputPayloadMessage[i] = b_inputPayloadMessage[i];
   }
@@ -1331,7 +1354,7 @@ void generateOFDMSignal_TX2(testPHYTransmitStackData *SD, OFDMDemodulator
   }
 
   OFDMletters2bits(inputPayloadMessage, originalData);
-  emlrtPopRtStackR2012b(&ab_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&y_emlrtRSI, emlrtRootTLSGlobal);
   for (i = 0; i < 80; i++) {
     for (ib = 0; ib < 7; ib++) {
       x[ib + 7 * i] = originalData[i + 80 * ib];
@@ -1341,26 +1364,26 @@ void generateOFDMSignal_TX2(testPHYTransmitStackData *SD, OFDMDemodulator
   memcpy(&b_originalData[0], &x[0], 560U * sizeof(real_T));
 
   /*  Generate CRC */
-  emlrtPushRtStackR2012b(&bb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&ab_emlrtRSI, emlrtRootTLSGlobal);
   CRCGenerator_CRCGenerator(&hGen);
-  emlrtPopRtStackR2012b(&bb_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&cb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&ab_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&bb_emlrtRSI, emlrtRootTLSGlobal);
   c_SystemCore_step(&hGen, b_originalData, dataWithCRC);
-  emlrtPopRtStackR2012b(&cb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&bb_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  Add CRC */
   /*  Construct modulator for each subcarrier */
-  emlrtPushRtStackR2012b(&db_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&cb_emlrtRSI, emlrtRootTLSGlobal);
   BPSKModulator_BPSKModulator(&hMod);
-  emlrtPopRtStackR2012b(&db_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&cb_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  BPSK */
   /*  Apply modulator for each subcarrier */
-  emlrtPushRtStackR2012b(&eb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&db_emlrtRSI, emlrtRootTLSGlobal);
   obj = &hMod;
   if (!obj->isReleased) {
   } else {
-    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
     c_y = NULL;
     m0 = mxCreateCharArray(2, iv0);
     for (i = 0; i < 45; i++) {
@@ -1378,44 +1401,44 @@ void generateOFDMSignal_TX2(testPHYTransmitStackData *SD, OFDMDemodulator
     emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 4, m0, cv3);
     emlrtAssign(&d_y, m0);
     b_error(message(c_y, d_y, &b_emlrtMCI), &b_emlrtMCI);
-    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   }
 
   if (!obj->isInitialized) {
-    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
     SystemCore_setup(obj);
-    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   }
 
-  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   SystemCore_checkTunableProps(obj);
-  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   c_SystemCore_detectInputSizeCha(obj);
-  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&ec_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
   Outputs(&obj->cSFunObject, dataWithCRC, iv2, tmp_data, tmp_size);
-  emlrtPopRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&ec_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&ec_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&eb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&ec_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&db_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  Pad IFFT */
-  emlrtPushRtStackR2012b(&fb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&eb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&h_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&i_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&j_emlrtRSI, emlrtRootTLSGlobal);
   e_y = NULL;
   m0 = mxCreateDoubleScalar(13.0);
   emlrtAssign(&e_y, m0);
@@ -1423,8 +1446,8 @@ void generateOFDMSignal_TX2(testPHYTransmitStackData *SD, OFDMDemodulator
   m0 = mxCreateDoubleScalar(1.0);
   emlrtAssign(&f_y, m0);
   e_emlrt_marshallIn(b_rand(e_y, f_y, &emlrtMCI), "rand", c_r);
-  emlrtPopRtStackR2012b(&j_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&i_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&h_emlrtRSI, emlrtRootTLSGlobal);
   for (k = 0; k < 13; k++) {
     c_r[k] = muDoubleScalarFloor(c_r[k] * 2.0);
   }
@@ -1432,7 +1455,7 @@ void generateOFDMSignal_TX2(testPHYTransmitStackData *SD, OFDMDemodulator
   obj = &hMod;
   if (!obj->isReleased) {
   } else {
-    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
     g_y = NULL;
     m0 = mxCreateCharArray(2, iv3);
     for (i = 0; i < 45; i++) {
@@ -1450,41 +1473,41 @@ void generateOFDMSignal_TX2(testPHYTransmitStackData *SD, OFDMDemodulator
     emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 4, m0, cv3);
     emlrtAssign(&h_y, m0);
     b_error(message(g_y, h_y, &b_emlrtMCI), &b_emlrtMCI);
-    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   }
 
   if (!obj->isInitialized) {
-    emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
     b_SystemCore_setup(obj);
-    emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   }
 
-  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   b_SystemCore_checkTunableProps(obj);
-  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   d_SystemCore_detectInputSizeCha(obj);
-  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&ec_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
   Outputs(&obj->cSFunObject, c_r, iv5, b_tmp_data, tmp_size);
-  emlrtPopRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&ec_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&ec_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&fc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&ec_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   memcpy(&modData[0], &tmp_data[0], 563U * sizeof(creal_T));
   memcpy(&modData[563], &b_tmp_data[0], 13U * sizeof(creal_T));
-  emlrtPopRtStackR2012b(&fb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&eb_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  Calculate required data sizes for correct receiver operation */
   /*  Save desired message size */
@@ -1493,7 +1516,7 @@ void generateOFDMSignal_TX2(testPHYTransmitStackData *SD, OFDMDemodulator
   memcpy(&ofdmData[0], &modData[0], 576U * sizeof(creal_T));
 
   /*  Create Pilots */
-  emlrtPushRtStackR2012b(&gb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&fb_emlrtRSI, emlrtRootTLSGlobal);
   b_obj = &hPN;
 
   /* System object Constructor function: comm.PNSequence */
@@ -1508,10 +1531,10 @@ void generateOFDMSignal_TX2(testPHYTransmitStackData *SD, OFDMDemodulator
     b_obj->P2_Mask[i] = (uint8_T)iv7[i];
   }
 
-  emlrtPopRtStackR2012b(&gb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&fb_emlrtRSI, emlrtRootTLSGlobal);
 
   /* pilot=[1 0  0  1  0  0  1  0  0  0  0  0]'; */
-  emlrtPushRtStackR2012b(&hb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&gb_emlrtRSI, emlrtRootTLSGlobal);
   b_obj = &hPN;
   if (!b_obj->S0_isInitialized) {
     b_obj->S0_isInitialized = TRUE;
@@ -1527,7 +1550,7 @@ void generateOFDMSignal_TX2(testPHYTransmitStackData *SD, OFDMDemodulator
     }
   }
 
-  emlrtPushRtStackR2012b(&hc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
 
   /* System object Outputs function: comm.PNSequence */
   for (ib = 0; ib < 12; ib++) {
@@ -1552,8 +1575,8 @@ void generateOFDMSignal_TX2(testPHYTransmitStackData *SD, OFDMDemodulator
     b_obj->W0_shiftReg[0U] = tmp;
   }
 
-  emlrtPopRtStackR2012b(&hc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&hb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&gc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&gb_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  Create pilot */
   ib = 0;
@@ -1578,37 +1601,37 @@ void generateOFDMSignal_TX2(testPHYTransmitStackData *SD, OFDMDemodulator
 
   /*  Invert last pilot */
   /*  Construct Modulator */
-  emlrtPushRtStackR2012b(&ib_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&hb_emlrtRSI, emlrtRootTLSGlobal);
   object = &hDataMod;
-  emlrtPushRtStackR2012b(&p_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&j_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&k_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&l_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   object->isInitialized = FALSE;
   object->isReleased = FALSE;
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&l_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&k_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&p_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&q_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&j_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&p_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
 
   /* OFDMBase Base object for OFDMModulator and OFDMDemodulator System objects */
   /*  Copyright 2013 The MathWorks, Inc. */
@@ -1648,8 +1671,8 @@ void generateOFDMSignal_TX2(testPHYTransmitStackData *SD, OFDMDemodulator
   /*          {'real','integer','positive','finite','3d'}, ... */
   /*          [class(obj) '.' propName], propName);   */
   /*  Check the 3rd dimension for numTx */
+  emlrtPushRtStackR2012b(&ic_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&jc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&kc_emlrtRSI, emlrtRootTLSGlobal);
   for (k = 0; k < 4; k++) {
     b_data[k] = (int8_T)(12 + 14 * k);
   }
@@ -1674,13 +1697,13 @@ void generateOFDMSignal_TX2(testPHYTransmitStackData *SD, OFDMDemodulator
 
     i++;
     b_data[i - 1] = (int8_T)ib;
-    emlrtPushRtStackR2012b(&oc_emlrtRSI, emlrtRootTLSGlobal);
-    emlrtPopRtStackR2012b(&oc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&nc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&nc_emlrtRSI, emlrtRootTLSGlobal);
   }
 
-  emlrtPushRtStackR2012b(&mc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&mc_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&lc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&lc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&kc_emlrtRSI, emlrtRootTLSGlobal);
   if (1 > i) {
     b0 = FALSE;
   } else {
@@ -1688,13 +1711,13 @@ void generateOFDMSignal_TX2(testPHYTransmitStackData *SD, OFDMDemodulator
   }
 
   if (b0) {
-    emlrtPushRtStackR2012b(&bc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&ac_emlrtRSI, emlrtRootTLSGlobal);
     check_forloop_overflow_error();
-    emlrtPopRtStackR2012b(&bc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&ac_emlrtRSI, emlrtRootTLSGlobal);
   }
 
-  emlrtPopRtStackR2012b(&lc_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&kc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&jc_emlrtRSI, emlrtRootTLSGlobal);
   if (1 > i) {
     i1 = 0;
   } else {
@@ -1703,7 +1726,7 @@ void generateOFDMSignal_TX2(testPHYTransmitStackData *SD, OFDMDemodulator
 
   if (!(4 != i1)) {
   } else {
-    emlrtPushRtStackR2012b(&qc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&pc_emlrtRSI, emlrtRootTLSGlobal);
     i_y = NULL;
     m0 = mxCreateCharArray(2, iv8);
     for (i = 0; i < 13; i++) {
@@ -1713,40 +1736,40 @@ void generateOFDMSignal_TX2(testPHYTransmitStackData *SD, OFDMDemodulator
     emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 13, m0, cv5);
     emlrtAssign(&i_y, m0);
     b_error(b_message(i_y, &h_emlrtMCI), &h_emlrtMCI);
-    emlrtPopRtStackR2012b(&qc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&pc_emlrtRSI, emlrtRootTLSGlobal);
   }
 
-  emlrtPopRtStackR2012b(&jc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&ic_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  Error message:  */
   /*  If pilot index is 2-D, the indices per symbol must be unique; */
   /*  If pilot index is 3-D, the indices across transmit antennas per symbol must be unique. */
-  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&t_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&q_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&ib_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&s_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&p_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&hb_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  Modulate */
-  emlrtPushRtStackR2012b(&jb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&ib_emlrtRSI, emlrtRootTLSGlobal);
   d_SystemCore_step(&hDataMod, ofdmData, b_pilots, d_r);
-  emlrtPopRtStackR2012b(&jb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&ib_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  Add preambles to data */
   memcpy(&preambles[0], &completeShortPreambleOFDM[0], 160U * sizeof(creal_T));
   memcpy(&preambles[160], &completeLongPreambleOFDM[0], 160U * sizeof(creal_T));
-  memcpy(&SD->u1.f1.r[0], &preambles[0], 320U * sizeof(creal_T));
-  memcpy(&SD->u1.f1.r[320], &d_r[0], 960U * sizeof(creal_T));
+  memcpy(&SD->u1.f2.r[0], &preambles[0], 320U * sizeof(creal_T));
+  memcpy(&SD->u1.f2.r[320], &d_r[0], 960U * sizeof(creal_T));
 
   /*  Repeat frame (Used in debugging) */
   ib = 0;
   for (i = 0; i < 30; i++) {
     ia = 0;
     for (k = 0; k < 1280; k++) {
-      r[ib] = SD->u1.f1.r[ia];
+      r[ib] = SD->u1.f2.r[ia];
       ia++;
       ib++;
     }
@@ -1755,23 +1778,25 @@ void generateOFDMSignal_TX2(testPHYTransmitStackData *SD, OFDMDemodulator
   /*  Save Demodulator object data for receiver */
   /* hDataDemod = get(OFDMDemodulator(hDataMod)); */
   /* hPreambleDemod = get(OFDMDemodulator(hPreambleMod)); */
-  emlrtPushRtStackR2012b(&kb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&jb_emlrtRSI, emlrtRootTLSGlobal);
   b_object = iobj_0;
   *hDataDemod = b_object;
-  emlrtPushRtStackR2012b(&bd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&ad_emlrtRSI, emlrtRootTLSGlobal);
   b_object = *hDataDemod;
+  emlrtPushRtStackR2012b(&j_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&k_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&l_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   b_object->isInitialized = FALSE;
   b_object->isReleased = FALSE;
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&l_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&k_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&j_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&ad_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&bd_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&bd_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&cd_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&cd_emlrtRSI, emlrtRootTLSGlobal);
@@ -1784,9 +1809,7 @@ void generateOFDMSignal_TX2(testPHYTransmitStackData *SD, OFDMDemodulator
   emlrtPushRtStackR2012b(&gd_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&gd_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&hd_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&hd_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&id_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
 
   /* OFDMBase Base object for OFDMModulator and OFDMDemodulator System objects */
   /*  Copyright 2013 The MathWorks, Inc. */
@@ -1826,8 +1849,8 @@ void generateOFDMSignal_TX2(testPHYTransmitStackData *SD, OFDMDemodulator
   /*          {'real','integer','positive','finite','3d'}, ... */
   /*          [class(obj) '.' propName], propName);   */
   /*  Check the 3rd dimension for numTx */
+  emlrtPushRtStackR2012b(&ic_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&jc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&kc_emlrtRSI, emlrtRootTLSGlobal);
   for (k = 0; k < 4; k++) {
     b_data[k] = (int8_T)(12 + 14 * k);
   }
@@ -1852,13 +1875,13 @@ void generateOFDMSignal_TX2(testPHYTransmitStackData *SD, OFDMDemodulator
 
     i++;
     b_data[i - 1] = (int8_T)ib;
-    emlrtPushRtStackR2012b(&oc_emlrtRSI, emlrtRootTLSGlobal);
-    emlrtPopRtStackR2012b(&oc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&nc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&nc_emlrtRSI, emlrtRootTLSGlobal);
   }
 
-  emlrtPushRtStackR2012b(&mc_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&mc_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&lc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&lc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&kc_emlrtRSI, emlrtRootTLSGlobal);
   if (1 > i) {
     b1 = FALSE;
   } else {
@@ -1866,13 +1889,13 @@ void generateOFDMSignal_TX2(testPHYTransmitStackData *SD, OFDMDemodulator
   }
 
   if (b1) {
-    emlrtPushRtStackR2012b(&bc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&ac_emlrtRSI, emlrtRootTLSGlobal);
     check_forloop_overflow_error();
-    emlrtPopRtStackR2012b(&bc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&ac_emlrtRSI, emlrtRootTLSGlobal);
   }
 
-  emlrtPopRtStackR2012b(&lc_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&kc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&jc_emlrtRSI, emlrtRootTLSGlobal);
   if (1 > i) {
     i2 = 0;
   } else {
@@ -1881,7 +1904,7 @@ void generateOFDMSignal_TX2(testPHYTransmitStackData *SD, OFDMDemodulator
 
   if (!(4 != i2)) {
   } else {
-    emlrtPushRtStackR2012b(&qc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&pc_emlrtRSI, emlrtRootTLSGlobal);
     j_y = NULL;
     m0 = mxCreateCharArray(2, iv9);
     for (i = 0; i < 13; i++) {
@@ -1891,34 +1914,36 @@ void generateOFDMSignal_TX2(testPHYTransmitStackData *SD, OFDMDemodulator
     emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 13, m0, cv5);
     emlrtAssign(&j_y, m0);
     b_error(b_message(j_y, &h_emlrtMCI), &h_emlrtMCI);
-    emlrtPopRtStackR2012b(&qc_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPopRtStackR2012b(&pc_emlrtRSI, emlrtRootTLSGlobal);
   }
 
-  emlrtPopRtStackR2012b(&jc_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&ic_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  Error message:  */
   /*  If pilot index is 2-D, the indices per symbol must be unique; */
   /*  If pilot index is 3-D, the indices across transmit antennas per symbol must be unique. */
-  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&id_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&kb_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&lb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&hd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&jb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&kb_emlrtRSI, emlrtRootTLSGlobal);
   c_object = iobj_1;
   *hPreambleDemod = c_object;
-  emlrtPushRtStackR2012b(&bd_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&ad_emlrtRSI, emlrtRootTLSGlobal);
   c_object = *hPreambleDemod;
+  emlrtPushRtStackR2012b(&j_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&k_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&l_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   c_object->isInitialized = FALSE;
   c_object->isReleased = FALSE;
+  emlrtPushRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&o_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&n_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&m_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&l_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&k_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&j_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&ad_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&bd_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&bd_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&cd_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&cd_emlrtRSI, emlrtRootTLSGlobal);
@@ -1930,9 +1955,7 @@ void generateOFDMSignal_TX2(testPHYTransmitStackData *SD, OFDMDemodulator
   emlrtPopRtStackR2012b(&fd_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPushRtStackR2012b(&gd_emlrtRSI, emlrtRootTLSGlobal);
   emlrtPopRtStackR2012b(&gd_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPushRtStackR2012b(&hd_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&hd_emlrtRSI, emlrtRootTLSGlobal);
-  emlrtPopRtStackR2012b(&lb_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&kb_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  Calcuate OFDM frequency bin size */
   /*  Calculate locations of pilots without guardbands */

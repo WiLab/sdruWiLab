@@ -1,0 +1,92 @@
+#include "libMEXtestPHY.h"
+#include <iostream>
+#include <thread>
+#include <unistd.h>
+
+void Thread_TX(char *message)
+{
+    
+    
+    // Must declare all MATLAB data types after initializing the
+    // application and the library, or their constructors will fail.
+    mwArray result;
+    mwArray decimation;
+    decimation = mwArray( 20 );
+    char *c;
+    
+    int k;
+    for (k=0;k<100000;k++){
+        // Initialization succeeded. Encrypt or decrypt.
+        MEXtestPHYReceive_per(1,result,decimation);
+        c = strdup( mwString( result.ToString() ) );
+    }
+    
+    
+    //mxfree(objSDRuReceiver);
+}
+
+
+
+void Process_RX(char *message)
+{
+
+	// Must declare all MATLAB data types after initializing the 
+	// application and the library, or their constructors will fail.
+	mwArray result;
+	mwArray decimation;
+	decimation = mwArray( 20 );
+	char *c;
+
+	int k;
+	for (k=0;k<100000;k++){
+		// Initialization succeeded. Encrypt or decrypt.
+		MEXtestPHYTransmit_per(1,result,decimation);
+		c = strdup( mwString( result.ToString() ) );
+        	write(fd[1], c, 11);
+	}
+
+}
+
+
+int main(){
+    
+    // Initialize the MATLAB Compiler Runtime global state
+    if (!mclInitializeApplication(NULL,0))
+    {
+        std::cerr << "Could not initialize the application properly."
+                << std::endl;
+        //return -1;
+    }
+    
+    // Initialize the Vigenere library
+    if( !libMEXtestPHYReceiveInitialize() )
+    {
+        std::cerr << "Could not initialize the library properly."
+                << std::endl;
+        //return -1;
+    }
+    
+    
+//Spawn Thread
+    char *message;
+    std::thread thread1( Thread_TX, message );
+    //std::thread thread2( TX_thread, message );
+    
+    std::cout << "Print from Main Loop" << std::endl;
+    
+//Wait for thread to finish
+    thread1.join();
+    thread2.join();
+    
+//std::cout << "###########" << std::endl;
+//std::cout << message << std::endl;
+//std::cout << "###########" << std::endl;
+    
+// Shut down the library and the application global state.
+    libMEXtestPHYReceiveTerminate();
+    mclTerminateApplication();
+    
+}
+
+
+

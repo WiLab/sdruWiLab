@@ -3,7 +3,7 @@
  *
  * Code generation for function 'testPHYTransmit_data'
  *
- * C source code generated on: Fri Apr 18 16:24:31 2014
+ * C source code generated on: Thu Apr 24 14:26:14 2014
  *
  */
 
@@ -29,6 +29,7 @@ extern struct_T estimate;
 extern b_struct_T tx;
 extern emxArray_real_T_3x563 messageBits;
 extern boolean_T isSetupsdruCalled;
+extern emlrtRSInfo h_emlrtRSI;
 extern emlrtRSInfo i_emlrtRSI;
 extern emlrtRSInfo j_emlrtRSI;
 extern emlrtRSInfo k_emlrtRSI;
@@ -41,14 +42,14 @@ extern emlrtRSInfo q_emlrtRSI;
 extern emlrtRSInfo r_emlrtRSI;
 extern emlrtRSInfo s_emlrtRSI;
 extern emlrtRSInfo t_emlrtRSI;
-extern emlrtRSInfo u_emlrtRSI;
+extern emlrtRSInfo lb_emlrtRSI;
 extern emlrtRSInfo mb_emlrtRSI;
 extern emlrtRSInfo nb_emlrtRSI;
 extern emlrtRSInfo ob_emlrtRSI;
-extern emlrtRSInfo pb_emlrtRSI;
-extern emlrtRSInfo sb_emlrtRSI;
-extern emlrtRSInfo wb_emlrtRSI;
-extern emlrtRSInfo bc_emlrtRSI;
+extern emlrtRSInfo rb_emlrtRSI;
+extern emlrtRSInfo vb_emlrtRSI;
+extern emlrtRSInfo ac_emlrtRSI;
+extern emlrtRSInfo cc_emlrtRSI;
 extern emlrtRSInfo dc_emlrtRSI;
 extern emlrtRSInfo ec_emlrtRSI;
 extern emlrtRSInfo fc_emlrtRSI;
@@ -62,7 +63,7 @@ extern emlrtRSInfo mc_emlrtRSI;
 extern emlrtRSInfo nc_emlrtRSI;
 extern emlrtRSInfo oc_emlrtRSI;
 extern emlrtRSInfo pc_emlrtRSI;
-extern emlrtRSInfo qc_emlrtRSI;
+extern emlrtRSInfo ad_emlrtRSI;
 extern emlrtRSInfo bd_emlrtRSI;
 extern emlrtRSInfo cd_emlrtRSI;
 extern emlrtRSInfo dd_emlrtRSI;
@@ -70,28 +71,26 @@ extern emlrtRSInfo ed_emlrtRSI;
 extern emlrtRSInfo fd_emlrtRSI;
 extern emlrtRSInfo gd_emlrtRSI;
 extern emlrtRSInfo hd_emlrtRSI;
-extern emlrtRSInfo id_emlrtRSI;
-extern emlrtRSInfo kd_emlrtRSI;
+extern emlrtRSInfo jd_emlrtRSI;
+extern emlrtRSInfo sd_emlrtRSI;
 extern emlrtRSInfo td_emlrtRSI;
-extern emlrtRSInfo ud_emlrtRSI;
+extern emlrtRSInfo vd_emlrtRSI;
 extern emlrtRSInfo wd_emlrtRSI;
-extern emlrtRSInfo xd_emlrtRSI;
-extern emlrtRSInfo te_emlrtRSI;
-extern emlrtRSInfo df_emlrtRSI;
+extern emlrtRSInfo ye_emlrtRSI;
+extern emlrtRSInfo af_emlrtRSI;
+extern emlrtRSInfo cf_emlrtRSI;
 extern emlrtRSInfo ef_emlrtRSI;
 extern emlrtRSInfo gf_emlrtRSI;
 extern emlrtRSInfo if_emlrtRSI;
+extern emlrtRSInfo jf_emlrtRSI;
 extern emlrtRSInfo kf_emlrtRSI;
+extern emlrtRSInfo lf_emlrtRSI;
 extern emlrtRSInfo mf_emlrtRSI;
 extern emlrtRSInfo nf_emlrtRSI;
-extern emlrtRSInfo of_emlrtRSI;
 extern emlrtRSInfo pf_emlrtRSI;
 extern emlrtRSInfo qf_emlrtRSI;
 extern emlrtRSInfo rf_emlrtRSI;
-extern emlrtRSInfo tf_emlrtRSI;
-extern emlrtRSInfo uf_emlrtRSI;
-extern emlrtRSInfo vf_emlrtRSI;
-extern emlrtRSInfo wf_emlrtRSI;
+extern emlrtRSInfo sf_emlrtRSI;
 extern emlrtMCInfo emlrtMCI;
 extern emlrtMCInfo b_emlrtMCI;
 extern emlrtMCInfo d_emlrtMCI;
@@ -103,10 +102,10 @@ extern emlrtMCInfo k_emlrtMCI;
 extern emlrtMCInfo l_emlrtMCI;
 extern emlrtMCInfo m_emlrtMCI;
 extern emlrtMCInfo n_emlrtMCI;
+extern emlrtMCInfo o_emlrtMCI;
 extern emlrtMCInfo p_emlrtMCI;
 extern emlrtMCInfo q_emlrtMCI;
 extern emlrtMCInfo r_emlrtMCI;
-extern emlrtMCInfo s_emlrtMCI;
 extern emlrtRTEInfo emlrtRTEI;
 extern emlrtRTEInfo b_emlrtRTEI;
 extern emlrtRTEInfo c_emlrtRTEI;

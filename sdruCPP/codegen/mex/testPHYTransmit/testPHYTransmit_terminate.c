@@ -3,7 +3,7 @@
  *
  * Code generation for function 'testPHYTransmit_terminate'
  *
- * C source code generated on: Fri Apr 18 16:24:31 2014
+ * C source code generated on: Thu Apr 24 14:26:14 2014
  *
  */
 
@@ -11,7 +11,6 @@
 #include "rt_nonfinite.h"
 #include "testPHYTransmit.h"
 #include "testPHYTransmit_terminate.h"
-#include <stdio.h>
 
 /* Function Definitions */
 void testPHYTransmit_atexit(void)

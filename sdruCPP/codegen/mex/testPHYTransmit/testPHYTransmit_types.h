@@ -3,7 +3,7 @@
  *
  * Code generation for function 'testPHYTransmit'
  *
- * C source code generated on: Fri Apr 18 16:24:31 2014
+ * C source code generated on: Thu Apr 24 14:26:14 2014
  *
  */
 
@@ -587,7 +587,7 @@ typedef struct
     {
         struct
         {
-            creal_T r[1280];
+            creal_T data[38400];
         } f0;
         struct
         {
@@ -595,22 +595,22 @@ typedef struct
         } f1;
         struct
         {
-            creal_T data[38400];
+            creal_T r[1280];
         } f2;
     } u1;
     union
     {
         struct
         {
+            creal_T dataToTx[38400];
+            c_struct_T unusedU2;
+        } f3;
+        struct
+        {
             creal_T unusedU2[38400];
             creal_T unusedU3[25600];
             c_struct_T rx;
             c_struct_T b_rx;
-        } f3;
-        struct
-        {
-            creal_T dataToTx[38400];
-            c_struct_T unusedU2;
         } f4;
     } u2;
     struct

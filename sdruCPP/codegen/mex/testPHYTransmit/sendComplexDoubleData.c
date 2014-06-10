@@ -3,7 +3,7 @@
  *
  * Code generation for function 'sendComplexDoubleData'
  *
- * C source code generated on: Fri Apr 18 16:24:32 2014
+ * C source code generated on: Thu Apr 24 14:26:15 2014
  *
  */
 
@@ -11,15 +11,15 @@
 #include "rt_nonfinite.h"
 #include "testPHYTransmit.h"
 #include "sendComplexDoubleData.h"
+#include "generateOFDMSignal_TX2.h"
 #include "testPHYTransmit_mexutil.h"
 #include "testPHYTransmit_data.h"
-#include <stdio.h>
 
 /* Variable Definitions */
-static emlrtRSInfo sf_emlrtRSI = { 231, "mapiPrivate",
+static emlrtRSInfo of_emlrtRSI = { 231, "mapiPrivate",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/mapiPrivate.m" };
 
-static emlrtRSInfo xf_emlrtRSI = { 9, "sendComplexDoubleData",
+static emlrtRSInfo tf_emlrtRSI = { 9, "sendComplexDoubleData",
   "/home/sdruser/git/traviscollins/sdruWiLab/sdru/usrp_uhd_mapi/sendComplexDoubleData.m"
 };
 
@@ -30,12 +30,12 @@ void sendComplexDoubleData(testPHYTransmitStackData *SD, int32_T driverApiH,
   [1024], int32_T errStr_size[2])
 {
   const mxArray *y;
-  static const int32_T iv118[2] = { 1, 6 };
+  static const int32_T iv116[2] = { 1, 6 };
 
-  const mxArray *m23;
-  char_T cv127[6];
+  const mxArray *m22;
+  char_T cv123[6];
   int32_T i;
-  static const char_T cv128[6] = { 's', 'i', 'l', 'e', 'n', 't' };
+  static const char_T cv124[6] = { 's', 'i', 'l', 'e', 'n', 't' };
 
   const mxArray *b_y;
   int32_T loop_ub;
@@ -46,7 +46,7 @@ void sendComplexDoubleData(testPHYTransmitStackData *SD, int32_T driverApiH,
   /*  bug: must pass as top-level arg */
   /*  dportDtype = DataPortDataTypeCapiEnumT.DPortDTypeCDouble; */
   /*    Copyright 2011-2012 The MathWorks, Inc. */
-  emlrtPushRtStackR2012b(&xf_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&tf_emlrtRSI, emlrtRootTLSGlobal);
 
   /*  */
   /*  This function unifies handling of interp vs. codegen call as well as */
@@ -55,14 +55,14 @@ void sendComplexDoubleData(testPHYTransmitStackData *SD, int32_T driverApiH,
   /*    Copyright 2011-2012 The MathWorks, Inc. */
   if (!isSetupsdruCalled) {
     y = NULL;
-    m23 = mxCreateCharArray(2, iv118);
+    m22 = mxCreateCharArray(2, iv116);
     for (i = 0; i < 6; i++) {
-      cv127[i] = cv128[i];
+      cv123[i] = cv124[i];
     }
 
-    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 6, m23, cv127);
-    emlrtAssign(&y, m23);
-    setupsdru(sdruroot(&q_emlrtMCI), y, &r_emlrtMCI);
+    emlrtInitCharArrayR2013a(emlrtRootTLSGlobal, 6, m22, cv123);
+    emlrtAssign(&y, m22);
+    setupsdru(sdruroot(&p_emlrtMCI), y, &q_emlrtMCI);
     isSetupsdruCalled = TRUE;
   }
 
@@ -76,24 +76,24 @@ void sendComplexDoubleData(testPHYTransmitStackData *SD, int32_T driverApiH,
     errStr_data[i] = '\x00';
   }
 
-  emlrtPushRtStackR2012b(&sf_emlrtRSI, emlrtRootTLSGlobal);
-  memcpy(&SD->u1.f2.data[0], &data[0], 38400U * sizeof(creal_T));
-  sendData_c(driverApiH, SD->u1.f2.data, freq, loOffset, gain, interp, underflow,
+  emlrtPushRtStackR2012b(&of_emlrtRSI, emlrtRootTLSGlobal);
+  memcpy(&SD->u1.f0.data[0], &data[0], 38400U * sizeof(creal_T));
+  sendData_c(driverApiH, SD->u1.f0.data, freq, loOffset, gain, interp, underflow,
              errStat, &errStr_data[0]);
-  emlrtPopRtStackR2012b(&sf_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&of_emlrtRSI, emlrtRootTLSGlobal);
 
   /* errStat = UsrpErrorCapiEnumT(errStat_i); */
-  emlrtPushRtStackR2012b(&df_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPushRtStackR2012b(&ye_emlrtRSI, emlrtRootTLSGlobal);
   i = strlen(&errStr_data[0]);
-  emlrtPopRtStackR2012b(&df_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&ye_emlrtRSI, emlrtRootTLSGlobal);
   if (i <= 1024) {
   } else {
-    emlrtPushRtStackR2012b(&ef_emlrtRSI, emlrtRootTLSGlobal);
+    emlrtPushRtStackR2012b(&af_emlrtRSI, emlrtRootTLSGlobal);
     b_y = NULL;
-    m23 = mxCreateString("Assertion failed.");
-    emlrtAssign(&b_y, m23);
-    b_error(b_y, &p_emlrtMCI);
-    emlrtPopRtStackR2012b(&ef_emlrtRSI, emlrtRootTLSGlobal);
+    m22 = mxCreateString("Assertion failed.");
+    emlrtAssign(&b_y, m22);
+    b_error(b_y, &o_emlrtMCI);
+    emlrtPopRtStackR2012b(&af_emlrtRSI, emlrtRootTLSGlobal);
   }
 
   if (1 > i) {
@@ -121,7 +121,7 @@ void sendComplexDoubleData(testPHYTransmitStackData *SD, int32_T driverApiH,
     errStr_data[i] = b_errStr_data[i];
   }
 
-  emlrtPopRtStackR2012b(&xf_emlrtRSI, emlrtRootTLSGlobal);
+  emlrtPopRtStackR2012b(&tf_emlrtRSI, emlrtRootTLSGlobal);
 }
 
 /* End of code generation (sendComplexDoubleData.c) */

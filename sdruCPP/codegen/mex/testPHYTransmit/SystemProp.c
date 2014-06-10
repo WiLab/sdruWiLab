@@ -3,7 +3,7 @@
  *
  * Code generation for function 'SystemProp'
  *
- * C source code generated on: Fri Apr 18 16:24:31 2014
+ * C source code generated on: Thu Apr 24 14:26:15 2014
  *
  */
 
@@ -12,7 +12,6 @@
 #include "testPHYTransmit.h"
 #include "SystemProp.h"
 #include "testPHYTransmit_emxutil.h"
-#include <stdio.h>
 
 /* Variable Definitions */
 static emlrtRTEInfo o_emlrtRTEI = { 1, 13, "SystemProp",

@@ -1,25 +1,20 @@
 function [ObjAGC,ObjSDRuReceiver, ObjDetect, ObjPreambleDemod, ObjDataDemod,...
           estimate, tx, timeoutDuration, messageBits, desiredSamplingFrequency] = CreateTXRX
 
+
 % System parameters to adjust because of hardware limitation
 numFrames = 3; % Frames to capture
-desiredSamplingFrequency =  1e6;
+desiredSamplingFrequency =  10e6;
 USRPADCSamplingRate = 100e6;
 InterpolationFactor = USRPADCSamplingRate/desiredSamplingFrequency;
-CenterFrequency = 2.24e9;
+CenterFrequency = 2.24e9;%+10e6;
 
-[ ~, ~, ~, tx ] = generateOFDMSignal_TX2( 'UnimportantMessage', desiredSamplingFrequency, 1, 1);%just need for sizing
+message = 'NotImportant';
+
+[ ~, ~, ~, tx ] = generateOFDMSignal_TX2( message, desiredSamplingFrequency, 1, 1);%just need for sizing
 tx.samplingFreq = desiredSamplingFrequency;% Set desired frequeny
 tx.CenterFrequency = CenterFrequency;
 tx.freqBin = tx.samplingFreq/tx.FFTLength;% Set frequency bin width
-
-
-% Setup transmitter
-%ObjSDRuTransmitter = comm.SDRuTransmitter('192.168.10.2', ...
-%    'CenterFrequency',      CenterFrequency, ...
-%    'InterpolationFactor',  InterpolationFactor,...
-%    'Gain',                 25);
-
 
 % Setup Parameters
 [ ObjPreambleDemod, ObjDataDemod, ~, rx ] = generateOFDMSignal(desiredSamplingFrequency);
@@ -27,9 +22,13 @@ tx.freqBin = tx.samplingFreq/tx.FFTLength;% Set frequency bin width
 rx.receiveBufferLength = 5120;%ceil( rx.frameLength*4 ); %Size of Buffer of sliding window
 receiveBufferLength = 5120;
 
-rx.DecimationFactor = USRPADCSamplingRate/rx.samplingFreq;
+%rx.DecimationFactor = USRPADCSamplingRate/rx.samplingFreq;
+rx.DecimationFactor = 14;
+
 
 offsetCompensationValue = 0;
+%offsetCompensationValue =71289.062500;
+%offsetCompensationValue = 75195.312500;
 
 % Sync Algorithms
 numFreqToAverage = 15; %Number of frequency estimates to be averaged together for frequency corrections (Higher==More stability, Lower==More responsiveness)

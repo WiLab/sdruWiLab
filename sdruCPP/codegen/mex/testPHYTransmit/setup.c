@@ -3,7 +3,7 @@
  *
  * Code generation for function 'setup'
  *
- * C source code generated on: Fri Apr 18 16:24:32 2014
+ * C source code generated on: Thu Apr 24 14:26:15 2014
  *
  */
 
@@ -11,7 +11,6 @@
 #include "rt_nonfinite.h"
 #include "testPHYTransmit.h"
 #include "setup.h"
-#include <stdio.h>
 
 /* Function Definitions */
 void Outputs(const comm_BPSKModulator_1 *obj, const real_T U0_data[563], const

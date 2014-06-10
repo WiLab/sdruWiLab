@@ -4,10 +4,17 @@ coder.extrinsic('str2double');
 N=length(str);
 f=zeros(N,7);                          
 
-bits = dec2bin(str);
+% bits = dec2bin(str);
+% for k=1:N
+%     letter = bits(k,:);
+%     for i = 1:7
+%         f(k,i)=str2double(letter(i));
+%     end
+% end
+
+
 for k=1:N
-    letter = bits(k,:);
-    for i = 1:7
-        f(k,i)=str2double(letter(i));
-    end
+    f(k,:) = de2bi(double(str(k)),'left-msb');
+end
+
 end

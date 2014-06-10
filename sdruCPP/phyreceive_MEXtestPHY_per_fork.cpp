@@ -38,7 +38,8 @@ void Process_TX(int *fd)
 		// Initialization succeeded. Encrypt or decrypt.
 		MEXtestPHYTransmit(1,result);
 		//c = strdup( mwString( result.ToString() ) );
-        	write(fd[1], "HelloFromTX", 11);
+        //	write(fd[1], "HelloFromTX", 11);
+        std::cout << "Transmitter Looped" << std::endl;
 	}
 
 	// Shut down the library and the application global state.
@@ -77,8 +78,9 @@ void Process_RX(int *fd)
 	for (k=0;k<100000;k++){
 		// Initialization succeeded. Encrypt or decrypt.
 		MEXtestPHYReceive_per(1,result,decimation);
-		c = strdup( mwString( result.ToString() ) );
-        	write(fd[1], c, 11);
+		//c = strdup( mwString( result.ToString() ) );
+        //	write(fd[1], c, 11);
+        std::cout << "Receiver Looped" << std::endl;
 	}
 
 	// Shut down the library and the application global state.

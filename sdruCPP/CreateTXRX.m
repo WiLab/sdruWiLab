@@ -3,7 +3,7 @@ function [ObjAGC,ObjSDRuReceiver, ObjDetect, ObjPreambleDemod, ObjDataDemod,...
 
 % System parameters to adjust because of hardware limitation
 numFrames = 3; % Frames to capture
-desiredSamplingFrequency =  1e6;
+desiredSamplingFrequency =  5e6;
 USRPADCSamplingRate = 100e6;
 InterpolationFactor = USRPADCSamplingRate/desiredSamplingFrequency;
 CenterFrequency = 2.24e9;
@@ -29,7 +29,8 @@ receiveBufferLength = 5120;
 
 rx.DecimationFactor = USRPADCSamplingRate/rx.samplingFreq;
 
-offsetCompensationValue = 0;
+%offsetCompensationValue = 0;
+offsetCompensationValue =71289.062500;
 
 % Sync Algorithms
 numFreqToAverage = 15; %Number of frequency estimates to be averaged together for frequency corrections (Higher==More stability, Lower==More responsiveness)

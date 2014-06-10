@@ -36,8 +36,8 @@ originNodeID = 2;
 % Adjust offset for node
 %ObjSDRuTransmitter.CenterFrequency = tx.CenterFrequency + offset;
 
-while 1
-fprintf('Transmitting\n');
+for k=1:1e5
+%fprintf('Transmitting\n');
 PHYTransmit(...
     ObjSDRuTransmitter,...
     inputPayloadMessage,...

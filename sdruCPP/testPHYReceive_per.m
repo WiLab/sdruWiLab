@@ -32,7 +32,7 @@ ObjSDRuReceiver.DecimationFactor = double(decimation);
 
 %fprintf('Starting Receiver Loop\n');
 
-while true
+for k=1:1e5
 [recoveredMessage] = PHYReceive(...
                 ObjAGC,...           %Objects
                 ObjSDRuReceiver,...
@@ -48,7 +48,7 @@ while true
             
             if ~strcmp(recoveredMessage,'CRC Error') && ~strcmp(recoveredMessage,'Timeout') 
                 fprintf('Got Message: %s\n',recoveredMessage);
-		break;
+                break;
             end
 end
 

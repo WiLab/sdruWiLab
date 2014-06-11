@@ -21,6 +21,7 @@ decimation = 20;
 codegenCommand = 'codegen -config:dll';
 argsCommand='-args {decimation}';
 functionsToThreadStr = sprintf('%s.m ' ,functionsToThread{:});
+
 outputCommand = ['-o ',libraryName];
 
 % Build Codegen Command

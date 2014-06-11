@@ -7,13 +7,13 @@ LD_LIBRARY_PATH = '/usr/local/MATLAB/R2013b/runtime/glnxa64/';
 additionalFiles = {'tmwtypes.h'};
 
 
-%!export LD_LIBRARY_PATH=/opt/MATLAB/R2013a/runtime/glnxa64/
-%!export LD_LIBRARY_PATH=/usr/local/MATLAB/R2013b/runtime/glnxa64/
+%MATLAB 2013a LD_LIBRARY_PATH=/opt/MATLAB/R2013a/runtime/glnxa64/
+%MATLAB 2013b LD_LIBRARY_PATH=/usr/local/MATLAB/R2013b/runtime/glnxa64/
 
 %%%%%% DO NOT EDIT BELOW %%%%%%%
 
 % Add library to LD_LIBRARY_PATH
-command = ['!export LD_LIBRARY_PATH=',LD_LIBRARY_PATH];
+command = ['export LD_LIBRARY_PATH=',LD_LIBRARY_PATH];
 system(command);
 
 decimation = 20;
@@ -40,9 +40,11 @@ for file = 1:length(functionsToThread)
 	command = ['cp codegen/dll/',libraryName,'/',filename,' ',compileFolder];
 	system(command);
 end
+command = ['cp codegen/dll/',libraryName,'/',libraryName,'.so ',compileFolder];
+system(command);
 
 % Copy Library To Runtime folder
-command = ['sudo cp ',libraryName,'.so',' ',LD_LIBRARY_PATH];
+command = ['sudo cp codegen/dll/',libraryName,'/',libraryName,'.so',' ',LD_LIBRARY_PATH];
 system(command);
 
 % Copy additional files to build folder
@@ -52,7 +54,7 @@ for file =1:length(additionalFiles)
 end
 
 % Copy CPP to build folder
-command = ['cp ',cppFilename,' ',compileFolder];
+command = ['cp ',cppFilename,'.cpp ',compileFolder];
 system(command);
 
 % Copy USRP required files
@@ -67,7 +69,7 @@ command = ['mbuild ',cppFilename,'.cpp ',libraryName,'.so'];
 eval(command);
 
 % Run script
-command = ['!./',cppFilename];
+command = ['./',cppFilename];
 system(command);
 
 

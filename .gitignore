@@ -1,4 +1,3 @@
-mccExcludedFiles.log
 codegen
 *.m~
 *.cpp~

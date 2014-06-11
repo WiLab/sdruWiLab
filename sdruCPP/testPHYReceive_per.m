@@ -33,10 +33,7 @@ end
 
 
 for k=1:1e5
-<<<<<<< HEAD
-=======
 %fprintf('Starting Receiver Loop\n');
->>>>>>> phyObj
 [recoveredMessage] = PHYReceive(...
                 ObjAGC,...           %Objects
                 ObjSDRuReceiver,...

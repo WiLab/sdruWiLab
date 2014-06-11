@@ -4,22 +4,8 @@ function f = OFDMletters2bits(str)
 N=length(str);
 f=zeros(N,7);                          
 
-% bits = dec2bin(str);
-% for k=1:N
-%     letter = bits(k,:);
-%     %f(k,:) = reshape(sscanf(sprintf('%s#', letter{:}), '%g#'), size(letter));
-%     for i = 1:7
-%         f(k,i)=str2double(letter(i));
-%     end
-% end
-
+bits = dec2bin(str);
 for k=1:N
-<<<<<<< HEAD
-    f(k,:) = de2bi(double(str(k)),'left-msb');
-end
-
-end
-=======
     letter = bits(k,:);
     for i = 1:7
         %f(k,i)=str2double(letter(i));
@@ -30,4 +16,3 @@ end
 % Create a NUL terminated C string given a MATLAB string
 function y = c_string(s)
 y = [s 0];
->>>>>>> phyObj

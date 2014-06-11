@@ -2,7 +2,7 @@
 libraryName = 'testTXRX';
 functionsToThread = {'testPHYReceive_per';'testPHYReceive_per'};
 cppFilename = 'phyreceive_threads_per2';
-compileFolder = '';
+compileFolder = 'BUILD';
 LD_LIBRARY_PATH = '/usr/local/MATLAB/R2013b/runtime/glnxa64/';
 additionalFiles = {'tmwtypes.h'};
 
@@ -12,6 +12,9 @@ additionalFiles = {'tmwtypes.h'};
 
 %%%%%% DO NOT EDIT BELOW %%%%%%%
 
+% Add library to LD_LIBRARY_PATH
+command = ['!export LD_LIBRARY_PATH=',LD_LIBRARY_PATH];
+system(command);
 
 decimation = 20;
 

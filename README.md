@@ -19,7 +19,7 @@ Modules
 
 __Day To Day To do:__
 
-![Link](https://gist.github.com/travisfcollins/ced40883fdac86870063#file-daytodaytodo-md)
+[Link](https://gist.github.com/travisfcollins/ced40883fdac86870063#file-daytodaytodo-md)
 
 __Hardware:__
 

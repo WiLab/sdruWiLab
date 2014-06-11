@@ -1,6 +1,6 @@
 
 libraryName = 'testTXRX';
-functionsToThread = {'testPHYReceive_per';'testPHYReceive_per'};
+functionsToThread = {'testPHYReceive_per';'testPHYTransmit'};
 cppFilename = 'phyreceive_threads_per2';
 compileFolder = 'BUILD';
 LD_LIBRARY_PATH = '/usr/local/MATLAB/R2013b/runtime/glnxa64/';
@@ -20,7 +20,7 @@ decimation = 20;
 
 codegenCommand = 'codegen -config:dll';
 argsCommand='-args {decimation}';
-functionsToThreadStr = sprintf('%s.h ' ,functionsToThread{:})
+functionsToThreadStr = sprintf('%s.m ' ,functionsToThread{:});
 outputCommand = ['-o ',libraryName];
 
 % Build Codegen Command
@@ -45,7 +45,7 @@ command = ['sudo cp ',libraryName,'.so',' ',LD_LIBRARY_PATH];
 system(command);
 
 % Copy additional files to build folder
-for file 1:length(additionalFiles)
+for file =1:length(additionalFiles)
 	comand = ['cp ',additionalFiles{file},' ',compileFolder];
 	system(command);
 end

@@ -7,12 +7,13 @@ __Complete:__
 Modules
  - CRC (3 bits)
  - Custom messages
- - Timeout mechanism
  - Class based control of tx and rx
+ - Energy Detection
 
 __To do:__
 Modules
- - Energy detection/Spectrum sensing
+ - OFDMA Downlink (Phy mostly there, just needs modifications)
+ - Advanced Spectrum sensing
  - Packetizer (modestly complete, has limitations)
  - Turbo Coders
 

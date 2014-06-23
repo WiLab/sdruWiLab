@@ -16,6 +16,10 @@ classdef OFDMPHYBase < matlab.System
         CyclicPrefixLength = 16;
         PilotCarrierIndices = [12;26;40;54];
         NumGuardBandCarriers = [6;5];
+        pilotLocationsWithoutGuardbands
+        dataSubcarrierIndexies
+        
+        frequency
         
         shortPreamble
         shortPreambleOFDM
@@ -25,11 +29,13 @@ classdef OFDMPHYBase < matlab.System
         longPreambleOFDM
         completeLongPreambleOFDM
         
+        pilots
+        
         % Objects
         hPreambleMod
         hPreambleDemod
         hDataDemod
-        
+        hDataMod
         
         % Pre-computed constants.
         numFreqToAverage = 15;
@@ -37,7 +43,7 @@ classdef OFDMPHYBase < matlab.System
         numProcessed = 0;
         
         % Timing Recovery Tunable
-        PeakThreshold = 0.6
+        PeakThreshold = 0.2
         requiredPeaks = 7;
     end
     
@@ -46,7 +52,7 @@ classdef OFDMPHYBase < matlab.System
         function CreateDemodulators(obj)
             
             % Construct Modulator
-            hDataMod = OFDMModulator(...
+            obj.hDataMod = OFDMModulator(...
                 'CyclicPrefixLength',   obj.CyclicPrefixLength,...
                 'FFTLength' ,           obj.FFTLength,...
                 'NumGuardBandCarriers', obj.NumGuardBandCarriers,...
@@ -55,11 +61,17 @@ classdef OFDMPHYBase < matlab.System
                 'PilotCarrierIndices',  obj.PilotCarrierIndices,...
                 'InsertDCNull',         true);
             % Construct Demod from mod
-            obj.hDataDemod = OFDMDemodulator(hDataMod);
+            obj.hDataDemod = OFDMDemodulator(obj.hDataMod);
             
             % Construct Demod from mod
             obj.hPreambleDemod = OFDMDemodulator(obj.hPreambleMod);
             
+            obj.pilotLocationsWithoutGuardbands = obj.PilotCarrierIndices-obj.NumGuardBandCarriers(1);
+            % Calculate locations of subcarrier datastreams without guardbands
+            obj.dataSubcarrierIndexies = 1:obj.FFTLength-sum(obj.NumGuardBandCarriers);%Remove guardband offsets
+            %DCNullLocation = 33 - obj.NumGuardBandCarriers(1);%Remove index offsets for pilots and guardbands
+            %dataSubcarrierIndexies([pilotLocationsWithoutGuardbands;DCNullLocation]) = [];%Remove pilot and DCNull locations
+            obj.dataSubcarrierIndexies = [1:5,7:19,21:26,28:33,35:47,49:53];
         end
         
         function CreatePreambles(obj)
@@ -94,10 +106,24 @@ classdef OFDMPHYBase < matlab.System
             % Form 2 Long Preambles
             obj.completeLongPreambleOFDM =[obj.longPreambleOFDM(33:64); obj.longPreambleOFDM; obj.longPreambleOFDM];
             
+            % Create Pilots
+            hPN = comm.PNSequence(...
+                'Polynomial',[1 0 0 0 1 0 0 1],...
+                'SamplesPerFrame', obj.numDataSymbols,...
+                'InitialConditions',[1 1 1 1 1 1 1]);
+            
+            %pilot=[1 0  0  1  0  0  1  0  0  0  0  0]';
+            
+            pilot = step(hPN); % Create pilot
+            obj.pilots = repmat(pilot, 1, 4 ); % Expand to all pilot tones
+            obj.pilots = 2*double(obj.pilots.'<1)-1; % Bipolar to unipolar
+            obj.pilots(4,:) = -1*obj.pilots(4,:); % Invert last pilot
+            
+            
         end
         
         %%%%%%%%%%%% FREQUENCY CORRECTION %%%%%%%%%%%%%
-        function rFreqShifted = coarseOFDMFreqEst( obj, rFrame )
+        function rFreqShifted = coarseOFDMFreqEst_sdr( obj, rFrame )
             % coarseOFDMFreqEst: Frequency Correction based on the Schmidl and Cox
             % method, utilizing halves of the short preamble from the 802.11a standard
             L=obj.FFTLength/2;
@@ -112,7 +138,7 @@ classdef OFDMPHYBase < matlab.System
             end
             
             % Apply frequency estimate
-            rFreqShifted = freqCorrectOFDM( obj, rFrame, obj.numFreqToAverage  );
+            rFreqShifted = freqCorrectOFDM( obj, rFrame );
             
         end
         
@@ -182,7 +208,7 @@ classdef OFDMPHYBase < matlab.System
             thresholdNorm = max(M)*obj.PeakThreshold;
             MLocations = find(M>thresholdNorm);
             
-            % Correct estimate to start of preamble not its center
+            % Correct estimate to start of preamble, not its center
             MLocations = MLocations - (K/2+1);
             
             % Frame Detection
@@ -227,7 +253,7 @@ classdef OFDMPHYBase < matlab.System
             %% Use Long Preamble frame to estimate channel in frequency domain
             % Separate out received preambles
             rLong = recv(length(obj.completeShortPreambleOFDM)+1 : length(obj.completeShortPreambleOFDM)+length(obj.completeLongPreambleOFDM));
-            rLongFirst = rLong(33:32+length(tx.longPreambleOFDM));
+            rLongFirst = rLong(33:32+length(obj.longPreambleOFDM));
             rLongSecond = rLong(33+length(obj.longPreambleOFDM) : 32+length(obj.longPreambleOFDM)*2);
             
             % Demod
@@ -236,10 +262,10 @@ classdef OFDMPHYBase < matlab.System
             
             %% Preamble Equalization
             % Get Equalizer tap gains
-            preambleEqGains = preambleFDE([RLongFirst, RLongSecond], [tx.longPreamble, tx.longPreamble], obj.hDataDemod);
+            preambleEqGains = preambleFDE( obj, [RLongFirst, RLongSecond], [obj.longPreamble, obj.longPreamble]);
             
             % Separate data from preambles
-            %recvData = recv(length(tx.preambles)+1:length(tx.preambles)+(hDataDemod.NumSymbols)*(tx.FFTLength+hDataDemod.CyclicPrefixLength));
+            %recvData = recv(length(tx.preambles)+1:length(obj.preambles)+(obj.NumSymbols)*(obj.FFTLength+obj.CyclicPrefixLength));
             recvData = recv(320+1:1280); % CG
             
             % OFDM Demod
@@ -257,7 +283,7 @@ classdef OFDMPHYBase < matlab.System
             
             %% Pilot Equalization
             % Get pilot-based equalizer gains
-            pilotEqGains = pilotFDE(RXPilots, obj.pilots, 12);
+            pilotEqGains = pilotFDE(obj, RXPilots, obj.pilots, 12);
             
             % Apply Equalizer from Pilots
             R = pilotEqGains.*R;
@@ -279,7 +305,7 @@ classdef OFDMPHYBase < matlab.System
         end
         
         % Calculate Equalizer Taps with pilot symbols
-        function PilotGainsFull = pilotFDE(rxPilots, txPilots, upSampleFactor)
+        function PilotGainsFull = pilotFDE(obj, rxPilots, txPilots, upSampleFactor)
             
             % Calculate non-normalized channel gains
             PilotNormal = rxPilots./txPilots;
@@ -295,7 +321,7 @@ classdef OFDMPHYBase < matlab.System
         end
         
         %%%%%%%%%%%%%%% SUBCARRIER DEMOD %%%%%%%%%%%%%%%
-        function [BER, RHard] = demodOFDMSubcarriers_sdr( R )
+        function [BER, RHard] = demodOFDMSubcarriers_sdr( obj, R )
             %#codegen
             % demodOFDMSubcarriers: Hard demodulate then compare received and
             % transmitted data
@@ -320,14 +346,15 @@ classdef OFDMPHYBase < matlab.System
         %%%%%%%%%%%%%%% DATA DECODER %%%%%%%%%%%%%%
         %% Decode Messages: Convert from bits to characters
         function recoveredMessage = DecodeMessages( obj, messageBits )
-            
+            DebugFlag=0;
             for recMessage = 1:obj.numProcessed
                 % CRC Check
-                [msg, err] = step(obj.CRC, messageBits(recMessage,:).'>0);
+                CRC = comm.CRCDetector([1 0 0 1], 'ChecksumsPerFrame',1);
+                [msg, err] = step(CRC, messageBits(recMessage,:).'>0);
                 
                 if ~err
                     % Convert Bits to characters
-                    message = char(OFDMbits2letters(msg > 0).');%messageBits(recMessage,1:end-3)
+                    message = char(OFDMbits2letters(obj, msg > 0).');%messageBits(recMessage,1:end-3)
                     %Remove padding
                     messageEnd = strfind(message,'EOF');
                     if ~isempty(messageEnd)
@@ -344,5 +371,55 @@ classdef OFDMPHYBase < matlab.System
             end
         end
         
+        function Letters = OFDMbits2letters( obj, bits )
+            % OFDMbits2letters: Convert input bits from a double array to ascii
+            % integers, which can be converted to letters by the char() function
+            
+            % Make input into column
+            bits = bits(:);
+            
+            %Trim extra bits
+            bits = bits(1: floor(length(bits)/7)*7);
+            
+            %Shape into letters
+            bits = reshape(bits, 7, length(bits)/7).';
+            
+            %Convert bits to letters
+            Letters = zeros(size(bits,1),1);
+            for i = 1:size(bits,1)
+                Letters(i) = char(bin2dec(dec2bin(bits(i,:)).'));
+            end
+            
+        end
+        
+        function f = OFDMletters2bits(str)
+            % Encode a string of ASCII text into bits(1,0)
+            if coder.target('MEX')
+                coder.extrinsic('str2double');
+                DLL = false;
+            elseif coder.target('Rtw')
+                DLL = true;
+            end
+            N=length(str);
+            f=zeros(N,7);
+            
+            bits = dec2bin(str);
+            for k=1:N
+                letter = bits(k,:);
+                for i = 1:7
+                    if DLL
+                        f(k,i)=coder.ceval('atoi',c_string(letter(i)));
+                    else
+                        f(k,i)=str2double(letter(i));
+                    end
+                end
+            end
+            
+            
+        end
+        % Create a NUL terminated C string given a MATLAB string
+        function y = c_string(s)
+            y = [s 0];
+        end
     end
 end

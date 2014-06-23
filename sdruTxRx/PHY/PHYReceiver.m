@@ -7,20 +7,20 @@ classdef PHYReceiver < OFDMPHYBase
         NumFrames = 3; % Frames to capture
         MessageCharacters = 100;
         FrameLength = 1000;
+        HWAttached = false;
+        padBits = 10;
     end
     
     properties (DiscreteState)
     end
     
-    properties (Access = private, Nontunable)
-        % Pre-computed constants.
+    properties (Access = protected, Nontunable)
         
         % Variables
         pTimeoutDuration
         phi
         delay
         numPeaks
-        frequency
         phase
         frequencyMA
         
@@ -71,13 +71,15 @@ classdef PHYReceiver < OFDMPHYBase
             % Gain control
             obj.pAGC = comm.AGC('UpdatePeriod', obj.inputBufferLength); % Value must be constant, equal to rx.receiveBufferLength
             
-%             % USRP
-%             obj.pSDRuReceiver = comm.SDRuReceiver( '192.168.10.2', ...
-%                 'CenterFrequency',      obj.CenterFrequency + offsetCompensationValue, ...
-%                 'DecimationFactor',     DecimationFactor,...
-%                 'FrameLength',          obj.inputBufferLength,...
-%                 'OutputDataType',       'double',...
-%                 'Gain',                 18);
+            % USRP
+            if obj.HWAttached
+                obj.pSDRuReceiver = comm.SDRuReceiver( '192.168.10.2', ...
+                    'CenterFrequency',      obj.CenterFrequency + offsetCompensationValue, ...
+                    'DecimationFactor',     DecimationFactor,...
+                    'FrameLength',          obj.inputBufferLength,...
+                    'OutputDataType',       'double',...
+                    'Gain',                 18);
+            end
             
             % CRC
             obj.pCRC = comm.CRCDetector([1 0 0 1], 'ChecksumsPerFrame',1);
@@ -92,7 +94,7 @@ classdef PHYReceiver < OFDMPHYBase
             
         end
         
-        function recoveredMessage = stepImpl(obj)
+        function recoveredMessage = stepImpl(obj,data)
             % Receive Data
             %DEBUG
             DebugFlag = 0;
@@ -110,9 +112,13 @@ classdef PHYReceiver < OFDMPHYBase
             % Locate frames in buffer and compensate for channel affects
             while obj.numProcessed < obj.NumFrames
                 
-                % Get data from USRP
-                %buffer = step(ObjSDRuReceiver);
-                buffer = randn(obj.inputBufferLength,1);
+                % Get data from USRP or Input
+                if obj.HWAttached
+                    buffer = step(ObjSDRuReceiver);
+                else
+                    buffer = data( numBuffersProcessed*obj.inputBufferLength + 1 :...
+                                 ( numBuffersProcessed + 1)*obj.inputBufferLength);
+                end
                 if sum(buffer)==0
                     % All zeros from radio (Bug?)
                     if DebugFlag ;fprintf('All zeros (Bug?)\n');end;

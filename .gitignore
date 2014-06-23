@@ -9,3 +9,4 @@ mccExcludedFiles.log
 *.so
 .DS_Store
 NUL
+*.asv

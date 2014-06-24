@@ -1,11 +1,12 @@
 classdef PHYReceiver < OFDMPHYBase
     % OFDM Physical Layer Receiver
-    properties
+    properties (Nontunable)
         % Public, tunable properties.
+        inputBufferLength = 5120;%ceil( rx.frameLength*4 ); %Size of Buffer of sliding window
         SamplingFrequency = 5e6;
         CenterFrequency = 2.24e9;
         NumFrames = 3; % Frames to capture
-        MessageCharacters = 100;
+        MessageCharacters = 80;
         FrameLength = 1000;
         HWAttached = false;
         padBits = 10;
@@ -14,7 +15,7 @@ classdef PHYReceiver < OFDMPHYBase
     properties (DiscreteState)
     end
     
-    properties (Access = protected, Nontunable)
+    properties (Access = protected)
         
         % Variables
         pTimeoutDuration
@@ -24,7 +25,6 @@ classdef PHYReceiver < OFDMPHYBase
         phase
         frequencyMA
         
-        inputBufferLength = 5120;%ceil( rx.frameLength*4 ); %Size of Buffer of sliding window
         pilotEqGains
         preambleEqGains
         %message
@@ -36,11 +36,12 @@ classdef PHYReceiver < OFDMPHYBase
         
         % Vector Memory
         pMessageBits
+	Buffer
         
     end
     
     methods (Access = protected)
-        function setupImpl(obj)
+        function setupImpl(obj,~)
             
             % Create Preamble data
             CreatePreambles(obj);
@@ -92,6 +93,8 @@ classdef PHYReceiver < OFDMPHYBase
             obj.pMessageBits = zeros(obj.NumFrames,obj.MessageCharacters*7+3);%3 for CRC
             
             
+	    obj.Buffer = complex(zeros(obj.inputBufferLength,1));
+
         end
         
         function recoveredMessage = stepImpl(obj,data)
@@ -114,28 +117,28 @@ classdef PHYReceiver < OFDMPHYBase
                 
                 % Get data from USRP or Input
                 if obj.HWAttached
-                    buffer = step(ObjSDRuReceiver);
+                    obj.Buffer = step(obj.pSDRuReceiver);
                 else
-                    buffer = data( numBuffersProcessed*obj.inputBufferLength + 1 :...
+                    obj.Buffer = data( numBuffersProcessed*obj.inputBufferLength + 1 :...
                                  ( numBuffersProcessed + 1)*obj.inputBufferLength);
                 end
-                if sum(buffer)==0
+                if sum(obj.Buffer)==0
                     % All zeros from radio (Bug?)
                     if DebugFlag ;fprintf('All zeros (Bug?)\n');end;
                     continue;
                 end
                 
                 % Automatic Gain Control
-                buffer = step(obj.pAGC, buffer);
+                obj.Buffer = step(obj.pAGC, obj.Buffer(1:obj.inputBufferLength)  );
                 
                 % Increment processed data index
                 numBuffersProcessed = numBuffersProcessed + 1;
                 
                 %% Find preamble in buffer
-                [obj.delay, numPeaks] = locateOFDMFrame_sdr( obj, buffer );
+                [obj.delay, numPeaks] = locateOFDMFrame_sdr( obj, obj.Buffer );
                 
                 % Check if frame exists in correct location and whether it's duplicate
-                FrameFound = ((obj.delay + obj.FrameLength) < length(buffer) ) &&... %Check if full data frame exists in buffer
+                FrameFound = ((obj.delay + obj.FrameLength) < length(obj.Buffer) ) &&... %Check if full data frame exists in buffer
                     (obj.delay > -1 ) &&... %Check if preamble located
                     ((numBuffersProcessed-lastFound) >= 2 ); %Check if duplicate frame
                 
@@ -146,7 +149,7 @@ classdef PHYReceiver < OFDMPHYBase
                     obj.numProcessed = obj.numProcessed + 1;%Increment processed found frames
                     
                     % Extract single frame from input buffer
-                    rFrame = buffer(obj.delay + 1 : obj.delay + obj.FrameLength);
+                    rFrame = obj.Buffer(obj.delay + 1 : obj.delay + obj.FrameLength);
                     
                     % Correct frequency offset
                     [ rFreqShifted ] = coarseOFDMFreqEst_sdr( obj, rFrame );

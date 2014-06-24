@@ -1,13 +1,9 @@
 classdef OFDMPHYBase < matlab.System
     % OFDM Physical Layer Base Class
     
-    properties
+    properties (Nontunable)
         % Public, tunable properties.
-        numDataSymbols = 10;
-    end
-    
-    properties (Access = protected)
-        % OFDM Sys Config
+        numDataSymbols = 1;
         FFTLength = 64;         % OFDM modulator FFT size
         enableMA = true;    % Enable moving averages for estimates
         numFrames = 30;%30     % Make larger to reduce underflow on USRP
@@ -17,7 +13,12 @@ classdef OFDMPHYBase < matlab.System
         PilotCarrierIndices = [12;26;40;54];
         NumGuardBandCarriers = [6;5];
         pilotLocationsWithoutGuardbands
-        dataSubcarrierIndexies
+        %dataSubcarrierIndexies
+        dataSubcarrierIndexies = [1:5,7:19,21:26,28:33,35:47,49:53];
+    end
+    
+    properties (Access = protected)
+        % OFDM Sys Config
         
         frequency
         
@@ -68,10 +69,10 @@ classdef OFDMPHYBase < matlab.System
             
             obj.pilotLocationsWithoutGuardbands = obj.PilotCarrierIndices-obj.NumGuardBandCarriers(1);
             % Calculate locations of subcarrier datastreams without guardbands
-            obj.dataSubcarrierIndexies = 1:obj.FFTLength-sum(obj.NumGuardBandCarriers);%Remove guardband offsets
+            %obj.dataSubcarrierIndexies = 1:obj.FFTLength-sum(obj.NumGuardBandCarriers);%Remove guardband offsets
             %DCNullLocation = 33 - obj.NumGuardBandCarriers(1);%Remove index offsets for pilots and guardbands
             %dataSubcarrierIndexies([pilotLocationsWithoutGuardbands;DCNullLocation]) = [];%Remove pilot and DCNull locations
-            obj.dataSubcarrierIndexies = [1:5,7:19,21:26,28:33,35:47,49:53];
+            %obj.dataSubcarrierIndexies = [1:5,7:19,21:26,28:33,35:47,49:53];
         end
         
         function CreatePreambles(obj)
@@ -115,8 +116,8 @@ classdef OFDMPHYBase < matlab.System
             %pilot=[1 0  0  1  0  0  1  0  0  0  0  0]';
             
             pilot = step(hPN); % Create pilot
-            obj.pilots = repmat(pilot, 1, 4 ); % Expand to all pilot tones
-            obj.pilots = 2*double(obj.pilots.'<1)-1; % Bipolar to unipolar
+            pilotsTmp = repmat(pilot, 1, 4 ); % Expand to all pilot tones
+            obj.pilots = 2*double(pilotsTmp.'<1)-1; % Bipolar to unipolar
             obj.pilots(4,:) = -1*obj.pilots(4,:); % Invert last pilot
             
             
@@ -160,7 +161,7 @@ classdef OFDMPHYBase < matlab.System
                 frequencyMA = mean(obj.frequency);
                 
                 % Apply frequency correction
-                t = 0: 1/tx.samplingFreq : (length(rFrame)-1)/obj.samplingFreq;
+                t = 0: 1/obj.samplingFreq : (length(rFrame)-1)/obj.samplingFreq;
                 rFreqShifted = exp(1i*frequencyMA*t.').*rFrame;
                 
             end
@@ -347,6 +348,7 @@ classdef OFDMPHYBase < matlab.System
         %% Decode Messages: Convert from bits to characters
         function recoveredMessage = DecodeMessages( obj, messageBits )
             DebugFlag=0;
+	    recoveredMessage = 'Timeout';
             for recMessage = 1:obj.numProcessed
                 % CRC Check
                 CRC = comm.CRCDetector([1 0 0 1], 'ChecksumsPerFrame',1);
@@ -394,12 +396,12 @@ classdef OFDMPHYBase < matlab.System
         
         function f = OFDMletters2bits(str)
             % Encode a string of ASCII text into bits(1,0)
-            if coder.target('MEX')
-                coder.extrinsic('str2double');
-                DLL = false;
-            elseif coder.target('Rtw')
+            %if coder.target('MEX')
+            %    coder.extrinsic('str2double');
+            %    DLL = false;
+            %elseif coder.target('Rtw')
                 DLL = true;
-            end
+            %end
             N=length(str);
             f=zeros(N,7);
             

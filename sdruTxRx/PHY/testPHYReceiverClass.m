@@ -6,7 +6,7 @@ samplingFreq = 5e6;
 [~,hPreambleDemod, dataToTx, tx ] = generateOFDMSignal_TX2(inputPayloadMessage,samplingFreq, 1, 1);% 30 Dupe frames created (NOTE! author shouldcreate shorter simpler function)
 
 
-
+testCodegen2( dataToTx, 1,tx.messageCharacters, tx.frameLength, hPreambleDemod.NumSymbols ,tx.padBits)
 compilesdru('testCodegen2','mex','-args','{ dataToTx, 1, coder.Constant(tx.messageCharacters), coder.Constant(tx.frameLength), coder.Constant(hPreambleDemod.NumSymbols) ,coder.Constant(tx.padBits)}')
 testCodegen2_mex( dataToTx, 1,tx.messageCharacters, tx.frameLength, hPreambleDemod.NumSymbols ,tx.padBits)
 

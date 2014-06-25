@@ -1,18 +1,14 @@
 classdef PHYReceiver < OFDMPHYBase
+    
     % OFDM Physical Layer Receiver
     properties (Nontunable)
-        % Public, tunable properties.
-        inputBufferLength = 5120;%ceil( rx.frameLength*4 ); %Size of Buffer of sliding window
-        SamplingFrequency = 5e6;
+        ReceiveBufferLength = 5120;%ceil( rx.frameLength*4 ); %Size of Buffer of sliding window
         CenterFrequency = 2.24e9;
-        NumFrames = 3; % Frames to capture
+        NumFrames = 3;              % Frames to capture
         MessageCharacters = 80;
         FrameLength = 1000;
         HWAttached = false;
         padBits = 10;
-    end
-    
-    properties (DiscreteState)
     end
     
     properties (Access = protected)
@@ -21,13 +17,8 @@ classdef PHYReceiver < OFDMPHYBase
         pTimeoutDuration
         phi
         delay
-        numPeaks
         phase
         frequencyMA
-        
-        pilotEqGains
-        preambleEqGains
-        %message
         
         % Objects
         pAGC
@@ -36,7 +27,9 @@ classdef PHYReceiver < OFDMPHYBase
         
         % Vector Memory
         pMessageBits
-	Buffer
+    	Buffer
+        pilotEqGains
+        preambleEqGains
         
     end
     
@@ -50,17 +43,14 @@ classdef PHYReceiver < OFDMPHYBase
             CreateDemodulators(obj);
             
             % Pre-initialize estimates to be saved between numFrames
-            obj.phi                = 0;
-            obj.numPeaks           = 0; %Additional points needed for sliding buffer
-            obj.frequency          = zeros(obj.numFreqToAverage,1);
-            obj.phase              = 0;
-            obj.frequencyMA        = 0;
-            obj.numProcessed       = 0; %Tracking number of processed found numFrames
-            obj.delay              = 0;
-            obj.pilotEqGains       = complex(zeros(obj.numCarriers, obj.hDataDemod.NumSymbols));
-            obj.preambleEqGains    = complex(zeros(obj.FFTLength-sum(obj.NumGuardBandCarriers),1));
-            %obj.message            = zeros(tx.messageCharacters,1);
-            
+            obj.phi = 0;
+            obj.frequency = zeros(obj.numFreqToAverage,1);
+            obj.phase = 0;
+            obj.frequencyMA = 0;
+            obj.numProcessed = 0; %Tracking number of processed found numFrames
+            obj.delay = 0;
+            obj.pilotEqGains = complex(zeros(obj.numCarriers, obj.hDataDemod.NumSymbols));
+            obj.preambleEqGains = complex(zeros(obj.FFTLength-sum(obj.NumGuardBandCarriers),1));
             
             %% Setup Receiver
             % System parameters to adjust because of hardware limitation
@@ -70,14 +60,14 @@ classdef PHYReceiver < OFDMPHYBase
             offsetCompensationValue = 0;% Get from calibration
             
             % Gain control
-            obj.pAGC = comm.AGC('UpdatePeriod', obj.inputBufferLength); % Value must be constant, equal to rx.receiveBufferLength
+            obj.pAGC = comm.AGC('UpdatePeriod', obj.ReceiveBufferLength); % Value must be constant, equal to rx.receiveBufferLength
             
             % USRP
             if obj.HWAttached
                 obj.pSDRuReceiver = comm.SDRuReceiver( '192.168.10.2', ...
                     'CenterFrequency',      obj.CenterFrequency + offsetCompensationValue, ...
                     'DecimationFactor',     DecimationFactor,...
-                    'FrameLength',          obj.inputBufferLength,...
+                    'FrameLength',          obj.ReceiveBufferLength,...
                     'OutputDataType',       'double',...
                     'Gain',                 18);
             end
@@ -86,14 +76,14 @@ classdef PHYReceiver < OFDMPHYBase
             obj.pCRC = comm.CRCDetector([1 0 0 1], 'ChecksumsPerFrame',1);
             
             % Timeout info
-            buffersPerSecond = (100e6/DecimationFactor)/obj.inputBufferLength;
+            buffersPerSecond = (100e6/DecimationFactor)/obj.ReceiveBufferLength;
             obj.pTimeoutDuration = floor(buffersPerSecond*0.05);
             
             % Soft decisions
             obj.pMessageBits = zeros(obj.NumFrames,obj.MessageCharacters*7+3);%3 for CRC
             
             
-	    obj.Buffer = complex(zeros(obj.inputBufferLength,1));
+	    obj.Buffer = complex(zeros(obj.ReceiveBufferLength,1));
 
         end
         
@@ -119,8 +109,8 @@ classdef PHYReceiver < OFDMPHYBase
                 if obj.HWAttached
                     obj.Buffer = step(obj.pSDRuReceiver);
                 else
-                    obj.Buffer = data( numBuffersProcessed*obj.inputBufferLength + 1 :...
-                                 ( numBuffersProcessed + 1)*obj.inputBufferLength);
+                    obj.Buffer = data( numBuffersProcessed*obj.ReceiveBufferLength + 1 :...
+                                 ( numBuffersProcessed + 1)*obj.ReceiveBufferLength);
                 end
                 if sum(obj.Buffer)==0
                     % All zeros from radio (Bug?)
@@ -129,7 +119,7 @@ classdef PHYReceiver < OFDMPHYBase
                 end
                 
                 % Automatic Gain Control
-                obj.Buffer = step(obj.pAGC, obj.Buffer(1:obj.inputBufferLength)  );
+                obj.Buffer = step(obj.pAGC, obj.Buffer(1:obj.ReceiveBufferLength)  );
                 
                 % Increment processed data index
                 numBuffersProcessed = numBuffersProcessed + 1;
@@ -181,8 +171,5 @@ classdef PHYReceiver < OFDMPHYBase
             
         end
         
-        function resetImpl(obj)
-            % Initialize discrete-state properties.
-        end
     end
 end

@@ -4,8 +4,8 @@ h=PHYReceiver;
 h.NumFrames=1;
 h.MessageCharacters = MessageCharacters;
 h.FrameLength = FrameLength;
-h.numDataSymbols = numDataSymbols;
+h.NumDataSymbolsPerFrame = numDataSymbols;
 h.padBits = padBits;
-output = step(h,dataToTx)
+output = step(h,dataToTx);
 
 end

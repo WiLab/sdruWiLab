@@ -401,9 +401,9 @@ classdef OFDMPHYBase < matlab.System
             
         end
         
-        function f = OFDMletters2bits(str)
+        function f = OFDMletters2bits(obj,str)
             % Encode a string of ASCII text into bits(1,0)
-            DLL = true;
+            DLL = ~strcmp(coder.target,'');
             N=length(str);
             f=zeros(N,7);
             
@@ -412,7 +412,7 @@ classdef OFDMPHYBase < matlab.System
                 letter = bits(k,:);
                 for i = 1:7
                     if DLL
-                        f(k,i)=coder.ceval('atoi',c_string(letter(i)));
+                        f(k,i)=coder.ceval('atoi',c_string(obj,letter(i)));
                     else
                         f(k,i)=str2double(letter(i));
                     end
@@ -422,7 +422,7 @@ classdef OFDMPHYBase < matlab.System
             
         end
         % Create a NUL terminated C string given a MATLAB string
-        function y = c_string(s)
+        function y = c_string(~,s)
             y = [s 0];
         end
     end

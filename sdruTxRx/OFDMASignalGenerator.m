@@ -1,4 +1,4 @@
-function r = OFDMASignalGenerator(obj,messageToTx,samplingFreq)
+function r = OFDMASignalGenerator(obj,messageToTx)
 
 % The number of frames is equal to the number of users, since each one of 
 % the user's messages has 80 characters, exactly one frame
@@ -21,11 +21,16 @@ end
 
 %% Add CRC
 
-% Generate CRC object handle
-hGen = comm.CRCGenerator([1 0 0 1], 'ChecksumsPerFrame',1);
+% The CRC length is 4, which means that the final bit stream (including 
+% CRC) will have 564 bits. This is a very convenient number, because it
+% makes user multiplexing easier, since 564 is divisible by 2, 3 and 4, and
+% the maximum number of users is 4.
 
-% Initialize matrix
-dataWithCRC = zeros(messageToTx.numUsers,length(originalData) + 3);
+% Generate CRC object handle
+hGen = comm.CRCGenerator([1 0 0 1 1], 'ChecksumsPerFrame',1);
+
+% Initialize matrix. Remember to change added number if CRC length changes!
+dataWithCRC = zeros(messageToTx.numUsers,length(originalData) + 4);
 
 for user = 1:messageToTx.numUsers
     dataWithCRC(user,:) = step(hGen, originalData(user,:));% Add CRC
@@ -46,6 +51,9 @@ end
 
 %% User multiplex
 
+% Define number of carriers per user
+carriersPerUser = obj.numCarriers/messageToTx.numUsers;
+
 
 
 %% OFDM Modulation
@@ -55,6 +63,8 @@ end
 %% Create preambles
 obj.CreatePreambles;
 
+%% Create and add preambles
 
+r = modData;
 
 end

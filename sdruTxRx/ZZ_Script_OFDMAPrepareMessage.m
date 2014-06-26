@@ -1,4 +1,4 @@
-%clear all;
+% clear all;
 
 clc;
 
@@ -13,4 +13,8 @@ OriginNodes = [1 2 3];
 
 DestNodes = [4 5 6];
 
-messageToTx = OFDMAPrepareMessage(OriginNodes,DestNodes,message_UE1,message_UE2,message_UE3,message_UE4,numUsers)
+messageToTx = OFDMAPrepareMessage(OriginNodes,DestNodes,message_UE1,message_UE2,message_UE3,message_UE4,numUsers);
+
+obj = OFDMPHYBase;
+
+r = OFDMASignalGenerator(obj,messageToTx);

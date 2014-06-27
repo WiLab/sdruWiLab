@@ -105,6 +105,7 @@ classdef PHYReceiver < OFDMPHYBase
             % Locate frames in buffer and compensate for channel affects
             while obj.numProcessed < obj.NumFrames
                 
+		fprintf('Looped\n');
                 % Get data from USRP or Input
                 if obj.HWAttached
                     obj.Buffer = step(obj.pSDRuReceiver);
@@ -134,7 +135,8 @@ classdef PHYReceiver < OFDMPHYBase
                 
                 %% Recover found frame
                 if FrameFound
-                    
+
+		    fprintf('Frame found\n');                    
                     lastFound = numBuffersProcessed;%Flag frame as found so duplicate frames are not processed
                     obj.numProcessed = obj.numProcessed + 1;%Increment processed found frames
                     

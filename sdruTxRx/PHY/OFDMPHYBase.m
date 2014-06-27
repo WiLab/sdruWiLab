@@ -373,8 +373,8 @@ classdef OFDMPHYBase < matlab.System
                 else
                     if DebugFlag ;fprintf('PHY| CRC Message Failure\n');end;
                     %View corrupted messages
-                    %recoveredMessage = char(OFDMbits2letters(msg > 0).');%messageBits(recMessage,1:end-3)
-                    %fprintf('Corrupted Message: %s\n',recoveredMessage);
+                    recoveredMessage = char(OFDMbits2letters(obj,msg > 0).');%messageBits(recMessage,1:end-3)
+                    fprintf('Corrupted Message: %s\n',recoveredMessage);
                     recoveredMessage = 'CRC Error';
                 end
             end

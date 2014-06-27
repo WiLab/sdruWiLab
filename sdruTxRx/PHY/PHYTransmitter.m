@@ -16,6 +16,7 @@ classdef PHYTransmitter < OFDMPHYBase
 	pSDRuTransmitter
 	pCRCGen
 	pMod
+	pPN
 
     end
     
@@ -47,6 +48,12 @@ classdef PHYTransmitter < OFDMPHYBase
 		% Construct modulator for each subcarrier
 		obj.pMod = comm.BPSKModulator; % BPSK
 
+		% PNSequence Generator
+		obj.pPN = comm.PNSequence(...
+		       'Polynomial',[1 0 0 0 1 0 0 1],...
+		       'SamplesPerFrame', 1,...
+		       'InitialConditions',[1 1 1 1 1 1 1]);
+
 
         end
         
@@ -66,8 +73,8 @@ classdef PHYTransmitter < OFDMPHYBase
         end
     end
 
-	methods
-	function frame = CreateOFDMFrame( obj, payloadMessage )
+    methods
+	function [frame,padBits,numDataSymbols, frameLength] = CreateOFDMFrame( obj, payloadMessage )
 
 		
 		% payloadMessage: Will always be a matrix
@@ -78,7 +85,7 @@ classdef PHYTransmitter < OFDMPHYBase
 		% 1's and 0's)		
 
 		% Use string as message
-		%originalData = OFDMletters2bits(obj,payloadMessage);
+		%payloadMessage = OFDMletters2bits(obj,payloadMessage);
 		originalData = reshape(payloadMessage.',size(payloadMessage,1)*size(payloadMessage,2),1);
 
 		% Generate CRC
@@ -92,29 +99,37 @@ classdef PHYTransmitter < OFDMPHYBase
 		if padBits == obj.numCarriers
 		    padBits = 0;
 		end
-		modData = [modData; step(obj.pMod,randi([0 1],padBits,1))];
-
+		%modData = [modData; step(obj.pMod,randi([0 1],padBits,1))];
+		modData = [modData; step(obj.pMod,zeros(padBits,1))];
 		% Calculate required data sizes for correct receiver operation
 		numDataSymbols = length(modData)/obj.numCarriers;
 		numSamples = length(modData);
 		messageCharacters = length(payloadMessage); % Save desired message size
-		%numFrames = numFrames; % Save number of transmitted frames
 
 		% Convert data into subcarrier streams
 		ofdmData = reshape(modData.', obj.numCarriers, length(modData)/obj.numCarriers);
+
 		
 		% Modulate
 		obj.hDataMod.NumSymbols = numDataSymbols;
+	
+		% Create Pilots
+		obj.pPN.SamplesPerFrame = numDataSymbols;
+		pilot = step(obj.pPN); % Create pilot
+		obj.pilots = repmat(pilot, 1, 4 ); % Expand to all pilot tones
+		obj.pilots = 2*double(obj.pilots.'<1)-1; % Bipolar to unipolar
+		obj.pilots(4,:) = -1*obj.pilots(4,:); % Invert last pilot
+
 		r = step(obj.hDataMod, ofdmData, obj.pilots);
 
 		% Add preambles to data
 		preambles = [obj.CompleteShortPreambleOFDM; obj.CompleteLongPreambleOFDM];
 		r = [preambles; r];
-		%frameLength = length(r);
+		frameLength = length(r);
 
 		% Repeat frame (Used in debugging)
-		%r = repmat(r, numFrames, 1);
-		frame = r;
+		frame = repmat(r, 10, 1);
+		%frame = r;
 
 	end
 

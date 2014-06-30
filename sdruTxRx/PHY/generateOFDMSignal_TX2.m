@@ -7,13 +7,14 @@ function [hPreambleDemod,hDataDemod, r, tx ] = generateOFDMSignal_TX2(inputPaylo
 %% System Parameters
 FFTLength = 64;         % OFDM modulator FFT size
 enableMA = true;    % Enable moving averages for estimates
-numFrames = 30;%30     % Make larger to reduce underflow on USRP
+numFrames = 10;%30     % Make larger to reduce underflow on USRP
 
 % Message to transmit
 % message is 80 characters max, so extra 3 for EOF, 1 for uniqueID, 1 for
 % the node number of recipient, 1 for origin node
 if length(inputPayloadMessage) < 74
    uniqueID = char(randi([0 (2^7)-1],1,1));%Add additional character to differentiate messages
+   uniqueID = 'a';
    destNodeChar = char(48 + destNode);
    originNodeChar = char(48 + originNode);
    payloadMessage = [inputPayloadMessage,originNodeChar,destNodeChar,uniqueID,'EOF',repmat('-',1,74 - length(inputPayloadMessage))];
@@ -77,7 +78,8 @@ padBits = numCarriers - mod(length(modData),numCarriers);
 if padBits == numCarriers
     padBits = 0;
 end
-modData = [modData; step(hMod,randi([0 1],padBits,1))];
+%modData = [modData; step(hMod,randi([0 1],padBits,1))];
+modData = [modData; step(hMod,zeros(padBits,1))];
 
 % Calculate required data sizes for correct receiver operation
 numDataSymbols = length(modData)/numCarriers;
@@ -112,8 +114,11 @@ hDataMod = OFDMModulator(...
     'InsertDCNull',         true);
 
 
+
 % Modulate
 r = step(hDataMod, ofdmData, pilots);
+
+save('ofdmData.mat','ofdmData','modData','dataWithCRC','originalData','r');
 
 % Add preambles to data
 preambles = [completeShortPreambleOFDM; completeLongPreambleOFDM];

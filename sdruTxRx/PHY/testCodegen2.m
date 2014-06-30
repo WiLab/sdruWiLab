@@ -7,7 +7,7 @@ h.FrameLength = FrameLength;
 h.NumDataSymbolsPerFrame = numDataSymbols;
 h.padBits = padBits;
 
-h.HWAttached = true;
+%h.HWAttached = true;
 %output = step(h);
 
 for k=1:10

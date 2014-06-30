@@ -67,7 +67,7 @@ classdef PHYTransmitter < OFDMPHYBase
     end
 
 	methods
-	function frame = CreateOFDMFrame( obj, payloadMessage )
+	function [frame,padBits,numDataSymbols,frameLength] = CreateOFDMFrame( obj, payloadMessage )
 
 		
 		% payloadMessage: Will always be a matrix
@@ -110,7 +110,7 @@ classdef PHYTransmitter < OFDMPHYBase
 		% Add preambles to data
 		preambles = [obj.CompleteShortPreambleOFDM; obj.CompleteLongPreambleOFDM];
 		r = [preambles; r];
-		%frameLength = length(r);
+		frameLength = length(r);
 
 		% Repeat frame (Used in debugging)
 		%r = repmat(r, numFrames, 1);

@@ -5,6 +5,7 @@ function r = OFDMASignalGenerator(obj,messageToTx)
 % The number of frames is equal to the number of users, since each one of 
 % the user's messages has 80 characters, exactly one frame
 numFrames = messageToTx.numUsers;
+numFrameRepetitions = 1;
 
 %% Convert to bits
 
@@ -79,22 +80,53 @@ for frame = 1:numFrames
     
 end
 
+% From here on the rows of muxData are different frames, instead of
+% different users
+
 %% OFDM Modulate and add Pilots
 
 % Pad IFFT
-padBits = numCarriers - mod(length(muxData,2),numCarriers);
-if padBits == numCarriers
+padBits = obj.numCarriers - mod(size(muxData,2),obj.numCarriers);
+if padBits == obj.numCarriers
     padBits = 0;
 end
-muxData = [muxData repmat(step(hMod,randi([0 1],padBits,1)),numFrames,1)];
+muxData = [muxData repmat(step(hMod,randi([0 1],padBits,1))',numFrames,1)];
 
+% Define number of symbols per frame
+obj.NumDataSymbolsPerFrame = size(muxData,2)/obj.numCarriers;
 
-
-%% Create preambles
+% Create pilots and preambles
 obj.CreatePreambles;
 
-%% Create and add preambles
+% Create modulator
+obj.CreateDemodulators;
 
-r = muxData;
+% Initialize matrices
+reshaped_muxData = zeros(obj.numCarriers,size(muxData,2)/obj.numCarriers);
+ofdmFrame = zeros(1,(obj.FFTLength+obj.CyclicPrefixLength)*obj.hDataMod.NumSymbols);
+ofdmData = zeros(numFrames,length(ofdmFrame));
+
+for frame = 1:numFrames
+    
+    % Convert data into subcarrier streams
+    reshaped_muxData = reshape(muxData(frame,:).', obj.numCarriers, size(muxData,2)/obj.numCarriers);
+
+    % Modulate
+    ofdmFrame = step(obj.hDataMod, reshaped_muxData, obj.pilots);
+    
+    ofdmData(frame,:) = ofdmFrame;
+    
+end
+
+%% Add preambles
+
+% Add preambles to data
+preambles = [obj.CompleteShortPreambleOFDM; obj.CompleteLongPreambleOFDM];
+r = [repmat(preambles,numFrames,1)'; ofdmData];
+
+% frameLength = size(r,2);
+
+% Repeat frame (Used in debugging)
+r = repmat(r, numFrameRepetitions, 1);
 
 end

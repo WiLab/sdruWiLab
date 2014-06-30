@@ -8,7 +8,7 @@ classdef PHYTransmitter < OFDMPHYBase
         % Public, tunable properties.
 	CenterFrequency = 2.24e9;
 	HWAttached = false;
-	
+	DupeFrames = 0;	
     end
     
     properties (Access = private)
@@ -21,7 +21,7 @@ classdef PHYTransmitter < OFDMPHYBase
     end
     
     methods (Access = protected)
-        function setupImpl(obj,~)
+        function setupImpl(obj,input)
 
 
 		% Create Preamble data
@@ -49,33 +49,44 @@ classdef PHYTransmitter < OFDMPHYBase
 		obj.pMod = comm.BPSKModulator; % BPSK
 
 		% PNSequence Generator
+		%numDataSymbols = length(input)/obj.numCarriers;
+		numDataSymbols = obj.NumDataSymbolsPerFrame;
 		obj.pPN = comm.PNSequence(...
 		       'Polynomial',[1 0 0 0 1 0 0 1],...
-		       'SamplesPerFrame', 1,...
+		       'SamplesPerFrame', numDataSymbols,...
 		       'InitialConditions',[1 1 1 1 1 1 1]);
 
+		% Create Pilots
+		pilot = step(obj.pPN); % Create pilot
+		obj.pilots = repmat(pilot, 1, 4 ); % Expand to all pilot tones
+		obj.pilots = 2*double(obj.pilots.'<1)-1; % Bipolar to unipolar
+		obj.pilots(4,:) = -1*obj.pilots(4,:); % Invert last pilot
+
+		% Change modulator to support multiple symbols		
+		obj.hDataMod.NumSymbols = numDataSymbols;
 
         end
         
-        function y = stepImpl(obj,data)
+        function frame = stepImpl(obj,data)
            
-		numFrames = 1; 
-		% Transmit frames 1 at a time
-		for frames = 1:numFrames
-			if obj.HWAttached
-			step(obj.pSDRuTransmitter,data(frame,:));%1 Frame per row
-			else
-			fprintf('Pew pew\n');
-			end
-		end
-		y = 1;
+
+            frame = CreateOFDMFrame(obj, data);
+            numFrames = 1;
+            % Transmit frames 1 at a time
+            for frames = 1:numFrames
+                if obj.HWAttached
+                    step(obj.pSDRuTransmitter,frame);%1 Frame per row
+                else
+                    fprintf('Pew pew\n');
+                end
+            end
 
         end
     end
 
 
 	methods
-	function [frame,padBits,numDataSymbols,frameLength] = CreateOFDMFrame( obj, payloadMessage )
+	function [frame,padBits,frameLength] = CreateOFDMFrame( obj, payloadMessage )
 
 
 		
@@ -88,10 +99,11 @@ classdef PHYTransmitter < OFDMPHYBase
 
 		% Use string as message
 		%payloadMessage = OFDMletters2bits(obj,payloadMessage);
-		originalData = reshape(payloadMessage.',size(payloadMessage,1)*size(payloadMessage,2),1);
+		originalData = reshape(payloadMessage,size(payloadMessage,1)*size(payloadMessage,2),1);
 
 		% Generate CRC
-		dataWithCRC = step(obj.pCRCGen, originalData);% Add CRC
+		%dataWithCRC = step(obj.pCRCGen, originalData);% Add CRC
+		dataWithCRC = originalData;
 
 		% Apply modulator for each subcarrier
 		modData = step(obj.pMod, dataWithCRC);
@@ -104,33 +116,20 @@ classdef PHYTransmitter < OFDMPHYBase
 		%modData = [modData; step(obj.pMod,randi([0 1],padBits,1))];
 		modData = [modData; step(obj.pMod,zeros(padBits,1))];
 		% Calculate required data sizes for correct receiver operation
-		numDataSymbols = length(modData)/obj.numCarriers;
 		numSamples = length(modData);
 		messageCharacters = length(payloadMessage); % Save desired message size
 
 		% Convert data into subcarrier streams
-		ofdmData = reshape(modData.', obj.numCarriers, length(modData)/obj.numCarriers);
-
-		
-		% Modulate
-		obj.hDataMod.NumSymbols = numDataSymbols;
-	
-		% Create Pilots
-		obj.pPN.SamplesPerFrame = numDataSymbols;
-		pilot = step(obj.pPN); % Create pilot
-		obj.pilots = repmat(pilot, 1, 4 ); % Expand to all pilot tones
-		obj.pilots = 2*double(obj.pilots.'<1)-1; % Bipolar to unipolar
-		obj.pilots(4,:) = -1*obj.pilots(4,:); % Invert last pilot
+		ofdmData = reshape(modData, obj.numCarriers, length(modData)/obj.numCarriers);
 
 		r = step(obj.hDataMod, ofdmData, obj.pilots);
 
 		% Add preambles to data
-		preambles = [obj.CompleteShortPreambleOFDM; obj.CompleteLongPreambleOFDM];
-		r = [preambles; r];
+		r = [obj.Preambles; r];
 		frameLength = length(r);
 
 		% Repeat frame (Used in debugging)
-		frame = repmat(r, 10, 1);
+		frame = repmat(r, obj.DupeFrames+1, 1);
 		%frame = r;
 
 	end

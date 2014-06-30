@@ -2,17 +2,17 @@ classdef PHYReceiver < OFDMPHYBase
     
     % OFDM Physical Layer Receiver
     properties (Nontunable)
-        ReceiveBufferLength = 5120;%ceil( rx.frameLength*4 ); %Size of Buffer of sliding window
+        ReceiveBufferLength = 740;%ceil( rx.frameLength*4 ); %Size of Buffer of sliding window
         CenterFrequency = 2.24e9;
-        NumFrames = 3;              % Frames to capture
-        MessageCharacters = 80;
-        FrameLength = 1000;
+        NumFrames = 4;              % Frames to capture
+        %MessageCharacters = 80;
         HWAttached = false;
-        padBits = 10;
+        padBits = 0;
     end
     
     properties (Access = protected)
         
+        FrameLength = 640;
         % Variables
         pTimeoutDuration
         phi
@@ -26,7 +26,8 @@ classdef PHYReceiver < OFDMPHYBase
         pCRC
         
         % Vector Memory
-        pMessageBits
+        %pMessageBits
+	pOutputBits
     	Buffer
         pilotEqGains
         preambleEqGains
@@ -80,10 +81,14 @@ classdef PHYReceiver < OFDMPHYBase
             obj.pTimeoutDuration = floor(buffersPerSecond*0.05);
             
             % Soft decisions
-            obj.pMessageBits = zeros(obj.NumFrames,obj.MessageCharacters*7+3);%3 for CRC
+            %obj.pMessageBits = zeros(obj.NumFrames,obj.MessageCharacters*7+3);%3 for CRC
+            obj.pOutputBits = zeros(obj.NumFrames,obj.numCarriers);%3 for CRC
             
             
 	    obj.Buffer = complex(zeros(obj.ReceiveBufferLength,1));
+
+	    obj.FrameLength = obj.NumDataSymbolsPerFrame*(obj.FFTLength+obj.CyclicPrefixLength)+length(obj.Preambles);
+	    
 
         end
         
@@ -98,14 +103,15 @@ classdef PHYReceiver < OFDMPHYBase
             numBuffersProcessed = 0; %Track received data, needed for separate indexing of processed and unprocessed data (processed==preamble found)
                         
             % Message string holder
-            coder.varsize('recoveredMessage', [1, 80], [0 1]);
+            %coder.varsize('recoveredMessage', [1, 80], [0 1]);
             %recoveredMessage = '';
             
             %% Process received data
             % Locate frames in buffer and compensate for channel affects
             while obj.numProcessed < obj.NumFrames
                 
-		fprintf('Looped\n');
+		disp('Looped');
+	
                 % Get data from USRP or Input
                 if obj.HWAttached
                     obj.Buffer = step(obj.pSDRuReceiver);
@@ -136,7 +142,6 @@ classdef PHYReceiver < OFDMPHYBase
                 %% Recover found frame
                 if FrameFound
 
-		    fprintf('Frame found\n');                    
                     lastFound = numBuffersProcessed;%Flag frame as found so duplicate frames are not processed
                     obj.numProcessed = obj.numProcessed + 1;%Increment processed found frames
                     
@@ -151,9 +156,10 @@ classdef PHYReceiver < OFDMPHYBase
                     
                     % Demod subcarriers
                     [ ~, RHard ] = demodOFDMSubcarriers_sdr( obj, RPostEqualizer );
-                    
+                  
                     % Save for later decoding and CRC
-                    obj.pMessageBits(obj.numProcessed,:) = RHard;
+                    %obj.pMessageBits(obj.numProcessed,:) = RHard;
+                    %obj.pOutputBits(obj.numProcessed,:) = RHard;
                     
                 end
                 
@@ -168,8 +174,9 @@ classdef PHYReceiver < OFDMPHYBase
             end
             
             % Decode Bits
-            recoveredMessage = DecodeMessages( obj, obj.pMessageBits );
-            
+            %recoveredMessage = DecodeMessages( obj, obj.pMessageBits );
+            %recoveredMessage = obj.pOutputBits;    
+	    recoveredMessage = RHard;	
             
         end
         

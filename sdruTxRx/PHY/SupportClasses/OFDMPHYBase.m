@@ -25,6 +25,7 @@ classdef OFDMPHYBase < matlab.System
 
         % Vectors
         dataSubcarrierIndexies
+	Preambles
         
         frequency
         
@@ -86,6 +87,7 @@ classdef OFDMPHYBase < matlab.System
         end
         
         function CreatePreambles(obj)
+
             %% Create Short Preamble
             obj.ShortPreamble = [ 0 0  1+1i 0 0 0  -1-1i 0 0 0 ... % [-27:-17]
                 1+1i 0 0 0  -1-1i 0 0 0 -1-1i 0 0 0   1+1i 0 0 0 ... % [-16:-1]
@@ -116,6 +118,9 @@ classdef OFDMPHYBase < matlab.System
             
             % Form 2 Long Preambles
             obj.CompleteLongPreambleOFDM =[obj.LongPreambleOFDM(33:64); obj.LongPreambleOFDM; obj.LongPreambleOFDM];
+
+	    % Combine Preambles
+	    obj.Preambles = [obj.CompleteShortPreambleOFDM; obj.CompleteLongPreambleOFDM];
             
             % Create Pilots
             hPN = comm.PNSequence(...
@@ -274,8 +279,8 @@ classdef OFDMPHYBase < matlab.System
             preambleEqGains = preambleFDE( obj, [RLongFirst, RLongSecond], [obj.LongPreamble, obj.LongPreamble]);
             
             % Separate data from preambles
-            %recvData = recv(length(tx.preambles)+1:length(obj.preambles)+(obj.NumSymbols)*(obj.FFTLength+obj.CyclicPrefixLength));
-            recvData = recv(320+1:1280); % CG
+            recvData = recv(length(obj.Preambles)+1:length(obj.Preambles)+(obj.NumDataSymbolsPerFrame)*(obj.FFTLength+obj.CyclicPrefixLength));
+            %recvData = recv(320+1:1280); % CG
             
             % OFDM Demod
             [Rraw, RXPilots] = step(obj.hDataDemod, recvData);
@@ -336,9 +341,10 @@ classdef OFDMPHYBase < matlab.System
             % transmitted data
             
             % Demodulate subcarrier data
-            RLinear = reshape(R,size(R,1)*size(R,2),1);
-            RHard = RLinear(1:end-obj.padBits) < 0; %Bits
-            
+            %RLinear = reshape(R,size(R,1)*size(R,2),1);
+            %RHard = RLinear(1:end-obj.padBits) < 0; %Bits
+	    RHard = R<0;            
+
             % Decode received text
             %estimate.message = OFDMbits2letters(RHard > 0);
             

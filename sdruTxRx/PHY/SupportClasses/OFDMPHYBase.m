@@ -425,5 +425,43 @@ classdef OFDMPHYBase < matlab.System
         function y = c_string(~,s)
             y = [s 0];
         end
+        
+        % Do nothing aka waste time
+        function Wait(obj,timeToWait)
+            
+            % Calculate how many buffer needed to step through to wait
+            % desired time
+            timeToFillBuffer = obj.pSDRuReceiver.FrameLength / obj.SamplingFrequency;
+            buffersToProcess = ceil(timeToWait/timeToFillBuffer);
+            % Use SDR as time measurement
+            for buffer = 1:buffersToProcess
+                step(obj.pSDRuReceiver);
+            end
+            
+        end
+
+        % Simple Energy detection and thresholding
+        function [decision,meanEnergy] = SpectrumSenseEnergy( obj )
+            
+            % Collect Data
+            N = 2;% buffers to collect
+            data = complex(zeros(obj.pSDRuReceiver.receiveBufferLength,N));
+            for k = 1:N
+                tmp = step(ObjSDRuReceiver);
+                data(:,k) = step(obj.pAGC,tmp);
+            end
+            
+            % Make decision
+            meanEnergy = mean(mean(abs(fft(data(1:4096,:)))));% Needs to be base 2 CG
+            decision = 0;
+            threshold = 50;% Experimentally determined
+            if meanEnergy > threshold
+                decision = 1;
+            end
+            
+            
+        end
+
+
     end
 end

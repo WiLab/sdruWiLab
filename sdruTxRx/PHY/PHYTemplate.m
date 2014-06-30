@@ -3,6 +3,9 @@
 % Create bits input vector
 % Always size 48 x N matrix
 % Input is assumed to be 1 frame, N OFDM symbols
+% Columns == OFDM Symbol
+% Row == Subbarrier
+
 N = 11;
 input = randi([0 1],48,N);
 

@@ -108,13 +108,13 @@ classdef PHYTransmitter < OFDMPHYBase
 		% Apply modulator for each subcarrier
 		modData = step(obj.pMod, dataWithCRC);
 
-		% Pad IFFT
-		padBits = obj.numCarriers - mod(length(modData),obj.numCarriers);
-		if padBits == obj.numCarriers
-		    padBits = 0;
-		end
-		%modData = [modData; step(obj.pMod,randi([0 1],padBits,1))];
-		modData = [modData; step(obj.pMod,zeros(padBits,1))];
+% 		% Pad IFFT
+% 		padBits = obj.numCarriers - mod(length(modData),obj.numCarriers);
+% 		if padBits == obj.numCarriers
+% 		    padBits = 0;
+% 		end
+% 		%modData = [modData; step(obj.pMod,randi([0 1],padBits,1))];
+% 		modData = [modData; step(obj.pMod,zeros(padBits,1))];
 		% Calculate required data sizes for correct receiver operation
 		numSamples = length(modData);
 		messageCharacters = length(payloadMessage); % Save desired message size

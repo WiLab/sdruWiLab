@@ -27,7 +27,7 @@ classdef PHYReceiver < OFDMPHYBase
         
         % Vector Memory
         %pMessageBits
-	pOutputBits
+        pOutputBits
     	Buffer
         pilotEqGains
         preambleEqGains

@@ -35,7 +35,9 @@ disp(['Bit Errors: ',num2str(errors)]);
 
 
 %% Codegen
-compilesdru('testCodegen','MEX');
+input = randi([0 1],48,4);
+%codegen testCodegen -args {coder.Constant(input)}
+compilesdru('testCodegen','MEX','args','{coder.Constant(input)}');
 testCodegen_mex
 
 

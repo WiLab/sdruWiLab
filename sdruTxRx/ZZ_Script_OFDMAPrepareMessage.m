@@ -3,14 +3,17 @@
 clc;
 
 message_UE1 = '1st Message';
-message_UE2 = '2nd Message';
+message_UE2 = 'Second message';
 
 OriginNodes = [1 2];
 
 DestNodes = [4 5];
 
-messageToTx = OFDMAPrepareMessage(OriginNodes,DestNodes,message_UE1,message_UE2);
-
 obj = OFDMPHYBase;
+
+numSymbols = 6;
+
+messageToTx = OFDMAPrepareData(obj,OriginNodes,DestNodes,message_UE1,message_UE2,numSymbols);
+
 % 
 % r = OFDMASignalGenerator(obj,messageToTx);

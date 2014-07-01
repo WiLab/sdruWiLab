@@ -31,3 +31,10 @@ errors = biterr(input,output);
 disp(['Bit Errors: ',num2str(errors)]);
 
 
+%% Codegen
+compilesdru('testCodegen','MEX');
+testCodegen_mex
+
+
+
+

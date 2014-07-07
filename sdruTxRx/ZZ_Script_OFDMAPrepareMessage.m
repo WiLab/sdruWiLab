@@ -2,8 +2,8 @@
 
 clc;
 
-message_UE1 = 'A';
-message_UE2 = 'B';
+message_UE1 = '1st Message';
+message_UE2 = 'Second Message';
 
 OriginNodes = [1 2];
 

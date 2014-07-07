@@ -13,30 +13,26 @@ numCarriers = 48;
 maxMsgSize = max([length(messageUE1) length(messageUE2)]);
 
 % Matrix containing messages
-messageUEs = [messageUE1 repmat('-',1,maxMsgSize - length(messageUE1));...
-              messageUE2 repmat('-',1,maxMsgSize - length(messageUE2))];
+messageUEs = [additionalText(messageUE1,UsersOriginNode(1),UsersDestNode(1)) repmat('-',1,maxMsgSize - length(messageUE1));...
+              additionalText(messageUE2,UsersOriginNode(2),UsersDestNode(2)) repmat('-',1,maxMsgSize - length(messageUE2))];
 
 
-%% Calculate pad bits and add extra text
+%% Calculate pad bits and add as extra text
 
 % The number of pad bits per user is the total number of bits per user 
 % (numCarriers*numSymbols/2) minus the bits per message 
 % (7*(size(messageUEs,2)+7)) minus the CRC bits (3)
 
-padBits = numCarriers*numSymbols/2 - 7*(size(messageUEs,2)+7) - 3;
+padBits = numCarriers*numSymbols/2 - 7*(size(messageUEs,2)+1) - 3;
 if padBits < 0
     fprintf('Not enough frames!\n\n');
     return;
 end
 
-% Initialize matrix
-messageText = char(zeros(numUsers,size(messageUEs,2) + 7));
+% Put number of pad bits on the beggining of the message
+messageText = [repmat(char(48 + padBits),numUsers,1) messageUEs];
 
-for user = 1:numUsers
-    messageText(user,:) = [char(48 + padBits) additionalText(messageUEs(user,:),UsersOriginNode(user),UsersDestNode(user))];
-end
-
-%% Convert to bits and pad
+%% Convert to bits
 
 % Initialize matrix
 messageBits = zeros(numUsers,size(messageText,2)*7);
@@ -53,20 +49,20 @@ for user = 1:numUsers
     
 end
 
-% Pad and add number of pad bits to header
-paddedBits = [messageBits randi([0 1],numUsers,padBits)];
-
-%% Add CRC
+%% Add CRC and pad
 
 % Generate CRC object handle
 hGen = comm.CRCGenerator([1 0 0 1], 'ChecksumsPerFrame',1);
 
 % Initialize matrix. Remember to change added number if CRC length changes!
-dataWithCRC = zeros(numUsers,length(paddedBits) + 3);
+dataWithCRC = zeros(numUsers,length(messageBits) + 3);
 
 for user = 1:numUsers
-    dataWithCRC(user,:) = step(hGen, paddedBits(user,:)');% Add CRC
+    dataWithCRC(user,:) = step(hGen, messageBits(user,:)');% Add CRC
 end
+
+% Pad and add number of pad bits to header
+paddedBits = [dataWithCRC randi([0 1],numUsers,padBits)];
 
 %% User multiplex
 
@@ -77,7 +73,7 @@ bitsToTx = zeros(numCarriers,numSymbols);
 for user = 1:numUsers
     
     % Reshape one user's data
-    userData = reshape(dataWithCRC(user,:)',numCarriers/2,numSymbols);
+    userData = reshape(paddedBits(user,:)',numCarriers/2,numSymbols);
     
     % Define transmitted bits
     bitsToTx((user-1)*numCarriers/2 + 1 : user*numCarriers/2 , :) = userData;

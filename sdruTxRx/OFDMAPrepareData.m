@@ -1,7 +1,8 @@
-function messageToTx = OFDMAPrepareData(obj,UsersOriginNode, UsersDestNode, message_UE1,message_UE2,numSymbols)
+function messageToTx = OFDMAPrepareData(obj,UsersOriginNode, UsersDestNode, messageUE1,messageUE2,numSymbols)
 
 % Define number of users
 numUsers = 2;
+numCarriers = 48;
 
 %% Concatenate text messages
 
@@ -9,14 +10,34 @@ numUsers = 2;
 % padded, to be the same size as the other
 
 % Calculate size of biggest message, so that one can be padded
-maxMsgSize = max([length(message_UE1) length(message_UE2)]);
+maxMsgSize = max([length(messageUE1) length(messageUE2)]);
 
 % Matrix containing messages
-messageText = [additionalText(message_UE1,UsersOriginNode(1),UsersDestNode(1)) repmat('-',1,maxMsgSize - length(message_UE1));...
-               additionalText(message_UE2,UsersOriginNode(2),UsersDestNode(2)) repmat('-',1,maxMsgSize - length(message_UE2))];
+messageUEs = [messageUE1 repmat('-',1,maxMsgSize - length(messageUE1));...
+              messageUE2 repmat('-',1,maxMsgSize - length(messageUE2))];
 
-%% Convert to bits
-           
+
+%% Calculate pad bits and add extra text
+
+% The number of pad bits per user is the total number of bits per user 
+% (numCarriers*numSymbols/2) minus the bits per message 
+% (7*(size(messageUEs,2)+7)) minus the CRC bits (3)
+
+padBits = numCarriers*numSymbols/2 - 7*(size(messageUEs,2)+7) - 3;
+if padBits < 0
+    fprintf('Not enough frames!\n\n');
+    return;
+end
+
+% Initialize matrix
+messageText = char(zeros(numUsers,size(messageUEs,2) + 7));
+
+for user = 1:numUsers
+    messageText(user,:) = [char(48 + padBits) additionalText(messageUEs(user,:),UsersOriginNode(user),UsersDestNode(user))];
+end
+
+%% Convert to bits and pad
+
 % Initialize matrix
 messageBits = zeros(numUsers,size(messageText,2)*7);
 userBits = zeros(size(messageText,2),7);
@@ -32,16 +53,7 @@ for user = 1:numUsers
     
 end
 
-%% Pad to create exact number of frames
-
-% Calculate pad bits
-padBits = (48*numSymbols - 2*size(messageBits,2))/2 - 3;
-if padBits < 0
-    fprintf('Not enough frames!');
-    return; 
-end
-
-% Pad
+% Pad and add number of pad bits to header
 paddedBits = [messageBits randi([0 1],numUsers,padBits)];
 
 %% Add CRC
@@ -59,17 +71,17 @@ end
 %% User multiplex
 
 % Itintialize matrix
-userData = zeros(24,numSymbols);
-bitsToTx = zeros(48,numSymbols);
+userData = zeros(numCarriers/2,numSymbols);
+bitsToTx = zeros(numCarriers,numSymbols);
 
 for user = 1:numUsers
-
+    
     % Reshape one user's data
-    userData = reshape(dataWithCRC(user,:)',24,numSymbols);
+    userData = reshape(dataWithCRC(user,:)',numCarriers/2,numSymbols);
     
     % Define transmitted bits
-    bitsToTx((user-1)*24 + 1 : user*24 , :) = userData; 
-
+    bitsToTx((user-1)*numCarriers/2 + 1 : user*numCarriers/2 , :) = userData;
+    
 end
 
 %% Create struct with message and metadata
@@ -79,7 +91,8 @@ messageToTx = struct('bitsToTx',bitsToTx,...
                      'UsersOriginNode',UsersOriginNode,...
                      'UsersDestNode',UsersDestNode,...
                      'numUsers',numUsers,...
-                     'numSymbols',numSymbols);
+                     'numSymbols',numSymbols,...
+                     'numCarriers',numCarriers);
 
 end
 
@@ -99,8 +112,8 @@ if length(message) < 69
     destNodeChar = char(48 + destNode);
     
     % Build message
-    FullMessage = [message,...                          % Text message
-        originNodeChar, destNodeChar,uniqueID,'EOF'];   % Additional
+    FullMessage = [uniqueID,destNodeChar,originNodeChar,...
+        message,'EOF'];
     
 else
     fprintf('ERROR: Message incorrect format\n');

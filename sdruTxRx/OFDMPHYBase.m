@@ -25,7 +25,7 @@ classdef OFDMPHYBase < matlab.System
 
         % Vectors
         dataSubcarrierIndexies
-        Preambles
+	Preambles
         
         frequency
         

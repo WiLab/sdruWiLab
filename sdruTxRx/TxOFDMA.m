@@ -1,6 +1,7 @@
-function messageToTx = OFDMAPrepareData(obj,UsersOriginNode, UsersDestNode, messageUE1,messageUE2,numSymbols)
+function messageToTx = TxOFDMA(obj,UsersOriginNode, UsersDestNode, messageUE1,messageUE2,numSymbols)
+% Write HELP here!!!!
 
-% Define number of users
+%% Define parameters
 numUsers = 2;
 numCarriers = 48;
 
@@ -25,12 +26,12 @@ messageUEs = [additionalText(messageUE1,UsersOriginNode(1),UsersDestNode(1)) rep
 
 padBits = numCarriers*numSymbols/2 - 7*(size(messageUEs,2)+1) - 3;
 if padBits < 0
-    fprintf('Not enough frames!\n\n');
+    fprintf('Not enough symbols!\n\n');
     return;
 end
 
 % Put number of pad bits on the beggining of the message
-messageText = [repmat(char(48 + padBits),numUsers,1) messageUEs];
+messageText = [repmat(char(padBits),numUsers,1) messageUEs];
 
 %% Convert to bits
 

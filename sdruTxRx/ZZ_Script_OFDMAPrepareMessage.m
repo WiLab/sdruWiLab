@@ -11,9 +11,9 @@ DestNodes = [4 5];
 
 obj = OFDMPHYBase;
 
-numSymbols = 10;
+numSymbols = 7;
 
-messageToTx = OFDMAPrepareData(obj,OriginNodes,DestNodes,message_UE1,message_UE2,numSymbols);
+messageToTx = TxOFDMA(obj,OriginNodes,DestNodes,message_UE1,message_UE2,numSymbols);
 
 % 
 % r = OFDMASignalGenerator(obj,messageToTx);

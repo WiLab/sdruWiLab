@@ -1,4 +1,4 @@
-% clear all;
+clear all;
 
 clc;
 
@@ -15,5 +15,6 @@ numSymbols = 7;
 
 messageToTx = TxOFDMA(obj,OriginNodes,DestNodes,message_UE1,message_UE2,numSymbols);
 
-% 
-% r = OFDMASignalGenerator(obj,messageToTx);
+desiredUser = 1;
+
+receivedMessage = RxOFDMA(obj,messageToTx.bitsToTx,desiredUser);

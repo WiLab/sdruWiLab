@@ -33,18 +33,17 @@ if ~err
     if ~isempty(messageEnd)
         recoveredText = messageLetters(5:messageEnd(1,1)-1); % Exclude the header
         fprintf('PHY| Message recovered: %s\n',recoveredText);
-        header = messageLetters(1:4);
     end
 else
     fprintf('PHY| CRC Message Failure\n');
     recoveredText = 'CRC Error';
-    header = 'CRC Error';
+    me
 end
 
 %% Build output struct
 
 receivedMessage = struct('recoveredText',recoveredText,...
-                         'header',header,...
+                         'header',messageLetters(1:4),...
                          'numCarriers',numCarriers,...
                          'numSymbols',numSymbols,...
                          'carriersPerUser',carriersPerUser);

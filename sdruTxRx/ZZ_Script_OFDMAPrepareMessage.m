@@ -2,8 +2,8 @@
 
 clc;
 
-message_UE1 = 'm  1st Message';
-message_UE2 = 'm  Second Message';
+message_UE1 = '1st Message';
+message_UE2 = 'Second Message';
 
 OriginNodes = [1 2];
 
@@ -11,7 +11,7 @@ DestNodes = [4 5];
 
 obj = OFDMPHYBase;
 
-numSymbols = 8;
+numSymbols = 10;
 
 messageToTx = TxOFDMA(obj,OriginNodes,DestNodes,message_UE1,message_UE2,numSymbols);
 
@@ -23,4 +23,4 @@ disp('Header: ');
 disp(receivedMessage.header);
 
 disp('Tx message');
-disp(messageToTx.messageText(1,:));
+disp(messageToTx.messageText(desiredUser,:));

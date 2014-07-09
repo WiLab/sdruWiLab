@@ -14,23 +14,26 @@ numCarriers = 48;
 maxMsgSize = max([length(messageUE1) length(messageUE2)]);
 
 % Matrix containing messages
-messageText = [additionalText(messageUE1,UsersOriginNode(1),UsersDestNode(1)) repmat('-',1,maxMsgSize - length(messageUE1));...
+messageUEs = [additionalText(messageUE1,UsersOriginNode(1),UsersDestNode(1)) repmat('-',1,maxMsgSize - length(messageUE1));...
               additionalText(messageUE2,UsersOriginNode(2),UsersDestNode(2)) repmat('-',1,maxMsgSize - length(messageUE2))];
 
 
-%% Calculate pad bits
+%% Calculate pad bits and 
 
 % The number of pad bits per user is the total number of bits per user 
 % (numCarriers*numSymbols/2) minus the bits per message 
 % (7*(size(messageUEs,2)+7)) minus the CRC bits (3)
 
-padBits = numCarriers*numSymbols/2 - 7*(size(messageText,2)+1) - 3;
+padBits = numCarriers*numSymbols/2 - 7*(size(messageUEs,2)+1) - 3;
 if padBits < 0
     fprintf('Not enough symbols!\n\n');
     return;
 end
 
-%% Convert to bits and add number of pad bits to beggining of message
+% Add number of pad bits to header
+messageText = [repmat(char(padBits),numUsers,1) messageUEs];
+
+%% Convert to bits
 
 % Initialize matrix
 messageBits = zeros(numUsers,size(messageText,2)*7);
@@ -47,19 +50,16 @@ for user = 1:numUsers
     
 end
 
-% Add number of pad bits to header
-finalBits = [repmat(dec2bin(padBits,7),numUsers,1) messageBits];
-
 %% Add CRC and pad
 
 % Generate CRC object handle
 hGen = comm.CRCGenerator([1 0 0 1], 'ChecksumsPerFrame',1);
 
 % Initialize matrix. Remember to change added number if CRC length changes!
-dataWithCRC = zeros(numUsers,length(finalBits) + 3);
+dataWithCRC = zeros(numUsers,length(messageBits) + 3);
 
 for user = 1:numUsers
-    dataWithCRC(user,:) = step(hGen, finalBits(user,:)');% Add CRC
+    dataWithCRC(user,:) = step(hGen, messageBits(user,:)');% Add CRC
 end
 
 % Pad and add number of pad bits to header

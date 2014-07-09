@@ -15,7 +15,7 @@ userBits = reshape(userFrame,1,carriersPerUser*numSymbols);
 %% Eliminate pad bits 
 
 % Extract number of pad bits from beggining of frame
-padBits = bin2dec(userBits(4:10));
+padBits = obj.OFDMbits2letters(userBits(1:7));
 
 unpaddedBits = userBits(1:end-padBits);
 

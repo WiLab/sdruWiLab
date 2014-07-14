@@ -13,14 +13,23 @@ classdef TxOFDMA < matlab.System
         
     end
     
-    %% Define tunable properties
+    %% Define protected properties
     properties
-        messageText;
-        DestNodes;
-        OriginNodes;
+        
+        messageText; 
         padBits;   % Number of pad bits on last frame
         lastFrame; % Last transmitted frame
+        
     end
+    
+    %% Define properties  
+    properties
+        
+        DestNodes;
+        OriginNodes;
+        
+    end
+    
     
     %% Methods
     methods(Access = protected)

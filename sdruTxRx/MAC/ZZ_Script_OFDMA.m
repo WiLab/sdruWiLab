@@ -9,12 +9,12 @@ objTx = TxOFDMA;
 
 bitsToTx = step(objTx,message_UE1,message_UE2);
 
-desiredUser = 1;
+objRx = RxOFDMA;
 
-receivedMessage = RxOFDMA(bitsToTx,desiredUser);
+receivedMessage = step(objRx,bitsToTx);
 
-disp('Header: ');
-disp(receivedMessage.header);
+fprintf('\nHeader of received message: \n');
+disp(objRx.lastHeader);
 
-disp('Tx message');
-disp(objTx.messageText(desiredUser,:));
+fprintf('\nTransmitted message with additional text: \n');
+disp(objTx.messageText(objRx.desiredUser,:));

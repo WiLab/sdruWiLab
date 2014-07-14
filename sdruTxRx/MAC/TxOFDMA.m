@@ -13,7 +13,8 @@ numCarriers = 48;
 % Calculate size of biggest message, so that one can be padded
 maxMsgSize = max([length(messageUE1) length(messageUE2)]);
 
-% Matrix containing messages
+% Extend all text in messages to 80 Characters and
+% containing messages to matrix, 1 row per user
 messageUEs = [additionalText(messageUE1,UsersOriginNode(1),UsersDestNode(1)) repmat('-',1,maxMsgSize - length(messageUE1));...
               additionalText(messageUE2,UsersOriginNode(2),UsersDestNode(2)) repmat('-',1,maxMsgSize - length(messageUE2))];
 

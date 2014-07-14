@@ -1,4 +1,5 @@
 codegen
+BUILD
 *.m~
 *.cpp~
 *.swp

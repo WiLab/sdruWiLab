@@ -7,6 +7,7 @@ filename2 = '';
 AFR1 = dsp.AudioFileReader(filename1,'SamplesPerFrame',SamplesPerFrame);
 AFR2 = dsp.AudioFileReader(filename2,'SamplesPerFrame',SamplesPerFrame);
 
+
 Song1 = [];Song2 = [];
 
 while ~isDone(AFR1) && ~isDone(AFR2) 
@@ -20,6 +21,9 @@ Song1 = [Song1 audio1];
 Song2 = [Song2 audio2];
 
 end
+
+release(AFR1);
+release(AFR2);
 
 Frames = length(Song1)/SamplesPerFrame;
 

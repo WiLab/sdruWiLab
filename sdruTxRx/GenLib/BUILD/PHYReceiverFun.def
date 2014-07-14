@@ -1,8 +1,0 @@
-DLL {
-	global:
-		PHYReceiverFun;
-		PHYReceiverFun_initialize;
-		PHYReceiverFun_terminate;
-	local:
-		*;
-};

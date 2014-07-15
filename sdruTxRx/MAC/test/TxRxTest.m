@@ -18,7 +18,6 @@ PHYRx = PHYReceiver;
 PHYRx.NumFrames = 1;
 PHYRx.NumDataSymbolsPerFrame = N;
 
-
 bitsToTx = step(objTx,message_UE1,message_UE2);
 
 frame = step(PHYTx, bitsToTx);
@@ -38,7 +37,11 @@ fprintf('\nTransmitted message with additional text: \n');
 disp(objTx.messageSent(objRx.desiredUser,:));
 
 errors = biterr(bitsToTx,receivedBits);
+fprintf('\n');
 disp(['Bit Errors: ',num2str(errors)]);
+
+fprintf('\nThe type of the received message is: \n');
+disp(class(objRx.lastMessage));
 
 
 

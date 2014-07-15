@@ -29,7 +29,7 @@ classdef RxOFDMA < matlab.System
     %% Methods
     methods(Access = protected)
         %% Step function
-        function recoveredText = stepImpl(obj,receivedFrame)
+        function recoveredMessage = stepImpl(obj,receivedFrame)
             %% User demultiplex
             userFrame = receivedFrame((obj.desiredUser*obj.carriersPerUser-obj.carriersPerUser+1):...
                 obj.desiredUser*obj.carriersPerUser,:);
@@ -50,19 +50,26 @@ classdef RxOFDMA < matlab.System
             [msg, err] = step(pDetect, unpaddedBits.'>0);
             
             if ~err
-                % Convert Bits to characters
-                messageLetters = char(OFDMbits2letters(obj,msg > 0).');%messageBits(recMessage,1:end-3)
+                % Convert Bits to defined data type
+                switch obj.dataType
+                    case 'char'
+                        messageLetters = char(OFDMbits2letters(obj,msg > 0).');%messageBits(recMessage,1:end-3)
+                    case 'uint8'
+                        messageLetters = uint8(OFDMbits2letters(obj,msg > 0).');%messageBits(recMessage,1:end-3)
+                    otherwise
+                        fprintf('MAC| Undefined data type');
+                end
                 %Remove padding
                 messageEnd = strfind(messageLetters,'EOF');
                 if ~isempty(messageEnd)
-                    recoveredText = messageLetters(5:messageEnd(1,1)-1); % Exclude the header
+                    recoveredMessage = messageLetters(5:messageEnd(1,1)-1); % Exclude the header
                     
                     fprintf('MAC| Message recovered: ');
                     switch obj.dataType
                         case 'char'
-                            fprintf('%s \n', recoveredText);
+                            fprintf('%s \n', recoveredMessage);
                         case 'uint8'
-                            fprintf('%d \n', recoveredText);
+                            fprintf('%d \n', recoveredMessage);
                         otherwise
                             fprintf('MAC| Undefined data type');
                     end
@@ -71,14 +78,14 @@ classdef RxOFDMA < matlab.System
                 end
             else
                 fprintf('MAC| CRC Message Failure\n');
-                recoveredText = 'CRC Error';
+                recoveredMessage = 'CRC Error';
                 header = 'CRC Error';
             end
             
             %% Define properties
             
             obj.lastFrame = receivedFrame;
-            obj.lastMessage = recoveredText;
+            obj.lastMessage = recoveredMessage;
             obj.lastHeader = header;
             
         end

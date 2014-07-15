@@ -18,11 +18,13 @@ else
     libExtension = '.lib';
 end
 
+% get matlab version
+release=version;
+year=str2num(release(end-5:end-2));
+
 % Add library to LD_LIBRARY_PATH
 %command = ['export LD_LIBRARY_PATH=',LD_LIBRARY_PATH];
 %system(command);
-
-decimation = 20;
 
 codegenCommand = 'codegen -config:dll';
 includeFiles = '-I ../SupportFiles';
@@ -32,11 +34,17 @@ functionsToThreadStr = sprintf('%s.m ' ,functionsToThread{:});
 outputCommand = ['-o ',libraryName];
 
 % Build Codegen Command
+if year>2013
 fullCommand = [codegenCommand,' -report ',argsCommand,' ',includeFiles,' ',functionsToThreadStr,' ',outputCommand];
-
 disp('Generating Code');
 eval(fullCommand);
 disp('Completed code generation');
+else
+fullCommand = [codegenCommand,' -report ',argsCommand,' ',includeFiles,' ',functionsToThreadStr,' ',outputCommand];
+disp('Generating Code');
+compilesdru(functionsToThreadStr,'dll','-report',argsCommand,includeFiles,functionsToThreadStr,outputCommand);
+disp('Completed code generation');    
+end
 
 % Make build folder
 mkdir(compileFolder);

@@ -1,6 +1,6 @@
 classdef TxOFDMA < matlab.System
     
-    % TxOFDMA   OFDMA tramsnsmitter class for bit conversion, error 
+    % TxOFDMA   OFDMA tramsnsmitter class for bit conversion, error
     % checking and user multiplexing for 2 users.
     
     %% Define nontunable properties
@@ -16,13 +16,13 @@ classdef TxOFDMA < matlab.System
     %% Define protected properties
     properties
         
-        messageText; 
+        messageSent;
         padBits;   % Number of pad bits on last frame
         lastFrame; % Last transmitted frame
         
     end
     
-    %% Define properties  
+    %% Define properties
     properties
         
         DestNodes;
@@ -58,8 +58,8 @@ classdef TxOFDMA < matlab.System
             maxMsgSize = max([length(messageUE1) length(messageUE2)]);
             
             % Matrix containing messages
-            messageUEs = [obj.additionalText(messageUE1,obj.OriginNodes(1),obj.DestNodes(1)) repmat('-',1,maxMsgSize - length(messageUE1));...
-                obj.additionalText(messageUE2,obj.OriginNodes(2),obj.DestNodes(2)) repmat('-',1,maxMsgSize - length(messageUE2))];
+            messageUEs = [obj.additionalText(messageUE1,obj.OriginNodes(1),obj.DestNodes(1)) repmat(uint8('-'),1,maxMsgSize - length(messageUE1));...
+                          obj.additionalText(messageUE2,obj.OriginNodes(2),obj.DestNodes(2)) repmat(uint8('-'),1,maxMsgSize - length(messageUE2))];
             
             
             %% Calculate pad bits and
@@ -68,26 +68,26 @@ classdef TxOFDMA < matlab.System
             % (numCarriers*nsymbolsPerFrame/2) minus the bits per message
             % (7*(size(messageUEs,2)+7)) minus the CRC bits (3)
             
-            obj.padBits = obj.numCarriers*obj.symbolsPerFrame/2 - 7*(size(messageUEs,2)+1) - 3;
+            obj.padBits = obj.numCarriers*obj.symbolsPerFrame/2 - 8*(size(messageUEs,2)+1) - 3;
             if obj.padBits < 0
                 fprintf('Not enough symbols!\n\n');
                 return;
             end
             
             % Add number of pad bits to header
-            obj.messageText = [repmat(char(obj.padBits),obj.numUsers,1) messageUEs];
+            obj.messageSent = [repmat(uint8(obj.padBits),obj.numUsers,1) messageUEs];
             
             %% Convert to bits
             
             % Initialize matrix
-            messageBits = zeros(obj.numUsers,size(obj.messageText,2)*7);
-            userBits = zeros(size(obj.messageText,2),7);
+            messageBits = zeros(obj.numUsers,size(obj.messageSent,2)*8);
+            userBits = zeros(size(obj.messageSent,2),7);
             
             % Convert to bits
             for user = 1:obj.numUsers
                 
                 % Convert to bits
-                userBits = obj.OFDMletters2bits(obj.messageText(user,:));
+                userBits = obj.OFDMletters2bits(obj.messageSent(user,:));
                 
                 % Reshape into row vector
                 messageBits(user,:) = reshape(userBits',1,size(userBits,1)*size(userBits,2));
@@ -142,13 +142,13 @@ classdef TxOFDMA < matlab.System
                 
                 % Add additional character to differentiate messages, number of
                 % origin node and destination node
-                uniqueID = char(randi([0 (2^7)-1],1,1));
-                originNodeChar = char(48 + originNode);
-                destNodeChar = char(48 + destNode);
+                uniqueID = uint8(randi([0 (2^8)-1],1,1));
+                originNodeChar = uint8(48 + originNode);
+                destNodeChar = uint8(48 + destNode);
                 
                 % Build message
                 FullMessage = [uniqueID,destNodeChar,originNodeChar,...
-                    message,'EOF'];
+                    message,uint8('EOF')];
                 
             else
                 fprintf('ERROR: Message incorrect format\n');
@@ -162,12 +162,12 @@ classdef TxOFDMA < matlab.System
             % Encode a string of ASCII text into bits(1,0)
             DLL = ~strcmp(coder.target,'');
             N=length(str);
-            f=zeros(N,7);
+            f=zeros(N,8);
             
-            bits = dec2bin(str);
+            bits = dec2bin(str,8);
             for k=1:N
                 letter = bits(k,:);
-                for i = 1:7
+                for i = 1:8
                     if DLL
                         f(k,i)=coder.ceval('atoi',c_string(obj,letter(i)));
                     else

@@ -16,13 +16,15 @@ classdef RxOFDMA < matlab.System
     %% Define properties
     properties
         
-        desiredUser = 1;
+        desiredUser = 2;
         lastFrame;
         lastMessage;
         lastHeader;
         padBits;
+%         dataType = 'char';
+        dataType = 'uint8';
         
-    end  
+    end
     
     %% Methods
     methods(Access = protected)
@@ -37,7 +39,7 @@ classdef RxOFDMA < matlab.System
             %% Eliminate pad bits
             
             % Extract number of pad bits from beggining of frame
-            obj.padBits = OFDMbits2letters(obj,userBits(1:7));
+            obj.padBits = OFDMbits2letters(obj,userBits(1:8));
             
             unpaddedBits = userBits(1:end-obj.padBits);
             
@@ -54,11 +56,21 @@ classdef RxOFDMA < matlab.System
                 messageEnd = strfind(messageLetters,'EOF');
                 if ~isempty(messageEnd)
                     recoveredText = messageLetters(5:messageEnd(1,1)-1); % Exclude the header
-                    fprintf('PHY| Message recovered: %s\n',recoveredText);
+                    
+                    fprintf('MAC| Message recovered: ');
+                    switch obj.dataType
+                        case 'char'
+                            fprintf('%s \n', recoveredText);
+                        case 'uint8'
+                            fprintf('%d \n', recoveredText);
+                        otherwise
+                            fprintf('MAC| Undefined data type');
+                    end
+                    
                     header = messageLetters(1:4);
                 end
             else
-                fprintf('PHY| CRC Message Failure\n');
+                fprintf('MAC| CRC Message Failure\n');
                 recoveredText = 'CRC Error';
                 header = 'CRC Error';
             end
@@ -71,23 +83,24 @@ classdef RxOFDMA < matlab.System
             
         end
         
+        %% Conversion to letters
         function Letters = OFDMbits2letters( ~, bits )
             % OFDMbits2letters: Convert input bits from a double array to ascii
             % integers, which can be converted to letters by the char() function
             
             % Make input into column
-            bits = bits(:);
+            bits = reshape(bits',size(bits,1)*size(bits,2),1);
             
             %Trim extra bits
-            bits = bits(1: floor(length(bits)/7)*7);
+            bits = bits(1: floor(length(bits)/8)*8);
             
             %Shape into letters
-            bits = reshape(bits, 7, length(bits)/7).';
+            bits = reshape(bits, 8, length(bits)/8).';
             
             %Convert bits to letters
             Letters = zeros(size(bits,1),1);
             for i = 1:size(bits,1)
-                Letters(i) = char(bin2dec(dec2bin(bits(i,:)).'));
+                Letters(i) = bin2dec(dec2bin(bits(i,:)).');
             end
             
         end

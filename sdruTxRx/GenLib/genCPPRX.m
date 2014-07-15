@@ -12,9 +12,15 @@ additionalFiles = {'tmwtypes.h','rtwtypes.h'};
 
 %%%%%% DO NOT EDIT BELOW %%%%%%%
 
+if isunix
+    libExtension = '.so';
+else
+    libExtension = '.lib';
+end
+
 % Add library to LD_LIBRARY_PATH
-command = ['export LD_LIBRARY_PATH=',LD_LIBRARY_PATH];
-system(command);
+%command = ['export LD_LIBRARY_PATH=',LD_LIBRARY_PATH];
+%system(command);
 
 decimation = 20;
 
@@ -41,11 +47,11 @@ for file = 1:length(functionsToThread)
 	command = ['cp codegen/dll/','*/',filename,' ',compileFolder];
 	system(command);
 end
-command = ['cp codegen/dll/','*/',libraryName,'.so ',compileFolder];
+command = ['cp codegen/dll/','*/',libraryName,libExtension,' ',compileFolder];
 system(command);
 
 % Copy Library To Runtime folder
-command = ['sudo cp codegen/dll/','*/',libraryName,'.so',' ',LD_LIBRARY_PATH];
+command = ['sudo cp codegen/dll/','*/',libraryName,libExtension,' ',LD_LIBRARY_PATH];
 system(command);
 
 % Copy additional files to build folder
@@ -61,19 +67,23 @@ system(command);
 command = ['cp ../SupportFiles/* ',compileFolder];
 system(command);
 
-% Copy USRP required files
-command = ['cp -r /home/sdruser/git/traviscollins/SupportPackage/sdru/include/* ', compileFolder];
-system(command);
+%% Copy USRP required files
+%command = ['cp -r /home/sdruser/git/traviscollins/SupportPackage/sdru/include/* ', compileFolder];
+%system(command);
 
 % Move to build folder
 cd(compileFolder);
 
 % MBuild command
-command = ['mbuild ',cppFilename,'.cpp ',libraryName,'.so'];
+command = ['mbuild ',cppFilename,'.cpp ',libraryName,libExtension];
 eval(command);
 
 % Run script
-command = ['./',cppFilename];
+if isunix
+    command = ['./',cppFilename];
+else
+    command = [cppFilename,'.exe'];
+end
 system(command);
 
 

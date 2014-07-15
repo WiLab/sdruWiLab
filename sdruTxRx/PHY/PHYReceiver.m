@@ -169,11 +169,16 @@ classdef PHYReceiver < OFDMPHYBase
 
         end
         
-        function recoveredMessage = stepImpl(obj,data)
+        function [RHard, statusFlag] = stepImpl(obj,data)
             % Receive Data
+            
+            statusFlag = 0; % 0==noFail,1==CRC,2==Timeout
+            
             %DEBUG
             DebugFlag = 0;
             %DEBUG
+            
+            RHard = logical(zeros(obj.NumFrames,obj.numCarriers));
             
             obj.numProcessed = 0; % # correct frames found
             lastFound = -2; %Flag for found frame, used for dup check
@@ -187,16 +192,16 @@ classdef PHYReceiver < OFDMPHYBase
             % Locate frames in buffer and compensate for channel affects
             while obj.numProcessed < obj.NumFrames
                 
-		disp('Looped');
+                disp('Looped');
 	
                 % Get data from USRP or Input
                 if obj.HWAttached
-                    obj.Buffer = step(obj.pSDRuReceiver);
+                    obj.Buffer(1:obj.ReceiveBufferLength) = step(obj.pSDRuReceiver);
                 else
-                    obj.Buffer = data( numBuffersProcessed*obj.ReceiveBufferLength + 1 :...
+                    obj.Buffer(1:obj.ReceiveBufferLength) = data( numBuffersProcessed*obj.ReceiveBufferLength + 1 :...
                                  ( numBuffersProcessed + 1)*obj.ReceiveBufferLength);
                 end
-                if sum(obj.Buffer)==0
+                if sum(obj.Buffer(1:obj.ReceiveBufferLength))==0
                     % All zeros from radio (Bug?)
                     if DebugFlag ;fprintf('All zeros (Bug?)\n');end;
                     continue;
@@ -253,7 +258,7 @@ classdef PHYReceiver < OFDMPHYBase
             % Decode Bits
             %recoveredMessage = DecodeMessages( obj, obj.pMessageBits );
             %recoveredMessage = obj.pOutputBits;    
-	    recoveredMessage = RHard;	
+            %recoveredMessage = RHard;	
             
         end
         

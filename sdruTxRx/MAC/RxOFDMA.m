@@ -16,13 +16,13 @@ classdef RxOFDMA < matlab.System
     %% Define properties
     properties
         
-        desiredUser = 2;
+        desiredUser = 1;
         lastFrame;
         lastMessage;
         lastHeader;
         padBits;
-%         dataType = 'char';
-        dataType = 'uint8';
+        dataType = 'char';
+%         dataType = 'uint8';
         
     end
     

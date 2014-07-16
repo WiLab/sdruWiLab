@@ -2,22 +2,25 @@ clear all;
 
 clc;
 
-message_UE1 = '1st Message';
-message_UE2 = 'Second Message';
+objRx = RxOFDMA;
+
+messageUE1 = '1st Message';
+messageUE2 = 'Second Message';
+objRx.dataType = 'char';
 
 % message_UE1 = uint8([1 0 1 2 53 53 255 300]);
 % message_UE2 = uint8([2 0 1 2 53 53 255 300]);
+% objRx.dataType = 'uint8';
 
-objTx = TxOFDMA;
+desiredUser = 1;
 
-bitsToTx = step(objTx,message_UE1,message_UE2);
+bitsToTx = TransmitterOFDMA(messageUE1,messageUE2,desiredUser);
 
-objRx = RxOFDMA;
+objRx.desiredUser = desiredUser;
 
 receivedMessage = step(objRx,bitsToTx);
 
 fprintf('\nHeader of received message: \n');
-disp(objRx.lastHeader);
+fprintf('%s\n\n', objRx.lastHeader);
 
-fprintf('\nTransmitted message with additional text: \n');
-disp(objTx.messageSent(objRx.desiredUser,:));
+codegen TransmitterOFDMA -args {messageUE1, messageUE2,desiredUser}

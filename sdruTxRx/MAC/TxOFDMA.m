@@ -70,8 +70,7 @@ classdef TxOFDMA < matlab.System
             
             obj.padBits = obj.numCarriers*obj.symbolsPerFrame/2 - 8*(size(messageUEs,2)+1) - 3;
             if obj.padBits < 0
-                fprintf('Not enough symbols!\n\n');
-                return;
+                fprintf('MAC| ERROR: Not enough symbols!\n\n');
             end
             
             % Add number of pad bits to header
@@ -151,8 +150,7 @@ classdef TxOFDMA < matlab.System
                     message,uint8('EOF')];
                 
             else
-                fprintf('ERROR: Message incorrect format\n');
-                return;
+                fprintf('MAC| ERROR: Message incorrect format\n');
             end
             
         end
@@ -176,6 +174,10 @@ classdef TxOFDMA < matlab.System
                 end
             end
             
+        end
+        % Create a NUL terminated C string given a MATLAB string
+        function y = c_string(~,s)
+            y = [s 0];
         end
         
     end

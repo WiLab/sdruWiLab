@@ -21,8 +21,7 @@ classdef RxOFDMA < matlab.System
         lastMessage;
         lastHeader;
         padBits;
-        dataType = 'char';
-%         dataType = 'uint8';
+        dataType;
         
     end
     
@@ -51,24 +50,18 @@ classdef RxOFDMA < matlab.System
             
             if ~err
                 % Convert Bits to defined data type
-                switch obj.dataType
-                    case 'char'
-                        messageLetters = char(OFDMbits2letters(obj,msg > 0).');%messageBits(recMessage,1:end-3)
-                    case 'uint8'
-                        messageLetters = uint8(OFDMbits2letters(obj,msg > 0).');%messageBits(recMessage,1:end-3)
-                    otherwise
-                        fprintf('MAC| Undefined data type');
-                end
+                messageLetters = uint8(OFDMbits2letters(obj,msg > 0).');%messageBits(recMessage,1:end-3)
+                
                 %Remove padding
-                messageEnd = strfind(messageLetters,'EOF');
+                messageEnd = strfind(char(messageLetters),'EOF');
                 if ~isempty(messageEnd)
                     recoveredMessage = messageLetters(5:messageEnd(1,1)-1); % Exclude the header
                     
                     fprintf('MAC| Message recovered: ');
                     switch obj.dataType
-                        case 'char'
-                            fprintf('%s \n', recoveredMessage);
-                        case 'uint8'
+                        case 'c'
+                            fprintf('%s \n', char(recoveredMessage));
+                        case 'u'
                             fprintf('%d \n', recoveredMessage);
                         otherwise
                             fprintf('MAC| Undefined data type');

@@ -6,10 +6,10 @@ function receivedMessage = ReceiverOFDMA(receivedBits,desiredUser,dataType)
 %   characters, and displays it in the data type defined by dataType: 'c'
 %   for character and 'u' for uint8.
 
-objRx = RxOFDMA;
-objRx.desiredUser = desiredUser;
-objRx.dataType = dataType;
+obj = RxOFDMA;
+obj.desiredUser = desiredUser;
+obj.dataType = dataType;
 
-receivedMessage = step(objRx,receivedBits);
+receivedMessage = step(obj,receivedBits);
 
 end

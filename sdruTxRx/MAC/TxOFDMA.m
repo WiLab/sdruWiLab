@@ -16,6 +16,9 @@ classdef TxOFDMA < matlab.System
     %% Define protected properties
     properties
         
+        dataType;
+        lastMessageUE1;
+        lastMessageUE2;
         messageSent;
         padBits;   % Number of pad bits on last frame
         lastFrame; % Last transmitted frame
@@ -59,7 +62,7 @@ classdef TxOFDMA < matlab.System
             
             % Matrix containing messages
             messageUEs = [obj.additionalText(messageUE1,obj.OriginNodes(1),obj.DestNodes(1)) repmat(uint8('-'),1,maxMsgSize - length(messageUE1));...
-                          obj.additionalText(messageUE2,obj.OriginNodes(2),obj.DestNodes(2)) repmat(uint8('-'),1,maxMsgSize - length(messageUE2))];
+                obj.additionalText(messageUE2,obj.OriginNodes(2),obj.DestNodes(2)) repmat(uint8('-'),1,maxMsgSize - length(messageUE2))];
             
             
             %% Calculate pad bits and
@@ -86,7 +89,7 @@ classdef TxOFDMA < matlab.System
             for user = 1:obj.numUsers
                 
                 % Convert to bits
-                userBits = obj.OFDMletters2bits(obj.messageSent(user,:));
+                userBits = obj.OFDMdecimal2bits(obj.messageSent(user,:));
                 
                 % Reshape into row vector
                 messageBits(user,:) = reshape(userBits',1,size(userBits,1)*size(userBits,2));
@@ -124,7 +127,9 @@ classdef TxOFDMA < matlab.System
                 
             end
             
-            %% Define last frame
+            %% Define last frame and sent messages
+            obj.lastMessageUE1 = messageUE1;
+            obj.lastMessageUE2 = messageUE2;
             obj.lastFrame = bitsToTx;
             
         end
@@ -156,7 +161,7 @@ classdef TxOFDMA < matlab.System
         end
         
         %% Conversion to bits
-        function f = OFDMletters2bits(obj,str)
+        function f = OFDMdecimal2bits(obj,str)
             % Encode a string of ASCII text into bits(1,0)
             DLL = ~strcmp(coder.target,'');
             N=length(str);

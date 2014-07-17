@@ -5,11 +5,11 @@ function bitsToTx = TransmitterOFDMA(messageUE1,messageUE2,desiredUser)
 %   both messages to an OFDMA frame in bits, and displays the transmitted
 %   message of 'desiredUser' with additional text.
 
-objTx = TxOFDMA;
+obj = TxOFDMA;
 
-bitsToTx = step(objTx,messageUE1,messageUE2);
+bitsToTx = step(obj,messageUE1,messageUE2);
 
 fprintf('\nMAC| Transmitted message with additional text: \n');
-fprintf('%s\n\n', objTx.messageSent(desiredUser,:));
+fprintf('%s\n\n', obj.messageSent(desiredUser,:));
 
 end

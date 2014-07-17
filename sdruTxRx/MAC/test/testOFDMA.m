@@ -10,7 +10,7 @@ dataType = 'c';
 % messageUE2 = char(uint8([2 0 1 2 53 53 255 300]));
 % dataType = 'u';
 
-desiredUser = 2;
+desiredUser = 1;
 
 bitsToTx = TransmitterOFDMA_mex(messageUE1,messageUE2,desiredUser);
 receivedMessage = ReceiverOFDMA_mex(bitsToTx,desiredUser,dataType);
@@ -18,5 +18,9 @@ receivedMessage = ReceiverOFDMA_mex(bitsToTx,desiredUser,dataType);
 % bitsToTx = TransmitterOFDMA(messageUE1,messageUE2,desiredUser);
 % receivedMessage = ReceiverOFDMA(bitsToTx,desiredUser,dataType);
 
+fprintf('\nThe type of the output is: \n');
+disp(class(receivedMessage));
+
 % codegen TransmitterOFDMA -args {messageUE1, messageUE2,desiredUser}
 % codegen ReceiverOFDMA -args {bitsToTx,desiredUser,dataType}
+

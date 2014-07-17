@@ -9,7 +9,7 @@ objTx = TxOFDMA;
 
 bitsToTx = step(objTx,messageUE1,messageUE2);
 
-fprintf('\nTransmitted message with additional text: \n');
+fprintf('\nMAC| Transmitted message with additional text: \n');
 fprintf('%s\n\n', objTx.messageSent(desiredUser,:));
 
 end

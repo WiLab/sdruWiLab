@@ -50,17 +50,17 @@ classdef RxOFDMA < matlab.System
             
             if ~err
                 % Convert Bits to defined data type
-                messageLetters = uint8(OFDMbits2letters(obj,msg > 0).');%messageBits(recMessage,1:end-3)
+                messageLetters = char(OFDMbits2letters(obj,msg > 0).');%messageBits(recMessage,1:end-3)
                 
                 %Remove padding
                 messageEnd = strfind(char(messageLetters),'EOF');
                 if ~isempty(messageEnd)
                     recoveredMessage = messageLetters(5:messageEnd(1,1)-1); % Exclude the header
                     
-                    fprintf('MAC| Message recovered: ');
+                    fprintf('MAC| Recovered message: \n');
                     switch obj.dataType
                         case 'c'
-                            fprintf('%s \n', char(recoveredMessage));
+                            fprintf('%s \n', recoveredMessage);
                         case 'u'
                             for k = 1:length(recoveredMessage)
                                 fprintf('%d \n', int8(recoveredMessage(k)));
@@ -69,15 +69,15 @@ classdef RxOFDMA < matlab.System
                             fprintf('MAC| Undefined data type');
                     end
                     
-                    header = uint8(messageLetters(1:4));
+                    header = messageLetters(1:4);
                 else
-                    recoveredMessage = uint8('Error: EOF not found');
+                    recoveredMessage = 'Error: EOF not found';
                     header = recoveredMessage;
                 end
             else
                 fprintf('MAC| CRC Message Failure\n');
-                recoveredMessage = uint8('CRC Error');
-                header = uint8('CRC Error');
+                recoveredMessage = 'CRC Error';
+                header = 'CRC Error';
             end
             
             %% Define properties

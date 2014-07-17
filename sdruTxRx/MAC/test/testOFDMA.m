@@ -21,6 +21,6 @@ receivedMessage = ReceiverOFDMA_mex(bitsToTx,desiredUser,dataType);
 fprintf('\nThe type of the output is: \n');
 disp(class(receivedMessage));
 
-% codegen TransmitterOFDMA -args {messageUE1, messageUE2,desiredUser}
+% codegen TransmitterOFDMA -args {messageUE1,messageUE2,desiredUser}
 % codegen ReceiverOFDMA -args {bitsToTx,desiredUser,dataType}
 

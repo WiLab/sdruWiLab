@@ -80,6 +80,20 @@ classdef RxOFDMA < matlab.System
                 header = 'CRC Error';
             end
             
+            %% Print header on the screen
+            
+            fprintf('\nMAC| Header of received message: \n');
+            switch obj.dataType
+                case 'c'
+                    fprintf('%s \n', char(header));
+                case 'u'
+                    for k = 1:length(header)
+                        fprintf('%d \n', int8(header(k)));
+                    end
+                otherwise
+                    fprintf('MAC| Undefined data type');
+            end
+            
             %% Define properties
             
             obj.lastFrame = receivedFrame;

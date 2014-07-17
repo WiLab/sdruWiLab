@@ -71,9 +71,7 @@ classdef RxOFDMA < matlab.System
                     
                     header = uint8(messageLetters(1:4));
                 else
-                    recoveredMessage = uint8('Error: EOF not found');
-                    header = recoveredMessage;
-                end
+                    
             else
                 fprintf('MAC| CRC Message Failure\n');
                 recoveredMessage = uint8('CRC Error');

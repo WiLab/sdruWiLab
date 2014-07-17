@@ -6,15 +6,17 @@ messageUE1 = '1st Message';
 messageUE2 = 'Second Message';
 dataType = 'c';
 
-% messageUE1 = uint8([1 0 1 2 53 53 255 300]);
-% messageUE2 = uint8([2 0 1 2 53 53 255 300]);
-% objRx.dataType = 'u';
+% messageUE1 = char(uint8([1 0 1 2 53 53 255 300]));
+% messageUE2 = char(uint8([2 0 1 2 53 53 255 300]));
+% dataType = 'u';
 
-desiredUser = 1;
+desiredUser = 2;
 
 bitsToTx = TransmitterOFDMA_mex(messageUE1,messageUE2,desiredUser);
+receivedMessage = ReceiverOFDMA_mex(bitsToTx,desiredUser,dataType);
 
-receivedMessage = ReceiverOFDMA(bitsToTx,desiredUser,dataType);
+% bitsToTx = TransmitterOFDMA(messageUE1,messageUE2,desiredUser);
+% receivedMessage = ReceiverOFDMA(bitsToTx,desiredUser,dataType);
 
 % codegen TransmitterOFDMA -args {messageUE1, messageUE2,desiredUser}
-codegen ReceiverOFDMA -args {bitsToTx,desiredUser,dataType}
+% codegen ReceiverOFDMA -args {bitsToTx,desiredUser,dataType}

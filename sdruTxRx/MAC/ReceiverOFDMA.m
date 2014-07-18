@@ -1,4 +1,4 @@
-function receivedMessage = ReceiverOFDMA(receivedBits,desiredUser,dataType)
+function [receivedMessage,receivedBits] = ReceiverOFDMA(receivedFrame,desiredUser,dataType)
 % ReceiverOFDMA  OFDMA receiver function for conversion from bits, error
 % checking and user demultiplexing for 2 users.
 %   receivedMessage = ReceiverOFDMA(receivedBits,desiredUser,dataType)
@@ -6,10 +6,20 @@ function receivedMessage = ReceiverOFDMA(receivedBits,desiredUser,dataType)
 %   characters, and displays it in the data type defined by dataType: 'c'
 %   for character and 'u' for uint8.
 
-obj = RxOFDMA;
-obj.desiredUser = desiredUser;
-obj.dataType = dataType;
+objRx = RxOFDMA;
+objRx.desiredUser = desiredUser;
+objRx.dataType = dataType;
 
-receivedMessage = step(obj,receivedBits);
+PHYRx = PHYReceiver;
+PHYRx.NumFrames = 1;
+PHYRx.NumDataSymbolsPerFrame = objRx.symbolsPerFrame;
+
+PHYRx.ReceiveBufferLength=length(receivedFrame)+1;
+
+reshapedFrame = [receivedFrame;zeros(PHYRx.ReceiveBufferLength-length(receivedFrame),1)];
+
+receivedBits = step(PHYRx, reshapedFrame);
+
+receivedMessage = step(objRx,receivedBits);
 
 end

@@ -26,7 +26,7 @@ classdef RxOFDMA < matlab.System
     end
     
     properties (Nontunable)
-        dataType;
+        dataType = 'u';
     end
     
     %% Methods

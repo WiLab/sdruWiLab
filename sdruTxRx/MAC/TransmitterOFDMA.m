@@ -1,4 +1,4 @@
-function bitsToTx = TransmitterOFDMA(messageUE1,messageUE2,desiredUser)
+function bitsToTx = TransmitterOFDMA(messageUE1,messageUE2,desiredUser,dataType)
 % TransmitterOFDMA  OFDMA tramsnsmitter function for bit conversion, error
 % checking and user multiplexing for 2 users.
 %   bitsToTx = TransmitterOFDMA(messageUE1,messageUE2,desiredUser) converts
@@ -6,10 +6,9 @@ function bitsToTx = TransmitterOFDMA(messageUE1,messageUE2,desiredUser)
 %   message of 'desiredUser' with additional text.
 
 obj = TxOFDMA;
+obj.desiredUser = desiredUser;
+obj.dataType = dataType;
 
 bitsToTx = step(obj,messageUE1,messageUE2);
-
-fprintf('\nMAC| Transmitted message with additional text: \n');
-fprintf('%s\n\n', obj.messageSent(desiredUser,:));
 
 end

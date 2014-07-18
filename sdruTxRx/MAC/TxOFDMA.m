@@ -16,7 +16,8 @@ classdef TxOFDMA < matlab.System
     %% Define protected properties
     properties
         
-        dataType;
+        dataType = 'c';
+        desiredUser;
         lastMessageUE1;
         lastMessageUE2;
         messageSent;
@@ -125,6 +126,23 @@ classdef TxOFDMA < matlab.System
                 % Define transmitted bits
                 bitsToTx((user-1)*obj.carriersPerUser + 1 : user*obj.carriersPerUser , :) = userData;
                 
+            end
+            
+            %% Print message
+            
+            fprintf('\nMAC| Transmitted message with additional text: \n');
+            switch obj.dataType
+                case 'c'
+                    fprintf('%s \n', char(obj.messageSent(obj.desiredUser,:)));
+                case 'u'
+                    for k = 1:length(obj.messageSent(obj.desiredUser,:))
+                        % Codegen does not accept uint8s on
+                        % fprint, so they need to be casted to
+                        % int16
+                        fprintf('%d \n', int16(obj.messageSent(obj.desiredUser,k)));
+                    end
+                otherwise
+                    fprintf('MAC| Undefined data type');
             end
             
             %% Define last frame and sent messages

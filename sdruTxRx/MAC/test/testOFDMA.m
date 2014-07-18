@@ -25,5 +25,5 @@ fprintf('\nThe type of the output is: \n');
 disp(class(receivedMessage));
 
 codegen TransmitterOFDMA -args {messageUE1,messageUE2,desiredUser,dataType}
-codegen ReceiverOFDMA -args {bitsToTx,desiredUser,dataType}
+codegen ReceiverOFDMA -args {bitsToTx,desiredUser,coder.Constant(dataType)}
 

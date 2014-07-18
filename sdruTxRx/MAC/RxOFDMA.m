@@ -21,8 +21,12 @@ classdef RxOFDMA < matlab.System
         lastMessage;
         lastHeader;
         padBits;
-        dataType;
         
+        
+    end
+    
+    properties (Nontunable)
+        dataType;
     end
     
     %% Methods
@@ -79,7 +83,7 @@ classdef RxOFDMA < matlab.System
                     returnedMessage = char(recoveredMessage);
                 case 'u'
                     returnedMessage = uint8(recoveredMessage);
-                otherwise
+                 otherwise
                     fprintf('MAC| Undefined data type');
             end
             

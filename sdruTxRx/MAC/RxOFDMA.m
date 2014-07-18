@@ -28,7 +28,7 @@ classdef RxOFDMA < matlab.System
     %% Methods
     methods(Access = protected)
         %% Step function
-        function recoveredMessage = stepImpl(obj,receivedFrame)
+        function returnedMessage = stepImpl(obj,receivedFrame)
             %% User demultiplex
             userFrame = receivedFrame((obj.desiredUser*obj.carriersPerUser-obj.carriersPerUser+1):...
                 obj.desiredUser*obj.carriersPerUser,:);
@@ -76,8 +76,9 @@ classdef RxOFDMA < matlab.System
             
              switch obj.dataType
                 case 'c'
-                    recoveredMessage = char(recoveredMessage);
+                    returnedMessage = char(recoveredMessage);
                 case 'u'
+                    returnedMessage = uint8(recoveredMessage);
                 otherwise
                     fprintf('MAC| Undefined data type');
             end

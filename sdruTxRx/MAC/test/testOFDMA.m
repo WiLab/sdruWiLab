@@ -12,11 +12,11 @@ dataType = 'c';
 
 desiredUser = 1;
 
-% [frame,bitsToTx] = TransmitterOFDMA_mex(messageUE1,messageUE2,desiredUser,dataType);
-% receivedMessage = ReceiverOFDMA_mex(bitsToTx,desiredUser,dataType);
+[frame,bitsToTx] = TransmitterOFDMA_mex(messageUE1,messageUE2,desiredUser,dataType);
+[receivedMessage,receivedBits] = ReceiverOFDMA_mex(frame,desiredUser,dataType);
 
-[frame,bitsToTx] = TransmitterOFDMA(messageUE1,messageUE2,desiredUser,dataType);
-[receivedMessage,receivedBits] = ReceiverOFDMA(frame,desiredUser,dataType);
+% [frame,bitsToTx] = TransmitterOFDMA(messageUE1,messageUE2,desiredUser,dataType);
+% [receivedMessage,receivedBits] = ReceiverOFDMA(frame,desiredUser,dataType);
 
 errors = biterr(bitsToTx,receivedBits);
 fprintf('\n');
@@ -28,6 +28,6 @@ disp(sum(receivedMessage ~= messageUE1));
 fprintf('\nThe type of the output is: \n');
 disp(class(receivedMessage));
 
-codegen TransmitterOFDMA -args {messageUE1,messageUE2,desiredUser,dataType}
-codegen ReceiverOFDMA -args {bitsToTx,desiredUser,coder.Constant(dataType)}
+% codegen TransmitterOFDMA -args {messageUE1,messageUE2,desiredUser,dataType}
+% codegen ReceiverOFDMA -args {frame,desiredUser,coder.Constant(dataType)}
 

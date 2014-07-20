@@ -108,6 +108,10 @@ classdef PHYReceiver < OFDMPHYBase
             
             %% Process received data
             % Locate frames in buffer and compensate for channel affects
+            
+            % Initialize matrix
+            RHard = false(obj.numCarriers,obj.NumDataSymbolsPerFrame);
+            
             while obj.numProcessed < obj.NumFrames
                 
 		disp('Looped');
@@ -161,15 +165,16 @@ classdef PHYReceiver < OFDMPHYBase
                     %obj.pMessageBits(obj.numProcessed,:) = RHard;
                     %obj.pOutputBits(obj.numProcessed,:) = RHard;
                     
+                else
+                    if DebugFlag ;fprintf('PHY| Frame not found\n');end;
                 end
+                
                 
                 %% Timeout
                 %fprintf('%f\n',numBuffersProcessed);
                 %fprintf('%f\n',timeoutDuration);
                 if numBuffersProcessed > obj.pTimeoutDuration
                     if DebugFlag ;fprintf('PHY| Receiver timed out\n');end;
-                    recoveredMessage = 'Timeout';
-                    return;
                 end
             end
             

@@ -58,8 +58,8 @@ classdef PHYTransmitter < OFDMPHYBase
 
 		% Create Pilots
 		pilot = step(obj.pPN); % Create pilot
-		obj.pilots = repmat(pilot, 1, 4 ); % Expand to all pilot tones
-		obj.pilots = 2*double(obj.pilots.'<1)-1; % Bipolar to unipolar
+		pilot_2 = repmat(pilot, 1, 4 ); % Expand to all pilot tones
+		obj.pilots = 2*double(pilot_2.'<1)-1; % Bipolar to unipolar
 		obj.pilots(4,:) = -1*obj.pilots(4,:); % Invert last pilot
 
 		% Change modulator to support multiple symbols		
@@ -77,7 +77,7 @@ classdef PHYTransmitter < OFDMPHYBase
                 if obj.HWAttached
                     step(obj.pSDRuTransmitter,frame);%1 Frame per row
                 else
-                    fprintf('Pew pew\n');
+                    fprintf('\nPew pew\n');
                 end
             end
 

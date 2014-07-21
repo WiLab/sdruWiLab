@@ -1,16 +1,12 @@
-function output = testCodegen2( dataToTx, NumFrames,MessageCharacters,FrameLength,numDataSymbols,padBits)
+function output = testCodegen2( dataToTx, numDataSymbols, len)
 
 h=PHYReceiver;
 h.NumFrames=1;
-%h.MessageCharacters = MessageCharacters;
-%h.FrameLength = FrameLength;
 h.NumDataSymbolsPerFrame = numDataSymbols;
-h.padBits = padBits;
-
+h.ReceiveBufferLength = len;
 %h.HWAttached = true;
-%output = step(h);
 
+%output = step(h);
 output = step(h,dataToTx);
-fprintf('%d\n',int16(length(output)));
 
 end

@@ -33,17 +33,48 @@ output = step(RX,frame);
 errors = biterr(input,output);
 disp(['Bit Errors: ',num2str(errors)]);
 
-break
+
+frame = testCodegen( input, N );
+frame = [frame;0];
+output = testCodegen2( frame,N, length(frame));
+
+% Evaluate
+errors = biterr(input,output);
+disp(['Bit Errors: ',num2str(errors)]);
+
+
+
 %% Codegen
-input = (randi([0 1],48,4));
-codegen testCodegen -args {coder.Constant(input)}
-%compilesdru('testCodegen','MEX','-args','{coder.Constant(input)}');
-x=testCodegen_mex(input);
-y=testCodegen(input);
+%input = (randi([0 1],48,4));
+if isunix
+	compilesdru('testCodegen','MEX','-args','{coder.Constant(input),coder.Constant(N)}');
+else
+	codegen testCodegen -args {coder.Constant(input),coder.Constant(N)};
+end
+x=testCodegen_mex(input,N);
+y=testCodegen(input,N);
 
 if abs(mean(x-y))<eps
 	disp('TX Codegen Operational');
 else
 	disp('TX Codegen Failed');
 end
+
+
+testCodegen2( frame, N,length(frame));
+
+compilesdru('testCodegen2','mex',...
+	'-args',...
+	'{frame,coder.Constant(N),coder.Constant(length(frame))}');
+
+
+output = testCodegen2_mex(frame,N,length(frame));
+
+% Evaluate
+errors = biterr(input,output);
+disp(['Codegen Bit Errors: ',num2str(errors)]);
+
+
+
+
 

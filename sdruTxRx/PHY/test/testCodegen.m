@@ -1,10 +1,9 @@
-function frame = testCodegen(input)
+function frame = testCodegen(input,num)
 
 
 TX = PHYTransmitter;
 
-
-TX.NumDataSymbolsPerFrame = 4;
+TX.NumDataSymbolsPerFrame = num;
 
 frame = step(TX,input);
 

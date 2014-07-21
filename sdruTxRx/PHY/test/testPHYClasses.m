@@ -4,7 +4,11 @@ samplingFreq = 5e6;
 
 % PHYReceiver Test
 [~,hPreambleDemod, dataToTx, tx ] = generateOFDMSignal_TX2(inputPayloadMessage,samplingFreq, 1, 1);% 30 Dupe frames created (NOTE! author shouldcreate shorter simpler function)
-%testCodegen2( dataToTx, 1,tx.messageCharacters, tx.frameLength, hPreambleDemod.NumSymbols ,tx.padBits)
+
+dataToTx = [dataToTx;0];
+testCodegen2( dataToTx, 1,tx.messageCharacters, tx.frameLength, hPreambleDemod.NumSymbols ,tx.padBits)
+
+
 disp('Generating Code for RX');
 compilesdru('testCodegen2','mex','-args','{ dataToTx, 1, coder.Constant(tx.messageCharacters), coder.Constant(tx.frameLength), coder.Constant(hPreambleDemod.NumSymbols) ,coder.Constant(tx.padBits)}')
 disp('Codegen Complete');

@@ -7,7 +7,7 @@ function [hPreambleDemod,hDataDemod, r, tx ] = generateOFDMSignal_TX2(inputPaylo
 %% System Parameters
 FFTLength = 64;         % OFDM modulator FFT size
 enableMA = true;    % Enable moving averages for estimates
-numFrames = 10;%30     % Make larger to reduce underflow on USRP
+numFrames = 1;%30     % Make larger to reduce underflow on USRP
 
 % Message to transmit
 % message is 80 characters max, so extra 3 for EOF, 1 for uniqueID, 1 for

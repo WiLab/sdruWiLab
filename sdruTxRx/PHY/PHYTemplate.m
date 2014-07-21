@@ -33,11 +33,11 @@ output = step(RX,frame);
 errors = biterr(input,output);
 disp(['Bit Errors: ',num2str(errors)]);
 
-
+break
 %% Codegen
 input = (randi([0 1],48,4));
-%codegen testCodegen -args {coder.Constant(input)}
-compilesdru('testCodegen','MEX','-args','{coder.Constant(input)}');
+codegen testCodegen -args {coder.Constant(input)}
+%compilesdru('testCodegen','MEX','-args','{coder.Constant(input)}');
 x=testCodegen_mex(input);
 y=testCodegen(input);
 

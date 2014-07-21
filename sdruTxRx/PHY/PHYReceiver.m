@@ -116,8 +116,6 @@ classdef PHYReceiver < OFDMPHYBase
             % Locate frames in buffer and compensate for channel affects
             while obj.numProcessed < obj.NumFrames
                 
-                disp('Looped');
-	
                 % Get data from USRP or Input
                 if obj.HWAttached
                     obj.Buffer(1:obj.ReceiveBufferLength) = step(obj.pSDRuReceiver);

@@ -34,9 +34,9 @@ errors = biterr(input,output);
 disp(['Bit Errors: ',num2str(errors)]);
 
 
-frame = testCodegen( input, N );
+frame = testCodegen( input, N ,false);
 frame = [frame;0];
-output = testCodegen2( frame,N, length(frame));
+output = testCodegen2( frame,N, length(frame),false);
 
 % Evaluate
 errors = biterr(input,output);
@@ -44,15 +44,15 @@ disp(['Bit Errors: ',num2str(errors)]);
 
 
 
-%% Codegen
+%% Transmitter Codegen
 %input = (randi([0 1],48,4));
 if isunix
-	compilesdru('testCodegen','MEX','-args','{coder.Constant(input),coder.Constant(N)}');
+	compilesdru('testCodegen','MEX','-args','{coder.Constant(input),coder.Constant(N),coder.Constant(false)}');
 else
-	codegen testCodegen -args {coder.Constant(input),coder.Constant(N)};
+	codegen testCodegen -args {coder.Constant(input),coder.Constant(N),coder.Constant(false)};
 end
-x=testCodegen_mex(input,N);
-y=testCodegen(input,N);
+x=testCodegen_mex(input,N,false);
+y=testCodegen(input,N,false);
 
 if abs(mean(x-y))<eps
 	disp('TX Codegen Operational');
@@ -60,21 +60,35 @@ else
 	disp('TX Codegen Failed');
 end
 
+% Receiver Codegen
+testCodegen2( frame, N,length(frame),false);
 
-testCodegen2( frame, N,length(frame));
-
+if isunix
 compilesdru('testCodegen2','mex',...
 	'-args',...
-	'{frame,coder.Constant(N),coder.Constant(length(frame))}');
+	'{frame,coder.Constant(N),coder.Constant(length(frame)),coder.Constant(false)}');
+else
+	codegen testCodegen2 -args {fframe,coder.Constant(N),coder.Constant(length(frame)),coder.Constant(false)};
 
+end
 
-output = testCodegen2_mex(frame,N,length(frame));
+output = testCodegen2_mex(frame,N,length(frame),false);
 
 % Evaluate
 errors = biterr(input,output);
 disp(['Codegen Bit Errors: ',num2str(errors)]);
 
 
-
+% Test USRP Codegen
+if isunix
+	compilesdru('testCodegen','MEX','-report','-args','{coder.Constant(input),coder.Constant(N),coder.Constant(true)}');
+	compilesdru('testCodegen2','mex','-report',...
+	'-args',...
+	'{frame,coder.Constant(N),coder.Constant(length(frame)),coder.Constant(true)}');
+else
+	codegen testCodegen -args {coder.Constant(input),coder.Constant(N),coder.Constant(true)};
+	codegen testCodegen2 -args {fframe,coder.Constant(N),coder.Constant(length(frame)),coder.Constant(true)};
+end
+disp('USRP Codegen Completed Successfully');
 
 

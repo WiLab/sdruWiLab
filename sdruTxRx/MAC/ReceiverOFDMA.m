@@ -14,7 +14,7 @@ PHYRx = PHYReceiver;
 PHYRx.NumFrames = 1;
 PHYRx.NumDataSymbolsPerFrame = objRx.symbolsPerFrame;
 
-PHYRx.ReceiveBufferLength=length(receivedFrame)+1;
+PHYRx.ReceiveBufferLength=2*length(receivedFrame);
 
 reshapedFrame = [receivedFrame;zeros(PHYRx.ReceiveBufferLength-length(receivedFrame),1)];
 

@@ -56,12 +56,6 @@ classdef PHYTransmitter < OFDMPHYBase
                 'SamplesPerFrame', numDataSymbols,...
                 'InitialConditions',[1 1 1 1 1 1 1]);
             
-            % Create Pilots
-            %pilot = step(obj.pPN); % Create pilot
-            %obj.pilots = repmat(pilot, 1, 4 ); % Expand to all pilot tones
-            %obj.pilots = 2*double(obj.pilots.'<1)-1; % Bipolar to unipolar
-            %obj.pilots(4,:) = -1*obj.pilots(4,:); % Invert last pilot
-            
             % Change modulator to support multiple symbols
             obj.hDataMod.NumSymbols = numDataSymbols;
             

@@ -22,7 +22,7 @@ receivedBits = step(PHYRx, reshapedFrame);
 receivedMessage = step(objRx,receivedBits);
 
 if numRxFrames > 0
-    for i = 1:numTxFrames-1
+    for i = 1:numRxFrames-1
         receivedBits = step(PHYRx, reshapedFrame);
         receivedMessage = step(objRx,receivedBits);
     end

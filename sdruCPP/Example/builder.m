@@ -1,7 +1,12 @@
 cfg = coder.config('exe');
 cfg.CustomSource = 'main.cpp';
-cfg.CustomInclude = 'L:\Git\sdruWiLab\sdruCPP\Example\MyFiles\CPP\';
+cfg.CustomInclude = 'MyFiles/CPP/';
 cfg.TargetLang='C++';
+cfg.PostCodeGenCommand = 'setbuildargs(buildInfo)';
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Do Not Edit Below
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Run Codegen, if earlier than 2014, must add include paths manually for
 % sdru
@@ -11,6 +16,9 @@ Release = str2double(Release(3:6));
 if Release > 2013
     codegen -config cfg Function1 Function2 -o ComboFunction
 else
+    hostname = lower(gethostname);
+    hostname = hostname(2:end);
+    setenv('SDRU_DEPLOYMENT_HOSTNAME', hostname);
     sdruPath = sdruroot;
     sandboxRoot = fullfile(matlabroot, 'toolbox', 'shared', 'sdr', 'sdru');
     isSandboxRun = strcmp(sdruPath, sandboxRoot);

@@ -1,4 +1,4 @@
-function [receivedMessage,receivedBits] = ReceiverOFDMA(receivedFrame,desiredUser,dataType)
+function [receivedMessage,receivedBits] = ReceiverOFDMA(receivedFrame,desiredUser,dataType,numRxFrames)
 % ReceiverOFDMA  OFDMA receiver function for conversion from bits, error
 % checking and user demultiplexing for 2 users.
 %   receivedMessage = ReceiverOFDMA(receivedBits,desiredUser,dataType)
@@ -19,7 +19,18 @@ PHYRx.ReceiveBufferLength=2*length(receivedFrame);
 reshapedFrame = [receivedFrame;zeros(PHYRx.ReceiveBufferLength-length(receivedFrame),1)];
 
 receivedBits = step(PHYRx, reshapedFrame);
-
 receivedMessage = step(objRx,receivedBits);
+
+if numRxFrames > 0
+    for i = 1:numTxFrames-1
+        receivedBits = step(PHYRx, reshapedFrame);
+        receivedMessage = step(objRx,receivedBits);
+    end
+else
+    while 1
+        receivedBits = step(PHYRx, reshapedFrame);
+        receivedMessage = step(objRx,receivedBits);
+    end
+end
 
 end

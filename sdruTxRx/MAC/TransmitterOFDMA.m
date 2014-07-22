@@ -1,4 +1,4 @@
-function [frame,bitsToTx] = TransmitterOFDMA(messageUE1,messageUE2,desiredUser,dataType)
+function [frame,bitsToTx] = TransmitterOFDMA(messageUE1,messageUE2,desiredUser,dataType,numTxFrames)
 % TransmitterOFDMA  OFDMA tramsnsmitter function for bit conversion, error
 % checking and user multiplexing for 2 users.
 %   bitsToTx = TransmitterOFDMA(messageUE1,messageUE2,desiredUser) converts
@@ -17,5 +17,16 @@ PHYTx.NumDataSymbolsPerFrame = N;
 bitsToTx = step(objTx,messageUE1,messageUE2);
 
 frame = step(PHYTx, bitsToTx);
+
+if numTxFrames > 0
+    for i = 1:numTxFrames-1
+        frame = step(PHYTx, bitsToTx);
+    end
+else
+    while 1
+        frame = step(PHYTx, bitsToTx);
+    end
+end
+
 
 end

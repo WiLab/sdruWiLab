@@ -33,4 +33,7 @@ else
     end
 end
 
+release(objRx);
+release(PHYRx);
+
 end

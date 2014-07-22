@@ -28,5 +28,7 @@ else
     end
 end
 
+release(objTx);
+release(PHYTx);
 
 end

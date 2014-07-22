@@ -21,7 +21,7 @@ classdef RxOFDMA < matlab.System
         lastMessage;
         lastHeader;
         padBits;
-        
+        pDetect;
         
     end
     
@@ -31,6 +31,13 @@ classdef RxOFDMA < matlab.System
     
     %% Methods
     methods(Access = protected)
+        %% Setup function
+        function setupImpl(obj,~)
+           
+            obj.pDetect = comm.CRCDetector([1 0 0 1], 'ChecksumsPerFrame',1);
+            
+        end
+        
         %% Step function
         function returnedMessage = stepImpl(obj,receivedFrame)
             %% User demultiplex
@@ -49,8 +56,7 @@ classdef RxOFDMA < matlab.System
             %% CRC check and convert to letters
             
             % CRC Check
-            pDetect = comm.CRCDetector([1 0 0 1], 'ChecksumsPerFrame',1);
-            [msg, err] = step(pDetect, unpaddedBits.'>0);
+            [msg, err] = step(obj.pDetect, unpaddedBits.'>0);
             
             if ~err
                 % Convert Bits to integers

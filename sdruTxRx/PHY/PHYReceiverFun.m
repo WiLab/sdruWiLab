@@ -4,7 +4,7 @@ fprintf('%d\n',int16(num));
 
 RX = PHYReceiver;
 %RX = PHYReceiver('HWAttached',true);
-RX.HWAttached = true;
+%RX.HWAttached = true;
 input = randi(48*4,1);
 
 for k=1:10

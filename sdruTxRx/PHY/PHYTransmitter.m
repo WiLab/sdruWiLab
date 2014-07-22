@@ -1,23 +1,18 @@
 classdef PHYTransmitter < OFDMPHYBase
-    % Untitled Add summary here
-    %
-    % This template includes the minimum set of functions required
-    % to define a System object with discrete state.
-    
+% Physical Layer Transmitter: Accepts matrix of 48xN, where N is the number
+% of symbols in a frame.  There is only one frame accepted per step.
+
     properties (Nontunable)
-        % Public, tunable properties.
         CenterFrequency = 2.24e9;
         HWAttached = false;
         DupeFrames = 0;
     end
     
     properties (Access = private)
-        
         pSDRuTransmitter
         pCRCGen
         pMod
         pPN
-        
     end
     
     methods (Access = protected)
@@ -30,6 +25,7 @@ classdef PHYTransmitter < OFDMPHYBase
             % Create Modulator objects
             CreateDemodulators(obj);
             
+            % Setup USRP
             USRPADCSamplingRate = 100e6;
             InterpolationFactor = USRPADCSamplingRate/obj.SamplingFrequency;
             
@@ -102,29 +98,26 @@ classdef PHYTransmitter < OFDMPHYBase
             % Apply modulator for each subcarrier
             modData = step(obj.pMod, dataWithCRC);
             
-            % 		% Pad IFFT
-            % 		padBits = obj.numCarriers - mod(length(modData),obj.numCarriers);
-            % 		if padBits == obj.numCarriers
-            % 		    padBits = 0;
-            % 		end
-            % 		%modData = [modData; step(obj.pMod,randi([0 1],padBits,1))];
-            % 		modData = [modData; step(obj.pMod,zeros(padBits,1))];
+%             % Pad IFFT
+%             padBits = obj.numCarriers - mod(length(modData),obj.numCarriers);
+%             if padBits == obj.numCarriers
+%                 padBits = 0;
+%             end
+%             %modData = [modData; step(obj.pMod,randi([0 1],padBits,1))];
+%             modData = [modData; step(obj.pMod,zeros(padBits,1))];
             % Calculate required data sizes for correct receiver operation
-            %numSamples = length(modData);
-            %messageCharacters = length(payloadMessage); % Save desired message size
+%             numSamples = length(modData);
+%             messageCharacters = length(payloadMessage); % Save desired message size
             
             % Convert data into subcarrier streams
             ofdmData = reshape(modData, obj.numCarriers, length(modData)/obj.numCarriers);
             
-            r = step(obj.hDataMod, ofdmData, obj.pilots);
-            
             % Add preambles to data
-            r = [obj.Preambles; r];
+            r = [obj.Preambles; step(obj.hDataMod, ofdmData, obj.pilots)];
             frameLength = length(r);
             
             % Repeat frame (Used in debugging)
             frame = repmat(r, obj.DupeFrames+1, 1);
-            %frame = r;
             
         end
         

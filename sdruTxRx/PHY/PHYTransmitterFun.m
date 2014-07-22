@@ -7,7 +7,7 @@ input = randi([0 1],48,N);
 % Setup Transmitter
 TX = PHYTransmitter;
 TX.NumDataSymbolsPerFrame = N;
-TX.HWAttached = true;
+%TX.HWAttached = true;
 
 for k=1:100
     step(TX,input);

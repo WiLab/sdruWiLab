@@ -10,3 +10,4 @@ mccExcludedFiles.log
 *.so
 .DS_Store
 NUL
+*.prj

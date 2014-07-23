@@ -18,22 +18,21 @@
 
 // Create Mutex
 std::mutex mtx;
+std::queue<std::string> rx2txQueue;
 
 
-void Thread_TX(std::queue<std::string>& queueFromRX)
+void Thread_TX(void)
 {
+
+    std::cout<<"Started Thread TX"<<std::endl;
     int k = 10;
-    //for (k=0;k<10;k++){
     while (k>0) {
-        
-        
-        Function1();
-        
         mtx.lock();
-        if (!queueFromRX.empty()){
+        if (!rx2txQueue.empty()){
             
-            std::cout<<"Output: "<<queueFromRX.front()<<std::endl;
-            queueFromRX.pop();
+            Function1();
+            std::cout<<"Output: "<<rx2txQueue.front()<<std::endl;
+            rx2txQueue.pop();
             k = k - 1;
             
         }
@@ -44,15 +43,19 @@ void Thread_TX(std::queue<std::string>& queueFromRX)
 
 
 
-void Thread_RX(std::queue<std::string>& queueToTX)
+void Thread_RX(void)
 {
+        std::cout<<"Started Thread RX"<<std::endl;
 	int k;
+	char message[50];
 	for (k=0;k<10;k++){
+
 		Function2();
         
-        mtx.lock();
-        queueToTX.push("Hello");
-        mtx.unlock();
+        	mtx.lock();
+		sprintf(message,"Message %d",k);
+        	rx2txQueue.push(message);
+        	mtx.unlock();
 	}
 
     
@@ -63,13 +66,12 @@ int main()
     ComboFunction_initialize();
     char *message;
     
-    std::queue<std::string> rx2txQueue;
     
     //Spawn Thread
     //std::thread thread1( Thread_RX, std::ref(rx2txQueue) );
     //std::thread thread2( Thread_TX, std::ref(rx2txQueue) );
-    std::thread thread1( Thread_RX, &rx2txQueue );
-    std::thread thread2( Thread_TX, &rx2txQueue );
+    std::thread thread1( Thread_RX );
+    std::thread thread2( Thread_TX );
 
     //std::cout<<Function1()<<std::endl;
     //std::cout<<Function2()<<std::endl;

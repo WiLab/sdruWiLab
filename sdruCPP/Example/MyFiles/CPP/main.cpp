@@ -44,9 +44,11 @@ void Thread_RX(void)
     std::cout<<"Started Thread RX"<<std::endl;
     int k;
     char message[50];
+    int size_of_output[1];
+    boolean_T output[48*4];
     for (k=0;k<10;k++){
         
-        Function2();
+        Function2(10, output, size_of_output);
         mtx.lock();
         sprintf(message,"Message %d",k);
         rx2txQueue.push(message);

@@ -5,7 +5,7 @@ cd Documents/MATLAB/sdruTxRx/MAC/
 
 %% Clear
 
-% clear all;
+clear all;
 
 clc;
 
@@ -21,7 +21,7 @@ dataType = 'c';
 % messageUE2 = uint8([2 0 1 2 53 5 20 53 255 300]);
 % dataType = 'u';
 
-desiredUser = 1;
+desiredUser = 2;
 numFrames = 0;
 
 %% Transmmit 
@@ -36,7 +36,7 @@ numFrames = 0;
 
 % [receivedMessage,receivedBits] = ReceiverOFDMA(frame,desiredUser,dataType,numFrames);
 
-%% Error checking
+%% Error measuring
 
 errors = biterr(bitsToTx,receivedBits);
 fprintf('\n');
@@ -54,8 +54,12 @@ disp(class(receivedMessage));
 
 compilesdru('TransmitterOFDMA','mex','-args','{messageUE1,messageUE2,desiredUser,dataType,numFrames}');
 
+disp('DONE!');
+
 %% Compile Rx
 
 % codegen ReceiverOFDMA -args {frame,desiredUser,coder.Constant(dataType)}
 
 compilesdru('ReceiverOFDMA','mex','-args','{frame,desiredUser,coder.Constant(dataType),numFrames}');
+
+disp('DONE!');

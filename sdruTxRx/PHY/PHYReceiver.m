@@ -115,7 +115,7 @@ classdef PHYReceiver < OFDMPHYBase
             
             while obj.numProcessed < obj.NumFrames
                 
-		disp('Looped');
+            if DebugFlag; disp('Looped'); end
 	
                 % Get data from USRP or Input
                 if obj.HWAttached

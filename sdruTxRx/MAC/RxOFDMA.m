@@ -10,30 +10,30 @@ classdef RxOFDMA < matlab.System
         numCarriers = 48;
         carriersPerUser = 24; % numCarrier/numUsers, remember to change if they change
         symbolsPerFrame = 10;
+        headerCharacters = 4;
+        CRClength = 3;
+        dataType = 'u';
         
     end
     
     %% Define properties
     properties
         
-        desiredUser = 1;
+        desiredUser;
         lastFrame;
         lastMessage;
         lastHeader;
         padBits;
         pDetect;
+        debugFlag = 0;
         
-    end
-    
-    properties (Nontunable)
-        dataType = 'u';
     end
     
     %% Methods
     methods(Access = protected)
         %% Setup function
         function setupImpl(obj,~)
-           
+            
             obj.pDetect = comm.CRCDetector([1 0 0 1], 'ChecksumsPerFrame',1);
             
         end
@@ -55,42 +55,59 @@ classdef RxOFDMA < matlab.System
             
             %% CRC check and convert to letters
             
-            % CRC Check
-            [msg, err] = step(obj.pDetect, unpaddedBits.'>0);
+            % Initialize matrix
+            recoveredMessage = uint8(zeros(1,size(userBits,2)/8));
             
-            if ~err
-                % Convert Bits to integers
-                messageData = uint8(OFDMbits2letters(obj,msg > 0).');%messageBits(recMessage,1:end-3)
+            % The minimum number of bits that can be recovered is 43 = 4
+            % characters on the header times 8 bits per character plus 3, 
+            % the CRC length 
+            if length(unpaddedBits) < 8*obj.headerCharacters + obj.CRClength
                 
-                % Remove padding. The input needs to be casted to char
-                % because strfind() can only be codegened if it receives
-                % char inputs
-                messageEnd = strfind(char(messageData),'EOF');
-                if ~isempty(messageEnd)
+                if obj.debugFlag; fprintf('MAC| Error: Pad bits too large\n'); end;
+                recoveredMessage = uint8([]);
+                header = recoveredMessage;
+                
+            else
+                
+                % CRC Check
+                [msg, err] = step(obj.pDetect, unpaddedBits.'>0);
+                
+                if ~err
+                    % Convert Bits to integers
+                    if obj.debugFlag; fprintf('\nMAC| Message bits length: %1.0f\n', length(msg > 0)); end;
+                    messageData = uint8(OFDMbits2letters(obj,msg > 0).');%messageBits(recMessage,1:end-3)
                     
-                    recoveredMessage = messageData(5:messageEnd(1,1)-1); % Exclude the header
-                    header = messageData(1:4);
-                    
+                    % Remove padding. The input needs to be casted to char
+                    % because strfind() can only be codegened if it receives
+                    % char inputs
+                    messageEnd = strfind(char(messageData),'EOF');
+                    if ~isempty(messageEnd)
+                        
+                        recoveredMessage = messageData(5:messageEnd(1,1)-1); % Exclude the header
+                        header = messageData(1:4);
+                        
+                    else
+                        if obj.debugFlag; fprintf('MAC| Error: EOF not found\n'); end;
+                        recoveredMessage = uint8([]);
+                        header = recoveredMessage;
+                    end
                 else
-                    fprintf('MAC| Error: EOF not found\n');
+                    if obj.debugFlag; fprintf('MAC| Error: CRC Message Failure\n'); end;
                     recoveredMessage = uint8([]);
                     header = recoveredMessage;
                 end
-            else
-                fprintf('MAC| CRC Message Failure\n');
-                recoveredMessage = uint8([]);
-                header = recoveredMessage;
+                
             end
             
             %% Cast output
             
-             switch obj.dataType
+            switch obj.dataType
                 case 'c'
                     returnedMessage = char(recoveredMessage);
                 case 'u'
                     returnedMessage = uint8(recoveredMessage);
-                 otherwise
-                    fprintf('MAC| Undefined data type');
+                otherwise
+                    if obj.debugFlag; fprintf('MAC| Error: Undefined data type'); end;
             end
             
             
@@ -108,22 +125,27 @@ classdef RxOFDMA < matlab.System
                         fprintf('%d \n', int16(recoveredMessage(k)));
                     end
                 otherwise
-                    fprintf('MAC| Undefined data type');
+                    if obj.debugFlag; fprintf('MAC| Error: Undefined data type'); end;
             end
             
-            fprintf('\nMAC| Header of received message: \n');
-            switch obj.dataType
-                case 'c'
-                    fprintf('%s \n', char(header));
-                case 'u'
-                    for k = 1:length(header)
-                        % Codegen does not accept uint8s on
-                        % fprint, so they need to be casted to
-                        % int16
-                        fprintf('%d \n', int16(header(k)));
-                    end
-                otherwise
-                    fprintf('MAC| Undefined data type');
+            if obj.debugFlag
+                
+                fprintf('\nMAC| Header of received message: \n');
+                
+                switch obj.dataType
+                    case 'c'
+                        fprintf('%s \n', char(header));
+                    case 'u'
+                        for k = 1:length(header)
+                            % Codegen does not accept uint8s on
+                            % fprint, so they need to be casted to
+                            % int16
+                            fprintf('%d \n', int16(header(k)));
+                        end
+                    otherwise
+                        if obj.debugFlag; fprintf('MAC| Error: Undefined data type'); end;
+                end
+                
             end
             
             %% Define properties
@@ -135,7 +157,7 @@ classdef RxOFDMA < matlab.System
         end
         
         %% Conversion to letters
-        function Letters = OFDMbits2letters( ~, bits )
+        function Letters = OFDMbits2letters(obj, bits )
             % OFDMbits2letters: Convert input bits from a double array to ascii
             % integers, which can be converted to letters by the char() function
             

@@ -6,7 +6,7 @@ classdef PHYReceiver < OFDMPHYBase
         CenterFrequency = 2.24e9;
         NumFrames = 4;              % Frames to capture
         %MessageCharacters = 80;
-        HWAttached = true;
+        HWAttached = false;
         padBits = 0;
     end
     

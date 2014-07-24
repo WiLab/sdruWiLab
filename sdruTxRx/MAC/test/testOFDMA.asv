@@ -28,7 +28,7 @@ numFrames = 1;
 
 % [frame,bitsToTx] = TransmitterOFDMA_mex(messageUE1,messageUE2,desiredUser,dataType,numFrames);
 
-[frame,bitsToTx] = TransmitterOFDMA(messageUE1,messageUE2,desiredUser,dataType,numFrames);
+% [frame,bitsToTx] = TransmitterOFDMA(messageUE1,messageUE2,desiredUser,dataType,numFrames);
 
 %% Receive
 
@@ -37,16 +37,16 @@ numFrames = 1;
 [receivedMessage,receivedBits] = ReceiverOFDMA(frame,desiredUser,dataType,numFrames);
 
 %% Error measuring
-
-errors = biterr(bitsToTx,receivedBits);
-fprintf('\n');
-disp(['Bit Errors: ',num2str(errors)]);
-
-fprintf('\nWrong characters/integers: ');
-disp(sum(receivedMessage ~= messageUE2));
-
-fprintf('\nThe type of the output is: \n');
-disp(class(receivedMessage));
+% 
+% errors = biterr(bitsToTx,receivedBits);
+% fprintf('\n');
+% disp(['Bit Errors: ',num2str(errors)]);
+% 
+% fprintf('\nWrong characters/integers: ');
+% disp(sum(receivedMessage ~= messageUE2));
+% 
+% fprintf('\nThe type of the output is: \n');
+% disp(class(receivedMessage));
 
 %% Compile Tx
 

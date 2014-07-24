@@ -7,7 +7,7 @@ classdef PHYTransmitter < OFDMPHYBase
     properties (Nontunable)
         % Public, tunable properties.
 	CenterFrequency = 2.24e9;
-	HWAttached = true;
+	HWAttached = false;
 	DupeFrames = 0;	
     end
     

@@ -389,15 +389,23 @@ classdef PHYReceiver < matlab.System
             
             % Cross correlate
             rWin = recv(1:obj.CorrelationWindowSize);
-            Phat = xcorr(rWin,obj.ConjKnown);
-            Rhat = xcorr(abs(rWin).^2,ones(obj.K,1)); % moving average
+            %Phat = xcorr(rWin,obj.ConjKnown);
+            %Rhat = xcorr(abs(rWin).^2,ones(obj.K,1)); % moving average
             
             % Remove leading and tail zeros overlaps
-            PhatShort = Phat(ceil(length(Phat)/2):end-obj.K/2+1);
-            RhatShort = Rhat(ceil(length(Rhat)/2):end-obj.K/2+1);
+            %PhatShort = Phat(ceil(length(Phat)/2):end-obj.K/2+1);
+            %RhatShort = Rhat(ceil(length(Rhat)/2):end-obj.K/2+1);
             
+            % Fast correlate
+            PhatShort2 = filter(conj(obj.ConjKnown(end:-1:1)),1,rWin(1:end));
+            RhatShort2 = filter(ones(obj.K,1),1,abs(rWin).^2);
+            
+            PhatShort2 = PhatShort2(obj.K:end);
+            RhatShort2 = RhatShort2(obj.K:end);
+                        
             % Calculate timing metric
-            M = abs(PhatShort).^2 ./ RhatShort.^2;
+            %M = abs(PhatShort).^2 ./ RhatShort.^2;
+            M = abs(PhatShort2).^2 ./ RhatShort2.^2;
             
             % Determine start of short preamble
             [preambleEstimatedLocation, numPeaks] = locateShortPreamble( obj, M, obj.K );
@@ -612,7 +620,11 @@ classdef PHYReceiver < matlab.System
             
             
         end
-
+        
+        % Enable secondary outputs from object
+        function N = getNumOutputsImpl(~)
+            N = 2;
+        end
         
     end
 end

@@ -510,7 +510,7 @@ classdef PHYReceiver < matlab.System
         end
         
         % Calculate Equalizer Taps with pilot symbols
-        function PilotGainsFull = pilotFDE(~, rxPilots, txPilots, upSampleFactor)
+        function PilotGainsFull = pilotFDE(obj, rxPilots, txPilots, upSampleFactor)
             
             % Calculate non-normalized channel gains
             PilotNormal = rxPilots./txPilots;
@@ -526,7 +526,7 @@ classdef PHYReceiver < matlab.System
         end
         
         %%%%%%%%%%%%%%% SUBCARRIER DEMOD %%%%%%%%%%%%%%%
-        function [BER, RHard] = demodOFDMSubcarriers_sdr( ~, R )
+        function [BER, RHard] = demodOFDMSubcarriers_sdr( obj, R )
             %#codegen
             % demodOFDMSubcarriers: Hard demodulate then compare received and
             % transmitted data

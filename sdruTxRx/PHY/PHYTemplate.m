@@ -68,7 +68,7 @@ compilesdru('testCodegen2','mex',...
 	'-args',...
 	'{frame,coder.Constant(N),coder.Constant(length(frame)),coder.Constant(false)}');
 else
-	codegen testCodegen2 -args {fframe,coder.Constant(N),coder.Constant(length(frame)),coder.Constant(false)};
+	codegen testCodegen2 -args {frame,coder.Constant(N),coder.Constant(length(frame)),coder.Constant(false)};
 
 end
 
@@ -78,7 +78,7 @@ output = testCodegen2_mex(frame,N,length(frame),false);
 errors = biterr(input,output);
 disp(['Codegen Bit Errors: ',num2str(errors)]);
 
-
+break
 % Test USRP Codegen
 if isunix
 	compilesdru('testCodegen','MEX','-report','-args','{coder.Constant(input),coder.Constant(N),coder.Constant(true)}');

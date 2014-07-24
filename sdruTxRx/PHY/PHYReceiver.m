@@ -44,7 +44,7 @@ classdef PHYReceiver < matlab.System
         FFTLength = 64;     % OFDM modulator FFT size
         enableMA = true;    % Enable moving averages for estimates
         numFreqToAverage = 15;
-        SamplingFrequency = 5e6;
+        SamplingFrequency = 2e6;
         
         numCarriers = 48;
         CyclicPrefixLength = 16;

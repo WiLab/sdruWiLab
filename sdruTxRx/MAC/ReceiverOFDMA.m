@@ -13,6 +13,7 @@ objRx.dataType = dataType;
 PHYRx = PHYReceiver;
 PHYRx.NumFrames = 1;
 PHYRx.NumDataSymbolsPerFrame = objRx.symbolsPerFrame;
+PHYRx.SamplingFrequency = 2e6;
 
 PHYRx.ReceiveBufferLength=2*length(receivedFrame);
 

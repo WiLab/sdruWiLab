@@ -13,6 +13,7 @@ N = objTx.symbolsPerFrame;
 
 PHYTx = PHYTransmitter;
 PHYTx.NumDataSymbolsPerFrame = N;
+PHYTx.SamplingFrequency = 2e6;
 
 bitsToTx = step(objTx,messageUE1,messageUE2);
 

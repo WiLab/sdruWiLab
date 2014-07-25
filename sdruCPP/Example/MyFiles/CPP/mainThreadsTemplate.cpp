@@ -16,32 +16,28 @@
 #include "ComboFunction_initialize.h"
 #include "ComboFunction_terminate.h"//Not sure if needed
 
-#define MESSAGES2TX 10//Messages to send between PHY and MAC
-
 // Create Mutex
 std::mutex mtx;
-std::queue<boolean_T*> rx2txQueueData;
+std::queue<double*> rx2txQueueData;
 
 
 //Thread 1
 void Thread_TX(void)
 {
     std::cout<<"Started Thread TX"<<std::endl;
-    boolean_T *input;
-    int k = MESSAGES2TX;
+    double *input;
+    int k = 10;
     while (k>0) {
         
         mtx.lock();
         if (!rx2txQueueData.empty()){
             input = (rx2txQueueData.front());
+            Function1(input);
             rx2txQueueData.pop();
-            mtx.unlock();
-            Function1(input);//MAC Layer
             k = k - 1;
             
         }
-        else
-            mtx.unlock();
+        mtx.unlock();
         
     }
 }
@@ -51,9 +47,9 @@ void Thread_RX(void)
 {
     std::cout<<"Started Thread RX"<<std::endl;
     int k;
-    boolean_T output[48*4]={1};
-    for (k=0;k<MESSAGES2TX;k++){
-        Function2(10, output);//PHY Layer
+    double output[100]={1};
+    for (k=0;k<10;k++){
+        Function2(10, output);
         mtx.lock();
         rx2txQueueData.push(&output[0]);
         mtx.unlock();
@@ -67,8 +63,8 @@ int main()
     ComboFunction_initialize();
     
     //Spawn Thread
-    std::thread thread1( Thread_TX );
-    std::thread thread2( Thread_RX );
+    std::thread thread1( Thread_RX );
+    std::thread thread2( Thread_TX );
 
     //Wait for thread to finish
     thread1.join();

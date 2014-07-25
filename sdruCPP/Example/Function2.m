@@ -1,25 +1,24 @@
-function [ output2 ] = Function2(data) %#codegen
+function [ output ] = Function2(data) %#codegen
 
 assert(isa(data, 'int16'))
 
-fprintf('%d\n',int16(data));
-
 %% Receiver
 persistent RX;
-%output = 1;
 
 if isempty(RX)
 % Setup Receiver
 RX = PHYReceiver;
-RX.HWAttached = true;
+RX.HWAttached = false;
 end
 input = randi(48*4,1);
 
 
-fprintf('Receiver Started\n');
-output = step(RX,input);
+fprintf('PHY Receiver Started\n');
+%outputMatrix = step(RX,input);
+outputMatrix = logical(randi([0 1],48*4,1));
 
-output2 = reshape(output,size(output,1)*size(output,2),1);
+output = reshape(outputMatrix,size(outputMatrix,1)*size(outputMatrix,2),1);
+
 
 end
 

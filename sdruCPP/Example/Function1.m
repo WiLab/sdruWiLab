@@ -1,22 +1,26 @@
-function [ output ] = Function1(  ) %#codegen
+function [ output ] = Function1(input) %#codegen
+
+
+assert(isa(input, 'logical') && all(size(input) == [48*4 1]))
+fprintf('Inside MATLAB MAC, got data from PHY\n');
 %% Transmitter
-persistent TX
-output = 1;
-N = 11;
-input = randi([0 1],48,N);
+persistent MAC 
+N = 4;
  
-if isempty(TX)
-% Setup Transmitter
-TX = PHYTransmitter;
-TX.NumDataSymbolsPerFrame = N;
-TX.HWAttached = true;
+if isempty(MAC)
+    % SETUP MAC
+    MAC = RxOFDMA;
+    MAC.desiredUser = 1;
+    MAC.dataType = 'u';
+    MAC.symbolsPerFrame = N;
 end
 
-fprintf('Transmitter Started\n');
-for k=1:100
-    step(TX,input);
-end
+inputMatrix = reshape(input,48,N);
 
+fprintf('MAC Layer Decoding...\n');
+step(MAC,inputMatrix);
+fprintf('MAC Layer Decoded\n');
+output = 1;
 
 end
 

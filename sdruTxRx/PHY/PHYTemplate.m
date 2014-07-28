@@ -6,7 +6,7 @@
 % Columns == OFDM Symbol
 % Row == Subbarrier
 
-N = 11;
+N = 12;
 input = randi([0 1],48,N);
 
 % Setup Transmitter
@@ -14,7 +14,7 @@ TX = PHYTransmitter;
 TX.NumDataSymbolsPerFrame = N;
 % Setup Receiver
 RX = PHYReceiver;
-RX.NumFrames = 1;
+RX.NumFrames = 3;
 RX.NumDataSymbolsPerFrame = N;
 
 
@@ -22,17 +22,21 @@ RX.NumDataSymbolsPerFrame = N;
 frame = step(TX,input);
 
 % Add some extra buffer to fit into receiver buffer
-RX.ReceiveBufferLength=length(frame)+1;% Need some additional space on input, since algorithms need to shift input
+RX.ReceiveBufferLength=length(frame);% Need some additional space on input, since algorithms need to shift input
 frame = [frame;zeros(RX.ReceiveBufferLength-length(frame),1)]; % correction algorithms require more data than just 1 frame
 
+for k=0:10000
+    k
+frame2 = [zeros(k,1);frame;frame;frame;zeros(10000,1)];
 % Receive
-output = step(RX,frame);
-
+output = step(RX,frame2);
+end
 
 % Evaluate
 errors = biterr(input,output);
 disp(['Bit Errors: ',num2str(errors)]);
 
+break;
 
 frame = testCodegen( input, N ,false);
 frame = [frame;0];

@@ -13,8 +13,8 @@ clc;
 
 load('frame.mat')
 
-messageUE1 = '1st Message';
-messageUE2 = 'Second Message';
+messageUE1 = ['1st Message';'2nd Message';'3rd Message';'4th Message';'5th Message'];
+messageUE2 = ['First  Message';'Second Message';'Third  Message';'Fourth Message';'Fifth  Message'];
 dataType = 'c';
 
 % messageUE1 = uint8([1 0 1 2 53 53 255 300]);
@@ -26,9 +26,9 @@ numFrames = 0;
 
 %% Transmmit 
 
-[frame,bitsToTx] = TransmitterOFDMA_mex(messageUE1,messageUE2,desiredUser,dataType,numFrames);
+[frame,bitsToTx] = TransmitterOFDMA_mex(messageUE1,messageUE2,dataType,numFrames);
 
-% [frame,bitsToTx] = TransmitterOFDMA(messageUE1,messageUE2,desiredUser,dataType,numFrames);
+% [frame,bitsToTx] = TransmitterOFDMA(messageUE1,messageUE2,dataType,numFrames);
 
 %% Receive
 
@@ -40,6 +40,7 @@ numFrames = 0;
 
 errors = biterr(bitsToTx,receivedBits);
 fprintf('\n');
+
 disp(['Bit Errors: ',num2str(errors)]);
 
 fprintf('\nWrong characters/integers: ');
@@ -50,9 +51,9 @@ disp(class(receivedMessage));
 
 %% Compile Tx
 
-% codegen TransmitterOFDMA -args {messageUE1,messageUE2,desiredUser,dataType}
+% codegen TransmitterOFDMA -args {messageUE1,messageUE2,dataType}
 
-compilesdru('TransmitterOFDMA','mex','-args','{messageUE1,messageUE2,desiredUser,dataType,numFrames}');
+compilesdru('TransmitterOFDMA','mex','-args','{messageUE1,messageUE2,dataType,numFrames}');
 
 disp('DONE!');
 

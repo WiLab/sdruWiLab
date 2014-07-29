@@ -16,21 +16,22 @@ classdef TxOFDMA < matlab.System
     %% Define protected properties
     properties
         
-        dataType = 'c';
-        desiredUser;
         lastMessageUE1;
         lastMessageUE2;
         messageSent;
-        padBits;   % Number of pad bits on last frame
         lastFrame; % Last transmitted frame
+        lastFrameID
         
-    end
-    
-    %% Define properties
-    properties
+        padBits;   % Number of pad bits on last frame
+        dataType = 'c';
+        
+        debugFlag = 0;
+        desiredUser = 1;
         
         DestNodes;
         OriginNodes;
+        
+        hGen;   % Object handle
         
     end
     
@@ -41,8 +42,13 @@ classdef TxOFDMA < matlab.System
         function setupImpl(obj,~,~)
             
             % Tunable
-            obj.DestNodes = [1 2];
-            obj.OriginNodes = [2 1];
+            obj.DestNodes = [0 0];
+            obj.OriginNodes = [0 0];
+            
+            % Generate CRC object handle
+            obj.hGen = comm.CRCGenerator([1 0 0 1], 'ChecksumsPerFrame',1);
+            
+            obj.lastFrameID = 0;
             
         end
         
@@ -65,8 +71,11 @@ classdef TxOFDMA < matlab.System
             messageUEs = [obj.additionalText(messageUE1,obj.OriginNodes(1),obj.DestNodes(1)) repmat(uint8('-'),1,maxMsgSize - length(messageUE1));...
                 obj.additionalText(messageUE2,obj.OriginNodes(2),obj.DestNodes(2)) repmat(uint8('-'),1,maxMsgSize - length(messageUE2))];
             
+            % Increase frame number
+            obj.lastFrameID = mod(obj.lastFrameID + 1,10);
             
-            %% Calculate pad bits and
+            
+            %% Calculate and add number of pad bits to header
             
             % The number of pad bits per user is the total number of bits per user
             % (numCarriers*nsymbolsPerFrame/2) minus the bits per message
@@ -99,14 +108,11 @@ classdef TxOFDMA < matlab.System
             
             %% Add CRC and pad
             
-            % Generate CRC object handle
-            hGen = comm.CRCGenerator([1 0 0 1], 'ChecksumsPerFrame',1);
-            
             % Initialize matrix. Remember to change added number if CRC length changes!
             dataWithCRC = zeros(obj.numUsers,length(messageBits) + 3);
             
             for user = 1:obj.numUsers
-                dataWithCRC(user,:) = step(hGen, messageBits(user,:)');% Add CRC
+                dataWithCRC(user,:) = step(obj.hGen, messageBits(user,:)');% Add CRC
             end
             
             % Pad and add number of pad bits to header
@@ -130,19 +136,21 @@ classdef TxOFDMA < matlab.System
             
             %% Print message
             
-            fprintf('\nMAC| Transmitted message with additional text: \n');
-            switch obj.dataType
-                case 'c'
-                    fprintf('%s \n', char(obj.messageSent(obj.desiredUser,:)));
-                case 'u'
-                    for k = 1:length(obj.messageSent(obj.desiredUser,:))
-                        % Codegen does not accept uint8s on
-                        % fprint, so they need to be casted to
-                        % int16
-                        fprintf('%d \n', int16(obj.messageSent(obj.desiredUser,k)));
-                    end
-                otherwise
-                    fprintf('MAC| Undefined data type');
+            if obj.debugFlag
+                fprintf('\nMAC| Transmitted message with additional text: \n');
+                switch obj.dataType
+                    case 'c'
+                        fprintf('%s \n', char(obj.messageSent(obj.desiredUser,:)));
+                    case 'u'
+                        for k = 1:length(obj.messageSent(obj.desiredUser,:))
+                            % Codegen does not accept uint8s on
+                            % fprint, so they need to be casted to
+                            % int16
+                            fprintf('%d \n', int16(obj.messageSent(obj.desiredUser,k)));
+                        end
+                    otherwise
+                        fprintf('MAC| Undefined data type');
+                end
             end
             
             %% Define last frame and sent messages
@@ -153,18 +161,18 @@ classdef TxOFDMA < matlab.System
         end
         
         %% Additional text
-        function FullMessage = additionalText(~,message,originNode,destNode)
+        function FullMessage = additionalText(obj,message,originNode,destNode)
             % Function to add EOF, unique ID, origin node number and destination node
             % number to a message
             
             % Message to transmit
             % message is 80 characters max, so extra 3 for EOF, 1 for uniqueID, 1
             % for the node number of recipient, 1 for origin node
-            if length(message) < 69
+            if length(message) < 23
                 
                 % Add additional character to differentiate messages, number of
                 % origin node and destination node
-                uniqueID = uint8(randi([0 (2^8)-1],1,1));
+                uniqueID = uint8(48 + obj.lastFrameID);
                 originNodeChar = uint8(48 + originNode);
                 destNodeChar = uint8(48 + destNode);
                 

@@ -24,8 +24,13 @@ classdef RxOFDMA < matlab.System
         lastMessage;
         lastHeader;
         padBits;
+        
+        % Object handle
         pDetect;
+        
+        % Flags
         debugFlag = 0;
+        ignoreCRC = 1;
         
     end
     
@@ -59,12 +64,11 @@ classdef RxOFDMA < matlab.System
             recoveredMessage = uint8(zeros(1,size(userBits,2)/8));
             
             % The minimum number of bits that can be recovered is 43 = 4
-            % characters on the header times 8 bits per character plus 3, 
-            % the CRC length 
+            % characters on the header times 8 bits per character plus 3,
+            % the CRC length
             if length(unpaddedBits) < 8*obj.headerCharacters + obj.CRClength
                 
-                if obj.debugFlag; fprintf('MAC| Error: Pad bits too large\n'); end;
-                recoveredMessage = uint8([]);
+                recoveredMessage = uint8('PAD BITS ERROR');
                 header = recoveredMessage;
                 
             else
@@ -72,28 +76,32 @@ classdef RxOFDMA < matlab.System
                 % CRC Check
                 [msg, err] = step(obj.pDetect, unpaddedBits.'>0);
                 
-                if ~err
+                if ~err || obj.ignoreCRC
                     % Convert Bits to integers
-                    if obj.debugFlag; fprintf('\nMAC| Message bits length: %1.0f\n', length(msg > 0)); end;
-                    messageData = uint8(OFDMbits2letters(obj,msg > 0).');%messageBits(recMessage,1:end-3)
+                    if obj.debugFlag; fprintf('\nMAC| Message bits length: %1.0f\n', length(msg)); end;
+                    messageData = uint8(OFDMbits2letters(obj,msg > 0).');
                     
                     % Remove padding. The input needs to be casted to char
                     % because strfind() can only be codegened if it receives
                     % char inputs
                     messageEnd = strfind(char(messageData),'EOF');
+                    
                     if ~isempty(messageEnd)
                         
-                        recoveredMessage = messageData(5:messageEnd(1,1)-1); % Exclude the header
+                        recoveredMessage = messageData(5:messageEnd(1,1) - 1); % Exclude the header
                         header = messageData(1:4);
                         
                     else
-                        if obj.debugFlag; fprintf('MAC| Error: EOF not found\n'); end;
-                        recoveredMessage = uint8([]);
-                        header = recoveredMessage;
+                        if obj.ignoreCRC
+                            recoveredMessage = messageData; % Exclude the header
+                            header = messageData(1:4);
+                        else 
+                            recoveredMessage = uint8('EOF NOT FOUND');
+                            header = recoveredMessage;
+                        end
                     end
                 else
-                    if obj.debugFlag; fprintf('MAC| Error: CRC Message Failure\n'); end;
-                    recoveredMessage = uint8([]);
+                    recoveredMessage = uint8('CRC ERROR!!!!');
                     header = recoveredMessage;
                 end
                 
@@ -113,7 +121,6 @@ classdef RxOFDMA < matlab.System
             
             %% Print message and header
             
-            fprintf('\nMAC| Recovered message: \n');
             switch obj.dataType
                 case 'c'
                     fprintf('%s \n', char(recoveredMessage));
@@ -130,7 +137,7 @@ classdef RxOFDMA < matlab.System
             
             if obj.debugFlag
                 
-                fprintf('\nMAC| Header of received message: \n');
+                fprintf('\nMAC| Header of received message: ');
                 
                 switch obj.dataType
                     case 'c'
@@ -157,7 +164,7 @@ classdef RxOFDMA < matlab.System
         end
         
         %% Conversion to letters
-        function Letters = OFDMbits2letters(obj, bits )
+        function Letters = OFDMbits2letters(~, bits )
             % OFDMbits2letters: Convert input bits from a double array to ascii
             % integers, which can be converted to letters by the char() function
             

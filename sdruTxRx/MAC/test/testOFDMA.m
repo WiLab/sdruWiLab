@@ -22,7 +22,7 @@ dataType = 'c';
 % dataType = 'u';
 
 desiredUser = 1;
-numFrames = 0;
+numFrames = 200;
 
 %% Transmmit 
 

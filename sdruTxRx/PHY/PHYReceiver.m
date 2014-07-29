@@ -164,7 +164,7 @@ classdef PHYReceiver < matlab.System
             statusFlag = 0; % 0==noFail,1==Timeout
             
             %DEBUG
-            DebugFlag = 0;
+            DebugFlag = 1;
             %DEBUG
             
             RHard = false(obj.NumFrames,obj.numCarriers);
@@ -240,7 +240,7 @@ classdef PHYReceiver < matlab.System
                 %% Recover found frame
                 if FrameFound
 
-		    if DebugFlag;fprintf('Found Frame\n');end;
+% 		    if DebugFlag;fprintf('Found Frame\n');end;
                     lastFound = numBuffersProcessed;%Flag frame as found so duplicate frames are not processed
                     obj.numProcessed = obj.numProcessed + 1;%Increment processed found frames
                     
@@ -467,8 +467,8 @@ classdef PHYReceiver < matlab.System
             %% Find peaks of correlation
             
             % Adjust threshold
-            %thresholdNorm = max(M)*obj.PeakThreshold;
-            thresholdNorm = obj.PeakThreshold;
+            thresholdNorm = max(M)*obj.PeakThreshold;
+%             thresholdNorm = obj.PeakThreshold;
             MLocations = find(M>thresholdNorm);
             
             % Correct estimate to start of preamble, not its center

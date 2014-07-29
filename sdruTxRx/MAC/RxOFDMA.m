@@ -88,7 +88,7 @@ classdef RxOFDMA < matlab.System
                     
                     if ~isempty(messageEnd)
                         
-                        recoveredMessage = messageData(5:messageEnd(1,1) - 1); % Exclude the header
+                        recoveredMessage = messageData(1:messageEnd(1,1) - 1); % Exclude the header
                         header = messageData(1:4);
                         
                     else

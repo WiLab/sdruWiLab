@@ -42,7 +42,7 @@ PHYRx.NumFrames = 1;
 PHYRx.NumDataSymbolsPerFrame = objRx.symbolsPerFrame;
 PHYRx.SamplingFrequency = 10e6;
 PHYRx.requiredPeaks = 5;
-PHYRx.PeakThreshold = 0.3;
+PHYRx.PeakThreshold = 0.7;
 
 PHYRx.ReceiveBufferLength=1*length(receivedFrame);
 

@@ -190,10 +190,15 @@ classdef PHYReceiver < matlab.System
                     %obj.Buffer(obj.ReceiveBufferLength+1:end) = data( numBuffersProcessed*obj.ReceiveBufferLength + 1 :...
                     %             ( numBuffersProcessed + 1)*obj.ReceiveBufferLength);
                              
+			if (( numBuffersProcessed + 1)*halfBuffLen ) < length(data)
+
                     obj.Buffer(1:halfBuffLen*3) = obj.Buffer(halfBuffLen+1:end);
                     
                     obj.Buffer(halfBuffLen*3+1:end) = data( numBuffersProcessed*halfBuffLen + 1 :...
                                  ( numBuffersProcessed + 1)*halfBuffLen);
+			else
+				return;
+			end
                              
                              
                 end
@@ -231,6 +236,7 @@ classdef PHYReceiver < matlab.System
                 %% Recover found frame
                 if FrameFound
 
+		    if DebugFlag;fprintf('Found Frame\n');end;
                     lastFound = numBuffersProcessed;%Flag frame as found so duplicate frames are not processed
                     obj.numProcessed = obj.numProcessed + 1;%Increment processed found frames
                     
@@ -250,7 +256,7 @@ classdef PHYReceiver < matlab.System
                     %obj.pOutputBits(obj.numProcessed,:) = RHard;
                    
                 else
-                    fprintf('Frame not found\n');
+                    if DebugFlag;fprintf('Frame not found\n');end;
                 end
                 
                 %% Timeout

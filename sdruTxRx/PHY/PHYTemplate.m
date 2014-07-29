@@ -14,7 +14,7 @@ TX = PHYTransmitter;
 TX.NumDataSymbolsPerFrame = N;
 % Setup Receiver
 RX = PHYReceiver;
-RX.NumFrames = 3;
+RX.NumFrames = 1;
 RX.NumDataSymbolsPerFrame = N;
 
 
@@ -25,22 +25,24 @@ frame = step(TX,input);
 RX.ReceiveBufferLength=length(frame);% Need some additional space on input, since algorithms need to shift input
 frame = [frame;zeros(RX.ReceiveBufferLength-length(frame),1)]; % correction algorithms require more data than just 1 frame
 
-for k=0:10000
-    k
-frame2 = [zeros(k,1);frame;frame;frame;zeros(10000,1)];
-% Receive
+%for k=0:10000
+%    k
+%frame2 = [zeros(k,1);frame;frame;frame;zeros(10000,1)];
+%% Receive
+%output = step(RX,frame2);
+%end
+
+frame2 = [frame; zeros(1000,1)];
 output = step(RX,frame2);
-end
 
 % Evaluate
 errors = biterr(input,output);
 disp(['Bit Errors: ',num2str(errors)]);
 
-break;
 
 frame = testCodegen( input, N ,false);
-frame = [frame;0];
-output = testCodegen2( frame,N, length(frame),false);
+frame2 = [frame;zeros(1000,1)];
+output = testCodegen2( frame2,N, length(frame),false);
 
 % Evaluate
 errors = biterr(input,output);
@@ -65,18 +67,18 @@ else
 end
 
 % Receiver Codegen
-testCodegen2( frame, N,length(frame),false);
+testCodegen2( frame2, N,length(frame),false);
 
 if isunix
 compilesdru('testCodegen2','mex',...
 	'-args',...
-	'{frame,coder.Constant(N),coder.Constant(length(frame)),coder.Constant(false)}');
+	'{frame2,coder.Constant(N),coder.Constant(length(frame)),coder.Constant(false)}');
 else
-	codegen testCodegen2 -args {frame,coder.Constant(N),coder.Constant(length(frame)),coder.Constant(false)};
+	codegen testCodegen2 -args {frame2,coder.Constant(N),coder.Constant(length(frame)),coder.Constant(false)};
 
 end
 
-output = testCodegen2_mex(frame,N,length(frame),false);
+output = testCodegen2_mex(frame2,N,length(frame),false);
 
 % Evaluate
 errors = biterr(input,output);

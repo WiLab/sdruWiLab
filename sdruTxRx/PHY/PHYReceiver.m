@@ -164,7 +164,7 @@ classdef PHYReceiver < matlab.System
             statusFlag = 0; % 0==noFail,1==Timeout
             
             %DEBUG
-            DebugFlag = 1;
+            DebugFlag = 0;
             %DEBUG
             
             RHard = false(obj.NumFrames,obj.numCarriers);

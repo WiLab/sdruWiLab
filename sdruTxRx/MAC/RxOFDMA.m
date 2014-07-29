@@ -29,8 +29,8 @@ classdef RxOFDMA < matlab.System
         pDetect;
         
         % Flags
-        debugFlag = 0;
-        ignoreCRC = 1;
+        debugFlag = 1;
+        ignoreCRC = 0;
         
     end
     
@@ -60,14 +60,16 @@ classdef RxOFDMA < matlab.System
             
             %% CRC check and convert to letters
             
-            % Initialize matrix
+            % Initialize variables
             recoveredMessage = uint8(zeros(1,size(userBits,2)/8));
+            err = false(1,1);
             
             % The minimum number of bits that can be recovered is 43 = 4
             % characters on the header times 8 bits per character plus 3,
             % the CRC length
             if length(unpaddedBits) < 8*obj.headerCharacters + obj.CRClength
                 
+                err = ~err;
                 recoveredMessage = uint8('PAD BITS ERROR');
                 header = recoveredMessage;
                 
@@ -78,7 +80,6 @@ classdef RxOFDMA < matlab.System
                 
                 if ~err || obj.ignoreCRC
                     % Convert Bits to integers
-                    if obj.debugFlag; fprintf('\nMAC| Message bits length: %1.0f\n', length(msg)); end;
                     messageData = uint8(OFDMbits2letters(obj,msg > 0).');
                     
                     % Remove padding. The input needs to be casted to char
@@ -88,14 +89,22 @@ classdef RxOFDMA < matlab.System
                     
                     if ~isempty(messageEnd)
                         
-                        recoveredMessage = messageData(1:messageEnd(1,1) - 1); % Exclude the header
+                        if obj.debugFlag;
+                            recoveredMessage = messageData(1:messageEnd(1,1) - 1); % Include the header
+                        else
+                            recoveredMessage = messageData(5:messageEnd(1,1) - 1); % Exclude the header
+                        end
+                        
                         header = messageData(1:4);
                         
                     else
+                        
+                        err = ~err;
+                        
                         if obj.ignoreCRC
                             recoveredMessage = messageData; % Exclude the header
                             header = messageData(1:4);
-                        else 
+                        else
                             recoveredMessage = uint8('EOF NOT FOUND');
                             header = recoveredMessage;
                         end
@@ -119,35 +128,19 @@ classdef RxOFDMA < matlab.System
             end
             
             
-            %% Print message and header
+            %% Print message
             
-            switch obj.dataType
-                case 'c'
-                    fprintf('%s \n', char(recoveredMessage));
-                case 'u'
-                    for k = 1:length(recoveredMessage)
-                        % Codegen does not accept uint8s on
-                        % fprint, so they need to be casted to
-                        % int16
-                        fprintf('%d \n', int16(recoveredMessage(k)));
-                    end
-                otherwise
-                    if obj.debugFlag; fprintf('MAC| Error: Undefined data type'); end;
-            end
-            
-            if obj.debugFlag
-                
-                fprintf('\nMAC| Header of received message: ');
+            if ~err || obj.debugFlag
                 
                 switch obj.dataType
                     case 'c'
-                        fprintf('%s \n', char(header));
+                        fprintf('%s \n', char(recoveredMessage));
                     case 'u'
-                        for k = 1:length(header)
+                        for k = 1:length(recoveredMessage)
                             % Codegen does not accept uint8s on
                             % fprint, so they need to be casted to
                             % int16
-                            fprintf('%d \n', int16(header(k)));
+                            fprintf('%d \n', int16(recoveredMessage(k)));
                         end
                     otherwise
                         if obj.debugFlag; fprintf('MAC| Error: Undefined data type'); end;

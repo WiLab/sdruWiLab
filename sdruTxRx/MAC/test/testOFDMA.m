@@ -22,7 +22,7 @@ dataType = 'c';
 % dataType = 'u';
 
 desiredUser = 1;
-numFrames = 200;
+numFrames = 0;
 
 %% Transmmit 
 
@@ -31,6 +31,8 @@ numFrames = 200;
 % [frame,bitsToTx] = TransmitterOFDMA(messageUE1,messageUE2,dataType,numFrames);
 
 %% Receive
+
+system('export LANG=C');
 
 [receivedMessage,receivedBits] = ReceiverOFDMA_mex(frame,desiredUser,dataType,numFrames);
 

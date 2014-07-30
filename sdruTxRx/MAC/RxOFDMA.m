@@ -29,7 +29,7 @@ classdef RxOFDMA < matlab.System
         pDetect;
         
         % Flags
-        debugFlag = 1;
+        debugFlag = 0;
         ignoreCRC = 0;
         
     end

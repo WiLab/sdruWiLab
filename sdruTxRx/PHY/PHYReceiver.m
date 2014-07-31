@@ -10,6 +10,14 @@ classdef PHYReceiver < matlab.System
         FrameLength = 640;
     end
     
+    properties
+        
+        %DEBUG
+        DebugFlag = 0;
+        %DEBUG
+        
+    end
+    
     properties (Access = protected)
         
         % Variables
@@ -50,7 +58,7 @@ classdef PHYReceiver < matlab.System
         CyclicPrefixLength = 16;
         PilotCarrierIndices = [12;26;40;54];
         NumGuardBandCarriers = [6;5];
-
+        
     end
     
     properties (Access = protected)
@@ -96,7 +104,7 @@ classdef PHYReceiver < matlab.System
             
             % Create Preamble data
             CreatePreambles(obj);
-
+            
             %% Create Modulator objects
             CreateDemodulators(obj);
             
@@ -113,7 +121,7 @@ classdef PHYReceiver < matlab.System
             %% Setup Receiver
             % System parameters to adjust because of hardware limitation
             USRPADCSamplingRate = 100e6;
-            DecimationFactor = USRPADCSamplingRate/obj.SamplingFrequency;          
+            DecimationFactor = USRPADCSamplingRate/obj.SamplingFrequency;
             offsetCompensationValue = 0;% Get from calibration
             
             % Gain control
@@ -151,11 +159,11 @@ classdef PHYReceiver < matlab.System
             obj.pOutputBits = zeros(obj.NumFrames,obj.numCarriers);%3 for CRC
             
             
-	    obj.Buffer = complex(zeros(2*obj.ReceiveBufferLength,1));
-
-	    obj.FrameLength = obj.NumDataSymbolsPerFrame*(obj.FFTLength+obj.CyclicPrefixLength)+length(obj.Preambles);
-	    
-
+            obj.Buffer = complex(zeros(2*obj.ReceiveBufferLength,1));
+            
+            obj.FrameLength = obj.NumDataSymbolsPerFrame*(obj.FFTLength+obj.CyclicPrefixLength)+length(obj.Preambles);
+            
+            
         end
         
         function [RHard, statusFlag] = stepImpl(obj,data)
@@ -163,16 +171,12 @@ classdef PHYReceiver < matlab.System
             
             statusFlag = 0; % 0==noFail,1==Timeout
             
-            %DEBUG
-            DebugFlag = 0;
-            %DEBUG
-            
             RHard = false(obj.NumFrames,obj.numCarriers);
             
             obj.numProcessed = 0; % # correct frames found
             lastFound = -2; %Flag for found frame, used for dup check
             numBuffersProcessed = 0; %Track received data, needed for separate indexing of processed and unprocessed data (processed==preamble found)
-                        
+            
             % Message string holder
             %coder.varsize('recoveredMessage', [1, 80], [0 1]);
             %recoveredMessage = '';
@@ -193,22 +197,22 @@ classdef PHYReceiver < matlab.System
                     
                     %obj.Buffer(obj.ReceiveBufferLength+1:end) = data( numBuffersProcessed*obj.ReceiveBufferLength + 1 :...
                     %             ( numBuffersProcessed + 1)*obj.ReceiveBufferLength);
-                             
-			if (( numBuffersProcessed + 1)*halfBuffLen ) < length(data)
-
-                    obj.Buffer(1:halfBuffLen*3) = obj.Buffer(halfBuffLen+1:end);
                     
-                    obj.Buffer(halfBuffLen*3+1:end) = data( numBuffersProcessed*halfBuffLen + 1 :...
-                                 ( numBuffersProcessed + 1)*halfBuffLen);
-			else
-				return;
-			end
-                             
-                             
+                    if (( numBuffersProcessed + 1)*halfBuffLen ) < length(data)
+                        
+                        obj.Buffer(1:halfBuffLen*3) = obj.Buffer(halfBuffLen+1:end);
+                        
+                        obj.Buffer(halfBuffLen*3+1:end) = data( numBuffersProcessed*halfBuffLen + 1 :...
+                            ( numBuffersProcessed + 1)*halfBuffLen);
+                    else
+                        return;
+                    end
+                    
+                    
                 end
                 if sum(obj.Buffer)==0
                     % All zeros from radio (Bug?)
-                    if DebugFlag ;fprintf('All zeros (Bug?)\n');end;
+                    if obj.DebugFlag ;fprintf('All zeros (Bug?)\n');end;
                     numBuffersProcessed = numBuffersProcessed + 1;
                     continue;
                 end
@@ -228,19 +232,19 @@ classdef PHYReceiver < matlab.System
                     ((numBuffersProcessed-lastFound) >= 2 ); %Check if duplicate frame
                 
                 
-%                 if ( (obj.delay + obj.FrameLength) > length(obj.Buffer) )
-%                     disp('Frame at end of buffer');
-%                 elseif (obj.delay < 0)
-%                     disp('Preamble not found');
-%                 elseif ((numBuffersProcessed-lastFound) < 2 )
-%                     disp('Duplicate frame');
-%                 end
+                %                 if ( (obj.delay + obj.FrameLength) > length(obj.Buffer) )
+                %                     disp('Frame at end of buffer');
+                %                 elseif (obj.delay < 0)
+                %                     disp('Preamble not found');
+                %                 elseif ((numBuffersProcessed-lastFound) < 2 )
+                %                     disp('Duplicate frame');
+                %                 end
                 
                 
                 %% Recover found frame
                 if FrameFound
-
-% 		    if DebugFlag;fprintf('Found Frame\n');end;
+                    
+                    % 		    if obj.DebugFlag;fprintf('Found Frame\n');end;
                     lastFound = numBuffersProcessed;%Flag frame as found so duplicate frames are not processed
                     obj.numProcessed = obj.numProcessed + 1;%Increment processed found frames
                     
@@ -258,16 +262,16 @@ classdef PHYReceiver < matlab.System
                     % Save for later decoding and CRC
                     %obj.pMessageBits(obj.numProcessed,:) = RHard;
                     %obj.pOutputBits(obj.numProcessed,:) = RHard;
-                   
+                    
                 else
-                    if DebugFlag;fprintf('Frame not found\n');end;
+                    if obj.DebugFlag;fprintf('Frame not found\n');end;
                 end
                 
                 %% Timeout
                 %fprintf('%f\n',numBuffersProcessed);
                 %fprintf('%f\n',timeoutDuration);
                 if numBuffersProcessed > obj.pTimeoutDuration
-                    if DebugFlag ;fprintf('PHY| Receiver timed out\n');end;
+                    if obj.DebugFlag ;fprintf('PHY| Receiver timed out\n');end;
                     recoveredMessage = 'Timeout';
                     statusFlag = 1;
                     return;
@@ -276,8 +280,8 @@ classdef PHYReceiver < matlab.System
             
             % Decode Bits
             %recoveredMessage = DecodeMessages( obj, obj.pMessageBits );
-            %recoveredMessage = obj.pOutputBits;    
-            %recoveredMessage = RHard;	
+            %recoveredMessage = obj.pOutputBits;
+            %recoveredMessage = RHard;
             
         end
         
@@ -307,14 +311,14 @@ classdef PHYReceiver < matlab.System
             %obj.dataSubcarrierIndexies = [1:5,7:19,21:26,28:33,35:47,49:53];
             
             obj.dataSubcarrierIndexies = TMPdataSubcarrierIndexies(TMPdataSubcarrierIndexies>0);
-                
+            
             obj.CRC = comm.CRCDetector([1 0 0 1], 'ChecksumsPerFrame',1);
-                
+            
             
         end
         
         function CreatePreambles(obj)
-
+            
             %% Create Short Preamble
             obj.ShortPreamble = [ 0 0  1+1i 0 0 0  -1-1i 0 0 0 ... % [-27:-17]
                 1+1i 0 0 0  -1-1i 0 0 0 -1-1i 0 0 0   1+1i 0 0 0 ... % [-16:-1]
@@ -417,7 +421,7 @@ classdef PHYReceiver < matlab.System
             % is returned
             
             %% Timing Estimate
-
+            
             
             % Cross correlate
             rWin = recv(1:obj.CorrelationWindowSize);
@@ -434,12 +438,12 @@ classdef PHYReceiver < matlab.System
             
             PhatShort2 = PhatShort2(obj.K:end);
             RhatShort2 = RhatShort2(obj.K:end);
-                        
+            
             %PhatShort2 = PhatShort2+ones(size(PhatShort2))*0.0001;
             RhatShort2 = RhatShort2+ones(size(PhatShort2))*0.0001;
             
             % Calculate timing metric
-            if (sum(RhatShort2)==0) || (sum(PhatShort2)==0) 
+            if (sum(RhatShort2)==0) || (sum(PhatShort2)==0)
                 numPeaks = 0;
                 preambleEstimatedLocation = -1;
                 return;
@@ -448,16 +452,16 @@ classdef PHYReceiver < matlab.System
             M = abs(PhatShort2).^2 ./ RhatShort2.^2;
             
             %figure(1);stem(M);
-               
+            
             % Determine start of short preamble
             [preambleEstimatedLocation, numPeaks] = locateShortPreamble( obj, M, obj.K );
             
-%             disp(['Peaks: ',num2str(numPeaks)]);
-%             if preambleEstimatedLocation > 0
-%             hold on;tmp = zeros(size(M));tmp(preambleEstimatedLocation) = 1;
-%             stem(tmp,'r');hold off;
-%             return;
-%             end
+            %             disp(['Peaks: ',num2str(numPeaks)]);
+            %             if preambleEstimatedLocation > 0
+            %             hold on;tmp = zeros(size(M));tmp(preambleEstimatedLocation) = 1;
+            %             stem(tmp,'r');hold off;
+            %             return;
+            %             end
         end
         
         
@@ -468,7 +472,7 @@ classdef PHYReceiver < matlab.System
             
             % Adjust threshold
             thresholdNorm = max(M)*obj.PeakThreshold;
-%             thresholdNorm = obj.PeakThreshold;
+            %             thresholdNorm = obj.PeakThreshold;
             MLocations = find(M>thresholdNorm);
             
             % Correct estimate to start of preamble, not its center
@@ -591,8 +595,8 @@ classdef PHYReceiver < matlab.System
             % Demodulate subcarrier data
             %RLinear = reshape(R,size(R,1)*size(R,2),1);
             %RHard = RLinear(1:end-obj.padBits) < 0; %Bits
-            RHard = R<0;            
-
+            RHard = R<0;
+            
             % Decode received text
             %estimate.message = OFDMbits2letters(RHard > 0);
             
@@ -609,7 +613,7 @@ classdef PHYReceiver < matlab.System
         %%%%%%%%%%%%%%% DATA DECODER %%%%%%%%%%%%%%
         %% Decode Messages: Convert from bits to characters
         function recoveredMessage = DecodeMessages( obj, messageBits )
-            DebugFlag=0;
+            obj.DebugFlag=0;
             recoveredMessage = 'Timeout';
             for recMessage = 1:obj.numProcessed
                 % CRC Check
@@ -622,10 +626,10 @@ classdef PHYReceiver < matlab.System
                     messageEnd = strfind(message,'EOF');
                     if ~isempty(messageEnd)
                         recoveredMessage = message(1:messageEnd(1,1)-1);
-                        if DebugFlag ;fprintf('PHY| Message recovered: %s\n',recoveredMessage); end;
+                        if obj.DebugFlag ;fprintf('PHY| Message recovered: %s\n',recoveredMessage); end;
                     end
                 else
-                    if DebugFlag ;fprintf('PHY| CRC Message Failure\n');end;
+                    if obj.DebugFlag ;fprintf('PHY| CRC Message Failure\n');end;
                     %View corrupted messages
                     recoveredMessage = char(OFDMbits2letters(obj,msg > 0).');%messageBits(recMessage,1:end-3)
                     fprintf('Corrupted Message: %s\n',recoveredMessage);
@@ -633,7 +637,7 @@ classdef PHYReceiver < matlab.System
                 end
             end
         end
-
+        
         % Do nothing aka waste time
         function Wait(obj,timeToWait)
             
@@ -647,7 +651,7 @@ classdef PHYReceiver < matlab.System
             end
             
         end
-
+        
         % Simple Energy detection and thresholding
         function [decision,meanEnergy] = SpectrumSenseEnergy( obj )
             

@@ -13,8 +13,8 @@ clc;
 
 load('frame.mat')
 
-messageUE1 = ['1st Message';'2nd Message';'3rd Message';'4th Message';'5th Message'];
-messageUE2 = ['First  Message';'Second Message';'Third  Message';'Fourth Message';'Fifth  Message'];
+messageUE1 = ['1st Message';'1st Message';'1st Message';'1st Message';'1st Message'];
+messageUE2 = ['Second Message';'Second Message';'Second Message';'Second Message';'Second Message'];
 dataType = 'c';
 
 % messageUE1 = uint8([1 0 1 2 53 53 255 300]);
@@ -60,6 +60,8 @@ compilesdru('TransmitterOFDMA','mex','-args','{messageUE1,messageUE2,dataType,nu
 disp('DONE!');
 
 %% Compile Rx
+
+clc
 
 % codegen ReceiverOFDMA -args {frame,desiredUser,coder.Constant(dataType)}
 

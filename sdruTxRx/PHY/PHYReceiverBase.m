@@ -1,4 +1,4 @@
-classdef PHYReceiver < matlab.System
+classdef PHYReceiverBase < matlab.System
     
     % OFDM Physical Layer Receiver
     properties (Nontunable)
@@ -95,30 +95,18 @@ classdef PHYReceiver < matlab.System
     
     methods (Access = protected)
         
-        function setupImpl(obj,~)
+        function setupFrameFinder(obj,~)
             
-            % Create Preamble data
-            CreatePreambles(obj);
-
-            %% Create Modulator objects
-            CreateDemodulators(obj);
-            
-            %% Pre-initialize estimates to be saved between numFrames
-            %obj.phi = 0;
-            obj.frequency = zeros(obj.numFreqToAverage,1);
-            obj.phase = 0;
-            obj.frequencyMA = 0;
-            obj.numProcessed = 0; %Tracking number of processed found numFrames
+            % Must call the following methods before this one
+            % CreatePreambles(obj) and CreateDemodulators(obj);
+                       
             obj.delay = 0;
-            obj.pilotEqGains = complex(zeros(obj.numCarriers, obj.hDataDemod.NumSymbols));
-            obj.preambleEqGains = complex(zeros(obj.FFTLength-sum(obj.NumGuardBandCarriers),1));
             
-            %% Setup Receiver
+            %% Setup Hardware Receiver
             % System parameters to adjust because of hardware limitation
             USRPADCSamplingRate = 100e6;
             DecimationFactor = USRPADCSamplingRate/obj.SamplingFrequency;          
             offsetCompensationValue = 0;% Get from calibration
-            
             
             % USRP
             if obj.HWAttached
@@ -128,10 +116,18 @@ classdef PHYReceiver < matlab.System
                     'FrameLength',          floor(obj.ReceiveBufferLength/2),...
                     'OutputDataType',       'double',...
                     'Gain',                 18,...
-                    'SampleRate',	    obj.SamplingFrequency);
+                    'SampleRate',           obj.SamplingFrequency);
             end
             
-            % Synchronization setup
+            % Timeout info
+            buffersPerSecond = (100e6/DecimationFactor)/obj.ReceiveBufferLength;
+            obj.pTimeoutDuration = floor(buffersPerSecond*0.05*100000);
+            
+            obj.Buffer = complex(zeros(2*obj.ReceiveBufferLength,1));
+            
+            obj.FrameLength = obj.NumDataSymbolsPerFrame*(obj.FFTLength+obj.CyclicPrefixLength)+length(obj.Preambles);
+            
+            % Frame locator setup
             windowLength = ceil(4*obj.ReceiveBufferLength/4);
             L = obj.FFTLength;
             obj.K = obj.FFTLength/4; % Quarter of short preamble sequence
@@ -139,55 +135,44 @@ classdef PHYReceiver < matlab.System
             obj.ConjKnown = conj(known);
             obj.CorrelationWindowSize = windowLength-L+obj.K-1;
             
-            % CRC
-            obj.pCRC = comm.CRCDetector([1 0 0 1], 'ChecksumsPerFrame',1);
-            
-            % Timeout info
-            buffersPerSecond = (100e6/DecimationFactor)/obj.ReceiveBufferLength;
-            obj.pTimeoutDuration = floor(buffersPerSecond*0.05*100000);
-            
-            % Soft decisions
-            %obj.pMessageBits = zeros(obj.NumFrames,obj.MessageCharacters*7+3);%3 for CRC
-            obj.pOutputBits = zeros(obj.NumFrames,obj.numCarriers);%3 for CRC
-            
-            
-            obj.Buffer = complex(zeros(2*obj.ReceiveBufferLength,1));
-            
-            obj.FrameLength = obj.NumDataSymbolsPerFrame*(obj.FFTLength+obj.CyclicPrefixLength)+length(obj.Preambles);
+        end
+        
+        function setupProcessFrame(obj)
             
             % Gain control
             obj.pAGC = comm.AGC('UpdatePeriod',  obj.FrameLength/10); % Value must be constant, equal to rx.receiveBufferLength
             
+            % Pre-initialize estimates to be saved between numFrames
+            obj.frequency = zeros(obj.numFreqToAverage,1);
+            obj.phase = 0;
+            obj.frequencyMA = 0;
+            obj.numProcessed = 0; %Tracking number of processed found numFrames
+            obj.pilotEqGains = complex(zeros(obj.numCarriers, obj.hDataDemod.NumSymbols));
+            obj.preambleEqGains = complex(zeros(obj.FFTLength-sum(obj.NumGuardBandCarriers),1));
             
-            
+
         end
         
-        function [RHard, statusFlag] = stepImpl(obj,data)
-            % Receive Data
+        function [rFrame, statusFlag] = FindFrame(obj,data)
             
-            statusFlag = 0; % 0==noFail,1==Timeout
+            % Receive Data
+            statusFlag = 1; % 0==noFail,1==Timeout
             
             %DEBUG
             DebugFlag = 0;
             %DEBUG
             
-            RHard = false(obj.numCarriers,obj.NumFrames*obj.NumDataSymbolsPerFrame);
+            rFrame = complex(zeros(obj.FrameLength,1));
             
             numFoundFrames = 0;
             lastFound = -2; %Flag for found frame, used for dup check
-            numBuffersProcessed = 0; %Track received data, needed for separate indexing of processed and unprocessed data (processed==preamble found)
-
+            numBuffersProcessed = 0; %Track received data, needed for separate indexing of processed and unprocessed data (processed==preamble found)            
             halfBuffLen = floor(obj.ReceiveBufferLength/2);
+
             
-            %%%% Used for testing
-            RxMAC = RxOFDMA;
-            RxMAC.dataType = 'c';
-            RxMAC.desiredUser = 1;
-            %%%%
-            
-            %% Process received data
-            % Locate frames in buffer and compensate for channel affects
+            % Locate frames in buffer
             while numFoundFrames < obj.NumFrames
+            
                 
                 % Get data from USRP or Input
                 if obj.HWAttached % Get data from usrp
@@ -198,9 +183,9 @@ classdef PHYReceiver < matlab.System
                         obj.Buffer(1:halfBuffLen*3) = obj.Buffer(halfBuffLen+1:end);
                         obj.Buffer(halfBuffLen*3+1:end) = data( numBuffersProcessed*halfBuffLen + 1 :...
                             ( numBuffersProcessed + 1)*halfBuffLen);
-                    else
+                    else % No more data left in simulated buffer
                         statusFlag = 1;
-                        if DebugFlag;fprintf('Frame not found\n');end;
+                        if DebugFlag;fprintf('Frame not found, end of buffer\n');end;
                         return;
                     end
                 end
@@ -214,13 +199,10 @@ classdef PHYReceiver < matlab.System
                     if DebugFlag ;fprintf('Got some data\n');end;
                 end
                 
-                % Automatic Gain Control
-                %obj.Buffer = step(obj.pAGC, obj.Buffer);
-                
-                % Increment processed data index
+                % Increment processed data index (primarily for timeout)
                 numBuffersProcessed = numBuffersProcessed + 1;
                 
-                %% Find preamble in buffer
+                % Find preamble in buffer
                 [obj.delay, ~] = locateOFDMFrame_sdr( obj, obj.Buffer );
                 
                 % Check if frame exists in correct location and whether it's duplicate
@@ -229,60 +211,55 @@ classdef PHYReceiver < matlab.System
                     (obj.delay > -1 ) &&... %Check if preamble located
                     (~Dupe); %Check if duplicate frame
                 
-                % Display why missed frame
-                if ( (obj.delay + obj.FrameLength) > length(obj.Buffer) )
-                    fprintf('Frame at end of buffer\n');
-                elseif (obj.delay < 0)
-                    fprintf('Preamble not found\n');
-                elseif Dupe
-                    fprintf('Duplicate frame\n');
-                end
-                
-                
-                %% Recover found frame
+                %% Frame Decision
                 if FrameFound
-
-                    %if DebugFlag;fprintf('Found Frame\n');end;
-                    
+                    if DebugFlag;fprintf('Frame found\n');end;
+                    %fprintf('Frame found\n');
+                    statusFlag = 0;
                     numFoundFrames = numFoundFrames + 1;
-                    
                     lastFound = numBuffersProcessed;%Flag frame as found so duplicate frames are not processed
-                    obj.numProcessed = obj.numProcessed + 1;%Increment processed found frames
+                    rFrame = obj.Buffer(obj.delay + 1 : obj.delay + obj.FrameLength);% Extract single frame from input buffer
                     
-                    % Extract single frame from input buffer
-                    rFrame = obj.Buffer(obj.delay + 1 : obj.delay + obj.FrameLength);
+                else
+                    statusFlag = 1;
+                    % Display why missed frame
+                    if ( (obj.delay + obj.FrameLength) > length(obj.Buffer) )
+                        fprintf('Frame at end of buffer\n');
+                    elseif (obj.delay < 0)
+                        fprintf('Preamble not found\n');
+                    elseif Dupe
+                        fprintf('Duplicate frame\n');
+                    end
                     
-                    rFrame = step(obj.pAGC, rFrame);
-                    
-                    % Correct frequency offset
-                    [ rFreqShifted ] = coarseOFDMFreqEst_sdr( obj, rFrame );
-                    
-                    % Equalize
-                    [ RPostEqualizer ] = equalizeOFDM( obj, rFreqShifted );
-                    
-                    % Demod subcarriers
-                    [ ~, RHard(:,1+(numFoundFrames-1)*obj.NumDataSymbolsPerFrame:(numFoundFrames)*obj.NumDataSymbolsPerFrame) ]...
-                        = demodOFDMSubcarriers_sdr( obj, RPostEqualizer );
-                    
-                    % Decode
-                    %step(RxMAC,RHard(:,1+(numFoundFrames-1)*obj.NumDataSymbolsPerFrame:(numFoundFrames)*obj.NumDataSymbolsPerFrame));
-                    
-                    % Done?
-                    if numFoundFrames >= obj.NumFrames
+                    % Timeout
+                    if numBuffersProcessed > obj.pTimeoutDuration
+                        if DebugFlag ;fprintf('PHY| Receiver timed out\n');end;
+                        statusFlag = 1;
                         return;
                     end
-
-                end
-                
-                % Timeout
-                if numBuffersProcessed > obj.pTimeoutDuration
-                    if DebugFlag ;fprintf('PHY| Receiver timed out\n');end;
-                    statusFlag = 1;
-                    return;
                 end
             end
+        end
+        
+        function RHard = ProcessFrame(obj,rFrame)
+            %% Recover found frame
+            obj.numProcessed = obj.numProcessed + 1;
+            rFrame = step(obj.pAGC, rFrame);
+            
+            % Correct frequency offset
+            [ rFreqShifted ] = coarseOFDMFreqEst_sdr( obj, rFrame );
+            
+            % Equalize
+            [ RPostEqualizer ] = equalizeOFDM( obj, rFreqShifted );
+            
+            % Demod subcarriers
+            [ ~, RHard]= demodOFDMSubcarriers_sdr( obj, RPostEqualizer );
+            
+            % Decode
+            %step(RxMAC,RHard(:,1+(numFoundFrames-1)*obj.NumDataSymbolsPerFrame:(numFoundFrames)*obj.NumDataSymbolsPerFrame));
             
         end
+            
         
         %%%%%%%%%%%% OFDM System Setup %%%%%%%%%%%%%%%%
         function CreateDemodulators(obj)
@@ -589,24 +566,10 @@ classdef PHYReceiver < matlab.System
         %%%%%%%%%%%%%%% SUBCARRIER DEMOD %%%%%%%%%%%%%%%
         function [BER, RHard] = demodOFDMSubcarriers_sdr( ~, R )
             %#codegen
-            % demodOFDMSubcarriers: Hard demodulate then compare received and
-            % transmitted data
-            
-            % Demodulate subcarrier data
-            %RLinear = reshape(R,size(R,1)*size(R,2),1);
-            %RHard = RLinear(1:end-obj.padBits) < 0; %Bits
-            RHard = R<0;            
 
-            % Decode received text
-            %estimate.message = OFDMbits2letters(RHard > 0);
-            
-            % Check results (remove CRC for compare)
-            %BER = sum(RHard(1:end-3)~=tx.originalData)/numel(RHard);
+            % Demodulate subcarrier data
+            RHard = R<0;            
             BER = 1;
-            
-            % Save additional information
-            %estimate.totalFrameErrors(estimate.numProcessed) = sum(RHard~=tx.originalData);
-            %estimate.totalFrameBits(estimate.numProcessed) = numel(RHard);
             
         end
 

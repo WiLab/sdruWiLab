@@ -1,6 +1,6 @@
 classdef TxOFDMA < matlab.System
     
-    % TxOFDMA   OFDMA tramsnsmitter class for bit conversion, error 
+    % TxOFDMA   OFDMA tramsnsmitter class for bit conversion, error
     % checking and user multiplexing for 2 users.
     
     %% Define nontunable properties
@@ -16,17 +16,22 @@ classdef TxOFDMA < matlab.System
     %% Define protected properties
     properties
         
-        messageText; 
-        padBits;   % Number of pad bits on last frame
+        lastMessageUE1;
+        lastMessageUE2;
+        messageSent;
         lastFrame; % Last transmitted frame
+        lastFrameID
         
-    end
-    
-    %% Define properties  
-    properties
+        padBits;   % Number of pad bits on last frame
+        dataType = 'c';
+        
+        debugFlag = 0;
+        desiredUser = 1;
         
         DestNodes;
         OriginNodes;
+        
+        hGen;   % Object handle
         
     end
     
@@ -37,8 +42,13 @@ classdef TxOFDMA < matlab.System
         function setupImpl(obj,~,~)
             
             % Tunable
-            obj.DestNodes = [1 2];
-            obj.OriginNodes = [2 1];
+            obj.DestNodes = [0 0];
+            obj.OriginNodes = [0 0];
+            
+            % Generate CRC object handle
+            obj.hGen = comm.CRCGenerator([1 0 0 1], 'ChecksumsPerFrame',1);
+            
+            obj.lastFrameID = 0;
             
         end
         
@@ -58,36 +68,38 @@ classdef TxOFDMA < matlab.System
             maxMsgSize = max([length(messageUE1) length(messageUE2)]);
             
             % Matrix containing messages
-            messageUEs = [obj.additionalText(messageUE1,obj.OriginNodes(1),obj.DestNodes(1)) repmat('-',1,maxMsgSize - length(messageUE1));...
-                obj.additionalText(messageUE2,obj.OriginNodes(2),obj.DestNodes(2)) repmat('-',1,maxMsgSize - length(messageUE2))];
+            messageUEs = [obj.additionalText(messageUE1,obj.OriginNodes(1),obj.DestNodes(1)) repmat(uint8('-'),1,maxMsgSize - length(messageUE1));...
+                obj.additionalText(messageUE2,obj.OriginNodes(2),obj.DestNodes(2)) repmat(uint8('-'),1,maxMsgSize - length(messageUE2))];
+            
+            % Increase frame number
+            obj.lastFrameID = mod(obj.lastFrameID + 1,10);
             
             
-            %% Calculate pad bits and
+            %% Calculate and add number of pad bits to header
             
             % The number of pad bits per user is the total number of bits per user
             % (numCarriers*nsymbolsPerFrame/2) minus the bits per message
             % (7*(size(messageUEs,2)+7)) minus the CRC bits (3)
             
-            obj.padBits = obj.numCarriers*obj.symbolsPerFrame/2 - 7*(size(messageUEs,2)+1) - 3;
+            obj.padBits = obj.numCarriers*obj.symbolsPerFrame/2 - 8*(size(messageUEs,2)+1) - 3;
             if obj.padBits < 0
-                fprintf('Not enough symbols!\n\n');
-                return;
+                fprintf('MAC| ERROR: Not enough symbols!\n\n');
             end
             
             % Add number of pad bits to header
-            obj.messageText = [repmat(char(obj.padBits),obj.numUsers,1) messageUEs];
+            obj.messageSent = [repmat(uint8(obj.padBits),obj.numUsers,1) messageUEs];
             
             %% Convert to bits
             
             % Initialize matrix
-            messageBits = zeros(obj.numUsers,size(obj.messageText,2)*7);
-            userBits = zeros(size(obj.messageText,2),7);
+            messageBits = zeros(obj.numUsers,size(obj.messageSent,2)*8);
+            userBits = zeros(size(obj.messageSent,2),7);
             
             % Convert to bits
             for user = 1:obj.numUsers
                 
                 % Convert to bits
-                userBits = obj.OFDMletters2bits(obj.messageText(user,:));
+                userBits = obj.OFDMdecimal2bits(obj.messageSent(user,:));
                 
                 % Reshape into row vector
                 messageBits(user,:) = reshape(userBits',1,size(userBits,1)*size(userBits,2));
@@ -96,14 +108,11 @@ classdef TxOFDMA < matlab.System
             
             %% Add CRC and pad
             
-            % Generate CRC object handle
-            hGen = comm.CRCGenerator([1 0 0 1], 'ChecksumsPerFrame',1);
-            
             % Initialize matrix. Remember to change added number if CRC length changes!
             dataWithCRC = zeros(obj.numUsers,length(messageBits) + 3);
             
             for user = 1:obj.numUsers
-                dataWithCRC(user,:) = step(hGen, messageBits(user,:)');% Add CRC
+                dataWithCRC(user,:) = step(obj.hGen, messageBits(user,:)');% Add CRC
             end
             
             % Pad and add number of pad bits to header
@@ -125,49 +134,69 @@ classdef TxOFDMA < matlab.System
                 
             end
             
-            %% Define last frame
+            %% Print message
+            
+            if obj.debugFlag
+                fprintf('\nMAC| Transmitted message with additional text: \n');
+                switch obj.dataType
+                    case 'c'
+                        fprintf('%s \n', char(obj.messageSent(obj.desiredUser,:)));
+                    case 'u'
+                        for k = 1:length(obj.messageSent(obj.desiredUser,:))
+                            % Codegen does not accept uint8s on
+                            % fprint, so they need to be casted to
+                            % int16
+                            fprintf('%d \n', int16(obj.messageSent(obj.desiredUser,k)));
+                        end
+                    otherwise
+                        fprintf('MAC| Undefined data type');
+                end
+            end
+            
+            %% Define last frame and sent messages
+            obj.lastMessageUE1 = messageUE1;
+            obj.lastMessageUE2 = messageUE2;
             obj.lastFrame = bitsToTx;
             
         end
         
         %% Additional text
-        function FullMessage = additionalText(~,message,originNode,destNode)
+        function FullMessage = additionalText(obj,message,originNode,destNode)
             % Function to add EOF, unique ID, origin node number and destination node
             % number to a message
             
             % Message to transmit
             % message is 80 characters max, so extra 3 for EOF, 1 for uniqueID, 1
             % for the node number of recipient, 1 for origin node
-            if length(message) < 69
+            if length(message) < 23
                 
                 % Add additional character to differentiate messages, number of
                 % origin node and destination node
-                uniqueID = char(randi([0 (2^7)-1],1,1));
-                originNodeChar = char(48 + originNode);
-                destNodeChar = char(48 + destNode);
+                uniqueID = uint8(48 + obj.lastFrameID);
+                originNodeChar = uint8(48 + originNode);
+                destNodeChar = uint8(48 + destNode);
                 
                 % Build message
                 FullMessage = [uniqueID,destNodeChar,originNodeChar,...
-                    message,'EOF'];
+                    message,uint8('EOF')];
                 
             else
-                fprintf('ERROR: Message incorrect format\n');
-                return;
+                fprintf('MAC| ERROR: Message incorrect format\n');
             end
             
         end
         
         %% Conversion to bits
-        function f = OFDMletters2bits(obj,str)
+        function f = OFDMdecimal2bits(obj,str)
             % Encode a string of ASCII text into bits(1,0)
             DLL = ~strcmp(coder.target,'');
             N=length(str);
-            f=zeros(N,7);
+            f=zeros(N,8);
             
-            bits = dec2bin(str);
+            bits = dec2bin(str,8);
             for k=1:N
                 letter = bits(k,:);
-                for i = 1:7
+                for i = 1:8
                     if DLL
                         f(k,i)=coder.ceval('atoi',c_string(obj,letter(i)));
                     else
@@ -176,6 +205,10 @@ classdef TxOFDMA < matlab.System
                 end
             end
             
+        end
+        % Create a NUL terminated C string given a MATLAB string
+        function y = c_string(~,s)
+            y = [s 0];
         end
         
     end

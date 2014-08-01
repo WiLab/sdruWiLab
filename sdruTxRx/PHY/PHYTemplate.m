@@ -49,7 +49,6 @@ errors = biterr(input,output);
 disp(['Bit Errors: ',num2str(errors)]);
 
 
-
 %% Transmitter Codegen
 %input = (randi([0 1],48,4));
 if isunix

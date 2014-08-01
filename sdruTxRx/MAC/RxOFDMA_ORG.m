@@ -24,15 +24,8 @@ classdef RxOFDMA < matlab.System
         lastMessage;
         lastHeader;
         padBits;
-        
-        lastFrameID = uint8(255);
-        
-        % Object handle
         pDetect;
-        
-        % Flags
-        debugFlag = 1;
-        ignoreCRC = 1;
+        debugFlag = 0;
         
     end
     
@@ -47,15 +40,12 @@ classdef RxOFDMA < matlab.System
         
         %% Step function
         function returnedMessage = stepImpl(obj,receivedFrame)
-            
-            fprintf('Decoding Message\n');
-            
-            Duplicate = false; % flag for duplicate
-            
             %% User demultiplex
+            %fprintf('Reached1\n');
             userFrame = receivedFrame((obj.desiredUser*obj.carriersPerUser-obj.carriersPerUser+1):...
                 obj.desiredUser*obj.carriersPerUser,:);
             
+            %fprintf('Reached2\n');
             userBits = reshape(userFrame,1,obj.carriersPerUser*obj.symbolsPerFrame);
             
             %% Eliminate pad bits
@@ -67,17 +57,16 @@ classdef RxOFDMA < matlab.System
             
             %% CRC check and convert to letters
             
-            % Initialize variables
+            % Initialize matrix
             recoveredMessage = uint8(zeros(1,size(userBits,2)/8));
-            err = false(1,1);
             
             % The minimum number of bits that can be recovered is 43 = 4
-            % characters on the header times 8 bits per character plus 3,
-            % the CRC length
+            % characters on the header times 8 bits per character plus 3, 
+            % the CRC length 
             if length(unpaddedBits) < 8*obj.headerCharacters + obj.CRClength
                 
-                err = ~err;
-                recoveredMessage = uint8('PAD BITS ERROR');
+                if obj.debugFlag; fprintf('MAC| Error: Pad bits too large\n'); end;
+                recoveredMessage = uint8([]);
                 header = recoveredMessage;
                 
             else
@@ -85,44 +74,28 @@ classdef RxOFDMA < matlab.System
                 % CRC Check
                 [msg, err] = step(obj.pDetect, unpaddedBits.'>0);
                 
-                if ~err || obj.ignoreCRC
+                if ~err
                     % Convert Bits to integers
-                    messageData = uint8(OFDMbits2letters(obj,msg > 0).');
+                    if obj.debugFlag; fprintf('\nMAC| Message bits length: %1.0f\n', length(msg > 0)); end;
+                    messageData = uint8(OFDMbits2letters(obj,msg > 0).');%messageBits(recMessage,1:end-3)
                     
                     % Remove padding. The input needs to be casted to char
                     % because strfind() can only be codegened if it receives
                     % char inputs
                     messageEnd = strfind(char(messageData),'EOF');
-                    
                     if ~isempty(messageEnd)
                         
-                        if obj.debugFlag;
-                            recoveredMessage = messageData(1:messageEnd(1,1) - 1); % Include the header
-                        else
-                            recoveredMessage = messageData(5:messageEnd(1,1) - 1); % Exclude the header
-                        end
-                        
+                        recoveredMessage = messageData(5:messageEnd(1,1)-1); % Exclude the header
                         header = messageData(1:4);
                         
-                        if  obj.lastFrameID == header(2)
-                        	Duplicate = true;
-                            fprintf('Duplicate\n');
-                        end
-                        
                     else
-                        
-                        err = ~err;
-                        
-                        if obj.ignoreCRC
-                            recoveredMessage = messageData; % Exclude the header
-                            header = messageData(1:4);
-                        else
-                            recoveredMessage = uint8('EOF NOT FOUND');
-                            header = recoveredMessage;
-                        end
+                        if obj.debugFlag; fprintf('MAC| Error: EOF not found\n'); end;
+                        recoveredMessage = uint8([]);
+                        header = recoveredMessage;
                     end
                 else
-                    recoveredMessage = uint8('CRC ERROR!!!!');
+                    if obj.debugFlag; fprintf('MAC| Error: CRC Message Failure\n'); end;
+                    recoveredMessage = uint8([]);
                     header = recoveredMessage;
                 end
                 
@@ -140,26 +113,41 @@ classdef RxOFDMA < matlab.System
             end
             
             
-            %% Print message
-            if (~err || obj.debugFlag) && ~Duplicate
+            %% Print message and header
             
+            fprintf('\nMAC| Recovered message: \n');
+            switch obj.dataType
+                case 'c'
+                    fprintf('%s \n', char(recoveredMessage));
+                case 'u'
+                    for k = 1:length(recoveredMessage)
+                        % Codegen does not accept uint8s on
+                        % fprint, so they need to be casted to
+                        % int16
+                        fprintf('%d \n', int16(recoveredMessage(k)));
+                    end
+                otherwise
+                    if obj.debugFlag; fprintf('MAC| Error: Undefined data type'); end;
+            end
+            
+            if obj.debugFlag
+                
+                fprintf('\nMAC| Header of received message: \n');
                 
                 switch obj.dataType
                     case 'c'
-                        fprintf('Length %d\n',int16(length(recoveredMessage)));
-                        fprintf('%s \n', char(recoveredMessage));
+                        fprintf('%s \n', char(header));
                     case 'u'
-                        
-                        for k = 1:length(recoveredMessage)
-                            fprintf('REACHED2\n');
+                        for k = 1:length(header)
                             % Codegen does not accept uint8s on
                             % fprint, so they need to be casted to
                             % int16
-                            fprintf('%d \n', int16(recoveredMessage(k)));
+                            fprintf('%d \n', int16(header(k)));
                         end
                     otherwise
                         if obj.debugFlag; fprintf('MAC| Error: Undefined data type'); end;
                 end
+                
             end
             
             %% Define properties
@@ -167,8 +155,7 @@ classdef RxOFDMA < matlab.System
             obj.lastFrame = receivedFrame;
             obj.lastMessage = recoveredMessage;
             obj.lastHeader = header;
-            obj.lastFrameID = header(2);
-             
+            
         end
         
         %% Conversion to letters

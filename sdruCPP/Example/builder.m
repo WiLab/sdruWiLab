@@ -14,7 +14,8 @@ cfg.PostCodeGenCommand = 'setbuildargs(buildInfo)';
 Release = ver;Release = Release.Release;
 Release = str2double(Release(3:6));
 if Release > 2013
-    codegen -config cfg Function1 Function2 -o ComboFunction
+    codegen -config cfg Function1 Function2 Transmitter SignalCorrect FindSignal Decoder -o ComboFunction
+    %codegen -config cfg Function1 Function2 Transmitter -o ComboFunction
 else
     hostname = lower(gethostname);
     hostname = hostname(2:end);
@@ -68,7 +69,7 @@ else
     cfg.InlineThresholdMax = 400;
     
     % Pass the rest of the arguments to codegen
-    codegenResult = codegen('Function1','Function2', '-config', cfg, '-o','ComboFunction');
+    codegenResult = codegen('Function1','Function2','Transmitter','SignalCorrect','FindSignal','-config', cfg, '-o','ComboFunction');
     
 end
 

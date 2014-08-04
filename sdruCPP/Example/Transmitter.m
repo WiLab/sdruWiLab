@@ -16,9 +16,9 @@ if isempty(TxMAC)
     TxPHY.HWAttached = false;
     TxPHY.NumDataSymbolsPerFrame = TxMAC.symbolsPerFrame;
     
-    SamplingFrequency = 1e6;
+    SamplingFrequency = 2.0e6;
     USRPADCSamplingRate = 100e6;
-    InterpolationFactor = USRPADCSamplingRate/SamplingFrequency;
+    InterpolationFactor = floor(USRPADCSamplingRate/SamplingFrequency);
     
     SDRuTransmitter = comm.SDRuTransmitter('192.168.10.2', ...
         'CenterFrequency',      900e6, ...

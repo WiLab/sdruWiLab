@@ -100,13 +100,16 @@ classdef PHYReceiverBase < matlab.System
             % Must call the following methods before this one
             % CreatePreambles(obj) and CreateDemodulators(obj);
                        
-            obj.delay = 0;
+            obj.delay = -1;
             
             %% Setup Hardware Receiver
             % System parameters to adjust because of hardware limitation
             USRPADCSamplingRate = 100e6;
-            DecimationFactor = USRPADCSamplingRate/obj.SamplingFrequency;          
+            DecimationFactor = floor(USRPADCSamplingRate/obj.SamplingFrequency);          
             offsetCompensationValue = 0;% Get from calibration
+            
+            %DecimationFactor = 120;
+            %obj.SamplingFrequency = USRPADCSamplingRate/DecimationFactor;
             
             % USRP
             if obj.HWAttached
@@ -138,6 +141,10 @@ classdef PHYReceiverBase < matlab.System
         end
         
         function setupProcessFrame(obj)
+            
+            %USRPADCSamplingRate = 100e6;
+            %DecimationFactor = 120;
+            %obj.SamplingFrequency = USRPADCSamplingRate/DecimationFactor;
             
             % Gain control
             obj.pAGC = comm.AGC('UpdatePeriod',  obj.FrameLength/10); % Value must be constant, equal to rx.receiveBufferLength
@@ -176,8 +183,9 @@ classdef PHYReceiverBase < matlab.System
                 
                 % Get data from USRP or Input
                 if obj.HWAttached % Get data from usrp
-                    obj.Buffer(1:halfBuffLen*3) = obj.Buffer(halfBuffLen+1:end);
-                    obj.Buffer(halfBuffLen*3+1:end) =  step(obj.pSDRuReceiver);
+                    obj.Buffer(1:halfBuffLen*3) = obj.Buffer(halfBuffLen+1:end);% Shift old samples down
+                    obj.Buffer(halfBuffLen*3+1:end) =  step(obj.pSDRuReceiver);% Shift in new samples
+                    
                 else % Process data from input vector
                     if (( numBuffersProcessed + 1)*halfBuffLen ) < length(data)
                         obj.Buffer(1:halfBuffLen*3) = obj.Buffer(halfBuffLen+1:end);
@@ -191,12 +199,14 @@ classdef PHYReceiverBase < matlab.System
                 end
                 
                 % All zeros from radio (Bug?)
-                if sum(obj.Buffer)==0
-                    if DebugFlag ;fprintf('All zeros (Bug?)\n');end;
-                    numBuffersProcessed = numBuffersProcessed + 1;
-                    continue;
-                else
-                    if DebugFlag ;fprintf('Got some data\n');end;
+                if DebugFlag
+                    if sum(obj.Buffer)==0
+                        if DebugFlag ;fprintf('All zeros (Bug?)\n');end;
+                        numBuffersProcessed = numBuffersProcessed + 1;
+                        continue;
+                    else
+                        if DebugFlag ;fprintf('Got some data\n');end;
+                    end
                 end
                 
                 % Increment processed data index (primarily for timeout)
@@ -223,14 +233,15 @@ classdef PHYReceiverBase < matlab.System
                 else
                     statusFlag = 1;
                     % Display why missed frame
-                    if ( (obj.delay + obj.FrameLength) > length(obj.Buffer) )
-                        fprintf('Frame at end of buffer\n');
-                    elseif (obj.delay < 0)
-                        fprintf('Preamble not found\n');
-                    elseif Dupe
-                        fprintf('Duplicate frame\n');
+                    if DebugFlag
+                        if ( (obj.delay + obj.FrameLength) > length(obj.Buffer) )
+                            fprintf('Frame at end of buffer\n');
+                        elseif (obj.delay < 0)
+                            fprintf('Preamble not found\n');
+                        elseif Dupe
+                            fprintf('Duplicate frame\n');
+                        end
                     end
-                    
                     % Timeout
                     if numBuffersProcessed > obj.pTimeoutDuration
                         if DebugFlag ;fprintf('PHY| Receiver timed out\n');end;

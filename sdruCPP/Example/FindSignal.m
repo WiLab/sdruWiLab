@@ -15,7 +15,7 @@ if isempty(FF)
     FF.PeakThreshold = .7;
     FF.requiredPeaks = 5;
 
-    FF.SamplingFrequency= 1e6;
+    FF.SamplingFrequency= 2.0e6;
     
     FF.ReceiveBufferLength = 1120;%length(frame);
     FF.CenterFrequency = 900e6;

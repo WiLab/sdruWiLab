@@ -1,6 +1,17 @@
-function [ RHard2 ] = SignalCorrect(rFrame) %#codegen
+function [ RHard2 ] = SignalCorrect(rFrame2) %#codegen
 
-assert(isa(rFrame, 'double') && ~isreal(rFrame) && all(size(rFrame) == [ (8*(64+16)+320) 1]))
+assert(isa(rFrame2, 'double') && isreal(rFrame2) && all(size(rFrame2) == [ 2*(8*(64+16)+320) 1]))
+
+%fprintf('YYr: %.2f c: %.2f\n',real(rFrame(end)),imag(rFrame(end)));
+
+rFrameSplit = reshape(rFrame2,2,960).';
+
+rFrame = complex(rFrameSplit(:,1),rFrameSplit(:,2));
+
+%fprintf('Real %f | Imag %f\n',(sum(real(rFrame))),(sum(imag(rFrame))));
+% for k=1:length(rFrame)
+%     fprintf('rFrame Sample: %f\n',real(rFrame(k)));
+% end
 
 
 %% Receiver
@@ -14,11 +25,31 @@ if isempty(PF)
     PF.SamplingFrequency= 0.5e6;
     
 end
+%fprintf('----------\n');
+%fprintf('%f\n',(sum(rFrame)));
+%fprintf('----------\n');
+% if ~(sum(abs(rFrame))>0)
+%     fprintf('rFrame all zeros 1\n');
+%     RHard2 = false(48,8);
+%     return;
+% end
 
 RHard = step(PF,rFrame);
 
-RHard2 = reshape(RHard,numel(RHard),1);
+%RHard2 = reshape(RHard,numel(RHard),1);
 
+% persistent RxMAC
+% 
+% if isempty(RxMAC)
+%     RxMAC = RxOFDMA;
+%     RxMAC.dataType = 'c';
+%     RxMAC.desiredUser = 1;
+%     RxMAC.symbolsPerFrame = 8;
+% end
+
+RHard2 = reshape(RHard,48*8,1);
+
+%step(RxMAC,RHard);
 
 end
 

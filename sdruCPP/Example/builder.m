@@ -14,8 +14,9 @@ cfg.PostCodeGenCommand = 'setbuildargs(buildInfo)';
 Release = ver;Release = Release.Release;
 Release = str2double(Release(3:6));
 if Release > 2013
-    codegen -config cfg Function1 Function2 Transmitter SignalCorrect FindSignal Decoder -o ComboFunction
-    %codegen -config cfg Function1 Function2 Transmitter -o ComboFunction
+    %codegen -config cfg Function1 Function2 Transmitter SignalCorrect FindSignal Decoder Receiver -o ComboFunction
+    codegen -config cfg Transmitter FindSignal SignalCorrect Decoder -o ComboFunction
+    %codegen -config cfg Transmitter Receiver -o ComboFunction
 else
     hostname = lower(gethostname);
     hostname = hostname(2:end);

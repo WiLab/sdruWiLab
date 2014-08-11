@@ -3,7 +3,7 @@ classdef PHYReceiverBase < matlab.System
     % OFDM Physical Layer Receiver
     properties (Nontunable)
         ReceiveBufferLength = 740;%ceil( rx.frameLength*4 ); %Size of Buffer of sliding window
-        CenterFrequency = 2.24e9;
+        CenterFrequency = 2.2e9;
         NumFrames = 1;              % Frames to capture
         HWAttached = false;
         padBits = 0;
@@ -113,7 +113,7 @@ classdef PHYReceiverBase < matlab.System
             
             % USRP
             if obj.HWAttached
-                obj.pSDRuReceiver = comm.SDRuReceiver( '192.168.10.2', ...
+                obj.pSDRuReceiver = comm.SDRuReceiver( '192.168.20.2', ...
                     'CenterFrequency',      obj.CenterFrequency + offsetCompensationValue, ...
                     'DecimationFactor',     DecimationFactor,...
                     'FrameLength',          floor(obj.ReceiveBufferLength/2),...
@@ -205,7 +205,7 @@ classdef PHYReceiverBase < matlab.System
                         numBuffersProcessed = numBuffersProcessed + 1;
                         continue;
                     else
-                        if DebugFlag ;fprintf('Got some data\n');end;
+                        %if DebugFlag ;fprintf('Got some data\n');end;
                     end
                 end
                 
@@ -216,7 +216,8 @@ classdef PHYReceiverBase < matlab.System
                 [obj.delay, ~] = locateOFDMFrame_sdr( obj, obj.Buffer );
                 
                 % Check if frame exists in correct location and whether it's duplicate
-                Dupe = 0*( numBuffersProcessed-lastFound<2 )&& (obj.delay<length(obj.Buffer)/2);
+                %Dupe = ( numBuffersProcessed-lastFound<2 )&& (obj.delay<length(obj.Buffer)/2);
+                Dupe = false;
                 FrameFound = ((obj.delay + obj.FrameLength) < length(obj.Buffer) ) &&... %Check if full data frame exists in buffer
                     (obj.delay > -1 ) &&... %Check if preamble located
                     (~Dupe); %Check if duplicate frame
@@ -254,20 +255,41 @@ classdef PHYReceiverBase < matlab.System
         
         function RHard = ProcessFrame(obj,rFrame)
             %% Recover found frame
+            
+            persistent RxMAC
+            
             obj.numProcessed = obj.numProcessed + 1;
-            rFrame = step(obj.pAGC, rFrame);
+            %rFrame = step(obj.pAGC, rFrame);
+            
+%             if isempty(RxMAC)
+%             %%%% Used for testing
+%             RxMAC = RxOFDMA;
+%             RxMAC.dataType = 'c';
+%             RxMAC.desiredUser = 1;
+%             %%%%
+%             end
             
             % Correct frequency offset
+            if ~(sum(abs(rFrame))>0)
+                fprintf('rFrame all zero\n');
+            end
             [ rFreqShifted ] = coarseOFDMFreqEst_sdr( obj, rFrame );
             
             % Equalize
+            if sum(abs(rFreqShifted))==0
+                fprintf('rFreqShifted all zero\n');
+            end
             [ RPostEqualizer ] = equalizeOFDM( obj, rFreqShifted );
             
             % Demod subcarriers
+            if sum(sum(RPostEqualizer))==0
+                fprintf('RPostEqualizer all zero\n');
+            end
             [ ~, RHard]= demodOFDMSubcarriers_sdr( obj, RPostEqualizer );
             
             % Decode
             %step(RxMAC,RHard(:,1+(numFoundFrames-1)*obj.NumDataSymbolsPerFrame:(numFoundFrames)*obj.NumDataSymbolsPerFrame));
+            %step(RxMAC,RHard);
             
         end
             
@@ -398,7 +420,7 @@ classdef PHYReceiverBase < matlab.System
                 
             end
             
-            fprintf('FreqEst: %f\n',obj.frequencyMA);
+            %fprintf('FreqEst: %f\n',obj.frequencyMA);
             
         end
         

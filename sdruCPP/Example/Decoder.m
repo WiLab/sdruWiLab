@@ -8,7 +8,7 @@ persistent RxMAC
 
 if isempty(RxMAC)
     RxMAC = RxOFDMA;
-    RxMAC.dataType = 'u';
+    RxMAC.dataType = 'c';
     RxMAC.desiredUser = 1;
     RxMAC.symbolsPerFrame = 8;
 end

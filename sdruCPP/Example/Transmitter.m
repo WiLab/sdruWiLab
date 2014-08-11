@@ -9,19 +9,19 @@ if isempty(TxMAC)
     % SETUP MAC
     TxMAC = TxOFDMA;
     TxMAC.desiredUser = 1;
-    TxMAC.dataType = 'u';
+    TxMAC.dataType = 'c';
     TxMAC.symbolsPerFrame = 8;
     
     TxPHY = PHYTransmitter;
     TxPHY.HWAttached = false;
     TxPHY.NumDataSymbolsPerFrame = TxMAC.symbolsPerFrame;
     
-    SamplingFrequency = 2.0e6;
+    SamplingFrequency = 0.5e6;
     USRPADCSamplingRate = 100e6;
     InterpolationFactor = floor(USRPADCSamplingRate/SamplingFrequency);
     
-    SDRuTransmitter = comm.SDRuTransmitter('192.168.10.2', ...
-        'CenterFrequency',      900e6, ...
+    SDRuTransmitter = comm.SDRuTransmitter('192.168.20.2', ...
+        'CenterFrequency',      2.2e9, ...
         'InterpolationFactor',  InterpolationFactor,...
         'Gain',                 25);
     
@@ -41,8 +41,10 @@ for k = 1:10
     frame(1+(k-1)*frameLength:k*frameLength)= step(TxPHY,bitsToTx1);
 end
 
+frame2=[randn(100,1);frame];
+
 while 1
-    step(SDRuTransmitter,frame);
+    step(SDRuTransmitter,frame2);
 end
 
 end

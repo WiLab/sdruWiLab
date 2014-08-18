@@ -35,17 +35,17 @@ persistent  FF
 if isempty(FF)
     
     FF = PHYRxFindFrame;
-    FF.NumFrames = 10e8;
-    FF.NumDataSymbolsPerFrame = 8;
+    FF.NumFrames = 1;
+    FF.NumDataSymbolsPerFrame = 16;
 
     FF.HWAttached = true;
     FF.PeakThreshold = .7;
-    FF.requiredPeaks = 5;
+    FF.requiredPeaks = 7;
 
-    FF.SamplingFrequency= 0.5e6;
+    FF.SamplingFrequency= 1e6;
     
-    FF.ReceiveBufferLength = 1120;%length(frame);
-    FF.CenterFrequency = 2.2e9;
+    %FF.ReceiveBufferLength = 1120;%length(frame);
+    FF.CenterFrequency = 900e6;
 
 end
 
@@ -61,7 +61,7 @@ end
 % end
 
 %tmp = zeros(48,8);
-rFrame = ((1:960*2)');
+rFrame = ((1:(16*(64+16)+320)*2)');
 while 1
     [rFrame2, statusFlag] = step(FF,rFrame);
     if statusFlag == 0
@@ -74,7 +74,7 @@ while 1
             rFrameReal = real(rFrame2);
             rFrameImag = imag(rFrame2);
             
-            rFrame = reshape([rFrameReal rFrameImag]',960*2,1);
+            rFrame = reshape([rFrameReal rFrameImag]',(16*(64+16)+320)*2,1);
             
             %RHard = step(PF,rFrame);
             return;

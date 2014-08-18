@@ -1,10 +1,10 @@
 function [ RHard2 ] = SignalCorrect(rFrame2) %#codegen
 
-assert(isa(rFrame2, 'double') && isreal(rFrame2) && all(size(rFrame2) == [ 2*(8*(64+16)+320) 1]))
+assert(isa(rFrame2, 'double') && isreal(rFrame2) && all(size(rFrame2) == [ 2*(16*(64+16)+320) 1]))
 
 %fprintf('YYr: %.2f c: %.2f\n',real(rFrame(end)),imag(rFrame(end)));
 
-rFrameSplit = reshape(rFrame2,2,960).';
+rFrameSplit = reshape(rFrame2,2,(16*(64+16)+320)).';
 
 rFrame = complex(rFrameSplit(:,1),rFrameSplit(:,2));
 
@@ -20,9 +20,9 @@ persistent  PF
 if isempty(PF)
     PF = PHYRxProcessFrame;
 
-    PF.NumDataSymbolsPerFrame = 8;
+    PF.NumDataSymbolsPerFrame = 16;
 
-    PF.SamplingFrequency= 0.5e6;
+    PF.SamplingFrequency = 1e6;
     
 end
 %fprintf('----------\n');
@@ -47,7 +47,7 @@ RHard = step(PF,rFrame);
 %     RxMAC.symbolsPerFrame = 8;
 % end
 
-RHard2 = reshape(RHard,48*8,1);
+RHard2 = reshape(RHard,48*16,1);
 
 %step(RxMAC,RHard);
 

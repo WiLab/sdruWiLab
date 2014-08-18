@@ -10,12 +10,16 @@ classdef PHYReceiverBase < matlab.System
         FrameLength = 640;
     end
     
+    properties
+       delay = 0; 
+    end
+    
     properties (Access = protected)
         
         % Variables
         pTimeoutDuration
         phi
-        delay
+        %delay
         phase
         frequencyMA
         
@@ -62,9 +66,11 @@ classdef PHYReceiverBase < matlab.System
         % Sync
         K
         ConjKnown
+        KnownRev
         CorrelationWindowSize
         
         % Vectors
+        PreviousSig
         dataSubcarrierIndexies
         Preambles
         
@@ -102,6 +108,15 @@ classdef PHYReceiverBase < matlab.System
                        
             obj.delay = -1;
             
+            obj.PreviousSig = complex(zeros(200,1));
+            
+            obj.FrameLength = obj.NumDataSymbolsPerFrame*(obj.FFTLength+obj.CyclicPrefixLength)+length(obj.Preambles);
+
+            obj.ReceiveBufferLength = obj.FrameLength*2;
+            
+            obj.Buffer = complex(zeros(obj.ReceiveBufferLength,1));
+
+            
             %% Setup Hardware Receiver
             % System parameters to adjust because of hardware limitation
             USRPADCSamplingRate = 100e6;
@@ -113,29 +128,28 @@ classdef PHYReceiverBase < matlab.System
             
             % USRP
             if obj.HWAttached
-                obj.pSDRuReceiver = comm.SDRuReceiver( '192.168.20.2', ...
+                obj.pSDRuReceiver = comm.SDRuReceiver( '192.168.10.2', ...
                     'CenterFrequency',      obj.CenterFrequency + offsetCompensationValue, ...
                     'DecimationFactor',     DecimationFactor,...
-                    'FrameLength',          floor(obj.ReceiveBufferLength/2),...
+                    'FrameLength',          obj.FrameLength,...
                     'OutputDataType',       'double',...
                     'Gain',                 18,...
-                    'SampleRate',           obj.SamplingFrequency);
+                    'SampleRate',           1/obj.SamplingFrequency,...
+                    'EnableBurstMode',      false);
             end
             
             % Timeout info
             buffersPerSecond = (100e6/DecimationFactor)/obj.ReceiveBufferLength;
             obj.pTimeoutDuration = floor(buffersPerSecond*0.05*100000);
             
-            obj.Buffer = complex(zeros(2*obj.ReceiveBufferLength,1));
-            
-            obj.FrameLength = obj.NumDataSymbolsPerFrame*(obj.FFTLength+obj.CyclicPrefixLength)+length(obj.Preambles);
             
             % Frame locator setup
-            windowLength = ceil(4*obj.ReceiveBufferLength/4);
+            windowLength = ceil(obj.ReceiveBufferLength*4/4);
             L = obj.FFTLength;
             obj.K = obj.FFTLength/4; % Quarter of short preamble sequence
             known = obj.ShortPreambleOFDM(1:obj.K);
             obj.ConjKnown = conj(known);
+            obj.KnownRev = conj(obj.ConjKnown(end:-1:1));
             obj.CorrelationWindowSize = windowLength-L+obj.K-1;
             
         end
@@ -175,7 +189,7 @@ classdef PHYReceiverBase < matlab.System
             lastFound = -2; %Flag for found frame, used for dup check
             numBuffersProcessed = 0; %Track received data, needed for separate indexing of processed and unprocessed data (processed==preamble found)            
             halfBuffLen = floor(obj.ReceiveBufferLength/2);
-
+            dropMe = false;
             
             % Locate frames in buffer
             while numFoundFrames < obj.NumFrames
@@ -183,14 +197,21 @@ classdef PHYReceiverBase < matlab.System
                 
                 % Get data from USRP or Input
                 if obj.HWAttached % Get data from usrp
-                    obj.Buffer(1:halfBuffLen*3) = obj.Buffer(halfBuffLen+1:end);% Shift old samples down
-                    obj.Buffer(halfBuffLen*3+1:end) =  step(obj.pSDRuReceiver);% Shift in new samples
+                    obj.Buffer(1:obj.FrameLength) = obj.Buffer(obj.FrameLength+1:end);% Shift old samples down
+                    obj.Buffer(obj.FrameLength+1:end) =  step(obj.pSDRuReceiver);% Shift in new samples
+                    if dropMe
+                        dropMe = false;
+                        continue;
+                    end
                     
                 else % Process data from input vector
-                    if (( numBuffersProcessed + 1)*halfBuffLen ) < length(data)
-                        obj.Buffer(1:halfBuffLen*3) = obj.Buffer(halfBuffLen+1:end);
-                        obj.Buffer(halfBuffLen*3+1:end) = data( numBuffersProcessed*halfBuffLen + 1 :...
-                            ( numBuffersProcessed + 1)*halfBuffLen);
+                    if (( numBuffersProcessed + 1)*obj.FrameLength ) < length(data)
+                        
+                        obj.Buffer(1:obj.FrameLength) = obj.Buffer(obj.FrameLength+1:end);
+                        
+                        obj.Buffer(obj.FrameLength+1:end) = ...
+                            data( numBuffersProcessed*obj.FrameLength + 1 : ( numBuffersProcessed + 1)*obj.FrameLength);
+                        
                     else % No more data left in simulated buffer
                         statusFlag = 1;
                         if DebugFlag;fprintf('Frame not found, end of buffer\n');end;
@@ -227,10 +248,14 @@ classdef PHYReceiverBase < matlab.System
                     if DebugFlag;fprintf('Frame found\n');end;
                     %fprintf('Frame found\n');
                     statusFlag = 0;
-                    numFoundFrames = numFoundFrames + 1;
-                    lastFound = numBuffersProcessed;%Flag frame as found so duplicate frames are not processed
                     rFrame = obj.Buffer(obj.delay + 1 : obj.delay + obj.FrameLength);% Extract single frame from input buffer
                     
+                    %if ~(sum(obj.PreviousSig(1:200)-rFrame(1:200))==0)
+                        numFoundFrames = numFoundFrames + 1;
+                        lastFound = numBuffersProcessed;%Flag frame as found so duplicate frames are not processed
+                    %end
+                    
+                    obj.PreviousSig(1:10) = rFrame(1:10);
                 else
                     statusFlag = 1;
                     % Display why missed frame
@@ -444,7 +469,8 @@ classdef PHYReceiverBase < matlab.System
             %RhatShort = Rhat(ceil(length(Rhat)/2):end-obj.K/2+1);
             
             % Fast correlate
-            PhatShort2 = filter(conj(obj.ConjKnown(end:-1:1)),1,rWin(1:end));
+            %PhatShort2 = filter(conj(obj.ConjKnown(end:-1:1)),1,rWin(1:end));
+            PhatShort2 = filter(obj.KnownRev,1,rWin(1:end));
             %RhatShort2 = filter(ones(obj.K,1),1,abs(rWin).^2);
             
             PhatShort2 = PhatShort2(obj.K:end);
@@ -458,6 +484,8 @@ classdef PHYReceiverBase < matlab.System
             %M2 = abs(PhatShort).^2; %./ RhatShort.^2;
             M = abs(PhatShort2).^2; %./ RhatShort2.^2;
 
+            %figure(1);stem(M);
+            
             % Determine start of short preamble
             [preambleEstimatedLocation, numPeaks] = locateShortPreamble( obj, M, obj.K );
             
@@ -504,6 +532,9 @@ classdef PHYReceiverBase < matlab.System
             % Pick earliest peak in time
             if ~isempty(peaks)
                 [numPeaks, frontPeakLocation] = max(peaks);
+                %if peaks(frontPeakLocation-1) == (peaks(frontPeakLocation)-1)
+                %    frontPeakLocation = frontPeakLocation - 1;
+                %end
                 if ~isempty(frontPeakLocation) && ( numPeaks > 0 )
                     preambleEstimatedLocation = MLocations(frontPeakLocation);
                 else
@@ -516,6 +547,17 @@ classdef PHYReceiverBase < matlab.System
             % Normalize max peaks found
             numPeaks = numPeaks/numel(desiredPeakLocations);
             
+                        
+%             x = zeros(size(M));
+%             y = zeros(size(M));
+%             if preambleEstimatedLocation>-1
+%             y(preambleEstimatedLocation) = max(M);
+%             end
+%             x(MLocations) = max(M);
+%             %figure(1);hold on;stem(x);hold off;
+%             figure(1);hold on;stem(y);hold off;
+%             
+%             x=1;
             
         end
         %% %%%%%%%%%%%%%% EQUALIZER %%%%%%%%%%%%%%%%%%%

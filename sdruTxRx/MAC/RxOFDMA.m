@@ -31,9 +31,11 @@ classdef RxOFDMA < matlab.System
         pDetect;
         
         % Flags
-        debugFlag = 1;
-        ignoreCRC = 1;
+        debugFlag = 0;
+        ignoreCRC = 0;
         
+        CorrectFrames = 0;
+        MissedFrames = 0;
     end
     
     %% Methods
@@ -48,8 +50,7 @@ classdef RxOFDMA < matlab.System
         %% Step function
         function returnedMessage = stepImpl(obj,receivedFrame)
             
-            fprintf('Decoding Message\n');
-            
+            reason=0;
             Duplicate = false; % flag for duplicate
             
             %% User demultiplex
@@ -78,6 +79,7 @@ classdef RxOFDMA < matlab.System
                 
                 err = ~err;
                 recoveredMessage = uint8('PAD BITS ERROR');
+                reason = 1;
                 header = recoveredMessage;
                 
             else
@@ -96,17 +98,17 @@ classdef RxOFDMA < matlab.System
                     
                     if ~isempty(messageEnd)
                         
-                        if obj.debugFlag;
+                        %if obj.debugFlag;
                             recoveredMessage = messageData(1:messageEnd(1,1) - 1); % Include the header
-                        else
-                            recoveredMessage = messageData(5:messageEnd(1,1) - 1); % Exclude the header
-                        end
+                        %else
+                        %    recoveredMessage = messageData(5:messageEnd(1,1) - 1); % Exclude the header
+                        %end
                         
                         header = messageData(1:4);
                         
                         if  obj.lastFrameID == header(2)
                         	Duplicate = true;
-                            fprintf('Duplicate\n');
+                            %fprintf('Duplicate\n');
                         end
                         
                     else
@@ -118,11 +120,13 @@ classdef RxOFDMA < matlab.System
                             header = messageData(1:4);
                         else
                             recoveredMessage = uint8('EOF NOT FOUND');
+                            reason = 2;
                             header = recoveredMessage;
                         end
                     end
                 else
                     recoveredMessage = uint8('CRC ERROR!!!!');
+                    reason = 3;
                     header = recoveredMessage;
                 end
                 
@@ -143,10 +147,12 @@ classdef RxOFDMA < matlab.System
             %% Print message
             if (~err || obj.debugFlag) && ~Duplicate
             
-                
+                obj.CorrectFrames = obj.CorrectFrames + 1;
+                if mod(obj.CorrectFrames, 1000)==0
                 switch obj.dataType
                     case 'c'
-                        fprintf('Length %d\n',int16(length(recoveredMessage)));
+                        fprintf('Correct Frames: %d | Missed: %d\n',...
+                            int64(obj.CorrectFrames),int64(obj.MissedFrames));
                         fprintf('%s \n', char(recoveredMessage));
                     case 'u'
                         
@@ -159,6 +165,25 @@ classdef RxOFDMA < matlab.System
                         end
                     otherwise
                         if obj.debugFlag; fprintf('MAC| Error: Undefined data type'); end;
+                end
+                end
+            else
+                if ~Duplicate
+                    switch reason
+                        case 0
+                            if obj.debugFlag; fprintf('Reason: NON\n');end;
+                             obj.MissedFrames = obj.MissedFrames + 1;
+                        case 1
+                            if obj.debugFlag; fprintf('Reason: PAD\n');end;
+                             obj.MissedFrames = obj.MissedFrames + 1;
+                        case 2
+                            if obj.debugFlag; fprintf('Reason: EOF\n');end
+                             obj.MissedFrames = obj.MissedFrames + 1;
+                        case 3
+                            if obj.debugFlag; fprintf('Reason: CRC\n');end;
+                            %obj.MissedFrames = obj.MissedFrames + 1;
+                    end
+                   
                 end
             end
             

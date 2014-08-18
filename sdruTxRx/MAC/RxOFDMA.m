@@ -27,12 +27,16 @@ classdef RxOFDMA < matlab.System
         
         lastFrameID = uint8(255);
         
+        frame1;
+        BER;
+        
         % Object handle
         pDetect;
+        player;
         
         % Flags
         debugFlag = 0;
-        ignoreCRC = 0;
+        ignoreCRC = 1;
         
         CorrectFrames = 0;
         MissedFrames = 0;
@@ -44,6 +48,14 @@ classdef RxOFDMA < matlab.System
         function setupImpl(obj,~)
             
             obj.pDetect = comm.CRCDetector([1 0 0 1], 'ChecksumsPerFrame',1);
+            obj.player = dsp.AudioPlayer('SampleRate',22050);
+            obj.frame1=...
+     [1,1,0,1,0,1,0,1,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0 ...
+     ,0,1,0,1,1,1,0,0,1,1,0,1,1,1,0,1,0,0,0,0,1,0,0,0,0,0,0,1,0,0,1,1,0,1,0,1,1,0 ...
+     ,0,1,0,1,0,1,1,1,0,0,1,1,0,1,1,1,0,0,1,1,0,1,1,0,0,0,0,1,0,1,1,0,0,1,1,1,0,1 ...
+     ,1,0,0,1,0,1,0,1,0,0,0,1,0,1,0,1,0,0,1,1,1,1,0,1,0,0,0,1,1,0,0,0,1,0,1,1,0,1 ...
+     ,0,0,1,0,1,1,0,1,0,0,1,0,1,1,0,1];
+            obj.BER = 0;
             
         end
         
@@ -91,6 +103,8 @@ classdef RxOFDMA < matlab.System
                     % Convert Bits to integers
                     messageData = uint8(OFDMbits2letters(obj,msg > 0).');
                     
+                    obj.BER = obj.BER + sum(msg(4*8+1:end)-obj.frame1(4*8+1:end));
+                    
                     % Remove padding. The input needs to be casted to char
                     % because strfind() can only be codegened if it receives
                     % char inputs
@@ -98,11 +112,11 @@ classdef RxOFDMA < matlab.System
                     
                     if ~isempty(messageEnd)
                         
-                        %if obj.debugFlag;
+                        if obj.debugFlag;
                             recoveredMessage = messageData(1:messageEnd(1,1) - 1); % Include the header
-                        %else
-                        %    recoveredMessage = messageData(5:messageEnd(1,1) - 1); % Exclude the header
-                        %end
+                        else
+                            recoveredMessage = messageData(5:messageEnd(1,1) - 1); % Exclude the header
+                        end
                         
                         header = messageData(1:4);
                         
@@ -151,18 +165,18 @@ classdef RxOFDMA < matlab.System
                 if mod(obj.CorrectFrames, 1000)==0
                 switch obj.dataType
                     case 'c'
-                        fprintf('Correct Frames: %d | Missed: %d\n',...
-                            int64(obj.CorrectFrames),int64(obj.MissedFrames));
+                        fprintf('Correct Frames: %d | BER %.4f | Missed: %d\n',...
+                            int64(obj.CorrectFrames),obj.BER,int64(obj.MissedFrames));
                         fprintf('%s \n', char(recoveredMessage));
                     case 'u'
-                        
-                        for k = 1:length(recoveredMessage)
-                            fprintf('REACHED2\n');
-                            % Codegen does not accept uint8s on
-                            % fprint, so they need to be casted to
-                            % int16
-                            fprintf('%d \n', int16(recoveredMessage(k)));
-                        end
+                        step(obj.player,recoveredMessage.');
+                        %for k = 1:length(recoveredMessage)
+                        %    fprintf('REACHED2\n');
+                        %    % Codegen does not accept uint8s on
+                        %    % fprint, so they need to be casted to
+                        %    % int16
+                        %    fprintf('%d \n', int16(recoveredMessage(k)));
+                        %end
                     otherwise
                         if obj.debugFlag; fprintf('MAC| Error: Undefined data type'); end;
                 end

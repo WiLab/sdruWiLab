@@ -3,7 +3,7 @@ function [ output ] = Transmitter() %#codegen
 output = 1;
 
 %% Transmitter
-persistent TxMAC TxPHY SDRuTransmitter hss
+persistent TxMAC TxPHY SDRuTransmitter
  
 if isempty(TxMAC)
     % SETUP MAC
@@ -34,24 +34,47 @@ end
 messageUE1 = ['1st Message';'2nd Message';'3rd Message';'4th Message';'5th Message'];
 messageUE2 = ['First  Message';'Second Message';'Third  Message';'Fourth Message';'Fifth  Message'];
 
+
 frameLength = (16*(64+16)+320);
+
 frame = complex(zeros(frameLength*10,1));
 
-%AFR = dsp.AudioFileReader('OutputDataType','uint8','SamplesPerFrame',48*16);
-
-
+%% 
 for k = 1:10
     bitsToTx1 = step(TxMAC, messageUE1(1,:),messageUE2(1,:));
-    %audio = AFR;
-    %bitsToTx1 = step(TxMAC, audio.',audio.');
     frame(1+(k-1)*frameLength:k*frameLength)= step(TxPHY,bitsToTx1);
 end
 
 frame2=[randn(100,1);frame];
 
 while 1
-    step(SDRuTransmitter,frame2);
+        step(SDRuTransmitter,frame2);
 end
+
+
+
+% %%
+% AFR = dsp.AudioFileReader('OutputDataType','uint8','SamplesPerFrame',20);
+% frame = complex(zeros(frameLength*100,1));
+% 
+% AFR = dsp.AudioFileReader('OutputDataType','uint8','SamplesPerFrame',20);
+% 
+% 
+% for k = 1:100
+%     %bitsToTx1 = step(TxMAC, messageUE1(1,:),messageUE2(1,:));
+%     audio = step(AFR);
+%     bitsToTx1 = step(TxMAC, audio.',audio.');
+%     frame(1+(k-1)*frameLength:k*frameLength)= step(TxPHY,bitsToTx1);
+% end
+% 
+% %frame2=[randn(100,1);frame];
+% 
+% while 1
+%     for k=1:100
+%         frame3 = frame(1+(k-1)*frameLength:k*frameLength);
+%         step(SDRuTransmitter,frame3);
+%     end
+% end
 
 end
 

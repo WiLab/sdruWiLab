@@ -45,7 +45,7 @@ for k = 1:10
     frame(1+(k-1)*frameLength:k*frameLength)= step(TxPHY,bitsToTx1);
 end
 
-frame2=[randn(100,1);frame];
+frame2=[0.0001*randn(100,1);frame;0.0001*randn(100,1)];
 
 while 1
         step(SDRuTransmitter,frame2);

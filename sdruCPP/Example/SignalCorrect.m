@@ -1,12 +1,12 @@
 function [ RHard2 ] = SignalCorrect(rFrame2) %#codegen
 
-assert(isa(rFrame2, 'double') && isreal(rFrame2) && all(size(rFrame2) == [ 2*(8*(64+16)+320) 1]))
+assert(isa(rFrame2, 'single') && isreal(rFrame2) && all(size(rFrame2) == [ 2*(8*(64+16)+320) 1]))
 
 %fprintf('YYr: %.2f c: %.2f\n',real(rFrame(end)),imag(rFrame(end)));
 
-rFrameSplit = reshape(rFrame2,2,960).';
+rFrameSplit = single(reshape(rFrame2,2,960)).';
 
-rFrame = complex(rFrameSplit(:,1),rFrameSplit(:,2));
+rFrame = single(complex(rFrameSplit(:,1),rFrameSplit(:,2)));
 
 %fprintf('Real %f | Imag %f\n',(sum(real(rFrame))),(sum(imag(rFrame))));
 % for k=1:length(rFrame)
@@ -22,7 +22,7 @@ if isempty(PF)
 
     PF.NumDataSymbolsPerFrame = 8;
 
-    PF.SamplingFrequency= 0.5e6;
+    PF.SamplingFrequency= 1e6;
     
 end
 %fprintf('----------\n');
@@ -33,8 +33,8 @@ end
 %     RHard2 = false(48,8);
 %     return;
 % end
-
-RHard = step(PF,rFrame);
+RHard = false(48,8);
+%RHard = (step(PF,rFrame));
 
 %RHard2 = reshape(RHard,numel(RHard),1);
 
@@ -47,7 +47,7 @@ RHard = step(PF,rFrame);
 %     RxMAC.symbolsPerFrame = 8;
 % end
 
-RHard2 = reshape(RHard,48*8,1);
+RHard2 = (reshape(RHard,48*8,1));
 
 %step(RxMAC,RHard);
 

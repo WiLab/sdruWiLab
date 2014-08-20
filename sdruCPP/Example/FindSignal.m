@@ -35,14 +35,14 @@ persistent  FF
 if isempty(FF)
     
     FF = PHYRxFindFrame;
-    FF.NumFrames = 10e8;
+    FF.NumFrames = 1;
     FF.NumDataSymbolsPerFrame = 8;
 
     FF.HWAttached = true;
     FF.PeakThreshold = .7;
     FF.requiredPeaks = 5;
 
-    FF.SamplingFrequency= 0.5e6;
+    FF.SamplingFrequency= 0.6e6;
     
     FF.ReceiveBufferLength = 1120;%length(frame);
     FF.CenterFrequency = 2.2e9;

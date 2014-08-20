@@ -16,7 +16,7 @@ if isempty(TxMAC)
     TxPHY.HWAttached = false;
     TxPHY.NumDataSymbolsPerFrame = TxMAC.symbolsPerFrame;
     
-    SamplingFrequency = 0.5e6;
+    SamplingFrequency = 1e6;
     USRPADCSamplingRate = 100e6;
     InterpolationFactor = floor(USRPADCSamplingRate/SamplingFrequency);
     

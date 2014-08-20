@@ -8,5 +8,8 @@ addpath(P);
 savepath;
 
 % Setup SDRU
-setupsdru([pwd,'/sdru']);
-usrp_startup;
+%setupsdru([pwd,'/sdru']);
+%usrp_startup;
+
+desktop = com.mathworks.mde.desk.MLDesktop.getInstance;
+desktop.restoreLayout('TravisDefault');

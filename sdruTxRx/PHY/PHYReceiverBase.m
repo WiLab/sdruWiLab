@@ -127,6 +127,7 @@ classdef PHYReceiverBase < matlab.System
             obj.pTimeoutDuration = floor(buffersPerSecond*0.05*100000);
             
             obj.Buffer = complex(zeros(2*obj.ReceiveBufferLength,1));
+            %obj.Buffer = complex(zeros(obj.ReceiveBufferLength,1));
             
             obj.FrameLength = obj.NumDataSymbolsPerFrame*(obj.FFTLength+obj.CyclicPrefixLength)+length(obj.Preambles);
             
@@ -180,17 +181,26 @@ classdef PHYReceiverBase < matlab.System
             % Locate frames in buffer
             while numFoundFrames < obj.NumFrames
             
-                
+                     
                 % Get data from USRP or Input
                 if obj.HWAttached % Get data from usrp
                     obj.Buffer(1:halfBuffLen*3) = obj.Buffer(halfBuffLen+1:end);% Shift old samples down
                     obj.Buffer(halfBuffLen*3+1:end) =  step(obj.pSDRuReceiver);% Shift in new samples
+                    
+                    %obj.Buffer(1:halfBuffLen) = obj.Buffer(halfBuffLen+1:end);% Shift old samples down
+                    %obj.Buffer(halfBuffLen+1:end) =  step(obj.pSDRuReceiver);% Shift in new samples
+                    
                     
                 else % Process data from input vector
                     if (( numBuffersProcessed + 1)*halfBuffLen ) < length(data)
                         obj.Buffer(1:halfBuffLen*3) = obj.Buffer(halfBuffLen+1:end);
                         obj.Buffer(halfBuffLen*3+1:end) = data( numBuffersProcessed*halfBuffLen + 1 :...
                             ( numBuffersProcessed + 1)*halfBuffLen);
+                        %obj.Buffer(1:halfBuffLen) = obj.Buffer(halfBuffLen+1:end);
+                        %obj.Buffer(halfBuffLen+1:end) = data( numBuffersProcessed*halfBuffLen + 1 :...
+                        %    ( numBuffersProcessed + 1)*halfBuffLen);
+                        
+                        
                     else % No more data left in simulated buffer
                         statusFlag = 1;
                         if DebugFlag;fprintf('Frame not found, end of buffer\n');end;
@@ -491,12 +501,16 @@ classdef PHYReceiverBase < matlab.System
             peaks = zeros(size(MLocations));
             
             % Determine correct peak
-            desiredPeakLocations = (16:16:128).';% Based on preamble structure
+             desiredPeakLocations = (16:16:128).';% Based on preamble structure
             for i = 1:length(MLocations)
                 MLocationGuesses = MLocations(i)+desiredPeakLocations;
                 peaks(i) = length(intersect(MLocations(i:end),MLocationGuesses));
+                if peaks(i)>=obj.requiredPeaks
+                    break
+                end
             end
-            
+
+
             % Have at least N peaks for positive match
             peaks(peaks < obj.requiredPeaks) = 0;
             

@@ -31,14 +31,18 @@ classdef RxOFDMA < matlab.System
         pDetect;
         
         % Flags
-        debugFlag = 0;
+        debugFlag = 1;
         ignoreCRC = 0;
         
-        decodedFrames = 0;
-        
-	CorrectFrames = 0;
-	MissedFrames = 0;
     end
+    
+    %% Decode Process
+    % Demultiplex desired user
+    % Remove padded bits
+    % Decode
+    % CRC Check
+    % Convert to characters or uint8's
+    
     
     %% Methods
     methods(Access = protected)
@@ -46,6 +50,8 @@ classdef RxOFDMA < matlab.System
         function setupImpl(obj,~)
             
             obj.pDetect = comm.CRCDetector([1 0 0 1], 'ChecksumsPerFrame',1);
+            
+            obj.pDecoder = comm.ViterbiDecoder('InputFormat','Hard','TracebackDepth',30);
             
         end
         
@@ -55,8 +61,7 @@ classdef RxOFDMA < matlab.System
             if sum(sum(receivedFrame))>0
                 notZero = 1;
             else
-                notZero = 1;
-                %fprintf('Data all zeros\n');
+                notZero = 0;
             end
             Duplicate = false; % flag for duplicate
             
@@ -65,6 +70,7 @@ classdef RxOFDMA < matlab.System
                 obj.desiredUser*obj.carriersPerUser,:);
             
             userBits = reshape(userFrame,1,obj.carriersPerUser*obj.symbolsPerFrame);
+            
             %% Eliminate pad bits
             
             % Extract number of pad bits from beggining of frame
@@ -72,10 +78,15 @@ classdef RxOFDMA < matlab.System
             obj.padBits = 21;
             
             unpaddedBits = userBits(1:end-obj.padBits);
+            
+            
+            %% Decoder with Viterbi
+            decodedBits = step(obj.pDecoder,unpaddedBits);
+            
             %% CRC check and convert to letters
             
             % Initialize variables
-            recoveredMessage = uint8(zeros(1,size(userBits,2)/8));
+            recoveredMessage = uint8(zeros(1,size(decodedBits,2)/8)); %#ok<NASGU>
             err = false(1,1);
             
             % The minimum number of bits that can be recovered is 43 = 4
@@ -83,16 +94,18 @@ classdef RxOFDMA < matlab.System
             % the CRC length
             
             % CRC Check
-            [msg, err] = step(obj.pDetect, unpaddedBits.'>0);
+            [msg, err] = step(obj.pDetect, decodedBits.'>0);
             
             if ~err || obj.ignoreCRC
+                
                 % Convert Bits to integers
-                messageData = uint8(OFDMbits2letters(obj,msg > 0).');
+                messageData = uint8(OFDMbits2letters(obj,msg).');%decoded bits%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                 % Remove padding. The input needs to be casted to char
                 % because strfind() can only be codegened if it receives
                 % char inputs
-                messageEnd = strfind(char(messageData),'EOF');
+                %messageEnd = strfind(char(messageData),'EOF');
                 messageEnd = 16;
+                
                 if ~isempty(messageEnd)
                     
                     if obj.debugFlag;
@@ -102,26 +115,25 @@ classdef RxOFDMA < matlab.System
                     end
                     
                     header = messageData(1:4);
-                    
+                    % Check for dupe
                     if  obj.lastFrameID == header(2)
-                        %Duplicate = true;
-                        %fprintf('%s\n',char(header));
-                        %fprintf('Duplicate\n');
+                        Duplicate = true;
+                        if debugFlag;fprintf('Duplicate\n');end;
                     end
                     
-                else
+                else %EOF not found
                     
                     if obj.ignoreCRC
                         recoveredMessage = messageData; % Exclude the header
                         header = messageData(1:4);
                     else
-                        %	fprintf('EOF NOT FOUND\n');
+                        if debugFlag;fprintf('EOF NOT FOUND\n');end
                         recoveredMessage = uint8('EOF NOT FOUND');
                         header = uint8('NEOF');%recoveredMessage;
                     end
                 end
             else
-                %fprintf('CRC ERROR\n');
+                if debugFlag;fprintf('CRC ERROR\n');end
                 recoveredMessage = uint8('CRC ERROR!!!!');
                 header = uint8('NCRC');
             end
@@ -141,16 +153,13 @@ classdef RxOFDMA < matlab.System
             %% Print message
             if (~err || obj.debugFlag) && ~Duplicate && notZero
                 
-                obj.decodedFrames = obj.decodedFrames + 1;
                 
                 switch obj.dataType
                     case 'c'
-                        if mod(obj.decodedFrames,1000)==0
+                        %fprintf('Sum %d\n',int16(sum(recoveredMessage)));
                         fprintf('-----\n');
-                        fprintf('Frame #: %d | Missed: %d\n',int64(obj.decodedFrames),int64(obj.MissedFrames));
                         fprintf('%s \n', char(recoveredMessage));
                         fprintf('-----\n');
-                        end
                     case 'u'
                         
                         for k = 1:length(recoveredMessage)
@@ -161,15 +170,10 @@ classdef RxOFDMA < matlab.System
                         end
                     otherwise
                         if obj.debugFlag; fprintf('MAC| Error: Undefined data type'); end;
-
-	else
-		obj.MissedFrames = obj.MissedFrames + 1;
-
                 end
             end
             
             %% Define properties
-            
             obj.lastFrame = receivedFrame;
             obj.lastMessage = recoveredMessage;
             obj.lastHeader = header;

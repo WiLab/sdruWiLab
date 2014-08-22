@@ -68,7 +68,7 @@ void Thread_RX(void)
     std::cout<<"Started Thread RX"<<std::endl;
     int k;
     //creal_T output[960];
-    double output[1600*2];
+    double output[1920*2];
     //for (k=0;k<MESSAGES2TX;k++){
     while (1) {
         FindSignal(output);//PHY Layer

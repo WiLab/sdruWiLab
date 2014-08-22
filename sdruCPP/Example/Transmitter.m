@@ -10,7 +10,7 @@ if isempty(TxMAC)
     TxMAC = TxOFDMA;
     TxMAC.desiredUser = 1;
     TxMAC.dataType = 'c';
-    TxMAC.symbolsPerFrame = 16;
+    TxMAC.symbolsPerFrame = 20;
     
     TxPHY = PHYTransmitter;
     TxPHY.HWAttached = false;
@@ -31,11 +31,12 @@ if isempty(TxMAC)
 end
 
  
-messageUE1 = ['1st Message';'2nd Message';'3rd Message';'4th Message';'5th Message'];
-messageUE2 = ['First  Message';'Second Message';'Third  Message';'Fourth Message';'Fifth  Message'];
+%messageUE1 = ['1st Message';'2nd Message';'3rd Message';'4th Message';'5th Message'];
+%messageUE2 = ['First  Message';'Second Message';'Third  Message';'Fourth Message';'Fifth  Message'];
+messageUE1 = ['Message'];
+messageUE2 = ['Message'];
 
-
-frameLength = (16*(64+16)+320);
+frameLength = (20*(64+16)+320);
 
 frame = complex(zeros(frameLength*10,1));
 

@@ -36,7 +36,7 @@ if isempty(FF)
     
     FF = PHYRxFindFrame;
     FF.NumFrames = 1;
-    FF.NumDataSymbolsPerFrame = 16;
+    FF.NumDataSymbolsPerFrame = 20;
 
     FF.HWAttached = true;
     FF.PeakThreshold = .7;
@@ -61,7 +61,7 @@ end
 % end
 
 %tmp = zeros(48,8);
-rFrame = ((1:(16*(64+16)+320)*2)');
+rFrame = ((1:(20*(64+16)+320)*2)');
 while 1
     [rFrame2, statusFlag] = step(FF,rFrame);
     if statusFlag == 0
@@ -74,7 +74,7 @@ while 1
             rFrameReal = real(rFrame2);
             rFrameImag = imag(rFrame2);
             
-            rFrame = reshape([rFrameReal rFrameImag]',(16*(64+16)+320)*2,1);
+            rFrame = reshape([rFrameReal rFrameImag]',(20*(64+16)+320)*2,1);
             
             %RHard = step(PF,rFrame);
             return;

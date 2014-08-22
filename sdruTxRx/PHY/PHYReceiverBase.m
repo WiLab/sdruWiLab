@@ -250,12 +250,12 @@ classdef PHYReceiverBase < matlab.System
                     statusFlag = 0;
                     rFrame = obj.Buffer(obj.delay + 1 : obj.delay + obj.FrameLength);% Extract single frame from input buffer
                     
-                    %if ~(sum(obj.PreviousSig(1:200)-rFrame(1:200))==0)
+                    if ~(sum(obj.PreviousSig(1:200)-rFrame(1:200))==0)
                         numFoundFrames = numFoundFrames + 1;
                         lastFound = numBuffersProcessed;%Flag frame as found so duplicate frames are not processed
-                    %end
+                    end
                     
-                    obj.PreviousSig(1:10) = rFrame(1:10);
+                    obj.PreviousSig(1:200) = rFrame(1:200);
                 else
                     statusFlag = 1;
                     % Display why missed frame

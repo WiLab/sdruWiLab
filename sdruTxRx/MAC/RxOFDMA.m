@@ -32,7 +32,9 @@ classdef RxOFDMA < matlab.System
         
         % Object handle
         pDetect;
-        player;
+        %player;
+        pDecoder;
+        DeScram
         
         % Flags
         debugFlag = 1;
@@ -50,15 +52,26 @@ classdef RxOFDMA < matlab.System
         function setupImpl(obj,~)
             
             obj.pDetect = comm.CRCDetector([1 0 0 1], 'ChecksumsPerFrame',1);
-            obj.player = dsp.AudioPlayer('SampleRate',22050);
-            obj.frame1=...
-     [1,1,0,1,0,1,0,1,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0 ...
-     ,0,1,0,1,1,1,0,0,1,1,0,1,1,1,0,1,0,0,0,0,1,0,0,0,0,0,0,1,0,0,1,1,0,1,0,1,1,0 ...
-     ,0,1,0,1,0,1,1,1,0,0,1,1,0,1,1,1,0,0,1,1,0,1,1,0,0,0,0,1,0,1,1,0,0,1,1,1,0,1 ...
-     ,1,0,0,1,0,1,0,1,0,0,0,1,0,1,0,1,0,0,1,1,1,1,0,1,0,0,0,1,1,0,0,0,1,0,1,1,0,1 ...
-     ,0,0,1,0,1,1,0,1,0,0,1,0,1,1,0,1];
+            %obj.player = dsp.AudioPlayer('SampleRate',22050);
+%             obj.frame1=...
+%      [1,1,0,1,0,1,0,1,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0 ...
+%      ,0,1,0,1,1,1,0,0,1,1,0,1,1,1,0,1,0,0,0,0,1,0,0,0,0,0,0,1,0,0,1,1,0,1,0,1,1,0 ...
+%      ,0,1,0,1,0,1,1,1,0,0,1,1,0,1,1,1,0,0,1,1,0,1,1,0,0,0,0,1,0,1,1,0,0,1,1,1,0,1 ...
+%      ,1,0,0,1,0,1,0,1,0,0,0,1,0,1,0,1,0,0,1,1,1,1,0,1,0,0,0,1,1,0,0,0,1,0,1,1,0,1 ...
+%      ,0,0,1,0,1,1,0,1,0,0,1,0,1,1,0,1];
+ 
+            obj.frame1 = ...
+     [1,0,0,0,0,1,1,1,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,1,0,0,1,1,...
+      0,1,0,1,1,0,0,1,0,1,0,1,1,1,0,0,1,1,0,1,1,1,0,0,1,1,0,1,1,0,0,0,0,1,0,1,1,0,...
+      0,1,1,1,0,1,1,0,0,1,0,1,0,1,0,0,0,1,0,1,0,1,0,0,1,1,1,1,0,1,0,0,0,1,1,0];
+ 
             obj.BER = 0;
             obj.Iteration = 0;
+            
+            obj.pDecoder = comm.BCHDecoder('CodewordLength',15, ...
+                                           'MessageLength',5);
+            obj.DeScram = comm.Descrambler(2, [1 0 1 1 0 1],...
+                                        'InitialConditions',[0 0 1 1 0 ]);
             
         end
         
@@ -98,9 +111,14 @@ classdef RxOFDMA < matlab.System
                 header = recoveredMessage;
                 msg = logical(obj.frame1);%for CG
             else
+                % Unscramble
+                descrambledBits = step(obj.DeScram,unpaddedBits(1:345).');
+                
+                % Decode
+                decodedBits = step(obj.pDecoder,descrambledBits(1:345));
                 
                 % CRC Check
-                [msg, err] = step(obj.pDetect, unpaddedBits.'>0);
+                [msg, err] = step(obj.pDetect, decodedBits>0);
                 
                 if ~err || obj.ignoreCRC
                     % Convert Bits to integers

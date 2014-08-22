@@ -32,7 +32,9 @@ classdef TxOFDMA < matlab.System
         OriginNodes;
         
         hGen;   % Object handle
-        
+        Encoder;
+        CodeRate;
+        Scram;
     end
     
     
@@ -49,6 +51,14 @@ classdef TxOFDMA < matlab.System
             obj.hGen = comm.CRCGenerator([1 0 0 1], 'ChecksumsPerFrame',1);
             
             obj.lastFrameID = 0;
+            
+            % BCH Encoder
+            obj.Encoder = comm.BCHEncoder('CodewordLength',15, ...
+                                          'MessageLength',5);
+            obj.CodeRate = obj.Encoder.CodewordLength/...
+                           obj.Encoder.MessageLength;
+            obj.Scram = comm.Scrambler(2, [1 0 1 1 0 1],...
+                               'InitialConditions',[0 0 1 1 0 ]); 
             
         end
         
@@ -67,7 +77,7 @@ classdef TxOFDMA < matlab.System
             % Calculate size of biggest message, so that one can be padded
             maxMsgSize = max([length(messageUE1) length(messageUE2)]);
             
-            % Matrix containing messages
+            % Matrix containing messages (make all messages same size)
             messageUEs = [obj.additionalText(messageUE1,obj.OriginNodes(1),obj.DestNodes(1)) repmat(uint8('-'),1,maxMsgSize - length(messageUE1));...
                 obj.additionalText(messageUE2,obj.OriginNodes(2),obj.DestNodes(2)) repmat(uint8('-'),1,maxMsgSize - length(messageUE2))];
             
@@ -81,7 +91,7 @@ classdef TxOFDMA < matlab.System
             % (numCarriers*nsymbolsPerFrame/2) minus the bits per message
             % (7*(size(messageUEs,2)+7)) minus the CRC bits (3)
             
-            obj.padBits = obj.numCarriers*obj.symbolsPerFrame/2 - 8*(size(messageUEs,2)+1) - 3;
+            obj.padBits = obj.numCarriers*obj.symbolsPerFrame/obj.numUsers - (8*(size(messageUEs,2)+1) + 3)*obj.CodeRate;
             if obj.padBits < 0
                 fprintf('MAC| ERROR: Not enough symbols!\n\n');
             end
@@ -106,17 +116,36 @@ classdef TxOFDMA < matlab.System
                 
             end
             
-            %% Add CRC and pad
+            %% Add CRC
             
             % Initialize matrix. Remember to change added number if CRC length changes!
             dataWithCRC = zeros(obj.numUsers,length(messageBits) + 3);
             
             for user = 1:obj.numUsers
-                dataWithCRC(user,:) = step(obj.hGen, messageBits(user,:)');% Add CRC
+                dataWithCRC(user,:) = step(obj.hGen, messageBits(user,:)').';% Add CRC
             end
             
+            %% Encode Data
+            
+            % Initialize matrix. Remember to change added number if CRC length changes!
+            encodedData = zeros(obj.numUsers,length(dataWithCRC)*obj.CodeRate);
+            
+            for user = 1:obj.numUsers
+                encodedData(user,:) = step(obj.Encoder, dataWithCRC(user,:).').';% Add CRC
+            end
+            
+            %% Scramble
+            scrambledData = zeros(obj.numUsers,length(dataWithCRC)*obj.CodeRate);
+            %for user = 1:obj.numUsers
+            %    scrambledData(user,:) = step(obj.Scram, encodedData(user,:).').';% Add CRC
+            %end
+            scrambledData(1,:) = step(obj.Scram, encodedData(1,1:345).').';% Add CRC
+            scrambledData(2,:) = step(obj.Scram, encodedData(2,1:345).').';% Add CRC
+            
+            %% Pad bits
+            
             % Pad and add number of pad bits to header
-            paddedBits = [dataWithCRC randi([0 1],obj.numUsers,obj.padBits)];
+            paddedBits = [scrambledData randi([0 1],obj.numUsers,obj.padBits)];
             
             %% User multiplex
             

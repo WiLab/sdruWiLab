@@ -1,0 +1,221 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>FM Stereo Receiver with USRP&reg; Hardware</title><meta name="generator" content="MATLAB 8.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-02-27"><meta name="DC.source" content="sdruFMStereo.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><style>
+.open_example { 
+    padding:0px 0px 1px 0px;
+    margin:20px;
+    font-size:0.9em;
+    border:1px solid #aeaeae;
+    display:block;
+    float:right;
+    border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px;
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(top, #FFFFFF 0%, #E6E6E6 100%); /* FF3.6+ */	
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFFFFF), color-stop(100%,#E6E6E6)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #FFFFFF 0%,#E6E6E6 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #ffffff 0%,#e6e6e6 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #ffffff 0%,#e6e6e6 100%); /* IE10+ */
+    background: linear-gradient(top,  #ffffff 0%,#e6e6e6 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', endColorstr='#E6E6E6',GradientType=0 ); /* IE6-9 */
+}
+
+.open_example:hover {
+    background: #f3f3f3; /* Old browsers */
+    background: -moz-linear-gradient(top, #f3f3f3 0%, #d7d7d7 100%); /* FF3.6+ */    
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f3f3f3), color-stop(100%,#d7d7d7)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #f3f3f3 0%,#d7d7d7 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #f3f3f3 0%,#d7d7d7 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #f3f3f3 0%,#d7d7d7 100%); /* IE10+ */
+    background: linear-gradient(top,  #f3f3f3 0%,#d7d7d7 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3f3f3', endColorstr='#d7d7d7',GradientType=0 ); /* IE6-9 */
+} 
+
+.open_example a { 
+    padding:6px 10px; 
+    line-height:130%;
+    text-decoration:none;
+    float:left;
+}
+      </style><div class="open_example"><a href="matlab:sdruFMStereo">Open this Example</a></div><div class="content"><h1>FM Stereo Receiver with USRP&reg; Hardware</h1><!--introduction--><p>This model shows how to use the Universal Software Radio Peripheral&reg; (USRP&reg;) device with Simulink&reg; to build an FM stereo receiver. The model plays out the left and right channels.</p><p>In order to run this model, you need a USRP&reg; board with an appropriate receiver daughterboard that supports the FM band (e.g., TVRX or WBX). Please refer to <a href="../../help/index.html">Getting Started</a> for details on configuring your host computer to work with the SDRu Receiver block.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Structure of the Example</a></li><li><a href="#8">Results and Displays</a></li><li><a href="#9">Exploring the Example</a></li><li><a href="#11">References</a></li><li><a href="#12">Copyright Notice</a></li></ul></div><h2>Structure of the Example<a name="1"></a></h2><p>This is the top-level block diagram of the model.</p><img vspace="5" hspace="5" src="sdruFMStereo_01.png" alt=""> <p>The USRP&reg; hardware samples its received signal at 100 Msps, then decimates by a factor of 500 for a resultant sample rate of 200 kHz.  Prior to FM demodulation, a rate converter resamples the signal again to a rate of 152 kHz.  This sample rate is convenient for downstream processing in the stereo decoder.  An FM demodulator follows the 152 kHz resampler, and is implemented in the same fashion as the one described in <a href="sdruFMMono.html">FM Monophonic Receiver with USRP&reg; Hardware</a>.</p><p>Below is the block diagram of the stereo decoder inside the FM Receiver subsystem.</p><img vspace="5" hspace="5" src="sdruFMStereo_02.png" alt=""> <p>The peaking filter picks out the 19 kHz pilot tone, from which a 38 kHz carrier is created via an open loop technique.  The technique exploits trigonometric identities and the fact that the 19 kHz tone is sampled precisely eight times per cycle.  The carrier is used to downconvert the L-R signal, centered at 38 kHz, to baseband.  The Gain Compensation is to compensate for the L-R signal loss during the transmission.  A resampler then converts the sampling rate to 48 kHz. This rate is one of the native sampling rates of the output audio device.  During the rate conversion, the resampling filter removes the undesirable signals above 15 kHz. Next, the baseband L+R and L-R signals pass through a 75 microsecond deemphasis filter [ <a href="#10">1</a> ].  Finally, a MATLAB&reg; Function block separates the L and R signals, and the audio device plays them out.</p><p>Set the Center Frequency to a local FM radio station, click the run button, and listen to the sound from the audio device. Change the Center Frequency to listen to a different station.</p><p>If you hear some dropouts or delay in the sound, run the model under Accelerator mode. From the model menu, select Simulation-&gt;Accelerator, then click the run button.</p><h2>Results and Displays<a name="8"></a></h2><p>If you insert a Spectrum Scope block right before the 19n/6 resampler, the spectrum looks like the following. The black spectrum contains L+R at baseband, L-R at 38 kHz, and the 19 kHz tone. The red spectrum is the downconverted signal with L-R at baseband.</p><p><img vspace="5" hspace="5" src="usrpFMStereo_Spec2.png" alt=""> </p><p>The figure below shows the spectrum of the left (black) and the right (red) channel corresponding to the spectrum above. This spectrum represents music from a broadcast FM station.  There is some stereo separation between the left and the right channel up to 20 kHz.</p><p><img vspace="5" hspace="5" src="usrpFMStereo_Spec1.png" alt=""> </p><p>The figure below illustrates the separation between left and right channels achieved by the model with a known, controlled source. It shows the spectrum of the left (black) and the right (red) channel for a stereo test signal transmitted by a hand-held FM transmitter. The test signal consists of a single 500 Hz tone in the left channel and a single 1 kHz tone in the right channel. The model achieves approximately 20 dB separation between left and right channels.</p><p><img vspace="5" hspace="5" src="usrpFMStereo_Spec3.png" alt=""> </p><h2>Exploring the Example<a name="9"></a></h2><p>If you have your own FM transmitter that can transmit .wma files, you can duplicate the test that shows the channel separation result above. Load the <tt>sdruFMStereoTestSignal.wma</tt> file into your transmitter. The channel separation can be easily observed from the Spectrum Scope block and heard from the audio device. You can also adjust the Gain Compensation to see its effect on stereo separation.</p><p>To optimize the filtering speed, you can combine the resampling filter in the 19n/6 resampler and the deemphasis filter into a single filter.</p><p><b>MIDI Controller for Station Selection</b></p><p>The <a href="matlab:open_system('sdruFMStereoMidi')">FM Stereo Receiver with USRP&reg; Hardware and MIDI Controller</a> example includes a <tt>MIDI Controls</tt> block. If you have a MIDI controller connected to your computer, you can change the center frequency, i.e. FM radio station, using the controller.</p><h2>References<a name="11"></a></h2><div><ul><li><a href="http://en.wikipedia.org/wiki/FM_broadcasting">FM broadcasting on Wikipedia</a></li></ul></div><h2>Copyright Notice<a name="12"></a></h2><p>USRP&reg; is a trademark of National Instruments Corp.</p><p class="footer">Copyright 2011-2012 The MathWorks, Inc.<br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2014a</a><br><br>
+		  MATLAB and Simulink are registered trademarks of The MathWorks, Inc.  Please see <a href="http://www.mathworks.com/trademarks">www.mathworks.com/trademarks</a> for a list of other trademarks owned by The MathWorks, Inc.  Other product or brand names are trademarks or registered trademarks of their respective owners.
+      </p></div><!--
+##### SOURCE BEGIN #####
+%% FM Stereo Receiver with USRP(R) Hardware
+% This model shows how to use the Universal Software Radio Peripheral(R)
+% (USRP(R)) device with Simulink(R) to build an FM stereo receiver. The
+% model plays out the left and right channels.
+%
+% In order to run this model, you need a USRP(R) board with an appropriate
+% receiver daughterboard that supports the FM band (e.g., TVRX or WBX).
+% Please refer to <../../help/index.html Getting Started> for details on
+% configuring your host computer to work with the SDRu Receiver block.
+
+% Copyright 2011-2012 The MathWorks, Inc.
+
+%% Structure of the Example
+% This is the top-level block diagram of the model.
+%%
+open_system('sdruFMStereo');
+set_param('sdruFMStereo', 'SimulationCommand', 'update');
+
+%%
+% The USRP(R) hardware samples its received signal at 100 Msps, then decimates
+% by a factor of 500 for a resultant sample rate of 200 kHz.  Prior to FM
+% demodulation, a rate converter resamples the signal again to a rate of
+% 152 kHz.  This sample rate is convenient for downstream processing in the
+% stereo decoder.  An FM demodulator follows the 152 kHz resampler, and is
+% implemented in the same fashion as the one described in <sdruFMMono.html
+% FM Monophonic Receiver with USRP(R) Hardware>.
+% 
+% Below is the block diagram of the stereo decoder inside the FM Receiver
+% subsystem.
+%%
+open_system('sdruFMStereo/FM Receiver/Stereo Decoder');
+
+%%
+close_system('sdruFMStereo',0);
+
+%%
+% The peaking filter picks out the 19 kHz pilot tone, from which a 38 kHz
+% carrier is created via an open loop technique.  The technique exploits
+% trigonometric identities and the fact that the 19 kHz tone is sampled
+% precisely eight times per cycle.  The carrier is used to downconvert the
+% L-R signal, centered at 38 kHz, to baseband.  The Gain Compensation is to
+% compensate for the L-R signal loss during the transmission.  A resampler
+% then converts the sampling rate to 48 kHz. This rate is one of the native
+% sampling rates of the output audio device.  During the rate conversion,
+% the resampling filter removes the undesirable signals above 15 kHz.
+% Next, the baseband L+R and L-R signals pass through a 75 microsecond
+% deemphasis filter [ <#10 1> ].  Finally, a MATLAB(R) Function block
+% separates the L and R signals, and the audio device plays them out.
+%
+
+%% 
+% Set the Center Frequency to a local FM radio station, click the
+% run button, and listen to the sound from the audio device. Change the
+% Center Frequency to listen to a different station. 
+%
+% If you hear some dropouts or delay in the sound, run the model
+% under Accelerator mode. From the model menu, select Simulation->Accelerator, 
+% then click the run button. 
+%
+
+%% Results and Displays
+% If you insert a Spectrum Scope block right before the 19n/6 resampler,
+% the spectrum looks like the following. The black spectrum contains L+R at
+% baseband, L-R at 38 kHz, and the 19 kHz tone. The red spectrum is the
+% downconverted signal with L-R at baseband.
+% 
+% <<usrpFMStereo_Spec2.png>>
+%
+% The figure below shows the spectrum of the left (black) and the right
+% (red) channel corresponding to the spectrum above. This spectrum
+% represents music from a broadcast FM station.  There is some stereo separation
+% between the left and the right channel up to 20 kHz.
+%
+% <<usrpFMStereo_Spec1.png>>
+%
+% The figure below illustrates the separation between left and right
+% channels achieved by the model with a known, controlled source. It shows
+% the spectrum of the left (black) and the right (red) channel for a stereo
+% test signal transmitted by a hand-held FM transmitter. The test signal
+% consists of a single 500 Hz tone in the left channel and a single 1 kHz
+% tone in the right channel. The model achieves approximately 20 dB
+% separation between left and right channels.
+%
+% <<usrpFMStereo_Spec3.png>>
+
+%% Exploring the Example
+% If you have your own FM transmitter that can transmit .wma files, you can
+% duplicate the test that shows the channel separation result above. Load
+% the |sdruFMStereoTestSignal.wma| file into your transmitter. The
+% channel separation can be easily observed from the Spectrum Scope block and
+% heard from the audio device. You can also adjust the Gain Compensation to
+% see its effect on stereo separation.
+%
+% To optimize the filtering speed, you can combine the resampling filter in
+% the 19n/6 resampler and the deemphasis filter into a single filter.
+
+%% 
+% *MIDI Controller for Station Selection*
+%
+% The <matlab:open_system('sdruFMStereoMidi') FM Stereo Receiver with
+% USRP(R) Hardware and MIDI Controller> example includes a |MIDI Controls|
+% block. If you have a MIDI controller connected to your computer, you can
+% change the center frequency, i.e. FM radio station, using the controller.
+
+%% References
+% * <http://en.wikipedia.org/wiki/FM_broadcasting FM broadcasting on Wikipedia>
+% 
+
+%% Copyright Notice
+% USRP(R) is a trademark of National Instruments Corp.
+
+##### SOURCE END #####
+--></body></html>

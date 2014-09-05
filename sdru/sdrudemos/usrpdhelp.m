@@ -7,7 +7,6 @@ function htmlFile = usrpdhelp
 %              MUST be in the root of the example model.
 
 % Copyright 2011-2012 The MathWorks, Inc.
-% $Revision: 1.1.6.1 $ $Date: 2012/08/21 01:21:16 $
 
 % There are three categories of USRP demos
 % 1) Regular demos and retarget demos with their dedicated write-ups

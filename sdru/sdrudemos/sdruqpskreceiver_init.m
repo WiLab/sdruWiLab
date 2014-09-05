@@ -2,7 +2,7 @@ function SimParams = sdruqpskreceiver_init
 % Set simulation parameters
 % SimParams = sdruqpsktransmitter_init
 
-%   Copyright 2012 The MathWorks, Inc.
+%   Copyright 2012-2013 The MathWorks, Inc.
 
 % General simulation parameters
 SimParams.M = 4; % M-PSK alphabet size
@@ -50,8 +50,8 @@ SimParams.TimingRecoveryLoopBandwidth = 0.01; % Normalized loop bandwidth for ti
 SimParams.TimingRecoveryDampingFactor = 1; % Damping Factor for timing recovery
 
 %SDRu receiver parameters
-SimParams.USRPCenterFrequency = 2.4e9;
-SimParams.USRPGain = 40;
+SimParams.USRPCenterFrequency = 1.85e9;
+SimParams.USRPGain = 31;
 SimParams.USRPDecimationFactor = 1e8/SimParams.Fs;
 SimParams.USRPFrontEndSampleRate = 1/SimParams.Fs;
 SimParams.USRPFrameLength = SimParams.Upsampling*SimParams.FrameSize*SimParams.RxBufferedFrames;

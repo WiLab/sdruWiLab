@@ -33,8 +33,7 @@ classdef FRSGMRSDemoAudioSource < matlab.System
 %
 %   See also FRSGMRSDemoSource, usrpFRSGMRSTransmitter.
 
-%   Copyright 2011-2012 The MathWorks, Inc.
-%   $Revision: 1.1.6.2 $Date: 2012/11/05 15:06:41 $
+%   Copyright 2011-2013 The MathWorks, Inc.
 
 properties (Nontunable)
   %FileName Name of audio file
@@ -111,6 +110,7 @@ end
 methods (Access = protected)
   function setupImpl(obj)
     obj.pSource = dsp.AudioFileReader(...
+      'Filename', obj.FileName, ...
       'SamplesPerFrame', obj.SamplesPerFrame / ...
       obj.InterpolationFactor * obj.DecimationFactor, ... 
       'OutputDataType', 'single');

@@ -18,7 +18,7 @@ function devices = findsdru(varargin)
 %
 %     'Not responding': 
 %       Device not responding. The device may not be attached to the
-%       computer. There may not be a a device with the specified IP
+%       computer. There may not be a device with the specified IP
 %       address. Or, the subnet address of the host computer may not match
 %       the subnet address of the device. Subnet address is the first three
 %       fields of the IP address.
@@ -41,7 +41,7 @@ function devices = findsdru(varargin)
 %
 %   USRP is a trademark of National Instruments Corp.
 
-%   Copyright 2011-2012 The MathWorks, Inc.
+%   Copyright 2011-2013 The MathWorks, Inc.
 
 temp = char(randi([48 57], 1, 10));
 objectID = ['SDRu_' temp];
@@ -60,6 +60,7 @@ else
   rawDeviceList = getSDRuList();
   if strcmp(rawDeviceList, 'No devices found')
     devices = baseStruct;
+    devices.Status = 'No devices found';
     return
   else
     % Remove zeros from the end and use ',' as a token
@@ -81,16 +82,50 @@ end
 
 for p=1:length(devices)
   ipAddress = devices(p).IPAddress;
-  [driverHandle, errStatus1, errMsg1] = ...
+  
+  % Try for Rx
+  [driverHandle, errStatusRx, errMsgRx] = ...
     createDriver(uint8(ipAddress), BoardIdCapiEnumT.RxId, ...
     uint8(objectID));
-  devices(p).Status = enum2str(errStatus1);
-  
-  reportSDRuStatus(errStatus1, errMsg1, ipAddress, reportMethod)
-  
-  if errStatus1 == UsrpErrorCapiEnumT.UsrpDriverSuccess
-    devices(p).Status = enum2str(closeDataConnection(driverHandle));
+  if errStatusRx == UsrpErrorCapiEnumT.UsrpDriverSuccess
+    [errStatusRx, errMsgRx] = deleteDriver(driverHandle);
   end
+
+  % Try for Tx
+  [driverHandle, errStatusTx, errMsgTx] = ...
+    createDriver(uint8(ipAddress), BoardIdCapiEnumT.TxId, ...
+    uint8(objectID));
+  if errStatusTx == UsrpErrorCapiEnumT.UsrpDriverSuccess
+    [errStatusTx, errMsgTx] = deleteDriver(driverHandle);
+  end
+
+  if (errStatusRx == UsrpErrorCapiEnumT.UsrpDriverBusy) && ...
+      (errStatusTx ~= UsrpErrorCapiEnumT.UsrpDriverBusy)
+    errStatus = UsrpErrorCapiEnumT.UsrpDriverRxBusy;
+    errMsg = errMsgRx;
+  elseif (errStatusRx ~= UsrpErrorCapiEnumT.UsrpDriverBusy) && ...
+      (errStatusTx == UsrpErrorCapiEnumT.UsrpDriverBusy)
+    errStatus = UsrpErrorCapiEnumT.UsrpDriverTxBusy;
+    errMsg = errMsgTx;
+  elseif (errStatusRx == UsrpErrorCapiEnumT.UsrpDriverBusy) && ...
+      (errStatusTx == UsrpErrorCapiEnumT.UsrpDriverBusy)
+    errStatus = UsrpErrorCapiEnumT.UsrpDriverBusy;
+    errMsg = errMsgRx;
+  elseif errStatusRx ~= UsrpErrorCapiEnumT.UsrpDriverSuccess
+    % Rx is neither busy nor successful
+    errStatus = errStatusRx;
+    errMsg = errMsgRx;
+  elseif errStatusTx ~= UsrpErrorCapiEnumT.UsrpDriverSuccess
+    % Tx is neither busy nor successful
+    errStatus = errStatusTx;
+    errMsg = errMsgTx;
+  else
+    errStatus = errStatusRx;
+    errMsg = errMsgRx;
+  end
+
+  devices(p).Status = enum2str(errStatus);
+  reportSDRuStatus(errStatus, errMsg, ipAddress, reportMethod)
 end
 end
 
@@ -101,7 +136,11 @@ switch enumStatus
   case UsrpErrorCapiEnumT.UsrpDriverSuccess
     strStatus = 'Success';
   case UsrpErrorCapiEnumT.UsrpDriverBusy
-    strStatus = 'Busy';
+    strStatus = 'Tx and Rx Busy';
+  case UsrpErrorCapiEnumT.UsrpDriverRxBusy
+    strStatus = 'Rx Busy';
+  case UsrpErrorCapiEnumT.UsrpDriverTxBusy
+    strStatus = 'Tx Busy';
   case UsrpErrorCapiEnumT.UsrpDriverNotResponding
     strStatus = 'Not responding';
   case UsrpErrorCapiEnumT.UsrpDriverNotCompatible

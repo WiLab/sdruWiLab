@@ -2,7 +2,7 @@ function SimParams = sdruqpskrx_init
 % Set simulation parameters
 % SimParams = sdruqpskrx_init
 
-%   Copyright 2011-2012 The MathWorks, Inc.
+%   Copyright 2011-2013 The MathWorks, Inc.
 
 % General simulation parameters
 SimParams.M = 4; % M-PSK alphabet size
@@ -19,7 +19,7 @@ SimParams.MsgLength = 105;
 
 % Rx parameters
 SimParams.RxBufferedFrames = 10; % Received buffer length (in frames)
-SimParams.RCGroupDelay = 5; % Group delay of Raised Cosine Tx Rx filters (in symbols)
+SimParams.RCFiltSpan = 10; % Filter span of Raised Cosine Tx Rx filters (in symbols)
 K = 1;
 A = 1/sqrt(2);
 % Look into model for details for details of PLL parameter choice.

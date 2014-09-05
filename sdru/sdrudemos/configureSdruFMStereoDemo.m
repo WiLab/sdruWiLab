@@ -3,7 +3,6 @@ function stereoFM = configureSdruFMStereoDemo
 %MATLAB(R) example sdruFMStereoReceiver.
 
 % Copyright 2011-2012 The MathWorks, Inc.
-% $Revision: 1.1.6.1 $  $Date: 2012/08/21 01:20:52 $
 
 % Simulation Parameters
 stereoFM                = getParamsSdruFMStereoDemo; % Receiver parameters

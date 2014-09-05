@@ -76,8 +76,7 @@ hAGC = comm.AGC('UpdatePeriod', 200, ...
 % object that implements an FIR transfer function and set the Numerator
 % property to the value specified in the frsRx structure.
 
-hChanFilt = dsp.DigitalFilter('TransferFunction', 'FIR (all zeros)', ...
-  'Numerator', frsRx.ChannelFilterNumerator);
+hChanFilt = dsp.FIRFilter('Numerator', frsRx.ChannelFilterNumerator);
 
 %%
 % Next, a channel selector computes the average power of the filtered
@@ -135,8 +134,7 @@ hDecoder = FRSGMRSDemoCTCSSDecoder(...
 % speakers. If you do not hear any sound, please select another device
 % using the DeviceName property of the audio player object, hAudio.
 
-hAudioFilt = dsp.DigitalFilter('TransferFunction', 'FIR (all zeros)', ...
-  'Numerator', frsRx.AudioFilterNumerator);
+hAudioFilt = dsp.FIRFilter('Numerator', frsRx.AudioFilterNumerator);
 
 hAudio = dsp.AudioPlayer(frsRx.SampleRate);
 

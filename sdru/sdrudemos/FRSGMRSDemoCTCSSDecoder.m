@@ -59,7 +59,7 @@ classdef FRSGMRSDemoCTCSSDecoder < matlab.System
 %   See also usrpFRSGMRSReceiver.
 
 %   Copyright 2011-2012 The MathWorks, Inc.
-%   $Revision: 1.1.6.2 $Date: 2012/11/05 15:06:42 $
+%   Date: 2012/10/29 23:39:07 $
 
 properties
   %MinimumBlockLength Minimum block length in samples

@@ -105,7 +105,7 @@ classdef SDRuReceiver< handle
 %   National Instruments Corp. 
 
  
-%   Copyright 2010-2012 The MathWorks, Inc.
+%   Copyright 2010-2013 The MathWorks, Inc.
 
     methods
         function out=SDRuReceiver

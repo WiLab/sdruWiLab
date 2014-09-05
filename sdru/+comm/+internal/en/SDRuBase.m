@@ -2,11 +2,26 @@ classdef SDRuBase< handle
 %SDRuBase Base class for SDRu receiver and transmitter
 
  
-%   Copyright 2010-2012 The MathWorks, Inc.
+%   Copyright 2010-2013 The MathWorks, Inc.
 
     methods
         function out=SDRuBase
             %SDRuBase Base class for SDRu receiver and transmitter
+        end
+
+        function getDescriptiveName(in) %#ok<MANU>
+            % Returns the user-visible name to be associated with the buildable,
+            % i.e library name.
+        end
+
+        function isSupportedContext(in) %#ok<MANU>
+            % Determines if this library is supported in the given context. In
+            % this case, all MATLAB host platforms are supported, i.e mex, lib,
+            % exe. context is instance of coder.BuildConfig.
+        end
+
+        function updateBuildInfo(in) %#ok<MANU>
+            % Update the build-time buildInfo
         end
 
     end
@@ -49,9 +64,9 @@ classdef SDRuBase< handle
 
         %EnableBurstMode Ensure a set of frames without overrun or underrun
         %   Set to true, this parameter will guarantee a set of contiguous frames
-        %   without an overrun or underrun to the radio.  This setting can help 
-        %   simulate models that cannot run in real time.  When enabled, specify 
-        %   the desired amount of contiguous data using the 'NumFramesInBurst' 
+        %   without an overrun or underrun to the radio.  This setting can help
+        %   simulate models that cannot run in real time.  When enabled, specify
+        %   the desired amount of contiguous data using the 'NumFramesInBurst'
         %   property.
         EnableBurstMode;
 
@@ -72,8 +87,8 @@ classdef SDRuBase< handle
 
         %IPAddress IP address of the USRP(R) device
         %   Specify the logical network location of the USRP(R) device as a
-        %   dotted-quad character array. The default is '192.168.10.2'. You can find
-        %   all connected USRP(R) radios with the findsdru function.
+        %   dotted-quad character array. The default is '192.168.10.2'. You can
+        %   find all connected USRP(R) radios with the findsdru function.
         %
         %   See also findsdru, probesdru.
         IPAddress;

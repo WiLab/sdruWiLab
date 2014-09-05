@@ -5,7 +5,6 @@ function htmlFile = usrphelp
 %
 
 % Copyright 2011-2012 The MathWorks, Inc.
-% $Revision: 1.1.6.1 $ $Date: 2012/08/21 01:18:34 $
 
 % Find the full path of the System object
 sysObjPath = which('comm.SDRuReceiver');

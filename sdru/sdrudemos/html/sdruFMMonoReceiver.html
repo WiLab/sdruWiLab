@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>FM Monophonic Receiver with USRP&reg; Hardware</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2012-10-10"><meta name="DC.source" content="sdruFMMonoReceiver.m"><style type="text/css">
+      --><title>FM Monophonic Receiver with USRP&reg; Hardware</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2013-04-19"><meta name="DC.source" content="sdruFMMonoReceiver.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -65,7 +65,43 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>FM Monophonic Receiver with USRP&reg; Hardware</h1><!--introduction--><p>This example shows how to use the Universal Software Radio Peripheral&reg; (USRP&reg;) device with MATLAB&reg; to build an FM mono receiver. It performs FM demodulation, deemphasis, and rate conversion.</p><p>In order to run this example, you need a USRP&reg; board with an appropriate receiver daughterboard that supports the FM band (e.g., TVRX or WBX). Please refer to <a href="../../help/index.html">Getting Started</a> for details on configuring your host computer to work with the SDRu Receiver System object, comm.SDRuReceiver.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Initialization</a></li><li><a href="#2">Mono FM Demodulation</a></li><li><a href="#8">SDRu</a></li><li><a href="#11">Stream Processing Loop</a></li><li><a href="#14">Conclusion</a></li><li><a href="#15">Further Exploration</a></li><li><a href="#16">Appendix</a></li><li><a href="#17">Selected Bibliography</a></li><li><a href="#18">Copyright Notice</a></li></ul></div><h2>Initialization<a name="1"></a></h2><p>The <a href="matlab:edit('configureSdruFMMonoDemo.m')">configureSdruFMMonoDemo.m</a> script initializes some simulation parameters and generates a structure, monoFM. The fields of this structure are the parameters of the FM demodulator system at hand.</p><pre class="codeinput">monoFM = configureSdruFMMonoDemo
+  </style></head><body><style>
+.open_example { 
+    padding:0px 0px 1px 0px;
+    margin:20px;
+    font-size:0.9em;
+    border:1px solid #aeaeae;
+    display:block;
+    float:right;
+    border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px;
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(top, #FFFFFF 0%, #E6E6E6 100%); /* FF3.6+ */	
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFFFFF), color-stop(100%,#E6E6E6)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #FFFFFF 0%,#E6E6E6 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #ffffff 0%,#e6e6e6 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #ffffff 0%,#e6e6e6 100%); /* IE10+ */
+    background: linear-gradient(top,  #ffffff 0%,#e6e6e6 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', endColorstr='#E6E6E6',GradientType=0 ); /* IE6-9 */
+}
+
+.open_example:hover {
+    background: #f3f3f3; /* Old browsers */
+    background: -moz-linear-gradient(top, #f3f3f3 0%, #d7d7d7 100%); /* FF3.6+ */    
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f3f3f3), color-stop(100%,#d7d7d7)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #f3f3f3 0%,#d7d7d7 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #f3f3f3 0%,#d7d7d7 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #f3f3f3 0%,#d7d7d7 100%); /* IE10+ */
+    background: linear-gradient(top,  #f3f3f3 0%,#d7d7d7 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3f3f3', endColorstr='#d7d7d7',GradientType=0 ); /* IE6-9 */
+} 
+
+.open_example a { 
+    padding:6px 10px; 
+    line-height:130%;
+    text-decoration:none;
+    float:left;
+}
+      </style><div class="open_example"><a href="matlab:edit sdruFMMonoReceiver">Open this Example</a></div><div class="content"><h1>FM Monophonic Receiver with USRP&reg; Hardware</h1><!--introduction--><p>This example shows how to use the Universal Software Radio Peripheral&reg; (USRP&reg;) device with MATLAB&reg; to build an FM mono receiver. It performs FM demodulation, deemphasis, and rate conversion.</p><p>In order to run this example, you need a USRP&reg; board with an appropriate receiver daughterboard that supports the FM band (e.g., TVRX or WBX). Please refer to <a href="../../help/index.html">Getting Started</a> for details on configuring your host computer to work with the SDRu Receiver System object, comm.SDRuReceiver.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Initialization</a></li><li><a href="#2">Mono FM Demodulation</a></li><li><a href="#8">SDRu</a></li><li><a href="#11">Stream Processing Loop</a></li><li><a href="#14">Conclusion</a></li><li><a href="#15">Further Exploration</a></li><li><a href="#16">Appendix</a></li><li><a href="#17">Selected Bibliography</a></li><li><a href="#18">Copyright Notice</a></li></ul></div><h2>Initialization<a name="1"></a></h2><p>The <a href="matlab:edit('configureSdruFMMonoDemo.m')">configureSdruFMMonoDemo.m</a> script initializes some simulation parameters and generates a structure, monoFM. The fields of this structure are the parameters of the FM demodulator system at hand.</p><pre class="codeinput">monoFM = configureSdruFMMonoDemo
 </pre><pre class="codeoutput">
 monoFM = 
 
@@ -96,10 +132,7 @@ monoFM =
   <span class="string">'SampleRate'</span>,       monoFM.Fs, <span class="keyword">...</span>
   <span class="string">'FrameLength'</span>,      monoFM.FrameLength, <span class="keyword">...</span>
   <span class="string">'OutputDataType'</span>,   <span class="string">'single'</span>)
-</pre><pre class="codeoutput">linux; GNU C++ version 4.4.6; Boost_104900; UHD_003.004.002-0-unknown
-
----------- see libuhd version information above this line ----------
-
+</pre><pre class="codeoutput">
 hSDRu = 
 
   System: comm.SDRuReceiver 
@@ -108,16 +141,16 @@ hSDRu =
                       IPAddress: '192.168.10.2'
           CenterFrequencySource: 'Property'    
                 CenterFrequency: 102500000     
-          ActualCenterFrequency: 0             
+          ActualCenterFrequency: 102500000     
     LocalOscillatorOffsetSource: 'Property'    
           LocalOscillatorOffset: 0             
     ActualLocalOscillatorOffset: 0             
                      GainSource: 'Property'    
                            Gain: 30            
-                     ActualGain: 0             
+                     ActualGain: 30            
          DecimationFactorSource: 'Property'    
                DecimationFactor: 500           
-         ActualDecimationFactor: 0             
+         ActualDecimationFactor: 500           
               OverrunOutputPort: false         
                      SampleRate: 200000        
                  OutputDataType: 'single'      
@@ -128,18 +161,17 @@ hSDRu =
 </pre><pre class="codeoutput">
 hwInfo = 
 
-              DeviceStatus: [1x1 UsrpErrorCapiEnumT]
-                    Mboard: ''
-                  RXSubdev: ''
-                  TXSubdev: ''
-    MinimumCenterFrequency: 0
-    MaximumCenterFrequency: 0
+                    Mboard: 'N210r4'
+                  RXSubdev: 'WBXv2 RX+GDB'
+                  TXSubdev: 'WBXv2 TX+GDB'
+    MinimumCenterFrequency: 28750000
+    MaximumCenterFrequency: 2.2400e+09
                MinimumGain: 0
-               MaximumGain: 0
-                  GainStep: 0
+               MaximumGain: 38
+                  GainStep: 0.0500
 
 </pre><h2>Stream Processing Loop<a name="11"></a></h2><p>Capture FM signals and apply mono FM demodulation for 10 seconds, which is specified by monoFM.StopTime. The SDRu object returns a column vector, x. Since the MATLAB script may run faster than the hardware, the object also returns the actual size of the valid data in x using the second output argument, len. If len is zero, then there is no new data for the demodulator code to process. The demodulator code runs only if len is greater than 0.</p><p>Check for the status of the USRP&reg; radio</p><pre class="codeinput">radio = findsdru(hSDRu.IPAddress);
-<span class="keyword">if</span> radio.Status == UsrpErrorCapiEnumT.UsrpDriverSuccess
+<span class="keyword">if</span> strncmp(radio.Status, <span class="string">'Success'</span>, 7)
   <span class="comment">% Loop until the example reaches the target stop time.</span>
   timeCounter = 0;
   <span class="keyword">while</span> timeCounter &lt; monoFM.StopTime
@@ -163,14 +195,11 @@ hwInfo =
 <span class="keyword">else</span>
   warning(message(<span class="string">'sdru:sysobjdemos:MainLoop'</span>))
 <span class="keyword">end</span>
-</pre><pre class="codeoutput">Warning: Device at '192.168.10.2' is not responding. Attach a device at the
-specified address, correct the specified address to match an already attached
-device, set the host subnet value to match the device subnet value, or continue
-working in offline mode. Subnet value is the third field of the IP address. 
-Warning: No available USRP(R) devices found. Skipping main loop. 
-</pre><p>Release the audio and USRP&reg; resources.</p><pre class="codeinput">release(hAudio)
+</pre><pre class="codeoutput"></pre><p>Release the audio and USRP&reg; resources.</p><pre class="codeinput">release(hAudio)
 release(hSDRu); clear <span class="string">hSDRu</span>
-</pre><h2>Conclusion<a name="14"></a></h2><p>In this example, you used Communications System Toolbox&#8482; System objects to build a monophonic FM receiver utilizing a USRP&reg; device. The example shows that the MATLAB script can process signals captured by a USRP&reg; device in real time.</p><h2>Further Exploration<a name="15"></a></h2><p>To further explore the example, you can vary the center frequency of the USRP&reg; device and listen to other radio stations.</p><p>To optimize the filtering speed, you can combine the resampling filter in the 25n/6 resampler and the deemphasis filter into a single filter.</p><h2>Appendix<a name="16"></a></h2><p>The following scripts are used in this example.</p><div><ul><li><a href="matlab:edit('configureSdruFMMonoDemo.m')">configureSdruFMMonoDemo.m</a></li><li><a href="matlab:edit('getParamsSdruFMMonoDemo.m')">getParamsSdruFMMonoDemo.m</a></li></ul></div><h2>Selected Bibliography<a name="17"></a></h2><div><ul><li><a href="http://en.wikipedia.org/wiki/FM_broadcasting">FM broadcasting on Wikipedia</a></li></ul></div><h2>Copyright Notice<a name="18"></a></h2><p>Universal Software Radio Peripheral&reg; and USRP&reg; are trademarks of National Instruments Corp.</p><p class="footer">Copyright 2011-2012 The MathWorks, Inc.<br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
+</pre><h2>Conclusion<a name="14"></a></h2><p>In this example, you used Communications System Toolbox&#8482; System objects to build a monophonic FM receiver utilizing a USRP&reg; device. The example shows that the MATLAB script can process signals captured by a USRP&reg; device in real time.</p><h2>Further Exploration<a name="15"></a></h2><p>To further explore the example, you can vary the center frequency of the USRP&reg; device and listen to other radio stations.</p><p>To optimize the filtering speed, you can combine the resampling filter in the 25n/6 resampler and the deemphasis filter into a single filter.</p><h2>Appendix<a name="16"></a></h2><p>The following scripts are used in this example.</p><div><ul><li><a href="matlab:edit('configureSdruFMMonoDemo.m')">configureSdruFMMonoDemo.m</a></li><li><a href="matlab:edit('getParamsSdruFMMonoDemo.m')">getParamsSdruFMMonoDemo.m</a></li></ul></div><h2>Selected Bibliography<a name="17"></a></h2><div><ul><li><a href="http://en.wikipedia.org/wiki/FM_broadcasting">FM broadcasting on Wikipedia</a></li></ul></div><h2>Copyright Notice<a name="18"></a></h2><p>Universal Software Radio Peripheral&reg; and USRP&reg; are trademarks of National Instruments Corp.</p><p class="footer">Copyright 2011-2012 The MathWorks, Inc.<br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013b</a><br><br>
+		  MATLAB and Simulink are registered trademarks of The MathWorks, Inc.  Please see <a href="http://www.mathworks.com/trademarks">www.mathworks.com/trademarks</a> for a list of other trademarks owned by The MathWorks, Inc.  Other product or brand names are trademarks or registered trademarks of their respective owners.
+      </p></div><!--
 ##### SOURCE BEGIN #####
 %% FM Monophonic Receiver with USRP(R) Hardware
 %
@@ -185,7 +214,6 @@ release(hSDRu); clear <span class="string">hSDRu</span>
 % System object, comm.SDRuReceiver.
 
 % Copyright 2011-2012 The MathWorks, Inc.
-% $Revision: 1.1.6.3 $ $Date: 2012/10/29 19:27:00 $
 
 %% Initialization
 % The <matlab:edit('configureSdruFMMonoDemo.m') configureSdruFMMonoDemo.m>
@@ -299,7 +327,7 @@ hwInfo = info(hSDRu)
 %%
 % Check for the status of the USRP(R) radio
 radio = findsdru(hSDRu.IPAddress); 
-if radio.Status == UsrpErrorCapiEnumT.UsrpDriverSuccess
+if strncmp(radio.Status, 'Success', 7)
   % Loop until the example reaches the target stop time.
   timeCounter = 0;
   while timeCounter < monoFM.StopTime

@@ -304,6 +304,7 @@ classdef PHYReceiverBase < matlab.System
             if sum(abs(rFreqShifted))==0
                 fprintf('rFreqShifted all zero\n');
             end
+	    fprintf('Reached\n');
             [ RPostEqualizer ] = equalizeOFDM( obj, rFreqShifted );
             
             % Demod subcarriers
@@ -311,7 +312,7 @@ classdef PHYReceiverBase < matlab.System
                 fprintf('RPostEqualizer all zero\n');
             end
             [ ~, RHard]= demodOFDMSubcarriers_sdr( obj, RPostEqualizer );
-            
+            fprintf('ReachedLast\n');
             % Decode
             %step(RxMAC,RHard(:,1+(numFoundFrames-1)*obj.NumDataSymbolsPerFrame:(numFoundFrames)*obj.NumDataSymbolsPerFrame));
             %step(RxMAC,RHard);
@@ -323,7 +324,7 @@ classdef PHYReceiverBase < matlab.System
         function CreateDemodulators(obj)
             
             % Construct Modulator
-            obj.hDataMod = OFDMModulator(...
+            obj.hDataMod = comm.OFDMModulator(...
                 'CyclicPrefixLength',   obj.CyclicPrefixLength,...
                 'FFTLength' ,           obj.FFTLength,...
                 'NumGuardBandCarriers', obj.NumGuardBandCarriers,...
@@ -332,10 +333,10 @@ classdef PHYReceiverBase < matlab.System
                 'PilotCarrierIndices',  obj.PilotCarrierIndices,...
                 'InsertDCNull',         true);
             % Construct Demod from mod
-            obj.hDataDemod = OFDMDemodulator(obj.hDataMod);
+            obj.hDataDemod = comm.OFDMDemodulator(obj.hDataMod);
             
             % Construct Demod from mod
-            obj.hPreambleDemod = OFDMDemodulator(obj.hPreambleMod);
+            obj.hPreambleDemod = comm.OFDMDemodulator(obj.hPreambleMod);
             
             obj.pilotLocationsWithoutGuardbands = obj.PilotCarrierIndices-obj.NumGuardBandCarriers(1);
             % Calculate locations of subcarrier datastreams without guardbands
@@ -360,7 +361,7 @@ classdef PHYReceiverBase < matlab.System
                 1+1i 0 0 0   1+1i 0 0 0  1+1i 0 0 ].';               % [16:27]
             
             % Create modulator
-            obj.hPreambleMod = OFDMModulator(...
+            obj.hPreambleMod = comm.OFDMModulator(...
                 'NumGuardBandCarriers', [6; 5],...
                 'CyclicPrefixLength',   0,...
                 'FFTLength' ,           64,...

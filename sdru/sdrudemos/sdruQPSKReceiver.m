@@ -11,7 +11,7 @@
 % Please refer to <../../help/index.html Getting Started> for details on
 % configuring your host computer to work with the SDRu Receiver System object.
 %
-% Copyright 2012 The MathWorks, Inc.
+% Copyright 2012-2013 The MathWorks, Inc.
 
 %% Implementations
 % This example describes the MATLAB implementation of a QPSK receiver with 
@@ -157,7 +157,7 @@ useCodegen = false; % true to run the latest generated code (mex file) instead o
 % Hardware> example.
 
 if compileIt
-    compilesdru('runSDRuQPSKReceiver','mex', '-args', {coder.Constant(prmQPSKReceiver)});
+    codegen('runSDRuQPSKReceiver', '-args', {coder.Constant(prmQPSKReceiver)});
 end
 if useCodegen
    clear runSDRuQPSKReceiver_mex %#ok<UNRCH>

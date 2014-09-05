@@ -100,7 +100,7 @@ classdef SDRuTransmitter< handle
 %   USRP is a trademark of National Instruments Corp.
 
  
-%   Copyright 2010-2012 The MathWorks, Inc.
+%   Copyright 2010-2013 The MathWorks, Inc.
 
     methods
         function out=SDRuTransmitter

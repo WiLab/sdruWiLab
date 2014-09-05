@@ -1,11 +1,11 @@
 function y = sdruExample(a)
-%sdruExample An example function to compile with compilesdru
+%sdruExample An example function to demonstrate code generation
 %   Y = sdruExample(A) receives a frame of data from the USRP(R) device
 %   and applies a gain of A before returning in Y.
 %
 %   USRP is a trademark of National Instruments Corp.
 
-%   Copyright 2011-2012 The MathWorks, Inc.
+%   Copyright 2011-2013 The MathWorks, Inc.
 
 %#codegen
 

@@ -5,7 +5,7 @@ function varargout = mapiPrivate(cmd, varargin)
 % errStat / errStr assignment.
 %
     
-%   Copyright 2011-2012 The MathWorks, Inc.
+%   Copyright 2011-2013 The MathWorks, Inc.
 
 coder.extrinsic('setupsdru')
 coder.extrinsic('sdruroot')
@@ -27,12 +27,7 @@ MAX_FRAMELENGTH             = 46336; % Arbitrary max imposed on ML/SL side
 
 % function is being called in interpreted mode
 if (isempty(coder.target()))
-    % Lock the mex file if called from MATLAB. This is not called for generated code.
-    % Locking the mex file in MATLAB prevents MATLAB from hanging if clear all is called.
-    % Clear all first deletes mex files. That removes the driver and hangs MATLAB if a 
-    % driver is in use, i.e. System object is locked.
-    usrp_uhd_mapi('sdruMexLock');
-
+  
     switch (cmd)
         case {'reportDrivers', 'getSDRuDriverVersion'}
             [retStr, errStat, errStr] = usrp_uhd_mapi(cmd);
@@ -42,14 +37,34 @@ if (isempty(coder.target()))
             [retStr, errStat, errStr] = usrp_uhd_mapi(cmd, varargin{:});
             varargout{1} = retStr;
             
-        case {'deleteDriver', 'setClockConfig', 'setClockConfigFull', 'closeDataConnection', 'checkSDRHostName'}
+        case 'closeDataConnection'
             [errStat, errStr] = usrp_uhd_mapi(cmd, varargin{:});
             
-        case {'createDriver',  ...
-              'setRate', 'setFrequency', 'setGain', ...
+            % Unlock the mex file if called from MATLAB. This is not called for
+            % generated code. See "openDataConnection".
+            if errStat == UsrpErrorCapiEnumT.UsrpDriverSuccess
+              usrp_uhd_mapi('sdruMexUnlock');
+            end
+              
+        case {'setClockConfig', 'setClockConfigFull', 'checkSDRHostName', 'deleteDriver'}
+            [errStat, errStr] = usrp_uhd_mapi(cmd, varargin{:});
+            
+        case {'openDataConnection'}
+            [varargout{1}, errStat, errStr] = usrp_uhd_mapi(cmd, varargin{:});
+            
+            % Lock the mex file if called from MATLAB. This is not called for
+            % generated code. Locking the mex file in MATLAB prevents MATLAB
+            % from hanging if clear all is called. Clear all first deletes mex
+            % files. That removes the driver and hangs MATLAB if a driver is in
+            % use, i.e. System object is locked. Lock only if successful.
+            if errStat == UsrpErrorCapiEnumT.UsrpDriverSuccess
+              usrp_uhd_mapi('sdruMexLock');
+            end
+           
+        case {'setRate', 'setFrequency', 'setGain', ...
               'getRate', 'getFrequency', 'getGain', ...
               'getFrequencyRange', 'getGainRange', ...
-              'openDataConnection'}
+              'createDriver'}
             [varargout{1}, errStat, errStr] = usrp_uhd_mapi(cmd, varargin{:});
            
         case {'sendInt16Data',  'sendComplexInt16Data', ...
@@ -78,6 +93,8 @@ else
     switch (cmd)
         case {'sdruMexLock'}
              coder.ceval('mexLock');
+        case {'sdruMexUnlock'}
+             coder.ceval('mexUnlock');
         case {'reportDrivers', 'getSDRuDriverVersion'}
             flatAddrList     = char(zeros(1,MAX_STR_SIZE));
             coder.varsize('flatAddrList');

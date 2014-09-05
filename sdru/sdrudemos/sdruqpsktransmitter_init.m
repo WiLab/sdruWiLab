@@ -2,7 +2,7 @@ function SimParams = sdruqpsktransmitter_init
 % Set simulation parameters
 % SimParams = sdruqpsktransmitter_init
 
-%   Copyright 2012 The MathWorks, Inc.
+%   Copyright 2012-2013 The MathWorks, Inc.
 
 % General simulation parameters
 SimParams.Upsampling = 4; % Upsampling factor
@@ -34,8 +34,8 @@ hDTxFilt = design(hTxFilt);
 SimParams.TransmitterFilterCoefficients = hDTxFilt.Numerator/2; 
 
 %SDRu transmitter parameters
-SimParams.USRPCenterFrequency = 2.4e9;
-SimParams.USRPGain = 30;
+SimParams.USRPCenterFrequency = 1.85e9;
+SimParams.USRPGain = 25;
 SimParams.USRPInterpolation = 1e8/SimParams.Fs;
 SimParams.USRPFrameLength = SimParams.Upsampling*SimParams.FrameSize*SimParams.RxBufferedFrames;
 

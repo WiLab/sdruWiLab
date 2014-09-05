@@ -1,7 +1,7 @@
 # LocalWords:  USRP Tx
 Library {
   Name			  "commsdrhw_v2"
-  Version		  8.0
+  Version		  8.3
   MdlSubVersion		  0
   SavedCharacterEncoding  "windows-1252"
   LibraryType		  "BlockLibrary"
@@ -24,7 +24,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [653.0, 279.0, 580.0, 471.0]
+      Location		      [85.0, 56.0, 596.0, 524.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -48,9 +48,9 @@ Library {
 	IsActive		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[520.0, 277.0]
+	Extents			[546.0, 358.0]
 	ZoomFactor		[1.0]
-	Offset			[0.0, 0.0]
+	Offset			[-15.0, 0.0]
       }
     }
   }
@@ -60,10 +60,10 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "esozer"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Jun 19 16:08:31 2012"
-  RTWModifiedTimeStamp	  262022905
-  ModelVersionFormat	  "1.%<AutoIncrement:619>"
-  ConfigurationManager	  "None"
+  LastModifiedDate	  "Fri Feb 14 18:32:22 2014"
+  RTWModifiedTimeStamp	  314303535
+  ModelVersionFormat	  "1.%<AutoIncrement:625>"
+  ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "none"
@@ -88,6 +88,11 @@ Library {
   BrowserShowLibraryLinks off
   BrowserLookUnderMasks	  off
   SimulationMode	  "normal"
+  PauseTimes		  "5"
+  NumberOfSteps		  1
+  SnapshotBufferSize	  10
+  SnapshotInterval	  10
+  NumberOfLastSnapshots	  0
   LinearizationMsg	  "none"
   Profile		  off
   ParamWorkspaceSource	  "MATLABWorkspace"
@@ -97,12 +102,16 @@ Library {
   CovNameIncrementing	  off
   CovHtmlReporting	  on
   CovForceBlockReductionOff on
+  CovEnableCumulative	  on
   covSaveCumulativeToWorkspaceVar on
   CovSaveSingleToWorkspaceVar on
   CovCumulativeReport	  off
   CovReportOnPause	  on
   CovModelRefEnable	  "Off"
   CovExternalEMLEnable	  off
+  CovSFcnEnable		  off
+  CovBoundaryAbsTol	  0.000010
+  CovBoundaryRelTol	  0.010000
   ExtModeBatchMode	  off
   ExtModeEnableFloating	  on
   ExtModeTrigType	  "manual"
@@ -131,13 +140,13 @@ Library {
     Dimension		    1
     Simulink.ConfigSet {
       $ObjectID		      6
-      Version		      "1.12.1"
+      Version		      "1.14.2"
       Array {
 	Type			"Handle"
 	Dimension		8
 	Simulink.SolverCC {
 	  $ObjectID		  7
-	  Version		  "1.12.1"
+	  Version		  "1.14.2"
 	  StartTime		  "0.0"
 	  StopTime		  "10.0"
 	  AbsTol		  "auto"
@@ -172,7 +181,7 @@ Library {
 	}
 	Simulink.DataIOCC {
 	  $ObjectID		  8
-	  Version		  "1.12.1"
+	  Version		  "1.14.2"
 	  Decimation		  "1"
 	  ExternalInput		  "[t, u]"
 	  FinalStateName	  "xFinal"
@@ -190,6 +199,7 @@ Library {
 	  SignalLogging		  on
 	  DSMLogging		  on
 	  InspectSignalLogs	  off
+	  VisualizeSimOutput	  on
 	  SaveTime		  on
 	  ReturnWorkspaceOutputs  off
 	  StateSaveName		  "xout"
@@ -204,7 +214,7 @@ Library {
 	}
 	Simulink.OptimizationCC {
 	  $ObjectID		  9
-	  Version		  "1.12.1"
+	  Version		  "1.14.2"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    7
@@ -223,11 +233,14 @@ Library {
 	  InlineParams		  off
 	  UseIntDivNetSlope	  off
 	  UseFloatMulNetSlope	  off
+	  DefaultUnderspecifiedDataType	"double"
 	  UseSpecifiedMinMax	  off
 	  InlineInvariantSignals  off
 	  OptimizeBlockIOStorage  on
 	  BufferReuse		  on
 	  EnhancedBackFolding	  off
+	  CachingGlobalReferences off
+	  GlobalBufferReuse	  on
 	  StrengthReduction	  off
 	  ExpressionFolding	  on
 	  BooleansAsBitfields	  off
@@ -242,6 +255,7 @@ Library {
 	  SystemCodeInlineAuto	  off
 	  StateBitsets		  off
 	  DataBitsets		  off
+	  ActiveStateOutputEnumStorageType "Native Integer"
 	  UseTempVars		  off
 	  ZeroExternalMemoryAtStartup on
 	  ZeroInternalMemoryAtStartup on
@@ -259,7 +273,7 @@ Library {
 	}
 	Simulink.DebuggingCC {
 	  $ObjectID		  10
-	  Version		  "1.12.1"
+	  Version		  "1.14.2"
 	  RTPrefix		  "error"
 	  ConsistencyChecking	  "none"
 	  ArrayBoundsChecking	  "none"
@@ -349,11 +363,12 @@ Library {
 	}
 	Simulink.HardwareCC {
 	  $ObjectID		  11
-	  Version		  "1.12.1"
+	  Version		  "1.14.2"
 	  ProdBitPerChar	  8
 	  ProdBitPerShort	  16
 	  ProdBitPerInt		  32
 	  ProdBitPerLong	  32
+	  ProdBitPerLongLong	  64
 	  ProdBitPerFloat	  32
 	  ProdBitPerDouble	  64
 	  ProdBitPerPointer	  32
@@ -363,17 +378,20 @@ Library {
 	  ProdEndianess		  "Unspecified"
 	  ProdWordSize		  32
 	  ProdShiftRightIntArith  on
+	  ProdLongLongMode	  off
 	  ProdHWDeviceType	  "32-bit Generic"
 	  TargetBitPerChar	  8
 	  TargetBitPerShort	  16
 	  TargetBitPerInt	  32
 	  TargetBitPerLong	  32
+	  TargetBitPerLongLong	  64
 	  TargetBitPerFloat	  32
 	  TargetBitPerDouble	  64
 	  TargetBitPerPointer	  32
 	  TargetLargestAtomicInteger "Char"
 	  TargetLargestAtomicFloat "None"
 	  TargetShiftRightIntArith on
+	  TargetLongLongMode	  off
 	  TargetIntDivRoundTo	  "Undefined"
 	  TargetEndianess	  "Unspecified"
 	  TargetWordSize	  32
@@ -386,7 +404,7 @@ Library {
 	}
 	Simulink.ModelReferenceCC {
 	  $ObjectID		  12
-	  Version		  "1.12.1"
+	  Version		  "1.14.2"
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
 	  CheckModelReferenceTargetMessage "error"
 	  EnableParallelModelReferenceBuilds off
@@ -401,7 +419,7 @@ Library {
 	}
 	Simulink.SFSimCC {
 	  $ObjectID		  13
-	  Version		  "1.12.1"
+	  Version		  "1.14.2"
 	  SimCustomHeaderCode	  "#include <usrp_uhd_driver/usrp_uhd_driver.hpp>"
 	  SimCustomTerminator	  "rx_stop_streaming();"
 	  SimUserIncludeDirs	  "/sandbox/merickso/adsp.11a_usrp2/matlab/derived/glnxa64/src/include\n/sandbox/merickso/adsp.1"
@@ -417,11 +435,12 @@ Library {
 	  SimUseLocalCustomCode	  on
 	  SimParseCustomCode	  on
 	  SimBuildMode		  "sf_incremental_build"
+	  SimGenImportedTypeDefs  off
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
 	  $ObjectID		  14
-	  Version		  "1.12.1"
+	  Version		  "1.14.2"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    6
@@ -434,11 +453,15 @@ Library {
 	    PropName		    "DisabledProps"
 	  }
 	  SystemTargetFile	  "grt.tlc"
+	  TLCOptions		  ""
 	  GenCodeOnly		  off
 	  MakeCommand		  "make_rtw"
 	  GenerateMakefile	  on
 	  PackageGeneratedCodeAndArtifacts off
+	  PackageName		  ""
 	  TemplateMakefile	  "grt_default_tmf"
+	  PostCodeGenCommand	  ""
+	  Description		  ""
 	  GenerateReport	  off
 	  SaveLog		  off
 	  RTWVerbose		  on
@@ -449,19 +472,29 @@ Library {
 	  TLCAssert		  off
 	  ProcessScriptMode	  "Default"
 	  ConfigurationMode	  "Optimized"
+	  ProcessScript		  ""
+	  ConfigurationScript	  ""
 	  ConfigAtBuild		  off
 	  RTWUseLocalCustomCode	  off
 	  RTWUseSimCustomCode	  off
+	  CustomSourceCode	  ""
+	  CustomHeaderCode	  ""
+	  CustomInclude		  ""
+	  CustomSource		  ""
 	  CustomLibrary		  "libmw_usrp_uhd_driver.so"
+	  CustomInitializer	  ""
+	  CustomTerminator	  ""
+	  Toolchain		  "Automatically locate an installed toolchain"
+	  BuildConfiguration	  "Faster Builds"
 	  IncludeHyperlinkInReport off
 	  LaunchReport		  off
 	  PortableWordSizes	  off
-	  GenerateErtSFunction	  off
 	  CreateSILPILBlock	  "None"
 	  CodeExecutionProfiling  off
 	  CodeExecutionProfileVariable "executionProfile"
 	  CodeProfilingSaveOptions "SummaryOnly"
 	  CodeProfilingInstrumentation off
+	  SILDebugging		  off
 	  TargetLang		  "C"
 	  IncludeBusHierarchyInRTWFileBlockHierarchyMap	off
 	  IncludeERTFirstTime	  off
@@ -475,14 +508,17 @@ Library {
 	  GenerateCodeMetricsReport off
 	  GenerateCodeReplacementReport	off
 	  RTWCompilerOptimization "Off"
+	  RTWCustomCompilerOptimizations ""
 	  CheckMdlBeforeBuild	  "Off"
 	  CustomRebuildMode	  "OnUpdate"
+	  DataInitializer	  ""
+	  SharedConstantsCachingThreshold 1024
 	  Array {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
 	      $ObjectID		      15
-	      Version		      "1.12.1"
+	      Version		      "1.14.2"
 	      Array {
 		Type			"Cell"
 		Dimension		19
@@ -509,6 +545,7 @@ Library {
 	      }
 	      ForceParamTrailComments off
 	      GenerateComments	      on
+	      CommentStyle	      "Auto"
 	      IgnoreCustomStorageClasses on
 	      IgnoreTestpoints	      off
 	      IncHierarchyInIds	      off
@@ -524,13 +561,14 @@ Library {
 	      IncDataTypeInIds	      off
 	      MangleLength	      1
 	      CustomSymbolStrGlobalVar "$R$N$M"
-	      CustomSymbolStrType     "$N$R$M"
+	      CustomSymbolStrType     "$N$R$M_T"
 	      CustomSymbolStrField    "$N$M"
 	      CustomSymbolStrFcn      "$R$N$M$F"
 	      CustomSymbolStrFcnArg   "rt$I$N$M"
 	      CustomSymbolStrBlkIO    "rtb_$N$M"
 	      CustomSymbolStrTmpVar   "$N$M"
 	      CustomSymbolStrMacro    "$R$N$M"
+	      CustomSymbolStrUtil     "$N$C"
 	      DefineNamingRule	      "None"
 	      ParamNamingRule	      "None"
 	      SignalNamingRule	      "None"
@@ -539,7 +577,7 @@ Library {
 	      SimulinkBlockComments   on
 	      MATLABSourceComments    off
 	      EnableCustomComments    off
-	      InternalIdentifier      "Classic"
+	      InternalIdentifier      "Shortened"
 	      InlinedPrmAccess	      "Literals"
 	      ReqsInCode	      off
 	      UseSimReservedNames     off
@@ -547,7 +585,7 @@ Library {
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
 	      $ObjectID		      16
-	      Version		      "1.12.1"
+	      Version		      "1.14.2"
 	      Array {
 		Type			"Cell"
 		Dimension		16
@@ -560,19 +598,21 @@ Library {
 		Cell			"GenerateTestInterfaces"
 		Cell			"ModelStepFunctionPrototypeControlCompliant"
 		Cell			"CPPClassGenCompliant"
-		Cell			"MultiInstanceERTCode"
+		Cell			"SupportNonInlinedSFcns"
 		Cell			"PurelyIntegerCode"
 		Cell			"PortableWordSizes"
 		Cell			"SupportComplex"
 		Cell			"SupportAbsoluteTime"
 		Cell			"SupportContinuousTime"
-		Cell			"SupportNonInlinedSFcns"
+		Cell			"GenerateAllocFcn"
 		PropName		"DisabledProps"
 	      }
 	      TargetFcnLib	      "ansi_tfl_table_tmw.mat"
 	      TargetLibSuffix	      ""
 	      TargetPreCompLibLocation ""
-	      CodeReplacementLibrary  "ANSI_C"
+	      GenFloatMathFcnCalls    "NOT IN USE"
+	      TargetLangStandard      "C89/C90 (ANSI)"
+	      CodeReplacementLibrary  "None"
 	      UtilityFuncGeneration   "Auto"
 	      ERTMultiwordTypeDef     "System defined"
 	      ERTMultiwordLength      256
@@ -580,7 +620,6 @@ Library {
 	      GenerateFullHeader      on
 	      GenerateSampleERTMain   off
 	      GenerateTestInterfaces  off
-	      IsPILTarget	      off
 	      ModelReferenceCompliant on
 	      ParMdlRefBuildCompliant on
 	      CompOptLevelCompliant   on
@@ -597,6 +636,7 @@ Library {
 	      LogVarNameModifier      "rt_"
 	      MatFileLogging	      on
 	      MultiInstanceERTCode    off
+	      CodeInterfacePackaging  "Nonreusable function"
 	      SupportNonFinite	      on
 	      SupportComplex	      on
 	      PurelyIntegerCode	      off
@@ -605,10 +645,12 @@ Library {
 	      SupportVariableSizeSignals off
 	      EnableShiftOperators    on
 	      ParenthesesLevel	      "Nominal"
+	      MATLABClassNameForMDSCustomization "Simulink.SoftwareTarget.GRTCustomization"
 	      ModelStepFunctionPrototypeControlCompliant off
-	      CPPClassGenCompliant    off
+	      CPPClassGenCompliant    on
 	      AutosarCompliant	      off
 	      GRTInterface	      on
+	      GenerateAllocFcn	      off
 	      UseMalloc		      off
 	      ExtMode		      off
 	      ExtModeStaticAlloc      off
@@ -622,6 +664,7 @@ Library {
 	      RTWCAPIStates	      off
 	      RTWCAPIRootIO	      off
 	      GenerateASAP2	      off
+	      MultiInstanceErrorCode  "Error"
 	    }
 	    PropName		    "Components"
 	  }
@@ -762,10 +805,15 @@ Library {
       Permissions	      "ReadWrite"
       PermitHierarchicalResolution "All"
       TreatAsAtomicUnit	      off
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
       CheckFcnCallInpInsideContextMsg off
       SystemSampleTime	      "-1"
+      RTWSystemCode	      "Auto"
       RTWFcnNameOpts	      "Auto"
       RTWFileNameOpts	      "Auto"
+      FunctionInterfaceSpec   "void_void"
+      FunctionWithSeparateData off
       RTWMemSecFuncInitTerm   "Inherit from model"
       RTWMemSecFuncExecute    "Inherit from model"
       RTWMemSecDataConstants  "Inherit from model"
@@ -775,9 +823,12 @@ Library {
       DataTypeOverride	      "UseLocalSettings"
       DataTypeOverrideAppliesTo	"AllNumericTypes"
       MinMaxOverflowLogging   "UseLocalSettings"
+      Opaque		      off
+      MaskHideContents	      off
       SFBlockType	      "NONE"
       Variant		      off
       GeneratePreprocessorConditionals off
+      ContentPreviewEnabled   off
     }
     Block {
       BlockType		      Terminator
@@ -785,7 +836,7 @@ Library {
   }
   System {
     Name		    "commsdrhw_v2"
-    Location		    [653, 279, 1233, 750]
+    Location		    [85, 56, 681, 580]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -811,25 +862,20 @@ Library {
       DialogController	      "usrpDDGCreate"
       DialogControllerArgs    "DataTag0"
       LoadFcn		      "setupsdru(sdruroot, 'silent')"
-      MinAlgLoopOccurrences   off
-      PropExecContextOutsideSubsystem off
-      RTWSystemCode	      "Auto"
-      FunctionWithSeparateData off
-      Opaque		      off
       RequestExecContextInheritance off
-      MaskHideContents	      off
       Object {
 	$PropName		"MaskObject"
 	$ObjectID		17
 	$ClassName		"Simulink.Mask"
 	Type			"SDRu Receiver"
 	Description		"Receive data from the Universal Software Radio Peripheral (USRP).\n"
-	Help			"web(['file:///' sdruroot '/help/ref/sdrureceiver.html']);"
+	Help			"eval('sdrudoc(''usrp_receiver'')')"
 	Initialization		"block = gcb;\nblockH = gcbh;\nmaskDisplay = commblkusrp(block, 'maskDisplay');\ncommblkusrp(block, '"
 	"reconfigure');\ncommblkusrp(block, 'setDerivedParams');\n% make sure do maskDisplay set_param after reconfiguring por"
 	"ts\nset_param(blockH, 'maskDisplay', maskDisplay);\n"
 	SelfModifiable		"on"
-	Display			"fprintf('SDRu\\nReceiver');\nport_label('output', 1, 'Data');\nport_label('output', 2, 'Data Len');\n"
+	Display			"fprintf('SDRu\\nReceiver\\n192.168.10.2');\nport_label('output', 1, 'Data');\nport_label('output', 2, 'Dat"
+	"a Len');\n"
 	Capabilities		"commmaskedcaps(gcbh)"
 	Array {
 	  Type			  "Simulink.MaskParameter"
@@ -1054,7 +1100,6 @@ Library {
 	    Name		    "EnableBurstMode"
 	    Prompt		    "Enable burst mode"
 	    Value		    "off"
-	    Evaluate		    "off"
 	    Tunable		    "off"
 	  }
 	  Object {
@@ -1070,7 +1115,7 @@ Library {
       }
       System {
 	Name			"SDRu Receiver"
-	Location		[576, 268, 1140, 686]
+	Location		[85, 56, 681, 580]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -1083,7 +1128,7 @@ Library {
 	TiledPageScale		1
 	ShowPageBoundaries	off
 	ZoomFactor		"100"
-	SIDHighWatermark	"293"
+	SIDHighWatermark	"294"
 	SIDPrevWatermark	"192"
 	Block {
 	  BlockType		  Gain
@@ -1138,20 +1183,28 @@ Library {
 	Block {
 	  BlockType		  S-Function
 	  Name			  "usrp_uhd_sfunrx"
-	  SID			  "47:265"
+	  SID			  "47:294"
 	  Ports			  [4, 3]
-	  Position		  [215, 66, 325, 199]
-	  ZOrder		  1
+	  Position		  [215, 64, 325, 201]
+	  ZOrder		  3
 	  FunctionName		  "usrp_uhd_sfunrx"
-	  Parameters		  "IPAddrAsInt8Array, BoardId, SParameter3, DportDtype, BuffMode, SParameter6, SampleTime"
+	  Parameters		  "IPAddrAsInt8Array, BoardId, SParameter3, DportDtype, EnableBurstMode, SParameter6, SampleTime"
 	  EnableBusSupport	  off
 	  Object {
 	    $PropName		    "MaskObject"
 	    $ObjectID		    40
 	    $ClassName		    "Simulink.Mask"
-	    Type		    "usrp_uhd_sfunrx"
-	    Description		    "usrp_uhd_sfunrx"
-	    Help		    "usrp_uhd_sfunrx"
+	    Type		    "Legacy Function"
+	    Description		    "This block allows you to call the legacy functions specified by the following Legacy Code Tool "
+	    "definition:\ndef.SFunctionName = 'usrp_uhd_sfunrx';\ndef.OutputFcnSpec = 'void receiveData_c(  int32  work4, doub"
+	    "le u1, double u2, double u3, double u4, complex<int16> y1[p3], uint32 y2[1], uint32 y3[1], UsrpErrorSLCapiEnumT w"
+	    "ork2[1], int8 work3[1024])';\ndef.StartFcnSpec = 'void openDataConnection_c(  int8 p1[], BoardIdSLCapiEnumT p2, i"
+	    "nt8 work1[1024], uint32 p3, DataPortDataTypeSLCapiEnumT p4, boolean p5, uint32 p6, int32 work4[1], UsrpErrorSLCap"
+	    "iEnumT work2[1], int8 work3[1024])';\ndef.TerminateFcnSpec = 'void closeDataConnection_c(  int32 work4, UsrpError"
+	    "SLCapiEnumT work2[1], int8 work3[1024])';\ndef.HeaderFiles = {'usrp_uhd_capi.hpp', 'usrp_sfun_setshs.hcpp'};\ndef"
+	    ".SampleTime = 'parameterized';\ndef.Options.isMacro = true;\ndef.Options.useTlcWithAccel = false;\n"
+	    Help		    "<p>This block was generated automatically by the Legacy Code Tool. For detailed help on this tool, cal"
+	    "l<a href=\"matlab:legacy_code('help')\"> legacy_code('help')</a>.</p>"
 	    Initialization	    "IPAddrAsInt8Array = [int8(SParameter1), 0];\nswitch (SParameter2)\n    case 'rx', BoardId = B"
 	    "oardIdSLCapiEnumT.RxId;\n    case 'tx', BoardId = BoardIdSLCapiEnumT.TxId;\n    otherwise, BoardId = BoardIdSLCap"
 	    "iEnumT.RxId;\nend\nswitch (SParameter4)\n    case 'int16',  DportDtype = DataPortDataTypeSLCapiEnumT.DPortDTypeCI"
@@ -1173,8 +1226,8 @@ Library {
 		Type			"edit"
 		Name			"SFunctionSpec"
 		Prompt			"SFunctionSpec"
-		Value			"void simRecvData_c(  int32  work4, double u1, double u2, double u3, double u4, uint32 p3, capi_DataportData"
-		"typeEnumT p4, complex<int16> y1[p3], uint32 y2[1], uint32 y3[1], capi_UsrpErrStatEnumT work2[1], int8 work3[1024])"
+		Value			"void receiveData_c(  int32  work4, double u1, double u2, double u3, double u4, complex<int16> y1[p3], uint3"
+		"2 y2[1], uint32 y3[1], UsrpErrorSLCapiEnumT work2[1], int8 work3[1024])"
 		Evaluate		"off"
 		Tunable			"off"
 		Visible			"off"
@@ -1262,48 +1315,56 @@ Library {
 	  IconDisplay		  "Port number"
 	}
 	Line {
+	  ZOrder		  15
 	  SrcBlock		  "usrp_uhd_sfunrx"
 	  SrcPort		  1
 	  DstBlock		  "Gain"
 	  DstPort		  1
 	}
 	Line {
+	  ZOrder		  10
 	  SrcBlock		  "port_1"
 	  SrcPort		  1
 	  DstBlock		  "usrp_uhd_sfunrx"
 	  DstPort		  1
 	}
 	Line {
+	  ZOrder		  12
 	  SrcBlock		  "port_3"
 	  SrcPort		  1
 	  DstBlock		  "usrp_uhd_sfunrx"
 	  DstPort		  3
 	}
 	Line {
+	  ZOrder		  11
 	  SrcBlock		  "port_4"
 	  SrcPort		  1
 	  DstBlock		  "usrp_uhd_sfunrx"
 	  DstPort		  4
 	}
 	Line {
+	  ZOrder		  14
 	  SrcBlock		  "usrp_uhd_sfunrx"
 	  SrcPort		  3
 	  DstBlock		  "overrunUnderrun"
 	  DstPort		  1
 	}
 	Line {
+	  ZOrder		  13
 	  SrcBlock		  "usrp_uhd_sfunrx"
 	  SrcPort		  2
 	  DstBlock		  "dataLength"
 	  DstPort		  1
 	}
 	Line {
+	  ZOrder		  7
 	  SrcBlock		  "Gain"
 	  SrcPort		  1
 	  DstBlock		  "data"
 	  DstPort		  1
 	}
 	Line {
+	  ZOrder		  9
 	  SrcBlock		  "port_2"
 	  SrcPort		  1
 	  DstBlock		  "usrp_uhd_sfunrx"
@@ -1322,25 +1383,19 @@ Library {
       DialogController	      "usrpDDGCreate"
       DialogControllerArgs    "DataTag1"
       LoadFcn		      "setupsdru(sdruroot, 'silent')"
-      MinAlgLoopOccurrences   off
-      PropExecContextOutsideSubsystem off
-      RTWSystemCode	      "Auto"
-      FunctionWithSeparateData off
-      Opaque		      off
       RequestExecContextInheritance off
-      MaskHideContents	      off
       Object {
 	$PropName		"MaskObject"
 	$ObjectID		50
 	$ClassName		"Simulink.Mask"
 	Type			"SDRu Transmitter"
 	Description		"Send data to the Universal Software Radio Peripheral (USRP).\n"
-	Help			"web(['file:///' sdruroot '/help/ref/sdrutransmitter.html']);"
+	Help			"eval('sdrudoc(''usrp_transmitter'')')"
 	Initialization		"block = gcb;\nblockH = gcbh;\nmaskDisplay = commblkusrp(block, 'maskDisplay');\ncommblkusrp(block, '"
 	"reconfigure');\ncommblkusrp(block, 'setDerivedParams');\n% make sure do maskDisplay set_param after reconfiguring por"
 	"ts\nset_param(blockH, 'maskDisplay', maskDisplay);"
 	SelfModifiable		"on"
-	Display			"fprintf('SDRu\\nTransmitter');\nport_label('input', 1, 'Data');\n"
+	Display			"fprintf('SDRu\\nTransmitter\\n192.168.10.2');\nport_label('input', 1, 'Data');\n"
 	Capabilities		"commmaskedcaps(gcbh)"
 	Array {
 	  Type			  "Simulink.MaskParameter"
@@ -1571,7 +1626,6 @@ Library {
 	    Name		    "EnableBurstMode"
 	    Prompt		    "Enable burst mode"
 	    Value		    "off"
-	    Evaluate		    "off"
 	    Tunable		    "off"
 	  }
 	  Object {
@@ -1587,7 +1641,7 @@ Library {
       }
       System {
 	Name			"SDRu Transmitter"
-	Location		[813, 77, 1401, 366]
+	Location		[85, 56, 681, 580]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -1600,7 +1654,7 @@ Library {
 	TiledPageScale		1
 	ShowPageBoundaries	off
 	ZoomFactor		"100"
-	SIDHighWatermark	"315"
+	SIDHighWatermark	"316"
 	SIDPrevWatermark	"260"
 	Block {
 	  BlockType		  Inport
@@ -1652,20 +1706,28 @@ Library {
 	Block {
 	  BlockType		  S-Function
 	  Name			  "usrp_uhd_sfuntx"
-	  SID			  "35:291"
+	  SID			  "35:316"
 	  Ports			  [5, 1]
-	  Position		  [310, 46, 415, 234]
-	  ZOrder		  1
+	  Position		  [315, 46, 415, 234]
+	  ZOrder		  3
 	  FunctionName		  "usrp_uhd_sfuntx"
-	  Parameters		  "IPAddrAsInt8Array, BoardId, SParameter3, DportDtype, BuffMode, SParameter6"
+	  Parameters		  "IPAddrAsInt8Array, BoardId, SParameter3, DportDtype, EnableBurstMode, SParameter6"
 	  EnableBusSupport	  off
 	  Object {
 	    $PropName		    "MaskObject"
 	    $ObjectID		    74
 	    $ClassName		    "Simulink.Mask"
-	    Type		    "usrp_uhd_sfuntx"
-	    Description		    "usrp_uhd_sfuntx"
-	    Help		    "usrp_uhd_sfuntx"
+	    Type		    "Legacy Function"
+	    Description		    "This block allows you to call the legacy functions specified by the following Legacy Code Tool "
+	    "definition:\ndef.SFunctionName = 'usrp_uhd_sfuntx';\ndef.OutputFcnSpec = 'void sendData_c(  int32  work4, complex"
+	    "<int16> u1[], double u2, double u3, double u4, double u5, uint32 y1[1], UsrpErrorSLCapiEnumT work2[1], int8 work3"
+	    "[1024])';\ndef.StartFcnSpec = 'void openDataConnection_c(  int8 p1[], BoardIdSLCapiEnumT p2, int8 work1[1024], ui"
+	    "nt32 p3, DataPortDataTypeSLCapiEnumT p4, boolean p5, uint32 p6, int32 work4[1], UsrpErrorSLCapiEnumT work2[1], in"
+	    "t8 work3[1024])';\ndef.TerminateFcnSpec = 'void closeDataConnection_c(  int32 work4, UsrpErrorSLCapiEnumT work2[1"
+	    "], int8 work3[1024])';\ndef.HeaderFiles = {'usrp_uhd_capi.hpp', 'usrp_sfun_setshs.hcpp'};\ndef.Options.isMacro = "
+	    "true;\ndef.Options.useTlcWithAccel = false;\n"
+	    Help		    "<p>This block was generated automatically by the Legacy Code Tool. For detailed help on this tool, cal"
+	    "l<a href=\"matlab:legacy_code('help')\"> legacy_code('help')</a>.</p>"
 	    Initialization	    "IPAddrAsInt8Array = [int8(SParameter1), 0];\nswitch (SParameter2)\n    case 'rx', BoardId = B"
 	    "oardIdSLCapiEnumT.RxId;\n    case 'tx', BoardId = BoardIdSLCapiEnumT.TxId;\n    otherwise, BoardId = BoardIdSLCap"
 	    "iEnumT.RxId;\nend\nswitch (SParameter4)\n    otherwise,     DportDtype = DataPortDataTypeSLCapiEnumT.DPortDTypeCI"
@@ -1685,8 +1747,8 @@ Library {
 		Type			"edit"
 		Name			"SFunctionSpec"
 		Prompt			"SFunctionSpec"
-		Value			"void simSendData_c(  int32  work4, complex<int16> u1[], double u2, double u3, double u4, double u5, uint32 "
-		"work5, capi_DataportDatatypeEnumT work6, uint32 y1[1], capi_UsrpErrStatEnumT work2[1], int8 work3[1024])"
+		Value			"void sendData_c(  int32  work4, complex<int16> u1[], double u2, double u3, double u4, double u5, uint32 y1["
+		"1], UsrpErrorSLCapiEnumT work2[1], int8 work3[1024])"
 		Evaluate		"off"
 		Tunable			"off"
 		Visible			"off"
@@ -1748,36 +1810,42 @@ Library {
 	  }
 	}
 	Line {
+	  ZOrder		  10
 	  SrcBlock		  "Data"
 	  SrcPort		  1
 	  DstBlock		  "usrp_uhd_sfuntx"
 	  DstPort		  1
 	}
 	Line {
+	  ZOrder		  11
 	  SrcBlock		  "port_1"
 	  SrcPort		  1
 	  DstBlock		  "usrp_uhd_sfuntx"
 	  DstPort		  2
 	}
 	Line {
+	  ZOrder		  9
 	  SrcBlock		  "port_3"
 	  SrcPort		  1
 	  DstBlock		  "usrp_uhd_sfuntx"
 	  DstPort		  4
 	}
 	Line {
+	  ZOrder		  8
 	  SrcBlock		  "port_4"
 	  SrcPort		  1
 	  DstBlock		  "usrp_uhd_sfuntx"
 	  DstPort		  5
 	}
 	Line {
+	  ZOrder		  7
 	  SrcBlock		  "usrp_uhd_sfuntx"
 	  SrcPort		  1
 	  DstBlock		  "overrunUnderrun"
 	  DstPort		  1
 	}
 	Line {
+	  ZOrder		  12
 	  SrcBlock		  "port_2"
 	  SrcPort		  1
 	  DstBlock		  "usrp_uhd_sfuntx"
@@ -1788,7 +1856,11 @@ Library {
     Annotation {
       SID		      "50"
       Name		      "Communications System Toolbox Support Package for USRP(R) Radio"
-      Position		      [241, 30]
+      Position		      [241, 30, 725, 48]
+      InternalMargins	      [1, 1, 1, 1]
+      AutoSize		      on
+      WordWrap		      off
+      ZOrder		      -1
       FontName		      "Arial"
       FontSize		      14
       FontWeight	      "bold"

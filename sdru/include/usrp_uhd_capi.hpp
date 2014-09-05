@@ -1,4 +1,4 @@
-/* Copyright 2010-2012 The MathWorks, Inc. */
+/* Copyright 2010-2013 The MathWorks, Inc. */
 /* 
  * These declarations are included both for the C++ library build as well as the
  * EML generated C-code build.
@@ -20,24 +20,18 @@ typedef enum {
     DPortDTypeCDouble
 } DataPortDataTypeCapiEnumT;
 
-typedef enum {
-    BuffModeContinuous=0,
-    BuffModeContigBuff,
-    BuffModeContigFrame
-} BufferModeCapiEnumT;
-
 typedef enum { RxId=0, TxId=1, MboardId=2 } BoardIdCapiEnumT;
 
 typedef enum { UsrpDriverError=0, UsrpDriverSuccess=1, 
   UsrpDriverNotResponding=2, UsrpDriverBusy=3,
-  UsrpDriverNotCompatible=4 } UsrpErrorCapiEnumT;
+  UsrpDriverRxBusy=4, UsrpDriverTxBusy=5,
+  UsrpDriverNotCompatible=6 } UsrpErrorCapiEnumT;
 
 /* These are workarounds for MATLAB and Simulink Coder issues... */
 /* 1. allow Simulink sfunctions/rapid accelerator to name-bind M enums and C
  *    enums.
  */
 typedef DataPortDataTypeCapiEnumT DataPortDataTypeSLCapiEnumT;
-typedef BufferModeCapiEnumT BufferModeSLCapiEnumT;
 typedef BoardIdCapiEnumT BoardIdSLCapiEnumT;
 typedef UsrpErrorCapiEnumT UsrpErrorSLCapiEnumT;
 /* 2. allow MATLAB coder's code to compile when using specific enum values when
@@ -133,7 +127,7 @@ LIBMWUSRP_UHD_CAPI_API void openDataConnection_c    (const char * in_addrStr,
                                                      const char * in_requesterStr, 
                                                      uint32_T in_frameLength, 
                                                      DataPortDataTypeCapiEnumT in_dportType, 
-                                                     BufferModeCapiEnumT in_buffMode,
+                                                     boolean_T in_buffMode,
                                                      uint32_T in_buffSize,
                                                      int * out_driverApiH,
                                                      ERR_ARGS);

@@ -6,7 +6,102 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>QPSK Transmitter with USRP&reg; Hardware</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2012-12-19"><meta name="DC.source" content="sdruQPSKTransmitter.m"><link rel="stylesheet" type="text/css" href="./style.css"></head><body><div class="header"><div class="left"><a href="matlab:edit sdruQPSKTransmitter">Open sdruQPSKTransmitter.m in the Editor</a></div><div class="right"><a href="matlab:echodemo sdruQPSKTransmitter">Run in the Command Window</a></div></div><div class="content"><h1>QPSK Transmitter with USRP&reg; Hardware</h1><!--introduction--><p>This example shows how to use the Universal Software Radio Peripheral&reg; (USRP&reg;) device using SDRu (Software Defined Radio USRP&reg;) System objects to implement a QPSK transmitter. The USRP&reg; device in this system will keep transmitting indexed "Hello world" messages at its specified center frequency. You can demodulate the transmitted message using the <a href="matlab:edit('sdruQPSKReceiver.m')">QPSK Receiver with USRP&reg; Hardware</a> example with an additional USRP&reg; device.</p><p>Please refer to <a href="../../help/index.html">Getting Started</a> for details on configuring your host computer to work with the SDRu Transmitter System object.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Implementations</a></li><li><a href="#2">Introduction</a></li><li><a href="#3">Initialization</a></li><li><a href="#5">Code Architecture</a></li><li><a href="#6">Execution</a></li><li><a href="#8">Appendix</a></li><li><a href="#9">Copyright Notice</a></li></ul></div><h2>Implementations<a name="1"></a></h2><p>This example describes the MATLAB&reg; implementation of a QPSK transmitter with USRP&reg; hardware. There is another implementation of this example that uses Simulink&reg;.</p><p>MATLAB script using System objects: <a href="matlab:edit('sdruQPSKTransmitter.m')">sdruQPSKTransmitter.m</a>.</p><p>Simulink implementation using blocks: <a href="matlab:sdruqpsktx">sdruqpsktx.mdl</a>.</p><p>You can also explore a no-USRP QPSK Transmitter and Receiver example that models a general wireless communication system using an AWGN channel and simulated channel impairments at <a href="matlab:edit('commQPSKTransmitterReceiver.m')">commQPSKTransmitterReceiver.m</a>.</p><h2>Introduction<a name="2"></a></h2><p>This example has the following motivation:</p><div><ul><li>To implement a real QPSK-based transmission-reception environment in MATLAB using SDRu System objects.</li></ul></div><div><ul><li>To illustrate the use of key Communications System Toolbox&#8482; System objects for QPSK system design.</li></ul></div><p>In this example, the transmitter generates a message using ASCII characters, converts the characters to bits, and prepends a Barker code for receiver frame synchronization. This data is then modulated using QPSK and filtered with a square root raised cosine filter. The filtered QPSK symbols can be transmitted over the air using the SDRu transmitter System object and the USRP&reg; hardware.</p><h2>Initialization<a name="3"></a></h2><p>The <a href="matlab:edit('sdruqpsktransmitter_init.m')">sdruqpsktransmitter_init.m</a> script initializes the simulation parameters and generates the structure prmQPSKTransmitter.</p><pre class="codeinput">prmQPSKTransmitter = sdruqpsktransmitter_init <span class="comment">% Transmitter parameter structure</span>
+      --><title>QPSK Transmitter with USRP&reg; Hardware</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2013-04-19"><meta name="DC.source" content="sdruQPSKTransmitter.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><style>
+.open_example { 
+    padding:0px 0px 1px 0px;
+    margin:20px;
+    font-size:0.9em;
+    border:1px solid #aeaeae;
+    display:block;
+    float:right;
+    border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px;
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(top, #FFFFFF 0%, #E6E6E6 100%); /* FF3.6+ */	
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFFFFF), color-stop(100%,#E6E6E6)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #FFFFFF 0%,#E6E6E6 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #ffffff 0%,#e6e6e6 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #ffffff 0%,#e6e6e6 100%); /* IE10+ */
+    background: linear-gradient(top,  #ffffff 0%,#e6e6e6 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', endColorstr='#E6E6E6',GradientType=0 ); /* IE6-9 */
+}
+
+.open_example:hover {
+    background: #f3f3f3; /* Old browsers */
+    background: -moz-linear-gradient(top, #f3f3f3 0%, #d7d7d7 100%); /* FF3.6+ */    
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f3f3f3), color-stop(100%,#d7d7d7)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #f3f3f3 0%,#d7d7d7 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #f3f3f3 0%,#d7d7d7 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #f3f3f3 0%,#d7d7d7 100%); /* IE10+ */
+    background: linear-gradient(top,  #f3f3f3 0%,#d7d7d7 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3f3f3', endColorstr='#d7d7d7',GradientType=0 ); /* IE6-9 */
+} 
+
+.open_example a { 
+    padding:6px 10px; 
+    line-height:130%;
+    text-decoration:none;
+    float:left;
+}
+      </style><div class="open_example"><a href="matlab:edit sdruQPSKTransmitter">Open this Example</a></div><div class="content"><h1>QPSK Transmitter with USRP&reg; Hardware</h1><!--introduction--><p>This example shows how to use the Universal Software Radio Peripheral&reg; (USRP&reg;) device using SDRu (Software Defined Radio USRP&reg;) System objects to implement a QPSK transmitter. The USRP&reg; device in this system will keep transmitting indexed "Hello world" messages at its specified center frequency. You can demodulate the transmitted message using the <a href="matlab:edit('sdruQPSKReceiver.m')">QPSK Receiver with USRP&reg; Hardware</a> example with an additional USRP&reg; device.</p><p>Please refer to <a href="../../help/index.html">Getting Started</a> for details on configuring your host computer to work with the SDRu Transmitter System object.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Implementations</a></li><li><a href="#2">Introduction</a></li><li><a href="#3">Initialization</a></li><li><a href="#5">Code Architecture</a></li><li><a href="#6">Execution</a></li><li><a href="#8">Appendix</a></li><li><a href="#9">Copyright Notice</a></li></ul></div><h2>Implementations<a name="1"></a></h2><p>This example describes the MATLAB&reg; implementation of a QPSK transmitter with USRP&reg; hardware. There is another implementation of this example that uses Simulink&reg;.</p><p>MATLAB script using System objects: <a href="matlab:edit('sdruQPSKTransmitter.m')">sdruQPSKTransmitter.m</a>.</p><p>Simulink implementation using blocks: <a href="matlab:sdruqpsktx">sdruqpsktx.mdl</a>.</p><p>You can also explore a no-USRP QPSK Transmitter and Receiver example that models a general wireless communication system using an AWGN channel and simulated channel impairments at <a href="matlab:edit('commQPSKTransmitterReceiver.m')">commQPSKTransmitterReceiver.m</a>.</p><h2>Introduction<a name="2"></a></h2><p>This example has the following motivation:</p><div><ul><li>To implement a real QPSK-based transmission-reception environment in MATLAB using SDRu System objects.</li></ul></div><div><ul><li>To illustrate the use of key Communications System Toolbox&#8482; System objects for QPSK system design.</li></ul></div><p>In this example, the transmitter generates a message using ASCII characters, converts the characters to bits, and prepends a Barker code for receiver frame synchronization. This data is then modulated using QPSK and filtered with a square root raised cosine filter. The filtered QPSK symbols can be transmitted over the air using the SDRu transmitter System object and the USRP&reg; hardware.</p><h2>Initialization<a name="3"></a></h2><p>The <a href="matlab:edit('sdruqpsktransmitter_init.m')">sdruqpsktransmitter_init.m</a> script initializes the simulation parameters and generates the structure prmQPSKTransmitter.</p><pre class="codeinput">prmQPSKTransmitter = sdruqpsktransmitter_init <span class="comment">% Transmitter parameter structure</span>
 compileIt  = false; <span class="comment">% true if code is to be compiled for accelerated execution</span>
 useCodegen = false; <span class="comment">% true to run the latest generated mex file</span>
 </pre><pre class="codeoutput">
@@ -28,15 +123,35 @@ prmQPSKTransmitter =
     SquareRootRaisedCosineFilterOrder: 40
                               RollOff: 0.5000
         TransmitterFilterCoefficients: [1x41 double]
-                  USRPCenterFrequency: 2.4000e+09
-                             USRPGain: 30
+                  USRPCenterFrequency: 1.8500e+09
+                             USRPGain: 25
                     USRPInterpolation: 500
                       USRPFrameLength: 4000
                             FrameTime: 0.0200
                              StopTime: 1000
 
-</pre><p>To achieve a successful transmission, ensure that the specified center frequency of the SDRu Transmitter is within the acceptable range of your USRP&reg; daughterboard.</p><p>Also, by using the compileIt and useCodegen flags, you can interact with the code to explore different execution options.  Set the MATLAB variable compileIt to true in order to generate C code; this can be accomplished by using the <b>codegen</b> command provided by the MATLAB Coder&#8482; product. The <b>codegen</b> command compiles MATLAB&reg; functions to a C-based static or dynamic library, executable, or MEX file, producing code for accelerated execution. The generated executable runs several times faster than the original MATLAB code. Set useCodegen to true to run the executable generated by <b>codegen</b> instead of the MATLAB code.</p><h2>Code Architecture<a name="5"></a></h2><p>The function runSDRuQPSKTransmitter implements the QPSK transmitter using two System objects, QPSKTransmitter and comm.SDRuTransmitter.</p><p><b>QPSK Transmitter</b></p><p>The transmitter includes the <b>Bit Generation</b>, <b>QPSK Modulator</b> and <b>Raised Cosine Transmit Filter</b>  objects. The <b>Bit Generation</b> object generates the data frames. Each frame contains 200 bits. The first 26 bits are header bits, a 13-bit Barker code that has been oversampled by two.  The Barker code is sent on both in-phase and quadrature components of the QPSK modulated symbols. This is achieved by repeating the Barker code bits twice before modulating them with the QPSK modulator.</p><p>The remaining bits are the payload. The first 105 bits of the payload correspond to the ASCII representation of 'Hello world ###', where '###' is an incrementing sequence of '001', '002', '003',..., '100'. The remaining payload bits are random bits. The payload is scrambled to guarantee a balanced distribution of zeros and ones for the timing recovery operation in the receiver object. The scrambled bits are modulated by the <b>QPSK Modulator</b> (with Gray mapping). The <b>Raised Cosine Transmit Filter</b> upsamples the modulated symbols by four, and has a roll-off factor of 0.5.  The output rate of the <b>Raised Cosine Filter</b> is set to be 200e3 samples per second.</p><p><b>SDRu Transmitter</b></p><p>The host computer communicates with the USRP&reg; radio using the SDRu transmitter System object.  You can supply the IP address of the USRP&reg; radio as an argument when you construct the object.  The IP address can be any address within the same subnetwork as the host computer.  The IP address should match the IP address of the USRP radio connected to the host. The CenterFrequency, Gain, and InterpolationFactor arguments are set by the parameter variable prmQPSKTransmitter.</p><h2>Execution<a name="6"></a></h2><p>Before running the script, first turn on the USRP&reg; radio and connect it to the computer. As already mentioned, you can check the correct data transmission by running the <a href="matlab:edit('sdruQPSKReceiver.m')">QPSK Receiver with USRP&reg; Hardware</a> example while running the transmitter script.</p><pre class="codeinput"><span class="keyword">if</span> compileIt
-    compilesdru(<span class="string">'runSDRuQPSKTransmitter'</span>,<span class="string">'mex'</span>, <span class="string">'-args'</span>, {coder.Constant(prmQPSKTransmitter)}); <span class="comment">%#ok&lt;UNRCH&gt;</span>
+</pre><p>To achieve a successful transmission, ensure that the specified center frequency of the SDRu Transmitter is within the acceptable range of your USRP&reg; daughterboard.</p><p>Also, by using the compileIt and useCodegen flags, you can interact with the code to explore different execution options.  Set the MATLAB variable compileIt to true in order to generate C code; this can be accomplished by using the <b>codegen</b> command provided by the MATLAB Coder&#8482; product. The <b>codegen</b> command compiles MATLAB&reg; functions to a C-based static or dynamic library, executable, or MEX file, producing code for accelerated execution. The generated executable runs several times faster than the original MATLAB code. Set useCodegen to true to run the executable generated by <b>codegen</b> instead of the MATLAB code.</p><h2>Code Architecture<a name="5"></a></h2><p>The function runSDRuQPSKTransmitter implements the QPSK transmitter using two System objects, QPSKTransmitter and comm.SDRuTransmitter.</p><p><b>QPSK Transmitter</b></p><p>The transmitter includes the <b>Bit Generation</b>, <b>QPSK Modulator</b> and <b>Raised Cosine Transmit Filter</b>  objects. The <b>Bit Generation</b> object generates the data frames. Each frame contains 200 bits. The first 26 bits are header bits, a 13-bit Barker code that has been oversampled by two.  The Barker code is sent on both in-phase and quadrature components of the QPSK modulated symbols. This is achieved by repeating the Barker code bits twice before modulating them with the QPSK modulator.</p><pre class="codeinput"><span class="comment">% The remaining bits are the payload. The first 105 bits of the payload</span>
+<span class="comment">% correspond to the ASCII representation of 'Hello world ###', where '###'</span>
+<span class="comment">% is an incrementing sequence of '001', '002', '003',..., '100'. The</span>
+<span class="comment">% remaining payload bits are random bits. The payload is scrambled to</span>
+<span class="comment">% guarantee a balanced distribution of zeros and ones for the timing</span>
+<span class="comment">% recovery operation in the receiver object. The scrambled bits are</span>
+<span class="comment">% modulated by the *QPSK Modulator* (with Gray mapping). The *Raised Cosine</span>
+<span class="comment">% Transmit Filter* upsamples the modulated symbols by four, and has a</span>
+<span class="comment">% roll-off factor of 0.5.  The output rate of the *Raised Cosine Filter* is</span>
+<span class="comment">% set to be 200e3 samples per second.</span>
+<span class="comment">%</span>
+<span class="comment">% *SDRu Transmitter*</span>
+<span class="comment">%</span>
+<span class="comment">% The host computer communicates with the USRP(R) radio using the SDRu</span>
+<span class="comment">% transmitter System object.  You can supply the IP address of the USRP(R)</span>
+<span class="comment">% radio as an argument when you construct the object.  The IP address can</span>
+<span class="comment">% be any address within the same subnetwork as the host computer, and</span>
+<span class="comment">% should match the IP address of the USRP radio connected to the host. The</span>
+<span class="comment">% CenterFrequency, Gain, and InterpolationFactor arguments are set by the</span>
+<span class="comment">% parameter variable prmQPSKTransmitter.</span>
+</pre><h2>Execution<a name="6"></a></h2><p>Before running the script, first turn on the USRP&reg; radio and connect it to the computer. As already mentioned, you can check the correct data transmission by running the <a href="matlab:edit('sdruQPSKReceiver.m')">QPSK Receiver with USRP&reg; Hardware</a> example while running the transmitter script.</p><pre class="codeinput"><span class="keyword">if</span> compileIt
+    codegen(<span class="string">'runSDRuQPSKTransmitter'</span>, <span class="string">'-args'</span>, {coder.Constant(prmQPSKTransmitter)}); <span class="comment">%#ok&lt;UNRCH&gt;</span>
 <span class="keyword">end</span>
 <span class="keyword">if</span> useCodegen
    clear <span class="string">runSDRuQPSKTransmitter_mex</span> <span class="comment">%#ok&lt;UNRCH&gt;</span>
@@ -44,7 +159,7 @@ prmQPSKTransmitter =
 <span class="keyword">else</span>
    runSDRuQPSKTransmitter(prmQPSKTransmitter);
 <span class="keyword">end</span>
-</pre><p>The gain behavior of different USRP&reg; daughter boards varies considerably. Thus, the gain setting in the transmitter and receiver defined in this example may not be well suited for your daughter boards. If the message is not properly decoded by the receiver object, you can vary the gain of the source signals in the <b>SDRu Transmitter</b> and <b>SDRu Receiver</b> System objects by changing the SimParams.USRPGain value in the <a href="matlab:edit('sdruqpsktransmitter_init.m')">transmitter initialization file</a> and in the <a href="matlab:edit('sdruqpskreceiver_init.m')">receiver initialization file</a>.</p><p>Also, a large relative frequency offset between the transmit and receive USRP&reg; radios can prevent the receiver functions from properly decoding the message.  If that happens, you can determine the offset by sending a tone at a known frequency from the transmitter to the receiver, then measuring the offset between the transmitted and received frequency, then applying that offset to the center frequency of the SDRu Receiver System object.</p><h2>Appendix<a name="8"></a></h2><p>This example uses the following script and helper functions:</p><div><ul><li><a href="matlab:edit('runSDRuQPSKTransmitter.m')">runSDRuQPSKTransmitter.m</a></li><li><a href="matlab:edit('sdruqpsktransmitter_init.m')">sdruqpsktransmitter_init.m</a></li><li><a href="matlab:edit('QPSKTransmitter.m')">QPSKTransmitter.m</a></li><li><a href="matlab:edit('QPSKBitsGenerator.m')">QPSKBitsGenerator.m</a></li></ul></div><h2>Copyright Notice<a name="9"></a></h2><p>Universal Software Radio Peripheral&reg; and USRP&reg; are trademarks of National Instruments Corp.</p><p class="footer">Copyright 2012 The MathWorks, Inc.<br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br><br>
+</pre><pre class="codeoutput"></pre><p>The gain behavior of different USRP&reg; daughter boards varies considerably. Thus, the gain setting in the transmitter and receiver defined in this example may not be well suited for your daughter boards. If the message is not properly decoded by the receiver object, you can vary the gain of the source signals in the <b>SDRu Transmitter</b> and <b>SDRu Receiver</b> System objects by changing the SimParams.USRPGain value in the <a href="matlab:edit('sdruqpsktransmitter_init.m')">transmitter initialization file</a> and in the <a href="matlab:edit('sdruqpskreceiver_init.m')">receiver initialization file</a>.</p><p>Also, a large relative frequency offset between the transmit and receive USRP&reg; radios can prevent the receiver functions from properly decoding the message.  If that happens, you can determine the offset by sending a tone at a known frequency from the transmitter to the receiver, then measuring the offset between the transmitted and received frequency, then applying that offset to the center frequency of the SDRu Receiver System object.</p><h2>Appendix<a name="8"></a></h2><p>This example uses the following script and helper functions:</p><div><ul><li><a href="matlab:edit('runSDRuQPSKTransmitter.m')">runSDRuQPSKTransmitter.m</a></li><li><a href="matlab:edit('sdruqpsktransmitter_init.m')">sdruqpsktransmitter_init.m</a></li><li><a href="matlab:edit('QPSKTransmitter.m')">QPSKTransmitter.m</a></li><li><a href="matlab:edit('QPSKBitsGenerator.m')">QPSKBitsGenerator.m</a></li></ul></div><h2>Copyright Notice<a name="9"></a></h2><p>Universal Software Radio Peripheral&reg; and USRP&reg; are trademarks of National Instruments Corp.</p><p class="footer">Copyright 2012-2013 The MathWorks, Inc.<br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013b</a><br><br>
 		  MATLAB and Simulink are registered trademarks of The MathWorks, Inc.  Please see <a href="http://www.mathworks.com/trademarks">www.mathworks.com/trademarks</a> for a list of other trademarks owned by The MathWorks, Inc.  Other product or brand names are trademarks or registered trademarks of their respective owners.
       </p></div><!--
 ##### SOURCE BEGIN #####
@@ -61,7 +176,7 @@ prmQPSKTransmitter =
 % configuring your host computer to work with the SDRu Transmitter System
 % object.
 %
-% Copyright 2012 The MathWorks, Inc.
+% Copyright 2012-2013 The MathWorks, Inc.
 
 %% Implementations
 % This example describes the MATLAB(R) implementation of a QPSK transmitter
@@ -131,7 +246,7 @@ useCodegen = false; % true to run the latest generated mex file
 % quadrature components of the QPSK modulated symbols. This is achieved by
 % repeating the Barker code bits twice before modulating them with the QPSK
 % modulator.
-%
+
 % The remaining bits are the payload. The first 105 bits of the payload
 % correspond to the ASCII representation of 'Hello world ###', where '###'
 % is an incrementing sequence of '001', '002', '003',..., '100'. The
@@ -147,11 +262,11 @@ useCodegen = false; % true to run the latest generated mex file
 %
 % The host computer communicates with the USRP(R) radio using the SDRu
 % transmitter System object.  You can supply the IP address of the USRP(R)
-% radio as an argument when you construct the object.  The IP address can be
-% any address within the same subnetwork as the host computer.  The IP
-% address should match the IP address of the USRP radio connected to the
-% host. The CenterFrequency, Gain, and InterpolationFactor arguments are
-% set by the parameter variable prmQPSKTransmitter.
+% radio as an argument when you construct the object.  The IP address can
+% be any address within the same subnetwork as the host computer, and
+% should match the IP address of the USRP radio connected to the host. The
+% CenterFrequency, Gain, and InterpolationFactor arguments are set by the
+% parameter variable prmQPSKTransmitter.
 
 %% Execution
 % Before running the script, first turn on the USRP(R) radio and connect it
@@ -161,7 +276,7 @@ useCodegen = false; % true to run the latest generated mex file
 % example while running the transmitter script.
 
 if compileIt
-    compilesdru('runSDRuQPSKTransmitter','mex', '-args', {coder.Constant(prmQPSKTransmitter)}); %#ok<UNRCH>
+    codegen('runSDRuQPSKTransmitter', '-args', {coder.Constant(prmQPSKTransmitter)}); %#ok<UNRCH>
 end
 if useCodegen
    clear runSDRuQPSKTransmitter_mex %#ok<UNRCH>

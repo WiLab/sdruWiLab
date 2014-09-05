@@ -36,8 +36,7 @@ classdef FRSGMRSDemoSource < matlab.System
 %
 %   See also FRSGMRSDemoAudioSource, usrpFRSGMRSTransmitter.
 
-%   Copyright 2011-2012 The MathWorks, Inc.
-%   $Revision: 1.1.6.2 $Date: 2012/11/05 15:06:43 $
+%   Copyright 2011-2013 The MathWorks, Inc.
 
 properties (Nontunable)
   %Signal  Output signal type
@@ -163,7 +162,8 @@ methods (Access = protected)
           'SamplesPerFrame', obj.SamplesPerFrame, ...
           'OutputDataType', 'single');
       case 'Sound file'
-        obj.pSource = FRSGMRSDemoAudioSource('speech_dft.avi', ...
+        obj.pSource = FRSGMRSDemoAudioSource(...
+          'FileName', obj.AudioFileName, ...
           'SamplesPerFrame', obj.SamplesPerFrame, ...
           'DecimationFactor', obj.AudioDecimationFactor, ...
           'InterpolationFactor', obj.AudioInterpolationFactor);
@@ -205,4 +205,16 @@ methods (Access = protected)
     end
   end
 end
+
+
+% methods (Static, Hidden)
+%   function props = getDisplayPropertiesImpl()
+%   props = {...
+%       'Signal', ...
+%       'SampleRate', ...
+%       'ToneFrequency', ...
+%       'ChirpSweepTime'};
+%   end
+% end
+
 end

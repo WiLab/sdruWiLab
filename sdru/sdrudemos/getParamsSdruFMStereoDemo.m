@@ -2,7 +2,6 @@ function stereoFM = getParamsSdruFMStereoDemo
 %getParamsSdruFMStereoDemo Get SDRu Stereo FM receiver example parameters
 
 % Copyright 2011-2012 The MathWorks, Inc.
-% $Revision: 1.1.6.1 $  $Date: 2012/08/21 01:20:59 $
 
 DATA_SAMPLE_RATE              = 152000;  % Hz
 stereoFM.AudioSampleRate      = 48000;   % Hz

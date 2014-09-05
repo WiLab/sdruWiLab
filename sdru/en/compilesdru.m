@@ -1,4 +1,8 @@
 %COMPILESDRU Compile function with MATLAB Coder(TM) for use with USRP(R)
+%
+%   WARNING: COMPILESDRU will be removed in a future release. Use CODEGEN 
+%            instead.
+%
 %   COMPILESDRU(FCN) compiles the function, FCN, that contains SDRu
 %   System objects to generate a MEX function. This function accepts all
 %   the inputs that the CODEGEN function accepts.
@@ -21,5 +25,5 @@
 %   See also comm.SDRuReceiver, comm.SDRuTransmitter, codegen.
 
  
-%   Copyright 2011-2012 The MathWorks, Inc.
+%   Copyright 2011-2013 The MathWorks, Inc.
 

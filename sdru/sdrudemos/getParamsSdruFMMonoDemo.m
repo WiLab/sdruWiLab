@@ -2,7 +2,6 @@ function monoFM = getParamsSdruFMMonoDemo
 %getParamsSdruFMMonoDemo Get SDRu Monophonic FM receiver example parameters
 
 % Copyright 2011-2012 The MathWorks, Inc.
-% $Revision: 1.1.6.1 $  $Date: 2012/08/21 01:20:58 $
 
 USRP_SAMPLE_RATE            = 100e6;  % Hz
 monoFM.USRPDecimationFactor = 500;    % To achieve sample rate of 200 kHz

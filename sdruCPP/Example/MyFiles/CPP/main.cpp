@@ -9,14 +9,10 @@
 //#include <unistd.h>
 
 //Include headers of matlab functions
-//#include "Function1.h"
-//#include "Function2.h"
 #include "Transmitter.h"
 #include "FindSignal.h"
 #include "SignalCorrect.h"
 #include "Decoder.h"
-//#include "Receiver.h"
-//#include "Receiver.h"//All in one receiver and decoder
 
 //Include header of combined library
 #include "ComboFunction_initialize.h"
@@ -27,8 +23,7 @@
 // Create Mutex
 std::mutex mtx;
 std::mutex mtx2;
-//std::queue<creal_T*> rx2txQueueData;
-std::queue<double*> rx2txQueueData;
+std::queue<creal_T*> rx2txQueueData;
 std::queue<boolean_T*> rx2txQueueDataDecode;
 
 
@@ -36,22 +31,19 @@ std::queue<boolean_T*> rx2txQueueDataDecode;
 void SignalCorrect_Thread(void)
 {
     std::cout<<"Started Thread TX"<<std::endl;
-//    creal_T *input;
-    double *input;
-    boolean_T *output;//[384];
+    creal_T *input;
+    boolean_T *output;
     int k = MESSAGES2TX;
     while (k>0) {
         
         mtx.lock();
         if (!rx2txQueueData.empty()){
             input = (rx2txQueueData.front());
-            //std::cout<<"Input: "<<input[950]<<std::endl;
             rx2txQueueData.pop();
             mtx.unlock();
             SignalCorrect(input, output);//MAC Layer
-            //k = k - 1;
             mtx2.lock();
-            rx2txQueueDataDecode.push(&output[0]);
+            rx2txQueueDataDecode.push(output);
             mtx2.unlock();
             
             
@@ -67,9 +59,7 @@ void Thread_RX(void)
 {
     std::cout<<"Started Thread RX"<<std::endl;
     int k;
-    //creal_T output[960];
-    double output[1920*2];
-    //for (k=0;k<MESSAGES2TX;k++){
+    creal_T *output;
     while (1) {
         FindSignal(output);//PHY Layer
         mtx.lock();

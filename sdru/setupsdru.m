@@ -1,15 +1,7 @@
 function setupsdru(varargin)
 %SETUPSDRU Set up MATLAB to work with Communications System Toolbox Support Package for USRP(R) Radio
 %   SETUPSDRU sets up architecture-specific environment variables for
-%   Communications System Toolbox Support Package for USRP(R) Radio. This
-%   must be done in every MATLAB session.
-%
-%   You can automate this step in future sessions by adding "setupsdru" to
-%   your startup.m file.
-%
-%   If you prefer to do this setup manually in each session, you can use
-%   the "Add SDRu" shortcut that has been provided on the MATLAB shortcut
-%   bar.
+%   Communications System Toolbox Support Package for USRP(R) Radio. 
 %
 %   USRP(R) is a trademark of National Instruments Corp.
 

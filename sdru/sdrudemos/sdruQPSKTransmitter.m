@@ -11,7 +11,7 @@
 % configuring your host computer to work with the SDRu Transmitter System
 % object.
 %
-% Copyright 2012 The MathWorks, Inc.
+% Copyright 2012-2013 The MathWorks, Inc.
 
 %% Implementations
 % This example describes the MATLAB(R) implementation of a QPSK transmitter
@@ -81,7 +81,7 @@ useCodegen = false; % true to run the latest generated mex file
 % quadrature components of the QPSK modulated symbols. This is achieved by
 % repeating the Barker code bits twice before modulating them with the QPSK
 % modulator.
-%
+
 % The remaining bits are the payload. The first 105 bits of the payload
 % correspond to the ASCII representation of 'Hello world ###', where '###'
 % is an incrementing sequence of '001', '002', '003',..., '100'. The
@@ -97,11 +97,11 @@ useCodegen = false; % true to run the latest generated mex file
 %
 % The host computer communicates with the USRP(R) radio using the SDRu
 % transmitter System object.  You can supply the IP address of the USRP(R)
-% radio as an argument when you construct the object.  The IP address can be
-% any address within the same subnetwork as the host computer.  The IP
-% address should match the IP address of the USRP radio connected to the
-% host. The CenterFrequency, Gain, and InterpolationFactor arguments are
-% set by the parameter variable prmQPSKTransmitter.
+% radio as an argument when you construct the object.  The IP address can
+% be any address within the same subnetwork as the host computer, and
+% should match the IP address of the USRP radio connected to the host. The
+% CenterFrequency, Gain, and InterpolationFactor arguments are set by the
+% parameter variable prmQPSKTransmitter.
 
 %% Execution
 % Before running the script, first turn on the USRP(R) radio and connect it
@@ -111,7 +111,7 @@ useCodegen = false; % true to run the latest generated mex file
 % example while running the transmitter script.
 
 if compileIt
-    compilesdru('runSDRuQPSKTransmitter','mex', '-args', {coder.Constant(prmQPSKTransmitter)}); %#ok<UNRCH>
+    codegen('runSDRuQPSKTransmitter', '-args', {coder.Constant(prmQPSKTransmitter)}); %#ok<UNRCH>
 end
 if useCodegen
    clear runSDRuQPSKTransmitter_mex %#ok<UNRCH>

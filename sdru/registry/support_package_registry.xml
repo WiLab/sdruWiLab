@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
-<!--Copyright 2012 The MathWorks, Inc. -->
+<!--Copyright 2012-2013 The MathWorks, Inc. -->
 <!--USRP(R) Support Package Repository -->
 <PackageRepository>
     <SupportPackage 
         name="USRP(R) Radio"
         fullname="Communications System Toolbox Support Package for USRP(R) Radio"
-        version="5.0" 
+        version="14.1.0" 
         platform="PCWIN,PCWIN64,GLNXA64,MACI64"
         visible="1"
         enable="1"
@@ -15,6 +15,7 @@
         showsplicense="no"
         url="http://www.mathworks.com" 
         downloadurl="http://sharepoint/dev/spc/verdeploy/installer/Documents/target_packages" 
+        urlcatalog="urlcatalog.xml"
         licenseurl=""
         folder="sdru" 
         firmwareupdate=""
@@ -23,6 +24,7 @@
         <Path name="$(INSTALLDIR)/sdru"></Path>
         <Path name="$(INSTALLDIR)/sdru/usrp_uhd_mapi"></Path>
         <Path name="$(INSTALLDIR)/sdru/sdrudemos"></Path>
+        <Path name="$(INSTALLDIR)/sdru/sdrumex"></Path>
         <Path name="$(INSTALLDIR)/sdru/uhdapps"></Path>
         <Path name="$(INSTALLDIR)/sdru/fpgatarget"></Path>
         <Path name="$(INSTALLDIR)/sdru/bin/$(ARCH)"></Path>

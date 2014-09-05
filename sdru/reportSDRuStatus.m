@@ -7,7 +7,7 @@ function reportSDRuStatus(errStatus, errMsg, ipAddress, reportMethod)
 %
 %   USRP(R) is a trademark of National Instruments Corp.
 
-%   Copyright 2012 The MathWorks, Inc.
+%   Copyright 2012-2013 The MathWorks, Inc.
 
 %#codegen
 
@@ -54,6 +54,26 @@ function reportSDRuStatus(errStatus, errMsg, ipAddress, reportMethod)
             errStatus == UsrpErrorCapiEnumT.UsrpDriverNotResponding, ...
             msgID, ipAddress);
       end
+    case UsrpErrorCapiEnumT.UsrpDriverRxBusy
+      msgID = 'sdru:reportSDRuStatus:RxBusy';
+      switch reportMethod
+        case UsrpReportMethodEnumT.Warning
+          coder.internal.warning(msgID, ipAddress);
+        case UsrpReportMethodEnumT.Error
+          coder.internal.errorIf(...
+            errStatus == UsrpErrorCapiEnumT.UsrpDriverRxBusy, ...
+            msgID, ipAddress);
+      end
+    case UsrpErrorCapiEnumT.UsrpDriverTxBusy
+      msgID = 'sdru:reportSDRuStatus:TxBusy';
+      switch reportMethod
+        case UsrpReportMethodEnumT.Warning
+          coder.internal.warning(msgID, ipAddress);
+        case UsrpReportMethodEnumT.Error
+          coder.internal.errorIf(...
+            errStatus == UsrpErrorCapiEnumT.UsrpDriverTxBusy, ...
+            msgID, ipAddress);
+      end
     case UsrpErrorCapiEnumT.UsrpDriverBusy
       msgID = 'sdru:reportSDRuStatus:Busy';
       switch reportMethod
@@ -68,10 +88,10 @@ function reportSDRuStatus(errStatus, errMsg, ipAddress, reportMethod)
       msgID = 'sdru:reportSDRuStatus:UnknownStatus';
       switch reportMethod
         case UsrpReportMethodEnumT.Warning
-          coder.internal.warning(msgID)
+          coder.internal.warning(msgID, errMsg)
         case UsrpReportMethodEnumT.Error
           coder.internal.errorIf(...
-            errStatus == UsrpErrorCapiEnumT.UsrpDriverError, msgID)
+            errStatus == UsrpErrorCapiEnumT.UsrpDriverError, msgID, errMsg)
       end
   end
 end

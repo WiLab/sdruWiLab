@@ -19,7 +19,6 @@
 % not work.
 
 % Copyright 2011-2012 The MathWorks, Inc.
-% $Revision: 1.1.6.4 $ $Date: 2012/11/05 15:06:51 $
 
 %% Overview
 % Walkie-talkies provide a subscription-free method of communicating over
@@ -118,7 +117,7 @@ hInterpolator = dsp.FIRInterpolator(frsTx.InterpolationFactor, ...
 % the modulating signal. The current value of K is computed assuming A = 1.
 % It should be changed if you change the signal source maximum amplitude.
 
-hIntegrator = dsp.DigitalFilter(...
+hIntegrator = dsp.IIRFilter(...
   'Structure',    'Direct form I', ...
   'Numerator',    1, ...
   'Denominator',  [1 -1]);

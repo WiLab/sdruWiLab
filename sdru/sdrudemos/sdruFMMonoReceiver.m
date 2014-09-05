@@ -11,7 +11,6 @@
 % System object, comm.SDRuReceiver.
 
 % Copyright 2011-2012 The MathWorks, Inc.
-% $Revision: 1.1.6.4 $ $Date: 2012/11/05 15:06:48 $
 
 %% Initialization
 % The <matlab:edit('configureSdruFMMonoDemo.m') configureSdruFMMonoDemo.m>

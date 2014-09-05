@@ -1,0 +1,212 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Frequency Offset Calibration with USRP&reg; Hardware</title><meta name="generator" content="MATLAB 8.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-02-27"><meta name="DC.source" content="sdrufreqcalib.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><style>
+.open_example { 
+    padding:0px 0px 1px 0px;
+    margin:20px;
+    font-size:0.9em;
+    border:1px solid #aeaeae;
+    display:block;
+    float:right;
+    border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px;
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(top, #FFFFFF 0%, #E6E6E6 100%); /* FF3.6+ */	
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFFFFF), color-stop(100%,#E6E6E6)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #FFFFFF 0%,#E6E6E6 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #ffffff 0%,#e6e6e6 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #ffffff 0%,#e6e6e6 100%); /* IE10+ */
+    background: linear-gradient(top,  #ffffff 0%,#e6e6e6 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', endColorstr='#E6E6E6',GradientType=0 ); /* IE6-9 */
+}
+
+.open_example:hover {
+    background: #f3f3f3; /* Old browsers */
+    background: -moz-linear-gradient(top, #f3f3f3 0%, #d7d7d7 100%); /* FF3.6+ */    
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f3f3f3), color-stop(100%,#d7d7d7)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #f3f3f3 0%,#d7d7d7 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #f3f3f3 0%,#d7d7d7 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #f3f3f3 0%,#d7d7d7 100%); /* IE10+ */
+    background: linear-gradient(top,  #f3f3f3 0%,#d7d7d7 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3f3f3', endColorstr='#d7d7d7',GradientType=0 ); /* IE6-9 */
+} 
+
+.open_example a { 
+    padding:6px 10px; 
+    line-height:130%;
+    text-decoration:none;
+    float:left;
+}
+      </style><div class="open_example"><a href="matlab:sdrufreqcalib">Open this Example</a></div><div class="content"><h1>Frequency Offset Calibration with USRP&reg; Hardware</h1><!--introduction--><p>These two models show how to determine the relative frequency offset between two Universal Software Radio Peripheral&reg; (USRP&reg;) devices using Simulink&reg;.</p><p>The transmitter sends a 100 Hz sine wave with the <a href="matlab:sdrufreqcalib">Frequency Offset Calibration (Tx) with USRP&reg; Hardware</a> model. The receiver receives the signal, calculates the frequency offset and displays the offset in the <a href="matlab:sdrufreqcalib_rx">Frequency Offset Calibration (Rx) with USRP&reg; Hardware</a> model.</p><p>In order to run these two models, you need to ensure that the specified center frequency of the SDRu Transmitter and Receiver blocks is within the acceptable range of your USRP&reg; daughter board. Please refer to <a href="../../help/index.html">Getting Started</a> for details on configuring your host computer to work with the SDRu Transmitter and Receiver blocks.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Overview</a></li><li><a href="#2">Structure of the Example</a></li><li><a href="#7">Receiver</a></li><li><a href="#8">Find Peak Frequency</a></li><li><a href="#9">Spectrum Analyzer</a></li><li><a href="#10">Running the Example</a></li><li><a href="#11">Copyright Notice</a></li></ul></div><h2>Overview<a name="1"></a></h2><p>These two models perform an FFT-based frequency offset calculation at complex baseband. The receiver model provides the following information:</p><div><ul><li>The quantitative value of the frequency offset</li><li>A graphical view of the spur-free dynamic range of the receiver</li><li>A graphical view of the qualitative SNR level of the received signal</li></ul></div><h2>Structure of the Example<a name="2"></a></h2><p>The following figure shows the transmitter model:</p><img vspace="5" hspace="5" src="sdrufreqcalib_01.png" alt=""> <p>The following figure shows the receiver model:</p><img vspace="5" hspace="5" src="sdrufreqcalib_02.png" alt=""> <p>The following figure shows the detailed structure of the <b>Receiver</b> subsystem:</p><img vspace="5" hspace="5" src="sdrufreqcalib_03.png" alt=""> <div><ul><li>The <b>Find Peak Frequency</b> block - uses an FFT to find the frequency with the maximum power in the received signal.</li><li>The <b>Spectrum Analyzer</b> block - computes and displays the power spectral density of the received signal.</li></ul></div><h2>Receiver<a name="7"></a></h2><h2>Find Peak Frequency<a name="8"></a></h2><p>The <b>Find Peak Frequency</b> subsystem finds the frequency with the maximum power in the received signal, which equals the frequency offset plus 100 Hz. The following diagram shows the subsystem. In this subsystem, the Periodogram block returns the PSD estimate of the received signal. The Probe block finds the frame size and the frame sample time. With this information, this subsystem finds the index of the maximum amplitude across the frequency band and converts the index to the frequency value according to</p><p>Foffset = IndexofMaxAmplitude * FrameSize / (FFTLength * FrameSampleTime)</p><p>The MATLAB function findpeakfreq.m performs this conversion.</p><img vspace="5" hspace="5" src="sdrufreqcalib_04.png" alt=""> <h2>Spectrum Analyzer<a name="9"></a></h2><p>The following figure shows the output of the Spectrum Analyzer on a frequency range of -100 kHz to 100 kHz. In the case shown below, the frequency with the maximum power of the received signal is about -17 kHz, and the spur-free dynamic range of the receiver is about 14 dB.</p><p><img vspace="5" hspace="5" src="sdrufreqcalibspectrum.png" alt=""> </p><h2>Running the Example<a name="10"></a></h2><p>In order to calibrate the frequency offset between two USRP&reg; devices, first start the <a href="matlab:sdrufreqcalib">Frequency Offset Calibration (Tx) with USRP&reg; Hardware</a> model on one USRP&reg; radio, and then start the <a href="matlab:sdrufreqcalib_rx">Frequency Offset Calibration (Rx) with USRP&reg; Hardware</a> model on another USRP&reg; radio.</p><p>To run the receiver model, set the <i>Center frequency</i> parameter of the <b>SDRu Receiver</b> block to the same value as the center frequency setting of the <a href="matlab:sdrufreqcalib">Frequency Offset Calibration (Tx) with USRP&reg; Hardware</a> model. Then run the model. The frequency offset is calculated and displayed while the simulation is running.</p><p>To compensate for a transmitter/receiver frequency offset, add the displayed frequency offset value to the center frequency of the SDRu Receiver block. If the displayed frequency offset is negative, then subtract it from the center frequency. The spectrum displayed by the Spectrum Analyzer block should then have its maximum at 0 Hz.</p><h2>Copyright Notice<a name="11"></a></h2><p>USRP&reg; is a trademark of National Instruments Corp.</p><p class="footer">Copyright 2011-2012 The MathWorks, Inc.<br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2014a</a><br><br>
+		  MATLAB and Simulink are registered trademarks of The MathWorks, Inc.  Please see <a href="http://www.mathworks.com/trademarks">www.mathworks.com/trademarks</a> for a list of other trademarks owned by The MathWorks, Inc.  Other product or brand names are trademarks or registered trademarks of their respective owners.
+      </p></div><!--
+##### SOURCE BEGIN #####
+%% Frequency Offset Calibration with USRP(R) Hardware
+% These two models show how to determine the relative frequency offset
+% between two Universal Software Radio Peripheral(R) (USRP(R)) devices
+% using Simulink(R).
+%
+% The transmitter sends a 100 Hz sine wave with the
+% <matlab:sdrufreqcalib Frequency Offset Calibration (Tx) with
+% USRP(R) Hardware> model. The receiver receives the signal, calculates the
+% frequency offset and displays the offset in the
+% <matlab:sdrufreqcalib_rx Frequency Offset Calibration (Rx) with
+% USRP(R) Hardware> model.
+%
+% In order to run these two models, you need to ensure that the specified
+% center frequency of the SDRu Transmitter and Receiver blocks is within
+% the acceptable range of your USRP(R) daughter board. Please refer to
+% <../../help/index.html Getting Started> for details on configuring your
+% host computer to work with the SDRu Transmitter and Receiver blocks.
+
+% Copyright 2011-2012 The MathWorks, Inc. 
+
+%% Overview
+%
+% These two models perform an FFT-based frequency offset calculation at
+% complex baseband. The receiver model provides the following information:
+%
+% * The quantitative value of the frequency offset
+% * A graphical view of the spur-free dynamic range of the receiver
+% * A graphical view of the qualitative SNR level of the received signal
+
+%% Structure of the Example
+% The following figure shows the transmitter model:
+modelname1 = 'sdrufreqcalib';
+open_system(modelname1);
+set_param(modelname1, 'SimulationCommand', 'update')
+%%
+% The following figure shows the receiver model:
+modelname2 = 'sdrufreqcalib_rx';
+close_system(modelname1, 0);
+open_system(modelname2);
+set_param(modelname2, 'SimulationCommand', 'update')
+%%
+% The following figure shows the detailed structure of the *Receiver*
+% subsystem:
+%%
+%
+open_system([modelname2 '/Receiver']);
+%%
+% * The *Find Peak Frequency* block - uses an FFT to find the frequency
+% with the maximum power in the received signal.
+% * The *Spectrum Analyzer* block - computes and displays the power
+% spectral density of the received signal.
+%% Receiver
+%% Find Peak Frequency
+% The *Find Peak Frequency* subsystem finds the frequency with the maximum
+% power in the received signal, which equals the frequency offset plus 100
+% Hz. The following diagram shows the subsystem. In this subsystem, the
+% Periodogram block returns the PSD estimate of the received signal. The
+% Probe block finds the frame size and the frame sample time. With this
+% information, this subsystem finds the index of the maximum amplitude
+% across the frequency band and converts the index to the frequency value
+% according to
+%
+% Foffset = IndexofMaxAmplitude * FrameSize / (FFTLength * FrameSampleTime)
+%
+% The MATLAB function findpeakfreq.m performs this conversion.
+
+close_system([modelname2 '/Receiver']);
+open_system([modelname2 '/Receiver/Find Peak Frequency'],'force');
+
+
+%% Spectrum Analyzer
+% The following figure shows the output of the Spectrum Analyzer on a
+% frequency range of -100 kHz to 100 kHz. In the case shown below, the
+% frequency with the maximum power of the received signal is about -17 kHz,
+% and the spur-free dynamic range of the receiver is about 14 dB.
+% 
+% <<sdrufreqcalibspectrum.png>>
+%
+%% Running the Example
+% In order to calibrate the frequency offset between two USRP(R) devices,
+% first start the <matlab:sdrufreqcalib Frequency Offset
+% Calibration (Tx) with USRP(R) Hardware> model on one USRP(R) radio, and
+% then start the <matlab:sdrufreqcalib_rx Frequency Offset
+% Calibration (Rx) with USRP(R) Hardware> model on another USRP(R) radio.
+% 
+% To run the receiver model, set the _Center frequency_ parameter of the
+% *SDRu Receiver* block to the same value as the center frequency setting
+% of the <matlab:sdrufreqcalib Frequency Offset Calibration (Tx)
+% with USRP(R) Hardware> model. Then run the model. The frequency offset is
+% calculated and displayed while the simulation is running.
+%
+% To compensate for a transmitter/receiver frequency offset, add the
+% displayed frequency offset value to the center frequency of the SDRu
+% Receiver block. If the displayed frequency offset is negative, then
+% subtract it from the center frequency. The spectrum displayed by the
+% Spectrum Analyzer block should then have its maximum at 0 Hz.
+
+close_system([modelname2 '/Receiver/Find Peak Frequency']);
+close_system(modelname2, 0);
+%% Copyright Notice
+% USRP(R) is a trademark of National Instruments Corp.
+
+##### SOURCE END #####
+--></body></html>

@@ -1,4 +1,4 @@
-function [r, s] = call_uhd_app(appName, appArgs)
+function [r, s] = call_uhd_app(appName, appArgs, varargin)
 % call_uhd_app Execute a binary application from a compiled UHD(TM) distribution
 %
 % NOTE: This function is experimental and is intended to be executed under the
@@ -11,6 +11,7 @@ function [r, s] = call_uhd_app(appName, appArgs)
 % [result, status] = call_uhd_app(APPNAME, '--help')
 % [result, status] = call_uhd_app('sudo APPNAME', APPARGS)
 % appsList         = call_uhd_app('LIST_APPS')
+% [result, status] = call_uhd_app(..., ECHO)
 %
 % A number of the UHD(TM) applications are available to execute within the
 % MATLAB environment.  This allows for basic diagnostic work such as device
@@ -148,11 +149,17 @@ function [r, s] = call_uhd_app(appName, appArgs)
 % Done
 %
 
-%   Copyright 2011-2012 The MathWorks, Inc.
+%   Copyright 2011-2013 The MathWorks, Inc.
 
 if nargin == 1
     appArgs = '';
 end
+if nargin > 2
+    echoFlag = varargin{1};
+else
+    echoFlag = false;
+end
+
 
 installdir = fileparts(mfilename('fullpath'));
 arch       = computer('arch');
@@ -160,15 +167,7 @@ arch       = computer('arch');
 binAppsDir = fullfile(installdir, arch);
 allBinApps = l_getAppsList(binAppsDir, arch);
 
-usrproot     = sdruroot();
-sandboxRoot = fullfile(matlabroot, 'toolbox', 'shared', 'sdr', 'sdru');
-isBatInstall = strcmp(usrproot, sandboxRoot);
-
-if isBatInstall
-  pyAppsDir  = fullfile(sdruroot, 'uhdapps', 'utils');
-else
-  pyAppsDir  = fullfile(fileparts(sdruroot), 'EttusResearch-UHD-Mirror-ad12df0', 'host', 'utils');
-end
+pyAppsDir  = fullfile(sdruroot, 'uhdapps', 'utils');
 allPyApps  = l_getAppsList(pyAppsDir, arch);
 
 allApps    = [allBinApps, allPyApps];
@@ -203,7 +202,15 @@ else
     error(message('sdru:uhdapp:unknownapp', appName, allAppsStr));
 end
 
-[s, r] = system([execSudo ' ' execFile ' ' appArgs]);
+if echoFlag
+    echoSelection = ', ''-echo'')';
+else
+    echoSelection = ')';
+end
+
+systemCommand = sprintf('system(''%s %s %s'' %s', execSudo, execFile, appArgs, echoSelection);
+
+[s, r] = eval(systemCommand);
 
 end
 

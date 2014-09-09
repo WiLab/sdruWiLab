@@ -4,14 +4,14 @@ output = 1;
 
 %% Transmitter
 persistent TxMAC TxPHY SDRuTransmitter
- 
+
 if isempty(TxMAC)
     % SETUP MAC
     TxMAC = TxOFDMA;
     TxMAC.desiredUser = 1;
     TxMAC.dataType = 'c';
     TxMAC.symbolsPerFrame = 20;
-    
+    % Setup PHY
     TxPHY = PHYTransmitter;
     TxPHY.HWAttached = false;
     TxPHY.NumDataSymbolsPerFrame = TxMAC.symbolsPerFrame;
@@ -23,59 +23,35 @@ if isempty(TxMAC)
     SDRuTransmitter = comm.SDRuTransmitter('192.168.10.2', ...
         'CenterFrequency',      900e6, ...
         'InterpolationFactor',  InterpolationFactor,...
-        'Gain',                 25,...
-        'EnableBurstMode',      false...
-        ...%'NumFramesInBurst',     1 ...
-         );
-
+        'Gain',                 25 ...
+        );
+    
 end
 
- 
-%messageUE1 = ['1st Message';'2nd Message';'3rd Message';'4th Message';'5th Message'];
-%messageUE2 = ['First  Message';'Second Message';'Third  Message';'Fourth Message';'Fifth  Message'];
+% Messages to transmit
 messageUE1 = ['Message'];
 messageUE2 = ['Message'];
 
+
+%% Create a number of frames, and put them in a vector
 frameLength = (20*(64+16)+320);
 
-frame = complex(zeros(frameLength*10,1));
+framesToCreate = 10;
+frame = complex(zeros(frameLength*framesToCreate,1));
 
-%% 
-for k = 1:10
+for k = 1:framesToCreate
     bitsToTx1 = step(TxMAC, messageUE1(1,:),messageUE2(1,:));
     frame(1+(k-1)*frameLength:k*frameLength)= step(TxPHY,bitsToTx1);
 end
 
-frame2=[0.0001*randn(100,1);frame;0.0001*randn(100,1)];
+% Add gaps between transmissions
+framesWithGaps=[zeros(100,1);frame;zeros(100,1)];
 
+% Transmit out USRP
 while 1
-        step(SDRuTransmitter,frame2);
+    step(SDRuTransmitter,framesWithGaps);
 end
 
-
-
-% %%
-% AFR = dsp.AudioFileReader('OutputDataType','uint8','SamplesPerFrame',20);
-% frame = complex(zeros(frameLength*100,1));
-% 
-% AFR = dsp.AudioFileReader('OutputDataType','uint8','SamplesPerFrame',20);
-% 
-% 
-% for k = 1:100
-%     %bitsToTx1 = step(TxMAC, messageUE1(1,:),messageUE2(1,:));
-%     audio = step(AFR);
-%     bitsToTx1 = step(TxMAC, audio.',audio.');
-%     frame(1+(k-1)*frameLength:k*frameLength)= step(TxPHY,bitsToTx1);
-% end
-% 
-% %frame2=[randn(100,1);frame];
-% 
-% while 1
-%     for k=1:100
-%         frame3 = frame(1+(k-1)*frameLength:k*frameLength);
-%         step(SDRuTransmitter,frame3);
-%     end
-% end
 
 end
 

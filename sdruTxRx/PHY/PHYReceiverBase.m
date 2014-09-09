@@ -2,42 +2,15 @@ classdef PHYReceiverBase < matlab.System
     
     % OFDM Physical Layer Receiver
     properties (Nontunable)
-        ReceiveBufferLength = 740;%ceil( rx.frameLength*4 ); %Size of Buffer of sliding window
         CenterFrequency = 2.2e9;
-        NumFrames = 1;              % Frames to capture
+        NumFrames = 1; % Frames to capture
         HWAttached = false;
         padBits = 0;
         FrameLength = 640;
     end
     
     properties
-       delay = 0; 
-    end
-    
-    properties (Access = protected)
-        
-        % Variables
-        pTimeoutDuration
-        phi
-        %delay
-        phase
-        frequencyMA
-        
-        % Objects
-        pAGC
-        pSDRuReceiver
-        pCRC
-        
-        % Vector Memory
-        %pMessageBits
-        pOutputBits
-        Buffer
-        pilotEqGains
-        preambleEqGains
-        
-        spec1
-        spec2
-        
+        delay = 0;
     end
     
     % OFDM Physical Layer Base Class
@@ -57,11 +30,28 @@ classdef PHYReceiverBase < matlab.System
         CyclicPrefixLength = 16;
         PilotCarrierIndices = [12;26;40;54];
         NumGuardBandCarriers = [6;5];
-
+        
     end
     
     properties (Access = protected)
         
+        % Variables
+        pTimeoutDuration
+        phi
+        phase
+        frequencyMA
+        ReceiveBufferLength % Size of Buffer of sliding window
+        
+        % Objects
+        pAGC
+        pSDRuReceiver
+        pCRC
+        
+        % Vector Memory
+        pOutputBits
+        Buffer
+        pilotEqGains
+        preambleEqGains
         
         % Sync
         K
@@ -105,26 +95,23 @@ classdef PHYReceiverBase < matlab.System
             
             % Must call the following methods before this one
             % CreatePreambles(obj) and CreateDemodulators(obj);
-                       
+            
             obj.delay = -1;
             
             obj.PreviousSig = complex(zeros(200,1));
             
             obj.FrameLength = obj.NumDataSymbolsPerFrame*(obj.FFTLength+obj.CyclicPrefixLength)+length(obj.Preambles);
-
+            
             obj.ReceiveBufferLength = obj.FrameLength*2;
             
             obj.Buffer = complex(zeros(obj.ReceiveBufferLength,1));
-
+            
             
             %% Setup Hardware Receiver
             % System parameters to adjust because of hardware limitation
             USRPADCSamplingRate = 100e6;
-            DecimationFactor = floor(USRPADCSamplingRate/obj.SamplingFrequency);          
+            DecimationFactor = floor(USRPADCSamplingRate/obj.SamplingFrequency);
             offsetCompensationValue = 0;% Get from calibration
-            
-            %DecimationFactor = 120;
-            %obj.SamplingFrequency = USRPADCSamplingRate/DecimationFactor;
             
             % USRP
             if obj.HWAttached
@@ -156,10 +143,6 @@ classdef PHYReceiverBase < matlab.System
         
         function setupProcessFrame(obj)
             
-            %USRPADCSamplingRate = 100e6;
-            %DecimationFactor = 120;
-            %obj.SamplingFrequency = USRPADCSamplingRate/DecimationFactor;
-            
             % Gain control
             obj.pAGC = comm.AGC('UpdatePeriod',  obj.FrameLength/10); % Value must be constant, equal to rx.receiveBufferLength
             
@@ -171,7 +154,7 @@ classdef PHYReceiverBase < matlab.System
             obj.pilotEqGains = complex(zeros(obj.numCarriers, obj.hDataDemod.NumSymbols));
             obj.preambleEqGains = complex(zeros(obj.FFTLength-sum(obj.NumGuardBandCarriers),1));
             
-
+            
         end
         
         function [rFrame, statusFlag] = FindFrame(obj,data)
@@ -186,14 +169,12 @@ classdef PHYReceiverBase < matlab.System
             rFrame = complex(zeros(obj.FrameLength,1));
             
             numFoundFrames = 0;
-            lastFound = -2; %Flag for found frame, used for dup check
-            numBuffersProcessed = 0; %Track received data, needed for separate indexing of processed and unprocessed data (processed==preamble found)            
-            halfBuffLen = floor(obj.ReceiveBufferLength/2);
+            numBuffersProcessed = 0; %Track received data, needed for separate indexing of processed and unprocessed data (processed==preamble found)
             dropMe = false;
             
             % Locate frames in buffer
             while numFoundFrames < obj.NumFrames
-            
+                
                 
                 % Get data from USRP or Input
                 if obj.HWAttached % Get data from usrp
@@ -252,7 +233,6 @@ classdef PHYReceiverBase < matlab.System
                     
                     if ~(sum(obj.PreviousSig(1:200)-rFrame(1:200))==0)
                         numFoundFrames = numFoundFrames + 1;
-                        lastFound = numBuffersProcessed;%Flag frame as found so duplicate frames are not processed
                     end
                     
                     obj.PreviousSig(1:200) = rFrame(1:200);
@@ -281,18 +261,8 @@ classdef PHYReceiverBase < matlab.System
         function RHard = ProcessFrame(obj,rFrame)
             %% Recover found frame
             
-            persistent RxMAC
-            
-            obj.numProcessed = obj.numProcessed + 1;
+            obj.numProcessed = obj.numProcessed + 1; % Required for frequency correction
             %rFrame = step(obj.pAGC, rFrame);
-            
-%             if isempty(RxMAC)
-%             %%%% Used for testing
-%             RxMAC = RxOFDMA;
-%             RxMAC.dataType = 'c';
-%             RxMAC.desiredUser = 1;
-%             %%%%
-%             end
             
             % Correct frequency offset
             if ~(sum(abs(rFrame))>0)
@@ -304,7 +274,7 @@ classdef PHYReceiverBase < matlab.System
             if sum(abs(rFreqShifted))==0
                 fprintf('rFreqShifted all zero\n');
             end
-	    fprintf('Reached\n');
+            fprintf('Reached\n');
             [ RPostEqualizer ] = equalizeOFDM( obj, rFreqShifted );
             
             % Demod subcarriers
@@ -313,12 +283,9 @@ classdef PHYReceiverBase < matlab.System
             end
             [ ~, RHard]= demodOFDMSubcarriers_sdr( obj, RPostEqualizer );
             fprintf('ReachedLast\n');
-            % Decode
-            %step(RxMAC,RHard(:,1+(numFoundFrames-1)*obj.NumDataSymbolsPerFrame:(numFoundFrames)*obj.NumDataSymbolsPerFrame));
-            %step(RxMAC,RHard);
             
         end
-            
+        
         
         %%%%%%%%%%%% OFDM System Setup %%%%%%%%%%%%%%%%
         function CreateDemodulators(obj)
@@ -346,14 +313,14 @@ classdef PHYReceiverBase < matlab.System
             %obj.dataSubcarrierIndexies = [1:5,7:19,21:26,28:33,35:47,49:53];
             
             obj.dataSubcarrierIndexies = TMPdataSubcarrierIndexies(TMPdataSubcarrierIndexies>0);
-                
+            
             obj.CRC = comm.CRCDetector([1 0 0 1], 'ChecksumsPerFrame',1);
-                
+            
             
         end
         
         function CreatePreambles(obj)
-
+            
             %% Create Short Preamble
             obj.ShortPreamble = [ 0 0  1+1i 0 0 0  -1-1i 0 0 0 ... % [-27:-17]
                 1+1i 0 0 0  -1-1i 0 0 0 -1-1i 0 0 0   1+1i 0 0 0 ... % [-16:-1]
@@ -435,7 +402,7 @@ classdef PHYReceiverBase < matlab.System
                 % Apply frequency correction
                 t = 0: 1/obj.SamplingFrequency : (length(rFrame)-1)/obj.SamplingFrequency;
                 rFreqShifted = exp(-1i*obj.frequencyMA*t.').*rFrame;
-
+                
             else % Full buffer
                 
                 obj.frequencyMA = mean(obj.frequency);
@@ -458,7 +425,7 @@ classdef PHYReceiverBase < matlab.System
             % is returned
             
             %% Timing Estimate
-
+            
             
             % Cross correlate
             rWin = recv(1:obj.CorrelationWindowSize);
@@ -476,7 +443,7 @@ classdef PHYReceiverBase < matlab.System
             
             PhatShort2 = PhatShort2(obj.K:end);
             %RhatShort2 = RhatShort2(obj.K:end);
-                        
+            
             %PhatShort2 = PhatShort2+ones(size(PhatShort2))*0.0001;
             %RhatShort2 = RhatShort2+ones(size(PhatShort2))*0.0001;
             %PhatShort2(PhatShort2<0.001) = 0;
@@ -484,19 +451,19 @@ classdef PHYReceiverBase < matlab.System
             
             %M2 = abs(PhatShort).^2; %./ RhatShort.^2;
             M = abs(PhatShort2).^2; %./ RhatShort2.^2;
-
+            
             %figure(1);stem(M);
             
             % Determine start of short preamble
             [preambleEstimatedLocation, numPeaks] = locateShortPreamble( obj, M, obj.K );
             
-%             % View found location
-%             if preambleEstimatedLocation > 0
-%             figure(1);stem(M);
-%             hold on;tmp = zeros(size(M));tmp(preambleEstimatedLocation) = M(preambleEstimatedLocation+(obj.K/2+1));
-%             stem(tmp,'r');hold off;
-%             return;
-%             end
+            %             % View found location
+            %             if preambleEstimatedLocation > 0
+            %             figure(1);stem(M);
+            %             hold on;tmp = zeros(size(M));tmp(preambleEstimatedLocation) = M(preambleEstimatedLocation+(obj.K/2+1));
+            %             stem(tmp,'r');hold off;
+            %             return;
+            %             end
         end
         
         
@@ -548,17 +515,17 @@ classdef PHYReceiverBase < matlab.System
             % Normalize max peaks found
             numPeaks = numPeaks/numel(desiredPeakLocations);
             
-                        
-%             x = zeros(size(M));
-%             y = zeros(size(M));
-%             if preambleEstimatedLocation>-1
-%             y(preambleEstimatedLocation) = max(M);
-%             end
-%             x(MLocations) = max(M);
-%             %figure(1);hold on;stem(x);hold off;
-%             figure(1);hold on;stem(y);hold off;
-%             
-%             x=1;
+            
+            %             x = zeros(size(M));
+            %             y = zeros(size(M));
+            %             if preambleEstimatedLocation>-1
+            %             y(preambleEstimatedLocation) = max(M);
+            %             end
+            %             x(MLocations) = max(M);
+            %             %figure(1);hold on;stem(x);hold off;
+            %             figure(1);hold on;stem(y);hold off;
+            %
+            %             x=1;
             
         end
         %% %%%%%%%%%%%%%% EQUALIZER %%%%%%%%%%%%%%%%%%%
@@ -599,7 +566,7 @@ classdef PHYReceiverBase < matlab.System
             % Apply preamble equalizer gains to data and pilots
             RXPilots = preamblePilotGains.*RXPilots; %Correct pilots
             R = preambleGainsFull(obj.dataSubcarrierIndexies,:).*Rraw;%Correct data
-
+            
             %% Pilot Equalization
             % Get pilot-based equalizer gains
             obj.pilotEqGains = pilotFDE(obj, RXPilots, obj.pilots, 12);
@@ -642,13 +609,13 @@ classdef PHYReceiverBase < matlab.System
         %%%%%%%%%%%%%%% SUBCARRIER DEMOD %%%%%%%%%%%%%%%
         function [BER, RHard] = demodOFDMSubcarriers_sdr( ~, R )
             %#codegen
-
+            
             % Demodulate subcarrier data
-            RHard = R<0;            
+            RHard = R<0;
             BER = 1;
             
         end
-
+        
         % Do nothing aka waste time
         function Wait(obj,timeToWait)
             
@@ -662,7 +629,7 @@ classdef PHYReceiverBase < matlab.System
             end
             
         end
-
+        
         % Simple Energy detection and thresholding
         function [decision,meanEnergy] = SpectrumSenseEnergy( obj )
             

@@ -1,6 +1,4 @@
-function [ output ] = Transmitter() %#codegen
-
-output = 1;
+function output2 = testAll()
 
 %% Transmitter
 persistent TxMAC TxPHY SDRuTransmitter
@@ -16,7 +14,7 @@ if isempty(TxMAC)
     TxPHY.HWAttached = false;
     TxPHY.NumDataSymbolsPerFrame = TxMAC.symbolsPerFrame;
     
-    SamplingFrequency = 0.5e6;
+    SamplingFrequency = 1e6;
     USRPADCSamplingRate = 100e6;
     InterpolationFactor = floor(USRPADCSamplingRate/SamplingFrequency);
     
@@ -45,21 +43,19 @@ for k = 1:framesToCreate
 end
 
 % Add gaps between transmissions
-framesWithGaps=[complex(zeros(100,1));frame;complex(zeros(100,1))];
+framesWithGaps=[zeros(100,1);frame;zeros(100,1)];
 
-framesWithGapsTmp = framesWithGapsStandard;
+framesWithGaps = awgn(framesWithGaps,15,'measured');
 
-if sum(framesWithGaps- framesWithGapsTmp)==0
-    fprintf('Not Different\n')
-else
-    fprintf('Different\n');
-end
+% Find Signal
+[ rFrameComplex ] = FindSignal(framesWithGaps);
+disp('Found Frame');
+% Signal Correct
+[ RHard2 ] = SignalCorrect(rFrameComplex);
+disp('Signal Corrected');
+% Decoder
+output2 = Decoder( RHard2 );
+disp('Finished Decoding');
 
-% Transmit out USRP
-while 1
-    step(SDRuTransmitter,framesWithGapsTmp);
-end
 
-
-end
 

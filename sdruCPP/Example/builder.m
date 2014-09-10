@@ -3,6 +3,8 @@ cfg.CustomSource = 'main.cpp';
 cfg.CustomInclude = 'MyFiles/CPP/';
 cfg.TargetLang='C++';
 cfg.PostCodeGenCommand = 'setbuildargs(buildInfo)';
+functionsToThread = {'Transmitter', 'FindSignal','SignalCorrect','Decoder'};
+outputFunctionName = {'ComboFunction'};
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Do Not Edit Below
@@ -15,8 +17,9 @@ Release = ver;Release = Release.Release;
 Release = str2double(Release(3:6));
 if Release > 2013
     %codegen -config cfg Function1 Function2 Transmitter SignalCorrect FindSignal Decoder Receiver -o ComboFunction
-    codegen -config cfg Transmitter FindSignal SignalCorrect Decoder -o ComboFunction
+    %codegen -config cfg Transmitter FindSignal SignalCorrect Decoder -o ComboFunction
     %codegen -config cfg Transmitter Receiver -o ComboFunction
+    codegen('-config','cfg',functionsToThread{:},'-o',outputFunctionName{:});
 else
     hostname = lower(gethostname);
     hostname = hostname(2:end);
@@ -70,7 +73,7 @@ else
     cfg.InlineThresholdMax = 400;
     
     % Pass the rest of the arguments to codegen
-    codegenResult = codegen('Function1','Function2','Transmitter','SignalCorrect','FindSignal','-config', cfg, '-o','ComboFunction');
+    codegenResult = codegen(functionsToThread{:},'-config', cfg, '-o',outputFunctionName{:});
     
 end
 

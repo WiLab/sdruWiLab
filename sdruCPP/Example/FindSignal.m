@@ -6,13 +6,13 @@ persistent  FF
 if isempty(FF)
     FF = PHYRxFindFrame;
     FF.NumFrames = 1;
-    FF.NumDataSymbolsPerFrame = 20;
+    FF.NumDataSymbolsPerFrame = 12;
     
     FF.HWAttached = true;
     FF.PeakThreshold = 0.7;
     FF.requiredPeaks = 7;
     
-    FF.SamplingFrequency= 1e6;
+    FF.SamplingFrequency= 0.5e6;
     FF.CenterFrequency = 900e6;
 end
 
@@ -22,7 +22,7 @@ debugFlag = 0;
 
 % Check if there is an input, really only used for testing
 if nargin < 1
-    rFrame = ((1:(20*(64+16)+320)*2)');
+    rFrame = ((1:(FF.NumDataSymbolsPerFrame*(64+16)+320)*2)');
 else
     rFrame = varargin{1};
     if FF.HWAttached
@@ -39,8 +39,10 @@ while 1
 
         if debugFlag;fprintf('Signal found\n');end;
         rFrameComplex = rFrameColumn.'; % Must be a row for passing between C++ functions
-        return;
 
+        return;
+    else
+        if debugFlag;fprintf('Signal error\n');end;
     end
 end
 

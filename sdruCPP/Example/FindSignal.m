@@ -6,13 +6,13 @@ persistent  FF
 if isempty(FF)
     FF = PHYRxFindFrame;
     FF.NumFrames = 1;
-    FF.NumDataSymbolsPerFrame = 12;
+    FF.NumDataSymbolsPerFrame = 20;
     
     FF.HWAttached = true;
     FF.PeakThreshold = 0.7;
     FF.requiredPeaks = 7;
     
-    FF.SamplingFrequency= 0.5e6;
+    FF.SamplingFrequency= 1e6;
     FF.CenterFrequency = 900e6;
 end
 

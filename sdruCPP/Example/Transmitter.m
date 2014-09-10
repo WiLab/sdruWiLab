@@ -10,13 +10,13 @@ if isempty(TxMAC)
     TxMAC = TxOFDMA;
     TxMAC.desiredUser = 1;
     TxMAC.dataType = 'c';
-    TxMAC.symbolsPerFrame = 12;
+    TxMAC.symbolsPerFrame = 20;
     % Setup PHY
     TxPHY = PHYTransmitter;
     TxPHY.HWAttached = false;
     TxPHY.NumDataSymbolsPerFrame = TxMAC.symbolsPerFrame;
     
-    SamplingFrequency = 0.5e6;
+    SamplingFrequency = 1e6;
     USRPADCSamplingRate = 100e6;
     InterpolationFactor = floor(USRPADCSamplingRate/SamplingFrequency);
     
@@ -47,7 +47,7 @@ end
 % Add gaps between transmissions
 framesWithGaps=[complex(zeros(100,1));frame;complex(zeros(100,1))];
 
-framesWithGapsTmp = framesWithGapsStandard;
+framesWithGapsTmp = LargeFramesVectorEncoded;%SmallFramesVector;%framesWithGapsStandard;
 
 if sum(framesWithGaps- framesWithGapsTmp)==0
     fprintf('Not Different\n')

@@ -1,6 +1,6 @@
 function [ RHard2 ] = SignalCorrect(rFrame) %#codegen
 
-assert(isa(rFrame, 'double') && ~isreal(rFrame) && all(size(rFrame) == [1  1*(12*(64+16)+320)]))
+assert(isa(rFrame, 'double') && ~isreal(rFrame) && all(size(rFrame) == [1  1*(20*(64+16)+320)]))
 
 %% Receiver
 persistent  PF
@@ -8,9 +8,9 @@ persistent  PF
 if isempty(PF)
     PF = PHYRxProcessFrame;
 
-    PF.NumDataSymbolsPerFrame = 12;
+    PF.NumDataSymbolsPerFrame = 20; % Don't forget to change assert on top
 
-    PF.SamplingFrequency = 0.5e6;
+    PF.SamplingFrequency = 1e6;
     
 end
 

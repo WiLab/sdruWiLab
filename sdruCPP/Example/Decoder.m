@@ -1,6 +1,6 @@
 function output2 = Decoder( RHard )
 
-assert(isa(RHard, 'logical') && all(size(RHard) == [48*12 1]))
+assert(isa(RHard, 'logical') && all(size(RHard) == [48*20 1]))
 
 %output2 = 1;
 
@@ -10,10 +10,10 @@ if isempty(RxMAC)
     RxMAC = RxOFDMA;
     RxMAC.dataType = 'c';
     RxMAC.desiredUser = 1;
-    RxMAC.symbolsPerFrame = 12;
+    RxMAC.symbolsPerFrame = 20;
 end
 
-RHard2 = reshape(RHard,48,12);
+RHard2 = reshape(RHard,48,20);
 
 output2 = double(RHard(1,1));
 

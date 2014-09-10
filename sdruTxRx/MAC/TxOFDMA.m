@@ -10,7 +10,7 @@ classdef TxOFDMA < matlab.System
         numCarriers = 48;
         carriersPerUser = 24; % numCarrier/numUsers, remember to change if they change
         symbolsPerFrame = 10;
-        Encode = false; % Used encoders
+        Encode = true; % Used encoders
         
     end
     

@@ -231,7 +231,7 @@ classdef PHYReceiverBase < matlab.System
                     statusFlag = 0;
                     rFrame = obj.Buffer(obj.delay + 1 : obj.delay + obj.FrameLength);% Extract single frame from input buffer
                     
-                    if ~(sum(obj.PreviousSig(1:200)-rFrame(1:200))==0)
+                    if ~(sum(obj.PreviousSig(1:200)-rFrame(1:200))==0) %Duplicate check
                         numFoundFrames = numFoundFrames + 1;
                     end
                     
@@ -262,7 +262,7 @@ classdef PHYReceiverBase < matlab.System
             %% Recover found frame
             
             obj.numProcessed = obj.numProcessed + 1; % Required for frequency correction
-            rFrame = step(obj.pAGC, rFrame); % AGC
+            %rFrame = step(obj.pAGC, rFrame); % AGC
             
             % Correct frequency offset
             [ rFreqShifted ] = coarseOFDMFreqEst_sdr( obj, rFrame );

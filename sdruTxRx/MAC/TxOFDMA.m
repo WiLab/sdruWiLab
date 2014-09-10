@@ -10,6 +10,7 @@ classdef TxOFDMA < matlab.System
         numCarriers = 48;
         carriersPerUser = 24; % numCarrier/numUsers, remember to change if they change
         symbolsPerFrame = 10;
+        Encode = false; % Used encoders
         
     end
     
@@ -35,6 +36,7 @@ classdef TxOFDMA < matlab.System
         Encoder;
         CodeRate;
         Scram;
+        
     end
     
     
@@ -91,7 +93,11 @@ classdef TxOFDMA < matlab.System
             % (numCarriers*nsymbolsPerFrame/2) minus the bits per message
             % (7*(size(messageUEs,2)+7)) minus the CRC bits (3)
             
-            obj.padBits = obj.numCarriers*obj.symbolsPerFrame/obj.numUsers - (8*(size(messageUEs,2)+1) + 3)*obj.CodeRate;
+            if obj.Encode
+                obj.padBits = obj.numCarriers*obj.symbolsPerFrame/obj.numUsers - (8*(size(messageUEs,2)+1) + 3)*obj.CodeRate;
+            else
+                obj.padBits = obj.numCarriers*obj.symbolsPerFrame/obj.numUsers - (8*(size(messageUEs,2)+1) + 3);
+            end
             if obj.padBits < 0
                 fprintf('MAC| ERROR: Not enough symbols!\n\n');
             end
@@ -103,7 +109,7 @@ classdef TxOFDMA < matlab.System
             
             % Initialize matrix
             messageBits = zeros(obj.numUsers,size(obj.messageSent,2)*8);
-            userBits = zeros(size(obj.messageSent,2),7);
+            userBits = zeros(size(obj.messageSent,2),7); %#ok<PREALL>
             
             % Convert to bits
             for user = 1:obj.numUsers
@@ -126,31 +132,36 @@ classdef TxOFDMA < matlab.System
             end
             
             %% Encode Data
-            
-            % Initialize matrix. Remember to change added number if CRC length changes!
-            encodedData = zeros(obj.numUsers,length(dataWithCRC)*obj.CodeRate);
-            
-            for user = 1:obj.numUsers
-                encodedData(user,:) = step(obj.Encoder, dataWithCRC(user,:).').';% Add CRC
+            if obj.Encode
+                % Initialize matrix. Remember to change added number if CRC length changes!
+                encodedData = zeros(obj.numUsers,length(dataWithCRC)*obj.CodeRate);
+                
+                for user = 1:obj.numUsers
+                    encodedData(user,:) = step(obj.Encoder, dataWithCRC(user,:).').';% Add CRC
+                end
+                
+                %% Scramble
+                scrambledData = zeros(obj.numUsers,length(dataWithCRC)*obj.CodeRate);
+                %for user = 1:obj.numUsers
+                %    scrambledData(user,:) = step(obj.Scram, encodedData(user,:).').';% Add CRC
+                %end
+                scrambledData(1,:) = step(obj.Scram, encodedData(1,1:345).').';% Add CRC
+                scrambledData(2,:) = step(obj.Scram, encodedData(2,1:345).').';% Add CRC
+                
+                %% Pad bits
+                
+                % Pad and add number of pad bits to header
+                paddedBits = [scrambledData randi([0 1],obj.numUsers,obj.padBits)];
+                
+            else
+                % Pad and add number of pad bits to header
+                paddedBits = [dataWithCRC randi([0 1],obj.numUsers,obj.padBits)];
             end
-            
-            %% Scramble
-            scrambledData = zeros(obj.numUsers,length(dataWithCRC)*obj.CodeRate);
-            %for user = 1:obj.numUsers
-            %    scrambledData(user,:) = step(obj.Scram, encodedData(user,:).').';% Add CRC
-            %end
-            scrambledData(1,:) = step(obj.Scram, encodedData(1,1:345).').';% Add CRC
-            scrambledData(2,:) = step(obj.Scram, encodedData(2,1:345).').';% Add CRC
-            
-            %% Pad bits
-            
-            % Pad and add number of pad bits to header
-            paddedBits = [scrambledData randi([0 1],obj.numUsers,obj.padBits)];
             
             %% User multiplex
             
             % Itintialize matrix
-            userData = zeros(obj.carriersPerUser,obj.symbolsPerFrame);
+            userData = zeros(obj.carriersPerUser,obj.symbolsPerFrame); %#ok<PREALL>
             bitsToTx = zeros(obj.numCarriers,obj.symbolsPerFrame);
             
             for user = 1:obj.numUsers

@@ -13,6 +13,7 @@ classdef RxOFDMA < matlab.System
         headerCharacters = 4;
         CRClength = 3;
         dataType = 'u';
+        Encoding = false;
         
     end
     
@@ -27,7 +28,7 @@ classdef RxOFDMA < matlab.System
         
         lastFrameID = uint8(255);
         
-        frame1;
+        CorrectFrame;
         BER;
         
         % Object handle
@@ -53,18 +54,8 @@ classdef RxOFDMA < matlab.System
             
             obj.pDetect = comm.CRCDetector([1 0 0 1], 'ChecksumsPerFrame',1);
             %obj.player = dsp.AudioPlayer('SampleRate',22050);
-%             obj.frame1=...
-%      [1,1,0,1,0,1,0,1,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0 ...
-%      ,0,1,0,1,1,1,0,0,1,1,0,1,1,1,0,1,0,0,0,0,1,0,0,0,0,0,0,1,0,0,1,1,0,1,0,1,1,0 ...
-%      ,0,1,0,1,0,1,1,1,0,0,1,1,0,1,1,1,0,0,1,1,0,1,1,0,0,0,0,1,0,1,1,0,0,1,1,1,0,1 ...
-%      ,1,0,0,1,0,1,0,1,0,0,0,1,0,1,0,1,0,0,1,1,1,1,0,1,0,0,0,1,1,0,0,0,1,0,1,1,0,1 ...
-%      ,0,0,1,0,1,1,0,1,0,0,1,0,1,1,0,1];
- 
-            obj.frame1 = ...
-     [1,0,0,0,0,1,1,1,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,1,0,0,1,1,...
-      0,1,0,1,1,0,0,1,0,1,0,1,1,1,0,0,1,1,0,1,1,1,0,0,1,1,0,1,1,0,0,0,0,1,0,1,1,0,...
-      0,1,1,1,0,1,1,0,0,1,0,1,0,1,0,0,0,1,0,1,0,1,0,0,1,1,1,1,0,1,0,0,0,1,1,0];
- 
+
+            obj.CorrectFrame = CorrectBits';
             obj.BER = 0;
             obj.Iteration = 0;
             
@@ -92,12 +83,13 @@ classdef RxOFDMA < matlab.System
             % Extract number of pad bits from beggining of frame
             obj.padBits = OFDMbits2letters(obj,userBits(1:8));
             
-            unpaddedBits = userBits(1:end-obj.padBits);
+            %unpaddedBits = userBits(1:end-obj.padBits);
+            unpaddedBits = userBits(1:115);% uncoded
             
             %% CRC check and convert to letters
             
             % Initialize variables
-            recoveredMessage = uint8(zeros(1,size(userBits,2)/8));
+            recoveredMessage = uint8(zeros(1,size(userBits,2)/8)); %#ok<NASGU> Need for CG preallocation
             err = false(1,1);
             
             % The minimum number of bits that can be recovered is 43 = 4
@@ -110,15 +102,22 @@ classdef RxOFDMA < matlab.System
                 reason = 1;
                 header = recoveredMessage;
                 msg = logical(obj.frame1);%for CG
+                
             else
-                % Unscramble
-                descrambledBits = step(obj.DeScram,unpaddedBits(1:345).');
                 
-                % Decode
-                decodedBits = step(obj.pDecoder,descrambledBits(1:345));
-                
-                % CRC Check
-                [msg, err] = step(obj.pDetect, decodedBits>0);
+                if obj.Encoding % If encoding used, decode and descramble first
+                    % Unscramble
+                    descrambledBits = step(obj.DeScram,unpaddedBits(1:345).');
+                    
+                    % Decode
+                    decodedBits = step(obj.pDecoder,descrambledBits(1:345));
+                    
+                    % CRC Check
+                    [msg, err] = step(obj.pDetect, decodedBits>0);
+                else
+                    % CRC Check
+                    [msg, err] = step(obj.pDetect, unpaddedBits.'>0);
+                end
                 
                 if ~err || obj.ignoreCRC
                     % Convert Bits to integers
@@ -140,7 +139,7 @@ classdef RxOFDMA < matlab.System
                         header = messageData(1:4);
                         %% Check successive frames
                         if  uint8(obj.lastFrameID) == uint8(header(2))
-                        	Duplicate = true;
+                        	%Duplicate = true;
                             obj.Duplicates = obj.Duplicates + 1;
                             %if obj.debugFlag; fprintf('Duplicate\n'); end;
                         end
@@ -163,13 +162,13 @@ classdef RxOFDMA < matlab.System
                         else
                             recoveredMessage = uint8('EOF NOT FOUND');
                             reason = 2;
-                            header = recoveredMessage;
+                            header = recoveredMessage(1:4);
                         end
                     end
                 else
                     recoveredMessage = uint8('CRC ERROR!!!!');
                     reason = 3;
-                    header = recoveredMessage;
+                    header = recoveredMessage(1:4);
                 end
                 
             end
@@ -188,30 +187,32 @@ classdef RxOFDMA < matlab.System
             
             %% Print message
             if (~err || obj.debugFlag) && ~Duplicate
+                
                 % BER calculation
                 obj.Iteration = obj.Iteration + 1;
-                newBER = abs(sum(msg(4*8+1:end)-obj.frame1(4*8+1:end)))/length(obj.frame1(4*8+1:end));
+                newBER = abs(sum(msg(4*8+1:end)-obj.CorrectFrame(4*8+1:end)))/length(obj.CorrectFrame(4*8+1:end));
                 obj.BER = (obj.BER*obj.Iteration + newBER)/(obj.Iteration+1);
                     
-                obj.CorrectFrames = obj.CorrectFrames + 1;
-                if mod(obj.CorrectFrames, 1000)==0
-                switch obj.dataType
-                    case 'c'
-                        fprintf('Correct Frames: %d | BER %.6f | Missed: %d | Dupes: %d\n',...
-                            int64(obj.CorrectFrames),obj.BER,int64(obj.MissedFrames),int64(obj.Duplicates));
-                        fprintf('Message: %s \n', char(recoveredMessage));
-                    case 'u'
-                        step(obj.player,recoveredMessage.');
-                        %for k = 1:length(recoveredMessage)
-                        %    fprintf('REACHED2\n');
-                        %    % Codegen does not accept uint8s on
-                        %    % fprint, so they need to be casted to
-                        %    % int16
-                        %    fprintf('%d \n', int16(recoveredMessage(k)));
-                        %end
-                    otherwise
-                        if obj.debugFlag; fprintf('MAC| Error: Undefined data type'); end;
-                end
+                
+                obj.CorrectFrames = obj.CorrectFrames + 1;%Keep track of decode frames
+                
+                if mod(obj.CorrectFrames, 1000)==0% Only display every N samples, reduces CPU usage
+                    switch obj.dataType
+                        case 'c'
+                            fprintf('Correct Frames: %d | BER %.6f | Missed: %d | Dupes: %d\n',...
+                                int64(obj.CorrectFrames),obj.BER,int64(obj.MissedFrames),int64(obj.Duplicates));
+                            fprintf('Message: %s \n', char(recoveredMessage));
+                        case 'u'
+                            %step(obj.player,recoveredMessage.');
+                            for k = 1:length(recoveredMessage)
+                                % Codegen does not accept uint8s on
+                                % fprint, so they need to be casted to
+                                % int16
+                                fprintf('%d \n', int16(recoveredMessage(k)));
+                            end
+                        otherwise
+                            if obj.debugFlag; fprintf('MAC| Error: Undefined data type'); end;
+                    end
                 end
             else
                 if ~Duplicate

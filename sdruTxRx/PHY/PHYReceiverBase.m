@@ -115,7 +115,7 @@ classdef PHYReceiverBase < matlab.System
             
             % USRP
             if obj.HWAttached
-                obj.pSDRuReceiver = comm.SDRuReceiver( '192.168.10.2', ...
+                obj.pSDRuReceiver = comm.SDRuReceiver( '192.168.20.2', ...
                     'CenterFrequency',      obj.CenterFrequency + offsetCompensationValue, ...
                     'DecimationFactor',     DecimationFactor,...
                     'FrameLength',          obj.FrameLength,...
@@ -201,15 +201,15 @@ classdef PHYReceiverBase < matlab.System
                 end
                 
                 % All zeros from radio (Bug?)
-                if DebugFlag
+                %if DebugFlag
                     if sum(obj.Buffer)==0
                         if DebugFlag ;fprintf('All zeros (Bug?)\n');end;
                         numBuffersProcessed = numBuffersProcessed + 1;
                         continue;
-                    else
+                    %else
                         %if DebugFlag ;fprintf('Got some data\n');end;
                     end
-                end
+                %end
                 
                 % Increment processed data index (primarily for timeout)
                 numBuffersProcessed = numBuffersProcessed + 1;
@@ -262,27 +262,17 @@ classdef PHYReceiverBase < matlab.System
             %% Recover found frame
             
             obj.numProcessed = obj.numProcessed + 1; % Required for frequency correction
-            %rFrame = step(obj.pAGC, rFrame);
+            rFrame = step(obj.pAGC, rFrame); % AGC
             
             % Correct frequency offset
-            if ~(sum(abs(rFrame))>0)
-                fprintf('rFrame all zero\n');
-            end
             [ rFreqShifted ] = coarseOFDMFreqEst_sdr( obj, rFrame );
             
             % Equalize
-            if sum(abs(rFreqShifted))==0
-                fprintf('rFreqShifted all zero\n');
-            end
-            fprintf('Reached\n');
             [ RPostEqualizer ] = equalizeOFDM( obj, rFreqShifted );
             
             % Demod subcarriers
-            if sum(sum(RPostEqualizer))==0
-                fprintf('RPostEqualizer all zero\n');
-            end
             [ ~, RHard]= demodOFDMSubcarriers_sdr( obj, RPostEqualizer );
-            fprintf('ReachedLast\n');
+            
             
         end
         

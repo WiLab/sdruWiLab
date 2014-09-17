@@ -28,7 +28,7 @@ if isempty(SDRuReceiver) || isempty(Buffer) || isempty(ReceiveBufferLength)
     offsetCompensationValue = 0;% Get from calibration
     
     % USRP
-    SDRuReceiver = comm.SDRuReceiver( '192.168.10.2', ...
+    SDRuReceiver = comm.SDRuReceiver( '192.168.20.2', ...
         'CenterFrequency',      CenterFrequency + offsetCompensationValue, ...
         'DecimationFactor',     DecimationFactor,...
         'FrameLength',          FrameLength,...
@@ -52,12 +52,13 @@ while 1
 %     
 %     Buffer=complex((1:FrameLength*2).',(1:FrameLength*2).');
     
-    BufferR = real(Buffer);
-    BufferI = imag(Buffer);
+%    BufferR = real(Buffer);
+%    BufferI = imag(Buffer);
     
-    BufferReal = single(reshape([BufferR BufferI]',2*ReceiveBufferLength,1));
-    %BufferReal = single(ones(2*ReceiveBufferLength,1));
-    coder.ceval('add2q',coder.ref(BufferReal));
+%    BufferReal = single(reshape([BufferR BufferI]',2*ReceiveBufferLength,1));
+
+    BufferRow = Buffer.';
+    coder.ceval('add2q',coder.ref(BufferRow));
     
 end
 

@@ -23,12 +23,25 @@
 // Create Mutex
 std::mutex mtx;
 std::mutex mtx2;
+std::mutex mtx3;
+
 std::queue<creal_T*> rx2txQueueData;
+std::queue<creal_T*> usrp2FindtheFrameQueue;
 std::queue<boolean_T*> rx2txQueueDataDecode;
 
 // Create Conditional
 std::condition_variable cond;
 std::condition_variable cond2;
+std::condition_variable cond3;
+
+
+void add2q(creal_T *input){
+
+        std::unique_lock<std::mutex> locker(mtx3);
+        usrp2FindtheFrameQueue.push(&input[0]);
+        locker.unlock();
+        cond3.notify_one(); // Notify waiting thread
+}
 
 //Transmitter Thread
 void Transmitter_Thread(void)
@@ -38,7 +51,7 @@ void Transmitter_Thread(void)
     Transmitter();
 }
 
-
+/*
 //Find the preamble and extract signal
 void FindSignal_Thread(void)
 {
@@ -54,6 +67,43 @@ void FindSignal_Thread(void)
         
     }
 }
+*/
+
+//USRP Stream
+//USRP Thread
+void GetDataUSRP(void)
+{
+    std::cout<<"Started Get USRP Thread"<<std::endl;
+    GetUSRPData();
+}
+
+// Locator
+void FindTheFrame_Thread(void)
+{
+
+    std::cout<<"Started Signal Correct Thread"<<std::endl;
+    creal_T *input;
+    creal_T *output;
+    int k = MESSAGES2TX;
+    while (k>0) {
+        std::unique_lock<std::mutex> locker(mtx3);
+        cond3.wait(locker,[](){ return !usrp2FindtheFrameQueue.empty();});
+
+        input = (usrp2FindtheFrameQueue.front());
+        usrp2FindtheFrameQueue.pop();
+
+        locker.unlock();
+
+        FindtheFrame(input, output);//MAC Layer
+        std::unique_lock<std::mutex> locker2(mtx);
+        rx2txQueueData.push(&output[0]);
+        locker2.unlock();
+        cond.notify_one(); // Notify waiting thread
+
+    }
+
+}
+
 
 //Apply CFO and equalizer corrections
 void SignalCorrect_Thread(void)

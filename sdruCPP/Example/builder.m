@@ -1,9 +1,10 @@
 cfg = coder.config('exe');
-cfg.CustomSource = 'main.cpp';
+cfg.CustomSource = 'mainSplit.cpp';
 cfg.CustomInclude = 'MyFiles/CPP/';
 cfg.TargetLang='C++';
 cfg.PostCodeGenCommand = 'setbuildargs(buildInfo)';
-functionsToThread = {'Transmitter', 'FindSignal','SignalCorrect','Decoder'};
+%functionsToThread = {'Transmitter', 'FindSignal','SignalCorrect','Decoder'};
+functionsToThread = {'Transmitter', 'FindtheFrame','GetUSRPData','SignalCorrect','Decoder'};
 outputFunctionName = {'ComboFunction'};
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%

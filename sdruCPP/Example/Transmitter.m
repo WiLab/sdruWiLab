@@ -29,7 +29,7 @@ if isempty(TxMAC)
 end
 
 % Messages to transmit
-messageUE1 = ['Message'];
+messageUE1 = ['GoWiLab'];
 messageUE2 = ['Message'];
 
 

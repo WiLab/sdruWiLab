@@ -4,13 +4,17 @@
 #include <string>
 #include <iostream>
 #include <thread>
-#include <queue>
-#include <mutex>
+//#include <queue>
+//#include <mutex>
 //#include <unistd.h>
+
+#include "main.h"
 
 //Include headers of matlab functions
 #include "Transmitter.h"
-#include "FindSignal.h"
+//#include "FindSignal.h"
+#include "GetUSRPData.h"
+#include "FindtheFrame.h"
 #include "SignalCorrect.h"
 #include "Decoder.h"
 
@@ -34,14 +38,6 @@ std::condition_variable cond;
 std::condition_variable cond2;
 std::condition_variable cond3;
 
-
-void add2q(creal_T *input){
-
-        std::unique_lock<std::mutex> locker(mtx3);
-        usrp2FindtheFrameQueue.push(&input[0]);
-        locker.unlock();
-        cond3.notify_one(); // Notify waiting thread
-}
 
 //Transmitter Thread
 void Transmitter_Thread(void)
@@ -84,6 +80,7 @@ void FindTheFrame_Thread(void)
     std::cout<<"Started Signal Correct Thread"<<std::endl;
     creal_T *input;
     creal_T *output;
+    short *flag;
     int k = MESSAGES2TX;
     while (k>0) {
         std::unique_lock<std::mutex> locker(mtx3);
@@ -94,11 +91,13 @@ void FindTheFrame_Thread(void)
 
         locker.unlock();
 
-        FindtheFrame(input, output);//MAC Layer
-        std::unique_lock<std::mutex> locker2(mtx);
-        rx2txQueueData.push(&output[0]);
-        locker2.unlock();
-        cond.notify_one(); // Notify waiting thread
+        FindtheFrame(input, output,flag);//MAC Layer
+        if (*flag<1){
+            std::unique_lock<std::mutex> locker2(mtx);
+            rx2txQueueData.push(&output[0]);
+            locker2.unlock();
+            cond.notify_one(); // Notify waiting thread
+        }
 
     }
 
@@ -158,16 +157,19 @@ int main()
     ComboFunction_initialize();
     
     //Spawn Thread
-    //std::thread thread1( Transmitter_Thread );
-    std::thread thread2( FindSignal_Thread );
-//    std::thread thread3( SignalCorrect_Thread );
- //   std::thread thread4( Decoder_Thread );
+    std::thread thread1( Transmitter_Thread );
+    //std::thread thread2( FindSignal_Thread );
+    std::thread thread2( GetDataUSRP );
+    std::thread thread3( FindTheFrame_Thread );
+    std::thread thread4( SignalCorrect_Thread );
+    std::thread thread5( Decoder_Thread );
     
     //Wait for thread to finish
-    //thread1.join();
+    thread1.join();
     thread2.join();
- //   thread3.join();
-  //  thread4.join();
+    thread3.join();
+    thread4.join();
+    thread5.join();
     std::cout<<"Threads completed"<<std::endl;
     
     ComboFunction_terminate();

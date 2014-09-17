@@ -28,7 +28,7 @@ if isempty(RX)
     
     [ShortPreambleOFDM, Preambles] = CreatePreambles;
     
-    FrameLength = NumDataSymbolsPerFrame*(FFTLength+CyclicPrefixLength)+length(Preambles);
+    FrameLength = 1920;%NumDataSymbolsPerFrame*(FFTLength+CyclicPrefixLength)+length(Preambles);
     
     % Frame locator setup
     windowLength = ceil(4*ReceiveBufferLength/4);
@@ -55,7 +55,7 @@ if isempty(RX)
         'K', K);
 end
 
-
+rFrame = complex(zeros(1,320+(16+64)*20));
 
 DebugFlag = 0;
 
@@ -81,7 +81,7 @@ if FrameFound
     %fprintf('Frame found\n');
     statusFlag(1) = int16(0);
     
-    rFrame = Buffer(delay + 1 : delay + RX.FrameLength).';% Extract single frame from input buffer
+    rFrame = Buffer(delay + 1 : delay + 1920);% Extract single frame from input buffer
     
     return;
     
@@ -104,6 +104,8 @@ else
 end
 
 %end
+
+%rFrame = rFrame(1:320+(16+64)*20);
 
 end
 

@@ -79,18 +79,17 @@ FrameFound = ((delay + RX.FrameLength) < length(Buffer) ) &&... %Check if full d
 if FrameFound
     if DebugFlag;fprintf('Frame found\n');end;
     %fprintf('Frame found\n');
-    statusFlag(1) = int16(0);
+    statusFlag = int16(0);
     
     rFrame = Buffer(delay + 1 : delay + 1920);% Extract single frame from input buffer
-    
     return;
     
     
 else
-    rFrame = complex(zeros(1,1920));
+    %rFrame = complex(zeros(1,1920));
     %statusFlag = 1;
     % Display why missed frame
-	statusFlag(1) = int16(1);
+	statusFlag = int16(1);
 
     if DebugFlag
         if ( (delay + FrameLength) > length(Buffer) )

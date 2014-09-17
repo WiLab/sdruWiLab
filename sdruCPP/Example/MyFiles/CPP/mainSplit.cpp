@@ -79,8 +79,9 @@ void FindTheFrame_Thread(void)
 
     std::cout<<"Started Signal Correct Thread"<<std::endl;
     creal_T *input;
-    creal_T *output;
-    short *flag;
+    creal_T output[1920];
+    //short *flag;
+    short int flag = 1;
     int k = MESSAGES2TX;
     while (k>0) {
         std::unique_lock<std::mutex> locker(mtx3);
@@ -88,11 +89,11 @@ void FindTheFrame_Thread(void)
 
         input = (usrp2FindtheFrameQueue.front());
         usrp2FindtheFrameQueue.pop();
-
+	
         locker.unlock();
 
-        FindtheFrame(input, output,flag);//MAC Layer
-        if (*flag<1){
+        FindtheFrame(input, output, &flag);//MAC Layer
+        if (flag<1){
             std::unique_lock<std::mutex> locker2(mtx);
             rx2txQueueData.push(&output[0]);
             locker2.unlock();

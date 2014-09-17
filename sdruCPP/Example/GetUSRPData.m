@@ -6,7 +6,7 @@ FrameLength = 1920;
 
 if isempty(SDRuReceiver) || isempty(Buffer) || isempty(ReceiveBufferLength)
     
-    SamplingFrequency = 5e6;
+    SamplingFrequency = 1e6;
     
     CenterFrequency = 900e6;
     

@@ -38,7 +38,7 @@ classdef RxOFDMA < matlab.System
         DeScram
         
         % Flags
-        debugFlag = 0;
+        debugFlag = 1;
         ignoreCRC = 1;
         
         CorrectFrames = 0;
@@ -139,7 +139,7 @@ classdef RxOFDMA < matlab.System
                         header = messageData(1:4);
                         %% Check successive frames
                         if  uint8(obj.lastFrameID) == uint8(header(2))
-                        	Duplicate = true;
+                        	%Duplicate = true;
                             obj.Duplicates = obj.Duplicates + 1;
                             %if obj.debugFlag; fprintf('Duplicate\n'); end;
                         end

@@ -1,20 +1,20 @@
 %function [rFrame,statusFlag] = FindtheFrame(BufferWide)
 %function [rFrame,statusFlag] = FindtheFrame(Buffer)
-function [rFrame,statusFlag] = FindtheFrame(Buffer)
+function [rFrame,statusFlag] = FindtheFrame(BufferRow)
 
 %assert(isa(BufferWide, 'double') && all(size(BufferWide) == [4*1120 1]));
-assert(isa(Buffer, 'double') && ~isreal(Buffer) && all(size(Buffer) == [1 2*1920]));
+assert(isa(BufferRow, 'double') && ~isreal(BufferRow) && all(size(BufferRow) == [1 2*1920]));
 
 % Setup
 persistent RX
 
 if isempty(RX)
     
-    SamplingFrequency = 1e6;
+    SamplingFrequency = 10e6;
     
     CenterFrequency = 2.2e9;
     
-    ReceiveBufferLength = 1120;
+    ReceiveBufferLength = 1920*2;
     
     NumDataSymbolsPerFrame = 8;
     
@@ -57,7 +57,7 @@ end
 
 rFrame = complex(zeros(1,320+(16+64)*20));
 
-DebugFlag = 0;
+DebugFlag = 1;
 
 statusFlag = int16(zeros(1,1));
 
@@ -65,8 +65,10 @@ statusFlag = int16(zeros(1,1));
 %while 1
 %coder.ceval('get2q',coder.wref(BufferWide));
 
+Buffer = BufferRow.';
+
 % Find preamble in buffer
-[delay, ~] = locateOFDMFrame_sdr( RX, Buffer.' );
+[delay, ~] = locateOFDMFrame_sdr( RX, Buffer );
 
 % Check if frame exists in correct location and whether it's duplicate
 %Dupe = ( numBuffersProcessed-lastFound<2 )&& (obj.delay<length(obj.Buffer)/2);
@@ -81,7 +83,7 @@ if FrameFound
     %fprintf('Frame found\n');
     statusFlag = int16(0);
     
-    rFrame = Buffer(delay + 1 : delay + 1920);% Extract single frame from input buffer
+    rFrame = BufferRow(delay + 1 : delay + 1920);% Extract single frame from input buffer
     return;
     
     
@@ -92,7 +94,7 @@ else
 	statusFlag = int16(1);
 
     if DebugFlag
-        if ( (delay + FrameLength) > length(Buffer) )
+        if ( (delay + 1920) > length(Buffer) )
             fprintf('Frame at end of buffer\n');
         elseif (delay < 0)
             fprintf('Preamble not found\n');

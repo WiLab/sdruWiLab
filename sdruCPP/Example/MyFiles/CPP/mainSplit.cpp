@@ -77,7 +77,7 @@ void GetDataUSRP(void)
 void FindTheFrame_Thread(void)
 {
 
-    std::cout<<"Started Signal Correct Thread"<<std::endl;
+    std::cout<<"Started FindTheFrame Thread"<<std::endl;
     creal_T *input;
     creal_T output[1920];
     //short *flag;
@@ -158,17 +158,28 @@ int main()
     ComboFunction_initialize();
     
     //Spawn Thread
-    std::thread thread1( Transmitter_Thread );
+    //std::thread thread1( Transmitter_Thread );
     //std::thread thread2( FindSignal_Thread );
     std::thread thread2( GetDataUSRP );
-    std::thread thread3( FindTheFrame_Thread );
+
+    std::vector<std::thread> FindTheFrameThreads;
+
+    //std::thread thread3( FindTheFrame_Thread );
+    // Create 10 threads for task
+    for (int i = 0; i < 4; i++)
+    	FindTheFrameThreads.push_back(std::thread( FindTheFrame_Thread ));
+
+
     std::thread thread4( SignalCorrect_Thread );
     std::thread thread5( Decoder_Thread );
     
     //Wait for thread to finish
-    thread1.join();
+    //thread1.join();
     thread2.join();
-    thread3.join();
+    //thread3.join();
+    for (auto& t : FindTheFrameThreads)
+    	t.join();
+
     thread4.join();
     thread5.join();
     std::cout<<"Threads completed"<<std::endl;

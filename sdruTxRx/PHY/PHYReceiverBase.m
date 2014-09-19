@@ -265,12 +265,21 @@ classdef PHYReceiverBase < matlab.System
             %rFrame = step(obj.pAGC, rFrame); % AGC
             
             % Correct frequency offset
+            if sum(rFrame)==0
+                fprintf('All zero rFrame\n');
+            end
             [ rFreqShifted ] = coarseOFDMFreqEst_sdr( obj, rFrame );
             
             % Equalize
+            if sum(rFreqShifted)==0
+                fprintf('All zero rFreqShifted\n');
+            end
             [ RPostEqualizer ] = equalizeOFDM( obj, rFreqShifted );
             
             % Demod subcarriers
+            if sum(sum(double(RPostEqualizer)))==0
+                fprintf('All zero RPostEqualizer\n');
+            end
             [ ~, RHard]= demodOFDMSubcarriers_sdr( obj, RPostEqualizer );
             
             
@@ -403,7 +412,7 @@ classdef PHYReceiverBase < matlab.System
                 
             end
             
-            %fprintf('FreqEst: %f\n',obj.frequencyMA);
+            fprintf('FreqEst: %f\n',obj.frequencyMA);
             
         end
         

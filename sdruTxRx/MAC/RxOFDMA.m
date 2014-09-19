@@ -38,8 +38,8 @@ classdef RxOFDMA < matlab.System
         DeScram
         
         % Flags
-        debugFlag = 1;
-        ignoreCRC = 1;
+        debugFlag = 0;
+        ignoreCRC = 0;
         
         CorrectFrames = 0;
         MissedFrames = 0;
@@ -196,7 +196,7 @@ classdef RxOFDMA < matlab.System
                 
                 obj.CorrectFrames = obj.CorrectFrames + 1;%Keep track of decode frames
                 
-                if 1%mod(obj.CorrectFrames, 1000)==0% Only display every N samples, reduces CPU usage
+                if mod(obj.CorrectFrames, 1000)==0% Only display every N samples, reduces CPU usage
                     switch obj.dataType
                         case 'c'
                             fprintf('Correct Frames: %d | BER %.6f | Missed: %d | Dupes: %d\n',...

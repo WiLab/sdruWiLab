@@ -1,7 +1,7 @@
 #include <iostream>
 #include "main.h"
 
-void add2q(creal_T input[1920*2]){
+void add2q(creal_T input[3840]){
 
         std::unique_lock<std::mutex> locker(mtx3);
         usrp2FindtheFrameQueue.push(&input[0]);

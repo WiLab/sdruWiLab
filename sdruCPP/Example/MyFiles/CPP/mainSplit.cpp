@@ -70,6 +70,7 @@ void FindSignal_Thread(void)
 void GetDataUSRP(void)
 {
     std::cout<<"Started Get USRP Thread"<<std::endl;
+    GetUSRPData_init();
     GetUSRPData();
 }
 
@@ -92,8 +93,8 @@ void FindTheFrame_Thread(void)
 	
         locker.unlock();
 
-        FindtheFrame(input, output, &flag);//MAC Layer
-        if (flag<1){
+        FindtheFrame(input, output, &flag);
+        if (flag<1){//Frame found
             std::unique_lock<std::mutex> locker2(mtx);
             rx2txQueueData.push(&output[0]);
             locker2.unlock();
@@ -122,6 +123,7 @@ void SignalCorrect_Thread(void)
         locker.unlock();
         
         SignalCorrect(input, output);//MAC Layer
+        
         std::unique_lock<std::mutex> locker2(mtx2);
         rx2txQueueDataDecode.push(&output[0]);
         locker2.unlock();
@@ -166,7 +168,7 @@ int main()
 
     //std::thread thread3( FindTheFrame_Thread );
     // Create 10 threads for task
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 1; i++)
     	FindTheFrameThreads.push_back(std::thread( FindTheFrame_Thread ));
 
 

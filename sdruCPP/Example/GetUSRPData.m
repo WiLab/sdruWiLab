@@ -6,7 +6,7 @@ FrameLength = 1920;
 
 if isempty(SDRuReceiver) || isempty(Buffer) || isempty(ReceiveBufferLength)
     
-    SamplingFrequency = 1e6;
+    SamplingFrequency = 5e6;
     
     CenterFrequency = 900e6;
     
@@ -59,6 +59,8 @@ while 1
 
     if sum(abs(Buffer))>0
         BufferRow = Buffer.';
+        %tmp = LargeFramesVectorEncoded;
+        %BufferRow = tmp(100:100+1920*2-1);
         coder.ceval('add2q',coder.ref(BufferRow));
     end
     

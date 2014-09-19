@@ -55,11 +55,11 @@ if isempty(RX)
         'K', K);
 end
 
-rFrame = complex(zeros(1,320+(16+64)*20));
+%rFrame = BufferRow(0 + 1 : 0 + 1920);
 
-DebugFlag = 1;
+DebugFlag = 0;
 
-statusFlag = int16(zeros(1,1));
+statusFlag = int16(1);
 
 
 %while 1
@@ -80,18 +80,19 @@ FrameFound = ((delay + RX.FrameLength) < length(Buffer) ) &&... %Check if full d
 %% Frame Decision
 if FrameFound
     if DebugFlag;fprintf('Frame found\n');end;
-    %fprintf('Frame found\n');
+
     statusFlag = int16(0);
     
     rFrame = BufferRow(delay + 1 : delay + 1920);% Extract single frame from input buffer
+    %rFrame = complex(ones(1,1920),ones(1,1920));
     return;
     
     
 else
-    %rFrame = complex(zeros(1,1920));
-    %statusFlag = 1;
-    % Display why missed frame
 	statusFlag = int16(1);
+    rFrame = complex(ones(1,320+(16+64)*20));
+
+    % Display why missed frame
 
     if DebugFlag
         if ( (delay + 1920) > length(Buffer) )
@@ -104,9 +105,6 @@ else
     end
 end
 
-%end
-
-%rFrame = rFrame(1:320+(16+64)*20);
 
 end
 
@@ -144,8 +142,8 @@ function [preambleEstimatedLocation, numPeaks] = locateShortPreamble( RX, M, K )
 %savedM = M;
 %[~,loc] = max(M);
 %M(loc) = 0;
-%thresholdNorm = max(M)*RX.PeakThreshold;
-thresholdNorm = RX.PeakThreshold;
+thresholdNorm = max(M)*RX.PeakThreshold;
+%thresholdNorm = RX.PeakThreshold;
 %M = savedM;
 MLocations = find(M>thresholdNorm);
 
@@ -157,13 +155,9 @@ peaks = zeros(size(MLocations));
 
 % Determine correct peak
 desiredPeakLocations = (16:16:128).';% Based on preamble structure
-%for i = 1:length(MLocations)
-%    MLocationGuesses = MLocations(i)+desiredPeakLocations;
-%    peaks(i) = length(intersect(MLocations(i:end),MLocationGuesses));
-%end
-
-if ~isempty(MLocations)
-    peaks(1) = MLocations(1);
+for i = 1:length(MLocations)
+   MLocationGuesses = MLocations(i)+desiredPeakLocations;
+   peaks(i) = length(intersect(MLocations(i:end),MLocationGuesses));
 end
 
 % Have at least N peaks for positive match

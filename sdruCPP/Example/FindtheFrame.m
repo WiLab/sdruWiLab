@@ -1,8 +1,5 @@
-%function [rFrame,statusFlag] = FindtheFrame(BufferWide)
-%function [rFrame,statusFlag] = FindtheFrame(Buffer)
 function [rFrame,statusFlag] = FindtheFrame(BufferRow)
 
-%assert(isa(BufferWide, 'double') && all(size(BufferWide) == [4*1120 1]));
 assert(isa(BufferRow, 'double') && ~isreal(BufferRow) && all(size(BufferRow) == [1 2*1920]));
 
 % Setup
@@ -10,25 +7,18 @@ persistent RX
 
 if isempty(RX)
     
-    SamplingFrequency = 10e6;
-    
-    CenterFrequency = 2.2e9;
-    
-    ReceiveBufferLength = 1920*2;
-    
-    NumDataSymbolsPerFrame = 8;
-    
-    PeakThreshold = 0.7;
-    
+    NumDataSymbolsPerFrame = 20;
     FFTLength = 64;
-    
     CyclicPrefixLength = 16;
     
+    PeakThreshold = 0.7;
     requiredPeaks = 7;
     
     [ShortPreambleOFDM, Preambles] = CreatePreambles;
     
-    FrameLength = 1920;%NumDataSymbolsPerFrame*(FFTLength+CyclicPrefixLength)+length(Preambles);
+    %NumDataSymbolsPerFrame*(FFTLength+CyclicPrefixLength)+length(Preambles);
+    FrameLength = 1920;
+    ReceiveBufferLength = 1920*2;
     
     % Frame locator setup
     windowLength = ceil(4*ReceiveBufferLength/4);
@@ -39,8 +29,7 @@ if isempty(RX)
     CorrelationWindowSize = windowLength-L+FFTLength/4-1;
     
     % Form Struct
-    RX = struct('SamplingFrequency',SamplingFrequency,...
-        'CenterFrequency',CenterFrequency,...
+    RX = struct(...
         'ReceiveBufferLength',ReceiveBufferLength,...
         'NumDataSymbolsPerFrame', NumDataSymbolsPerFrame,...
         'PeakThreshold', PeakThreshold,...
@@ -55,16 +44,14 @@ if isempty(RX)
         'K', K);
 end
 
-%rFrame = BufferRow(0 + 1 : 0 + 1920);
-
+% DEBUG
 DebugFlag = 0;
+% DEBUG
 
+% Preallocate variable
 statusFlag = int16(1);
 
-
-%while 1
-%coder.ceval('get2q',coder.wref(BufferWide));
-
+% Functions require column vector
 Buffer = BufferRow.';
 
 % Find preamble in buffer
@@ -77,23 +64,22 @@ FrameFound = ((delay + RX.FrameLength) < length(Buffer) ) &&... %Check if full d
     (delay > -1 ) &&... %Check if preamble located
     (~Dupe); %Check if duplicate frame
 
-%% Frame Decision
+% Frame Decision
 if FrameFound
-    if DebugFlag;fprintf('Frame found\n');end;
-
-    statusFlag = int16(0);
     
+    statusFlag = int16(0); % Tell waiting function something is found
     rFrame = BufferRow(delay + 1 : delay + 1920);% Extract single frame from input buffer
-    %rFrame = complex(ones(1,1920),ones(1,1920));
+    if DebugFlag;fprintf('Frame found\n');end;
+    
     return;
-    
-    
+ 
 else
-	statusFlag = int16(1);
+    % Flag for nothing found
+    statusFlag = int16(1);
+    % Fill with zeros
     rFrame = complex(ones(1,320+(16+64)*20));
-
+    
     % Display why missed frame
-
     if DebugFlag
         if ( (delay + 1920) > length(Buffer) )
             fprintf('Frame at end of buffer\n');
@@ -118,13 +104,9 @@ rWin = recv(1:RX.CorrelationWindowSize);
 
 % Fast correlate
 PhatShort2 = filter(conj(RX.ConjKnown(end:-1:1)),1,rWin(1:end));
-%RhatShort2 = filter(ones(obj.K,1),1,abs(rWin).^2);
 
 PhatShort2 = PhatShort2(RX.K:end);
-%RhatShort2 = RhatShort2(obj.K:end);
 
-
-%M2 = abs(PhatShort).^2; %./ RhatShort.^2;
 M = abs(PhatShort2).^2; %./ RhatShort2.^2;
 
 % Determine start of short preamble
@@ -138,13 +120,8 @@ function [preambleEstimatedLocation, numPeaks] = locateShortPreamble( RX, M, K )
 
 %% Find peaks of correlation
 
-% Adjust threshold (remove first outlier)
-%savedM = M;
-%[~,loc] = max(M);
-%M(loc) = 0;
+% Adjust threshold
 thresholdNorm = max(M)*RX.PeakThreshold;
-%thresholdNorm = RX.PeakThreshold;
-%M = savedM;
 MLocations = find(M>thresholdNorm);
 
 % Correct estimate to start of preamble, not its center
@@ -156,8 +133,8 @@ peaks = zeros(size(MLocations));
 % Determine correct peak
 desiredPeakLocations = (16:16:128).';% Based on preamble structure
 for i = 1:length(MLocations)
-   MLocationGuesses = MLocations(i)+desiredPeakLocations;
-   peaks(i) = length(intersect(MLocations(i:end),MLocationGuesses));
+    MLocationGuesses = MLocations(i)+desiredPeakLocations;
+    peaks(i) = length(intersect(MLocations(i:end),MLocationGuesses));
 end
 
 % Have at least N peaks for positive match
@@ -218,19 +195,6 @@ CompleteLongPreambleOFDM =[LongPreambleOFDM(33:64); LongPreambleOFDM; LongPreamb
 
 % Combine Preambles
 Preambles = [CompleteShortPreambleOFDM; CompleteLongPreambleOFDM];
-
-% Create Pilots
-%hPN = comm.PNSequence(...
-%    'Polynomial',[1 0 0 0 1 0 0 1],...
-%    'SamplesPerFrame', RX.NumDataSymbolsPerFrame,...
-%    'InitialConditions',[1 1 1 1 1 1 1]);
-
-%pilot=[1 0  0  1  0  0  1  0  0  0  0  0]';
-%pilot = step(hPN); % Create pilot
-%pilotsTmp = repmat(pilot, 1, 4 ); % Expand to all pilot tones
-%pilots = 2*double(pilotsTmp.'<1)-1; % Bipolar to unipolar
-%pilots(4,:) = -1*pilots(4,:); % Invert last pilot
-
 
 end
 

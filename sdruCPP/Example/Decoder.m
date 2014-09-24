@@ -1,9 +1,10 @@
-function output2 = Decoder( RHard )
+function output = Decoder( RHard )
 
 assert(isa(RHard, 'logical') && all(size(RHard) == [48*20 1]))
 
-%output2 = 1;
+output = 1;
 
+%% Decode OFDMA symbol to either characters or uint8
 persistent RxMAC
 
 if isempty(RxMAC)
@@ -13,11 +14,11 @@ if isempty(RxMAC)
     RxMAC.symbolsPerFrame = 20;
 end
 
-RHard2 = reshape(RHard,48,20);
+% Back to matrix form
+RHardMatrix = reshape(RHard,48,20);
 
-output2 = double(RHard(1,1));
-
-step(RxMAC,RHard2);
+% Decode
+step(RxMAC,RHardMatrix);
 
 
 end

@@ -1,11 +1,11 @@
 cfg = coder.config('exe');
-cfg.CustomSource = 'mainTx.cpp';
-cfg.CustomInclude = 'MyFiles/CPP/';
+cfg.CustomSource = 'mainRx_Split.cpp';
+cfg.CustomInclude = 'sourcefiles/cpp/';
 cfg.TargetLang='C++';
 cfg.PostCodeGenCommand = 'setbuildargs(buildInfo)';
-functionsToThread = {'Transmitter'};
-additionalSourceFiles = {};
-outputFunctionName = {'TX'};
+functionsToThread = {'Transmitter', 'FindtheFrame','GetUSRPData','SignalCorrect','Decoder'};
+additionalSourceFiles = {'add2q.cpp','main.h'};
+outputFunctionName = {'RX'};
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Do Not Edit Below
@@ -72,6 +72,7 @@ else
     
     % Pass the rest of the arguments to codegen
     codegenResult = codegen(functionsToThread{:},additionalSourceFiles{:},'-config','cfg','-o',outputFunctionName{:});
+    
 end
 
 

@@ -1,11 +1,11 @@
 cfg = coder.config('exe');
-cfg.CustomSource = 'main.cpp';
-cfg.CustomInclude = 'MyFiles/CPP/';
+cfg.CustomSource = 'mainTx.cpp';
+cfg.CustomInclude = 'sourcefiles/cpp/';
 cfg.TargetLang='C++';
 cfg.PostCodeGenCommand = 'setbuildargs(buildInfo)';
-functionsToThread = {'Transmitter', 'FindSignal','SignalCorrect','Decoder'};
+functionsToThread = {'Transmitter'};
 additionalSourceFiles = {};
-outputFunctionName = {'ComboFunction'};
+outputFunctionName = {'TX'};
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Do Not Edit Below
@@ -72,7 +72,6 @@ else
     
     % Pass the rest of the arguments to codegen
     codegenResult = codegen(functionsToThread{:},additionalSourceFiles{:},'-config','cfg','-o',outputFunctionName{:});
-
 end
 
 

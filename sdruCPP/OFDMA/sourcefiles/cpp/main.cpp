@@ -49,7 +49,7 @@ void FindSignal_Thread(void)
     while (1) {
         FindSignal(output);// Find a frame
         std::unique_lock<std::mutex> locker(mtx);
-        //rx2txQueueData.push(&output[0]);
+        rx2txQueueData.push(&output[0]);
         locker.unlock();
         cond.notify_one(); // Notify waiting thread
         
@@ -111,14 +111,14 @@ int main()
     //Spawn Thread
     //std::thread thread1( Transmitter_Thread );
     std::thread thread2( FindSignal_Thread );
-//    std::thread thread3( SignalCorrect_Thread );
- //   std::thread thread4( Decoder_Thread );
+    std::thread thread3( SignalCorrect_Thread );
+    std::thread thread4( Decoder_Thread );
     
     //Wait for thread to finish
     //thread1.join();
     thread2.join();
- //   thread3.join();
-  //  thread4.join();
+    thread3.join();
+    thread4.join();
     std::cout<<"Threads completed"<<std::endl;
     
     ComboFunction_terminate();

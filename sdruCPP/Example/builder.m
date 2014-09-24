@@ -1,11 +1,10 @@
 cfg = coder.config('exe');
-cfg.CustomSource = 'mainSplit.cpp';
+cfg.CustomSource = 'main.cpp';
 cfg.CustomInclude = 'MyFiles/CPP/';
 cfg.TargetLang='C++';
 cfg.PostCodeGenCommand = 'setbuildargs(buildInfo)';
-%functionsToThread = {'Transmitter', 'FindSignal','SignalCorrect','Decoder'};
-functionsToThread = {'Transmitter', 'FindtheFrame','GetUSRPData','SignalCorrect','Decoder'};
-additionalSourceFiles = {'add2q.cpp','main.h'};
+functionsToThread = {'Transmitter', 'FindSignal','SignalCorrect','Decoder'};
+additionalSourceFiles = {};
 outputFunctionName = {'ComboFunction'};
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -18,9 +17,6 @@ outputFunctionName = {'ComboFunction'};
 Release = ver;Release = Release.Release;
 Release = str2double(Release(3:6));
 if Release > 2013
-    %codegen -config cfg Function1 Function2 Transmitter SignalCorrect FindSignal Decoder Receiver -o ComboFunction
-    %codegen -config cfg Transmitter FindSignal SignalCorrect Decoder -o ComboFunction
-    %codegen -config cfg Transmitter Receiver -o ComboFunction
     codegen('-config','cfg',functionsToThread{:},additionalSourceFiles{:},'-o',outputFunctionName{:});
 else
     hostname = lower(gethostname);
@@ -75,8 +71,8 @@ else
     cfg.InlineThresholdMax = 400;
     
     % Pass the rest of the arguments to codegen
-    codegenResult = codegen(functionsToThread{:},'-config', cfg, '-o',outputFunctionName{:});
-    
+    codegenResult = codegen(functionsToThread{:},additionalSourceFiles{:},'-config','cfg','-o',outputFunctionName{:});
+
 end
 
 

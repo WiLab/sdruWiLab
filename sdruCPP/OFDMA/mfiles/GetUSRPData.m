@@ -37,11 +37,20 @@ end
 
 output = 1; %TBUL
 
+% TESTING
+Testing = 1;
+index = 1;
+% TESTING
+
 while 1
     
     % Get data from USRP or Input
     Buffer(1:FrameLength) = Buffer(FrameLength+1:end);% Shift old samples down
-    Buffer(FrameLength+1:end) =  step(SDRuReceiver);% Shift in new samples
+    if Testing
+        [Buffer(FrameLength+1:end), index] =  TestingData(index);
+    else
+        Buffer(FrameLength+1:end) =  step(SDRuReceiver);% Shift in new samples
+    end
     
     % Make sure buffer isn't all zeros, which happens initially
     if sum(abs(Buffer))>0

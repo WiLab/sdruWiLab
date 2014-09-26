@@ -11,3 +11,4 @@ mccExcludedFiles.log
 .DS_Store
 NUL
 *.prj
+startup.m

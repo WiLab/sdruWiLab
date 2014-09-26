@@ -1,13 +1,5 @@
 classdef PHYReceiverBase < matlab.System
-    
-    % OFDM Physical Layer Receiver
-    properties (Nontunable)
-        CenterFrequency = 2.2e9;
-        NumFrames = 1; % Frames to capture
-        HWAttached = false;
-        padBits = 0;
-        FrameLength = 640;
-    end
+     %#ok<*UNRCH>
     
     properties
         delay = 0;
@@ -15,6 +7,12 @@ classdef PHYReceiverBase < matlab.System
     
     % OFDM Physical Layer Base Class
     properties (Nontunable)
+        
+        CenterFrequency = 2.2e9;
+        NumFrames = 1; % Frames to capture
+        HWAttached = false;
+        padBits = 0;
+        FrameLength = 640;
         
         % Timing Recovery Tunable
         PeakThreshold = 0.7
@@ -95,7 +93,6 @@ classdef PHYReceiverBase < matlab.System
             
             % Must call the following methods before this one
             % CreatePreambles(obj) and CreateDemodulators(obj);
-            
             obj.delay = -1;
             
             obj.PreviousSig = complex(zeros(200,1));
@@ -201,15 +198,11 @@ classdef PHYReceiverBase < matlab.System
                 end
                 
                 % All zeros from radio (Bug?)
-                %if DebugFlag
-                    if sum(obj.Buffer)==0
-                        if DebugFlag ;fprintf('All zeros (Bug?)\n');end;
-                        numBuffersProcessed = numBuffersProcessed + 1;
-                        continue;
-                    %else
-                        %if DebugFlag ;fprintf('Got some data\n');end;
-                    end
-                %end
+                if sum(obj.Buffer)==0
+                    if DebugFlag ;fprintf('All zeros (Bug?)\n');end;
+                    numBuffersProcessed = numBuffersProcessed + 1;
+                    continue;
+                end
                 
                 % Increment processed data index (primarily for timeout)
                 numBuffersProcessed = numBuffersProcessed + 1;
@@ -227,8 +220,7 @@ classdef PHYReceiverBase < matlab.System
                 %% Frame Decision
                 if FrameFound
                     if DebugFlag;fprintf('Frame found\n');end;
-                    %fprintf('Frame found\n');
-                    statusFlag = 0;
+                    statusFlag = 0; % Frame found
                     rFrame = obj.Buffer(obj.delay + 1 : obj.delay + obj.FrameLength);% Extract single frame from input buffer
                     
                     if ~(sum(obj.PreviousSig(1:200)-rFrame(1:200))==0) %Duplicate check
@@ -237,7 +229,7 @@ classdef PHYReceiverBase < matlab.System
                     
                     obj.PreviousSig(1:200) = rFrame(1:200);
                 else
-                    statusFlag = 1;
+                    statusFlag = 1; % No frame found
                     % Display why missed frame
                     if DebugFlag
                         if ( (obj.delay + obj.FrameLength) > length(obj.Buffer) )
@@ -428,28 +420,17 @@ classdef PHYReceiverBase < matlab.System
             
             % Cross correlate
             rWin = recv(1:obj.CorrelationWindowSize);
-            %Phat = xcorr(rWin,obj.ConjKnown);
-            %Rhat = xcorr(abs(rWin).^2,ones(obj.K,1)); % moving average
             
             % Remove leading and tail zeros overlaps
             %PhatShort = Phat(ceil(length(Phat)/2):end-obj.K/2+1);
             %RhatShort = Rhat(ceil(length(Rhat)/2):end-obj.K/2+1);
             
             % Fast correlate
-            %PhatShort2 = filter(conj(obj.ConjKnown(end:-1:1)),1,rWin(1:end));
             PhatShort2 = filter(obj.KnownRev,1,rWin(1:end));
-            %RhatShort2 = filter(ones(obj.K,1),1,abs(rWin).^2);
             
             PhatShort2 = PhatShort2(obj.K:end);
-            %RhatShort2 = RhatShort2(obj.K:end);
-            
-            %PhatShort2 = PhatShort2+ones(size(PhatShort2))*0.0001;
-            %RhatShort2 = RhatShort2+ones(size(PhatShort2))*0.0001;
-            %PhatShort2(PhatShort2<0.001) = 0;
-            %RhatShort2(RhatShort2<0.001) = 0;
-            
-            %M2 = abs(PhatShort).^2; %./ RhatShort.^2;
-            M = abs(PhatShort2).^2; %./ RhatShort2.^2;
+
+            M = abs(PhatShort2).^2;
             
             %figure(1);stem(M);
             
@@ -471,12 +452,8 @@ classdef PHYReceiverBase < matlab.System
             
             %% Find peaks of correlation
             
-            % Adjust threshold (remove first outlier)
-            %savedM = M;
-            %[~,loc] = max(M);
-            %M(loc) = 0;
+            % Adjust threshold
             thresholdNorm = max(M)*obj.PeakThreshold;
-            %M = savedM;
             MLocations = find(M>thresholdNorm);
             
             % Correct estimate to start of preamble, not its center
@@ -499,9 +476,6 @@ classdef PHYReceiverBase < matlab.System
             % Pick earliest peak in time
             if ~isempty(peaks)
                 [numPeaks, frontPeakLocation] = max(peaks);
-                %if peaks(frontPeakLocation-1) == (peaks(frontPeakLocation)-1)
-                %    frontPeakLocation = frontPeakLocation - 1;
-                %end
                 if ~isempty(frontPeakLocation) && ( numPeaks > 0 )
                     preambleEstimatedLocation = MLocations(frontPeakLocation);
                 else
@@ -513,18 +487,6 @@ classdef PHYReceiverBase < matlab.System
             end
             % Normalize max peaks found
             numPeaks = numPeaks/numel(desiredPeakLocations);
-            
-            
-            %             x = zeros(size(M));
-            %             y = zeros(size(M));
-            %             if preambleEstimatedLocation>-1
-            %             y(preambleEstimatedLocation) = max(M);
-            %             end
-            %             x(MLocations) = max(M);
-            %             %figure(1);hold on;stem(x);hold off;
-            %             figure(1);hold on;stem(y);hold off;
-            %
-            %             x=1;
             
         end
         %% %%%%%%%%%%%%%% EQUALIZER %%%%%%%%%%%%%%%%%%%
@@ -551,7 +513,6 @@ classdef PHYReceiverBase < matlab.System
             
             % Separate data from preambles
             recvData = recv(length(obj.Preambles)+1:length(obj.Preambles)+(obj.NumDataSymbolsPerFrame)*(obj.FFTLength+obj.CyclicPrefixLength));
-            %recvData = recv(320+1:1280); % CG
             
             % OFDM Demod
             [Rraw, RXPilots] = step(obj.hDataDemod, recvData);

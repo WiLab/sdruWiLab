@@ -1,5 +1,7 @@
 
-SamplingRate = 10e6;
+framesToCapture = 8000;
+
+SamplingRate = 5e6;
 DecimationFactor = 100e6/SamplingRate;
 
 RX = comm.SDRuReceiver('192.168.10.2', ...
@@ -7,15 +9,22 @@ RX = comm.SDRuReceiver('192.168.10.2', ...
     'DecimationFactor', DecimationFactor,...
     'FrameLength',1920,...
     'EnableBurstMode',true,...
-    'NumFramesInBurst',10);
+    'NumFramesInBurst',framesToCapture);
 
-framesToCapture = 100;
 
-capturedData = complex(zeros(RX.FrameLength*RX.NumFramesInBurst,framesToCapture)));
+capturedData = complex(zeros(RX.FrameLength,framesToCapture));
 
-for k=1:framesToCapture
-    capturedData(:,k) = step(RX);
+index = 1;
+
+while index<=framesToCapture
+    tmp = step(RX);
+    if ~(sum(abs(real(tmp)))==0)
+        capturedData(:,index) = tmp;
+        index = index + 1;
+    end
 end
+
+release(RX);
 
 save('Captured.mat','capturedData');
     

@@ -8,7 +8,7 @@ persistent  PF
 if isempty(PF)
     PF = PHYRxProcessFrame;
     PF.NumDataSymbolsPerFrame = 20; % Don't forget to change assert on top
-    PF.SamplingFrequency = 10e6; % Required for CFO
+    PF.SamplingFrequency = 1e6; % Required for CFO
 end
 
 % CFO, equalize, and demodulate

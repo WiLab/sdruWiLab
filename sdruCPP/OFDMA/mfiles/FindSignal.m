@@ -12,7 +12,7 @@ if isempty(FF)
     FF.PeakThreshold = 0.7;
     FF.requiredPeaks = 7;
     
-    FF.SamplingFrequency= 5e6;
+    FF.SamplingFrequency= 1e6;
     FF.CenterFrequency = 900e6;
 end
 

@@ -47,7 +47,7 @@ while 1
     % Get data from USRP or Input
     Buffer(1:FrameLength) = Buffer(FrameLength+1:end);% Shift old samples down
     if Testing
-        [Buffer(FrameLength+1:end), index] =  TestingData(index);
+        [Buffer(FrameLength+1:end), index] =  TestingData(index,FrameLength);
     else
         Buffer(FrameLength+1:end) =  step(SDRuReceiver);% Shift in new samples
     end

@@ -53,7 +53,6 @@ classdef RxOFDMA < matlab.System
         function setupImpl(obj,~)
             
             obj.pDetect = comm.CRCDetector([1 0 0 1], 'ChecksumsPerFrame',1);
-            %obj.player = dsp.AudioPlayer('SampleRate',22050);
 
             obj.CorrectFrame = CorrectBits';
             obj.BER = 0;
@@ -81,8 +80,8 @@ classdef RxOFDMA < matlab.System
             %% Eliminate pad bits
             
             % Extract number of pad bits from beggining of frame
-            obj.padBits = OFDMbits2letters(obj,userBits(1:8));
-            
+            %obj.padBits = OFDMbits2letters(obj,userBits(1:8));
+            obj.padBits = 135;
             unpaddedBits = userBits(1:end-obj.padBits);
             %unpaddedBits = userBits(1:115);% uncoded
             
@@ -139,14 +138,13 @@ classdef RxOFDMA < matlab.System
                         header = messageData(1:4);
                         %% Check successive frames
                         if  uint8(obj.lastFrameID) == uint8(header(2))
-                        	%Duplicate = true;
+                        	Duplicate = true; % Disregard duplicates
                             obj.Duplicates = obj.Duplicates + 1;
                             %if obj.debugFlag; fprintf('Duplicate\n'); end;
                         end
                         if uint8(header(2))==48 % check wrap condition
                             if ~(uint8(obj.lastFrameID)==57) % 0 not after 9
                                  error = (uint8(obj.lastFrameID)+1)-uint8(header(2));
-                                 %if obj.debugFlag; fprintf('Last %d | Current %d | Result %d\n',int16(obj.lastFrameID),int16(header(2)),int16(error));end;
                             end
                         elseif ~((uint8(obj.lastFrameID)+1)==uint8(header(2)))
                                  %if obj.debugFlag; fprintf('Last %d | Current %d\n',int16(obj.lastFrameID),int16(header(2)));end;
@@ -190,20 +188,20 @@ classdef RxOFDMA < matlab.System
                 
                 % BER calculation
                 obj.Iteration = obj.Iteration + 1;
-                newBER = abs(sum(msg(4*8+1:length(obj.CorrectFrame))-obj.CorrectFrame(4*8+1:end)))/length(obj.CorrectFrame(4*8+1:end));
+                wrongBits = sum(abs(msg(4*8+1:length(obj.CorrectFrame))-obj.CorrectFrame(4*8+1:end) ));
+                newBER = wrongBits/length(obj.CorrectFrame(4*8+1:end));
                 obj.BER = (obj.BER*obj.Iteration + newBER)/(obj.Iteration+1);
-                    
+                fprintf('Wrong Bits: %d\n',int64(wrongBits));
                 
                 obj.CorrectFrames = obj.CorrectFrames + 1;%Keep track of decode frames
                 
-                if mod(obj.CorrectFrames, 1000)==0% Only display every N samples, reduces CPU usage
+                if 1%mod(obj.CorrectFrames, 1000)==0% Only display every N samples, reduces CPU usage
                     switch obj.dataType
                         case 'c'
                             fprintf('Correct Frames: %d | BER %.6f | Missed: %d | Dupes: %d\n',...
                                 int64(obj.CorrectFrames),obj.BER,int64(obj.MissedFrames),int64(obj.Duplicates));
-                            fprintf('Message: %s \n', char(recoveredMessage));
+                            fprintf('Message: %s \n', char(recoveredMessage(5:end)));
                         case 'u'
-                            %step(obj.player,recoveredMessage.');
                             for k = 1:length(recoveredMessage)
                                 % Codegen does not accept uint8s on
                                 % fprint, so they need to be casted to

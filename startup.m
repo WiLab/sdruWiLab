@@ -8,7 +8,7 @@ savepath;
 
 
 % SDRu Setup
-sdruPath ='/home/sdruser/git/USRPDriver';
+sdruPath ='/home/sdruser/git/USRPDriver'
 addpath(genpath(sdruPath));
 setupsdru(sdruPath);
 usrp_startup;

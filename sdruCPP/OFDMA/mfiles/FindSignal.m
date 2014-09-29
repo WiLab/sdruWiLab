@@ -25,9 +25,10 @@ if nargin < 1
     rFrame = ((1:(FF.NumDataSymbolsPerFrame*(64+16)+320)*2)');
 else
     rFrame = varargin{1};
-    if FF.HWAttached
-        warning('Ignoring input data since HW is enabled');
-    end
+    %FF.HWAttached = false;
+    %if FF.HWAttached
+    %    warning('Ignoring input data since HW is enabled');
+    %end
 end
 
 
@@ -39,8 +40,8 @@ while 1
 
         if debugFlag;fprintf('Signal found\n');end;
         rFrameComplex = rFrameColumn.'; % Must be a row for passing between C++ functions
-
         return;
+        
     else
         if debugFlag;fprintf('Signal error\n');end;
     end

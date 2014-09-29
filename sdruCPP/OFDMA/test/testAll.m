@@ -8,7 +8,7 @@ if isempty(TxMAC)
     TxMAC = TxOFDMA;
     TxMAC.desiredUser = 1;
     TxMAC.dataType = 'c';
-    TxMAC.symbolsPerFrame = 12;
+    TxMAC.symbolsPerFrame = 20;
     % Setup PHY
     TxPHY = PHYTransmitter;
     TxPHY.HWAttached = false;
@@ -45,7 +45,7 @@ end
 % Add gaps between transmissions
 framesWithGaps=[zeros(100,1);frame;zeros(100,1)];
 
-framesWithGaps = awgn(framesWithGaps,15,'measured');
+%framesWithGaps = awgn(framesWithGaps,15,'measured');
 
 % Find Signal
 [ rFrameComplex ] = FindSignal(framesWithGaps);
@@ -57,5 +57,7 @@ disp('Signal Corrected');
 output2 = Decoder( RHard2 );
 disp('Finished Decoding');
 
+release(TxMAC);release(TxPHY);release(SDRuTransmitter);
+clear all;
 
-
+end

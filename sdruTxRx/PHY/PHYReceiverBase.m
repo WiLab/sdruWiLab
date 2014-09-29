@@ -223,9 +223,9 @@ classdef PHYReceiverBase < matlab.System
                     statusFlag = 0; % Frame found
                     rFrame = obj.Buffer(obj.delay + 1 : obj.delay + obj.FrameLength);% Extract single frame from input buffer
                     
-                    if ~(sum(obj.PreviousSig(1:200)-rFrame(1:200))==0) %Duplicate check
+                    %if ~(sum(obj.PreviousSig(1:200)-rFrame(1:200))==0) %Duplicate check
                         numFoundFrames = numFoundFrames + 1;
-                    end
+                    %end
                     
                     obj.PreviousSig(1:200) = rFrame(1:200);
                 else
@@ -404,7 +404,7 @@ classdef PHYReceiverBase < matlab.System
                 
             end
             
-            %fprintf('FreqEst: %f\n',obj.frequencyMA);
+            fprintf('FreqEst: %f\n',obj.frequencyMA);
             
         end
         
@@ -437,13 +437,14 @@ classdef PHYReceiverBase < matlab.System
             % Determine start of short preamble
             [preambleEstimatedLocation, numPeaks] = locateShortPreamble( obj, M, obj.K );
             
-            %             % View found location
-            %             if preambleEstimatedLocation > 0
-            %             figure(1);stem(M);
-            %             hold on;tmp = zeros(size(M));tmp(preambleEstimatedLocation) = M(preambleEstimatedLocation+(obj.K/2+1));
-            %             stem(tmp,'r');hold off;
-            %             return;
-            %             end
+%             % View found location
+%             if preambleEstimatedLocation > 0
+%                 figure(1);stem(M);
+%                 hold on;tmp = zeros(size(M));tmp(preambleEstimatedLocation) = M(preambleEstimatedLocation+(obj.K/2+1));
+%                 stem(tmp,'r');hold off;
+%                 pause;
+%                 return;
+%             end
         end
         
         

@@ -86,7 +86,6 @@ classdef TxOFDMA < matlab.System
             % Increase frame number
             obj.lastFrameID = mod(obj.lastFrameID + 1,10);
             
-            
             %% Calculate and add number of pad bits to header
             
             % The number of pad bits per user is the total number of bits per user
@@ -102,7 +101,7 @@ classdef TxOFDMA < matlab.System
                 fprintf('MAC| ERROR: Not enough symbols!\n\n');
             end
             
-            % Add number of pad bits to header
+            % Add number of padded bits to header so receiver will know
             obj.messageSent = [repmat(uint8(obj.padBits),obj.numUsers,1) messageUEs];
             
             %% Convert to bits
@@ -115,6 +114,7 @@ classdef TxOFDMA < matlab.System
             for user = 1:obj.numUsers
                 
                 % Convert to bits
+                fprintf('User %d Message: %s\n',int16(user),obj.messageSent(user,:));
                 userBits = obj.OFDMdecimal2bits(obj.messageSent(user,:));
                 
                 % Reshape into row vector
@@ -160,7 +160,7 @@ classdef TxOFDMA < matlab.System
             
             %% User multiplex
             
-            % Itintialize matrix
+            % Inititialize matrix
             userData = zeros(obj.carriersPerUser,obj.symbolsPerFrame); %#ok<PREALL>
             bitsToTx = zeros(obj.numCarriers,obj.symbolsPerFrame);
             

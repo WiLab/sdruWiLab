@@ -13,7 +13,7 @@ FrameLength = 1920;
 if isempty(SDRuReceiver) || isempty(Buffer) || isempty(ReceiveBufferLength)
     
     % USRP Attributes
-    SamplingFrequency = 5e6;
+    SamplingFrequency = 1e6;
     CenterFrequency = 900e6;
     
     % Setup buffers
@@ -38,7 +38,7 @@ end
 output = 1; %TBUL
 
 % TESTING
-Testing = 1;
+Testing = 0;
 index = 1;
 % TESTING
 
@@ -46,11 +46,11 @@ while 1
     
     % Get data from USRP or Input
     Buffer(1:FrameLength) = Buffer(FrameLength+1:end);% Shift old samples down
-    if Testing
-        [Buffer(FrameLength+1:end), index] =  TestingData(index,FrameLength);
-    else
+    %if Testing
+    %    [Buffer(FrameLength+1:end), index] =  TestingData(index,FrameLength);
+    %else
         Buffer(FrameLength+1:end) =  step(SDRuReceiver);% Shift in new samples
-    end
+    %end
     
     % Make sure buffer isn't all zeros, which happens initially
     if sum(abs(Buffer))>0

@@ -8,7 +8,7 @@ if isempty(FF)
     FF.NumFrames = 1;
     FF.NumDataSymbolsPerFrame = 20;
     
-    FF.HWAttached = true;
+    FF.HWAttached = false;
     FF.PeakThreshold = 0.7;
     FF.requiredPeaks = 7;
     
@@ -43,6 +43,8 @@ while 1
         return;
         
     else
+        rFrameComplex = 0;
+        return
         if debugFlag;fprintf('Signal error\n');end;
     end
 end

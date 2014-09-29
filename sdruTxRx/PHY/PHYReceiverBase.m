@@ -404,7 +404,7 @@ classdef PHYReceiverBase < matlab.System
                 
             end
             
-            fprintf('FreqEst: %f\n',obj.frequencyMA);
+            %fprintf('FreqEst: %f\n',obj.frequencyMA);
             
         end
         
@@ -432,7 +432,8 @@ classdef PHYReceiverBase < matlab.System
 
             M = abs(PhatShort2).^2;
             
-            %figure(1);stem(M);
+%             figure(1);stem(M);
+%             pause(1);
             
             % Determine start of short preamble
             [preambleEstimatedLocation, numPeaks] = locateShortPreamble( obj, M, obj.K );
@@ -442,7 +443,6 @@ classdef PHYReceiverBase < matlab.System
 %                 figure(1);stem(M);
 %                 hold on;tmp = zeros(size(M));tmp(preambleEstimatedLocation) = M(preambleEstimatedLocation+(obj.K/2+1));
 %                 stem(tmp,'r');hold off;
-%                 pause;
 %                 return;
 %             end
         end

@@ -1,4 +1,4 @@
-function output2 = testAll()
+function framesFound = testAll()
 
 %% Transmitter
 persistent TxMAC TxPHY SDRuTransmitter
@@ -46,10 +46,17 @@ end
 % framesWithGaps=[zeros(100,1);frame;zeros(100,1)];
 
 %framesWithGaps = awgn(framesWithGaps,15,'measured');
-x = load('Captured.mat');
+
+DLL = ~strcmp(coder.target,'');
+if DLL
+    x = coder.load('Captured.mat');
+else
+    x = load('Captured.mat');
+end
+
 input = x.capturedData;
 
-framesWithGaps = zeros(1920*2,1);
+framesWithGaps = complex(zeros(1920*2,1));
 framesFound = 0;
 
 for k = 1:size(input,2)
@@ -71,7 +78,8 @@ end
 fprintf('Frames Found: %d\n',int64(framesFound));
 
 release(TxMAC);release(TxPHY);release(SDRuTransmitter);
-clear all;
+%clear all;
+
 
 
 end

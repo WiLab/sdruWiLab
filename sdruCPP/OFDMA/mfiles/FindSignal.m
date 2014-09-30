@@ -32,9 +32,25 @@ else
 end
 
 
-while 1
+%while 1
+ DLL = ~strcmp(coder.target,'');
+if DLL
+    x = coder.load('Captured.mat');
+else
+    x = load('Captured.mat');
+end
+
+input = x.capturedData;
+
+framesWithGaps = complex(zeros(1920*2,1));
+
+for k = 1:size(input,2) 
+    
+    framesWithGaps(1:1920*1) = framesWithGaps(1921:end);
+    framesWithGaps(1920*1+1:end) = input(:,k);
+    
     % Get data from USRP
-    [rFrameColumn, statusFlag] = step(FF,rFrame);
+    [rFrameColumn, statusFlag] = step(FF,framesWithGaps);
     
     if statusFlag == 0 % Not a timeout or other error
 
@@ -43,11 +59,14 @@ while 1
         return;
         
     else
-        rFrameComplex = 0;
-        return
+        rFrameComplex = complex(zeros(1,1920));
+        %rFrameComplex = 0;
+        %return
         if debugFlag;fprintf('Signal error\n');end;
     end
 end
+
+fprintf('Find Signal Complete\n');
 
 end
 

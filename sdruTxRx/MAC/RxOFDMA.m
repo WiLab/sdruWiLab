@@ -33,7 +33,6 @@ classdef RxOFDMA < matlab.System
         
         % Object handle
         pDetect;
-        %player;
         pDecoder;
         DeScram
         
@@ -198,8 +197,8 @@ classdef RxOFDMA < matlab.System
                 
                 % BER calculation
                 obj.Iteration = obj.Iteration + 1;
-                wrongBits = sum(abs(msg(4*8+1:length(obj.CorrectFrame))-obj.CorrectFrame(4*8+1:end) ));
-                newBER = wrongBits/length(obj.CorrectFrame(4*8+1:end));
+                wrongBits = sum(abs(msg(2*8+1:length(obj.CorrectFrame))-obj.CorrectFrame(2*8+1:end) )); % Ignore first 2 characters since they aren't static
+                newBER = wrongBits/length(obj.CorrectFrame(2*8+1:end));
                 obj.BER = (obj.BER*obj.Iteration + newBER)/(obj.Iteration+1);
                 
                 if wrongBits>0
@@ -208,7 +207,8 @@ classdef RxOFDMA < matlab.System
                 
                 obj.CorrectFrames = obj.CorrectFrames + 1;%Keep track of decode frames
                 
-                if mod(obj.CorrectFrames, 1000)==0% Only display every N samples, reduces CPU usage
+                % Display Message
+                if 1%mod(obj.CorrectFrames, 1000)==0% Only display every N samples, reduces CPU usage
                     switch obj.dataType
                         case 'c'
                             fprintf('Correct Frames: %d | BER %.6f | Missed: %d | Dupes: %d\n',...
@@ -232,23 +232,18 @@ classdef RxOFDMA < matlab.System
                     switch reason
                         case 0
                             if obj.debugFlag; fprintf('Reason: UNK\n');end;% Unknown error?
-                            %fprintf('Reason: UNK\n');
                             %obj.MissedFrames = obj.MissedFrames + 1;
                         case 1
                             if obj.debugFlag; fprintf('Reason: PAD\n');end;
-                            %fprintf('Reason: PAD\n');
                             obj.MissedFrames = obj.MissedFrames + 1;
                         case 2
                             if obj.debugFlag; fprintf('Reason: EOF\n');end
-                            %fprintf('Reason: EOF\n');
                             obj.MissedFrames = obj.MissedFrames + 1;
                         case 3
                             if obj.debugFlag; fprintf('Reason: CRC\n');end;
-                            %fprintf('Reason: CRC\n');
                             obj.MissedFrames = obj.MissedFrames + 1;
                         case 4
                             if obj.debugFlag; fprintf('Reason: EOO\n');end;% Out of order
-                            %fprintf('Reason: NON\n');
                             obj.MissedFrames = obj.MissedFrames + 1;
                     end
                     

@@ -12,3 +12,6 @@ mccExcludedFiles.log
 NUL
 *.prj
 startup.m
+RX
+ComboFunction
+TX

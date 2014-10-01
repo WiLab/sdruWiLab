@@ -57,7 +57,8 @@ void FindTheFrame_Thread(void)
 {
 
     std::cout<<"Started FindTheFrame Thread"<<std::endl;
-    creal_T *input;
+    //creal_T *input;
+    creal_T *input = new creal_T;
     //creal_T output[1920];
     creal_T *output = new creal_T[1920];
     int short flag = 1;
@@ -67,6 +68,7 @@ void FindTheFrame_Thread(void)
         mtx3.lock();
         if (!usrp2FindtheFrameQueue.empty())//If queue not empty don't wait for signal
         {            
+            creal_T *input = new (std::nothrow) creal_T;
             input = (usrp2FindtheFrameQueue.front());
             usrp2FindtheFrameQueue.pop();
             
@@ -87,6 +89,7 @@ void FindTheFrame_Thread(void)
             std::unique_lock<std::mutex> locker(mtx3);
             cond3.wait(locker,[](){ return !usrp2FindtheFrameQueue.empty();});
             
+            creal_T *input = new (std::nothrow) creal_T;
             input = (usrp2FindtheFrameQueue.front());
             usrp2FindtheFrameQueue.pop();
             
@@ -112,8 +115,10 @@ void FindTheFrame_Thread(void)
 void SignalCorrect_Thread(void)
 {
     std::cout<<"Started Signal Correct Thread"<<std::endl;
-    creal_T *input;
-    boolean_T output[960];
+    //creal_T *input;
+    creal_T *input = new creal_T;
+    //boolean_T output[960];
+    boolean_T *output = new boolean_T[960];
     int k = MESSAGES2TX;
     while (k>0) {
         
@@ -121,11 +126,13 @@ void SignalCorrect_Thread(void)
         mtx.lock();
         if (!rx2txQueueData.empty())//If queue not empty don't wait for signal
         {
+	    creal_T *input = new (std::nothrow) creal_T;
             input = (rx2txQueueData.front());
             rx2txQueueData.pop();
             
             mtx.unlock();
-            
+           
+	    boolean_T *output = new (std::nothrow) boolean_T[960]; 
             SignalCorrect(input, output);
             
             std::unique_lock<std::mutex> locker2(mtx2);
@@ -137,12 +144,14 @@ void SignalCorrect_Thread(void)
             mtx.unlock();
             std::unique_lock<std::mutex> locker(mtx);
             cond.wait(locker,[](){ return !rx2txQueueData.empty();});
-            
+
+	    creal_T *input = new (std::nothrow) creal_T;            
             input = (rx2txQueueData.front());
             rx2txQueueData.pop();
             
             locker.unlock();
-            
+
+	    boolean_T *output = new (std::nothrow) boolean_T[960];            
             SignalCorrect(input, output);
             
             std::unique_lock<std::mutex> locker2(mtx2);

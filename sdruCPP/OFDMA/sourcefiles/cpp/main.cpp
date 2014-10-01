@@ -11,6 +11,7 @@
 
 //Include headers of matlab functions
 #include "Transmitter.h"
+#include "GenerateInput.h"
 #include "FindSignal.h"
 #include "SignalCorrect.h"
 #include "Decoder.h"

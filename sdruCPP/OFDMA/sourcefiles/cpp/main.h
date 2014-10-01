@@ -2,6 +2,7 @@
 #include <mutex>
 #include <queue>
 #include <condition_variable>
+#include <unistd.h>
 
 // Create Mutex
 extern std::mutex mtx;

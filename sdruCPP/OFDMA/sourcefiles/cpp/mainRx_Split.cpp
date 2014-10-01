@@ -37,7 +37,7 @@ std::condition_variable cond3;
 void GetDataUSRP(void)
 {
     std::cout<<"Started Get USRP Thread"<<std::endl;
-    //GetUSRPData_init();
+    GetUSRPData_init();
     //GetUSRPData();
     
     // Testing
@@ -46,9 +46,10 @@ void GetDataUSRP(void)
     sleep(3);
     while (1) {
     	creal_T *input = new (std::nothrow) creal_T[1920*2];
-        GenerateInput(input);
+        //GenerateInput(input);
+        GetUSRPData(input);
         add2q(input);
-	//sleep(1);
+        //sleep(1);
     }
 }
 

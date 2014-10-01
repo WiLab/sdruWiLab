@@ -1,4 +1,4 @@
-function output = GetUSRPData()
+function BufferColumn = GetUSRPData()
 
 persistent SDRuReceiver Buffer ReceiveBufferLength
 
@@ -35,27 +35,21 @@ if isempty(SDRuReceiver) || isempty(Buffer) || isempty(ReceiveBufferLength)
         'SampleRate',           SamplingFrequency);
 end
 
-output = 1; %TBUL
 
-% TESTING
-Testing = 0;
-index = 1;
-% TESTING
+BufferColumn = complex(zeros(1920*2,1));
 
 while 1
     
     % Get data from USRP or Input
     Buffer(1:FrameLength) = Buffer(FrameLength+1:end);% Shift old samples down
-    %if Testing
-    %    [Buffer(FrameLength+1:end), index] =  TestingData(index,FrameLength);
-    %else
-        Buffer(FrameLength+1:end) =  step(SDRuReceiver);% Shift in new samples
-    %end
+    Buffer(FrameLength+1:end) =  step(SDRuReceiver);% Shift in new samples
     
     % Make sure buffer isn't all zeros, which happens initially
     if sum(abs(Buffer))>0
-        BufferRow = Buffer.';
-        coder.ceval('add2q',coder.ref(BufferRow));
+        BufferColumn = Buffer;
+        %BufferRow = Buffer.';
+        %coder.ceval('add2q',coder.ref(BufferRow));
+        return;
     end
     
 end

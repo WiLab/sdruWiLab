@@ -10,6 +10,7 @@
 #include "GetUSRPData.h"
 #include "FindtheFrame.h"
 #include "SignalCorrect.h"
+#include "GenerateInput.h"
 #include "Decoder.h"
 
 //Include header of combined library
@@ -40,9 +41,12 @@ void GetDataUSRP(void)
     //GetUSRPData();
     
     // Testing
+    creal_T input[1920*2];
+    sleep(10);
+    while (1) {
     GenerateInput(input); 
     add2q(input);
-    
+	}    
 }
 
 // Locator
@@ -52,7 +56,7 @@ void FindTheFrame_Thread(void)
     std::cout<<"Started FindTheFrame Thread"<<std::endl;
     creal_T *input;
     creal_T output[1920];
-    short int flag = 1;
+    int short flag = 1;
     int k = MESSAGES2TX;
     while (k>0) {
         

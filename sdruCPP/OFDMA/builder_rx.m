@@ -3,7 +3,7 @@ cfg.CustomSource = 'mainRx_Split.cpp';
 cfg.CustomInclude = 'sourcefiles/cpp/';
 cfg.TargetLang='C++';
 cfg.PostCodeGenCommand = 'setbuildargs(buildInfo)';
-functionsToThread = {'Transmitter', 'FindtheFrame','GetUSRPData','SignalCorrect','Decoder'};
+functionsToThread = {'Transmitter', 'FindtheFrame','GetUSRPData','SignalCorrect','Decoder','GenerateInput'};
 additionalSourceFiles = {'add2q.cpp','main.h'};
 outputFunctionName = {'RX'};
 

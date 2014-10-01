@@ -37,7 +37,7 @@ classdef RxOFDMA < matlab.System
         DeScram
         
         % Flags
-        debugFlag = 1;
+        debugFlag = 0; %Skips missed counting
         ignoreCRC = 1;
         
         CorrectFrames = 0;
@@ -139,6 +139,7 @@ classdef RxOFDMA < matlab.System
                         %% Check frame ordering/succession
                         if  uint8(obj.lastFrameID) == uint8(header(2)) % New header == old header
                             Duplicate = true; % Disregard duplicates
+                            err = true; % Duplicate not an error
                             obj.Duplicates = obj.Duplicates + 1;
                             if obj.debugFlag; fprintf('Duplicate\n'); end;
                         end
@@ -156,7 +157,7 @@ classdef RxOFDMA < matlab.System
                             err = true;
                             error = double(uint8(obj.lastFrameID)+1)-double(uint8(header(2)));% distance from true
                             fprintf('Missed Distance: %2.0f\n',(error));
-                            %if obj.debugFlag; fprintf('Last %d | Current %d\n',int16(obj.lastFrameID),int16(header(2)));end;
+                            if obj.debugFlag; fprintf('Last %c | Current %c\n',char(obj.lastFrameID),char(header(2)));end;
                         end
                         
                     else % NO EOF Found
@@ -227,7 +228,7 @@ classdef RxOFDMA < matlab.System
                 end
                 
             else % Failure occurred
-                % If duplicate determine what happened
+                % If not duplicate determine what happened
                 if ~Duplicate
                     switch reason
                         case 0

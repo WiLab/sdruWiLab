@@ -61,25 +61,37 @@ framesFound = 0;
 
 dupCheck = complex(zeros(1,1920));
 
+scope = dsp.SpectrumAnalyzer;
+
 for k = 1:size(input,2)
     
     framesWithGaps(1:1920*1) = framesWithGaps(1921:end);
     framesWithGaps(1920*1+1:end) = input(:,k);
     
     % Find Signal
-    %[ rFrameComplex ] = FindSignal(framesWithGaps); % Original receiver
-    [ rFrameComplex ] = FindtheFrame(framesWithGaps); % Using in split receiver
+    [ rFrameComplex ] = FindSignal(framesWithGaps); % Original receiver
+    %[ rFrameComplex ] = FindtheFrame(framesWithGaps); % Using in split receiver
     if sum(sum(abs(rFrameComplex)))>0
         
         % Sanity check
         if sum(abs(rFrameComplex - dupCheck))==0
             fprintf('Duplicate\n');
         end
+        % Add random miss
+        if k == 300
+            continue
+        end
+        
+        if mod(k,10)==0
         dupCheck = rFrameComplex;
+        end
+        
+        step(scope, rFrameComplex.');
+        
         % Signal Correct
         [ RHard2 ] = SignalCorrect(rFrameComplex);
         % Decoder
-        output2 = Decoder( RHard2 );
+        Decoder( RHard2 );
         framesFound = framesFound + 1;
     end
 end

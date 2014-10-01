@@ -44,9 +44,9 @@ void GetDataUSRP(void)
     creal_T input[1920*2];
     sleep(10);
     while (1) {
-    GenerateInput(input); 
-    add2q(input);
-	}    
+        GenerateInput(input);
+        add2q(input);
+    }
 }
 
 // Locator
@@ -60,24 +60,45 @@ void FindTheFrame_Thread(void)
     int k = MESSAGES2TX;
     while (k>0) {
         
-        std::unique_lock<std::mutex> locker(mtx3);
-        cond3.wait(locker,[](){ return !usrp2FindtheFrameQueue.empty();});
-
-        input = (usrp2FindtheFrameQueue.front());
-        usrp2FindtheFrameQueue.pop();
-	
-        locker.unlock();
-
-        FindtheFrame(input, output, &flag);
-        if (flag<1){//Frame found
-            std::unique_lock<std::mutex> locker2(mtx);
-            rx2txQueueData.push(&output[0]);
-            locker2.unlock();
-            cond.notify_one(); // Notify waiting thread
+        mtx3.lock();
+        if (!usrp2FindtheFrameQueue.empty())//If queue not empty don't wait for signal
+        {            
+            input = (usrp2FindtheFrameQueue.front());
+            usrp2FindtheFrameQueue.pop();
+            
+            mtx3.unlock();
+            
+            FindtheFrame(input, output, &flag);
+            if (flag<1){//Frame found
+                std::unique_lock<std::mutex> locker2(mtx);
+                rx2txQueueData.push(&output[0]);
+                locker2.unlock();
+                cond.notify_one(); // Notify waiting thread
+            }
         }
-
+        else//Wait for signal if queue empty
+        {
+            mtx3.unlock();
+            std::unique_lock<std::mutex> locker(mtx3);
+            cond3.wait(locker,[](){ return !usrp2FindtheFrameQueue.empty();});
+            
+            input = (usrp2FindtheFrameQueue.front());
+            usrp2FindtheFrameQueue.pop();
+            
+            locker.unlock();
+            
+            FindtheFrame(input, output, &flag);
+            if (flag<1){//Frame found
+                std::unique_lock<std::mutex> locker2(mtx);
+                rx2txQueueData.push(&output[0]);
+                locker2.unlock();
+                cond.notify_one(); // Notify waiting thread
+            }
+        }
+        
+        
     }
-
+    
 }
 
 
@@ -90,21 +111,39 @@ void SignalCorrect_Thread(void)
     int k = MESSAGES2TX;
     while (k>0) {
         
-        std::unique_lock<std::mutex> locker(mtx);
-        cond.wait(locker,[](){ return !rx2txQueueData.empty();});
         
-        input = (rx2txQueueData.front());
-        rx2txQueueData.pop();
-        
-        locker.unlock();
-        
-        SignalCorrect(input, output);
-        
-        std::unique_lock<std::mutex> locker2(mtx2);
-        rx2txQueueDataDecode.push(&output[0]);
-        locker2.unlock();
-        cond2.notify_one(); // Notify waiting thread
-        
+        mtx.lock();
+        if (!rx2txQueueData.empty())//If queue not empty don't wait for signal
+        {
+            input = (rx2txQueueData.front());
+            rx2txQueueData.pop();
+            
+            mtx.unlock();
+            
+            SignalCorrect(input, output);
+            
+            std::unique_lock<std::mutex> locker2(mtx2);
+            rx2txQueueDataDecode.push(&output[0]);
+            locker2.unlock();
+            cond2.notify_one(); // Notify waiting thread
+        }
+        else{
+            mtx.unlock();
+            std::unique_lock<std::mutex> locker(mtx);
+            cond.wait(locker,[](){ return !rx2txQueueData.empty();});
+            
+            input = (rx2txQueueData.front());
+            rx2txQueueData.pop();
+            
+            locker.unlock();
+            
+            SignalCorrect(input, output);
+            
+            std::unique_lock<std::mutex> locker2(mtx2);
+            rx2txQueueDataDecode.push(&output[0]);
+            locker2.unlock();
+            cond2.notify_one(); // Notify waiting thread
+        }
     }
 }
 
@@ -116,14 +155,30 @@ void Decoder_Thread(void)
     int k = MESSAGES2TX;
     while (k>0) {
         
-        std::unique_lock<std::mutex> locker(mtx);
-        cond2.wait(locker, [](){ return !rx2txQueueDataDecode.empty();});
         
-        input = (rx2txQueueDataDecode.front());
-        rx2txQueueDataDecode.pop();
-        locker.unlock();
-        
-        Decoder(input);
+        mtx2.lock();
+        if (!rx2txQueueDataDecode.empty())//If queue not empty don't wait for signal
+        {
+            
+            input = (rx2txQueueDataDecode.front());
+            rx2txQueueDataDecode.pop();
+            
+            mtx2.unlock();
+            
+            Decoder(input);
+        }
+        else{
+            mtx2.unlock();
+            std::unique_lock<std::mutex> locker(mtx2);
+            cond2.wait(locker, [](){ return !rx2txQueueDataDecode.empty();});
+            
+            input = (rx2txQueueDataDecode.front());
+            rx2txQueueDataDecode.pop();
+            locker.unlock();
+            
+            Decoder(input);
+        }
+
         
     }
 }

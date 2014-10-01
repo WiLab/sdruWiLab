@@ -3,7 +3,7 @@ cfg.CustomSource = 'main.cpp';
 cfg.CustomInclude = 'sourcefiles/cpp/';
 cfg.TargetLang='C++';
 cfg.PostCodeGenCommand = 'setbuildargs(buildInfo)';
-functionsToThread = {'Transmitter', 'FindSignal','SignalCorrect','Decoder'};
+functionsToThread = {'Transmitter', 'FindSignal','SignalCorrect','Decoder','GenerateInput'};
 additionalSourceFiles = {};
 outputFunctionName = {'ComboFunction'};
 

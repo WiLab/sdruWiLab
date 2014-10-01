@@ -44,14 +44,21 @@ void Transmitter_Thread(void)
 void FindSignal_Thread(void)
 {
     std::cout<<"Started Thread RX"<<std::endl;
-    int k;
+    //int k;
+    short int flag = 1;
     creal_T output[1920];
+    creal_T input[1920*2];
     while (1) {
-        FindSignal(output);// Find a frame
-        std::unique_lock<std::mutex> locker(mtx);
-        rx2txQueueData.push(&output[0]);
-        locker.unlock();
-        cond.notify_one(); // Notify waiting thread
+        
+        GenerateInput(input);
+        FindSignal(input, output, &flag);// Find a frame
+        
+        if (flag<1){
+            std::unique_lock<std::mutex> locker(mtx);
+            rx2txQueueData.push(&output[0]);
+            locker.unlock();
+            cond.notify_one(); // Notify waiting thread
+        }
         
     }
 }

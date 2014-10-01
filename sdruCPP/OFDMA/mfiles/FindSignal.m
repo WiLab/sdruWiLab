@@ -1,11 +1,10 @@
-function [ rFrameComplex ] = FindSignal(varargin) %#codegen
+function [ rFrameComplex, statusFlag ] = FindSignal(varargin) %#codegen
 
 %% Receiver
-persistent  FF START
+persistent  FF
 
-if isempty(FF) || isempty(START)
-    START = 1;
-    
+if isempty(FF)
+        
     FF = PHYRxFindFrame;
     FF.NumFrames = 1;
     FF.NumDataSymbolsPerFrame = 20;
@@ -33,51 +32,26 @@ else
     %end
 end
 
+statusFlag = 0;
 
-%while 1
- DLL = ~strcmp(coder.target,'');
-if DLL
-    x = coder.load('Captured.mat');
-else
-    x = load('Captured.mat');
-end
-
-input = x.capturedData;
-
-framesWithGaps = complex(zeros(1920*2,1));
-
-%for k = 1:size(input,2) 
-k = START;
 while 1
     
-    framesWithGaps(1:1920*1) = framesWithGaps(1921:end);
-    framesWithGaps(1920*1+1:end) = input(:,k);
-    
     % Get data from USRP
-    [rFrameColumn, statusFlag] = step(FF,framesWithGaps);
+    [rFrameColumn, statusFlag] = step(FF,rFrame);
     
     if statusFlag == 0 % Not a timeout or other error
 
         if debugFlag;fprintf('Signal found\n');end;
         rFrameComplex = rFrameColumn.'; % Must be a row for passing between C++ functions
-        START = k + 1;
         return;
         
     else
-        rFrameComplex = complex(zeros(1,1920));
-        %rFrameComplex = 0;
-        %return
         if debugFlag;fprintf('Signal Not found\n');end;
-    end
-    
-    if k>=size(input,2)
-        fprintf('LOOPED\n');
-        k = 1;
+        rFrameComplex = complex(zeros(1,1920));
+        return
     end
     
 end
-
-fprintf('Find Signal Complete\n');
 
 end
 

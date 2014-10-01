@@ -1,4 +1,6 @@
-function [ rFrameComplex, statusFlag ] = FindSignal(varargin) %#codegen
+function [ rFrameComplex, statusFlag ] = FindSignal(rFrame) %#codegen
+
+assert(isa(rFrame, 'double') && ~isreal(rFrame) && all(size(rFrame) == [2*(20*(64+16)+320) 1]))
 
 %% Receiver
 persistent  FF
@@ -22,15 +24,15 @@ debugFlag = 0;
 % Debug
 
 % Check if there is an input, really only used for testing
-if nargin < 1
-    rFrame = ((1:(FF.NumDataSymbolsPerFrame*(64+16)+320)*2)');
-else
-    rFrame = varargin{1};
+%if nargin < 1
+%    rFrame = ((1:(FF.NumDataSymbolsPerFrame*(64+16)+320)*2)');
+%else
+%    rFrame = varargin{1};
     %FF.HWAttached = false;
     %if FF.HWAttached
     %    warning('Ignoring input data since HW is enabled');
     %end
-end
+%end
 
 statusFlag = 0;
 

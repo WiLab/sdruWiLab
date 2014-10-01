@@ -11,6 +11,7 @@
 
 //Include headers of matlab functions
 #include "Transmitter.h"
+#include "GenerateInput.h"
 #include "FindSignal.h"
 #include "SignalCorrect.h"
 #include "Decoder.h"
@@ -45,7 +46,7 @@ void FindSignal_Thread(void)
 {
     std::cout<<"Started Thread RX"<<std::endl;
     //int k;
-    short int flag = 1;
+    double flag = 1;
     creal_T output[1920];
     creal_T input[1920*2];
     while (1) {

@@ -1,6 +1,6 @@
-function [rFrame,statusFlag] = FindtheFrame(BufferRow)
+function [rFrame,statusFlag] = FindtheFrame(Buffer)
 
-assert(isa(BufferRow, 'double') && ~isreal(BufferRow) && all(size(BufferRow) == [1 2*1920]));
+assert(isa(Buffer, 'double') && ~isreal(Buffer) && all(size(Buffer) == [2*1920 1]));
 
 % Setup
 persistent RX
@@ -52,7 +52,8 @@ DebugFlag = 0;
 statusFlag = int16(1);
 
 % Functions require column vector
-Buffer = BufferRow.';
+%Buffer = BufferRow.';
+BufferRow = Buffer.';
 
 % Find preamble in buffer
 [delay, ~] = locateOFDMFrame_sdr( RX, Buffer );

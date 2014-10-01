@@ -36,8 +36,13 @@ std::condition_variable cond3;
 void GetDataUSRP(void)
 {
     std::cout<<"Started Get USRP Thread"<<std::endl;
-    GetUSRPData_init();
-    GetUSRPData();
+    //GetUSRPData_init();
+    //GetUSRPData();
+    
+    // Testing
+    GenerateInput(input); 
+    add2q(input);
+    
 }
 
 // Locator

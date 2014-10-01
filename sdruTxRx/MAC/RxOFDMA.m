@@ -37,8 +37,8 @@ classdef RxOFDMA < matlab.System
         DeScram
         
         % Flags
-        debugFlag = 0;
-        ignoreCRC = 0;
+        debugFlag = 1;
+        ignoreCRC = 1;
         
         CorrectFrames = 0;
         MissedFrames = 0;

@@ -41,11 +41,14 @@ void GetDataUSRP(void)
     //GetUSRPData();
     
     // Testing
-    creal_T input[1920*2];
-    sleep(10);
+    //creal_T input[1920*2];
+    creal_T *input = new creal_T[1920*2];
+    sleep(3);
     while (1) {
+    	creal_T *input = new (std::nothrow) creal_T[1920*2];
         GenerateInput(input);
         add2q(input);
+	//sleep(1);
     }
 }
 
@@ -55,7 +58,8 @@ void FindTheFrame_Thread(void)
 
     std::cout<<"Started FindTheFrame Thread"<<std::endl;
     creal_T *input;
-    creal_T output[1920];
+    //creal_T output[1920];
+    creal_T *output = new creal_T[1920];
     int short flag = 1;
     int k = MESSAGES2TX;
     while (k>0) {
@@ -67,7 +71,8 @@ void FindTheFrame_Thread(void)
             usrp2FindtheFrameQueue.pop();
             
             mtx3.unlock();
-            
+
+            creal_T *output = new (std::nothrow) creal_T[1920];
             FindtheFrame(input, output, &flag);
             if (flag<1){//Frame found
                 std::unique_lock<std::mutex> locker2(mtx);
@@ -86,7 +91,8 @@ void FindTheFrame_Thread(void)
             usrp2FindtheFrameQueue.pop();
             
             locker.unlock();
-            
+
+	    creal_T *output = new (std::nothrow) creal_T[1920];            
             FindtheFrame(input, output, &flag);
             if (flag<1){//Frame found
                 std::unique_lock<std::mutex> locker2(mtx);
@@ -178,7 +184,6 @@ void Decoder_Thread(void)
             
             Decoder(input);
         }
-
         
     }
 }

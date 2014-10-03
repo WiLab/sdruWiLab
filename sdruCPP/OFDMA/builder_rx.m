@@ -3,7 +3,8 @@ cfg.CustomSource = 'mainRx_Split.cpp';
 cfg.CustomInclude = 'sourcefiles/cpp/';
 cfg.TargetLang='C++';
 cfg.PostCodeGenCommand = 'setbuildargs(buildInfo)';
-functionsToThread = {'Transmitter', 'FindtheFrame','GetUSRPData','SignalCorrect','Decoder','GenerateInput'};
+%functionsToThread = {'Transmitter', 'FindtheFrame','GetUSRPData','SignalCorrect','Decoder','GenerateInput'};
+functionsToThread = {'Transmitter', 'FindtheFrame','GetUSRPData','SignalCorrect','Decoder'};
 additionalSourceFiles = {'add2q.cpp','main.h'};
 outputFunctionName = {'RX'};
 
@@ -13,6 +14,8 @@ outputFunctionName = {'RX'};
 
 % Run Codegen, if earlier than 2014, must add include paths manually for
 % sdru
+
+tic;
 
 Release = ver;Release = Release.Release;
 Release = str2double(Release(3:6));
@@ -75,5 +78,7 @@ else
     
 end
 
+total = toc;
+fprintf('Build duration: %f (Seconds)\n',total);
 
 

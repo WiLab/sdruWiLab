@@ -13,7 +13,7 @@ FrameLength = 1920;
 if isempty(SDRuReceiver) || isempty(Buffer) || isempty(ReceiveBufferLength)
     
     % USRP Attributes
-    SamplingFrequency = 1e6;
+    SamplingFrequency = 5e6;
     CenterFrequency = 900e6;
     
     % Setup buffers
@@ -32,7 +32,9 @@ if isempty(SDRuReceiver) || isempty(Buffer) || isempty(ReceiveBufferLength)
         'FrameLength',          FrameLength,...
         'OutputDataType',       'single',...
         'Gain',                 18,...
-        'SampleRate',           SamplingFrequency);
+        'SampleRate',           SamplingFrequency,...
+	'EnableBurstMode',	false,...
+	'NumFramesInBurst',	10);
 end
 
 
@@ -46,7 +48,7 @@ while 1
     
     % Make sure buffer isn't all zeros, which happens initially
     if sum(abs(Buffer))>0
-        BufferColumn = Buffer;
+        BufferColumn = Buffer(1:1920*2);
         %BufferRow = Buffer.';
         %coder.ceval('add2q',coder.ref(BufferRow));
         return;

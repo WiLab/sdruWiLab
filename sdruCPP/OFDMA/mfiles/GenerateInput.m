@@ -20,6 +20,9 @@ end
 framesWithGaps(1:1920*1) = framesWithGaps(1921:end);
 framesWithGaps(1920*1+1:end) = largeData(:,index);
 index = index + 1;
+if index ==200
+	index = 1;
+end
 
 output = framesWithGaps;
 

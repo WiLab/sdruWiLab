@@ -14,6 +14,8 @@ outputFunctionName = {'ComboFunction'};
 % Run Codegen, if earlier than 2014, must add include paths manually for
 % sdru
 
+tic;
+
 Release = ver;Release = Release.Release;
 Release = str2double(Release(3:6));
 if Release > 2013
@@ -74,6 +76,9 @@ else
     codegenResult = codegen(functionsToThread{:},additionalSourceFiles{:},'-config','cfg','-o',outputFunctionName{:});
 
 end
+
+total = toc;
+fprintf('Build duration: %f (Seconds)\n',total);
 
 
 

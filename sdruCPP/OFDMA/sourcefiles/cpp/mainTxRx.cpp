@@ -7,6 +7,7 @@
 #include "main.h"
 
 //Include headers of matlab functions
+#include "Transmitter.h"
 #include "GetUSRPData.h"
 #include "FindtheFrame.h"
 #include "SignalCorrect.h"
@@ -14,8 +15,8 @@
 #include "Decoder.h"
 
 //Include header of combined library
-#include "RX_initialize.h"
-#include "RX_terminate.h"//Not sure if needed
+#include "TXRX_initialize.h"
+#include "TXRX_terminate.h"//Not sure if needed
 
 #define MESSAGES2TX 100000//Messages to send between PHY and MAC (NOT USED)
 
@@ -35,6 +36,16 @@ std::queue<boolean_T*> rx2txQueueDataDecode;
 std::condition_variable cond;
 std::condition_variable cond2;
 std::condition_variable cond3;
+
+
+//Transmitter Thread
+void Transmitter_Thread(void)
+{
+    std::cout<<"Started Transmitter"<<std::endl;
+    double output = 0;
+    Transmitter();
+}
+
 
 
 //Full receiver in single thread
@@ -265,13 +276,20 @@ int main()
     
     std::cout<<"Main Started"<<std::endl;
     
+    
+    
     //Initialize Matlab Create Functions
-    RX_initialize();
+    TXRX_initialize();
+    
+    //Start Transmitter
+    std::thread threadTX( Transmitter );
+    
     
     if (!Pipeline){
         //Single Threaded
         std::thread threadONE( Receiver );
         threadONE.join();
+        threadTX.join();
     }
     else{
         //Spawn Thread
@@ -289,6 +307,7 @@ int main()
         
         
         //Wait for thread to finish
+        threadTX.join();
         thread1.join();
         thread2.join();
         thread3.join();
@@ -297,7 +316,7 @@ int main()
         std::cout<<"Threads completed"<<std::endl;
     }
     
-    RX_terminate();
+    TXRX_terminate();
     
     return 0;
 }

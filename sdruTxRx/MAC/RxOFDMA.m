@@ -37,8 +37,8 @@ classdef RxOFDMA < matlab.System
         DeScram
         
         % Flags
-        debugFlag = 1; %Skips missed counting
-        ignoreCRC = 1;
+        debugFlag = 1; %Skips missed counting if enabled
+        ignoreCRC = 0; % BER will only be 0 if enabled
         
         CorrectFrames = 0;
         MissedFrames = 0;
@@ -138,7 +138,7 @@ classdef RxOFDMA < matlab.System
                         
                         %% Check frame ordering/succession
                         if  uint8(obj.lastFrameID) == uint8(header(2)) % New header == old header
-                            %Duplicate = true; % Disregard duplicates
+                            Duplicate = true; % Disregard duplicates (frame will be ignored)
                             err = true; % Duplicate not an error
                             obj.Duplicates = obj.Duplicates + 1;
                             %if obj.debugFlag; fprintf('Duplicate\n'); end;
@@ -209,11 +209,11 @@ classdef RxOFDMA < matlab.System
                 obj.CorrectFrames = obj.CorrectFrames + 1;%Keep track of decode frames
                 
                 % Display Message
-                if mod(obj.CorrectFrames, 1000)==0% Only display every N samples, reduces CPU usage
+                if 1%mod(obj.CorrectFrames, 100)==0% Only display every N samples, reduces CPU usage
                     switch obj.dataType
                         case 'c'
                             fprintf('Message: %s | ', char(recoveredMessage(2:end)));
-                            fprintf('Correct Frames: %d | BER %.6f | Missed: %d | Dupes: %d\n',...
+                            fprintf('Received Frames: %d | BER %.6f | Missed: %d | Dupes: %d\n',...
                                 int64(obj.CorrectFrames),obj.BER,int64(obj.MissedFrames),int64(obj.Duplicates));
                         case 'u'
                             for k = 1:length(recoveredMessage)

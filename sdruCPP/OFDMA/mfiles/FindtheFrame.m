@@ -54,7 +54,6 @@ DebugFlag = 0;
 statusFlag = int16(1);
 
 % Functions require column vector
-%Buffer = BufferRow.';
 BufferRow = Buffer.';
 
 % Find preamble in buffer
@@ -71,14 +70,9 @@ FrameFound = ((delay + RX.FrameLength) < length(Buffer) ) &&... %Check if full d
 if FrameFound
     
     rFrame = BufferRow(delay + 1 : delay + 1920);% Extract single frame from input buffer
-    if sum(abs(rFrame - LastrFrame))==0
-    	statusFlag = int16(1);% Duplicate
-    else
-    	statusFlag = int16(0); % Tell waiting function something is found
-	LastrFrame = rFrame;
-    	if DebugFlag;fprintf('Frame found\n');end;    
-    	return;
-    end
+    statusFlag = int16(0); % Tell waiting function something is found
+    if DebugFlag;fprintf('Frame found\n');end;
+    return;
 
  
 else

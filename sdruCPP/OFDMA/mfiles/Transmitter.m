@@ -16,7 +16,7 @@ if isempty(TxMAC)
     TxPHY.HWAttached = false;
     TxPHY.NumDataSymbolsPerFrame = TxMAC.symbolsPerFrame;
     
-    SamplingFrequency = 5e6;
+    SamplingFrequency = 1e6;
     USRPADCSamplingRate = 100e6;
     InterpolationFactor = floor(USRPADCSamplingRate/SamplingFrequency);
     
@@ -29,7 +29,7 @@ if isempty(TxMAC)
 end
 
 % Messages to transmit
-messageUE1 = ['GoWiLab'];
+messageUE1 = ['Message'];
 messageUE2 = ['Message'];
 
 
@@ -57,7 +57,7 @@ end
 
 % Transmit out USRP
 while 1
-    step(SDRuTransmitter,framesWithGapsTmp);
+    step(SDRuTransmitter,framesWithGaps);
 end
 
 

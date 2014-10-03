@@ -15,7 +15,7 @@ if isempty(SDRuReceiver) || isempty(Buffer) || isempty(ReceiveBufferLength) || i
 
     LastBuffer = complex(zeros(1920,1));
     % USRP Attributes
-    SamplingFrequency = 10e6;
+    SamplingFrequency = 1e6;
     CenterFrequency = 900e6;
     
     % Setup buffers

@@ -103,7 +103,7 @@ void FindTheFrame_Thread(void)
     int short flag = 1;
     
     while (1) {
-        
+        /*
         mtx3.lock();
         if (!usrp2FindtheFrameQueue.empty())//If queue not empty don't wait for signal
         {       
@@ -131,15 +131,16 @@ void FindTheFrame_Thread(void)
                  //locker2.unlock();
                  //cond.notify_one(); // Notify waiting thread
             }
-        }
-	else
-		mtx3.unlock();
-/*        else//Wait for signal if queue empty
-        {
-            mtx3.unlock();
+        }*/
+        //else//Wait for signal if queue empty
+        //{
+            //mtx3.unlock();
             std::unique_lock<std::mutex> locker(mtx3);
             cond3.wait(locker,[](){ return !usrp2FindtheFrameQueue.empty();});
             
+	    if (usrp2FindtheFrameQueue.size()>10) 
+	    	std::cout<<"Q size: "<<usrp2FindtheFrameQueue.size()<<std::endl;    
+
             creal_T *input = new (std::nothrow) creal_T;
 	    //Get data off queue
             input = (usrp2FindtheFrameQueue.front());
@@ -152,17 +153,16 @@ void FindTheFrame_Thread(void)
             FindtheFrame(input, output, &flag);
             
             if (flag<1){//Frame found
-                SignalCorrect(output, outputDec);
-                Decoder(outputDec);
-//                 std::unique_lock<std::mutex> locker2(mtx);
-//                 rx2txQueueData.push(&output[0]);
-//                 locker2.unlock();
-//                 cond.notify_one(); // Notify waiting thread
+//                SignalCorrect(output, outputDec);
+ //               Decoder(outputDec);
+                 std::unique_lock<std::mutex> locker2(mtx);
+                 rx2txQueueData.push(&output[0]);
+                 locker2.unlock();
+                 cond.notify_one(); // Notify waiting thread
             }
-        }
+        //}
 	//delete [] input;
 	//delete [] output;
-  */      
         
     }
     

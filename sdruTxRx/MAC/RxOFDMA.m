@@ -209,7 +209,7 @@ classdef RxOFDMA < matlab.System
                 obj.CorrectFrames = obj.CorrectFrames + 1;%Keep track of decode frames
                 
                 % Display Message
-                if 1%mod(obj.CorrectFrames, 1000)==0% Only display every N samples, reduces CPU usage
+                if mod(obj.CorrectFrames, 1000)==0% Only display every N samples, reduces CPU usage
                     switch obj.dataType
                         case 'c'
                             fprintf('Message: %s | ', char(recoveredMessage(2:end)));

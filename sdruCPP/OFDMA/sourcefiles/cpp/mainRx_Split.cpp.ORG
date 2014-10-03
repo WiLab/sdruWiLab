@@ -67,19 +67,15 @@ void GetDataUSRP(void)
     creal_T *input = new creal_T[FRAMESIZE*2];
     creal_T input2[FRAMESIZE*2];
     sleep(3);
-    bool enable = false;
     while (1) {
-        
     	creal_T *input = new (std::nothrow) creal_T[FRAMESIZE*2];
+        
         //GenerateInput(input);
         GetUSRPData(input);
-	if (enable){
-	enable = false;
-	usleep(10000);
-	}
         //memcpy( input2, input, sizeof(creal_T[FRAMESIZE*2]));
         add2q(input);
-        //usleep(100);
+	//std::cout<<"Mem Loc: "<<input<<std::endl;
+        usleep(10000);
     }
 }
 
@@ -90,8 +86,7 @@ void FindTheFrame_Thread(void)
     std::cout<<"Started FindTheFrame Thread"<<std::endl;
     //creal_T *input;
     creal_T *input = new creal_T;
-    creal_T *input2 = new creal_T;
-    //creal_T *input2;
+    creal_T *input2;
     
     //creal_T output[FRAMESIZE];
     creal_T *output = new creal_T[FRAMESIZE];
@@ -106,50 +101,53 @@ void FindTheFrame_Thread(void)
         
         mtx3.lock();
         if (!usrp2FindtheFrameQueue.empty())//If queue not empty don't wait for signal
-        {       
-	    if (usrp2FindtheFrameQueue.size()>10) 
-	    std::cout<<"Q size: "<<usrp2FindtheFrameQueue.size()<<std::endl;    
-            //Create new pointer
-	    creal_T *input = new (std::nothrow) creal_T;
-	    //Get data off queue
-            input = usrp2FindtheFrameQueue.front();
+        {           
+	    //std::cout<<"Q Size: "<<usrp2FindtheFrameQueue.size()<<std::endl; 
+            //std::cout<<"FID: Queue not empty\n";
+            creal_T *input = new (std::nothrow) creal_T;
+            input = (usrp2FindtheFrameQueue.front());
             usrp2FindtheFrameQueue.pop();
-
-            //memcpy( input2, input, sizeof(creal_T[FRAMESIZE*2]));
-
             mtx3.unlock();
-            
+
             creal_T *output = new (std::nothrow) creal_T[FRAMESIZE];
+            
+            //memcpy( input2, input, sizeof(creal_T[FRAMESIZE*2]));
+            
             FindtheFrame(input, output, &flag);
+            
+            //memcpy( output2, output, sizeof(creal_T[FRAMESIZE]));
             
             if (flag<1){//Frame found
                 SignalCorrect(output, outputDec);
                 Decoder(outputDec);
                 
-                 //std::unique_lock<std::mutex> locker2(mtx);
-                 //rx2txQueueData.push(&output[0]);
-                 //locker2.unlock();
-                 //cond.notify_one(); // Notify waiting thread
+//                 std::unique_lock<std::mutex> locker2(mtx);
+//                 rx2txQueueData.push(&output[0]);
+//                 locker2.unlock();
+//                 cond.notify_one(); // Notify waiting thread
             }
         }
-	else
-		mtx3.unlock();
-/*        else//Wait for signal if queue empty
+        else//Wait for signal if queue empty
         {
             mtx3.unlock();
             std::unique_lock<std::mutex> locker(mtx3);
             cond3.wait(locker,[](){ return !usrp2FindtheFrameQueue.empty();});
-            
+	    //std::cout<<"Q Size: "<<usrp2FindtheFrameQueue.size()<<std::endl; 
+
+            locker.unlock();
+
             creal_T *input = new (std::nothrow) creal_T;
-	    //Get data off queue
             input = (usrp2FindtheFrameQueue.front());
             usrp2FindtheFrameQueue.pop();
-
             locker.unlock();
             
             creal_T *output = new (std::nothrow) creal_T[FRAMESIZE];
             
+            //memcpy( input2, input, sizeof(creal_T[FRAMESIZE*2]));
+            
             FindtheFrame(input, output, &flag);
+            
+            //memcpy( output2, output, sizeof(creal_T[FRAMESIZE]));
             
             if (flag<1){//Frame found
                 SignalCorrect(output, outputDec);
@@ -162,7 +160,7 @@ void FindTheFrame_Thread(void)
         }
 	//delete [] input;
 	//delete [] output;
-  */      
+        
         
     }
     

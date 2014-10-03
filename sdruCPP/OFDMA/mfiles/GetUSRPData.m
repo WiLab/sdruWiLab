@@ -1,6 +1,6 @@
 function BufferColumn = GetUSRPData()
 
-persistent SDRuReceiver Buffer ReceiveBufferLength
+persistent SDRuReceiver Buffer  LastBuffer  ReceiveBufferLength
 
 % Additional attributes
 %NumDataSymbolsPerFrame = 20;
@@ -10,10 +10,12 @@ persistent SDRuReceiver Buffer ReceiveBufferLength
 %FrameLength = NumDataSymbolsPerFrame*(FFTLength+CyclicPrefixLength)+PreambleLength;
 FrameLength = 1920;
 
-if isempty(SDRuReceiver) || isempty(Buffer) || isempty(ReceiveBufferLength)
+if isempty(SDRuReceiver) || isempty(Buffer) || isempty(ReceiveBufferLength) || isempty(LastBuffer)
     
+
+    LastBuffer = complex(zeros(1920,1));
     % USRP Attributes
-    SamplingFrequency = 5e6;
+    SamplingFrequency = 10e6;
     CenterFrequency = 900e6;
     
     % Setup buffers
@@ -45,7 +47,15 @@ while 1
     % Get data from USRP or Input
     Buffer(1:FrameLength) = Buffer(FrameLength+1:end);% Shift old samples down
     Buffer(FrameLength+1:end) =  step(SDRuReceiver);% Shift in new samples
-    
+  
+    CurrentBuffer = Buffer(FrameLength+1:end);
+    if sum(abs(CurrentBuffer - LastBuffer))==0
+    	LastBuffer = CurrentBuffer(1:1920);
+	continue;
+	%fprintf('Dupe\n');
+    end
+    LastBuffer = CurrentBuffer(1:1920);
+  
     % Make sure buffer isn't all zeros, which happens initially
     if sum(abs(Buffer))>0
         BufferColumn = Buffer(1:1920*2);

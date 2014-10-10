@@ -19,13 +19,13 @@ disp('Getting driver from git mirror');
 org = pwd;
 cd('..');
 !git clone https://github.com/travisfcollins/USRPDriver.git
-sdruPath = [pwd,'/USRPDriver;'];
+sdruPath = [pwd,'/USRPDriver'];
 cd(org);
 
 disp('Adding commands to startup');
 !echo '' >> startup.m
 !echo '% SDRu Setup' >> startup.m
-command = ['echo "sdruPath =''',sdruPath,'''','">>startup.m;'];
+command = ['echo "sdruPath =''',sdruPath,'''',';">>startup.m;'];
 system(command);
 !echo "addpath(genpath(sdruPath));">>startup.m
 !echo "setupsdru(sdruPath);">>startup.m

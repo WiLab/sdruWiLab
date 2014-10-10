@@ -28,7 +28,8 @@ __OFDMA Demo:__
     - use builder_tx on transmitter only and builder_rx for receiver only, if using more than one radio
  3. Run
     - run executables produced (RX, TX, or TXRX) on appropriate nodes as built from step 2
-   
+ 4. ....
+ 5. Profit
 
 
 __Day To Day To do:__

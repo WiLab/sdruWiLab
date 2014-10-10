@@ -3,7 +3,7 @@ cfg.CustomSource = 'main.cpp';
 cfg.CustomInclude = 'sourcefiles/cpp/';
 cfg.TargetLang='C++';
 cfg.PostCodeGenCommand = 'setbuildargs(buildInfo)';
-functionsToThread = {'Transmitter', 'FindSignal','SignalCorrect','Decoder'};
+functionsToThread = {'Transmitter', 'FindSignal','SignalCorrect','Decoder','GenerateInput'};
 additionalSourceFiles = {};
 outputFunctionName = {'ComboFunction'};
 
@@ -13,6 +13,8 @@ outputFunctionName = {'ComboFunction'};
 
 % Run Codegen, if earlier than 2014, must add include paths manually for
 % sdru
+
+tic;
 
 Release = ver;Release = Release.Release;
 Release = str2double(Release(3:6));
@@ -74,6 +76,9 @@ else
     codegenResult = codegen(functionsToThread{:},additionalSourceFiles{:},'-config','cfg','-o',outputFunctionName{:});
 
 end
+
+total = toc;
+fprintf('Build duration: %f (Seconds)\n',total);
 
 
 

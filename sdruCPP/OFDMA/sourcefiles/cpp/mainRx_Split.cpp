@@ -10,6 +10,7 @@
 #include "GetUSRPData.h"
 #include "FindtheFrame.h"
 #include "SignalCorrect.h"
+//#include "GenerateInput.h"
 #include "Decoder.h"
 
 //Include header of combined library
@@ -17,6 +18,9 @@
 #include "RX_terminate.h"//Not sure if needed
 
 #define MESSAGES2TX 100000//Messages to send between PHY and MAC (NOT USED)
+
+#define FRAMESIZE 1920
+#define DEMOD_FRAMESIZE 960
 
 // Create Mutex
 std::mutex mtx;
@@ -32,12 +36,51 @@ std::condition_variable cond;
 std::condition_variable cond2;
 std::condition_variable cond3;
 
+void Receiver(void)
+{
+    creal_T input[FRAMESIZE*2];
+    creal_T output[FRAMESIZE];
+    int short flag = 1;
+    boolean_T output2[DEMOD_FRAMESIZE];
+    
+    GetUSRPData_init();
+    while (1){
+        GetUSRPData(input);
+        FindtheFrame(input, output, &flag);
+        if (flag<1){
+            SignalCorrect(output, output2);
+            Decoder(output2);
+        }
+    }
+}
+
+
 //USRP Thread
 void GetDataUSRP(void)
 {
     std::cout<<"Started Get USRP Thread"<<std::endl;
     GetUSRPData_init();
-    GetUSRPData();
+    //GetUSRPData();
+    
+    // Testing
+    //creal_T input[FRAMESIZE*2];
+    creal_T *input = new creal_T[FRAMESIZE*2];
+    creal_T input2[FRAMESIZE*2];
+    sleep(3);
+    bool enable = false;
+    while (1) {
+        
+    	creal_T *input = new (std::nothrow) creal_T[FRAMESIZE*2];
+        //GenerateInput(input);
+        GetUSRPData(input);
+	if (enable){
+	enable = false;
+	usleep(10000);
+	}
+        //memcpy( input2, input, sizeof(creal_T[FRAMESIZE*2]));
+        add2q(input);
+        //usleep(100);
+    }
 }
 
 // Locator
@@ -45,30 +88,84 @@ void FindTheFrame_Thread(void)
 {
 
     std::cout<<"Started FindTheFrame Thread"<<std::endl;
-    creal_T *input;
-    creal_T output[1920];
-    short int flag = 1;
-    int k = MESSAGES2TX;
-    while (k>0) {
+    //creal_T *input;
+    creal_T *input = new creal_T;
+    creal_T *input2 = new creal_T;
+    //creal_T *input2;
+    
+    //creal_T output[FRAMESIZE];
+    creal_T *output = new creal_T[FRAMESIZE];
+    creal_T output2[FRAMESIZE];
+    
+    //Decoder
+    boolean_T outputDec[DEMOD_FRAMESIZE];
+    
+    int short flag = 1;
+    
+    while (1) {
+        /*
+        mtx3.lock();
+        if (!usrp2FindtheFrameQueue.empty())//If queue not empty don't wait for signal
+        {       
+	    if (usrp2FindtheFrameQueue.size()>10) 
+	    std::cout<<"Q size: "<<usrp2FindtheFrameQueue.size()<<std::endl;    
+            //Create new pointer
+	    creal_T *input = new (std::nothrow) creal_T;
+	    //Get data off queue
+            input = usrp2FindtheFrameQueue.front();
+            usrp2FindtheFrameQueue.pop();
+
+            //memcpy( input2, input, sizeof(creal_T[FRAMESIZE*2]));
+
+            mtx3.unlock();
+            
+            creal_T *output = new (std::nothrow) creal_T[FRAMESIZE];
+            FindtheFrame(input, output, &flag);
+            
+            if (flag<1){//Frame found
+                SignalCorrect(output, outputDec);
+                Decoder(outputDec);
+                
+                 //std::unique_lock<std::mutex> locker2(mtx);
+                 //rx2txQueueData.push(&output[0]);
+                 //locker2.unlock();
+                 //cond.notify_one(); // Notify waiting thread
+            }
+        }*/
+        //else//Wait for signal if queue empty
+        //{
+            //mtx3.unlock();
+            std::unique_lock<std::mutex> locker(mtx3);
+            cond3.wait(locker,[](){ return !usrp2FindtheFrameQueue.empty();});
+            
+	    if (usrp2FindtheFrameQueue.size()>10) 
+	    	std::cout<<"Q size: "<<usrp2FindtheFrameQueue.size()<<std::endl;    
+
+            creal_T *input = new (std::nothrow) creal_T;
+	    //Get data off queue
+            input = (usrp2FindtheFrameQueue.front());
+            usrp2FindtheFrameQueue.pop();
+
+            locker.unlock();
+            
+            creal_T *output = new (std::nothrow) creal_T[FRAMESIZE];
+            
+            FindtheFrame(input, output, &flag);
+            
+            if (flag<1){//Frame found
+//                SignalCorrect(output, outputDec);
+ //               Decoder(outputDec);
+                 std::unique_lock<std::mutex> locker2(mtx);
+                 rx2txQueueData.push(&output[0]);
+                 locker2.unlock();
+                 cond.notify_one(); // Notify waiting thread
+            }
+        //}
+	//delete [] input;
+	//delete [] output;
         
-        std::unique_lock<std::mutex> locker(mtx3);
-        cond3.wait(locker,[](){ return !usrp2FindtheFrameQueue.empty();});
-
-        input = (usrp2FindtheFrameQueue.front());
-        usrp2FindtheFrameQueue.pop();
-	
-        locker.unlock();
-
-        FindtheFrame(input, output, &flag);
-        if (flag<1){//Frame found
-            std::unique_lock<std::mutex> locker2(mtx);
-            rx2txQueueData.push(&output[0]);
-            locker2.unlock();
-            cond.notify_one(); // Notify waiting thread
-        }
-
     }
-
+    
 }
 
 
@@ -76,26 +173,55 @@ void FindTheFrame_Thread(void)
 void SignalCorrect_Thread(void)
 {
     std::cout<<"Started Signal Correct Thread"<<std::endl;
-    creal_T *input;
-    boolean_T output[960];
-    int k = MESSAGES2TX;
-    while (k>0) {
+    //creal_T *input;
+    creal_T *input = new creal_T;
+    //boolean_T output[DEMOD_FRAMESIZE];
+    boolean_T *output = new boolean_T[DEMOD_FRAMESIZE];
+    
+    while (1) {
         
-        std::unique_lock<std::mutex> locker(mtx);
-        cond.wait(locker,[](){ return !rx2txQueueData.empty();});
         
-        input = (rx2txQueueData.front());
-        rx2txQueueData.pop();
-        
-        locker.unlock();
-        
-        SignalCorrect(input, output);
-        
-        std::unique_lock<std::mutex> locker2(mtx2);
-        rx2txQueueDataDecode.push(&output[0]);
-        locker2.unlock();
-        cond2.notify_one(); // Notify waiting thread
-        
+        mtx.lock();
+        if (!rx2txQueueData.empty())//If queue not empty don't wait for signal
+        {
+            //std::cout<<"COR: Queue not empty\n";
+            creal_T *input = new (std::nothrow) creal_T;
+            input = (rx2txQueueData.front());
+            rx2txQueueData.pop();
+            
+            mtx.unlock();
+           
+            boolean_T *output = new (std::nothrow) boolean_T[DEMOD_FRAMESIZE]; 
+            SignalCorrect(input, output);
+            
+            Decoder(output);
+//             std::unique_lock<std::mutex> locker2(mtx2);
+//             rx2txQueueDataDecode.push(&output[0]);
+//             locker2.unlock();
+//             cond2.notify_one(); // Notify waiting thread
+        }
+        else{
+            mtx.unlock();
+            std::unique_lock<std::mutex> locker(mtx);
+            cond.wait(locker,[](){ return !rx2txQueueData.empty();});
+
+            creal_T *input = new (std::nothrow) creal_T;            
+            input = (rx2txQueueData.front());
+            rx2txQueueData.pop();
+            
+            locker.unlock();
+
+            boolean_T *output = new (std::nothrow) boolean_T[DEMOD_FRAMESIZE];            
+            SignalCorrect(input, output);
+            
+            Decoder(output);
+//             std::unique_lock<std::mutex> locker2(mtx2);
+//             rx2txQueueDataDecode.push(&output[0]);
+//             locker2.unlock();
+//             cond2.notify_one(); // Notify waiting thread
+        }
+	delete [] input;
+	//delete [] output;
     }
 }
 
@@ -103,48 +229,80 @@ void SignalCorrect_Thread(void)
 void Decoder_Thread(void)
 {
     std::cout<<"Decoder Thread"<<std::endl;
-    boolean_T *input;
-    int k = MESSAGES2TX;
-    while (k>0) {
+    //boolean_T *input;
+    boolean_T *input = new boolean_T;
+
+    
+    while (1) {
         
-        std::unique_lock<std::mutex> locker(mtx);
-        cond2.wait(locker, [](){ return !rx2txQueueDataDecode.empty();});
         
-        input = (rx2txQueueDataDecode.front());
-        rx2txQueueDataDecode.pop();
-        locker.unlock();
-        
-        Decoder(input);
+        mtx2.lock();
+        if (!rx2txQueueDataDecode.empty())//If queue not empty don't wait for signal
+        {
+	    //std::cout<<"DEC: Queue not empty\n";
+            
+    	    boolean_T *input = new (std::nothrow) boolean_T;
+            input = (rx2txQueueDataDecode.front());
+            rx2txQueueDataDecode.pop();
+            
+            mtx2.unlock();
+            
+            Decoder(input);
+        }
+        else{
+            mtx2.unlock();
+            std::unique_lock<std::mutex> locker(mtx2);
+            cond2.wait(locker, [](){ return !rx2txQueueDataDecode.empty();});
+            
+    	    boolean_T *input = new (std::nothrow) boolean_T;
+            input = (rx2txQueueDataDecode.front());
+            rx2txQueueDataDecode.pop();
+            locker.unlock();
+            
+            Decoder(input);
+        }
         
     }
 }
 
 int main()
 {
+    
+    bool Pipeline = true;
+    
     std::cout<<"Main Started"<<std::endl;
     
     //Initialize Matlab Create Functions
     RX_initialize();
     
-    //Spawn Thread
-    std::thread thread1( GetDataUSRP );
-
-    // Create X threads for task
-    std::vector<std::thread> FindTheFrameThreads;
-    for (int i = 0; i < 1; i++)
-    	FindTheFrameThreads.push_back(std::thread( FindTheFrame_Thread ));
-
-
-    std::thread thread2( SignalCorrect_Thread );
-    std::thread thread3( Decoder_Thread );
-    
-    //Wait for thread to finish
-    thread1.join();
-    thread2.join();
-    thread3.join();
-    for (auto& t : FindTheFrameThreads)
-    	t.join();
-    std::cout<<"Threads completed"<<std::endl;
+    if (!Pipeline){
+        //Single Threaded
+        std::thread threadONE( Receiver );
+        threadONE.join();
+    }
+    else{
+        //Spawn Thread
+        std::thread thread1( GetDataUSRP );
+        
+        // Create X threads for task
+        int threads = 1;
+        std::vector<std::thread> FindTheFrameThreads;
+        for (int i = 0; i < threads; i++)
+            FindTheFrameThreads.push_back(std::thread( FindTheFrame_Thread ));
+        
+        
+        std::thread thread2( SignalCorrect_Thread );
+        std::thread thread3( Decoder_Thread );
+        
+        
+        //Wait for thread to finish
+        thread1.join();
+        thread2.join();
+        thread3.join();
+        for (auto& t : FindTheFrameThreads)
+            t.join();
+        std::cout<<"Threads completed"<<std::endl;
+    }
     
     RX_terminate();
     

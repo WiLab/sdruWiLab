@@ -1,7 +1,7 @@
 
 framesToCapture = 1e4;
 
-SamplingRate = 1e6;
+SamplingRate = 5e6;
 DecimationFactor = 100e6/SamplingRate;
 
 RX = comm.SDRuReceiver('192.168.10.2', ...

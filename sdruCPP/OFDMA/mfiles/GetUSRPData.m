@@ -1,6 +1,6 @@
-function output = GetUSRPData()
+function BufferColumn = GetUSRPData()
 
-persistent SDRuReceiver Buffer ReceiveBufferLength
+persistent SDRuReceiver Buffer  LastBuffer  ReceiveBufferLength
 
 % Additional attributes
 %NumDataSymbolsPerFrame = 20;
@@ -10,8 +10,10 @@ persistent SDRuReceiver Buffer ReceiveBufferLength
 %FrameLength = NumDataSymbolsPerFrame*(FFTLength+CyclicPrefixLength)+PreambleLength;
 FrameLength = 1920;
 
-if isempty(SDRuReceiver) || isempty(Buffer) || isempty(ReceiveBufferLength)
+if isempty(SDRuReceiver) || isempty(Buffer) || isempty(ReceiveBufferLength) || isempty(LastBuffer)
     
+
+    LastBuffer = complex(zeros(1920,1));
     % USRP Attributes
     SamplingFrequency = 1e6;
     CenterFrequency = 900e6;
@@ -32,30 +34,34 @@ if isempty(SDRuReceiver) || isempty(Buffer) || isempty(ReceiveBufferLength)
         'FrameLength',          FrameLength,...
         'OutputDataType',       'single',...
         'Gain',                 18,...
-        'SampleRate',           SamplingFrequency);
+        'SampleRate',           SamplingFrequency,...
+	'EnableBurstMode',	false,...
+	'NumFramesInBurst',	10);
 end
 
-output = 1; %TBUL
 
-% TESTING
-Testing = 0;
-index = 1;
-% TESTING
+BufferColumn = complex(zeros(1920*2,1));
 
 while 1
     
     % Get data from USRP or Input
     Buffer(1:FrameLength) = Buffer(FrameLength+1:end);% Shift old samples down
-    %if Testing
-    %    [Buffer(FrameLength+1:end), index] =  TestingData(index,FrameLength);
-    %else
-        Buffer(FrameLength+1:end) =  step(SDRuReceiver);% Shift in new samples
-    %end
-    
+    Buffer(FrameLength+1:end) =  step(SDRuReceiver);% Shift in new samples
+  
+    CurrentBuffer = Buffer(FrameLength+1:end);
+    if sum(abs(CurrentBuffer - LastBuffer))==0
+    	LastBuffer = CurrentBuffer(1:1920);
+	continue;
+	%fprintf('Dupe\n');
+    end
+    LastBuffer = CurrentBuffer(1:1920);
+  
     % Make sure buffer isn't all zeros, which happens initially
     if sum(abs(Buffer))>0
-        BufferRow = Buffer.';
-        coder.ceval('add2q',coder.ref(BufferRow));
+        BufferColumn = Buffer(1:1920*2);
+        %BufferRow = Buffer.';
+        %coder.ceval('add2q',coder.ref(BufferRow));
+        return;
     end
     
 end

@@ -1,12 +1,14 @@
-function [rFrame,statusFlag] = FindtheFrame(BufferRow)
+function [rFrame,statusFlag] = FindtheFrame(Buffer)
 
-assert(isa(BufferRow, 'double') && ~isreal(BufferRow) && all(size(BufferRow) == [1 2*1920]));
+assert(isa(Buffer, 'double') && ~isreal(Buffer) && all(size(Buffer) == [2*1920 1]));
 
 % Setup
-persistent RX
+persistent RX LastrFrame
 
-if isempty(RX)
+if isempty(RX) || isempty(LastrFrame)
     
+    LastrFrame = complex(zeros(1,1920));    
+
     NumDataSymbolsPerFrame = 20;
     FFTLength = 64;
     CyclicPrefixLength = 16;
@@ -52,7 +54,8 @@ DebugFlag = 0;
 statusFlag = int16(1);
 
 % Functions require column vector
-Buffer = BufferRow.';
+%Buffer = BufferRow.';
+BufferRow = Buffer.';
 
 % Find preamble in buffer
 [delay, ~] = locateOFDMFrame_sdr( RX, Buffer );
@@ -67,11 +70,16 @@ FrameFound = ((delay + RX.FrameLength) < length(Buffer) ) &&... %Check if full d
 % Frame Decision
 if FrameFound
     
-    statusFlag = int16(0); % Tell waiting function something is found
     rFrame = BufferRow(delay + 1 : delay + 1920);% Extract single frame from input buffer
-    if DebugFlag;fprintf('Frame found\n');end;
-    
-    return;
+    if sum(abs(rFrame - LastrFrame))==0
+    	statusFlag = int16(1);% Duplicate
+    else
+    	statusFlag = int16(0); % Tell waiting function something is found
+	LastrFrame = rFrame;
+    	if DebugFlag;fprintf('Frame found\n');end;    
+    	return;
+    end
+
  
 else
     % Flag for nothing found

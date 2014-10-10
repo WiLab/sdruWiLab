@@ -19,7 +19,7 @@ disp('Getting driver from git mirror');
 org = pwd;
 cd('..');
 !git clone https://github.com/travisfcollins/USRPDriver.git
-sdruPath = [pwd,'/USRPDriver'];
+sdruPath = [pwd,'/USRPDriver;'];
 cd(org);
 
 disp('Adding commands to startup');

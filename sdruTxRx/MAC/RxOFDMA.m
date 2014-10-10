@@ -37,8 +37,8 @@ classdef RxOFDMA < matlab.System
         DeScram
         
         % Flags
-        debugFlag = 0;
-        ignoreCRC = 0;
+        debugFlag = 1; %Skips missed counting
+        ignoreCRC = 1;
         
         CorrectFrames = 0;
         MissedFrames = 0;
@@ -138,9 +138,10 @@ classdef RxOFDMA < matlab.System
                         
                         %% Check frame ordering/succession
                         if  uint8(obj.lastFrameID) == uint8(header(2)) % New header == old header
-                            Duplicate = true; % Disregard duplicates
+                            %Duplicate = true; % Disregard duplicates
+                            err = true; % Duplicate not an error
                             obj.Duplicates = obj.Duplicates + 1;
-                            if obj.debugFlag; fprintf('Duplicate\n'); end;
+                            %if obj.debugFlag; fprintf('Duplicate\n'); end;
                         end
                         % Not duplicate checking
                         if uint8(header(2))==48 % check wrap condition
@@ -148,15 +149,15 @@ classdef RxOFDMA < matlab.System
                                 reason = 4;
                                 err = true;
                                 error = (uint8(obj.lastFrameID)+1)-uint8(header(2));% distance from true
-                                fprintf('Missed Distance: %d\n',int16(error));
+                                %fprintf('Missed Distance: %d\n',int16(error));
                             end
                             
                         elseif ~((uint8(obj.lastFrameID)+1)==uint8(header(2))) % Not next id (and previous id not 9)
                             reason = 4;
                             err = true;
                             error = double(uint8(obj.lastFrameID)+1)-double(uint8(header(2)));% distance from true
-                            fprintf('Missed Distance: %2.0f\n',(error));
-                            %if obj.debugFlag; fprintf('Last %d | Current %d\n',int16(obj.lastFrameID),int16(header(2)));end;
+                            %fprintf('Missed Distance: %2.0f\n',(error));
+                            %if obj.debugFlag; fprintf('Last %c | Current %c\n',char(obj.lastFrameID),char(header(2)));end;
                         end
                         
                     else % NO EOF Found
@@ -201,19 +202,19 @@ classdef RxOFDMA < matlab.System
                 newBER = wrongBits/length(obj.CorrectFrame(2*8+1:end));
                 obj.BER = (obj.BER*obj.Iteration + newBER)/(obj.Iteration+1);
                 
-                if wrongBits>0
-                    fprintf('Wrong Bits: %d\n',int64(wrongBits));
-                end
+                %if wrongBits>0
+                %    fprintf('Wrong Bits: %d\n',int64(wrongBits));
+                %end
                 
                 obj.CorrectFrames = obj.CorrectFrames + 1;%Keep track of decode frames
                 
                 % Display Message
-                if 1%mod(obj.CorrectFrames, 1000)==0% Only display every N samples, reduces CPU usage
+                if mod(obj.CorrectFrames, 1000)==0% Only display every N samples, reduces CPU usage
                     switch obj.dataType
                         case 'c'
+                            fprintf('Message: %s | ', char(recoveredMessage(2:end)));
                             fprintf('Correct Frames: %d | BER %.6f | Missed: %d | Dupes: %d\n',...
                                 int64(obj.CorrectFrames),obj.BER,int64(obj.MissedFrames),int64(obj.Duplicates));
-                            fprintf('Message: %s \n', char(recoveredMessage(1:end)));
                         case 'u'
                             for k = 1:length(recoveredMessage)
                                 % Codegen does not accept uint8s on
@@ -227,7 +228,7 @@ classdef RxOFDMA < matlab.System
                 end
                 
             else % Failure occurred
-                % If duplicate determine what happened
+                % If not duplicate determine what happened
                 if ~Duplicate
                     switch reason
                         case 0

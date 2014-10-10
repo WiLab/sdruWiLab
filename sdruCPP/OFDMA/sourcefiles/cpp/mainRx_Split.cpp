@@ -13,6 +13,11 @@
 //#include "GenerateInput.h"//Used for testing with data files
 #include "Decoder.h"
 
+#include <stdlib.h>
+#include <stdio.h>
+#include "engine.h"
+
+
 //Include header of combined library
 #include "RX_initialize.h"
 #include "RX_terminate.h"//Not sure if needed
@@ -21,6 +26,7 @@
 
 #define FRAMESIZE 1920
 #define DEMOD_FRAMESIZE 960
+#define  BUFSIZE 256
 
 // Create Mutex
 std::mutex mtx;
@@ -60,6 +66,7 @@ void Receiver(void)
 //USRP Thread
 void GetDataUSRP(void)
 {
+    
     std::cout<<"Started Get USRP Thread"<<std::endl;
     GetUSRPData_init();
     
@@ -75,6 +82,7 @@ void GetDataUSRP(void)
         //GenerateInput(input); // Get Data from File (Testing)
         GetUSRPData(input); // Get Data from USRP
         add2q(input);
+        
     }
 }
 

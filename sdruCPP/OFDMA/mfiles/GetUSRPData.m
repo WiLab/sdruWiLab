@@ -1,6 +1,6 @@
 function BufferColumn = GetUSRPData()
 
-persistent SDRuReceiver Buffer ReceiveBufferLength
+persistent SDRuReceiver Buffer ReceiveBufferLength Counter
 
 % Additional attributes
 %NumDataSymbolsPerFrame = 20;
@@ -10,9 +10,10 @@ persistent SDRuReceiver Buffer ReceiveBufferLength
 %FrameLength = NumDataSymbolsPerFrame*(FFTLength+CyclicPrefixLength)+PreambleLength;
 FrameLength = 1920; % Must be constant for CG
 
-if isempty(SDRuReceiver) || isempty(Buffer) || isempty(ReceiveBufferLength)
+if isempty(SDRuReceiver) || isempty(Buffer) || isempty(ReceiveBufferLength) isempty(Counter)
     
-
+    Counter = 0;
+    
     % USRP Attributes
     SamplingFrequency = 1e6;
     CenterFrequency = 900e6;
@@ -50,6 +51,12 @@ while 1
         continue;
     end
     
+    Counter = Counter + 1;
+    if Counter > 10
+        fprintf('Plot me Called\n');
+        PlotMe(real(Buffer));
+        Counter = 0;
+    end
     
     % Make sure buffer isn't all zeros, which happens initially
     if sum(abs(Buffer))>0
@@ -58,6 +65,8 @@ while 1
         %coder.ceval('add2q',coder.ref(BufferRow));
         return;
     end
+    
+
     
 end
 

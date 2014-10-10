@@ -51,12 +51,12 @@ while 1
         continue;
     end
     
-    Counter = Counter + 1;
-    if Counter > 10
-        fprintf('Plot me Called\n');
-        PlotMe(real(Buffer));
-        Counter = 0;
-    end
+%     Counter = Counter + 1;
+%     if Counter > 10
+%         fprintf('Plot me Called\n');
+%         PlotMe(real(Buffer));
+%         Counter = 0;
+%     end
     
     % Make sure buffer isn't all zeros, which happens initially
     if sum(abs(Buffer))>0

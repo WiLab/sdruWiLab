@@ -13,7 +13,6 @@ classdef RxOFDMA < matlab.System
         headerCharacters = 4;
         CRClength = 3;
         dataType = 'u';
-        Encoding = true;
         
     end
     
@@ -34,11 +33,11 @@ classdef RxOFDMA < matlab.System
         % Object handle
         pDetect;
         pDecoder;
-        DeScram
+        DeScram;
         
         % Flags
         debugFlag = 1; %Skips missed counting if enabled
-        ignoreCRC = 0; % BER will only be 0 if enabled
+        ignoreCRC = 1; % BER will only be 0 if enabled
         
         CorrectFrames = 0;
         MissedFrames = 0;
@@ -79,8 +78,8 @@ classdef RxOFDMA < matlab.System
             %% Eliminate pad bits
             
             % Extract number of pad bits from beggining of frame
-            %obj.padBits = OFDMbits2letters(obj,userBits(1:8));
-            obj.padBits = 135;
+            obj.padBits = OFDMbits2letters(obj,userBits(1:8));
+            %obj.padBits = 15;
             unpaddedBits = userBits(1:end-obj.padBits);
             %unpaddedBits = userBits(1:115);% uncoded
             
@@ -103,19 +102,8 @@ classdef RxOFDMA < matlab.System
                 
             else % No pad bits error
                 
-                if obj.Encoding % If encoding used, decode and descramble first
-                    % Unscramble
-                    descrambledBits = step(obj.DeScram,unpaddedBits(1:345).');
-                    
-                    % Decode
-                    decodedBits = step(obj.pDecoder,descrambledBits(1:345));
-                    
-                    % CRC Check
-                    [msg, err] = step(obj.pDetect, decodedBits>0);
-                else
-                    % CRC Check
-                    [msg, err] = step(obj.pDetect, unpaddedBits.'>0);
-                end
+                % CRC Check
+                [msg, err] = step(obj.pDetect, unpaddedBits.'>0);
                 
                 if ~err || obj.ignoreCRC % No CRC Error (Can be skipped in debugging)
                     % Convert Bits to integers
@@ -138,8 +126,8 @@ classdef RxOFDMA < matlab.System
                         
                         %% Check frame ordering/succession
                         if  uint8(obj.lastFrameID) == uint8(header(2)) % New header == old header
-                            Duplicate = true; % Disregard duplicates (frame will be ignored)
-                            err = true; % Duplicate not an error
+                            %Duplicate = true; % Disregard duplicates (frame will be ignored)
+                            %err = true; % Duplicate not an error
                             obj.Duplicates = obj.Duplicates + 1;
                             %if obj.debugFlag; fprintf('Duplicate\n'); end;
                         end
@@ -197,10 +185,10 @@ classdef RxOFDMA < matlab.System
             if (~err || obj.debugFlag) && ~Duplicate
                 
                 % BER calculation
-                obj.Iteration = obj.Iteration + 1;
-                wrongBits = sum(abs(msg(2*8+1:length(obj.CorrectFrame))-obj.CorrectFrame(2*8+1:end) )); % Ignore first 2 characters since they aren't static
-                newBER = wrongBits/length(obj.CorrectFrame(2*8+1:end));
-                obj.BER = (obj.BER*obj.Iteration + newBER)/(obj.Iteration+1);
+%                obj.Iteration = obj.Iteration + 1;
+%                wrongBits = sum(abs(msg(2*8+1:length(obj.CorrectFrame))-obj.CorrectFrame(2*8+1:end) )); % Ignore first 2 characters since they aren't static
+%                newBER = wrongBits/length(obj.CorrectFrame(2*8+1:end));
+%                obj.BER = (obj.BER*obj.Iteration + newBER)/(obj.Iteration+1);
                 
                 %if wrongBits>0
                 %    fprintf('Wrong Bits: %d\n',int64(wrongBits));

@@ -1,13 +1,13 @@
 function [ RHard ] = SignalCorrect(rFrame) %#codegen
 
-assert(isa(rFrame, 'double') && ~isreal(rFrame) && all(size(rFrame) == [1 1*(20*(64+16)+320)]))
+assert(isa(rFrame, 'double') && ~isreal(rFrame) && all(size(rFrame) == [1 1*(60*(64+16)+320)]))
 
 %% Correct channel distortion
 persistent  PF
 
 if isempty(PF)
     PF = PHYRxProcessFrame;
-    PF.NumDataSymbolsPerFrame = 20; % Don't forget to change assert on top
+    PF.NumDataSymbolsPerFrame = 60; % Don't forget to change assert on top
     PF.SamplingFrequency = 1e6; % Required for CFO
 end
 
@@ -15,7 +15,7 @@ end
 RHardMatrix = step(PF,rFrame.');
 
 % Convert to vector for passing through C++
-RHard = reshape(RHardMatrix,48*PF.NumDataSymbolsPerFrame,1);
+RHard = reshape(RHardMatrix,PF.numCarriers*PF.NumDataSymbolsPerFrame/PF.CodeRate,1);
 
 
 end

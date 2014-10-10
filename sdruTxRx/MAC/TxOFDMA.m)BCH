@@ -89,6 +89,28 @@ classdef TxOFDMA < matlab.System
             end
             
             
+%             %% Padding for Encoder
+%             % Calculate size of biggest message, so padding can be adjusted
+%             % for coding
+%             maxMsgSize = 0;
+%             for k = 1:obj.numUsers
+%                 msgSize = length(varargin{k});
+%                 if maxMsgSize < msgSize
+%                     maxMsgSize = msgSize;
+%                 end
+%             end
+%             % Adjust size for coding
+%             key = obj.Encoder.MessageLength;
+%             characterBits = (8*(maxMsgSize+obj.HeaderSize+length(obj.Deliminator)) + obj.CRCLength);
+%             for k = 0:obj.padBits
+%                 if mod(characterBits,key)~=0
+%                     characterBits = characterBits + 8;
+%                 else
+%                     break;
+%                 end
+%             end
+%             maxMsgSize = maxMsgSize+k;
+            
             %% Padding for OFDM Frame
             % Since all messages will be in the same matrix, one of them needs to be
             % padded, to be the same size as the other
@@ -96,6 +118,33 @@ classdef TxOFDMA < matlab.System
             % Resource Allocation
             subcarriersForEachUser = [24, 24];
             
+%             % Limitations
+%             % 1.) Each user given N Subcarriers, and K OFDM Symbols,
+%             %   Therefore they get NxK bits per frame
+%             % 2.) To make sure each frame is NxK, and that each message can
+%             % be passed through the encoder, padding is added at different
+%             % stages
+%             minPad = 1e3;
+%             for user=1:obj.numUsers
+%                 
+%                 availableResources = subcarriersForEachUser(user)*obj.symbolsPerFrame;
+%                 
+%                 % Determine number of pad bits
+%                 if obj.Encode
+%                     extra = availableResources - (8*(length(varargin{user})+obj.HeaderSize+length(obj.Deliminator)) + obj.CRCLength)*obj.CodeRate;
+%                 else
+%                     extra = availableResources - (8*(length(varargin{user})+obj.HeaderSize+length(obj.Deliminator)) + obj.CRCLength);
+%                 end
+%                 if extra < 0
+%                     fprintf('MAC| ERROR: Not enough symbols!\n\n');
+%                 end
+%                 
+%                 if extra < minPad
+%                     minPad = extra;
+%                 end
+%                 
+%             end
+%             obj.padBits = minPad;
            
             
             %% Concatenate text messages and add extra text
@@ -104,11 +153,27 @@ classdef TxOFDMA < matlab.System
             
             for user = 1:obj.numUsers
                 
+                % Adjust size for coding so bits passed to coder will be of
+                % multiple of MessageLength
+                msgSize = length(varargin{user});
+                key = obj.Encoder.MessageLength;
+                characterBits = (8*(msgSize+obj.HeaderSize+length(obj.Deliminator)) + obj.CRCLength);
+                availableResources = subcarriersForEachUser(user)*obj.symbolsPerFrame;
+                for k = 0:availableResources
+                    if mod(characterBits,key)~=0
+                        characterBits = characterBits + 8;
+                    else
+                        break;
+                    end
+                end
+                msgSize = msgSize+k;
                 
                 % Determine number of pad bits for user
-                msgSize = length(varargin{user});
-                availableResources = subcarriersForEachUser(user)*obj.symbolsPerFrame;
-                obj.padBits = availableResources - (8*(msgSize+obj.HeaderSize+length(obj.Deliminator)) + obj.CRCLength);
+                if obj.Encode
+                    obj.padBits = availableResources - (8*(msgSize+obj.HeaderSize+length(obj.Deliminator)) + obj.CRCLength)*obj.CodeRate;
+                else
+                    obj.padBits = availableResources - (8*(msgSize+obj.HeaderSize+length(obj.Deliminator)) + obj.CRCLength);
+                end
                 if obj.padBits < 0
                     fprintf('MAC| ERROR: Not enough symbols!\n\n');
                 end
@@ -118,7 +183,11 @@ classdef TxOFDMA < matlab.System
                 % receiver will know where message ends Header information
                 % is also added, including number of padded bits to header
                 % so receiver will know
-                extendedMessage = obj.additionalText(varargin{user},obj.OriginNodes(1),obj.DestNodes(1),obj.padBits);
+                extendedMessage = [obj.additionalText(varargin{user},obj.OriginNodes(1),obj.DestNodes(1),obj.padBits),repmat(uint8('-'),1,msgSize - length(varargin{user}))];
+                
+                % Increase frame number (This is added to the header in the
+                % previous function call additionalText)
+                obj.lastFrameID = mod(obj.lastFrameID + 1,10);
                 
                 % Convert message to bits
                 fprintf('User %d Message: %s\n',int16(user),extendedMessage);
@@ -130,21 +199,35 @@ classdef TxOFDMA < matlab.System
                 % Add CRC
                 dataWithCRC = step(obj.hGen, messageBits);
                 
-                % Pad and add number of pad bits to header
-                paddedBits = [dataWithCRC.' randi([0 1],1,obj.padBits)];
+                if obj.Encode
+                    % Encode Data
+                    encodedData = step(obj.Encoder, dataWithCRC);
+                    release(obj.Encoder);
+                    obj.Encoder = comm.BCHEncoder('CodewordLength',15, ...
+                                          'MessageLength',5);
+                    
+                    % Scramble
+                    scrambledData = step(obj.Scram, encodedData);
+                    release(obj.Scram);
+                    obj.Scram = comm.Scrambler(2, [1 0 1 1 0 1],...
+                               'InitialConditions',[0 0 1 1 0 ]); 
+                    
+                    % Pad bits
+                    paddedBits = [scrambledData.' randi([0 1],1,obj.padBits)];
+                else
+                    % Pad and add number of pad bits to header
+                    paddedBits = [dataWithCRC.' randi([0 1],1,obj.padBits)];
+                end
                 
                 % Add to full OFDMA Frame
                 % Reshape one user's data
                 userData = reshape(paddedBits',subcarriersForEachUser(user),obj.symbolsPerFrame);
                 
                 % Define transmitted bits
-                bitsToTx((user-1)*subcarriersForEachUser(user) + 1 : user*subcarriersForEachUser(user), :) = userData;
+                bitsToTx((user-1)*obj.carriersPerUser + 1 : user*subcarriersForEachUser(user), :) = userData;
                 
             end
             
-            % Increase frame number (This is added to the header in the
-            % previous function call additionalText)
-            obj.lastFrameID = mod(obj.lastFrameID + 1,10);
             
             %% Print message
 %             if obj.debugFlag

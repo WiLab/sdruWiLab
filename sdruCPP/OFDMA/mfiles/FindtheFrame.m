@@ -1,13 +1,13 @@
 function [rFrame,statusFlag] = FindtheFrame(Buffer)
 
-assert(isa(Buffer, 'double') && ~isreal(Buffer) && all(size(Buffer) == [2*1920 1]));
+assert(isa(Buffer, 'double') && ~isreal(Buffer) && all(size(Buffer) == [2*5120 1]));
 
 % Setup
 persistent RX LastrFrame
 
 if isempty(RX) || isempty(LastrFrame)
     
-    LastrFrame = complex(zeros(1,1920));    
+    LastrFrame = complex(zeros(1,5120));    
 
     NumDataSymbolsPerFrame = 20;
     FFTLength = 64;
@@ -19,8 +19,8 @@ if isempty(RX) || isempty(LastrFrame)
     [ShortPreambleOFDM, Preambles] = CreatePreambles;
     
     %NumDataSymbolsPerFrame*(FFTLength+CyclicPrefixLength)+length(Preambles);
-    FrameLength = 1920;
-    ReceiveBufferLength = 1920*2;
+    FrameLength = 5120;
+    ReceiveBufferLength = 5120*2;
     
     % Frame locator setup
     windowLength = ceil(4*ReceiveBufferLength/4);
@@ -69,7 +69,7 @@ FrameFound = ((delay + RX.FrameLength) < length(Buffer) ) &&... %Check if full d
 % Frame Decision
 if FrameFound
     
-    rFrame = BufferRow(delay + 1 : delay + 1920);% Extract single frame from input buffer
+    rFrame = BufferRow(delay + 1 : delay + 5120);% Extract single frame from input buffer
     statusFlag = int16(0); % Tell waiting function something is found
     if DebugFlag;fprintf('Frame found\n');end;
     return;
@@ -83,7 +83,7 @@ else
     
     % Display why missed frame
     if DebugFlag
-        if ( (delay + 1920) > length(Buffer) )
+        if ( (delay + 5120) > length(Buffer) )
             fprintf('Frame at end of buffer\n');
         elseif (delay < 0)
             fprintf('Preamble not found\n');

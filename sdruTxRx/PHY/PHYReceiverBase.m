@@ -29,6 +29,10 @@ classdef PHYReceiverBase < matlab.System
         PilotCarrierIndices = [12;26;40;54];
         NumGuardBandCarriers = [6;5];
         
+        Decoder
+        CodeRate
+        Descram
+        
     end
     
     properties (Access = protected)
@@ -151,6 +155,15 @@ classdef PHYReceiverBase < matlab.System
             obj.pilotEqGains = complex(zeros(obj.numCarriers, obj.hDataDemod.NumSymbols));
             obj.preambleEqGains = complex(zeros(obj.FFTLength-sum(obj.NumGuardBandCarriers),1));
             
+            % BCH Encoder
+            obj.Decoder = comm.BCHDecoder('CodewordLength',15, ...
+                                          'MessageLength',5);
+            obj.CodeRate = obj.Decoder.CodewordLength/...
+                           obj.Decoder.MessageLength;
+            obj.Descram = comm.Descrambler(2, [1 0 1 1 0 1],...
+                               'InitialConditions',[0 0 1 1 0 ]); 
+            
+            
             
         end
         
@@ -250,7 +263,7 @@ classdef PHYReceiverBase < matlab.System
             end
         end
         
-        function RHard = ProcessFrame(obj,rFrame)
+        function RHardDecoded = ProcessFrame(obj,rFrame)
             %% Recover found frame
             
             obj.numProcessed = obj.numProcessed + 1; % Required for frequency correction
@@ -274,6 +287,11 @@ classdef PHYReceiverBase < matlab.System
             end
             [ ~, RHard]= demodOFDMSubcarriers_sdr( obj, RPostEqualizer );
             
+            % Decode
+            scrambled = reshape(RHard,obj.numCarriers*obj.NumDataSymbolsPerFrame,1);
+            unscrambled = step(obj.Descram,scrambled);
+            decoded = step(obj.Decoder,unscrambled);
+            RHardDecoded = reshape(decoded,obj.numCarriers,obj.NumDataSymbolsPerFrame/obj.CodeRate);
             
         end
         

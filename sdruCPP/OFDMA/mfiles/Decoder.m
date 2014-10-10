@@ -10,7 +10,7 @@ persistent RxMAC
 if isempty(RxMAC)
     RxMAC = RxOFDMA;
     RxMAC.dataType = 'c';
-    RxMAC.desiredUser = 1;
+    RxMAC.desiredUser = 2;
     RxMAC.symbolsPerFrame = 20;
 end
 

@@ -9,7 +9,7 @@ classdef PHYTransmitter < matlab.System
         
         NumDataSymbolsPerFrame = 1;
         FFTLength = 64;     % OFDM modulator FFT size
-        SamplingFrequency = 2e6;
+        SamplingFrequency = 1e6;
         
         numCarriers = 48;
         CyclicPrefixLength = 16;
@@ -23,6 +23,11 @@ classdef PHYTransmitter < matlab.System
         pCRCGen
         pMod
         pPN
+        
+        Encoder
+        CodeRate
+        Scram
+        
     end
     
     properties (Access = protected)
@@ -59,6 +64,25 @@ classdef PHYTransmitter < matlab.System
     methods (Access = protected)
         function setupImpl(obj,~)
             
+            % BCH Encoder
+            obj.Encoder = comm.BCHEncoder('CodewordLength',15, ...
+                'MessageLength',5);
+            obj.CodeRate = obj.Encoder.CodewordLength/...
+                obj.Encoder.MessageLength;
+            obj.Scram = comm.Scrambler(2, [1 0 1 1 0 1],...
+                'InitialConditions',[0 0 1 1 0 ]);
+            
+            % PNSequence Generator
+            %numDataSymbols = length(input)/obj.numCarriers;
+            numDataSymbols = obj.NumDataSymbolsPerFrame*obj.CodeRate;
+            obj.pPN = comm.PNSequence(...
+                'Polynomial',[1 0 0 0 1 0 0 1],...
+                'SamplesPerFrame', numDataSymbols,...
+                'InitialConditions',[1 1 1 1 1 1 1]);
+            
+            
+            % Change modulator to support multiple symbols
+            obj.hDataMod.NumSymbols = numDataSymbols;
             
             % Create Preamble data
             CreatePreambles(obj);
@@ -85,16 +109,8 @@ classdef PHYTransmitter < matlab.System
             % Construct modulator for each subcarrier
             obj.pMod = comm.BPSKModulator; % BPSK
             
-            % PNSequence Generator
-            %numDataSymbols = length(input)/obj.numCarriers;
-            numDataSymbols = obj.NumDataSymbolsPerFrame;
-            obj.pPN = comm.PNSequence(...
-                'Polynomial',[1 0 0 0 1 0 0 1],...
-                'SamplesPerFrame', numDataSymbols,...
-                'InitialConditions',[1 1 1 1 1 1 1]);
             
-            % Change modulator to support multiple symbols
-            obj.hDataMod.NumSymbols = numDataSymbols;
+
             
         end
         
@@ -136,19 +152,12 @@ classdef PHYTransmitter < matlab.System
             %dataWithCRC = step(obj.pCRCGen, originalData);% Add CRC
             dataWithCRC = originalData;
             
-            % Apply modulator for each subcarrier
-            modData = step(obj.pMod, dataWithCRC);
+            % Encode
+            encoded = step(obj.Encoder,dataWithCRC);
+            scrambled = step(obj.Scram,encoded);
             
-%             % Pad IFFT
-%             padBits = obj.numCarriers - mod(length(modData),obj.numCarriers);
-%             if padBits == obj.numCarriers
-%                 padBits = 0;
-%             end
-%             %modData = [modData; step(obj.pMod,randi([0 1],padBits,1))];
-%             modData = [modData; step(obj.pMod,zeros(padBits,1))];
-            % Calculate required data sizes for correct receiver operation
-%             numSamples = length(modData);
-%             messageCharacters = length(payloadMessage); % Save desired message size
+            % Apply modulator for each subcarrier
+            modData = step(obj.pMod, scrambled);
             
             % Convert data into subcarrier streams
             ofdmData = reshape(modData, obj.numCarriers, length(modData)/obj.numCarriers);
@@ -170,7 +179,7 @@ classdef PHYTransmitter < matlab.System
                 'CyclicPrefixLength',   obj.CyclicPrefixLength,...
                 'FFTLength' ,           obj.FFTLength,...
                 'NumGuardBandCarriers', obj.NumGuardBandCarriers,...
-                'NumSymbols',           obj.NumDataSymbolsPerFrame,...
+                'NumSymbols',           obj.NumDataSymbolsPerFrame*obj.CodeRate,...
                 'PilotInputPort',       true,...
                 'PilotCarrierIndices',  obj.PilotCarrierIndices,...
                 'InsertDCNull',         true);
@@ -233,7 +242,7 @@ classdef PHYTransmitter < matlab.System
             % Create Pilots
             hPN = comm.PNSequence(...
                 'Polynomial',[1 0 0 0 1 0 0 1],...
-                'SamplesPerFrame', obj.NumDataSymbolsPerFrame,...
+                'SamplesPerFrame', obj.NumDataSymbolsPerFrame*obj.CodeRate,...
                 'InitialConditions',[1 1 1 1 1 1 1]);
             
             %pilot=[1 0  0  1  0  0  1  0  0  0  0  0]';

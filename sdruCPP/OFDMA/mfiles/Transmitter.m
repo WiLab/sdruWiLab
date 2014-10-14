@@ -10,7 +10,7 @@ if isempty(TxMAC)
     TxMAC = TxOFDMA;
     TxMAC.desiredUser = 1;
     TxMAC.dataType = 'c';
-    TxMAC.symbolsPerFrame = 20;
+    TxMAC.symbolsPerFrame = 5;
     % Setup PHY
     TxPHY = PHYTransmitter;
     TxPHY.HWAttached = false;
@@ -29,17 +29,17 @@ if isempty(TxMAC)
 end
 
 % Messages to transmit
-messageUE1 = ['Message'];
-messageUE2 = ['Message'];
+messageUE1 = ['Pink'];
+messageUE2 = ['Floyd'];
 
 
 %% Create a number of frames, and put them in a vector
-frameLength = (TxMAC.symbolsPerFrame*(64+16)+320);
+frameLength = (3*TxMAC.symbolsPerFrame*(64+16)+320);
 
 framesToCreate = 10;
 frame = complex(zeros(frameLength*framesToCreate,1));
 
-subcarriersForEachUser = [24,24]
+subcarriersForEachUser = [24,24];
 
 for k = 1:framesToCreate
     bitsToTx1 = step(TxMAC, 2, subcarriersForEachUser, messageUE1(1,:),messageUE2(1,:));
@@ -49,13 +49,13 @@ end
 % Add gaps between transmissions
 framesWithGaps=[complex(zeros(100,1));frame;complex(zeros(100,1))];
 
-framesWithGapsTmp = LargeFramesVectorEncoded;%SmallFramesVector;%framesWithGapsStandard;
-
-if sum(framesWithGaps- framesWithGapsTmp)==0
-    fprintf('Not Different\n')
-else
-    fprintf('Different\n');
-end
+% framesWithGapsTmp = LargeFramesVectorEncoded;%SmallFramesVector;%framesWithGapsStandard;
+% 
+% if sum(framesWithGaps- framesWithGapsTmp)==0
+%     fprintf('Not Different\n')
+% else
+%     fprintf('Different\n');
+% end
 
 % Transmit out USRP
 while 1

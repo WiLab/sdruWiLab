@@ -25,7 +25,7 @@ classdef RxOFDMA < matlab.System
         lastHeader;
         padBits;
         
-        subcarriersForEachUser = [20,28];
+        subcarriersForEachUser = [24,24];
         userIndexes;
         
         lastFrameID = uint8('0');

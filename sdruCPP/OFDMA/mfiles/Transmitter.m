@@ -39,8 +39,10 @@ frameLength = (TxMAC.symbolsPerFrame*(64+16)+320);
 framesToCreate = 10;
 frame = complex(zeros(frameLength*framesToCreate,1));
 
+subcarriersForEachUser = [24,24]
+
 for k = 1:framesToCreate
-    bitsToTx1 = step(TxMAC, messageUE1(1,:),messageUE2(1,:));
+    bitsToTx1 = step(TxMAC, 2, subcarriersForEachUser, messageUE1(1,:),messageUE2(1,:));
     frame(1+(k-1)*frameLength:k*frameLength)= step(TxPHY,bitsToTx1);
 end
 

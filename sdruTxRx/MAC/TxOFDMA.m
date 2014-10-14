@@ -52,7 +52,7 @@ classdef TxOFDMA < matlab.System
     %% Methods
     methods(Access = protected)
         %% Setup
-        function setupImpl(obj,~,~)
+        function setupImpl(obj,~,~,~,~)
             
             % Tunable
             obj.DestNodes = [0 0];
@@ -75,17 +75,17 @@ classdef TxOFDMA < matlab.System
         
         %% Accept more than one step input
         function N = getNumInputsImpl(~)
-            N = 2;
+            N = 4;
         end
         
         %% Step function
-        function bitsToTx = stepImpl(obj,varargin)
+        function bitsToTx = stepImpl(obj,messages,subcarriersForEachUser,varargin)
             
             if nargin == 1
                 error('Error, no messages passed to function\n');
             else
                 % Update number of users
-                obj.numUsers = nargin - 1;
+                obj.numUsers = messages;%nargin - 1;
             end
             
             
@@ -94,15 +94,23 @@ classdef TxOFDMA < matlab.System
             % padded, to be the same size as the other
             
             % Resource Allocation
-            subcarriersForEachUser = [24, 24];
+            %subcarriersForEachUser = [24, 24];
             
-           
+            %% Determine indexes in OFDMA Frame for data
+            edge = 0;
+            userIndexes = zeros(messages,2);
+            for user = 1:messages
+                userIndexes(user,1) = edge;
+                userIndexes(user,2) = edge + subcarriersForEachUser(user) - 1;
+                edge = subcarriersForEachUser(user);
+            end
+            indexEdge = 1;
             
             %% Concatenate text messages and add extra text
-            userData = zeros(obj.carriersPerUser,obj.symbolsPerFrame); %#ok<PREALL>
-            bitsToTx = zeros(obj.numCarriers,obj.symbolsPerFrame);
+            %userData = zeros(obj.carriersPerUser,obj.symbolsPerFrame); %#ok<PREALL>
+            bitsToTx = -1*ones(obj.numCarriers,obj.symbolsPerFrame);
             
-            for user = 1:obj.numUsers
+            for user = 1:messages%obj.numUsers
                 
                 
                 % Determine number of pad bits for user
@@ -138,8 +146,8 @@ classdef TxOFDMA < matlab.System
                 userData = reshape(paddedBits',subcarriersForEachUser(user),obj.symbolsPerFrame);
                 
                 % Define transmitted bits
-                bitsToTx((user-1)*subcarriersForEachUser(user) + 1 : user*subcarriersForEachUser(user), :) = userData;
-                
+                bitsToTx(indexEdge:indexEdge+subcarriersForEachUser(user) - 1, :) = userData>0;
+                indexEdge = indexEdge + subcarriersForEachUser(user) ;
             end
             
             % Increase frame number (This is added to the header in the

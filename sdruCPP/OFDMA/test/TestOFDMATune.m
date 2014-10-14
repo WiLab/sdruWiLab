@@ -26,9 +26,10 @@ TxPHY.NumDataSymbolsPerFrame = TxMAC.symbolsPerFrame;
 
 
 % Messages to transmit
-messageUE1 = 'Hello';
+messageUE1 = 'Pink';
 messageUE2 = 'Pink';
-bitsToTx1 = step(TxMAC, messageUE1(1,:),messageUE2(1,:));
+subcarriersForEachUser = [20,28];
+bitsToTx1 = step(TxMAC,2,subcarriersForEachUser,messageUE1(1,:),messageUE2(1,:));
 frame = step(TxPHY,bitsToTx1);
 
 % Receiver
@@ -38,7 +39,7 @@ Buffer = [frame; frame];
 if statusFlag<1
     [ RHard ] = SignalCorrect(rFrame);
     % Decode
-    Decoder( RHard );
+    Decoder(RHard);
 end
 
 

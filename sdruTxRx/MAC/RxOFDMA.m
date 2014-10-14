@@ -25,6 +25,9 @@ classdef RxOFDMA < matlab.System
         lastHeader;
         padBits;
         
+        subcarriersForEachUser = [20,28];
+        userIndexes;
+        
         lastFrameID = uint8('0');
         
         CorrectFrame;
@@ -61,6 +64,24 @@ classdef RxOFDMA < matlab.System
             obj.DeScram = comm.Descrambler(2, [1 0 1 1 0 1],...
                 'InitialConditions',[0 0 1 1 0 ]);
             
+            %obj.subcarriersForEachUser = [20,28];
+            
+            obj.userIndexes = CalculateUserLocations(obj);
+            
+        end
+        
+        function userIndexes = CalculateUserLocations(obj)
+            
+            % Calculate user locations
+            edge = 1;
+            users = length(obj.subcarriersForEachUser);
+            userIndexes = zeros(users,2);
+            for user = 1:users
+                userIndexes(user,1) = edge;
+                userIndexes(user,2) = edge + obj.subcarriersForEachUser(user) - 1;
+                edge = obj.subcarriersForEachUser(user);
+            end
+            
         end
         
         %% Step function
@@ -69,11 +90,14 @@ classdef RxOFDMA < matlab.System
             reason=0;
             Duplicate = false; % flag for duplicate
             
-            %% User demultiplex
-            userFrame = receivedFrame((obj.desiredUser*obj.carriersPerUser-obj.carriersPerUser+1):...
-                obj.desiredUser*obj.carriersPerUser,:);
+            % Create variable size vectors
+            coder.varsize('userFrame', [obj.numCarriers ,obj.symbolsPerFrame], [1 0]);
+            coder.varsize('userBits', [1 ,obj.numCarriers*obj.symbolsPerFrame], [0 1]);
+            coder.varsize('recoveredMessage', [1 ,obj.numCarriers*obj.symbolsPerFrame], [0 1]);
             
-            userBits = reshape(userFrame,1,obj.carriersPerUser*obj.symbolsPerFrame);
+            %% User demultiplex
+            userFrame = receivedFrame(obj.userIndexes(obj.desiredUser,1):obj.userIndexes(obj.desiredUser,2),:);
+            userBits = reshape(userFrame,1,obj.subcarriersForEachUser(obj.desiredUser)*obj.symbolsPerFrame);
             
             %% Eliminate pad bits
             
@@ -86,7 +110,7 @@ classdef RxOFDMA < matlab.System
             %% CRC check and convert to letters
             
             % Initialize variables
-            recoveredMessage = uint8(zeros(1,size(userBits,2)/8)); %#ok<NASGU> Need for CG preallocation
+            %recoveredMessage = uint8(zeros(1,size(userBits,2)/8)); %#ok<NASGU> Need for CG preallocation
             err = false(1,1);
             
             % The minimum number of bits that can be recovered is 43 = 4
@@ -106,6 +130,7 @@ classdef RxOFDMA < matlab.System
                 [msg, err] = step(obj.pDetect, unpaddedBits.'>0);
                 
                 if ~err || obj.ignoreCRC % No CRC Error (Can be skipped in debugging)
+                    
                     % Convert Bits to integers
                     messageData = uint8(OFDMbits2letters(obj,msg > 0).');
                     

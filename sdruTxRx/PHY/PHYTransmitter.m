@@ -8,6 +8,7 @@ classdef PHYTransmitter < matlab.System
         DupeFrames = 0;
         
         NumDataSymbolsPerFrame = 1;
+        CodeRate = 3;
         FFTLength = 64;     % OFDM modulator FFT size
         SamplingFrequency = 1e6;
         
@@ -25,7 +26,7 @@ classdef PHYTransmitter < matlab.System
         pPN
         
         Encoder
-        CodeRate
+        
         Scram
         
     end
@@ -79,16 +80,15 @@ classdef PHYTransmitter < matlab.System
                 'Polynomial',[1 0 0 0 1 0 0 1],...
                 'SamplesPerFrame', numDataSymbols,...
                 'InitialConditions',[1 1 1 1 1 1 1]);
-            
-            
-            % Change modulator to support multiple symbols
-            obj.hDataMod.NumSymbols = numDataSymbols;
-            
+
             % Create Preamble data
             CreatePreambles(obj);
             
             % Create Modulator objects
             CreateDemodulators(obj);
+            
+            % Change modulator to support multiple symbols
+            obj.hDataMod.NumSymbols = numDataSymbols;
             
             % Setup USRP
             USRPADCSamplingRate = 100e6;

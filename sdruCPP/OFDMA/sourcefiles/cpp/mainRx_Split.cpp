@@ -53,10 +53,14 @@ void Receiver(void)
     
     GetUSRPData_init();
     while (1){
+	//std::cout<<"Getting data\n";
         GetUSRPData(input);
+	//std::cout<<"Finding the frame\n";
         FindtheFrame(input, output, &flag);
         if (flag<1){
+	    //std::cout<<"Signal correcting\n";
             SignalCorrect(output, output2);
+	    //std::cout<<"Decoding\n";
             Decoder(output2);
         }
     }
@@ -269,7 +273,7 @@ void Decoder_Thread(void)
 int main()
 {
     
-    bool Pipeline = true;
+    bool Pipeline = false;
     
     std::cout<<"Main Started"<<std::endl;
     

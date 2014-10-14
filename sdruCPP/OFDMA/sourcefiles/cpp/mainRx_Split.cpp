@@ -24,8 +24,8 @@
 
 #define MESSAGES2TX 100000//Messages to send between PHY and MAC (NOT USED)
 
-#define FRAMESIZE 1920
-#define DEMOD_FRAMESIZE 960
+#define FRAMESIZE 1520
+#define DEMOD_FRAMESIZE 240
 #define  BUFSIZE 256
 
 // Create Mutex

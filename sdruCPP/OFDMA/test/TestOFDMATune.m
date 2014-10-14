@@ -12,7 +12,7 @@ function output = TestOFDMATune()
 TxMAC = TxOFDMA;
 TxMAC.desiredUser = 1;
 TxMAC.dataType = 'c';
-TxMAC.symbolsPerFrame = 20;
+TxMAC.symbolsPerFrame = 5;
 
 % RxMAC = RxOFDMA;
 % RxMAC.dataType = 'c';
@@ -26,8 +26,8 @@ TxPHY.NumDataSymbolsPerFrame = TxMAC.symbolsPerFrame;
 
 
 % Messages to transmit
-messageUE1 = 'HelloWorld';
-messageUE2 = 'PinkFloyd';
+messageUE1 = 'Hello';
+messageUE2 = 'Pink';
 bitsToTx1 = step(TxMAC, messageUE1(1,:),messageUE2(1,:));
 frame = step(TxPHY,bitsToTx1);
 

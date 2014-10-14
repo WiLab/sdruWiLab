@@ -2,10 +2,10 @@ function setbuildargs(buildInfo)
 % The example being compiled requires threading support.
 % The flag requests that the thread library be included 
 % in the build   
-    linkFlags = {'-std=c++0x','-ldl'};
+    linkFlags = {'-std=c++0x'};
     addCompileFlags(buildInfo, linkFlags);
-    linkFlags = {'-pthread','-ldl'};
+    linkFlags = {'-pthread'};
     addLinkFlags(buildInfo, linkFlags);
-    linkFlags = {'-ldl'};
-    addSysLibs(buildInfo, linkFlags);
+    %linkFlags = {'-ldl'}; need for UDP, but in a different spot
+    %addSysLibs(buildInfo, linkFlags);
     

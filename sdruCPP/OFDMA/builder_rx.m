@@ -4,7 +4,8 @@ cfg.CustomInclude = 'sourcefiles/cpp/';
 cfg.TargetLang='C++';
 cfg.PostCodeGenCommand = 'setbuildargs(buildInfo)';
 %functionsToThread = {'Transmitter', 'FindtheFrame','GetUSRPData','SignalCorrect','Decoder','GenerateInput'};
-functionsToThread = {'Transmitter', 'FindtheFrame','GetUSRPData','SignalCorrect','Decoder'};
+%functionsToThread = {'Transmitter', 'FindtheFrame','GetUSRPData','SignalCorrect','Decoder'};
+functionsToThread = {'FindtheFrame','GetUSRPData','SignalCorrect','Decoder'};
 additionalSourceFiles = {'add2q.cpp','main.h'};
 outputFunctionName = {'RX'};
 

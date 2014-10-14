@@ -1,15 +1,19 @@
 function [rFrame,statusFlag] = FindtheFrame(Buffer)
 
-assert(isa(Buffer, 'double') && ~isreal(Buffer) && all(size(Buffer) == [2*5120 1]));
+% SymbolsPerframe 5
+% CodeRate 3
+% OFDMSymbolSize (48+16+16)
+% PreambleSize 320
+
+%FrameLength = (5*3*(80)+320);
+assert(isa(Buffer, 'double') && ~isreal(Buffer) && all(size(Buffer) == [2*(5*3*(80)+320) 1]));
 
 % Setup
-persistent RX LastrFrame
+persistent RX
 
-if isempty(RX) || isempty(LastrFrame)
-    
-    LastrFrame = complex(zeros(1,5120));    
+if isempty(RX)
 
-    NumDataSymbolsPerFrame = 20;
+    NumDataSymbolsPerFrame = 5;
     FFTLength = 64;
     CyclicPrefixLength = 16;
     
@@ -19,8 +23,8 @@ if isempty(RX) || isempty(LastrFrame)
     [ShortPreambleOFDM, Preambles] = CreatePreambles;
     
     %NumDataSymbolsPerFrame*(FFTLength+CyclicPrefixLength)+length(Preambles);
-    FrameLength = 5120;
-    ReceiveBufferLength = 5120*2;
+    FrameLength = (5*3*(80)+320);
+    ReceiveBufferLength = FrameLength*2;
     
     % Frame locator setup
     windowLength = ceil(4*ReceiveBufferLength/4);
@@ -62,14 +66,14 @@ BufferRow = Buffer.';
 % Check if frame exists in correct location and whether it's duplicate
 %Dupe = ( numBuffersProcessed-lastFound<2 )&& (obj.delay<length(obj.Buffer)/2);
 Dupe = false;
-FrameFound = ((delay + RX.FrameLength) < length(Buffer) ) &&... %Check if full data frame exists in buffer
+FrameFound = ((delay + (5*3*(80)+320)) < length(Buffer) ) &&... %Check if full data frame exists in buffer
     (delay > -1 ) &&... %Check if preamble located
     (~Dupe); %Check if duplicate frame
 
 % Frame Decision
 if FrameFound
     
-    rFrame = BufferRow(delay + 1 : delay + 5120);% Extract single frame from input buffer
+    rFrame = BufferRow(delay + 1 : delay + (5*3*(80)+320));% Extract single frame from input buffer
     statusFlag = int16(0); % Tell waiting function something is found
     if DebugFlag;fprintf('Frame found\n');end;
     return;
@@ -79,11 +83,11 @@ else
     % Flag for nothing found
     statusFlag = int16(1);
     % Fill with zeros
-    rFrame = complex(ones(1,320+(16+64)*20));
+    rFrame = complex(ones(1, (5*3*(80)+320)));
     
     % Display why missed frame
     if DebugFlag
-        if ( (delay + 5120) > length(Buffer) )
+        if ( (delay + FrameLength) > length(Buffer) )
             fprintf('Frame at end of buffer\n');
         elseif (delay < 0)
             fprintf('Preamble not found\n');

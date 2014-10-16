@@ -52,7 +52,7 @@ classdef TxOFDMA < matlab.System
     %% Methods
     methods(Access = protected)
         %% Setup
-        function setupImpl(obj,~,~,~,~)
+        function setupImpl(obj,~,~,~)
             
             % Tunable
             obj.DestNodes = [0 0];

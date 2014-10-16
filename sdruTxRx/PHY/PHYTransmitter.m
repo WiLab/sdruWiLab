@@ -3,7 +3,7 @@ classdef PHYTransmitter < matlab.System
 % of symbols in a frame.  There is only one frame accepted per step.
 
     properties (Nontunable)
-        CenterFrequency = 2.24e9;
+        CenterFrequency = 900e6;
         HWAttached = false;
         DupeFrames = 0;
         
@@ -83,7 +83,7 @@ classdef PHYTransmitter < matlab.System
 
             % Create Preamble data
             CreatePreambles(obj);
-            
+
             % Create Modulator objects
             CreateDemodulators(obj);
             
@@ -119,6 +119,7 @@ classdef PHYTransmitter < matlab.System
             
             frame = CreateOFDMFrame(obj, data);
             numFrames = 1;
+            
             % Transmit frames 1 at a time
             for frames = 1:numFrames
                 if obj.HWAttached
@@ -175,7 +176,7 @@ classdef PHYTransmitter < matlab.System
         function CreateDemodulators(obj)
             
             % Construct Modulator
-            obj.hDataMod = OFDMModulator(...
+            obj.hDataMod = comm.OFDMModulator(...
                 'CyclicPrefixLength',   obj.CyclicPrefixLength,...
                 'FFTLength' ,           obj.FFTLength,...
                 'NumGuardBandCarriers', obj.NumGuardBandCarriers,...
@@ -184,10 +185,10 @@ classdef PHYTransmitter < matlab.System
                 'PilotCarrierIndices',  obj.PilotCarrierIndices,...
                 'InsertDCNull',         true);
             % Construct Demod from mod
-            obj.hDataDemod = OFDMDemodulator(obj.hDataMod);
+            obj.hDataDemod = comm.OFDMDemodulator(obj.hDataMod);
             
             % Construct Demod from mod
-            obj.hPreambleDemod = OFDMDemodulator(obj.hPreambleMod);
+            obj.hPreambleDemod = comm.OFDMDemodulator(obj.hPreambleMod);
             
             obj.pilotLocationsWithoutGuardbands = obj.PilotCarrierIndices-obj.NumGuardBandCarriers(1);
             % Calculate locations of subcarrier datastreams without guardbands
@@ -205,6 +206,7 @@ classdef PHYTransmitter < matlab.System
         
         function CreatePreambles(obj)
 
+            
             %% Create Short Preamble
             obj.ShortPreamble = [ 0 0  1+1i 0 0 0  -1-1i 0 0 0 ... % [-27:-17]
                 1+1i 0 0 0  -1-1i 0 0 0 -1-1i 0 0 0   1+1i 0 0 0 ... % [-16:-1]
@@ -212,12 +214,12 @@ classdef PHYTransmitter < matlab.System
                 1+1i 0 0 0   1+1i 0 0 0  1+1i 0 0 ].';               % [16:27]
             
             % Create modulator
-            obj.hPreambleMod = OFDMModulator(...
+            obj.hPreambleMod = comm.OFDMModulator(...
                 'NumGuardBandCarriers', [6; 5],...
                 'CyclicPrefixLength',   0,...
                 'FFTLength' ,           64,...
                 'NumSymbols',           1);
-            
+ 
             % Modulate and scale
             obj.ShortPreambleOFDM = sqrt(13/6)*step(obj.hPreambleMod, obj.ShortPreamble);
             
@@ -244,7 +246,7 @@ classdef PHYTransmitter < matlab.System
                 'Polynomial',[1 0 0 0 1 0 0 1],...
                 'SamplesPerFrame', obj.NumDataSymbolsPerFrame*obj.CodeRate,...
                 'InitialConditions',[1 1 1 1 1 1 1]);
-            
+                     
             %pilot=[1 0  0  1  0  0  1  0  0  0  0  0]';
             pilot = step(hPN); % Create pilot
             pilotsTmp = repmat(pilot, 1, 4 ); % Expand to all pilot tones

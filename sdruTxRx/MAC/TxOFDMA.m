@@ -52,7 +52,7 @@ classdef TxOFDMA < matlab.System
     %% Methods
     methods(Access = protected)
         %% Setup
-        function setupImpl(obj,~,~,~)
+        function setupImpl(obj)
             
             % Tunable
             obj.DestNodes = [0 0];
@@ -75,11 +75,11 @@ classdef TxOFDMA < matlab.System
         
         %% Accept more than one step input
         function N = getNumInputsImpl(~)
-            N = 4;
+            N = 3;
         end
         
         %% Step function
-        function bitsToTx = stepImpl(obj,messages,subcarriersForEachUser,varargin)
+        function bitsToTx = stepImpl(obj,messages,subcarriersForEachUser,msgTxt)
             
             if nargin == 1
                 error('Error, no messages passed to function\n');
@@ -114,11 +114,12 @@ classdef TxOFDMA < matlab.System
                 
                 
                 % Determine number of pad bits for user
-                msgSize = length(varargin{user});
+                msgSize = length(msgTxt(user).msg);
                 availableResources = subcarriersForEachUser(user)*obj.symbolsPerFrame;
                 obj.padBits = availableResources - (8*(msgSize+obj.HeaderSize+length(obj.Deliminator)) + obj.CRCLength);
                 if obj.padBits < 0
-                    fprintf('MAC| ERROR: Not enough symbols!\n\n');
+                    req = ceil( (8*(msgSize+obj.HeaderSize+length(obj.Deliminator)) + obj.CRCLength)/ (subcarriersForEachUser(user)));                    
+                    error(['MAC| ERROR: Not enough symbols!']);
                 end
                 
                 
@@ -126,7 +127,7 @@ classdef TxOFDMA < matlab.System
                 % receiver will know where message ends Header information
                 % is also added, including number of padded bits to header
                 % so receiver will know
-                extendedMessage = obj.additionalText(varargin{user},obj.OriginNodes(1),obj.DestNodes(1),obj.padBits);
+                extendedMessage = obj.additionalText(msgTxt(user).msg,obj.OriginNodes(1),obj.DestNodes(1),obj.padBits);
                 
                 % Convert message to bits
                 fprintf('User %d Message: %s\n',int16(user),extendedMessage);
@@ -199,7 +200,7 @@ classdef TxOFDMA < matlab.System
                     message,uint8(obj.Deliminator)];
                 
             else
-                fprintf('MAC| ERROR: Message incorrect format\n');
+                error('MAC| ERROR: Message incorrect format\n');
             end
             
         end

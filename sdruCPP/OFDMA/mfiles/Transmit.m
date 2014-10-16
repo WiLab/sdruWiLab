@@ -1,5 +1,7 @@
 function [ output ] = Transmit(numUsers) %#codegen
 
+assert(isa(numUsers, 'double') && isreal(numUsers) && all(size(numUsers) == [1 1]))
+
 output = 1;
 
 % if nargin == 1
@@ -18,7 +20,7 @@ if isempty(TxMAC) || isempty(TxPHY) || isempty(UserTemplate)
     TxMAC = TxOFDMA;
     TxMAC.desiredUser = 1;
     TxMAC.dataType = 'c';
-    TxMAC.symbolsPerFrame = 5;
+    TxMAC.symbolsPerFrame = 20;
     % Setup PHY
     TxPHY = PHYTransmitter;
     TxPHY.HWAttached = true;
@@ -27,25 +29,34 @@ if isempty(TxMAC) || isempty(TxPHY) || isempty(UserTemplate)
     TxPHY.CenterFrequency = 900e6;
     
     % initialize array for user messages
-    UserTemplate = cell(TxPHY.numCarriers,1);
+    coder.varsize('x.msg', [1 ,100], [0 1]);
+    x.msg = '';
+    UserTemplate = repmat(x,TxPHY.numCarriers,1);
+    %UserTemplate(TxPHY.numCarriers).msg = '';
+%     for k=1:TxPHY.numCarriers-1
+%         UserTemplate(k).msg = '';
+%     end
     
 end
 
 % Create Messages
+subcarriersForEachUser = zeros(1,TxPHY.numCarriers);
 for k = 1:numUsers
-    message = ['Hello',char(48+k)];
-    UserTemplate{k} = message;
+    message = ['Msg',char(48+k)];
+    UserTemplate(k).msg = message;
+    subcarriersForEachUser(k) = TxPHY.numCarriers/numUsers;
 end
 
+
 %% Create a number of frames, and put them in a vector
-bitsToTx1 = step(TxMAC, messages, subcarriersForEachUser, varargin{:});
+bitsToTx1 = step(TxMAC, numUsers, subcarriersForEachUser, UserTemplate);
 frame = step(TxPHY,bitsToTx1);
 
-% Add gaps between transmissions, easier to recover
-framesWithGaps=[complex(zeros(100,1));frame;complex(zeros(100,1))];
-
-% Transmit out USRP
-step(SDRuTransmitter,framesWithGaps);
+% % Add gaps between transmissions, easier to recover
+% framesWithGaps=[complex(zeros(100,1));frame;complex(zeros(100,1))];
+% 
+% % Transmit out USRP
+% step(SDRuTransmitter,framesWithGaps);
 
 
 end

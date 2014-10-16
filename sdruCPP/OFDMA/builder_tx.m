@@ -3,7 +3,8 @@ cfg.CustomSource = 'mainTx.cpp';
 cfg.CustomInclude = 'sourcefiles/cpp/';
 cfg.TargetLang='C++';
 cfg.PostCodeGenCommand = 'setbuildargs(buildInfo)';
-functionsToThread = {'Transmitter'};
+%functionsToThread = {'Transmitter'};
+functionsToThread = {'Transmit'};
 additionalSourceFiles = {};
 outputFunctionName = {'TX'};
 

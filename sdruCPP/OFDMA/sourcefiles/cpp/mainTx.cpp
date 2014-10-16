@@ -8,9 +8,11 @@
 #include <mutex>
 #include <queue>
 #include <condition_variable>
+#include <unistd.h>
 
 //Include headers of matlab functions
-#include "Transmitter.h"
+//#include "Transmitter.h"
+#include "Transmit.h"
 
 //Include header of combined library
 //#include "TX_initialize.h"
@@ -21,7 +23,16 @@ void Transmitter_Thread(void)
 {
     std::cout<<"Started Transmitter"<<std::endl;
     double output = 0;
-    Transmitter();
+    //Transmitter();
+    double users = 1;
+    Transmit(users);
+    users = 2;
+    Transmit(users);
+    sleep(5);
+    users = 4;
+    Transmit(users);
+    users = 8;
+    Transmit(users);
 }
 
 
@@ -33,7 +44,7 @@ int main()
     //TX_initialize();
     
     //Spawn Thread
-    std::thread thread1( Transmitter );
+    std::thread thread1( Transmitter_Thread );
     
     //Wait for thread to finish
     thread1.join();

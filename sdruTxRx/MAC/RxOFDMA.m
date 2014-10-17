@@ -13,6 +13,7 @@ classdef RxOFDMA < matlab.System
         headerCharacters = 4;
         CRClength = 3;
         dataType = 'u';
+        DisplayIteration = 1;
         
     end
     
@@ -55,7 +56,9 @@ classdef RxOFDMA < matlab.System
             
             obj.pDetect = comm.CRCDetector([1 0 0 1], 'ChecksumsPerFrame',1);
             
-            obj.CorrectFrame = CorrectBits';
+            % For BER calculations
+            trueMessage = 'Msg1';
+            obj.CorrectFrame = CorrectBits(trueMessage).';
             obj.BER = 0;
             obj.Iteration = 0;
             
@@ -63,8 +66,6 @@ classdef RxOFDMA < matlab.System
                 'MessageLength',5);
             obj.DeScram = comm.Descrambler(2, [1 0 1 1 0 1],...
                 'InitialConditions',[0 0 1 1 0 ]);
-            
-            %obj.subcarriersForEachUser = [20,28];
             
             obj.userIndexes = CalculateUserLocations(obj);
             
@@ -210,10 +211,12 @@ classdef RxOFDMA < matlab.System
             if (~err || obj.debugFlag) && ~Duplicate
                 
                 % BER calculation
-%                obj.Iteration = obj.Iteration + 1;
-%                wrongBits = sum(abs(msg(2*8+1:length(obj.CorrectFrame))-obj.CorrectFrame(2*8+1:end) )); % Ignore first 2 characters since they aren't static
-%                newBER = wrongBits/length(obj.CorrectFrame(2*8+1:end));
-%                obj.BER = (obj.BER*obj.Iteration + newBER)/(obj.Iteration+1);
+               obj.Iteration = obj.Iteration + 1;
+               offset = 4*8;
+               msgRaw = msg(1+offset:length(obj.CorrectFrame)+offset);
+               wrongBits = sum(abs(msgRaw-obj.CorrectFrame )); % Ignore first 4 characters since they aren't static
+               newBER = wrongBits/length(obj.CorrectFrame(2*8+1:end));
+               obj.BER = (obj.BER*obj.Iteration + newBER)/(obj.Iteration+1);
                 
                 %if wrongBits>0
                 %    fprintf('Wrong Bits: %d\n',int64(wrongBits));
@@ -222,7 +225,7 @@ classdef RxOFDMA < matlab.System
                 obj.CorrectFrames = obj.CorrectFrames + 1;%Keep track of decode frames
                 
                 % Display Message
-                if 1%mod(obj.CorrectFrames, 100)==0% Only display every N samples, reduces CPU usage
+                if mod(obj.CorrectFrames, obj.DisplayIteration)==0% Only display every N samples, reduces CPU usage
                     switch obj.dataType
                         case 'c'
                             fprintf('Message: %s | ', char(recoveredMessage(2:end)));

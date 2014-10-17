@@ -5,8 +5,8 @@ function [rFrame,statusFlag] = FindtheFrame(Buffer)
 % OFDMSymbolSize (48+16+16)
 % PreambleSize 320
 
-%FrameLength = (5*3*(80)+320);
-assert(isa(Buffer, 'double') && ~isreal(Buffer) && all(size(Buffer) == [2*(5*3*(80)+320) 1]));
+FrameLength = (3*5*(64+16)+320);
+assert(isa(Buffer, 'double') && ~isreal(Buffer) && all(size(Buffer) == [2*FrameLength 1]));
 
 % Setup
 persistent RX
@@ -23,7 +23,7 @@ if isempty(RX)
     [ShortPreambleOFDM, Preambles] = CreatePreambles;
     
     %NumDataSymbolsPerFrame*(FFTLength+CyclicPrefixLength)+length(Preambles);
-    FrameLength = (5*3*(80)+320);
+    %FrameLength = (5*3*(80)+320);
     ReceiveBufferLength = FrameLength*2;
     
     % Frame locator setup
@@ -66,14 +66,14 @@ BufferRow = Buffer.';
 % Check if frame exists in correct location and whether it's duplicate
 %Dupe = ( numBuffersProcessed-lastFound<2 )&& (obj.delay<length(obj.Buffer)/2);
 Dupe = false;
-FrameFound = ((delay + (5*3*(80)+320)) < length(Buffer) ) &&... %Check if full data frame exists in buffer
+FrameFound = ((delay + FrameLength) < length(Buffer) ) &&... %Check if full data frame exists in buffer
     (delay > -1 ) &&... %Check if preamble located
     (~Dupe); %Check if duplicate frame
 
 % Frame Decision
 if FrameFound
     
-    rFrame = BufferRow(delay + 1 : delay + (5*3*(80)+320));% Extract single frame from input buffer
+    rFrame = BufferRow(delay + 1 : delay + FrameLength);% Extract single frame from input buffer
     statusFlag = int16(0); % Tell waiting function something is found
     if DebugFlag;fprintf('Frame found\n');end;
     return;
@@ -83,7 +83,7 @@ else
     % Flag for nothing found
     statusFlag = int16(1);
     % Fill with zeros
-    rFrame = complex(ones(1, (5*3*(80)+320)));
+    rFrame = complex(ones(1, FrameLength));
     
     % Display why missed frame
     if DebugFlag

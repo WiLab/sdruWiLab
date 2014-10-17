@@ -25,11 +25,19 @@ TxPHY.HWAttached = false;
 TxPHY.NumDataSymbolsPerFrame = TxMAC.symbolsPerFrame;
 
 
-% Messages to transmit
-messageUE1 = 'Pink';
-messageUE2 = 'Pink';
-subcarriersForEachUser = [20,28];
-bitsToTx1 = step(TxMAC,2,subcarriersForEachUser,messageUE1(1,:),messageUE2(1,:));
+% Create Messages
+numUsers = 2;
+x.msg = '';
+UserTemplate = repmat(x,TxPHY.numCarriers,1);
+subcarriersForEachUser = zeros(1,TxPHY.numCarriers);
+for k = 1:numUsers
+    message = ['Msg',char(48+k)];
+    UserTemplate(k).msg = message;
+    subcarriersForEachUser(k) = TxPHY.numCarriers/numUsers;
+end
+
+subcarriersForEachUser = [24,24];
+bitsToTx1 = step(TxMAC,2,subcarriersForEachUser,UserTemplate);
 frame = step(TxPHY,bitsToTx1);
 
 % Receiver

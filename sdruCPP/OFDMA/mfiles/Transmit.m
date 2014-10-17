@@ -20,7 +20,8 @@ if isempty(TxMAC) || isempty(TxPHY) || isempty(UserTemplate)
     TxMAC = TxOFDMA;
     TxMAC.desiredUser = 1;
     TxMAC.dataType = 'c';
-    TxMAC.symbolsPerFrame = 20;
+    TxMAC.symbolsPerFrame = 5;
+    
     % Setup PHY
     TxPHY = PHYTransmitter;
     TxPHY.HWAttached = true;
@@ -32,10 +33,6 @@ if isempty(TxMAC) || isempty(TxPHY) || isempty(UserTemplate)
     coder.varsize('x.msg', [1 ,100], [0 1]);
     x.msg = '';
     UserTemplate = repmat(x,TxPHY.numCarriers,1);
-    %UserTemplate(TxPHY.numCarriers).msg = '';
-%     for k=1:TxPHY.numCarriers-1
-%         UserTemplate(k).msg = '';
-%     end
     
 end
 

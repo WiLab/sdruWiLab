@@ -18,7 +18,7 @@ classdef PHYReceiverBase < matlab.System
         PeakThreshold = 0.7
         requiredPeaks = 7;
         
-        NumDataSymbolsPerFrame = 1;
+        NumCodedSymbolsPerFrame = 1;
         FFTLength = 64;     % OFDM modulator FFT size
         enableMA = true;    % Enable moving averages for estimates
         numFreqToAverage = 50;
@@ -101,7 +101,7 @@ classdef PHYReceiverBase < matlab.System
             
             obj.PreviousSig = complex(zeros(200,1));
             
-            obj.FrameLength = obj.NumDataSymbolsPerFrame*(obj.FFTLength+obj.CyclicPrefixLength)+length(obj.Preambles);
+            obj.FrameLength = obj.NumCodedSymbolsPerFrame*(obj.FFTLength+obj.CyclicPrefixLength)+length(obj.Preambles);
             
             obj.ReceiveBufferLength = obj.FrameLength*2;
             
@@ -288,10 +288,10 @@ classdef PHYReceiverBase < matlab.System
             [ ~, RHard]= demodOFDMSubcarriers_sdr( obj, RPostEqualizer );
             
             % Decode
-            scrambled = reshape(RHard,obj.numCarriers*obj.NumDataSymbolsPerFrame,1);
+            scrambled = reshape(RHard,obj.numCarriers*obj.NumCodedSymbolsPerFrame,1);
             unscrambled = step(obj.Descram,scrambled);
             decoded = step(obj.Decoder,unscrambled);
-            RHardDecoded = reshape(decoded,obj.numCarriers,obj.NumDataSymbolsPerFrame/obj.CodeRate);
+            RHardDecoded = reshape(decoded,obj.numCarriers,obj.NumCodedSymbolsPerFrame/obj.CodeRate);
             
         end
         
@@ -304,7 +304,7 @@ classdef PHYReceiverBase < matlab.System
                 'CyclicPrefixLength',   obj.CyclicPrefixLength,...
                 'FFTLength' ,           obj.FFTLength,...
                 'NumGuardBandCarriers', obj.NumGuardBandCarriers,...
-                'NumSymbols',           obj.NumDataSymbolsPerFrame,...
+                'NumSymbols',           obj.NumCodedSymbolsPerFrame,...
                 'PilotInputPort',       true,...
                 'PilotCarrierIndices',  obj.PilotCarrierIndices,...
                 'InsertDCNull',         true);
@@ -367,7 +367,7 @@ classdef PHYReceiverBase < matlab.System
             % Create Pilots
             hPN = comm.PNSequence(...
                 'Polynomial',[1 0 0 0 1 0 0 1],...
-                'SamplesPerFrame', obj.NumDataSymbolsPerFrame,...
+                'SamplesPerFrame', obj.NumCodedSymbolsPerFrame,...
                 'InitialConditions',[1 1 1 1 1 1 1]);
             
             %pilot=[1 0  0  1  0  0  1  0  0  0  0  0]';
@@ -531,7 +531,7 @@ classdef PHYReceiverBase < matlab.System
             obj.preambleEqGains = preambleFDE( obj, [RLongFirst, RLongSecond], [obj.LongPreamble, obj.LongPreamble]);
             
             % Separate data from preambles
-            recvData = recv(length(obj.Preambles)+1:length(obj.Preambles)+(obj.NumDataSymbolsPerFrame)*(obj.FFTLength+obj.CyclicPrefixLength));
+            recvData = recv(length(obj.Preambles)+1:length(obj.Preambles)+(obj.NumCodedSymbolsPerFrame)*(obj.FFTLength+obj.CyclicPrefixLength));
             
             % OFDM Demod
             [Rraw, RXPilots] = step(obj.hDataDemod, recvData);

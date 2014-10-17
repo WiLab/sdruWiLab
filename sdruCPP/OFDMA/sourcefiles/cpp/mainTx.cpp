@@ -11,8 +11,8 @@
 #include <unistd.h>
 
 //Include headers of matlab functions
-//#include "Transmitter.h"
-#include "Transmit.h"
+#include "Transmitter.h"
+//#include "Transmit.h"
 
 //Include header of combined library
 //#include "TX_initialize.h"
@@ -23,7 +23,8 @@ void Transmitter_Thread(void)
 {
     std::cout<<"Started Transmitter"<<std::endl;
     double output = 0;
-    //Transmitter();
+    Transmitter();
+/*    
     double users = 1;
     Transmit(users);
     users = 2;
@@ -33,6 +34,7 @@ void Transmitter_Thread(void)
     Transmit(users);
     users = 8;
     Transmit(users);
+ */
 }
 
 

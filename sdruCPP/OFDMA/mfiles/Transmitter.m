@@ -3,9 +3,9 @@ function [ output ] = Transmitter() %#codegen
 output = 1;
 
 %% Transmitter
-persistent TxMAC TxPHY SDRuTransmitter
+persistent TxMAC TxPHY SDRuTransmitter UserTemplate
 
-if isempty(TxMAC)
+if isempty(TxMAC)  || isempty(TxPHY) || isempty(UserTemplate)
     % SETUP MAC
     TxMAC = TxOFDMA;
     TxMAC.desiredUser = 1;
@@ -25,37 +25,36 @@ if isempty(TxMAC)
         'InterpolationFactor',  InterpolationFactor,...
         'Gain',                 25 ...
         );
-    
+
+    % initialize array for user messages
+    coder.varsize('x.msg', [1 ,100], [0 1]);
+    x.msg = '';
+    UserTemplate = repmat(x,TxPHY.numCarriers,1);
 end
 
-% Messages to transmit
-messageUE1 = ['Pink'];
-messageUE2 = ['Floyd'];
+% Create Messages
+numUsers = 2;
+subcarriersForEachUser = zeros(1,TxPHY.numCarriers);
+for k = 1:numUsers
+    message = ['Msg',char(48+k)];
+    UserTemplate(k).msg = message;
+    subcarriersForEachUser(k) = TxPHY.numCarriers/numUsers;
+end
 
 
 %% Create a number of frames, and put them in a vector
-frameLength = (3*TxMAC.symbolsPerFrame*(64+16)+320);
+frameLength = (TxPHY.CodeRate*TxMAC.symbolsPerFrame*(64+16)+320);
 
 framesToCreate = 10;
 frame = complex(zeros(frameLength*framesToCreate,1));
 
-subcarriersForEachUser = [24,24];
-
 for k = 1:framesToCreate
-    bitsToTx1 = step(TxMAC, 2, subcarriersForEachUser, messageUE1(1,:),messageUE2(1,:));
+    bitsToTx1 = step(TxMAC, 2, subcarriersForEachUser, UserTemplate);
     frame(1+(k-1)*frameLength:k*frameLength)= step(TxPHY,bitsToTx1);
 end
 
 % Add gaps between transmissions
 framesWithGaps=[complex(zeros(100,1));frame;complex(zeros(100,1))];
-
-% framesWithGapsTmp = LargeFramesVectorEncoded;%SmallFramesVector;%framesWithGapsStandard;
-% 
-% if sum(framesWithGaps- framesWithGapsTmp)==0
-%     fprintf('Not Different\n')
-% else
-%     fprintf('Different\n');
-% end
 
 % Transmit out USRP
 while 1

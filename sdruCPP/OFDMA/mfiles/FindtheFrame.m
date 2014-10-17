@@ -17,7 +17,7 @@ if isempty(RX)
     FFTLength = 64;
     CyclicPrefixLength = 16;
     
-    PeakThreshold = 0.7;
+    PeakThreshold = 0.5;
     requiredPeaks = 7;
     
     [ShortPreambleOFDM, Preambles] = CreatePreambles;
@@ -117,6 +117,17 @@ M = abs(PhatShort2).^2; %./ RhatShort2.^2;
 
 % Determine start of short preamble
 [preambleEstimatedLocation, numPeaks] = locateShortPreamble( RX, M, RX.K );
+
+% % Debugging
+% stem(M);
+% if preambleEstimatedLocation>0
+% y = zeros(size(M));
+% y(preambleEstimatedLocation) = max(M);
+% hold on;
+% stem(y,'r');
+% hold off;
+% end
+% pause(2);
 
 end
 

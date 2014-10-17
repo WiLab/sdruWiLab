@@ -24,6 +24,7 @@ TxPHY = PHYTransmitter;
 TxPHY.HWAttached = false;
 TxPHY.NumDataSymbolsPerFrame = TxMAC.symbolsPerFrame;
 
+for p = 1:1000
 
 % Create Messages
 numUsers = 2;
@@ -42,13 +43,17 @@ frame = step(TxPHY,bitsToTx1);
 
 % Receiver
 Buffer = [frame; frame];
-[rFrame,statusFlag] = FindtheFrame(Buffer);
+for k=1:1000
+output = GenerateInput();
+
+[rFrame,statusFlag] = FindtheFrame(output);
 
 if statusFlag<1
     [ RHard ] = SignalCorrect(rFrame);
     % Decode
     Decoder(RHard);
 end
-
+end
+end
 
 end

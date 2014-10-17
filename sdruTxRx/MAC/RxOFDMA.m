@@ -13,7 +13,7 @@ classdef RxOFDMA < matlab.System
         headerCharacters = 4;
         CRClength = 3;
         dataType = 'u';
-        DisplayIteration = 1;
+        DisplayIteration = 0;
         
     end
     
@@ -104,7 +104,7 @@ classdef RxOFDMA < matlab.System
             
             % Extract number of pad bits from beggining of frame
             obj.padBits = OFDMbits2letters(obj,userBits(1:8));
-            %obj.padBits = 15;
+            obj.padBits = 29;
             unpaddedBits = userBits(1:end-obj.padBits);
             %unpaddedBits = userBits(1:115);% uncoded
             
@@ -117,7 +117,7 @@ classdef RxOFDMA < matlab.System
             % The minimum number of bits that can be recovered is 43 = 4
             % characters on the header times 8 bits per character plus 3,
             % the CRC length
-            if length(unpaddedBits) < 8*obj.headerCharacters + obj.CRClength
+            if length(unpaddedBits) < 8*obj.headerCharacters + obj.CRClength && (~isempty(unpaddedBits))
                 
                 err = true; % Pad bits error has ocurred
                 recoveredMessage = uint8('PAD BITS ERROR');
@@ -225,7 +225,7 @@ classdef RxOFDMA < matlab.System
                 obj.CorrectFrames = obj.CorrectFrames + 1;%Keep track of decode frames
                 
                 % Display Message
-                if mod(obj.CorrectFrames, obj.DisplayIteration)==0% Only display every N samples, reduces CPU usage
+                if mod(obj.DisplayIteration,obj.CorrectFrames)==0% Only display every N samples, reduces CPU usage
                     switch obj.dataType
                         case 'c'
                             fprintf('Message: %s | ', char(recoveredMessage(2:end)));

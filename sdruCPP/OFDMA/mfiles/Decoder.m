@@ -1,4 +1,4 @@
-function output = Decoder( RHard )
+function [output] = Decoder( RHard )
 
 % NumSubcarriers 48
 % symbolsPerFrame 5
@@ -21,7 +21,7 @@ end
 RHardMatrix = reshape(RHard,48,RxMAC.symbolsPerFrame);
 
 % Decode
-step(RxMAC,RHardMatrix);
+[messageReceived,status] = step(RxMAC,RHardMatrix);
 
 
 end

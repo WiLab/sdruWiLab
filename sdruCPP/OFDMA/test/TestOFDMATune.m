@@ -25,35 +25,38 @@ TxPHY.HWAttached = false;
 TxPHY.NumDataSymbolsPerFrame = TxMAC.symbolsPerFrame;
 
 for p = 1:1000
-
-% Create Messages
-numUsers = 2;
-x.msg = '';
-UserTemplate = repmat(x,TxPHY.numCarriers,1);
-subcarriersForEachUser = zeros(1,TxPHY.numCarriers);
-for k = 1:numUsers
-    message = ['Msg',char(48+k)];
-    UserTemplate(k).msg = message;
-    subcarriersForEachUser(k) = TxPHY.numCarriers/numUsers;
-end
-
-subcarriersForEachUser = [24,24];
-bitsToTx1 = step(TxMAC,2,subcarriersForEachUser,UserTemplate);
-frame = step(TxPHY,bitsToTx1);
-
-% Receiver
-Buffer = [frame; frame];
-for k=1:1000
-output = GenerateInput();
-
-[rFrame,statusFlag] = FindtheFrame(output);
-
-if statusFlag<1
-    [ RHard ] = SignalCorrect(rFrame);
-    % Decode
-    Decoder(RHard);
-end
-end
+    
+    % Create Messages
+    numUsers = 2;
+    x.msg = '';
+    UserTemplate = repmat(x,TxPHY.numCarriers,1);
+    subcarriersForEachUser = zeros(1,TxPHY.numCarriers);
+    for k = 1:numUsers
+        message = ['Msg',char(48+k)];
+        UserTemplate(k).msg = message;
+        subcarriersForEachUser(k) = TxPHY.numCarriers/numUsers;
+    end
+    
+    subcarriersForEachUser = [24,24];
+    bitsToTx1 = step(TxMAC,2,subcarriersForEachUser,UserTemplate);
+    frame = step(TxPHY,bitsToTx1);
+    
+    % Receiver
+    Buffer = [frame; frame];
+    for k=1:1000
+        %%output = GenerateInput();
+        
+        [rFrame,statusFlag] = FindtheFrame(Buffer);
+        
+        if statusFlag<1
+            [ RHard ] = SignalCorrect(rFrame);
+            % Decode
+            msg = Decoder(RHard);
+            disp(msg);
+            % Evaluate Message
+            %Controller(msg);
+        end
+    end
 end
 
 end

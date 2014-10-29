@@ -31,9 +31,11 @@ system(command);
 !echo "addpath(genpath(sdruPath));">>startup.m
 !echo "setupsdru(sdruPath);">>startup.m
 !echo "usrp_startup;">>startup.m
+!echo "findsdru;">>startup.m
 
 disp('Running commands for this session');
 sdruPath = '../USRPDriver';
 addpath(genpath(sdruPath));
 setupsdru(sdruPath);
 usrp_startup;
+findsdru;

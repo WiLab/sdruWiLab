@@ -1,11 +1,12 @@
 % Generate Path for folders
+good = 1;
 if exist('startup.m', 'file') == 2
 	fileID = fopen('startup.m');
 	A = fread(fileID,'*char')';
 	fclose(fileID);
 	if findstr(A,'USRPDriver')
 		disp('USRP previously setup, exiting')
-		break;
+		good = 0;
 	end
 
 else

@@ -36,15 +36,16 @@ if args.action == 'sync':
 # Run node
 if args.action == 'runTest':
         sshCommand = 'ssh  sdruser@'+args.destination+' "cd '+args.gitRoot+';  '
-        screenCommand = 'screen -d -m -S '+args.scriptName+'  '+matlabRoot+'  -nodisplay -r'+" 'cd "+args.scriptLocation+';'+args.startupCommands+';'+args.scriptName+"'"+'"'
+        screenCommand = 'screen -d -m -S '+args.scriptName+'  '+matlabRoot+'  -nodisplay -r'+" '"+args.startupCmd+" ;cd "+args.scriptLocation+';'+args.startupCommands+';'+args.scriptName+"'"+'"'
         command = sshCommand + screenCommand
         #print command
         os.system(command)
 
 if args.action =='changeBranch':
         sshCommand = 'ssh  sdruser@'+args.destination+' "cd '+args.gitRoot+';  '
-	changeCommand = 'git checkout '+args.branchName
-        command = sshCommand + changeCommand
+	changeCommand1 = 'git checkout HEAD^;'
+	changeCommand2 = 'git checkout -f '+args.branchName+'"'
+        command = sshCommand + changeCommand1 + changeCommand2
 	os.system(command)
 
 

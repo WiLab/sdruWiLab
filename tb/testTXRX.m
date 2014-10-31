@@ -14,7 +14,7 @@ StartNode(gitRoot, scriptLocation, scriptName, nodeName, username, startupComman
 %% TX
 gitRoot = '/home/sdruser/git/traviscollins/sdruWiLab';% No trailing slash (/)
 scriptLocation = 'sdruCPP/OFDMA/';
-scriptName = 'builder_tx';
+scriptName = 'Transmitter';
 nodeName = '130.215.23.106';
 username = 'traviscollins';
 startupCommands = 'findsdru';

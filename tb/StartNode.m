@@ -9,15 +9,16 @@ system(command);
 
 % Sync code to target node
 action = 'sync';
-command = BuildCommand( action, masterNode, gitRoot, scriptLocation, scriptName, nodeName, username,startupCommands,branchName);
+gitRootN = ['/home/travis/git/',username,'/sdruWiLab'];% No trailing slash (/)
+command = BuildCommand( action, masterNode, gitRootN, scriptLocation, scriptName, nodeName, username,startupCommands,branchName);
 system(command);
 
-% Change git branch
-if ~strcmp(branchName,'')
-action = 'changeBranch';
-command = BuildCommand( action, masterNode, gitRoot, scriptLocation, scriptName, nodeName, username,startupCommands,branchName);
-system(command);
-end
+% % Change git branch
+% if ~strcmp(branchName,'')
+% action = 'changeBranch';
+% command = BuildCommand( action, masterNode, gitRoot, scriptLocation, scriptName, nodeName, username,startupCommands,branchName);
+% system(command);
+% end
 
 % Start Script
 action = 'runTest';
@@ -31,7 +32,7 @@ end
 
 function command = BuildCommand( action, masterNode, gitRoot, scriptLocation, scriptName, nodeName, username,startupCommands,branchName)
 
-showCommands = true; % Also shows outputs of commands (DEBUG)
+showCommands = false; % Also shows outputs of commands (DEBUG)
 if showCommands
     viewer = '';    
 else

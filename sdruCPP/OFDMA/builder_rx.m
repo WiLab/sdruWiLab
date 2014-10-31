@@ -81,5 +81,5 @@ end
 
 total = toc;
 fprintf('Build duration: %f (Seconds)\n',total);
-
+!./RX
 

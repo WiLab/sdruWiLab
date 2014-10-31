@@ -1,7 +1,7 @@
 classdef RxOFDMA < matlab.System
     
     % RxOFDMA   OFDMA receiver conversion from bits to char, error checking and
-    % user demultiplexing for 2 users.
+    % user demultiplexing for N users.
     
     %% Define nontunable properties
     properties(Nontunable)
@@ -97,8 +97,8 @@ classdef RxOFDMA < matlab.System
             coder.varsize('userFrame', [obj.numCarriers ,obj.symbolsPerFrame], [1 0]);
             coder.varsize('userBits', [1 ,obj.numCarriers*obj.symbolsPerFrame], [0 1]);
             coder.varsize('recoveredMessage', [1 ,obj.numCarriers*obj.symbolsPerFrame], [0 1]);
-            coder.varsize('msg', [1 ,obj.numCarriers*obj.symbolsPerFrame], [0 1]);
-            msg = logical(100);
+            coder.varsize('msg', [obj.numCarriers*obj.symbolsPerFrame, 1], [1 0]);
+            msg = logical(2);
             
             % User demultiplex
             userFrame = receivedFrame(obj.userIndexes(obj.desiredUser,1):obj.userIndexes(obj.desiredUser,2),:);
@@ -120,9 +120,9 @@ classdef RxOFDMA < matlab.System
             end
             
             % Check frame ordering
-            if (~err || obj.debugFlag)
-                [err,reason,Duplicate] = obj.CheckFrameOrdering(header);
-            end
+            %if (~err || obj.debugFlag)
+            %    [err,reason,Duplicate] = obj.CheckFrameOrdering(header);
+            %end
             
             % Cast output
             returnedMessage = obj.CastOutput(recoveredMessage);

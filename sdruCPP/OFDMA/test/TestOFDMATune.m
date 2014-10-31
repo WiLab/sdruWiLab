@@ -43,7 +43,7 @@ for p = 1:1000
     
     % Receiver
     Buffer = [frame; frame];
-    for k=1:1000
+    %for k=1:1000
         %%output = GenerateInput();
         
         [rFrame,statusFlag] = FindtheFrame(Buffer);
@@ -52,11 +52,11 @@ for p = 1:1000
             [ RHard ] = SignalCorrect(rFrame);
             % Decode
             msg = Decoder(RHard);
-            disp(msg);
+            %disp(msg);
             % Evaluate Message
             %Controller(msg);
         end
-    end
+    %end
 end
 
 end

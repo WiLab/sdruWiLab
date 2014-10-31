@@ -161,6 +161,8 @@ void FindTheFrame_Thread(void)
                 locker2.unlock();
                 cond.notify_one(); // Notify waiting thread
             }
+//             else
+//                 std::cout<<"Nothing found\n";
         }
         
     }
@@ -273,7 +275,7 @@ void Decoder_Thread(void)
 int main()
 {
     
-    bool Pipeline = false;
+    bool Pipeline = true;
     
     std::cout<<"Main Started"<<std::endl;
     

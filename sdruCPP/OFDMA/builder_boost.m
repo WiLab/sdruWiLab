@@ -3,7 +3,8 @@ cfg.CustomSource = 'mainComplex.cpp';
 cfg.CustomInclude = 'sourcefiles/cpp/';
 cfg.TargetLang='C++';
 cfg.PostCodeGenCommand = 'setbuildargsBoost(buildInfo)';
-functionsToThread = {'GetUSRPData','Decoder'};
+%functionsToThread = {'GetUSRPData','Decoder'};
+functionsToThread = {'Transmitter', 'FindtheFrame','GetUSRPData','SignalCorrect','Decoder'};
 additionalSourceFiles = {'flow.h'};
 outputFunctionName = {'RX'};
 
